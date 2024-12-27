@@ -1,0 +1,60 @@
+.solutionsContainer {
+  background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+}
+
+.glassBackground {
+  border-radius: 12px;
+  border: 1px solid rgba(239, 240, 242, 0.05);
+  background: rgba(239, 240, 242, 0.1);
+  box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.25) inset;
+  backdrop-filter: blur(10px);
+}
+
+.sectionBackground {
+  background-size: inherit;
+  background-position: top right;
+  background-repeat: no-repeat;
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+}
+
+.overlay {
+  opacity: 0.8;
+  background: linear-gradient(
+      180deg,
+      rgba(246, 247, 248, 0) 74.68%,
+      #f6f7f8 100%
+    ),
+    linear-gradient(
+      0deg,
+      var(--Neutral-50, #f6f7f8) 0%,
+      var(--Neutral-50, #f6f7f8) 100%
+    );
+  background-blend-mode: normal, color;
+}
+
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  color: #0052cc;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
