@@ -187,14 +187,15 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                     </span>
                   </button>
                 ) : (
-                  <button
+                  <Link
                     className={`group rounded-lg px-3 py-2 text-base font-medium transition-colors hover:bg-[#EFF0F2CC] ${
                       pathname === item.href ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
                     }`}
+                    href={item.href}
                     onClick={() => router.push(item.href)}
                   >
                     {item.name}
-                  </button>
+                  </Link>
                 )}
 
                 {item.hasDropdown && showSolutionsDropdown && (

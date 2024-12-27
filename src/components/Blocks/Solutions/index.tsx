@@ -140,7 +140,7 @@ const Solutions = ({ content = solutionsContent }: SolutionsProps) => {
         <div className={`absolute inset-0 ${styles.overlay}`} />
 
         <div className={styles.container}>
-          <h2 ref={titleRef} className="mb-12 font-primaryBold text-[2.5rem] text-primary-800">
+          <h2 ref={titleRef} className="text-h2 mb-12 text-primary-800">
             {content.title}
           </h2>
           <div className={`${styles.glassBackground} flex flex-col gap-16 p-12`}>

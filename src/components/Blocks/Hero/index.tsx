@@ -20,7 +20,7 @@ const Hero = () => {
       <div className="relative z-20 mx-auto h-full max-w-7xl">
         <div className="grid grid-cols-1 items-center gap-[24px] py-12 lg:grid-cols-3 lg:py-20">
           <div className="col-span-2 space-y-6">
-            <h1 className="font-primarySemiBold text-[80px] leading-[84px] text-primary-800">{heroContent.title}</h1>
+            <h1 className="text-h1 text-primary-800">{heroContent.title}</h1>
             <p className="w-[70%] text-md text-primary-800">{heroContent.description}</p>
             <button className="flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700">
               {heroContent.cta.text}

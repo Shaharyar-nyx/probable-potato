@@ -14,3 +14,12 @@
     background-color: #f6f7f8;
   }
 }
+
+.text-h1 {
+  @apply font-primarySemiBold text-[80px] leading-[84px];
+}
+
+.text-h2 {
+  @apply font-primaryBold text-[40px] leading-[56px];
+}
+

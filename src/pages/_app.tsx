@@ -2,7 +2,7 @@ import NextApp from "next/app";
 
 import CookieConsent from "@/components/CookieConsent";
 import { SiteContext, useSiteContext } from "@/hooks/use-site";
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 import { getFooterMenusDirectus, getMainMenusDirectus } from "@/lib/menus";
 

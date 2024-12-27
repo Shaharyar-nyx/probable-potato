@@ -7,7 +7,7 @@ import { SiteContextProvider } from "@/context";
 import { getFooterMenusDirectus, getMainMenusDirectus } from "@/lib/menus";
 
 import "vanilla-cookieconsent/dist/cookieconsent.css";
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 
 export const metadata = {
   title: "Your App Title",

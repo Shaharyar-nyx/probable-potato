@@ -55,7 +55,7 @@ const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
     <section className={styles.container}>
       <div className={styles.header}>
         <div className={styles.clientsSection}>
-          <h2 className={styles.sectionTitle}>{content.sections.clients.title}</h2>
+          <h2 className="text-h2 text-primary-800">{content.sections.clients.title}</h2>
           <div className={styles.clientsList}>
             {content.testimonials.map((testimonial, index) => (
               <div
