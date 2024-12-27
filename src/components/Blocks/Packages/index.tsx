@@ -340,7 +340,7 @@ const Packages = () => {
   return (
     <div className={styles.container} style={{ backgroundImage: `url(${bgImage.src})` }}>
       <div className={styles.header}>
-        <h2 className={`${styles.title} font-primaryBold`}>Cyberbay Packages</h2>
+        <h2 className="text-h2 mb-3 text-primary-800">Cyberbay Packages</h2>
         <p className={styles.subtitle}>Compare plans below, and get in touch for customized solutions.</p>
       </div>
 

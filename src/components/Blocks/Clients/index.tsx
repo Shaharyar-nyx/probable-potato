@@ -8,7 +8,7 @@ import { clientsContent } from "@/data/clients";
 const Clients = () => {
   return (
     <div className={styles.clientsSection}>
-      <h2 className={`${styles.title} text-h2 text-primary-800`}>{clientsContent.title}</h2>
+      <h2 className="text-h2 mb-12 text-center text-primary-800">{clientsContent.title}</h2>
       <div className={styles.carouselContainer}>
         <Slider {...clientsContent.sliderSettings}>
           {clientsContent.clients.map((client, index) => (
