@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 import ChevronDown from "assets/images/chevron-down.svg";
@@ -22,6 +24,7 @@ interface NavProps {
 
 export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showSolutionsDropdown, setShowSolutionsDropdown] = useState(false);
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
@@ -52,13 +55,9 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
   }, []);
 
   useEffect(() => {
-    const handleRouteChange = () => {
-      setIsMobileMenuOpen(false);
-      setShowSolutionsDropdown(false);
-    };
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => router.events.off("routeChangeComplete", handleRouteChange);
-  }, [router]);
+    setIsMobileMenuOpen(false);
+    setShowSolutionsDropdown(false);
+  }, [pathname]);
 
   const services = [
     {
@@ -190,7 +189,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                 ) : (
                   <button
                     className={`group rounded-lg px-3 py-2 text-base font-medium transition-colors hover:bg-[#EFF0F2CC] ${
-                      router.pathname === item.href ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
+                      pathname === item.href ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
                     }`}
                     onClick={() => router.push(item.href)}
                   >
@@ -295,7 +294,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                 <div key={item.name}>
                   <button
                     className={`w-full px-4 py-2 text-left text-base font-medium ${
-                      router.pathname === item.href ? "text-primary-500" : "text-primary-800"
+                      pathname === item.href ? "text-primary-500" : "text-primary-800"
                     }`}
                     onClick={() => {
                       if (item.hasDropdown) {

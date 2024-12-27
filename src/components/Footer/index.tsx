@@ -1,7 +1,7 @@
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
-import { JSX } from "react";
+import React, { JSX } from "react";
 
 import Logo from "assets/images/cyberbay-white.svg";
 

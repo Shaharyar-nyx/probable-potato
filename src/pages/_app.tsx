@@ -1,11 +1,12 @@
 import NextApp from "next/app";
-import { SiteContext, useSiteContext } from "hooks/use-site";
-import "styles/globals.css";
-import "vanilla-cookieconsent/dist/cookieconsent.css";
-import { getFooterMenusDirectus, getMainMenusDirectus } from "lib/menus";
-import CookieConsent from "components/CookieConsent";
 
-function App({ Component, pageProps = {}, mainNav, footerNav }) {
+import CookieConsent from "@/components/CookieConsent";
+import { SiteContext, useSiteContext } from "@/hooks/use-site";
+import "@/styles/globals.css";
+import "vanilla-cookieconsent/dist/cookieconsent.css";
+import { getFooterMenusDirectus, getMainMenusDirectus } from "@/lib/menus";
+
+const App = ({ Component, pageProps = {}, mainNav, footerNav }) => {
   const site = useSiteContext({
     mainNav,
     footerNav,
@@ -17,7 +18,7 @@ function App({ Component, pageProps = {}, mainNav, footerNav }) {
       <CookieConsent />
     </SiteContext.Provider>
   );
-}
+};
 
 App.getInitialProps = async function (appContext) {
   const appProps = await NextApp?.getInitialProps(appContext);
