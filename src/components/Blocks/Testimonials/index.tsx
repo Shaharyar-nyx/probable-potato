@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { testimonialsContent } from "@/data/testimonials";
 
 interface TestimonialsProps {

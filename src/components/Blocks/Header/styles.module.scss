@@ -1,0 +1,33 @@
+.container {
+  @apply relative text-[#f6f7f8] py-24 px-8 text-center overflow-hidden h-[80vh] flex items-center justify-center;
+}
+
+.image {
+  @apply absolute inset-0 w-full h-full object-cover -z-[2];
+}
+
+.overlay {
+  @apply absolute inset-0 w-full h-full opacity-20 bg-primary-800 -z-[1];
+}
+
+.content {
+  @apply relative max-w-[800px] mx-auto p-8 rounded-lg bg-black/30 shadow-[0px_0px_20px_0px_rgba(239,240,242,0.25)_inset] backdrop-blur-lg flex flex-col items-center justify-center;
+}
+
+.title {
+  @apply mb-5;
+}
+
+.description {
+  @apply text-[18px] leading-7 max-w-[600px];
+}
+
+@media (max-width: 768px) {
+  .container {
+    @apply py-16 px-4;
+  }
+
+  .description {
+    @apply text-[1.125rem];
+  }
+}

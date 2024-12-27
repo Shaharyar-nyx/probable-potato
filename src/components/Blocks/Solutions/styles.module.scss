@@ -1,0 +1,158 @@
+.solutionsContainer {
+  @apply bg-gradient-to-br from-white to-[#f8f9fa] relative overflow-hidden;
+}
+
+.container {
+  @apply max-w-[1200px] mx-auto relative z-[3];
+
+  &.crowdsourcing {
+    @apply mt-[120px];
+  }
+}
+
+.glassBackground {
+  @apply rounded-xl border border-[#eff0f2]/5 bg-[#eff0f2]/10 shadow-[0px_0px_20px_0px_rgba(255,255,255,0.25)_inset] backdrop-blur-lg;
+}
+
+.sectionBackground {
+  @apply bg-inherit bg-right-top bg-no-repeat relative isolate min-h-screen px-4 py-16;
+}
+
+.overlay {
+  @apply absolute inset-0 opacity-80;
+  background: linear-gradient(180deg, rgba(246, 247, 248, 0) 74.68%, #f6f7f8 100%),
+    linear-gradient(0deg, var(--Neutral-50, #f6f7f8) 0%, var(--Neutral-50, #f6f7f8) 100%);
+  background-blend-mode: normal, color;
+}
+
+.mainTitle {
+  @apply text-primary-800 mb-12;
+}
+
+.solutionsWrapper {
+  composes: glassBackground;
+  @apply flex flex-col gap-16 p-12;
+}
+
+// Solution Card Styles
+.solutionCard {
+  @apply flex w-full flex-row items-start gap-8;
+
+  &.even {
+    @apply justify-end;
+  }
+}
+
+.cardContent {
+  @apply flex flex-row items-start gap-8;
+}
+
+.iconWrapper {
+  @apply flex-shrink-0;
+}
+
+.textContent {
+  @apply flex flex-col items-start text-left;
+
+  &.even {
+    @apply items-end text-right;
+  }
+}
+
+.cardTitle {
+  @apply mb-2 max-w-[600px] font-primaryBold text-[32px] text-primary-800;
+}
+
+.cardDescription {
+  @apply mb-4 max-w-[600px] text-[16px] text-gray-700;
+}
+
+.button {
+  @apply rounded bg-primary-500 px-6 py-2 text-white transition-colors hover:bg-blue-700;
+
+  &.large {
+    @apply w-fit px-8 py-3 mt-12;
+  }
+}
+
+// Crowdsourcing Section Styles
+.crowdsourcingContent {
+  composes: glassBackground;
+  @apply p-12 text-primary-800;
+}
+
+.label {
+  @apply font-primary text-[14px];
+}
+
+.crowdsourcingTitle {
+  @apply mb-6 mt-4;
+}
+
+.crowdsourcingDescription {
+  @apply mb-12 text-[16px];
+}
+
+.benefitsGrid {
+  @apply grid grid-cols-2 gap-24;
+}
+
+.benefitItem {
+  @apply flex flex-col;
+}
+
+.benefitTitle {
+  @apply mb-4 font-primaryBold text-[20px];
+}
+
+.benefitDescription {
+  @apply text-[16px];
+}
+
+// Responsive Styles
+@media (max-width: 1024px) {
+  .benefitsGrid {
+    @apply grid-cols-1 gap-12;
+  }
+
+  .crowdsourcingContent {
+    @apply p-8;
+  }
+
+  .solutionsWrapper {
+    @apply p-8;
+  }
+
+  .cardContent {
+    @apply flex-col;
+  }
+
+  .textContent {
+    &.even {
+      @apply items-start text-left;
+    }
+  }
+
+  .crowdsourcingTitle {
+    @apply text-[36px];
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    @apply px-4;
+  }
+
+  .mainTitle {
+    @apply text-[32px];
+  }
+
+  .solutionsWrapper,
+  .crowdsourcingContent {
+    @apply p-6;
+  }
+
+  .cardTitle {
+    @apply text-[24px];
+  }
+}

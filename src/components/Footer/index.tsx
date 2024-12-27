@@ -125,7 +125,7 @@ const Footer: React.FC = () => {
           {/* Main Content */}
           <div className="flex flex-col justify-between gap-16 lg:flex-row">
             {/* Left Side - Logo and Navigation */}
-            <div className="flex flex-col gap-16 lg:flex-row">
+            <div className="flex flex-col gap-[40px] lg:flex-row">
               <div className="flex-shrink-0">
                 <Link className="block w-[140px]" href="/">
                   <Image alt="Cyberbay" height={24} src={Logo} width={140} />

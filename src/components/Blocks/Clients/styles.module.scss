@@ -1,0 +1,61 @@
+.clientsSection {
+  @apply py-16 bg-white overflow-hidden;
+}
+
+.title {
+  @apply text-primary-800 text-center mb-12;
+}
+
+.carouselContainer {
+  @apply relative w-full py-8;
+}
+
+.div {
+  @apply px-3;
+}
+
+.swiper {
+  @apply overflow-hidden;
+}
+
+.swiperSlide {
+  @apply w-auto h-auto;
+}
+
+.logoWrapper {
+  @apply flex-[0_0_300px] px-8 flex justify-center items-center h-[120px] border border-primary-500 rounded-lg mx-auto;
+}
+
+.clientLogo {
+  @apply max-w-[80%] max-h-[60px] h-auto object-contain;
+  filter: invert(24%) sepia(97%) saturate(1970%) hue-rotate(211deg) brightness(102%) contrast(101%);
+}
+
+// Responsive styles
+@media (max-width: 1024px) {
+  .title {
+    @apply text-4xl;
+  }
+
+  .logoWrapper {
+    @apply flex-[0_0_250px] h-[100px];
+  }
+}
+
+@media (max-width: 768px) {
+  .clientsSection {
+    @apply py-12;
+  }
+
+  .title {
+    @apply text-3xl mb-8;
+  }
+
+  .logoWrapper {
+    @apply flex-[0_0_200px] px-6 h-[80px];
+  }
+
+  .clientLogo {
+    @apply max-h-[40px];
+  }
+}
