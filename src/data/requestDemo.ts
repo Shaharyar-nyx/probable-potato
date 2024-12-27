@@ -1,10 +1,10 @@
-import banner from "assets/images/demo/banner1.png";
 import ArrowUpRight from "assets/images/arrow-up-right.svg";
+import banner from "assets/images/demo/banner1.png";
 
 export const requestDemoContent = {
   banner: {
     src: banner.src,
-    alt: "banner"
+    alt: "banner",
   },
   title: "Secure Your Digital Future",
   subtitle: "Experience the power of proactive cybersecurity tailored to your organization's unique needs.",
@@ -13,6 +13,6 @@ export const requestDemoContent = {
     src: ArrowUpRight.src,
     alt: "arrow up right",
     width: 24,
-    height: 24
-  }
+    height: 24,
+  },
 };

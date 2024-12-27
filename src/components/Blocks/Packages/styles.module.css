@@ -19,12 +19,12 @@
   font-size: 48px;
   font-weight: 700;
   margin-bottom: 12px;
-  color: #02255B;
+  color: #02255b;
 }
 
 .subtitle {
   font-size: 16px;
-  color: #02255B;
+  color: #02255b;
 }
 
 .packagesGrid {
@@ -37,7 +37,7 @@
 }
 
 .package {
-  background: #045DE3;
+  background: #045de3;
   border-radius: 16px;
   padding: 32px;
   display: flex;
@@ -49,7 +49,7 @@
 .packageIcon {
   width: 40px;
   height: 40px;
-  background: #F6F7F8;
+  background: #f6f7f8;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -79,7 +79,7 @@
 .perYear {
   width: 10%;
   font-size: 12px;
-  color: #F6F7F8;
+  color: #f6f7f8;
   font-weight: normal;
   color: rgba(255, 255, 255, 0.8);
 }
@@ -95,7 +95,7 @@
   background: #fff;
   border-radius: 8px;
   padding: 12px 24px;
-  color: #02255B;
+  color: #02255b;
   font-size: 12px;
   font-weight: 500;
   display: flex;
@@ -122,7 +122,7 @@
 .featuresHeader {
   font-size: 22px;
   padding: 24px 32px;
-  color: #02255B;
+  color: #02255b;
 }
 
 .table {
@@ -140,9 +140,9 @@
   padding: 16px;
   text-align: center;
   width: calc(75% / 3);
-  color: #02255B;
+  color: #02255b;
   background: #fff;
-  border-bottom: 1px solid #D0D3D7;
+  border-bottom: 1px solid #d0d3d7;
   transition: all 0.2s ease-in-out;
 }
 
@@ -153,11 +153,11 @@
   text-align: left;
   padding-left: 32px;
   font-weight: 500;
-  color: #02255B;
+  color: #02255b;
 }
 
 .tableCell.hovered {
-  background: #045DE3;
+  background: #045de3;
   color: #fff;
 }
 
@@ -172,7 +172,7 @@
   font-weight: 500;
   font-size: 14px;
   background: #fff;
-  border-bottom: 1px solid #F0F0F0;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .infoIcon {
@@ -184,7 +184,7 @@
 .checkIcon {
   width: 20px;
   height: 20px;
-  color: #0052CC;
+  color: #0052cc;
 }
 
 .xIcon {

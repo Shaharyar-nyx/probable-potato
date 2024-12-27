@@ -1,19 +1,19 @@
 import { StaticImageData } from "next/image";
-import Image1 from "assets/images/cyber-img-1.png";
-import BgVideo from "assets/images/bg-video.gif";
+
 import ArrowUpRight from "assets/images/arrow-up-right.svg";
+import BgVideo from "assets/images/bg-video.gif";
+import Image1 from "assets/images/cyber-img-1.png";
 
 export interface HeroContent {
   backgroundVideo: StaticImageData;
-  title: string;
-  description: string;
   cta: {
-    text: string;
     icon: StaticImageData;
+    text: string;
   };
+  description: string;
   featuredImage: {
-    image: StaticImageData;
     alt: string;
+    image: StaticImageData;
     monitoringLabel: string;
   };
   styles: {
@@ -23,12 +23,14 @@ export interface HeroContent {
       label: [number, number];
     };
   };
+  title: string;
 }
 
 export const heroContent: HeroContent = {
   backgroundVideo: BgVideo,
   title: "Building a Future Ecosystem of Cybersecurity Excellence",
-  description: "We are on a mission to make cybersecurity proactive, inclusive, and accessible, empowering a safer digital age.",
+  description:
+    "We are on a mission to make cybersecurity proactive, inclusive, and accessible, empowering a safer digital age.",
   cta: {
     text: "Request a Demo",
     icon: ArrowUpRight,

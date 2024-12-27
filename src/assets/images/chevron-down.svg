@@ -1,5 +1,6 @@
 <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="chevron-down">
-<path id="Vector 335" d="M16.6607 6.875L10.4107 13.125L4.16071 6.875" stroke="#02255B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
+    <g id="chevron-down">
+        <path id="Vector 335" d="M16.6607 6.875L10.4107 13.125L4.16071 6.875" stroke="#02255B" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
 </svg>

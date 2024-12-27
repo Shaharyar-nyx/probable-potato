@@ -1,5 +1,5 @@
 .container {
-  @apply bg-primary-800 py-20 px-16 relative;
+  @apply relative bg-primary-800 px-16 py-20;
 }
 
 .content {
@@ -15,7 +15,7 @@
 }
 
 .sectionTitle {
-  @apply text-[32px] text-neutral-200 font-bold mb-10 border-b border-neutral-200 pb-5;
+  @apply mb-10 border-b border-neutral-200 pb-5 text-[32px] font-bold text-neutral-200;
 }
 
 .clientsList {
@@ -23,39 +23,39 @@
 }
 
 .client {
-  @apply text-white text-[16px] cursor-pointer opacity-50 transition-opacity hover:opacity-100 font-light;
+  @apply cursor-pointer text-[16px] font-light text-white opacity-50 transition-opacity hover:opacity-100;
 }
 
 .clientActive {
-  @apply opacity-100 bg-primary-800 border-b border-neutral-200 pb-5;
+  @apply border-b border-neutral-200 bg-primary-800 pb-5 opacity-100;
 }
 
 .testimonialSection {
-  @apply flex-1 min-w-0;
+  @apply min-w-0 flex-1;
 }
 
 .testimonialSlide {
-  @apply flex gap-32 h-full;
+  @apply flex h-full gap-32;
 }
 
 .testimonialLeft {
-  @apply w-[200px] shrink-0 flex flex-col justify-between;
+  @apply flex w-[200px] shrink-0 flex-col justify-between;
 }
 
 .testimonialRight {
-  @apply flex-1 min-w-0 flex flex-col;
+  @apply flex min-w-0 flex-1 flex-col;
 }
 
 .testimonialAuthor {
-  @apply text-white text-[20px] mb-1;
+  @apply mb-1 text-[20px] text-white;
 }
 
 .testimonialPosition {
-  @apply text-white text-[16px] opacity-80;
+  @apply text-[16px] text-white opacity-80;
 }
 
 .testimonialQuote {
-  @apply text-[28px] text-white leading-normal font-primary break-words h-full;
+  @apply h-full break-words font-primary text-[28px] leading-normal text-white;
 }
 
 .testimonialLogo {
@@ -71,7 +71,7 @@
 }
 
 .progressBarFill {
-  @apply h-full bg-[#045DE3] transition-all duration-100 ease-linear w-0;
+  @apply h-full w-0 bg-[#045DE3] transition-all duration-100 ease-linear;
 }
 
 .progressBarActive .progressBarFill {

@@ -20,7 +20,7 @@
 
 .title {
   font-size: 3.5rem;
-  color: #0A2357;
+  color: #0a2357;
   margin-bottom: 1.5rem;
   font-weight: bold;
   line-height: 56px;
@@ -28,7 +28,7 @@
 
 .description {
   font-size: 1.2rem;
-  color: #4A5568;
+  color: #4a5568;
   line-height: 1.6;
   margin-bottom: 2rem;
   max-width: 700px;
@@ -64,7 +64,7 @@
   text-align: left;
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.50) inset;
+  box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.5) inset;
   backdrop-filter: blur(2px);
 }
 
@@ -82,34 +82,40 @@
 }
 
 /* Position each member card */
-.member1 { /* Mira */
+.member1 {
+  /* Mira */
   left: 0;
   top: 15%;
 }
 
-.member2 { /* Brandon */
+.member2 {
+  /* Brandon */
   left: 50%;
   transform: translateX(-50%);
   top: -10%;
 }
 
-.member3 { /* Wilson */
+.member3 {
+  /* Wilson */
   right: 0;
   top: 15%;
 }
 
-.member4 { /* Jirou */
+.member4 {
+  /* Jirou */
   left: 50%;
   transform: translateX(-50%);
   bottom: 0;
 }
 
-.member5 { /* Marcela */
+.member5 {
+  /* Marcela */
   right: 10%;
   bottom: 25%;
 }
 
-.member6 { /* Craig */
+.member6 {
+  /* Craig */
   left: 10%;
   bottom: 25%;
 }
@@ -118,7 +124,7 @@
 .tag {
   position: absolute;
   padding: 0.5rem 1rem;
-  background: #0A2357;
+  background: #0a2357;
   color: white;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -128,7 +134,7 @@
   composes: tag;
   left: 20%;
   top: 5%;
-  background-color: #02255BCC;
+  background-color: #02255bcc;
 }
 
 .academyTag {

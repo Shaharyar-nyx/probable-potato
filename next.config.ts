@@ -18,14 +18,18 @@ const nextConfig: NextConfig = {
 
   images: {
     dangerouslyAllowSVG: true,
-    contentDispositionType: 'attachment',
-    formats: ['image/avif', 'image/webp'],
+    contentDispositionType: "attachment",
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "**",
       },
     ],
+  },
+
+  sassOptions: {
+    silenceDeprecations: ["legacy-js-api", "import"],
   },
 };
 

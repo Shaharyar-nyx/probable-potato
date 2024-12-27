@@ -32,13 +32,13 @@ export default {
           100: "#B4CEF7",
           200: "#9BBEF4",
           300: "#689EEE",
-          400: "#367DE9", 
+          400: "#367DE9",
           500: "#045DE3",
           600: "#034AB6",
           700: "#034AB6",
           800: "#02255B",
           900: "#00143F",
-          950: "#000A27"
+          950: "#000A27",
         },
         neutral: {
           50: "#F6F7F8",
@@ -51,14 +51,14 @@ export default {
           700: "#4E535D",
           800: "#32363D",
           900: "#181B1F",
-          950: "#000101"
+          950: "#000101",
         },
       },
       fontSize: {
         // Please base this on https://type-scale.com
         // Also, useful - https://nekocalc.com/px-to-rem-converter
         // @note: Base font is 18px - set in basics.css
-        "xxs": "0.625rem",
+        xxs: "0.625rem",
         xs: "0.75rem",
         sm: "1rem",
         md: "1.125rem",
@@ -73,7 +73,7 @@ export default {
       fontFamily: {
         primary: "Poppins Regular, sans-serif",
         primaryBold: "Poppins Bold, sans-serif",
-        primarySemiBold: "Poppins SemiBold, sans-serif"
+        primarySemiBold: "Poppins SemiBold, sans-serif",
       },
     },
   },

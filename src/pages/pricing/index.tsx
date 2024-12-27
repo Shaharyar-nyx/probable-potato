@@ -2,6 +2,7 @@ import Header from "@/components/Blocks/Header";
 import Packages from "@/components/Blocks/Packages";
 import RequestDemo from "@/components/Blocks/RequestDemo";
 import Layout from "@/layouts/default";
+
 import { getPageByPermalink } from "lib/pages";
 
 export default function Pricing({ page }: any) {

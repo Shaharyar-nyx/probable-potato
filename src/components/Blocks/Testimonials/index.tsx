@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import "swiper/css";
 import styles from "./styles.module.css";
 import { testimonialsContent } from "@/data/testimonials";
@@ -59,9 +60,7 @@ const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
             {content.testimonials.map((testimonial, index) => (
               <div
                 key={testimonial.client}
-                className={`${styles.client} ${
-                  index === activeIndex ? styles.clientActive : ""
-                }`}
+                className={`${styles.client} ${index === activeIndex ? styles.clientActive : ""}`}
                 onClick={() => handleClientClick(index)}
               >
                 {testimonial.client}
@@ -74,13 +73,13 @@ const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
           <h2 className={styles.sectionTitle}>{content.sections.testimonials.title}</h2>
           <Swiper
             ref={swiperRef}
-            modules={[Autoplay]}
-            spaceBetween={30}
-            slidesPerView={1}
             autoplay={{
               delay: 10000,
               disableOnInteraction: false,
             }}
+            modules={[Autoplay]}
+            slidesPerView={1}
+            spaceBetween={30}
             onSlideChange={(swiper) => {
               setActiveIndex(swiper.activeIndex);
               startProgress();
@@ -91,23 +90,17 @@ const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
                 <div className={styles.testimonialSlide}>
                   <div className={styles.testimonialLeft}>
                     <div>
-                      <h3 className={styles.testimonialAuthor}>
-                        {testimonial.author}
-                      </h3>
-                      <p className={styles.testimonialPosition}>
-                        {testimonial.position}
-                      </p>
+                      <h3 className={styles.testimonialAuthor}>{testimonial.author}</h3>
+                      <p className={styles.testimonialPosition}>{testimonial.position}</p>
                     </div>
                     <img
-                      src={testimonial.logo.src}
                       alt={`${testimonial.client} Logo`}
                       className={styles.testimonialLogo}
+                      src={testimonial.logo.src}
                     />
                   </div>
                   <div className={styles.testimonialRight}>
-                    <p className={styles.testimonialQuote}>
-                      {testimonial.quote}
-                    </p>
+                    <p className={styles.testimonialQuote}>{testimonial.quote}</p>
                   </div>
                 </div>
               </SwiperSlide>
@@ -117,10 +110,7 @@ const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
       </div>
       <div className={styles.progressContainer}>
         <div className={`${styles.progressBar} ${styles.progressBarActive}`}>
-          <div
-            className={styles.progressBarFill}
-            style={{ width: `${progress}%` }}
-          />
+          <div className={styles.progressBarFill} style={{ width: `${progress}%` }} />
         </div>
       </div>
     </section>
