@@ -154,7 +154,7 @@ const Solutions = ({ content = solutionsContent }: SolutionsProps) => {
           <div className={`${styles.glassBackground} crowdsourcing p-12 text-primary-800`}>
             <span className="font-primary text-[14px]">{content.crowdsourcing.label}</span>
 
-            <h2 className="mb-6 mt-4 font-primaryBold text-[48px]">{content.crowdsourcing.title}</h2>
+            <h2 className="text-h2 mb-6 mt-4 text-white">{content.crowdsourcing.title}</h2>
 
             <p className="mb-12 text-[16px]">{content.crowdsourcing.description}</p>
 

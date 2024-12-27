@@ -1,7 +1,9 @@
+import React from "react";
+
 import styles from "./styles.module.css";
 import { headerContent } from "@/data/header";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <section className={styles.container}>
       <img alt="header background" className={styles.image} src={headerContent.backgroundImage.src} />
