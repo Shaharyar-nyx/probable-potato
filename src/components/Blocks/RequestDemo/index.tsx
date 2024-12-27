@@ -22,7 +22,7 @@ const RequestDemo = ({ content = requestDemoContent }: RequestDemoProps) => {
         <div className={styles.content}>
           {/* Left Content */}
           <div className={styles.contentLeft}>
-            <h2 className="text-h2 text-white">{content.title}</h2>
+            <h2 className="text-h2 mb-3 text-white">{content.title}</h2>
             <p className={styles.subtitle}>{content.subtitle}</p>
             <div className={styles.buttonGroup}>
               <button className={styles.primaryButton}>

@@ -1,5 +1,5 @@
-import { getApolloClient } from "lib/apollo-client";
 import { GET_FOOTER_NAV, GET_MAIN_NAV } from "graphql/queries";
+import { getApolloClient } from "lib/apollo-client";
 
 export async function getMainMenusDirectus() {
   const apolloClient = getApolloClient();

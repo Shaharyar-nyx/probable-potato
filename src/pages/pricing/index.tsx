@@ -1,6 +1,7 @@
 import Header from "@/components/Blocks/Header";
 import Packages from "@/components/Blocks/Packages";
 import RequestDemo from "@/components/Blocks/RequestDemo";
+import { headerContent } from "@/data/header";
 import Layout from "@/layouts/default";
 
 import { getPageByPermalink } from "lib/pages";
@@ -8,7 +9,7 @@ import { getPageByPermalink } from "lib/pages";
 export default function Pricing({ page }: any) {
   return (
     <Layout>
-      <Header />
+      <Header {...headerContent} />
       <Packages />
       <RequestDemo />
     </Layout>

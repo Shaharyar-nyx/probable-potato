@@ -192,7 +192,6 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                       pathname === item.href ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
                     }`}
                     href={item.href}
-                    onClick={() => router.push(item.href)}
                   >
                     {item.name}
                   </Link>
@@ -211,7 +210,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                             <h3 className="mb-5 font-primarySemiBold text-[16px] text-primary-800">{section.title}</h3>
                             <div className="space-y-6">
                               {section.items.map((item) => (
-                                <a key={item.name} className="group block" href={item.href}>
+                                <Link key={item.name} className="group block" href={item.href}>
                                   <div className="flex items-start gap-2">
                                     <span className="text-2xl">
                                       <img alt={item.name} src={item.icon.src} />
@@ -221,7 +220,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                                       <p className="text-[13px] leading-snug text-neutral-500">{item.description}</p>
                                     </div>
                                   </div>
-                                </a>
+                                </Link>
                               ))}
                             </div>
                           </div>

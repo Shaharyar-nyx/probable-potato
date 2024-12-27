@@ -1,16 +1,16 @@
 import React from "react";
 
 import styles from "./styles.module.css";
-import { headerContent } from "@/data/header";
+import { HeaderProps } from "@/types/components";
 
-const Header: React.FC = () => {
+const Header: React.FC<HeaderProps> = ({ title, description, backgroundImage }) => {
   return (
     <section className={styles.container}>
-      <img alt="header background" className={styles.image} src={headerContent.backgroundImage.src} />
+      <img alt="header background" className={styles.image} src={backgroundImage} />
       <div className={styles.overlay} />
       <div className={styles.content}>
-        <h1 className="text-h2 mb-5 text-white">{headerContent.title}</h1>
-        <p className={styles.description}>{headerContent.description}</p>
+        <h1 className="text-h2 mb-5 text-white">{title}</h1>
+        <p className={styles.description}>{description}</p>
       </div>
     </section>
   );

@@ -74,7 +74,7 @@ const BrandMission = () => {
       ))}
 
       <div className={styles.content}>
-        <h2 className="text-h2 text-primary-800">{brandMissionContent.title}</h2>
+        <h2 className="text-h2 mb-6 text-primary-800">{brandMissionContent.title}</h2>
         <p className={styles.description}>{brandMissionContent.description}</p>
       </div>
 
