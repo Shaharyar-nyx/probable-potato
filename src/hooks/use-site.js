@@ -1,4 +1,4 @@
-import { useContext, createContext } from "react";
+import { createContext, useContext } from "react";
 
 import config from "../../package.json";
 
@@ -29,6 +29,5 @@ export function useSiteContext(data) {
  */
 
 export default function useSite() {
-  const site = useContext(SiteContext);
-  return site;
+  return useContext(SiteContext);
 }

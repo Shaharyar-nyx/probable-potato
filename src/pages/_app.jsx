@@ -2,7 +2,7 @@ import NextApp from "next/app";
 import { SiteContext, useSiteContext } from "hooks/use-site";
 import "styles/globals.css";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
-import { getMainMenusDirectus, getFooterMenusDirectus } from "lib/menus";
+import { getFooterMenusDirectus, getMainMenusDirectus } from "lib/menus";
 import CookieConsent from "components/CookieConsent";
 
 function App({ Component, pageProps = {}, mainNav, footerNav }) {

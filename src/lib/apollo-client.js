@@ -1,7 +1,8 @@
 import { ApolloClient, HttpLink, InMemoryCache, split } from "@apollo/client";
 import { getMainDefinition } from "@apollo/client/utilities";
-import { removeLastTrailingSlash } from "lib/util";
 import getConfig from "next/config";
+
+import { removeLastTrailingSlash } from "lib/util";
 
 let client;
 
@@ -25,14 +26,12 @@ export function _createApolloClient() {
   const directusLink = new HttpLink({
     uri: removeLastTrailingSlash(Directus.url),
     fetchOptions: {
-      credentials: 'include',
+      credentials: "include",
     },
     onError: ({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
         graphQLErrors.forEach(({ message, locations, path }) =>
-          console.log(
-            `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-          )
+          console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
         );
       }
       if (networkError) {

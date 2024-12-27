@@ -1,6 +1,7 @@
-import { ReactNode, Fragment } from "react";
-import Nav from "components/Nav";
+import { Fragment, ReactNode } from "react";
+
 import Footer from "components/Footer";
+import Nav from "components/Nav";
 
 interface LayoutProps {
   children: ReactNode;
@@ -10,9 +11,7 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Nav />
-      <div className="min-h-screen scroll-smooth bg-ethereo layout">
-        <Fragment>{children}</Fragment>
-      </div>
+      <div className="bg-ethereo layout min-h-screen scroll-smooth">{children}</div>
       <Footer />
     </>
   );

@@ -4,11 +4,7 @@ import { headerContent } from "@/data/header";
 const Header = () => {
   return (
     <section className={styles.container}>
-      <img
-        src={headerContent.backgroundImage.src}
-        alt="header background"
-        className={styles.image}
-      />
+      <img alt="header background" className={styles.image} src={headerContent.backgroundImage.src} />
       <div className={styles.overlay} />
       <div className={styles.content}>
         <h1 className={`${styles.title} font-primaryBold`}>{headerContent.title}</h1>

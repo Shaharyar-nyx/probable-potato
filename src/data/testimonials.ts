@@ -33,10 +33,10 @@ export const testimonialsContent = {
   ],
   sections: {
     clients: {
-      title: "Clients"
+      title: "Clients",
     },
     testimonials: {
-      title: "Testimonials"
-    }
-  }
+      title: "Testimonials",
+    },
+  },
 };

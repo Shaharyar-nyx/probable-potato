@@ -1,6 +1,7 @@
-import { ParallaxProvider, Parallax } from "react-scroll-parallax";
-import styles from "./styles.module.css";
 import Image from "next/image";
+import { Parallax, ParallaxProvider } from "react-scroll-parallax";
+
+import styles from "./styles.module.css";
 import { requestDemoContent } from "@/data/requestDemo";
 
 interface RequestDemoProps {
@@ -12,8 +13,8 @@ const RequestDemo = ({ content = requestDemoContent }: RequestDemoProps) => {
     <ParallaxProvider>
       <div className={styles.container}>
         <div className={styles.backgroundWrapper}>
-          <Parallax translateY={[-20, 20]} className={styles.parallaxWrapper}>
-            <img src={content.banner.src} alt={content.banner.alt} className={styles.banner} />
+          <Parallax className={styles.parallaxWrapper} translateY={[-20, 20]}>
+            <img alt={content.banner.alt} className={styles.banner} src={content.banner.src} />
           </Parallax>
           <div className={styles.overlay} />
         </div>
@@ -21,21 +22,17 @@ const RequestDemo = ({ content = requestDemoContent }: RequestDemoProps) => {
         <div className={styles.content}>
           {/* Left Content */}
           <div className={styles.contentLeft}>
-            <h1 className={`${styles.title} font-primaryBold`}>
-              {content.title}
-            </h1>
-            <p className={styles.subtitle}>
-              {content.subtitle}
-            </p>
+            <h1 className={`${styles.title} font-primaryBold`}>{content.title}</h1>
+            <p className={styles.subtitle}>{content.subtitle}</p>
             <div className={styles.buttonGroup}>
               <button className={styles.primaryButton}>
                 {content.buttonText}{" "}
                 <span>
                   <Image
-                    src={content.arrowIcon.src}
                     alt={content.arrowIcon.alt}
-                    width={content.arrowIcon.width}
                     height={content.arrowIcon.height}
+                    src={content.arrowIcon.src}
+                    width={content.arrowIcon.width}
                   />
                 </span>
               </button>

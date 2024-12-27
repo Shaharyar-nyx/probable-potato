@@ -1,5 +1,5 @@
-import { getApolloClient } from "lib/apollo-client";
 import { GET_HOMEPAGE } from "graphql/queries";
+import { getApolloClient } from "lib/apollo-client";
 
 /**
  * Fetches a page by its permalink.

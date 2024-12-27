@@ -1,14 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Head from "next/head";
 import getConfig from "next/config";
+import Head from "next/head";
 import React, { useEffect, useState } from "react";
+
 import { useBuilderService } from "./useBuilderService";
-import Layout from "layouts/default";
 import BrandMission from "../Blocks/BrandMission";
-import Solutions from "../Blocks/Solutions";
-import Testimonials from "../Blocks/Testimonials";
 import Clients from "../Blocks/Clients";
 import RequestDemo from "../Blocks/RequestDemo";
+import Solutions from "../Blocks/Solutions";
+import Testimonials from "../Blocks/Testimonials";
+
+import Layout from "layouts/default";
 
 interface BuilderProps {
   page: any;
@@ -28,9 +30,7 @@ const Builder: React.FC<BuilderProps> = ({ page }) => {
     title: "Cyberbay | A Trusted Bug Bounty Ecosystem",
     description:
       "Cyberbay connects highly skilled bounty hunters with enterprises to find and fix bugs through our Bounty Missions. Get Started Today!",
-    image: seo.image?.id
-      ? `${Directus.assetsUrl}/${seo.image.id}`
-      : "/images/favicon.ico",
+    image: seo.image?.id ? `${Directus.assetsUrl}/${seo.image.id}` : "/images/favicon.ico",
     url: seo.canonical_url || `https://www.cyberbay.tech/${permalink}`,
     keywords: seo.keywords?.join(", ") || "",
     type: "website",
@@ -60,45 +60,40 @@ const Builder: React.FC<BuilderProps> = ({ page }) => {
       <Layout>
         <Head>
           <title>{metadata.title}</title>
-          <meta name="description" content={metadata.description} />
-          <meta name="keywords" content={metadata.keywords} />
+          <meta content={metadata.description} name="description" />
+          <meta content={metadata.keywords} name="keywords" />
 
           {/* Robots meta tag to handle noindex/nofollow logic */}
           {(metadata.noIndex || metadata.noFollow) && (
             <meta
-              name="robots"
               content={`${metadata.noIndex ? "noindex" : "index"}, ${metadata.noFollow ? "nofollow" : "follow"}`}
+              name="robots"
             />
           )}
 
           {/* Open Graph metadata for social media sharing */}
-          <meta property="og:title" content={metadata.title} />
-          <meta property="og:description" content={metadata.description} />
-          <meta property="og:image" content={metadata.image} />
-          <meta property="og:url" content={metadata.url} />
-          <meta property="og:type" content={metadata.type} />
-          <meta property="og:site_name" content={metadata.siteName} />
-          <meta property="og:locale" content={metadata.locale} />
+          <meta content={metadata.title} property="og:title" />
+          <meta content={metadata.description} property="og:description" />
+          <meta content={metadata.image} property="og:image" />
+          <meta content={metadata.url} property="og:url" />
+          <meta content={metadata.type} property="og:type" />
+          <meta content={metadata.siteName} property="og:site_name" />
+          <meta content={metadata.locale} property="og:locale" />
 
           {/* Twitter Card metadata */}
-          <meta name="twitter:title" content={metadata.title} />
-          <meta name="twitter:description" content={metadata.description} />
-          <meta name="twitter:image" content={metadata.image} />
-          <meta name="twitter:card" content="summary_large_image" />
+          <meta content={metadata.title} name="twitter:title" />
+          <meta content={metadata.description} name="twitter:description" />
+          <meta content={metadata.image} name="twitter:image" />
+          <meta content="summary_large_image" name="twitter:card" />
         </Head>
 
-        <main id="content" className="mx-auto">
+        <main className="mx-auto" id="content">
           {blocks.map((block: { collection: any }, index: number) => {
             const collection = block?.collection;
             const Component = componentMap[collection];
 
             return Component ? (
-              <Component
-                key={index}
-                {...block}
-                permalink={permalink?.replace(/\//g, "")}
-                isMobile={isMobile}
-              />
+              <Component key={index} {...block} isMobile={isMobile} permalink={permalink?.replace(/\//g, "")} />
             ) : null;
           })}
         </main>
