@@ -1,23 +1,19 @@
-import Advisory from "assets/images/icons/advisory.svg";
-import BugBounty from "assets/images/icons/bug-bounty.svg";
-import Monitoring from "assets/images/icons/monitoring.svg";
-
 export const solutionsContent = {
   title: "Comprehensive Cybersecurity Solutions to Protect Your Organization",
   solutions: [
     {
-      icon: Monitoring,
+      icon: "/images/icons/advisory.svg",
       title: "24/7 Monitoring Service for\nVulnerabilities and Threat Detection",
       description: "Stay ahead of threats with our advanced scanning and reporting solutions.",
     },
     {
-      icon: BugBounty,
+      icon: "/images/icons/bug-bounty.svg",
       title: "Bug Bounty Programs:\nPre-vetted Talent, On-demand",
       description:
         "Leverage the power of crowdsourcing with our pre-vetted ethical hacking community. On-demand resources provide cost-effective scalability and pre-vetted talent gives you peace of mind.",
     },
     {
-      icon: Advisory,
+      icon: "/images/icons/monitoring.svg",
       title: "Cybersecurity Advisory:\nTailored Strategies and Tools",
       description: "Explore custom solutions designed to create your ideal Cybersecurity Ecosystem.",
     },

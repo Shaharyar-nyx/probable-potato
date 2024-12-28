@@ -1,5 +1,0 @@
-.overlay {
-  background: linear-gradient(180deg, rgba(246, 247, 248, 0) 74.68%, #f6f7f8 100%),
-    linear-gradient(0deg, var(--Neutral-50, #f6f7f8) 0%, var(--Neutral-50, #f6f7f8) 100%);
-  background-blend-mode: normal, color;
-}

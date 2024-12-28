@@ -1,6 +1,4 @@
-import React from "react";
-
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { HeaderProps } from "@/types/components";
 
 const Header: React.FC<HeaderProps> = ({ title, description, backgroundImage }) => {
@@ -9,7 +7,7 @@ const Header: React.FC<HeaderProps> = ({ title, description, backgroundImage }) 
       <img alt="header background" className={styles.image} src={backgroundImage} />
       <div className={styles.overlay} />
       <div className={styles.content}>
-        <h1 className="text-h2 mb-5 text-white">{title}</h1>
+        <h2 className={`${styles.title} text-h2`}>{title}</h2>
         <p className={styles.description}>{description}</p>
       </div>
     </section>

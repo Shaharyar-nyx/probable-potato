@@ -1,15 +1,9 @@
 import { StaticImageData } from "next/image";
 
-import cyberportLogo from "assets/images/leaders/cyberport.svg";
-import ficoLogo from "assets/images/leaders/fico.svg";
-import hktLogo from "assets/images/leaders/hkt.svg";
-import naverLogo from "assets/images/leaders/naver.svg";
-import ricohLogo from "assets/images/leaders/ricoh.svg";
-import transunionLogo from "assets/images/leaders/transunion.svg";
-
 export interface Client {
-  logo: StaticImageData;
+  logo: string;
   name: string;
+  description: string;
 }
 
 export interface ClientsContent {
@@ -35,17 +29,44 @@ export interface ClientsContent {
     speed: number;
   };
   title: string;
+  description: string;
 }
 
 export const clientsContent: ClientsContent = {
-  title: "Trusted by industry leaders worldwide",
+  title: "Trusted by Industry Leaders",
+  description:
+    "Join the ranks of industry leaders who trust Cyberbay for their cybersecurity needs. Our proven track record speaks for itself.",
   clients: [
-    { logo: naverLogo, name: "NAVER" },
-    { logo: hktLogo, name: "HKT" },
-    { logo: transunionLogo, name: "TransUnion" },
-    { logo: ficoLogo, name: "FICO" },
-    { logo: cyberportLogo, name: "Cyberport" },
-    { logo: ricohLogo, name: "RICOH" },
+    {
+      logo: "/images/leaders/cyberport.svg",
+      name: "Cyberport",
+      description: "Digital technology hub and innovative ecosystem",
+    },
+    {
+      logo: "/images/leaders/fico.svg",
+      name: "FICO",
+      description: "Analytics software company",
+    },
+    {
+      logo: "/images/leaders/hkt.svg",
+      name: "HKT",
+      description: "Premier telecommunications service provider",
+    },
+    {
+      logo: "/images/leaders/naver.svg",
+      name: "Naver",
+      description: "South Korean online platform company",
+    },
+    {
+      logo: "/images/leaders/ricoh.svg",
+      name: "Ricoh",
+      description: "Japanese multinational imaging company",
+    },
+    {
+      logo: "/images/leaders/transunion.svg",
+      name: "TransUnion",
+      description: "Global information and insights company",
+    },
   ],
   sliderSettings: {
     dots: false,
