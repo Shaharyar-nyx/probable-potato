@@ -5,8 +5,6 @@ import { Tooltip } from "react-tooltip";
 
 import styles from "./styles.module.scss";
 
-import bgImage from "assets/images/bg-image.jpeg";
-
 interface Feature {
   name: string;
   tooltip?: string;
@@ -155,7 +153,6 @@ const PackageIcons = {
           id="Vector"
           stroke="#045DE3"
           strokeLinecap="round"
-          strokeLinecap="round"
           strokeWidth="1.5"
         />
       </g>
@@ -169,7 +166,6 @@ const PackageIcons = {
           id="Vector"
           stroke="#045DE3"
           strokeLinecap="round"
-          strokeLinecap="round"
           strokeWidth="1.5"
         />
       </g>
@@ -181,7 +177,6 @@ const PackageIcons = {
         <path
           d="M14.25 9.75L16.5 12L14.25 14.25M9.75 14.25L7.5 12L9.75 9.75M6 20.25H18C19.2426 20.25 20.25 19.2426 20.25 18V6C20.25 4.75736 19.2426 3.75 18 3.75H6C4.75736 3.75 3.75 4.75736 3.75 6V18C3.75 19.2426 4.75736 20.25 6 20.25Z"
           stroke="#045DE3"
-          strokeLinecap="round"
           strokeLinecap="round"
           strokeWidth="1.5"
         />
@@ -277,7 +272,6 @@ const FeatureRow = ({
                     id="Vector"
                     stroke="#02255B"
                     strokeLinecap="round"
-                    strokeLinecap="round"
                     strokeWidth="1.3125"
                   />
                 </g>
@@ -340,7 +334,7 @@ const Packages = () => {
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
 
   return (
-    <div className={styles.container} style={{ backgroundImage: `url(${bgImage.src})` }}>
+    <div className={styles.container} style={{ backgroundImage: `url(/images/bg-image.jpeg)` }}>
       <div className={styles.header}>
         <h2 className="text-h2 mb-3 text-primary-800">Cyberbay Packages</h2>
         <p className={styles.subtitle}>Compare plans below, and get in touch for customized solutions.</p>

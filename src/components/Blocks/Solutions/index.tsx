@@ -8,7 +8,6 @@ import React, { useEffect, useRef } from "react";
 import styles from "./styles.module.scss";
 import { solutionsContent } from "@/data/solutions";
 
-import bgImage from "assets/images/bg-image.jpeg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -136,7 +135,7 @@ const Solutions = ({ content = solutionsContent }: SolutionsProps) => {
 
   return (
     <div className={styles.solutionsContainer}>
-      <div className={styles.sectionBackground} style={{ backgroundImage: `url(${bgImage.src})` }}>
+      <div className={styles.sectionBackground} style={{ backgroundImage: `url(/images/bg-image.jpeg)` }}>
         <div className={styles.overlay} />
 
         <div className={styles.container}>

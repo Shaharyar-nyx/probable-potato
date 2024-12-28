@@ -67,11 +67,11 @@
 }
 
 .progressBar {
-  @apply h-[10px] bg-[#045DE3]/20;
+  @apply h-[10px] bg-primary-500/20;
 }
 
 .progressBarFill {
-  @apply h-full w-0 bg-[#045DE3] transition-all duration-100 ease-linear;
+  @apply h-full w-0 bg-primary-500 transition-all duration-100 ease-linear;
 }
 
 .progressBarActive .progressBarFill {

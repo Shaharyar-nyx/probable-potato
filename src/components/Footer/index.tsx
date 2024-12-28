@@ -3,8 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { JSX } from "react";
 
-import Logo from "assets/images/cyberbay-white.svg";
-
 interface NavItem {
   href: string;
   label: string;
@@ -128,7 +126,7 @@ const Footer: React.FC = () => {
             <div className="flex flex-col gap-[40px] lg:flex-row">
               <div className="flex-shrink-0">
                 <Link className="block w-[140px]" href="/">
-                  <Image alt="Cyberbay" height={24} src={Logo} width={140} />
+                  <img alt="Cyberbay" src="/images/cyberbay-white.svg" />
                 </Link>
               </div>
 
@@ -178,7 +176,7 @@ const Footer: React.FC = () => {
                   </Link>
                 ))}
               </div>
-              <div className="text-[14px] text-neutral-200">© {moment().year()} Cyberbay.</div>
+              <div className="text-[14px] text-neutral-200"> {moment().year()} Cyberbay.</div>
               <div className="flex items-center space-x-4">
                 {socialLinks.map((social) => (
                   <Link

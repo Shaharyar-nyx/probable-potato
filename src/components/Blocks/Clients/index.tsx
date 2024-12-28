@@ -16,7 +16,7 @@ const Clients = () => {
           {clientsContent.clients.map((client, index) => (
             <div key={`${client.name}-${index}`} className={styles.div}>
               <div className={styles.logoWrapper}>
-                <img alt={`${client.name} logo`} className={styles.clientLogo} src={client.logo.src} />
+                <img alt={`${client.name} logo`} className={styles.clientLogo} src={client.logo} />
               </div>
             </div>
           ))}

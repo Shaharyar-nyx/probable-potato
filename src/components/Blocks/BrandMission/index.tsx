@@ -82,10 +82,10 @@ const BrandMission = () => {
 
       {brandMissionContent.teamMembers.map((member, index) => (
         <div key={member.name} className={`${styles.memberCard} ${styles["member" + (index + 1)]}`}>
-          <img alt={member.name} className={styles.memberImage} src={member.image.src} />
+          <img alt={member.name} className={styles.memberImage} src={member.image} />
           <div className={styles.memberInfo}>
             <div className={styles.memberName}>{member.name}</div>
-            <div className={styles.memberRole}>{member.role}</div>
+            <div className={styles.memberRole}>{member.title}</div>
           </div>
         </div>
       ))}

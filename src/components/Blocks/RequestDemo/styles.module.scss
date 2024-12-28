@@ -23,7 +23,7 @@
 }
 
 .contentLeft {
-  @apply max-w-[65%] text-white bg-[#02255b] p-12 rounded-xl;
+  @apply max-w-[65%] text-white bg-primary-800 p-12 rounded-xl;
 }
 
 .title {
@@ -59,27 +59,27 @@
 }
 
 .featureCard:nth-child(2) {
-  @apply top-[40%] right-[8rem] rounded-lg bg-[#02255b] shadow-none backdrop-blur-none text-[#02255b];
+  @apply top-[40%] right-[8rem] rounded-lg bg-primary-800 shadow-none backdrop-blur-none text-primary-800;
 }
 
 .featureCard:nth-child(2) .iconWrapper {
-  @apply bg-[#f6f7f8] text-white;
+  @apply bg-neutral-50 text-white;
 }
 
 .featureCard:nth-child(3) {
-  @apply top-[60%] right-[8rem] rounded-lg bg-[#b4cef7] shadow-none backdrop-blur-none text-[#02255b];
+  @apply top-[60%] right-[8rem] rounded-lg bg-primary-100 shadow-none backdrop-blur-none text-primary-800;
 }
 
 .featureCard:nth-child(3) .iconWrapper {
-  @apply bg-[#02255b] text-white;
+  @apply bg-primary-800 text-white;
 }
 
 .featureCard:nth-child(4) {
-  @apply top-[75%] left-[4rem] bg-[#f6f7f8] shadow-none backdrop-blur-none text-[#02255b];
+  @apply top-[75%] left-[4rem] bg-neutral-50 shadow-none backdrop-blur-none text-primary-800;
 }
 
 .featureCard:nth-child(4) .iconWrapper {
-  @apply bg-[#02255b]/10 text-[#02255b];
+  @apply bg-primary-800/10 text-primary-800;
 }
 
 .iconWrapper {

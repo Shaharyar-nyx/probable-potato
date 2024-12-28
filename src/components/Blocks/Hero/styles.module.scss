@@ -46,9 +46,9 @@
 }
 
 .imageWrapper {
-  @apply absolute inset-0 overflow-hidden rounded-2xl bg-gradient-to-r from-blue-900/10 to-blue-900/30;
+  @apply absolute inset-0 overflow-hidden rounded-2xl;
 }
 
 .label {
-  @apply flex items-center gap-2 rounded-xl bg-black/30 px-4 py-2 text-[#F6F7F8] shadow-[inset_0px_0px_8px_0px_rgba(255,255,255,0.25)] backdrop-blur-sm;
+  @apply flex items-center gap-2 rounded-xl bg-black/30 px-4 py-2 text-neutral-50 shadow-[inset_0px_0px_8px_0px_rgba(255,255,255,0.25)] backdrop-blur-sm;
 }

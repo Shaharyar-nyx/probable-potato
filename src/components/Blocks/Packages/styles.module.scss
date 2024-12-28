@@ -19,7 +19,7 @@
 }
 
 .package {
-  @apply bg-[#045de3] rounded-2xl p-8 flex flex-col justify-between gap-6;
+  @apply bg-primary-500 rounded-2xl p-8 flex flex-col justify-between gap-6;
 }
 
 .packageHeaderWrapper {
@@ -35,7 +35,7 @@
 }
 
 .packageName {
-  @apply text-white text-2xl font-semibold m-0;
+  @apply text-white text-2xl font-robotoBold capitalize m-0;
 }
 
 .priceContainer {
@@ -90,7 +90,7 @@
   }
 
   &.hovered {
-    @apply bg-[#045de3] text-white;
+    @apply bg-primary-500 text-white;
 
     svg {
       @apply stroke-white;
