@@ -73,7 +73,7 @@ const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
         </div>
 
         <div className={styles.testimonialSection}>
-          <h2 className={styles.sectionTitle}>{content.sections.testimonials.title}</h2>
+          <h2 className={`${styles.sectionTitle} text-h2`}>{content.sections.testimonials.title}</h2>
           <Swiper
             ref={swiperRef}
             autoplay={{

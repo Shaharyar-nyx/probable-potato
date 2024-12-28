@@ -160,7 +160,7 @@ const Footer: React.FC = () => {
                   placeholder="Enter your email address"
                   type="email"
                 />
-                <button className="w-full rounded bg-primary-500 px-8 py-3 text-[14px] font-medium text-white transition-colors hover:bg-[#1E90FF]/90">
+                <button className="w-full rounded bg-primary-500 px-8 py-3 text-[14px] text-white transition-colors hover:bg-[#1E90FF]/90">
                   Subscribe
                 </button>
               </div>

@@ -161,7 +161,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                 {item.hasDropdown ? (
                   <button
                     ref={buttonRef}
-                    className={`group flex items-center rounded-lg px-3 py-2 text-base font-medium transition-colors hover:bg-[#EFF0F2CC] ${
+                    className={`group flex items-center rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
                       showSolutionsDropdown ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
                     }`}
                     onClick={() => setShowSolutionsDropdown(!showSolutionsDropdown)}
@@ -175,7 +175,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                   </button>
                 ) : (
                   <Link
-                    className={`group rounded-lg px-3 py-2 text-base font-medium transition-colors hover:bg-[#EFF0F2CC] ${
+                    className={`group rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
                       pathname === item.href ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
                     }`}
                     href={item.href}
@@ -203,7 +203,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                                       <img alt={item.name} src={item.icon} />
                                     </span>
                                     <div>
-                                      <div className="mb-1 text-[15px] font-medium text-primary-500">{item.name}</div>
+                                      <div className="mb-1 text-[15px] text-primary-500">{item.name}</div>
                                       <p className="text-[13px] leading-snug text-neutral-500">{item.description}</p>
                                     </div>
                                   </div>
@@ -254,14 +254,14 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
           </div>
 
           <a
-            className="rounded-lg border border-primary-500 px-4 py-2 text-base font-medium text-primary-500 hover:text-blue-700"
+            className="rounded-lg border border-primary-500 px-4 py-2 text-base text-primary-500 hover:text-blue-700"
             href="/login"
           >
             Log In / Sign Up
           </a>
 
           <a
-            className="rounded-lg bg-primary-500 px-4 py-2 text-base font-medium text-white transition-colors hover:bg-blue-700"
+            className="rounded-lg bg-primary-500 px-4 py-2 text-base text-white transition-colors hover:bg-blue-700"
             href="/contact"
           >
             Contact Us
@@ -280,7 +280,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
               {navItems.map((item) => (
                 <div key={item.name}>
                   <button
-                    className={`w-full px-4 py-2 text-left text-base font-medium ${
+                    className={`w-full px-4 py-2 text-left text-base ${
                       pathname === item.href ? "text-primary-500" : "text-primary-800"
                     }`}
                     onClick={() => {
@@ -355,16 +355,16 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                 )}
               </div>
               {isAuthenticated ? (
-                <button className="px-4 py-2 text-left text-base font-medium text-primary-500" onClick={onSignOut}>
+                <button className="px-4 py-2 text-left text-base text-primary-500" onClick={onSignOut}>
                   Sign Out
                 </button>
               ) : (
-                <a className="px-4 py-2 text-base font-medium text-primary-500" href="/login">
+                <a className="px-4 py-2 text-base text-primary-500" href="/login">
                   Log In / Sign Up
                 </a>
               )}
               <a
-                className="mx-4 mt-2 rounded-lg bg-primary-500 px-4 py-2 text-center text-base font-medium text-white"
+                className="mx-4 mt-2 rounded-lg bg-primary-500 px-4 py-2 text-center text-base text-white"
                 href="/contact"
               >
                 Get Started

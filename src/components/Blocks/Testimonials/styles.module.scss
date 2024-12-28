@@ -15,7 +15,7 @@
 }
 
 .sectionTitle {
-  @apply mb-10 border-b border-neutral-200 pb-5 text-[32px] font-bold text-neutral-200;
+  @apply mb-10 border-b border-neutral-200 pb-5 text-[32px] text-neutral-200;
 }
 
 .clientsList {
@@ -23,7 +23,7 @@
 }
 
 .client {
-  @apply cursor-pointer text-[16px] font-light text-white opacity-50 transition-opacity hover:opacity-100;
+  @apply cursor-pointer text-[16px] text-white opacity-50 transition-opacity hover:opacity-100;
 }
 
 .clientActive {
