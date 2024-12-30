@@ -1,0 +1,11 @@
+.background {
+  @apply absolute right-0 top-0 z-0 h-full w-full bg-[url('/bug-hunters/join-and-benefits-bg.svg')] bg-cover bg-no-repeat;
+}
+
+.container {
+  @apply relative z-10 px-16 max-w-screen-xxxl mx-auto;
+}
+
+.join-container {
+  @apply pb-[20px] pt-[120px] flex justify-between;
+}

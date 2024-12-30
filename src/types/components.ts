@@ -1,3 +1,5 @@
+import React, { ButtonHTMLAttributes } from "react";
+
 import { solutionsContent } from "@/data/solutions";
 
 export interface HeaderProps {
@@ -15,4 +17,10 @@ export interface SolutionCardProps {
 
 export interface SolutionsProps {
   content?: typeof solutionsContent;
+}
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  icon?: React.ReactNode;
+  loading?: boolean;
 }
