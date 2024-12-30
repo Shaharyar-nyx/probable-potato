@@ -1,0 +1,23 @@
+.key-benefits {
+  &-background {
+    @apply absolute right-0 top-0 z-0 h-full w-full bg-[url('/bug-hunters/join-and-benefits-bg.svg')] bg-cover bg-no-repeat;
+  }
+  &-container {
+    @apply relative z-10 mx-auto max-w-screen-3xl px-16;
+  }
+  &-join-container {
+    @apply flex justify-between pb-[20px] pt-[120px];
+  }
+  &-benefits-container {
+    @apply pb-[120px] pt-[20px];
+  }
+  &-title {
+    @apply mb-5 font-bold text-neutral-50;
+  }
+  &-paragraph {
+    @apply mb-9 text-neutral-50;
+  }
+  &-tagline {
+    @apply mb-10 mt-6 inline-block text-neutral-50;
+  }
+}
