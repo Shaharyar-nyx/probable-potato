@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { HeaderProps } from "@/types/components";
 
-const Header: React.FC<HeaderProps> = ({ title, description, backgroundImage }) => {
+export const Header: React.FC<HeaderProps> = ({ title, description, backgroundImage }) => {
   return (
     <section className={styles.container}>
       <img alt="header background" className={styles.image} src={backgroundImage} />
@@ -15,5 +15,3 @@ const Header: React.FC<HeaderProps> = ({ title, description, backgroundImage }) 
     </section>
   );
 };
-
-export default Header;

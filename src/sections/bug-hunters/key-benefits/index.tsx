@@ -20,7 +20,7 @@ export const KeyBenefits: React.FC = () => {
         </div>
         <div className="grid w-[66%] grid-cols-2 gap-6">
           {joinData.features.map((feature) => (
-            <div key={feature.id} className="feature-container">
+            <div key={feature.id} className="key-benefits-feature-container">
               <div className="flex items-center gap-3">
                 <div className="rounded-md bg-primary-500 p-1">
                   <IconRenderer className="h-4 w-4 text-neutral-50" iconName={feature.icon} />
@@ -40,7 +40,7 @@ export const KeyBenefits: React.FC = () => {
         </div>
         <div className="grid grid-cols-2 gap-6">
           {benefitsData.features.map((feature) => (
-            <div key={feature.id} className="benefit-container">
+            <div key={feature.id} className="key-benefits-benefit-container">
               <div className="flex items-center gap-3">
                 <div className="rounded-md bg-neutral-50 p-1">
                   <IconRenderer className="h-4 w-4 text-primary-800" iconName={feature.icon} />

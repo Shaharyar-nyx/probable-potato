@@ -1,11 +1,12 @@
-import React from "react";
 import { Metadata } from "next";
+import React from "react";
+
+import { Header } from "@/components";
 import BugBountyPrograms from "@/components/platform/BugBountyPrograms";
 import ContinuousBugHunting from "@/components/platform/ContinuousBugHunting";
+import ExpertGuidance from "@/components/platform/ExpertGuidance";
 import LaunchProgram from "@/components/platform/LaunchProgram";
 import Packages from "@/components/platform/Packages";
-import ExpertGuidance from "@/components/platform/ExpertGuidance";
-import Header from "@/components/Blocks/Header";
 
 export const metadata: Metadata = {
   title: "Cyberbay Platform - Fortify, Scale, and Triage",
@@ -13,13 +14,13 @@ export const metadata: Metadata = {
     "Discover how our platform helps you manage bug bounty programs effectively with continuous bug hunting through the product development lifecycle.",
 };
 
-export default function PlatformPage() {
+const PlatformPage = () => {
   return (
     <main className="flex min-h-screen flex-col">
       <Header
-        title="Fortify, Scale, and Triage with the Cyberbay Platform"
-        description="Execute public and private bug bounty programs with Cyberbay’s pre-vetted community of bug hunters."
         backgroundImage="/platform/platform-hero-bg.webp"
+        description="Execute public and private bug bounty programs with Cyberbay’s pre-vetted community of bug hunters."
+        title="Fortify, Scale, and Triage with the Cyberbay Platform"
       />
       <BugBountyPrograms />
       <ContinuousBugHunting />
@@ -28,4 +29,6 @@ export default function PlatformPage() {
       <ExpertGuidance />
     </main>
   );
-}
+};
+
+export default PlatformPage;

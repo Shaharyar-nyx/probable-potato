@@ -1,6 +1,6 @@
 import React from "react";
 
-import Header from "@/components/Blocks/Header";
+import { Header } from "@/components";
 import heroData from "@/data/privacy-policy/hero.json";
 
 const PrivacyPolicy: React.FC = () => {
