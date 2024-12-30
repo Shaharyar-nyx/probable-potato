@@ -25,12 +25,12 @@ export default {
       // => @media (min-width: 1760px) { ... }
       "3xl": "1920px",
     },
+    fontFamily: {
+      sans: ["var(--font-poppins)", "sans-serif"],
+      poppins: ["var(--font-poppins)", "sans-serif"],
+    },
     extend: {
       colors: {
-        fontFamily: {
-          sans: ["var(--font-poppins)", "sans-serif"],
-          poppins: ["var(--font-poppins)", "sans-serif"],
-        },
         primary: {
           50: "#E6EFFC",
           100: "#B4CEF7",

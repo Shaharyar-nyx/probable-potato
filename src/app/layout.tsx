@@ -17,7 +17,7 @@ export const metadata = {
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-poppins",
 });
 
@@ -26,7 +26,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }): Promise<
   const { footerNav } = await getFooterMenusDirectus();
 
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.className}>
       <body>
         <Nav />
         <SiteContextProvider footerNav={footerNav} mainNav={mainNav}>

@@ -6,7 +6,6 @@ const nextConfig: NextConfig = {
     DIRECTUS_GRAPHQL_ENDPOINT: process.env.DIRECTUS_GRAPHQL_ENDPOINT,
     DIRECTUS_ASSETS_URL: process.env.DIRECTUS_ASSETS_URL,
   },
-
   publicRuntimeConfig: {
     Directus: {
       assetsUrl: process.env.DIRECTUS_ASSETS_URL,
