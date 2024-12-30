@@ -18,7 +18,7 @@
 }
 
 .text-h2 {
-  @apply font-primaryBold text-[3rem] font-bold leading-[3.5rem];
+  @apply font-primaryBold text-[2.25rem] font-bold leading-[3.5rem] lg:text-[3rem];
 }
 
 .text-h3 {

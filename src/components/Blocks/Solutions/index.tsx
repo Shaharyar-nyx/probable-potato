@@ -8,7 +8,6 @@ import React, { useEffect, useRef } from "react";
 import styles from "./styles.module.scss";
 import { solutionsContent } from "@/data/solutions";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 interface SolutionCardProps {
@@ -153,21 +152,21 @@ const Solutions = ({ content = solutionsContent }: SolutionsProps) => {
           <div ref={crowdsourcingRef} className={styles.crowdsourcingContent}>
             <span className={styles.label}>{content.crowdsourcing.label}</span>
 
-            <h2 className={`${styles.crowdsourcingTitle} text-h2`}>{content.crowdsourcing.title}</h2>
-
-            <p className={styles.crowdsourcingDescription}>{content.crowdsourcing.description}</p>
+            <div>
+              <h2 className={`${styles.crowdsourcingTitle} text-h2`}>{content.crowdsourcing.title}</h2>
+              <p className={`${styles.crowdsourcingDescription} text-p`}>{content.crowdsourcing.description}</p>
+            </div>
 
             <div ref={benefitsRef} className={styles.benefitsGrid}>
               {content.crowdsourcing.benefits.map((benefit, index) => (
                 <div key={index} className={styles.benefitItem}>
-                  <h3 className={styles.benefitTitle}>{benefit.title}</h3>
-                  <p className={styles.benefitDescription}>{benefit.description}</p>
-                  {(benefit.hasButton ?? false) && (
-                    <button className={`${styles.button} ${styles.large}`}>Learn More</button>
-                  )}
+                  <h4 className={`${styles.benefitTitle} text-h4`}>{benefit.title}</h4>
+                  <p className={`${styles.benefitDescription} text-p`}>{benefit.description}</p>
                 </div>
               ))}
             </div>
+
+            <button className={`${styles.button} ${styles.large}`}>Learn More</button>
           </div>
         </div>
       </div>
