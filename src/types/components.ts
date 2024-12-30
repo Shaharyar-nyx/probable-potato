@@ -32,3 +32,15 @@ export interface IconRendererProps {
   className?: string;
   iconName: string;
 }
+
+export interface JobListingProps {
+  contractType: string;
+  location: string;
+  onApply?: () => void;
+  title: string;
+}
+
+export interface BenefitCardProps {
+  icon: string;
+  title: string;
+}
