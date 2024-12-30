@@ -29,7 +29,13 @@ export const KeyBenefits: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className={`${styles.container} pb-[120px] pt-[20px]`}>Key Benefits</div>
+      <div className={`${styles.container} pb-[120px] pt-[20px]`}>
+        <span className="tagline text-neutral-50">{benefitsData.tagline}</span>
+        <div>
+          <h2 className="heading-2 mb-5 font-bold text-neutral-50">{benefitsData.title}</h2>
+          <p className="paragraph mb-9 text-neutral-50">{benefitsData.text}</p>
+        </div>
+      </div>
     </section>
   );
 };
