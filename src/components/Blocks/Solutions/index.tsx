@@ -144,14 +144,14 @@ const Solutions: React.FC<SolutionsProps> = ({ content = solutionsContent }) => 
 
             <div>
               <h2 className={`${styles.crowdsourcingTitle} text-h2__big`}>{content.crowdsourcing.title}</h2>
-              <p className={`${styles.crowdsourcingDescription} text-p`}>{content.crowdsourcing.description}</p>
+              <p className={`${styles.crowdsourcingDescription} text-p__medium`}>{content.crowdsourcing.description}</p>
             </div>
 
             <div ref={benefitsRef} className={styles.benefitsGrid}>
               {content.crowdsourcing.benefits.map((benefit, index) => (
                 <div key={index} className={styles.benefitItem}>
                   <h4 className={`${styles.benefitTitle} text-h3__small`}>{benefit.title}</h4>
-                  <p className={`${styles.benefitDescription} text-p`}>{benefit.description}</p>
+                  <p className={`${styles.benefitDescription} text-p__medium`}>{benefit.description}</p>
                 </div>
               ))}
             </div>
