@@ -49,7 +49,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
   const services = [
     {
       name: "Platform",
-      href: "/solutions/platform",
+      href: "/platform",
       description: "Connect to vetted researchers, manage programs, and reporting",
       icon: "/images/solutions/eye.svg",
     },
