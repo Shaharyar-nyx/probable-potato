@@ -13,7 +13,7 @@ export const KeyBenefits: React.FC = () => {
         <div className="w-[32%]">
           <h2 className="text-h2 mb-5 text-neutral-50">{joinData.title}</h2>
           <p className="text-p mb-9 text-neutral-50">{joinData.text}</p>
-          <Button>Join Now!</Button>
+          <Button className="w-[160px]">Join Now!</Button>
         </div>
         <div className="w-[66%]">Hello world</div>
       </div>

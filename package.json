@@ -23,6 +23,7 @@
     "@gsap/react": "^2.1.1",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
+    "clsx": "^2.1.1",
     "graphql": "^16.9.0",
     "gsap": "^3.12.5",
     "isomorphic-dompurify": "^2.16.0",
