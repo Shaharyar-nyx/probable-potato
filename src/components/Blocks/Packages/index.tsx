@@ -195,13 +195,13 @@ const PackageCard = ({ data, type }: { data: PackageData; type: keyof typeof Pac
       <div className={styles.packageContentWrapper}>
         <div className={styles.priceContainer}>
           <h3
-            className={`${styles.price} font-primaryBold`}
+            className={`${styles.price} `}
             style={{
               fontSize: data.period ? "48px" : "32px",
             }}
           >
             {data.price}
-            {data.period && <span className={`${styles.perYear} font-primary`}>{data.period}</span>}
+            {data.period && <span className={`${styles.perYear} font-sans`}>{data.period}</span>}
           </h3>
         </div>
         <p className={styles.packageDescription}>{data.description}</p>
@@ -347,7 +347,7 @@ const Packages = () => {
       </div>
 
       <div className={styles.featuresTable}>
-        <h3 className={`${styles.featuresHeader} font-primarySemiBold`}>Package features</h3>
+        <h3 className={`${styles.featuresHeader} `}>Package features</h3>
         <table className={styles.table}>
           <tbody>
             {PACKAGES_CONFIG.features.map((feature) => (

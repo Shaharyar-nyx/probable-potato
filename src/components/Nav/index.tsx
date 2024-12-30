@@ -48,6 +48,12 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
 
   const services = [
     {
+      name: "Platform",
+      href: "/platform",
+      description: "Connect to vetted researchers, manage programs, and reporting",
+      icon: "/images/solutions/eye.svg",
+    },
+    {
       name: "Continuous Monitoring",
       href: "/solutions/continuous-monitoring",
       description: "24/7 Monitoring for Instant Threat Detection",
@@ -59,7 +65,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
       description: "Crowdsourced Security at Your Fingertips.",
       icon: "/images/solutions/viewfinder-dot.svg",
     },
-    {
+    /* {
       name: "Vendor Risk Management",
       href: "/solutions/vendor-risk-management",
       description: "Crowdsourced Security at Your Fingertips.",
@@ -70,7 +76,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
       href: "/solutions/regulatory-compliance",
       description: "Advisory and assistance with SOC2 certification.",
       icon: "/images/solutions/clipboard-document-check.svg",
-    },
+    }, */
   ];
 
   const industries = [
@@ -145,15 +151,19 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
   ];
 
   return (
-    <nav className="fixed left-0 right-0 top-0 z-[9999] mx-auto mt-[40px] h-[72px] w-[95%] rounded-lg bg-neutral-50 shadow-sm">
-      <div className="mx-auto flex h-full max-w-[1440px] items-center justify-between px-[20px]">
+    <nav className="fixed left-0 right-0 top-8 z-[9999] mx-auto h-[60px] w-full max-w-[1440px] px-4">
+      <div
+        className={`relative mx-auto flex h-full items-center justify-between bg-neutral-50 px-4 shadow-lg ${
+          showSolutionsDropdown ? "rounded-t-lg" : "rounded-lg"
+        }`}
+      >
         <div className="flex items-center gap-[34px]">
           <Link href="/">
             <img alt="Cyberbay" src="/images/cyberbay-logo.svg" />
           </Link>
           <div className="hidden items-center gap-3 md:flex">
             {navItems.map((item) => (
-              <div key={item.name} className="relative">
+              <div key={item.name}>
                 {item.hasDropdown ? (
                   <button
                     ref={buttonRef}
@@ -183,14 +193,13 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                 {item.hasDropdown && showSolutionsDropdown && (
                   <div
                     ref={dropdownRef}
-                    className="fixed left-1/2 mt-4 w-[90%] -translate-x-1/2 rounded-b-xl bg-neutral-50 shadow-lg"
-                    style={{ top: "96px" }}
+                    className="absolute left-0 top-[60px] w-full rounded-b-xl bg-neutral-50 shadow-lg"
                   >
                     <div className="px-10 pb-10 pt-5">
                       <div className="flex flex-row justify-between">
                         {menuData.map((section) => (
                           <div key={section.title}>
-                            <h3 className="mb-5 font-primarySemiBold text-[16px] text-primary-800">{section.title}</h3>
+                            <h3 className="mb-5 text-[16px] font-semibold text-primary-800">{section.title}</h3>
                             <div className="space-y-6">
                               {section.items.map((item) => (
                                 <Link key={item.name} className="group block" href={item.href}>

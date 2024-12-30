@@ -7,7 +7,7 @@
 }
 
 .title {
-  @apply mb-5 font-primaryBold text-primary-800;
+  @apply mb-5 font-bold text-primary-800;
 }
 
 .description {
@@ -15,7 +15,7 @@
 }
 
 .formContainer {
-  @apply space-y-4 w-[60%];
+  @apply w-[60%] space-y-4 font-bold;
 }
 
 .inputGrid {
@@ -27,23 +27,23 @@
 }
 
 .input {
-  @apply w-full rounded-lg border bg-transparent border-primary-800 px-12 py-4 text-primary-800 outline-none placeholder:text-[#02255B80];
+  @apply w-full rounded-lg border border-primary-800 bg-transparent px-12 py-4 text-primary-800 outline-none placeholder:text-[#02255B80];
 }
 
 .select {
-  @apply w-full text-left rounded-lg border border-primary-800 px-12 py-4 text-primary-800 outline-none;
+  @apply w-full rounded-lg border border-primary-800 px-12 py-4 text-left text-primary-800 outline-none;
 }
 
 .selectOption {
-  @apply text-[#02255B80] text-sm py-3 px-4 hover:bg-neutral-50 cursor-pointer;
+  @apply cursor-pointer px-4 py-3 text-sm text-[#02255B80] hover:bg-neutral-50;
 }
 
 .selectDropdown {
-  @apply absolute left-0 right-0 top-full mt-1 bg-white rounded-lg border border-primary-800 shadow-lg overflow-hidden z-10;
+  @apply absolute left-0 right-0 top-full z-10 mt-1 overflow-hidden rounded-lg border border-primary-800 bg-white shadow-lg;
 }
 
 .textarea {
-  @apply h-40 w-full bg-transparent rounded-lg border border-primary-800 px-12 py-4 text-neutral-800 outline-none placeholder:text-neutral-400;
+  @apply h-40 w-full rounded-lg border border-primary-800 bg-transparent px-12 py-4 text-neutral-800 outline-none placeholder:text-neutral-400;
 }
 
 .iconWrapper {
@@ -63,5 +63,5 @@
 }
 
 .submitButton {
-  @apply w-fit text-sm rounded-lg bg-primary-500 px-8 py-4 text-white transition-colors hover:bg-primary-600;
+  @apply w-fit rounded-lg bg-primary-500 px-8 py-4 text-sm text-white transition-colors hover:bg-primary-600;
 }

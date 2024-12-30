@@ -25,6 +25,10 @@ export default {
       // => @media (min-width: 1760px) { ... }
       "3xl": "1920px",
     },
+    fontFamily: {
+      sans: ["var(--font-poppins)", "sans-serif"],
+      poppins: ["var(--font-poppins)", "sans-serif"],
+    },
     extend: {
       colors: {
         primary: {
@@ -69,12 +73,6 @@ export default {
         "4xl": "4rem",
         "5xl": "5.625rem",
         "6xl": "15rem",
-      },
-      fontFamily: {
-        primary: "Poppins Regular, sans-serif",
-        primaryBold: "Poppins Bold, sans-serif",
-        primarySemiBold: "Poppins SemiBold, sans-serif",
-        robotoBold: "Roboto Bold, sans-serif",
       },
     },
   },
