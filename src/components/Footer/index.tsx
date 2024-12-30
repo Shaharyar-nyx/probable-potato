@@ -26,11 +26,6 @@ const navigationData: NavSection[] = [
       { label: "Cyberbay Platform", href: "/cyberbay-platform" },
       { label: "Bug Bounty", href: "/bug-bounty" },
       { label: "Continuous Monitoring", href: "/continuous-monitoring" },
-      { label: "Vendor Risk Management", href: "/vendor-risk-management" },
-      {
-        label: "Regulatory and Compliance Certifications",
-        href: "/regulatory-compliance",
-      },
     ],
   },
   {
@@ -44,7 +39,7 @@ const navigationData: NavSection[] = [
     title: "Knowledge Base",
     links: [
       { label: "Consumer Resources", href: "/consumer-resources" },
-      { label: "Ethical Hackers Resources", href: "/ethical-hackers" },
+      { label: "Bug hunters Resources", href: "/bug-hunters" },
       { label: "Events", href: "/events" },
       { label: "Blog", href: "/blog" },
     ],
