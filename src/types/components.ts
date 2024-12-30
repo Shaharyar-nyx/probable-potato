@@ -27,3 +27,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   transparent?: boolean;
   variant?: "primary" | "neutral";
 }
+
+export interface IconRendererProps {
+  className?: string;
+  iconName: string;
+}

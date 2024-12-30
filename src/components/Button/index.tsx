@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { ButtonProps } from "@/types";
 
-const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   children,
   loading = false,
   icon,
