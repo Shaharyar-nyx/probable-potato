@@ -22,7 +22,7 @@
 }
 
 .text-h3 {
-  @apply font-primaryBold text-[2rem] font-bold leading-[2.5rem];
+  @apply font-primaryBold text-xl font-bold leading-[2.5rem] lg:text-[2rem];
 }
 
 .text-h4 {

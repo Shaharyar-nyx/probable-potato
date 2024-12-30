@@ -7,19 +7,9 @@ import React, { useEffect, useRef } from "react";
 
 import styles from "./styles.module.scss";
 import { solutionsContent } from "@/data/solutions";
+import { SolutionCardProps, SolutionsProps } from "@/types/components";
 
 gsap.registerPlugin(ScrollTrigger);
-
-interface SolutionCardProps {
-  description: string;
-  icon: string;
-  isEven: boolean;
-  title: string;
-}
-
-interface SolutionsProps {
-  content?: typeof solutionsContent;
-}
 
 const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, description, isEven }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -55,7 +45,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, description, i
           <Image alt={title} height={48} src={icon} width={48} />
         </div>
         <div className={`${styles.textContent} ${isEven ? styles.even : ""}`}>
-          <h3 className={styles.cardTitle}>{title}</h3>
+          <h3 className={`${styles.cardTitle} text-h3`}>{title}</h3>
           <p className={styles.cardDescription}>{description}</p>
           <button className={styles.button}>Learn More</button>
         </div>
@@ -64,7 +54,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, description, i
   );
 };
 
-const Solutions = ({ content = solutionsContent }: SolutionsProps) => {
+const Solutions: React.FC<SolutionsProps> = ({ content = solutionsContent }) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const crowdsourcingRef = useRef<HTMLDivElement>(null);
   const benefitsRef = useRef<HTMLDivElement>(null);

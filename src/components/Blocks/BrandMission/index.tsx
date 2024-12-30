@@ -77,7 +77,7 @@ const BrandMission: React.FC = () => {
 
       <div className={styles.content}>
         <h2 className={`${styles.title} text-h2`}>{brandMissionContent.title}</h2>
-        <p className={`${styles.description} text-p`}>{brandMissionContent.description}</p>
+        <p className={`${styles.description}`}>{brandMissionContent.description}</p>
       </div>
 
       {brandMissionContent.teamMembers.map((member, index) => (

@@ -60,11 +60,11 @@
 }
 
 .cardTitle {
-  @apply mb-2 max-w-[600px] font-primaryBold text-[32px] text-primary-800;
+  @apply mb-2 max-w-[600px] text-primary-800;
 }
 
 .cardDescription {
-  @apply mb-4 max-w-[600px] text-[16px] text-gray-700;
+  @apply mb-6 max-w-[600px] text-primary-800;
 }
 
 .button {
@@ -146,9 +146,5 @@
   .solutionsWrapper,
   .crowdsourcingContent {
     @apply p-6;
-  }
-
-  .cardTitle {
-    @apply text-[24px];
   }
 }
