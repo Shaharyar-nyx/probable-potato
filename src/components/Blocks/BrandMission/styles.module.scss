@@ -1,10 +1,10 @@
 .container {
-  @apply relative min-h-screen py-32 max-w-[1440px] mx-auto my-32 flex items-center justify-center;
+  @apply relative mx-auto my-32 flex min-h-screen max-w-[1440px] items-center justify-center py-32;
   perspective: 1000px;
 }
 
 .content {
-  @apply relative mx-auto max-w-[800px] text-center p-16;
+  @apply relative mx-auto max-w-[800px] p-16 text-center;
 }
 
 .title {
@@ -12,27 +12,27 @@
 }
 
 .description {
-  @apply text-lg text-gray-600 leading-relaxed mb-8 max-w-[700px] mx-auto;
+  @apply mx-auto mb-8 max-w-[700px] leading-relaxed text-gray-600;
 }
 
 .memberCard {
-  @apply absolute bg-transparent rounded-2xl overflow-hidden w-[200px] transition-transform duration-300 ease-in-out;
+  @apply absolute w-[200px] overflow-hidden rounded-2xl bg-transparent transition-transform duration-300 ease-in-out;
   aspect-ratio: 1;
 }
 
 .memberImage {
-  @apply w-full h-full rounded-2xl object-contain object-[center_top];
+  @apply h-full w-full rounded-2xl object-contain object-[center_top];
 }
 
 .memberInfo {
-  @apply absolute bottom-0 left-0 right-0 m-2 p-2 text-white text-left rounded-lg;
+  @apply absolute bottom-0 left-0 right-0 m-2 rounded-lg p-2 text-left text-white;
   background: rgba(0, 0, 0, 0.25);
   box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.5) inset;
   backdrop-filter: blur(2px);
 }
 
 .memberName {
-  @apply font-primarySemiBold text-sm mb-1 leading-5;
+  @apply mb-1 font-primarySemiBold text-sm leading-5;
 }
 
 .memberRole {
@@ -53,21 +53,21 @@
 }
 
 .member4 {
-  @apply left-1/2 bottom-0 -translate-x-1/2 transform;
+  @apply bottom-0 left-1/2 -translate-x-1/2 transform;
 }
 
 .member5 {
-  @apply right-[10%] bottom-[25%];
+  @apply bottom-[25%] right-[10%];
 }
 
 .member6 {
-  @apply left-[10%] bottom-[25%];
+  @apply bottom-[25%] left-[10%];
 }
 
 /* Tags */
 .tag {
-  @apply absolute px-4 py-2 text-sm text-white rounded-full;
-  background-color: theme('colors.primary.800');
+  @apply absolute rounded-full px-4 py-2 text-sm text-white;
+  background-color: theme("colors.primary.800");
 }
 
 .accessibilityTag {
@@ -83,7 +83,7 @@
 
 .organizationsTag {
   composes: tag;
-  @apply right-[10%] bottom-[15%];
+  @apply bottom-[15%] right-[10%];
 }
 
 // Responsive styles
@@ -94,10 +94,6 @@
 
   .content {
     @apply p-8;
-  }
-
-  .title {
-    @apply text-4xl leading-tight;
   }
 
   .memberCard {
@@ -112,14 +108,6 @@
 
   .content {
     @apply p-6;
-  }
-
-  .title {
-    @apply text-3xl;
-  }
-
-  .description {
-    @apply text-base;
   }
 
   .memberCard {
