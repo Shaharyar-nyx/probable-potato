@@ -76,7 +76,7 @@ const BrandMission: React.FC = () => {
       ))}
 
       <div className={styles.content}>
-        <h2 className={`${styles.title} text-h2__big`}>{brandMissionContent.title}</h2>
+        <h2 className={`${styles.title} heading-2`}>{brandMissionContent.title}</h2>
         <p className={`${styles.description}`}>{brandMissionContent.description}</p>
       </div>
 

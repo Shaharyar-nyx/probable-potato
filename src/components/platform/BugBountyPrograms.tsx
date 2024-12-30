@@ -9,7 +9,7 @@ export default function BugBountyPrograms() {
           <div className="space-y-8 text-primary-800">
             <span className="tagline">Cost-Effective Scalability with On-Demand, Pre-Vetted Talent</span>
             <h2 className="mb-6 text-3xl font-bold">Bug Bounty Programs</h2>
-            <p className="text-p">
+            <p className="paragraph">
               Identifying vulnerabilities requires diverse skills often not available in-house. Crowdsourcing offers a
               highly effective solution, and the Cyberbay Platform connects you with pre-vetted bug hunters who provide
               specialized expertise when you need it.

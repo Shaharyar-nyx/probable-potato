@@ -60,7 +60,7 @@ const Form = () => {
     <div className={styles.container}>
       <div className={styles.gridContainer}>
         <div className="w-[40%]">
-          <h2 className={`${styles.title} text-h2__big`}>Get In Touch</h2>
+          <h2 className={`${styles.title} heading-2`}>Get In Touch</h2>
           <p className={styles.description}>
             <span className="font-semibold">Looking to speak with a member of our team?</span>
             <br />
