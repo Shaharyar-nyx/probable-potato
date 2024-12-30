@@ -1,44 +1,22 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 export default function BugBountyPrograms() {
   return (
-    <section className="py-20 bg-white">
+    <section className="bg-white py-20">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid items-center gap-12 md:grid-cols-2">
           <div>
-            <h2 className="text-3xl font-bold mb-6">Bug Bounty Programs</h2>
-            <p className="text-gray-600 mb-8">
-              Set up and manage your bug bounty programs with ease. Our platform provides
-              comprehensive tools for vulnerability management and researcher engagement.
+            <span>Cost-Effective Scalability with On-Demand, Pre-Vetted Talent</span>
+            <h2 className="mb-6 text-3xl font-bold">Bug Bounty Programs</h2>
+            <p className="mb-8 text-gray-600">
+              Identifying vulnerabilities requires diverse skills often not available in-house. Crowdsourcing offers a
+              highly effective solution, and the Cyberbay Platform connects you with pre-vetted bug hunters who provide
+              specialized expertise when you need it.
             </p>
-            <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Streamlined Program Setup</h3>
-                  <p className="text-gray-600">Launch your bug bounty program in minutes with our intuitive setup wizard</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Automated Triage</h3>
-                  <p className="text-gray-600">Efficiently process and prioritize incoming vulnerability reports</p>
-                </div>
-              </div>
-            </div>
           </div>
           <div className="relative">
-            <div className="bg-blue-50 rounded-lg p-6">
+            <div className="rounded-lg bg-blue-50 p-6">
               <Image
                 src="/platform-dashboard.png"
                 alt="Bug Bounty Dashboard"
