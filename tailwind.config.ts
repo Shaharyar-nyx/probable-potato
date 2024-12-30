@@ -27,6 +27,10 @@ export default {
     },
     extend: {
       colors: {
+        fontFamily: {
+          sans: ["var(--font-poppins)", "sans-serif"],
+          poppins: ["var(--font-poppins)", "sans-serif"],
+        },
         primary: {
           50: "#E6EFFC",
           100: "#B4CEF7",
@@ -69,12 +73,6 @@ export default {
         "4xl": "4rem",
         "5xl": "5.625rem",
         "6xl": "15rem",
-      },
-      fontFamily: {
-        primary: "Poppins Regular, sans-serif",
-        primaryBold: "Poppins Bold, sans-serif",
-        primarySemiBold: "Poppins SemiBold, sans-serif",
-        robotoBold: "Roboto Bold, sans-serif",
       },
     },
   },

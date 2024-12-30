@@ -199,7 +199,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                       <div className="flex flex-row justify-between">
                         {menuData.map((section) => (
                           <div key={section.title}>
-                            <h3 className="mb-5 font-primarySemiBold text-[16px] text-primary-800">{section.title}</h3>
+                            <h3 className="mb-5 text-[16px] font-semibold text-primary-800">{section.title}</h3>
                             <div className="space-y-6">
                               {section.items.map((item) => (
                                 <Link key={item.name} className="group block" href={item.href}>

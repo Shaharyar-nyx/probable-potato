@@ -13,7 +13,6 @@ const nextConfig: NextConfig = {
       url: process.env.DIRECTUS_GRAPHQL_ENDPOINT,
     },
   },
-
   images: {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",

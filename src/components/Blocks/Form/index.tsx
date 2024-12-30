@@ -62,7 +62,7 @@ const Form = () => {
         <div className="w-[40%]">
           <h2 className={`${styles.title} text-h2`}>Get In Touch</h2>
           <p className={styles.description}>
-            <span className="font-primarySemiBold">Looking to speak with a member of our team?</span>
+            <span className="font-semibold">Looking to speak with a member of our team?</span>
             <br />
             Fill out the form with your contact details and a short message and we&apos;ll be in touch.
           </p>
