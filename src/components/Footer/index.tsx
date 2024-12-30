@@ -128,7 +128,7 @@ const Footer: React.FC = () => {
               <div className="grid grid-cols-1 gap-x-5 gap-y-12 md:grid-cols-4">
                 {navigationData.map((section) => (
                   <div key={section.title}>
-                    <h3 className="mb-6 font-primaryBold text-base">{section.title}</h3>
+                    <h3 className="mb-6 text-base font-bold">{section.title}</h3>
                     <ul className="space-y-4 text-[14px]">
                       {section.links.map((link) => (
                         <li key={link.href}>
@@ -145,7 +145,7 @@ const Footer: React.FC = () => {
 
             {/* Right Side - Stay Connected */}
             <div className="flex-shrink-0 lg:w-[360px]">
-              <h3 className="mb-4 font-primaryBold text-base">Stay Connected</h3>
+              <h3 className="mb-4 text-base">Stay Connected</h3>
               <p className="mb-6 text-[14px]">
                 Get the latest cybersecurity insights and updates. You can unsubscribe at any time.
               </p>

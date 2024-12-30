@@ -8,27 +8,27 @@
   }
 
   body {
-    font-family: "Poppins Regular", sans-serif;
+    @apply font-sans;
     background-color: #f6f7f8;
   }
 }
 
 .text-h1 {
-  @apply font-primarySemiBold text-[5rem] font-semibold leading-[5.25rem];
+  @apply text-[5rem] font-semibold leading-[5.25rem];
 }
 
 .text-h2 {
-  @apply font-primaryBold text-[2.25rem] font-bold leading-[3.5rem] lg:text-[3rem];
+  @apply text-[2.25rem] font-bold leading-[3.5rem] lg:text-[3rem];
 }
 
 .text-h3 {
-  @apply font-primaryBold text-xl font-bold leading-[2.5rem] lg:text-[2rem];
+  @apply text-xl font-bold leading-[2.5rem] lg:text-[2rem];
 }
 
 .text-h4 {
-  @apply font-primaryBold text-lg font-bold leading-6;
+  @apply text-lg font-bold leading-6;
 }
 
 .text-p {
-  @apply font-primary text-base font-normal leading-6;
+  @apply font-sans text-base font-normal leading-6;
 }
