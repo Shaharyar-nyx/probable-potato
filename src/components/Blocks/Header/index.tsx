@@ -9,7 +9,7 @@ const Header: React.FC<HeaderProps> = ({ title, description, backgroundImage }) 
       <img alt="header background" className={styles.image} src={backgroundImage} />
       <div className={styles.overlay} />
       <div className={styles.content}>
-        <h2 className={`${styles.title} text-h2__big`}>{title}</h2>
+        <h2 className={`${styles.title} heading-2`}>{title}</h2>
         <p className={styles.description}>{description}</p>
       </div>
     </section>

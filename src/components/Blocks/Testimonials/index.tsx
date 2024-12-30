@@ -58,7 +58,7 @@ const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
     <section className={styles.container}>
       <div className={styles.header}>
         <div className={styles.clientsSection}>
-          <h2 className={`${styles.sectionTitle} text-h2__big`}>{content.sections.clients.title}</h2>
+          <h2 className={`${styles.sectionTitle} heading-2`}>{content.sections.clients.title}</h2>
           <div className={styles.clientsList}>
             {content.testimonials.map((testimonial, index) => (
               <div
@@ -73,7 +73,7 @@ const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
         </div>
 
         <div className={styles.testimonialSection}>
-          <h2 className={`${styles.sectionTitle} text-h2__big`}>{content.sections.testimonials.title}</h2>
+          <h2 className={`${styles.sectionTitle} heading-2`}>{content.sections.testimonials.title}</h2>
           <Swiper
             ref={swiperRef}
             autoplay={{
@@ -96,11 +96,7 @@ const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
                       <h3 className={styles.testimonialAuthor}>{testimonial.author}</h3>
                       <p className={styles.testimonialPosition}>{testimonial.position}</p>
                     </div>
-                    <img
-                      alt={`${testimonial.client} Logo`}
-                      className={styles.testimonialLogo}
-                      src={testimonial.logo}
-                    />
+                    <img alt={`${testimonial.client} Logo`} className={styles.testimonialLogo} src={testimonial.logo} />
                   </div>
                   <div className={styles.testimonialRight}>
                     <p className={styles.testimonialQuote}>{testimonial.quote}</p>

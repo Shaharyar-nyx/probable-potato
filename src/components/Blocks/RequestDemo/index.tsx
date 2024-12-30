@@ -24,7 +24,7 @@ const RequestDemo = ({ content = requestDemoContent }: RequestDemoProps) => {
         <div className={styles.content}>
           {/* Left Content */}
           <div className={styles.contentLeft}>
-            <h2 className={`${styles.title} text-h2__big`}>{content.title}</h2>
+            <h2 className={`${styles.title} heading-2`}>{content.title}</h2>
             <p className={styles.subtitle}>{content.subtitle}</p>
             <div className={styles.buttonGroup}>
               <button className={styles.primaryButton}>

@@ -4,12 +4,12 @@ import Image from "next/image";
 export default function BugBountyPrograms() {
   return (
     <section className="bg-white py-20">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid items-center gap-12 md:grid-cols-2">
-          <div>
-            <span>Cost-Effective Scalability with On-Demand, Pre-Vetted Talent</span>
+      <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
+        <div className="grid items-center gap-16 md:grid-cols-2">
+          <div className="space-y-8 text-primary-800">
+            <span className="tagline">Cost-Effective Scalability with On-Demand, Pre-Vetted Talent</span>
             <h2 className="mb-6 text-3xl font-bold">Bug Bounty Programs</h2>
-            <p className="mb-8 text-gray-600">
+            <p className="paragraph">
               Identifying vulnerabilities requires diverse skills often not available in-house. Crowdsourcing offers a
               highly effective solution, and the Cyberbay Platform connects you with pre-vetted bug hunters who provide
               specialized expertise when you need it.
