@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import styles from "./styles.module.scss";
 import { brandMissionContent } from "@/data/brandMission";
 
-const BrandMission = () => {
+const BrandMission: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef({ current: 0, target: 0 });
   const rafRef = useRef<number>();
@@ -77,7 +77,7 @@ const BrandMission = () => {
 
       <div className={styles.content}>
         <h2 className={`${styles.title} text-h2`}>{brandMissionContent.title}</h2>
-        <p className={styles.description}>{brandMissionContent.description}</p>
+        <p className={`${styles.description}`}>{brandMissionContent.description}</p>
       </div>
 
       {brandMissionContent.teamMembers.map((member, index) => (

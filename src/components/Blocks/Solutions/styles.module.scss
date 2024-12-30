@@ -1,9 +1,9 @@
 .solutionsContainer {
-  @apply bg-gradient-to-br from-white to-[#f8f9fa] relative overflow-hidden;
+  @apply relative overflow-hidden bg-gradient-to-br from-white to-[#f8f9fa];
 }
 
 .container {
-  @apply max-w-[1200px] mx-auto relative z-[3];
+  @apply relative z-[3] mx-auto max-w-[1200px];
 
   &.crowdsourcing {
     @apply mt-[120px];
@@ -15,7 +15,7 @@
 }
 
 .sectionBackground {
-  @apply bg-inherit bg-right-top bg-no-repeat relative isolate min-h-screen px-4 py-16;
+  @apply relative isolate min-h-screen bg-inherit bg-right-top bg-no-repeat px-4 py-16;
 }
 
 .overlay {
@@ -26,7 +26,7 @@
 }
 
 .mainTitle {
-  @apply text-primary-800 mb-12;
+  @apply mb-6 text-primary-800;
 }
 
 .solutionsWrapper {
@@ -60,25 +60,25 @@
 }
 
 .cardTitle {
-  @apply mb-2 max-w-[600px] font-primaryBold text-[32px] text-primary-800;
+  @apply mb-2 max-w-[600px] text-primary-800;
 }
 
 .cardDescription {
-  @apply mb-4 max-w-[600px] text-[16px] text-gray-700;
+  @apply mb-6 max-w-[600px] text-primary-800;
 }
 
 .button {
   @apply rounded bg-primary-500 px-6 py-2 text-white transition-colors hover:bg-blue-700;
 
   &.large {
-    @apply w-fit px-8 py-3 mt-12;
+    @apply w-fit px-8 py-3;
   }
 }
 
 // Crowdsourcing Section Styles
 .crowdsourcingContent {
   composes: glassBackground;
-  @apply p-12 text-primary-800;
+  @apply flex flex-col gap-10 p-12;
 }
 
 .label {
@@ -86,11 +86,11 @@
 }
 
 .crowdsourcingTitle {
-  @apply mb-6 mt-4;
+  @apply mb-6 text-primary-800;
 }
 
 .crowdsourcingDescription {
-  @apply mb-12 text-[16px];
+  @apply text-primary-800;
 }
 
 .benefitsGrid {
@@ -102,11 +102,11 @@
 }
 
 .benefitTitle {
-  @apply mb-4 font-primaryBold text-[20px];
+  @apply mb-3 text-primary-800;
 }
 
 .benefitDescription {
-  @apply text-[16px];
+  @apply text-primary-800;
 }
 
 // Responsive Styles
@@ -132,10 +132,6 @@
       @apply items-start text-left;
     }
   }
-
-  .crowdsourcingTitle {
-    @apply text-[36px];
-  }
 }
 
 @media (max-width: 768px) {
@@ -150,9 +146,5 @@
   .solutionsWrapper,
   .crowdsourcingContent {
     @apply p-6;
-  }
-
-  .cardTitle {
-    @apply text-[24px];
   }
 }

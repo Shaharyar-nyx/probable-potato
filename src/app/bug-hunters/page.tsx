@@ -1,7 +1,7 @@
 import React from "react";
 
 import Header from "@/components/Blocks/Header";
-import heroData from "@/data/ethical-hackers/hero.json";
+import heroData from "@/data/bug-hunters/hero.json";
 import { KeyBenefits } from "@/sections";
 
 const EthicalHackersPage: React.FC = () => {
