@@ -11,11 +11,17 @@ export const KeyBenefits: React.FC = () => {
       <div className={styles.background} />
       <div className={`${styles.container} ${styles["join-container"]}`}>
         <div className="w-[32%]">
-          <h2 className="text-h2 mb-5 text-neutral-50">{joinData.title}</h2>
+          <h2 className="text-h2__big mb-5 text-neutral-50">{joinData.title}</h2>
           <p className="text-p mb-9 text-neutral-50">{joinData.text}</p>
           <Button className="w-[160px]">Join Now!</Button>
         </div>
-        <div className="w-[66%]">Hello world</div>
+        <div className="grid w-[66%] grid-cols-2 gap-6">
+          {joinData.features.map((feature) => (
+            <div key={feature.id} className={styles["feature-container"]}>
+              {feature.title}
+            </div>
+          ))}
+        </div>
       </div>
       <div className={`${styles.container} pb-[120px] pt-[20px]`}>Key Benefits</div>
     </section>

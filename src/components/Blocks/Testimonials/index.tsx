@@ -58,7 +58,7 @@ const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
     <section className={styles.container}>
       <div className={styles.header}>
         <div className={styles.clientsSection}>
-          <h2 className={`${styles.sectionTitle} text-h2`}>{content.sections.clients.title}</h2>
+          <h2 className={`${styles.sectionTitle} text-h2__big`}>{content.sections.clients.title}</h2>
           <div className={styles.clientsList}>
             {content.testimonials.map((testimonial, index) => (
               <div
@@ -73,7 +73,7 @@ const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
         </div>
 
         <div className={styles.testimonialSection}>
-          <h2 className={`${styles.sectionTitle} text-h2`}>{content.sections.testimonials.title}</h2>
+          <h2 className={`${styles.sectionTitle} text-h2__big`}>{content.sections.testimonials.title}</h2>
           <Swiper
             ref={swiperRef}
             autoplay={{
