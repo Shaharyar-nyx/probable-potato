@@ -113,7 +113,7 @@ const socialLinks: SocialLink[] = [
 const Footer: React.FC = () => {
   return (
     <footer className="bg-[#00205B] text-white">
-      <div className="mx-auto max-w-[1440px] px-16 py-20">
+      <div className="mx-auto max-w-screen-3xl px-16 py-20">
         <div className="flex flex-col space-y-8">
           {/* Main Content */}
           <div className="flex flex-col justify-between gap-16 lg:flex-row">

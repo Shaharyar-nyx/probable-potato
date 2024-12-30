@@ -3,9 +3,13 @@
 }
 
 .container {
-  @apply relative z-10 px-16 max-w-screen-xxxl mx-auto;
+  @apply relative z-10 mx-auto max-w-screen-3xl px-16;
 }
 
 .join-container {
-  @apply pb-[20px] pt-[120px] flex justify-between;
+  @apply flex justify-between pb-[20px] pt-[120px];
+}
+
+.feature-container {
+  @apply flex flex-col gap-3 rounded-xl bg-neutral-50 p-10;
 }
