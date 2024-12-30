@@ -111,10 +111,6 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
 
   const navItems = [
     {
-      name: "Cyberbay Platform",
-      href: "/cyberbay-platform",
-    },
-    {
       name: "Solutions",
       href: "#",
       hasDropdown: true,
@@ -124,8 +120,8 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
       href: "/pricing",
     },
     {
-      name: "Ethical Hackers",
-      href: "/ethical-hackers",
+      name: "Bug Hunters",
+      href: "/bug-hunters",
     },
     {
       name: "Company",
@@ -262,7 +258,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
 
           <a
             className="rounded-lg bg-primary-500 px-4 py-2 text-base text-white transition-colors hover:bg-blue-700"
-            href="/contact"
+            href="/contact-us"
           >
             Contact Us
           </a>
@@ -365,9 +361,9 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
               )}
               <a
                 className="mx-4 mt-2 rounded-lg bg-primary-500 px-4 py-2 text-center text-base text-white"
-                href="/contact"
+                href="/contact-us"
               >
-                Get Started
+                Contact Us
               </a>
             </div>
           </div>
