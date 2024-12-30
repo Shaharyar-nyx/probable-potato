@@ -27,7 +27,6 @@ export const solutionsContent = {
       {
         title: "Cost-Effective Scalability",
         description: "Maximize your ROI with our affordable, scalable security solutions designed for every business.",
-        hasButton: true,
       },
       {
         title: "Pre-Vetted, On-Demand Talent",
