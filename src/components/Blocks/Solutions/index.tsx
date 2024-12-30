@@ -45,7 +45,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, description, i
           <Image alt={title} height={48} src={icon} width={48} />
         </div>
         <div className={`${styles.textContent} ${isEven ? styles.even : ""}`}>
-          <h3 className={`${styles.cardTitle} text-h3`}>{title}</h3>
+          <h3 className={`${styles.cardTitle} text-h2__medium`}>{title}</h3>
           <p className={styles.cardDescription}>{description}</p>
           <button className={styles.button}>Learn More</button>
         </div>
@@ -128,7 +128,7 @@ const Solutions: React.FC<SolutionsProps> = ({ content = solutionsContent }) => 
         <div className={styles.overlay} />
 
         <div className={styles.container}>
-          <h2 ref={titleRef} className={`${styles.mainTitle} text-h2`}>
+          <h2 ref={titleRef} className={`${styles.mainTitle} text-h2__big`}>
             {content.title}
           </h2>
           <div className={styles.solutionsWrapper}>
@@ -143,15 +143,15 @@ const Solutions: React.FC<SolutionsProps> = ({ content = solutionsContent }) => 
             <span className={styles.label}>{content.crowdsourcing.label}</span>
 
             <div>
-              <h2 className={`${styles.crowdsourcingTitle} text-h2`}>{content.crowdsourcing.title}</h2>
-              <p className={`${styles.crowdsourcingDescription} text-p`}>{content.crowdsourcing.description}</p>
+              <h2 className={`${styles.crowdsourcingTitle} text-h2__big`}>{content.crowdsourcing.title}</h2>
+              <p className={`${styles.crowdsourcingDescription} text-p__medium`}>{content.crowdsourcing.description}</p>
             </div>
 
             <div ref={benefitsRef} className={styles.benefitsGrid}>
               {content.crowdsourcing.benefits.map((benefit, index) => (
                 <div key={index} className={styles.benefitItem}>
-                  <h4 className={`${styles.benefitTitle} text-h4`}>{benefit.title}</h4>
-                  <p className={`${styles.benefitDescription} text-p`}>{benefit.description}</p>
+                  <h4 className={`${styles.benefitTitle} text-h3__small`}>{benefit.title}</h4>
+                  <p className={`${styles.benefitDescription} text-p__medium`}>{benefit.description}</p>
                 </div>
               ))}
             </div>

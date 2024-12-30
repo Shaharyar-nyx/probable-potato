@@ -18,19 +18,35 @@
   @apply text-[5rem] font-semibold leading-[5.25rem];
 }
 
-.text-h2 {
-  @apply text-[2.25rem] font-bold leading-[3.5rem] lg:text-[3rem];
+.text-h2__big {
+  @apply text-[2.25rem] font-bold leading-10;
 }
 
-.text-h3 {
-  @apply text-xl font-bold leading-[2.5rem] lg:text-[2rem];
+.text-h2__medium {
+  @apply text-[2rem] font-bold leading-9;
 }
 
-.text-h4 {
+.text-h2__small {
+  @apply text-[1.75rem] font-bold leading-8;
+}
+
+.text-h3__big {
+  @apply text-xl font-bold leading-7;
+}
+
+.text-h3__small {
   @apply text-lg font-bold leading-6;
 }
 
-.text-p {
+.text-h4__big {
+  @apply text-base font-bold leading-5;
+}
+
+.text-h4__small {
+  @apply text-sm font-bold leading-4;
+}
+
+.text-p__medium {
   @apply font-sans text-base font-normal leading-6;
 }
 
