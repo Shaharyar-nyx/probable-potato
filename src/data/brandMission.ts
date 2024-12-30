@@ -1,16 +1,9 @@
 import { StaticImageData } from "next/image";
 
-import brandonImage from "assets/images/team/brandon.png";
-import craigImage from "assets/images/team/craig.png";
-import jirouImage from "assets/images/team/jirou.png";
-import marcelaImage from "assets/images/team/marcela.png";
-import miraImage from "assets/images/team/mira.png";
-import wilsonImage from "assets/images/team/wilson.png";
-
 export interface TeamMember {
-  image: StaticImageData;
+  image: string;
   name: string;
-  role: string;
+  title: string;
 }
 
 export interface BrandMissionContent {
@@ -26,11 +19,35 @@ export const brandMissionContent: BrandMissionContent = {
   description:
     "At Cyberbay, we transform cybersecurity with a proactive and inclusive approach, leveraging the knowledge of ethical hackers to establish a robust, interconnected ecosystem that fosters transparency through innovative technologies and universal empowerment.",
   teamMembers: [
-    { name: "Mira Siphron", role: "Engineer Student", image: miraImage },
-    { name: "Brandon Donin", role: "Entrepreneur", image: brandonImage },
-    { name: "Wilson Geidt", role: "Hacker", image: wilsonImage },
-    { name: "Jirou Yuuma", role: "CEO", image: jirouImage },
-    { name: "Marcela Nora", role: "College Dean", image: marcelaImage },
-    { name: "Craig Culhane", role: "Hacker Leader", image: craigImage },
+    {
+      image: "/images/team/mira.png",
+      name: "Mira",
+      title: "Chief Financial Officer",
+    },
+    {
+      image: "/images/team/brandon.png",
+      name: "Brandon",
+      title: "Chief Executive Officer",
+    },
+    {
+      image: "/images/team/wilson.png",
+      name: "Wilson",
+      title: "Chief Security Officer",
+    },
+    {
+      image: "/images/team/jirou.png",
+      name: "Jirou",
+      title: "Chief Operating Officer",
+    },
+    {
+      image: "/images/team/marcela.png",
+      name: "Marcela",
+      title: "Chief Marketing Officer",
+    },
+    {
+      image: "/images/team/craig.png",
+      name: "Craig",
+      title: "Chief Technology Officer",
+    },
   ],
 };

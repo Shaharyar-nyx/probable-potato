@@ -1,0 +1,54 @@
+.header {
+  @apply relative min-h-screen w-full overflow-hidden pt-20;
+}
+
+.backgroundWrapper {
+  @apply absolute inset-0 h-full w-full;
+
+  img {
+    @apply relative z-10 object-cover;
+  }
+}
+
+.overlay {
+  @apply absolute inset-0;
+  background: linear-gradient(180deg, rgba(246, 247, 248, 0) 74.68%, #f6f7f8 100%),
+    linear-gradient(0deg, var(--Neutral-50, #f6f7f8) 0%, var(--Neutral-50, #f6f7f8) 100%);
+  background-blend-mode: normal, color;
+}
+
+.container {
+  @apply relative z-20 mx-auto h-full max-w-7xl;
+}
+
+.content {
+  @apply grid grid-cols-1 items-center gap-[24px] py-12 lg:grid-cols-3 lg:py-20;
+}
+
+.textContent {
+  @apply col-span-2 space-y-6;
+}
+
+.title {
+  @apply font-primaryBold text-[80px] leading-[84px] text-primary-800;
+}
+
+.description {
+  @apply w-[70%] text-md text-primary-800;
+}
+
+.ctaButton {
+  @apply flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700;
+}
+
+.imageContainer {
+  @apply relative h-[500px] lg:h-[600px];
+}
+
+.imageWrapper {
+  @apply absolute inset-0 overflow-hidden rounded-2xl;
+}
+
+.label {
+  @apply flex items-center gap-2 rounded-xl bg-black/30 px-4 py-2 text-neutral-50 shadow-[inset_0px_0px_8px_0px_rgba(255,255,255,0.25)] backdrop-blur-sm;
+}

@@ -1,6 +1,8 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { brandMissionContent } from "@/data/brandMission";
 
 const BrandMission = () => {
@@ -74,16 +76,16 @@ const BrandMission = () => {
       ))}
 
       <div className={styles.content}>
-        <h2 className={`${styles.title} font-primaryBold`}>{brandMissionContent.title}</h2>
+        <h2 className={`${styles.title} text-h2`}>{brandMissionContent.title}</h2>
         <p className={styles.description}>{brandMissionContent.description}</p>
       </div>
 
       {brandMissionContent.teamMembers.map((member, index) => (
         <div key={member.name} className={`${styles.memberCard} ${styles["member" + (index + 1)]}`}>
-          <img alt={member.name} className={styles.memberImage} src={member.image.src} />
+          <img alt={member.name} className={styles.memberImage} src={member.image} />
           <div className={styles.memberInfo}>
-            <div className={`${styles.memberName} font-primarySemiBold`}>{member.name}</div>
-            <div className={styles.memberRole}>{member.role}</div>
+            <div className={styles.memberName}>{member.name}</div>
+            <div className={styles.memberRole}>{member.title}</div>
           </div>
         </div>
       ))}

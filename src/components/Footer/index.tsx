@@ -1,9 +1,7 @@
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
-import { JSX } from "react";
-
-import Logo from "assets/images/cyberbay-white.svg";
+import React, { JSX } from "react";
 
 interface NavItem {
   href: string;
@@ -125,10 +123,10 @@ const Footer: React.FC = () => {
           {/* Main Content */}
           <div className="flex flex-col justify-between gap-16 lg:flex-row">
             {/* Left Side - Logo and Navigation */}
-            <div className="flex flex-col gap-16 lg:flex-row">
+            <div className="flex flex-col gap-[40px] lg:flex-row">
               <div className="flex-shrink-0">
                 <Link className="block w-[140px]" href="/">
-                  <Image alt="Cyberbay" height={24} src={Logo} width={140} />
+                  <img alt="Cyberbay" src="/images/cyberbay-white.svg" />
                 </Link>
               </div>
 
@@ -162,7 +160,7 @@ const Footer: React.FC = () => {
                   placeholder="Enter your email address"
                   type="email"
                 />
-                <button className="w-full rounded bg-primary-500 px-8 py-3 text-[14px] font-medium text-white transition-colors hover:bg-[#1E90FF]/90">
+                <button className="w-full rounded bg-primary-500 px-8 py-3 text-[14px] text-white transition-colors hover:bg-[#1E90FF]/90">
                   Subscribe
                 </button>
               </div>
@@ -178,7 +176,7 @@ const Footer: React.FC = () => {
                   </Link>
                 ))}
               </div>
-              <div className="text-[14px] text-neutral-200">© {moment().year()} Cyberbay.</div>
+              <div className="text-[14px] text-neutral-200"> {moment().year()} Cyberbay.</div>
               <div className="flex items-center space-x-4">
                 {socialLinks.map((social) => (
                   <Link

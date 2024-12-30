@@ -1,0 +1,128 @@
+.container {
+  @apply relative min-h-screen py-32 max-w-[1440px] mx-auto my-32 flex items-center justify-center;
+  perspective: 1000px;
+}
+
+.content {
+  @apply relative mx-auto max-w-[800px] text-center p-16;
+}
+
+.title {
+  @apply mb-6 text-primary-800;
+}
+
+.description {
+  @apply text-lg text-gray-600 leading-relaxed mb-8 max-w-[700px] mx-auto;
+}
+
+.memberCard {
+  @apply absolute bg-transparent rounded-2xl overflow-hidden w-[200px] transition-transform duration-300 ease-in-out;
+  aspect-ratio: 1;
+}
+
+.memberImage {
+  @apply w-full h-full rounded-2xl object-contain object-[center_top];
+}
+
+.memberInfo {
+  @apply absolute bottom-0 left-0 right-0 m-2 p-2 text-white text-left rounded-lg;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.5) inset;
+  backdrop-filter: blur(2px);
+}
+
+.memberName {
+  @apply font-primarySemiBold text-sm mb-1 leading-5;
+}
+
+.memberRole {
+  @apply text-xs leading-4 opacity-90;
+}
+
+/* Position each member card */
+.member1 {
+  @apply left-0 top-[15%];
+}
+
+.member2 {
+  @apply left-1/2 top-[-10%] -translate-x-1/2 transform;
+}
+
+.member3 {
+  @apply right-0 top-[15%];
+}
+
+.member4 {
+  @apply left-1/2 bottom-0 -translate-x-1/2 transform;
+}
+
+.member5 {
+  @apply right-[10%] bottom-[25%];
+}
+
+.member6 {
+  @apply left-[10%] bottom-[25%];
+}
+
+/* Tags */
+.tag {
+  @apply absolute px-4 py-2 text-sm text-white rounded-full;
+  background-color: theme('colors.primary.800');
+}
+
+.accessibilityTag {
+  composes: tag;
+  @apply left-[20%] top-[5%];
+  background-color: rgba(2, 37, 91, 0.8); // #02255bcc
+}
+
+.academyTag {
+  composes: tag;
+  @apply right-[20%] top-[15%];
+}
+
+.organizationsTag {
+  composes: tag;
+  @apply right-[10%] bottom-[15%];
+}
+
+// Responsive styles
+@media (max-width: 1024px) {
+  .container {
+    @apply py-24;
+  }
+
+  .content {
+    @apply p-8;
+  }
+
+  .title {
+    @apply text-4xl leading-tight;
+  }
+
+  .memberCard {
+    @apply w-[150px];
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    @apply py-16;
+  }
+
+  .content {
+    @apply p-6;
+  }
+
+  .title {
+    @apply text-3xl;
+  }
+
+  .description {
+    @apply text-base;
+  }
+
+  .memberCard {
+    @apply w-[120px];
+  }
+}

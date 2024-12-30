@@ -1,7 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { requestDemoContent } from "@/data/requestDemo";
 
 interface RequestDemoProps {
@@ -22,7 +24,7 @@ const RequestDemo = ({ content = requestDemoContent }: RequestDemoProps) => {
         <div className={styles.content}>
           {/* Left Content */}
           <div className={styles.contentLeft}>
-            <h1 className={`${styles.title} font-primaryBold`}>{content.title}</h1>
+            <h2 className={`${styles.title} text-h2`}>{content.title}</h2>
             <p className={styles.subtitle}>{content.subtitle}</p>
             <div className={styles.buttonGroup}>
               <button className={styles.primaryButton}>
