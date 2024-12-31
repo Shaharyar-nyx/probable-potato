@@ -3,7 +3,7 @@
 }
 
 .container {
-  @apply relative z-[3] mx-auto max-w-[1200px];
+  @apply relative z-[3] mx-auto max-w-screen-lg text-primary-800;
 
   &.crowdsourcing {
     @apply mt-[120px];
@@ -52,7 +52,7 @@
 }
 
 .textContent {
-  @apply flex flex-col items-start text-left;
+  @apply flex max-w-lg flex-col items-start whitespace-pre text-left;
 
   &.even {
     @apply items-end text-right;

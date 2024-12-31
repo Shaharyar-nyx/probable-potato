@@ -25,7 +25,7 @@ export default function ContinuousBugHunting() {
       <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
         <div className="space-y-8 text-center">
           <span className="tagline text-primary-800">Drive Process Improvement</span>
-          <h2 className="heading-2 font-bold text-primary-800">
+          <h2 className="heading-2 mx-auto max-w-6xl font-bold text-primary-800">
             Continuous Bug Hunting Through the Product Development Lifecycle
           </h2>
           <p className="text-primary-800">

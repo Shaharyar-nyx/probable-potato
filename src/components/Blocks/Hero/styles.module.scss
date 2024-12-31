@@ -1,5 +1,5 @@
 .header {
-  @apply relative min-h-screen w-full overflow-hidden pt-20;
+  @apply relative min-h-screen w-full overflow-hidden pt-16;
 }
 
 .backgroundWrapper {
@@ -18,7 +18,7 @@
 }
 
 .container {
-  @apply relative z-20 mx-auto h-full max-w-7xl;
+  @apply relative z-20 mx-auto h-full max-w-screen-2xl;
 }
 
 .content {

@@ -3,9 +3,9 @@ import { Metadata } from "next";
 import BugBountyPrograms from "@/components/platform/BugBountyPrograms";
 import ContinuousBugHunting from "@/components/platform/ContinuousBugHunting";
 import LaunchProgram from "@/components/platform/LaunchProgram";
-import Packages from "@/components/platform/Packages";
-import ExpertGuidance from "@/components/platform/ExpertGuidance";
+import Packages from "@/components/Blocks/Packages";
 import Header from "@/components/Blocks/Header";
+import CTA from "@/components/Blocks/CTA";
 
 export const metadata: Metadata = {
   title: "Cyberbay Platform - Fortify, Scale, and Triage",
@@ -25,7 +25,16 @@ export default function PlatformPage() {
       <ContinuousBugHunting />
       <LaunchProgram />
       <Packages />
-      <ExpertGuidance />
+      <CTA
+        tagline="Connect"
+        title="Get Expert Guidance for Your Bug Bounty"
+        description="Schedule a consult to receive tailored advice on launching your bug bounty program. Our experts will guide you through program setup and bounty pricing to ensure a smooth launch."
+        buttonText="Contact Sales"
+        href="/contact"
+        backgroundImage={{
+          src: "/platform/platform-cta-bg.webp",
+        }}
+      />
     </main>
   );
 }
