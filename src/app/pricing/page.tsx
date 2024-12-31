@@ -1,6 +1,6 @@
 import React from "react";
 
-import Header from "@/components/Blocks/Header";
+import { Header } from "@/components";
 import Packages from "@/components/Blocks/Packages";
 import RequestDemo from "@/components/Blocks/RequestDemo";
 import heroData from "@/data/pricing/hero.json";

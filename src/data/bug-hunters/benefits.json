@@ -1,23 +1,19 @@
 {
-  "title": "Why Do Bug Hunters Join Cyberbay?",
-  "subtitle": "Platform Features",
-  "text": "Earn real financial rewards for successful bug discoveries while building skills and achievements. Unique platform features match you with top  bounties and rewards.",
+  "title": "Key Benefits for Hackers",
+  "tagline": "Platform Features",
+  "text": "The Cyberbay Platform is built with key tools that incentivize and optimize workflows across bug bounty programs.",
   "features": [
     {
-      "title": "Smart Matches",
-      "text": "Save time and find the perfect fit with tech clues like CVEs and stacks to pinpoint the right missions."
+      "id": "1",
+      "title": "Cyberbay Lighthouse",
+      "text": "Access a dedicated enterprise digital platform, find bugs, and communicate with organizations via the Cyberbay Lighthouse technology system. The platform is integrated with VPN, proxy, and data analytics to help you focus on bug hunting.",
+      "icon": "ChartPieIcon"
     },
     {
-      "title": "Prime Time",
-      "text": "Get exclusive early access to new missions for successful bug discoveries."
-    },
-    {
-      "title": "Payment Guaranteed",
-      "text": "Earn 100% guaranteed payment for valid reports on missions under this tab."
-    },
-    {
-      "title": "Incentivization Challenge",
-      "text": "Participate in time-limited events with generous rewards, tailored for dedicated hunters."
+      "id": "2",
+      "title": "Bid-Ask Mechanism",
+      "text": "Our interactive bid-ask mechanism allows you to negotiate bounty amounts with organizations based on skill set, certifications, scope, and urgency.",
+      "icon": "ChartBarIcon"
     }
   ]
 }
