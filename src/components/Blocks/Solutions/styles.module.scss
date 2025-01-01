@@ -3,11 +3,7 @@
 }
 
 .container {
-  @apply relative z-[3] mx-auto max-w-screen-lg text-primary-800;
-
-  &.crowdsourcing {
-    @apply mt-[120px];
-  }
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-8 py-32 text-primary-800;
 }
 
 .glassBackground {
@@ -15,7 +11,7 @@
 }
 
 .sectionBackground {
-  @apply relative isolate min-h-screen bg-inherit bg-right-top bg-no-repeat px-4 py-16;
+  @apply relative isolate min-h-screen bg-inherit bg-right-top bg-no-repeat;
 }
 
 .overlay {
@@ -52,7 +48,7 @@
 }
 
 .textContent {
-  @apply flex max-w-lg flex-col items-start whitespace-pre text-left;
+  @apply flex max-w-lg flex-col items-start text-left;
 
   &.even {
     @apply items-end text-right;

@@ -11,7 +11,7 @@
 }
 
 .clientsSection {
-  @apply w-[200px] shrink-0;
+  @apply w-[200px] shrink-0 space-y-8;
 }
 
 .sectionTitle {
@@ -31,7 +31,7 @@
 }
 
 .testimonialSection {
-  @apply min-w-0 flex-1;
+  @apply min-w-0 flex-1 space-y-8;
 }
 
 .testimonialSlide {

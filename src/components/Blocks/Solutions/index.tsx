@@ -42,10 +42,10 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, description, i
     <div ref={cardRef} className={`${styles.solutionCard} ${isEven ? styles.even : ""}`}>
       <div className={styles.cardContent}>
         <div className={styles.iconWrapper}>
-          <Image alt={title} height={48} src={icon} width={48} />
+          <Image alt={title} height={64} src={icon} width={64} />
         </div>
         <div className={`${styles.textContent} ${isEven ? styles.even : ""}`}>
-          <h3 className={`heading-6 font-bold`}>{title}</h3>
+          <h3 className={`heading-6 whitespace-pre font-bold`}>{title}</h3>
           <p className={styles.cardDescription}>{description}</p>
           <button className={styles.button}>Learn More</button>
         </div>
@@ -128,17 +128,16 @@ const Solutions: React.FC<SolutionsProps> = ({ content = solutionsContent }) => 
         <div className={styles.overlay} />
 
         <div className={styles.container}>
-          <h2 ref={titleRef} className={`heading-2 font-bold`}>
-            {content.title}
-          </h2>
-          <div className={styles.solutionsWrapper}>
-            {content.solutions.map((solution, index) => (
-              <SolutionCard key={index} {...solution} isEven={index % 2 === 1} />
-            ))}
+          <div>
+            <h2 ref={titleRef} className={`heading-1 max-w-screen-xl font-bold`}>
+              {content.title}
+            </h2>
+            <div className={styles.solutionsWrapper}>
+              {content.solutions.map((solution, index) => (
+                <SolutionCard key={index} {...solution} isEven={index % 2 === 1} />
+              ))}
+            </div>
           </div>
-        </div>
-
-        <div className={`${styles.container} ${styles.crowdsourcing}`}>
           <div ref={crowdsourcingRef} className={styles.crowdsourcingContent}>
             <span className="tagline">{content.crowdsourcing.label}</span>
 
