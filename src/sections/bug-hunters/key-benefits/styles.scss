@@ -9,10 +9,10 @@
     @apply relative z-10 mx-auto max-w-screen-3xl px-16;
   }
   &-join-container {
-    @apply flex justify-between pb-[20px] pt-[120px];
+    @apply flex justify-between pb-[1.25rem] pt-[7.5rem];
   }
   &-benefits-container {
-    @apply pb-[120px] pt-[20px];
+    @apply pb-[7.5rem] pt-[1.25rem];
   }
   &-title {
     @apply mb-5 font-bold text-neutral-50;

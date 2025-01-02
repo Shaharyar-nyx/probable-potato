@@ -25,10 +25,6 @@
   background-blend-mode: normal, color;
 }
 
-.mainTitle {
-  @apply mb-6 text-primary-800;
-}
-
 .solutionsWrapper {
   composes: glassBackground;
   @apply flex flex-col gap-16 p-12;
@@ -60,7 +56,7 @@
 }
 
 .cardTitle {
-  @apply mb-2 max-w-[600px] text-primary-800;
+  @apply mb-2 max-w-[600px] font-bold text-primary-800;
 }
 
 .cardDescription {
@@ -86,7 +82,7 @@
 }
 
 .crowdsourcingTitle {
-  @apply mb-6 text-primary-800;
+  @apply mb-6 font-bold text-primary-800;
 }
 
 .crowdsourcingDescription {
@@ -102,7 +98,7 @@
 }
 
 .benefitTitle {
-  @apply mb-3 text-primary-800;
+  @apply mb-3 font-bold text-primary-800;
 }
 
 .benefitDescription {
@@ -137,10 +133,6 @@
 @media (max-width: 768px) {
   .container {
     @apply px-4;
-  }
-
-  .mainTitle {
-    @apply text-[32px];
   }
 
   .solutionsWrapper,
