@@ -1,0 +1,11 @@
+.referral {
+  &-parent-container {
+    @apply relative bg-neutral-50;
+  }
+  &-container {
+    @apply relative z-10 mx-auto flex max-w-screen-3xl gap-6 px-16 py-[120px];
+    &-item {
+      @apply basis-1/2;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "tagline": "Community Growth",
+    "title": "Bug Hunter Referral Program",
+  "subtitle": "Become a valued partner and join mission to secure the digital world by participating in our Referral Program.",
+  "text": "This initiative rewards you for connecting skilled bug hunters and cybersecurity experts who have a shared vision with this community, creating a safer digital ecosystem while unlocking exciting earning opportunities.",
+  "features": [
+    {
+      "id": "1",
+      "title": "Referral Bonus",
+      "text": "Rewarding Referrals: Earn a 5% referral bonus on the total bounty fees secured by the bug hunters you refer for their first 6 months.",
+      "icon": "GiftIcon"
+    },
+    {
+      "id": "2",
+      "title": "Empower Ethical Hacking",
+      "text": "Build a community that values integrity, innovation, and impactful solutions.",
+      "icon": "UserGroupIcon"
+    }
+  ]
+}
