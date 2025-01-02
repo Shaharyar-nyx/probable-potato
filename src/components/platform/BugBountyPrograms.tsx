@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import missionsWindow from "../../../public/platform/missions-window.png";
 
 export default function BugBountyPrograms() {
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
         <div className="grid items-center gap-16 md:grid-cols-2">
           <div className="space-y-8 text-primary-800">
             <span className="tagline">Cost-Effective Scalability with On-Demand, Pre-Vetted Talent</span>
@@ -16,14 +17,43 @@ export default function BugBountyPrograms() {
             </p>
           </div>
           <div className="relative">
-            <div className="rounded-lg bg-blue-50 p-6">
-              <Image
-                src="/platform-dashboard.png"
-                alt="Bug Bounty Dashboard"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-lg"
-              />
+            <div className="flex items-stretch gap-4">
+              <div className="flex w-1/2 flex-col gap-4">
+                <div className="rounded-xl bg-primary-500 p-4">
+                  <div className="flex flex-col items-center text-neutral-50">
+                    <div className="paragraph-sm">Bug Bounty</div>
+                    <div className="paragraph-xxl font-semibold">Programs</div>
+                  </div>
+                  <Image
+                    src="/platform/bug-bounty-programs-window.png"
+                    alt="Bug Bounty Programs"
+                    width={600}
+                    height={400}
+                    className="-mb-4 rounded-lg shadow-lg"
+                  />
+                </div>
+                <div className="flex-1 rounded-xl bg-primary-800 p-8 text-neutral-50">
+                  Crowdsourcing your bug bounty programs provides cost-effective, on-demand scalability and a wider
+                  talent pool to strengthen your defenses against cyber attacks.
+                </div>
+              </div>
+              <div className="flex w-1/2 flex-col gap-4">
+                <div className="flex-1 rounded-xl bg-primary-800 p-8 text-neutral-50">
+                  Public programs are open to all Cyberbay bug hunters, while private programs are invitation-only.
+                  Contact us to discuss which type of program is best for you.
+                </div>
+                <div className="flex items-end justify-end overflow-hidden rounded-xl bg-primary-500 pl-16 pt-4">
+                  <Image
+                    src={missionsWindow}
+                    alt="Missions"
+                    sizes="100vw"
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

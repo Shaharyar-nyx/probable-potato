@@ -218,7 +218,6 @@ const PackageCard = ({ data, type }: { data: PackageData; type: keyof typeof Pac
               id="Vector 431"
               stroke="#02255B"
               strokeLinecap="round"
-              strokeLinecap="round"
               strokeWidth="2"
             />
           </g>
@@ -334,34 +333,36 @@ const Packages = () => {
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
 
   return (
-    <div className={styles.container} style={{ backgroundImage: `url(/images/bg-image.jpeg)` }}>
-      <div className={styles.header}>
-        <h2 className="heading-2 mb-3 text-primary-800">Cyberbay Packages</h2>
-        <p className={styles.subtitle}>Compare plans below, and get in touch for customized solutions.</p>
-      </div>
+    <section className={styles.container} style={{ backgroundImage: `url(/images/bg-image.jpeg)` }}>
+      <div className={styles.content}>
+        <div className={styles.header}>
+          <h2 className="heading-2 mb-3 font-bold text-primary-800">Cyberbay Packages</h2>
+          <p className={styles.subtitle}>Compare plans below, and get in touch for customized solutions</p>
+        </div>
 
-      <div className={styles.packagesGrid}>
-        <PackageCard data={PACKAGES_CONFIG.packages.cyberscan} type="cyberscan" />
-        <PackageCard data={PACKAGES_CONFIG.packages.cybershield} type="cybershield" />
-        <PackageCard data={PACKAGES_CONFIG.packages.cyberswarm} type="cyberswarm" />
-      </div>
+        <div className={styles.packagesGrid}>
+          <PackageCard data={PACKAGES_CONFIG.packages.cyberscan} type="cyberscan" />
+          <PackageCard data={PACKAGES_CONFIG.packages.cybershield} type="cybershield" />
+          <PackageCard data={PACKAGES_CONFIG.packages.cyberswarm} type="cyberswarm" />
+        </div>
 
-      <div className={styles.featuresTable}>
-        <h3 className={`${styles.featuresHeader} `}>Package features</h3>
-        <table className={styles.table}>
-          <tbody>
-            {PACKAGES_CONFIG.features.map((feature) => (
-              <FeatureRow
-                key={feature.name}
-                feature={feature}
-                hoveredColumn={hoveredColumn}
-                onColumnHover={setHoveredColumn}
-              />
-            ))}
-          </tbody>
-        </table>
+        <div className={styles.featuresTable}>
+          <h3 className={`${styles.featuresHeader} `}>Package features</h3>
+          <table className={styles.table}>
+            <tbody>
+              {PACKAGES_CONFIG.features.map((feature) => (
+                <FeatureRow
+                  key={feature.name}
+                  feature={feature}
+                  hoveredColumn={hoveredColumn}
+                  onColumnHover={setHoveredColumn}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

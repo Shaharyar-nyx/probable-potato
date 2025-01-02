@@ -31,8 +31,8 @@ const navigationData: NavSection[] = [
   {
     title: "Partners",
     links: [
-      { label: "Partners Program", href: "/partners-program" },
-      { label: "Partners Directory", href: "/partners-directory" },
+      { label: "Partner Program", href: "/partner-program" },
+      { label: "Partner Directory", href: "/partner-directory" },
     ],
   },
   {

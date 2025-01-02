@@ -9,7 +9,7 @@ export const Header: React.FC<HeaderProps> = ({ title, description, backgroundIm
       <img alt="header background" className={styles.image} src={backgroundImage} />
       <div className={styles.overlay} />
       <div className={styles.content}>
-        <h2 className={`${styles.title} heading-2 font-bold`}>{title}</h2>
+        <h2 className={`heading-2 font-bold`}>{title}</h2>
         <p className={styles.description}>{description}</p>
       </div>
     </section>

@@ -1,17 +1,17 @@
 .container {
-  @apply relative text-neutral-50 py-24 px-8 text-center overflow-hidden h-[80vh] flex items-center justify-center;
+  @apply relative flex h-[80vh] items-center justify-center overflow-hidden px-8 py-24 text-center text-neutral-50;
 }
 
 .image {
-  @apply absolute inset-0 w-full h-full object-cover -z-[2];
+  @apply absolute inset-0 -z-[2] h-full w-full object-cover;
 }
 
 .overlay {
-  @apply absolute inset-0 w-full h-full opacity-20 bg-primary-800 -z-[1];
+  @apply absolute inset-0 -z-[1] h-full w-full bg-primary-800 opacity-20;
 }
 
 .content {
-  @apply relative max-w-[800px] mx-auto p-8 rounded-lg bg-black/30 shadow-[0px_0px_20px_0px_rgba(239,240,242,0.25)_inset] backdrop-blur-lg flex flex-col items-center justify-center;
+  @apply relative mx-auto flex w-full max-w-screen-lg flex-col items-center justify-center space-y-8 rounded-lg bg-black/30 p-8 shadow-[0px_0px_20px_0px_rgba(239,240,242,0.25)_inset] backdrop-blur-lg;
 }
 
 .title {
@@ -19,12 +19,12 @@
 }
 
 .description {
-  @apply text-[18px] leading-7 max-w-[600px];
+  @apply max-w-screen-sm text-[18px] leading-7;
 }
 
 @media (max-width: 768px) {
   .container {
-    @apply py-16 px-4;
+    @apply px-4 py-16;
   }
 
   .description {

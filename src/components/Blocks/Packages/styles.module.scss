@@ -1,5 +1,9 @@
 .container {
-  @apply relative mx-auto min-h-screen bg-inherit bg-right-top bg-no-repeat px-8 py-24;
+  @apply relative min-h-screen bg-inherit bg-right-top bg-no-repeat px-8 py-24;
+}
+
+.content {
+  @apply mx-auto max-w-screen-2xl;
 }
 
 .header {
