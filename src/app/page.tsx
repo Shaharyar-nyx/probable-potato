@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Hero, BrandMission, Solutions, Testimonials, Clients, RequestDemo } from "@/sections";
+import { Hero, BrandMission, Solutions, Testimonials, Clients, CTA } from "@/sections";
 
 const Home: React.FC = () => {
   return (
@@ -11,13 +11,13 @@ const Home: React.FC = () => {
       <Testimonials />
       <Clients />
       <CTA
-        title="Secure Your Digital Future"
-        description="Experience the power of proactive cybersecurity tailored to your organization's unique needs."
-        buttonText="Request a Demo"
-        href="/contact"
         backgroundImage={{
           src: "/images/demo/banner1.png",
         }}
+        buttonText="Request a Demo"
+        description="Experience the power of proactive cybersecurity tailored to your organization's unique needs."
+        href="/contact"
+        title="Secure Your Digital Future"
       />
     </main>
   );

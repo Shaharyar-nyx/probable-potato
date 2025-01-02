@@ -4,7 +4,7 @@ import { Header } from "@/components";
 import Packages from "@/components/Blocks/Packages";
 import RequestDemo from "@/components/Blocks/RequestDemo";
 import heroData from "@/data/pricing/hero.json";
-import CTA from "@/components/Blocks/CTA";
+import CTA from "@/components/Blocks/cta";
 
 const Pricing: React.FC = () => {
   return (

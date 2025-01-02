@@ -44,3 +44,14 @@ export interface BenefitCardProps {
   icon: string;
   title: string;
 }
+
+export interface CTAProps {
+  backgroundImage: {
+    src: string;
+  };
+  buttonText: string;
+  description: string;
+  href?: string;
+  tagline?: string;
+  title: string;
+};
