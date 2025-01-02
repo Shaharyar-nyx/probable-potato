@@ -6,14 +6,7 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import styles from "./styles.module.scss";
 import { CTAProps } from "@/types";
 
-export const CTA: React.FC<CTAProps> = ({
-  backgroundImage,
-  description,
-  title,
-  tagline,
-  buttonText,
-  href,
-}: CTAProps) => {
+export const CTA: React.FC<CTAProps> = ({ backgroundImage, description, title, tagline, buttonText, href }) => {
   return (
     <ParallaxProvider>
       <div className={styles.container}>
