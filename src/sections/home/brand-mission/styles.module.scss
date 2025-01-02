@@ -8,11 +8,11 @@
 }
 
 .title {
-  @apply mb-6 text-primary-800;
+  @apply mb-6 font-bold text-primary-800;
 }
 
 .description {
-  @apply mx-auto mb-8 max-w-[700px] leading-relaxed text-gray-600;
+  @apply mx-auto mb-8 max-w-[700px] leading-relaxed text-primary-800;
 }
 
 .memberCard {

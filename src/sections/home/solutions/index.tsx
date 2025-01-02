@@ -52,7 +52,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, description, i
       className={`${styles.solutionCard} ${isEven ? styles.even : ""}`}
       initial="hidden"
       variants={slideIn(isEven)}
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.15 }}
       whileInView="visible"
     >
       <div className={styles.cardContent}>
@@ -79,14 +79,14 @@ export const Solutions: React.FC<SolutionsProps> = ({ content = solutionsContent
           className={styles.container}
           initial="hidden"
           variants={fadeInUp}
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.15 }}
           whileInView="visible"
         >
           <motion.h2
             className="heading-2 font-bold text-primary-800"
             initial="hidden"
             variants={fadeInUp}
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.15 }}
             whileInView="visible"
           >
             {content.title}
@@ -96,7 +96,7 @@ export const Solutions: React.FC<SolutionsProps> = ({ content = solutionsContent
             className={styles.solutionsWrapper}
             initial="hidden"
             variants={staggerChildren}
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.15 }}
             whileInView="visible"
           >
             {content.solutions.map((solution, index) => (
@@ -109,11 +109,13 @@ export const Solutions: React.FC<SolutionsProps> = ({ content = solutionsContent
           className={`${styles.container} ${styles.crowdsourcing}`}
           initial="hidden"
           variants={staggerChildren}
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.15 }}
           whileInView="visible"
         >
           <motion.div className={styles.crowdsourcingContent}>
-            <span className="tagline text-primary-800">{content.crowdsourcing.label}</span>
+            <motion.span className="tagline text-primary-800" variants={fadeInUp}>
+              {content.crowdsourcing.label}
+            </motion.span>
 
             <motion.div>
               <motion.h2 className={`${styles.crowdsourcingTitle} heading-2`} variants={fadeInUp}>
@@ -139,7 +141,7 @@ export const Solutions: React.FC<SolutionsProps> = ({ content = solutionsContent
               size="large"
               variant="primary"
               variants={fadeInUp}
-              viewport={{ once: true, amount: 0.5 }}
+              viewport={{ once: true, amount: 0.15 }}
               whileInView="visible"
             >
               Learn More

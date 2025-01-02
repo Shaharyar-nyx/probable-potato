@@ -76,8 +76,8 @@ export const BrandMission: React.FC = () => {
       ))}
 
       <div className={styles.content}>
-        <h2 className={`heading-2 font-bold`}>{brandMissionContent.title}</h2>
-        <p className={`${styles.description}`}>{brandMissionContent.description}</p>
+        <h2 className={`${styles.title} heading-2`}>{brandMissionContent.title}</h2>
+        <p className={`${styles.description} paragraph-md`}>{brandMissionContent.description}</p>
       </div>
 
       {brandMissionContent.teamMembers.map((member, index) => (
