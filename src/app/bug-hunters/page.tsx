@@ -2,7 +2,7 @@ import React from "react";
 
 import { Header } from "@/components";
 import heroData from "@/data/bug-hunters/hero.json";
-import { Ecosystem, KeyBenefits, Referral } from "@/sections";
+import { Ecosystem, HunterLevels, KeyBenefits, Referral } from "@/sections";
 
 const EthicalHackersPage: React.FC = () => {
   return (
@@ -11,6 +11,7 @@ const EthicalHackersPage: React.FC = () => {
       <KeyBenefits />
       <Referral />
       <Ecosystem />
+      <HunterLevels />
     </main>
   );
 };

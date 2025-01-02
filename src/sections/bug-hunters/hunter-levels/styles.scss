@@ -1,0 +1,42 @@
+.hunter-levels {
+  &-parent-container {
+    @apply relative bg-primary-800;
+  }
+  &-container {
+    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center p-16;
+  }
+  &-tagline {
+    @apply mb-10 text-neutral-50;
+  }
+  &-title {
+    @apply mb-5 font-bold text-neutral-50;
+  }
+  &-description {
+    @apply mb-10 max-w-screen-xl text-neutral-50;
+  }
+  &-feature {
+    &-container {
+      @apply grid w-full grid-cols-3 gap-6;
+    }
+    &-item {
+      @apply flex flex-col rounded-xl bg-primary-500;
+    }
+    &-title {
+      @apply text-center font-bold text-neutral-50;
+      &-container {
+        @apply overflow-hidden rounded-tl-xl rounded-tr-xl bg-primary-500 py-3;
+      }
+    }
+    &-text {
+      &-container {
+        @apply flex h-full flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-500 bg-primary-800 p-10;
+      }
+    }
+    &-subtitle {
+      @apply mb-5 font-semibold text-neutral-50;
+    }
+    &-description {
+      @apply mb-5 rounded-xl border border-[#045DE366] p-5 text-neutral-50;
+    }
+  }
+}
