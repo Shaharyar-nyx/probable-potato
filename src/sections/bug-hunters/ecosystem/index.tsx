@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 
 import "./styles.scss";
@@ -45,7 +45,7 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon, descr
             ? {
                 left: "92px",
                 top: "36px",
-                width: "calc(100% - 102px)",
+                width: "calc(100% - 110px)",
                 color: "#F6F7F8",
               }
             : {
@@ -69,6 +69,20 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon, descr
       >
         {title}
       </motion.h3>
+      <AnimatePresence>
+        {isHovered && (
+          <motion.p
+            animate={{ opacity: 1, y: 0 }}
+            className="paragraph-md ecosystem-feature-description"
+            exit={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 20 }}
+            style={{ display: isHovered ? "block" : "none" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            {description}
+          </motion.p>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
