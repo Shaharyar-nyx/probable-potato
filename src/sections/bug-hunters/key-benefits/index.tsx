@@ -8,7 +8,7 @@ import "./styles.scss";
 
 export const KeyBenefits: React.FC = () => {
   return (
-    <section className="relative">
+    <section className="key-benefits-parent-container">
       <div className="key-benefits-background" />
       <div className="key-benefits-container key-benefits-join-container">
         <div className="w-[32%]">

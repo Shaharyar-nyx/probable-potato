@@ -1,4 +1,7 @@
 .key-benefits {
+  &-parent-container {
+    @apply relative;
+  }
   &-background {
     @apply absolute right-0 top-0 z-0 h-full w-full bg-[url('/bug-hunters/join-and-benefits-bg.svg')] bg-cover bg-no-repeat;
   }
