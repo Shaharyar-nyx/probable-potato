@@ -39,7 +39,7 @@
 }
 
 .packageName {
-  @apply m-0 font-sans text-2xl capitalize text-white;
+  @apply m-0 text-2xl capitalize text-white;
 }
 
 .priceContainer {
@@ -97,7 +97,7 @@
     @apply bg-primary-500 text-white;
 
     svg {
-      @apply stroke-white;
+      @apply text-white
     }
   }
 }

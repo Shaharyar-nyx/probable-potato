@@ -3,7 +3,7 @@ export const solutionsContent = {
   solutions: [
     {
       icon: "/images/icons/monitoring.svg",
-      title: "24/7 Monitoring Service for\nVulnerabilities and Threat Detection",
+      title: "24/7 Monitoring Service for Vulnerabilities and Threat Detection",
       description: "Stay ahead of threats with our advanced scanning and reporting solutions.",
     },
     {

@@ -17,7 +17,7 @@ export const Hero: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.textContent}>
-            <h1 className={styles.title}>{heroContent.title}</h1>
+            <h1 className={`${styles.title} heading-1`}>{heroContent.title}</h1>
             <p className={styles.description}>{heroContent.description}</p>
             <button className={styles.ctaButton}>
               {heroContent.cta.text}
@@ -36,10 +36,6 @@ export const Hero: React.FC = () => {
                     objectFit="cover"
                     src={heroContent.featuredImage.image}
                   />
-                </Parallax>
-
-                <Parallax className="absolute bottom-[45%] left-8" translateY={heroContent.styles.parallaxRange.label}>
-                  <div className={styles.label}>{heroContent.featuredImage.monitoringLabel}</div>
                 </Parallax>
               </div>
             </div>

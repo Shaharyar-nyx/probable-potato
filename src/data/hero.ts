@@ -32,7 +32,6 @@ export const heroContent: HeroContent = {
   featuredImage: {
     image: "/images/cyber-img-1.png",
     alt: "Cybersecurity Monitoring",
-    monitoringLabel: "24/7 Threat Monitoring",
   },
   styles: {
     overlay: "absolute inset-0",
