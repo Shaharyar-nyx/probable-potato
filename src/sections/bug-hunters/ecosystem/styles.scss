@@ -5,4 +5,24 @@
   &-container {
     @apply relative mx-auto flex max-w-screen-3xl flex-col items-center gap-6 px-16 pb-[3.75rem] pt-[7.5rem];
   }
+  &-title {
+    @apply mb-6 text-center font-bold text-neutral-50;
+  }
+  &-text {
+    @apply mb-20 max-w-screen-xl text-center text-neutral-50;
+  }
+  &-feature {
+    &-container {
+      @apply grid w-full grid-cols-4 gap-6;
+    }
+    &-item {
+      @apply rounded-xl bg-neutral-50 p-10;
+    }
+    &-icon {
+      @apply mb-12 h-[104px] w-[104px];
+    }
+    &-title {
+      @apply font-bold text-primary-800;
+    }
+  }
 }
