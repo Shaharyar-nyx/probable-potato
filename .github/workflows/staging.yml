@@ -31,7 +31,7 @@ jobs:
           host: ${{ secrets.HOST }}
           key: ${{ secrets.KEY }}
           username: ${{ secrets.USER }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          # passphrase: ${{ secrets.PASSPHRASE }}
           source: "./"
           target: "~/htdocs/cyberbay.staging.forgewerks.com"
           strip_components: 1
