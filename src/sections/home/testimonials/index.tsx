@@ -56,60 +56,66 @@ export const Testimonials = ({ content = testimonialsContent }: TestimonialsProp
 
   return (
     <section className={styles.container}>
-      <div className={styles.header}>
-        <div className={styles.clientsSection}>
-          <h2 className={`${styles.sectionTitle} heading-2`}>{content.sections.clients.title}</h2>
-          <div className={styles.clientsList}>
-            {content.testimonials.map((testimonial, index) => (
-              <div
-                key={testimonial.client}
-                className={`${styles.client} ${index === activeIndex ? styles.clientActive : ""}`}
-                onClick={() => handleClientClick(index)}
-              >
-                {testimonial.client}
-              </div>
-            ))}
+      <div className={styles.content}>
+        <div className={styles.header}>
+          <div className={styles.clientsSection}>
+            <h4 className={`heading-4 font-bold text-neutral-200`}>{content.sections.clients.title}</h4>
+            <div className={styles.clientsList}>
+              {content.testimonials.map((testimonial, index) => (
+                <div
+                  key={testimonial.client}
+                  className={`${styles.client} ${index === activeIndex ? styles.clientActive : ""}`}
+                  onClick={() => handleClientClick(index)}
+                >
+                  {testimonial.client}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.testimonialSection}>
+            <h4 className={`heading-4 font-bold text-neutral-200`}>{content.sections.testimonials.title}</h4>
+            <Swiper
+              ref={swiperRef}
+              autoplay={{
+                delay: 10000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay]}
+              slidesPerView={1}
+              spaceBetween={30}
+              onSlideChange={(swiper) => {
+                setActiveIndex(swiper.activeIndex);
+                startProgress();
+              }}
+            >
+              {content.testimonials.map((testimonial, index) => (
+                <SwiperSlide key={index}>
+                  <div className={styles.testimonialSlide}>
+                    <div className={styles.testimonialLeft}>
+                      <div>
+                        <h3 className={styles.testimonialAuthor}>{testimonial.author}</h3>
+                        <p className={styles.testimonialPosition}>{testimonial.position}</p>
+                      </div>
+                      <img
+                        alt={`${testimonial.client} Logo`}
+                        className={styles.testimonialLogo}
+                        src={testimonial.logo}
+                      />
+                    </div>
+                    <div className={styles.testimonialRight}>
+                      <p className={"paragraph-xxl break-words text-neutral-50"}>{testimonial.quote}</p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
-
-        <div className={styles.testimonialSection}>
-          <h2 className={`${styles.sectionTitle} heading-2`}>{content.sections.testimonials.title}</h2>
-          <Swiper
-            ref={swiperRef}
-            autoplay={{
-              delay: 10000,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay]}
-            slidesPerView={1}
-            spaceBetween={30}
-            onSlideChange={(swiper) => {
-              setActiveIndex(swiper.activeIndex);
-              startProgress();
-            }}
-          >
-            {content.testimonials.map((testimonial, index) => (
-              <SwiperSlide key={index}>
-                <div className={styles.testimonialSlide}>
-                  <div className={styles.testimonialLeft}>
-                    <div>
-                      <h3 className={styles.testimonialAuthor}>{testimonial.author}</h3>
-                      <p className={styles.testimonialPosition}>{testimonial.position}</p>
-                    </div>
-                    <img alt={`${testimonial.client} Logo`} className={styles.testimonialLogo} src={testimonial.logo} />
-                  </div>
-                  <div className={styles.testimonialRight}>
-                    <p className={styles.testimonialQuote}>{testimonial.quote}</p>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </div>
-      <div className={styles.progressContainer}>
-        <div className={`${styles.progressBar} ${styles.progressBarActive}`}>
-          <div className={styles.progressBarFill} style={{ width: `${progress}%` }} />
+        <div className={styles.progressContainer}>
+          <div className={`${styles.progressBar} ${styles.progressBarActive}`}>
+            <div className={styles.progressBarFill} style={{ width: `${progress}%` }} />
+          </div>
         </div>
       </div>
     </section>

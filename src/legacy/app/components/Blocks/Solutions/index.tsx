@@ -42,10 +42,10 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, description, i
     <div ref={cardRef} className={`${styles.solutionCard} ${isEven ? styles.even : ""}`}>
       <div className={styles.cardContent}>
         <div className={styles.iconWrapper}>
-          <Image alt={title} height={48} src={icon} width={48} />
+          <Image alt={title} height={64} src={icon} width={64} />
         </div>
         <div className={`${styles.textContent} ${isEven ? styles.even : ""}`}>
-          <h3 className={`${styles.cardTitle} heading-2__medium`}>{title}</h3>
+          <h3 className={`heading-6 whitespace-pre font-bold`}>{title}</h3>
           <p className={styles.cardDescription}>{description}</p>
           <button className={styles.button}>Learn More</button>
         </div>
@@ -128,29 +128,28 @@ const Solutions: React.FC<SolutionsProps> = ({ content = solutionsContent }) => 
         <div className={styles.overlay} />
 
         <div className={styles.container}>
-          <h2 ref={titleRef} className={`${styles.mainTitle} heading-2`}>
-            {content.title}
-          </h2>
-          <div className={styles.solutionsWrapper}>
-            {content.solutions.map((solution, index) => (
-              <SolutionCard key={index} {...solution} isEven={index % 2 === 1} />
-            ))}
+          <div>
+            <h2 ref={titleRef} className={`heading-1 max-w-screen-xl font-bold`}>
+              {content.title}
+            </h2>
+            <div className={styles.solutionsWrapper}>
+              {content.solutions.map((solution, index) => (
+                <SolutionCard key={index} {...solution} isEven={index % 2 === 1} />
+              ))}
+            </div>
           </div>
-        </div>
-
-        <div className={`${styles.container} ${styles.crowdsourcing}`}>
           <div ref={crowdsourcingRef} className={styles.crowdsourcingContent}>
-            <span className={styles.label}>{content.crowdsourcing.label}</span>
+            <span className="tagline">{content.crowdsourcing.label}</span>
 
             <div>
-              <h2 className={`${styles.crowdsourcingTitle} heading-2`}>{content.crowdsourcing.title}</h2>
-              <p className={`${styles.crowdsourcingDescription} paragraph`}>{content.crowdsourcing.description}</p>
+              <h2 className={`heading-2 font-bold`}>{content.crowdsourcing.title}</h2>
+              <p className={`paragraph`}>{content.crowdsourcing.description}</p>
             </div>
 
             <div ref={benefitsRef} className={styles.benefitsGrid}>
               {content.crowdsourcing.benefits.map((benefit, index) => (
                 <div key={index} className={styles.benefitItem}>
-                  <h4 className={`${styles.benefitTitle} heading-3`}>{benefit.title}</h4>
+                  <h6 className={`heading-6 font-bold`}>{benefit.title}</h6>
                   <p className={`${styles.benefitDescription} paragraph`}>{benefit.description}</p>
                 </div>
               ))}

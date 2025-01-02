@@ -2,7 +2,7 @@ export const solutionsContent = {
   title: "Comprehensive Cybersecurity Solutions to Protect Your Organization",
   solutions: [
     {
-      icon: "/images/icons/advisory.svg",
+      icon: "/images/icons/monitoring.svg",
       title: "24/7 Monitoring Service for\nVulnerabilities and Threat Detection",
       description: "Stay ahead of threats with our advanced scanning and reporting solutions.",
     },
@@ -13,7 +13,7 @@ export const solutionsContent = {
         "Leverage the power of crowdsourcing with our pre-vetted ethical hacking community. On-demand resources provide cost-effective scalability and pre-vetted talent gives you peace of mind.",
     },
     {
-      icon: "/images/icons/monitoring.svg",
+      icon: "/images/icons/advisory.svg",
       title: "Cybersecurity Advisory:\nTailored Strategies and Tools",
       description: "Explore custom solutions designed to create your ideal Cybersecurity Ecosystem.",
     },

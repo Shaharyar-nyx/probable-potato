@@ -157,7 +157,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
           showSolutionsDropdown ? "rounded-t-lg" : "rounded-lg"
         }`}
       >
-        <div className="flex items-center gap-[34px]">
+        <div className="flex items-center gap-8">
           <Link href="/">
             <img alt="Cyberbay" src="/images/cyberbay-logo.svg" />
           </Link>
@@ -232,7 +232,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
               className="flex items-center gap-2 rounded-lg px-3 py-2 transition-colors hover:bg-[#EFF0F2CC]"
               onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
             >
-              <img alt={selectedLanguage.name} src={selectedLanguage.flag} />
+              {/* <img alt={selectedLanguage.name} src={selectedLanguage.flag} /> */}
               <span className="text-primary-800">{selectedLanguage.name}</span>
               <span className={`transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}>
                 <img alt="Chevron Down" src="/images/chevron-down.svg" />
@@ -240,7 +240,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
             </button>
 
             {showLanguageDropdown && (
-              <div className="absolute right-0 top-full mt-2 min-w-[120px] rounded-lg bg-neutral-50 py-2 shadow-lg">
+              <div className="absolute left-0 top-full mt-2 w-full min-w-16 rounded-lg bg-neutral-50 py-2 shadow-lg">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
@@ -250,7 +250,7 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                       setShowLanguageDropdown(false);
                     }}
                   >
-                    <img alt={lang.name} src={lang.flag} />
+                    {/* <img alt={lang.name} src={lang.flag} /> */}
                     <span className="text-primary-800">{lang.name}</span>
                   </button>
                 ))}

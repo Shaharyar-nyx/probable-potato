@@ -10,7 +10,15 @@ const Home: React.FC = () => {
       <Solutions />
       <Testimonials />
       <Clients />
-      <RequestDemo />
+      <CTA
+        title="Secure Your Digital Future"
+        description="Experience the power of proactive cybersecurity tailored to your organization's unique needs."
+        buttonText="Request a Demo"
+        href="/contact"
+        backgroundImage={{
+          src: "/images/demo/banner1.png",
+        }}
+      />
     </main>
   );
 };

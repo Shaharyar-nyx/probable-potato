@@ -11,7 +11,7 @@ import { clientsContent } from "@/data/clients";
 export const Clients: React.FC = () => {
   return (
     <div className={styles.clientsSection}>
-      <h2 className={`${styles.title} heading-2`}>{clientsContent.title}</h2>
+      <h2 className={`${styles.title} heading-2 font-bold`}>{clientsContent.title}</h2>
       <div className={styles.carouselContainer}>
         <Slider {...clientsContent.sliderSettings}>
           {clientsContent.clients.map((client, index) => (

@@ -1,0 +1,50 @@
+.swiper-slide {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate(20px, 20px);
+  opacity: 0.2;
+  background: #fff;
+  border-radius: 16px;
+}
+
+.swiper-slide-active {
+  z-index: 30;
+  transform: translate(0, 0);
+  opacity: 1;
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  opacity: 0.7;
+  transform: translateY(10px);
+}
+
+.swiper-slide-prev {
+  z-index: 20;
+  transform: translate(10px, 10px) !important;
+  opacity: 0.4 !important;
+}
+
+.swiper-slide-next {
+  z-index: 10;
+  transform: translate(20px, 20px) !important;
+  opacity: 0.2 !important;
+}
+
+/* Navigation buttons hover effect */
+.swiper-prev-button,
+.swiper-next-button {
+  transition: all 0.2s ease;
+}
+
+.swiper-prev-button:hover,
+.swiper-next-button:hover {
+  background-color: #f8f9fa;
+}
+
+.swiper-prev-button:hover {
+  transform: translateX(-50%) scale(1.1);
+}
+
+.swiper-next-button:hover {
+  transform: translateX(50%) scale(1.1);
+}
