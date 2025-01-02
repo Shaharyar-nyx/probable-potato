@@ -92,7 +92,7 @@ export const Ecosystem: React.FC = () => {
     <section className="ecosystem-parent-container">
       <div className="ecosystem-container">
         <h2 className="heading-1 ecosystem-title">{data.title}</h2>
-        <p className="paragraph-md ecosystem-text">{data.subtitle}</p>
+        <p className="paragraph-md ecosystem-description">{data.description}</p>
         <div className="ecosystem-feature-container">
           {data.features.map((feature) => (
             <EcosystemFeatureItem key={feature.id} {...feature} />
