@@ -3,7 +3,7 @@
     @apply relative bg-neutral-50;
   }
   &-container {
-    @apply relative z-10 mx-auto flex max-w-screen-3xl gap-6 px-16 py-[120px];
+    @apply relative mx-auto flex max-w-screen-3xl gap-6 px-16 py-[7.5rem];
     &-item {
       @apply basis-1/2;
     }

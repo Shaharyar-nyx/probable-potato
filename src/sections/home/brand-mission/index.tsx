@@ -5,7 +5,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "./styles.module.scss";
 import { brandMissionContent } from "@/data/brandMission";
 
-const BrandMission: React.FC = () => {
+export const BrandMission: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef({ current: 0, target: 0 });
   const rafRef = useRef<number>();
@@ -76,8 +76,8 @@ const BrandMission: React.FC = () => {
       ))}
 
       <div className={styles.content}>
-        <h2 className={`heading-2 font-bold`}>{brandMissionContent.title}</h2>
-        <p className={`${styles.description}`}>{brandMissionContent.description}</p>
+        <h2 className={`${styles.title} heading-2`}>{brandMissionContent.title}</h2>
+        <p className={`${styles.description} paragraph-md`}>{brandMissionContent.description}</p>
       </div>
 
       {brandMissionContent.teamMembers.map((member, index) => (
@@ -93,4 +93,3 @@ const BrandMission: React.FC = () => {
   );
 };
 
-export default BrandMission;

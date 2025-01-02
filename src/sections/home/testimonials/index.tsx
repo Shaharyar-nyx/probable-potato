@@ -14,7 +14,7 @@ interface TestimonialsProps {
   content?: typeof testimonialsContent;
 }
 
-const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
+export const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const swiperRef = useRef<any>(null);
@@ -121,5 +121,3 @@ const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
     </section>
   );
 };
-
-export default Testimonials;

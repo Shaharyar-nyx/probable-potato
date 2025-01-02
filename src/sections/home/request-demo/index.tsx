@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import React from "react";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import styles from "./styles.module.scss";
@@ -10,7 +11,7 @@ interface RequestDemoProps {
   content?: typeof requestDemoContent;
 }
 
-const RequestDemo = ({ content = requestDemoContent }: RequestDemoProps) => {
+export const RequestDemo: React.FC = ({ content = requestDemoContent }: RequestDemoProps) => {
   return (
     <ParallaxProvider>
       <div className={styles.container}>

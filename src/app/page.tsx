@@ -1,12 +1,6 @@
 import React from "react";
 
-import BrandMission from "@/components/Blocks/BrandMission";
-import Clients from "@/components/Blocks/Clients";
-import Hero from "@/components/Blocks/Hero";
-import RequestDemo from "@/components/Blocks/RequestDemo";
-import Solutions from "@/components/Blocks/Solutions";
-import Testimonials from "@/components/Blocks/Testimonials";
-import CTA from "@/components/Blocks/CTA";
+import { Hero, BrandMission, Solutions, Testimonials, Clients, CTA } from "@/sections";
 
 const Home: React.FC = () => {
   return (
@@ -17,13 +11,13 @@ const Home: React.FC = () => {
       <Testimonials />
       <Clients />
       <CTA
-        title="Secure Your Digital Future"
-        description="Experience the power of proactive cybersecurity tailored to your organization's unique needs."
-        buttonText="Request a Demo"
-        href="/contact"
         backgroundImage={{
           src: "/images/demo/banner1.png",
         }}
+        buttonText="Request a Demo"
+        description="Experience the power of proactive cybersecurity tailored to your organization's unique needs."
+        href="/contact"
+        title="Secure Your Digital Future"
       />
     </main>
   );

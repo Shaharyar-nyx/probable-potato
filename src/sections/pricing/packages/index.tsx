@@ -6,18 +6,18 @@ import { Tooltip } from "react-tooltip";
 import styles from "./styles.module.scss";
 
 interface Feature {
-  name: string;
-  tooltip?: string;
   cyberscan: boolean | string;
   cybershield: boolean | string;
   cyberswarm: boolean | string;
+  name: string;
+  tooltip?: string;
 }
 
 interface PackageData {
-  price: string;
-  period?: string;
-  description: string;
   buttonText: string;
+  description: string;
+  period?: string;
+  price: string;
 }
 
 const PACKAGES_CONFIG = {
@@ -329,7 +329,7 @@ const XIcon = () => (
   </svg>
 );
 
-const Packages = () => {
+export const Packages = () => {
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
 
   return (
@@ -365,5 +365,3 @@ const Packages = () => {
     </section>
   );
 };
-
-export default Packages;

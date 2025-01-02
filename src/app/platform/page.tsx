@@ -6,7 +6,7 @@ import BugBountyPrograms from "@/components/platform/BugBountyPrograms";
 import ContinuousBugHunting from "@/components/platform/ContinuousBugHunting";
 import LaunchProgram from "@/components/platform/LaunchProgram";
 import Packages from "@/components/Blocks/Packages";
-import CTA from "@/components/Blocks/CTA";
+import CTA from "@/components/Blocks/cta";
 
 export const metadata: Metadata = {
   title: "Cyberbay Platform - Fortify, Scale, and Triage",
