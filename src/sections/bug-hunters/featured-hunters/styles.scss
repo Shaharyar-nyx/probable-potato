@@ -1,0 +1,20 @@
+.featured-hunters {
+  &-parent-container {
+    @apply relative bg-primary-800;
+  }
+  &-top-container {
+    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-16 py-[30px];
+  }
+  &-bottom-container {
+    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-16 pb-[120px] pt-[30px];
+  }
+  &-tagline {
+    @apply mb-10 text-neutral-50;
+  }
+  &-title {
+    @apply mb-5 font-bold text-neutral-50;
+  }
+  &-description {
+    @apply mb-10 max-w-screen-xl text-neutral-50;
+  }
+}

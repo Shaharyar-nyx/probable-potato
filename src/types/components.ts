@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from "react";
+import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 
 import { solutionsContent } from "@/data/solutions";
 
@@ -19,14 +19,35 @@ export interface SolutionsProps {
   content?: typeof solutionsContent;
 }
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface BaseButtonProps {
   children: React.ReactNode;
+  className?: string;
   icon?: React.ReactNode;
   loading?: boolean;
   size?: "large" | "medium" | "small";
   transparent?: boolean;
   variant?: "primary" | "neutral";
 }
+
+export type ButtonAsButton = BaseButtonProps &
+  React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    externalHref?: never;
+    href?: never;
+  };
+
+export type ButtonAsInternalLink = BaseButtonProps &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    externalHref?: never;
+    href: string;
+  };
+
+export type ButtonAsExternalLink = BaseButtonProps &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    externalHref: string;
+    href?: never;
+  };
+
+export type ButtonProps = ButtonAsButton | ButtonAsInternalLink | ButtonAsExternalLink;
 
 export interface IconRendererProps {
   className?: string;
@@ -54,4 +75,4 @@ export interface CTAProps {
   href?: string;
   tagline?: string;
   title: string;
-};
+}

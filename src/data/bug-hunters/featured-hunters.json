@@ -1,0 +1,31 @@
+{
+  "tagline": "Achievement Spotlights",
+  "title": "Featured Hunters",
+  "description": "We are committed to recognizing excellence in ethical hacking and fostering a culture of continuous innovation in cybersecurity.",
+  "top-hunters": [
+    {
+      "id": "1",
+      "picture": "",
+      "name": "Carla Bergson",
+      "headline": "Engineer Student",
+      "tag": "Rookie of the Month",
+      "description": "Potter ipsum wand elf parchment wingardium. Beuxbatons in quills large green cars animagus."
+    },
+    {
+      "id": "2",
+      "picture": "",
+      "name": "Ruben Herwitz",
+      "headline": "Hacker",
+      "tag": "Guardian of the Bay",
+      "description": "Potter ipsum wand elf parchment wingardium. Beuxbatons in quills large green cars animagus."
+    },
+    {
+      "id": "3",
+      "picture": "",
+      "name": "Zain Franci",
+      "headline": "Hacker Leader",
+      "tag": "Mentor of the Month",
+      "description": "Potter ipsum wand elf parchment wingardium. Beuxbatons in quills large green cars animagus."
+    }
+  ]
+}
