@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "mercury-website-nextjs",
+      name: "cyberbay-website-nextjs",
       exec_mode: "cluster", // Enable clustering
       instances: "1",
       script: "yarn",
@@ -9,11 +9,11 @@ module.exports = {
       cwd: "./",
       env: {
         NODE_ENV: "development",
-        PORT: 3011,
+        PORT: 3012,
       },
       env_production: {
         NODE_ENV: "production",
-        PORT: 3010,
+        PORT: 3013,
       },
     },
   ],
