@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import React from "react";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import styles from "./styles.module.scss";
 import { heroContent } from "@/data/hero";
 
-const Hero = () => {
+export const Hero: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.backgroundWrapper}>
@@ -48,5 +49,3 @@ const Hero = () => {
     </header>
   );
 };
-
-export default Hero;

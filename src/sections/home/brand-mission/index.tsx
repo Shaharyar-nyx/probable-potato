@@ -5,7 +5,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "./styles.module.scss";
 import { brandMissionContent } from "@/data/brandMission";
 
-const BrandMission: React.FC = () => {
+export const BrandMission: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef({ current: 0, target: 0 });
   const rafRef = useRef<number>();
@@ -93,4 +93,3 @@ const BrandMission: React.FC = () => {
   );
 };
 
-export default BrandMission;
