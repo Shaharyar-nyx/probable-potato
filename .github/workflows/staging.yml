@@ -1,0 +1,55 @@
+name: Build & Deploy
+on:
+  push:
+    branches: ["staging"]
+jobs:
+  build:
+    environment: staging
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - name: Build & Deploy Repository
+        uses: actions/checkout@v4
+      - name: Creating .env file
+        run: |
+          echo "NEXT_PUBLIC_STRAPI_GRAPHQL_URL=${{ vars.NEXT_PUBLIC_STRAPI_GRAPHQL_URL }}" >> .env
+          echo "NEXT_PUBLIC_STRAPI_ASSETS=${{ vars.NEXT_PUBLIC_STRAPI_ASSETS }}" >> .env
+          # Add other environment variables as needed
+      - name: Use Node.js ${{ matrix.node-version}}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version}}
+          cache: "yarn"
+      - run: yarn install
+      - run: yarn build
+      - run: echo "Project build finished successfully"
+      - name: Copy files via ssh key to staging server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          key: ${{ secrets.KEY }}
+          username: ${{ secrets.USER }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          source: "./"
+          target: "~/htdocs/cyberbay.staging.forgewerks.com"
+          strip_components: 1
+  restart:
+    environment: staging
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - name: Restart pm2 project
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          key: ${{ secrets.KEY }}
+          username: ${{ secrets.USER }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          script: |
+            exec bash
+            pm2 restart 0
