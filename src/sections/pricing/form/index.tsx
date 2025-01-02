@@ -14,7 +14,7 @@ interface FormData {
   requestType: string;
 }
 
-const Form = () => {
+export const Form = () => {
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     companyName: "",
@@ -283,5 +283,3 @@ const Form = () => {
     </div>
   );
 };
-
-export default Form;
