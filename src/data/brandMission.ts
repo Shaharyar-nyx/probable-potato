@@ -15,7 +15,7 @@ export interface BrandMissionContent {
 
 export const brandMissionContent: BrandMissionContent = {
   tags: ["Accessibility", "Academy", "Organizations"],
-  title: "Democratizing\nCybersecurity for All",
+  title: "Democratizing Cybersecurity for All",
   description:
     "At Cyberbay, we transform cybersecurity with a proactive and inclusive approach, leveraging the knowledge of ethical hackers to establish a robust, interconnected ecosystem that fosters transparency through innovative technologies and universal empowerment.",
   teamMembers: [

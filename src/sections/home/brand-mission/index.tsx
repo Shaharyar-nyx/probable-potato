@@ -76,7 +76,7 @@ export const BrandMission: React.FC = () => {
       ))}
 
       <div className={styles.content}>
-        <h2 className={`${styles.title} heading-2`}>{brandMissionContent.title}</h2>
+        <h1 className={`${styles.title} heading-1`}>{brandMissionContent.title}</h1>
         <p className={`${styles.description} paragraph-md`}>{brandMissionContent.description}</p>
       </div>
 
@@ -92,4 +92,3 @@ export const BrandMission: React.FC = () => {
     </div>
   );
 };
-

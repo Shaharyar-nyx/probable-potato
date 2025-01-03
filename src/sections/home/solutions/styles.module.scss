@@ -44,15 +44,12 @@
 }
 
 .textContent {
-  @apply flex max-w-lg flex-col items-start text-left;
-
-  &.even {
-    @apply items-end text-right;
-  }
+  @apply flex flex-col items-start text-left;
 }
 
 .cardTitle {
-  @apply mb-2 max-w-[600px] font-bold text-primary-800;
+  @apply mb-2 max-w-[600px] text-primary-800 text-left;
+  white-space: break-spaces;
 }
 
 .cardDescription {

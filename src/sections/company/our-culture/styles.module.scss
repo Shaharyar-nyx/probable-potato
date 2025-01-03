@@ -1,0 +1,23 @@
+.our-culture {
+  @apply relative;
+
+  .background {
+    @apply absolute inset-0 -z-10 bg-primary-500 bg-[url('/bug-hunters/join-and-benefits-bg.svg')] bg-cover bg-no-repeat;
+  }
+
+  .container {
+    @apply mx-auto flex gap-24 px-16 py-24;
+  }
+
+  .title {
+    @apply mb-6 font-bold text-neutral-50;
+  }
+
+  .paragraph {
+    @apply mb-10 text-neutral-50;
+  }
+
+  .feature-container {
+    @apply flex flex-col gap-3 rounded-2xl bg-primary-500 p-6;
+  }
+}

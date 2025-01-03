@@ -1,14 +1,12 @@
 export interface HeroContent {
   backgroundVideo: string;
   cta: {
-    icon: string;
     text: string;
   };
   description: string;
   featuredImage: {
     alt: string;
     image: string;
-    monitoringLabel: string;
   };
   styles: {
     overlay: string;
@@ -27,12 +25,10 @@ export const heroContent: HeroContent = {
     "We are on a mission to make cybersecurity proactive, inclusive, and accessible, empowering a safer digital age.",
   cta: {
     text: "Request a Demo",
-    icon: "/images/arrow-up-right.svg",
   },
   featuredImage: {
     image: "/images/cyber-img-1.png",
     alt: "Cybersecurity Monitoring",
-    monitoringLabel: "24/7 Threat Monitoring",
   },
   styles: {
     overlay: "absolute inset-0",

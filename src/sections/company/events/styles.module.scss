@@ -1,0 +1,119 @@
+.events {
+  @apply px-16 py-[60px];
+
+  .header {
+    @apply mb-10 text-center;
+
+    .subtitle {
+      @apply mb-4 text-primary-800;
+    }
+
+    .title {
+      @apply mb-6 font-bold text-primary-800;
+    }
+
+    .content {
+      @apply text-primary-800;
+    }
+  }
+
+  .monthsGrid {
+    @apply grid grid-cols-3 gap-y-8 p-8;
+
+    .monthButton {
+      @apply relative text-center transition-colors;
+
+      &.active {
+        @apply cursor-default;
+      }
+
+      &:not(.active) {
+        @apply cursor-pointer;
+      }
+
+      .monthContent {
+        @apply flex flex-col items-center pb-8 text-primary-800;
+
+        .month {
+          @apply mb-2 font-bold;
+        }
+      }
+
+      .indicator {
+        @apply absolute bottom-0 left-0 right-0 h-[3px];
+
+        &.active {
+          @apply bg-primary-500;
+        }
+
+        &:not(.active) {
+          @apply bg-neutral-100;
+        }
+      }
+    }
+  }
+
+  .eventsList {
+    @apply space-y-6;
+
+    .eventCard {
+      @apply cursor-pointer rounded-2xl border-b border-neutral-100 p-8 transition-shadow hover:bg-white hover:shadow-lg;
+
+      .cardContent {
+        @apply flex w-full items-center justify-between;
+
+        .leftContent {
+          @apply flex items-center justify-start gap-[44px];
+
+          .imageContainer {
+            @apply relative h-28 w-28 flex-shrink-0 overflow-hidden rounded-2xl;
+
+            .eventType {
+              @apply absolute bottom-2 left-0 right-0 z-10 mx-[9%] rounded-[20px] bg-primary-500 px-4 py-1 text-center text-white;
+            }
+
+            .eventImage {
+              @apply h-full w-full object-cover;
+            }
+          }
+
+          .eventInfo {
+            @apply w-[70%];
+
+            .eventTitle {
+              @apply mb-2 font-bold text-primary-800;
+            }
+
+            .eventDescription {
+              @apply text-primary-800;
+            }
+          }
+        }
+
+        .rightContent {
+          @apply flex items-center justify-between gap-[44px];
+
+          .eventDetails {
+            @apply flex w-max flex-col justify-center gap-3;
+
+            .detailItem {
+              @apply flex items-center gap-2;
+
+              .icon {
+                @apply h-[24px] w-[24px] text-primary-500;
+              }
+
+              .text {
+                @apply font-bold text-primary-800;
+              }
+            }
+          }
+
+          .actionButton {
+            @apply flex items-center;
+          }
+        }
+      }
+    }
+  }
+}

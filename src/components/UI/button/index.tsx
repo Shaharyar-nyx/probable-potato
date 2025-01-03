@@ -28,10 +28,10 @@ export const Button: React.FC<ButtonProps> = ({
   );
 
   const content = (
-    <>
+    <div className="flex flex-row items-center justify-center gap-2">
       {loading ? <span>Loading...</span> : <span>{children}</span>}
       {icon !== undefined && icon}
-    </>
+    </div>
   );
 
   if (href !== undefined && externalHref === undefined) {
