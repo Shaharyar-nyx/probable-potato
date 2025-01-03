@@ -1,39 +1,20 @@
-import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/router";
+"use client";
 
-import Logo from "assets/images/cyberbay-logo.svg";
-import ChevronDown from "assets/images/chevron-down.svg";
-
-import EN from "assets/images/languages/en.svg";
-import ES from "assets/images/languages/es.svg";
-import CN from "assets/images/languages/cn.svg";
-
-import BuildingOffice from "assets/images/solutions/building-office.svg";
-import ClipboardDocumentCheck from "assets/images/solutions/clipboard-document-check.svg";
-import Eye from "assets/images/solutions/eye.svg";
-import MagnifyingGlass from "assets/images/solutions/magnifying-glass.svg";
-import RocketLaunch from "assets/images/solutions/rocket-launch.svg";
-import ShieldCheck from "assets/images/solutions/shield-check.svg";
-import ViewfinderDot from "assets/images/solutions/viewfinder-dot.svg";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
+import { IconRenderer } from "../IconRenderer";
+import { Button } from "../UI";
 
-interface NavProps {
-  isAuthenticated?: boolean;
-  onSignOut?: () => void;
-}
-
-export const Nav: React.FC<NavProps> = ({
-  isAuthenticated = false,
-  onSignOut,
-}) => {
+export const Nav: React.FC = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showSolutionsDropdown, setShowSolutionsDropdown] = useState(false);
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState({
     code: "en",
     name: "EN",
-    flag: EN,
   });
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -57,38 +38,28 @@ export const Nav: React.FC<NavProps> = ({
   }, []);
 
   useEffect(() => {
-    const handleRouteChange = () => {
-      setIsMobileMenuOpen(false);
-      setShowSolutionsDropdown(false);
-    };
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => router.events.off("routeChangeComplete", handleRouteChange);
-  }, [router]);
+    setIsMobileMenuOpen(false);
+    setShowSolutionsDropdown(false);
+  }, [pathname]);
 
   const services = [
+    {
+      name: "Platform",
+      href: "/platform",
+      description: "Connect to vetted researchers, manage programs, and reporting",
+      icon: "WindowIcon",
+    },
     {
       name: "Continuous Monitoring",
       href: "/solutions/continuous-monitoring",
       description: "24/7 Monitoring for Instant Threat Detection",
-      icon: Eye,
+      icon: "EyeIcon",
     },
     {
       name: "Bug Bounty Programs",
       href: "/solutions/bug-bounty",
       description: "Crowdsourced Security at Your Fingertips.",
-      icon: ViewfinderDot,
-    },
-    {
-      name: "Vendor Risk Management",
-      href: "/solutions/vendor-risk",
-      description: "Crowdsourced Security at Your Fingertips.",
-      icon: ShieldCheck,
-    },
-    {
-      name: "Regulatory and Compliance Certifications",
-      href: "/solutions/compliance",
-      description: "Advisory and assistance with SOC2 certification.",
-      icon: ClipboardDocumentCheck,
+      icon: "ViewfinderCircleIcon",
     },
   ];
 
@@ -97,13 +68,13 @@ export const Nav: React.FC<NavProps> = ({
       name: "For Organizations",
       href: "/solutions/organizations",
       description: "Tailored solutions for your industry's needs",
-      icon: BuildingOffice,
+      icon: "BuildingOfficeIcon",
     },
     {
       name: "For X (will replace by industry)",
-      href: "/solutions/industry-x",
+      href: "/solutions/industry",
       description: "Protect your clients data, etc. (will replace by industry)",
-      icon: RocketLaunch,
+      icon: "RocketLaunchIcon",
     },
   ];
 
@@ -112,21 +83,23 @@ export const Nav: React.FC<NavProps> = ({
       name: "Partner Program",
       href: "/partners/program",
       description: "Join Our Network of World-Class Service Providers",
-      icon: Eye,
+      icon: "EyeIcon",
     },
     {
       name: "Partner Directory",
       href: "/partners/directory",
       description: "Find a Partner",
-      icon: MagnifyingGlass,
+      icon: "MagnifyingGlassIcon",
     },
   ];
 
+  const languages = [
+    { code: "en", name: "EN" },
+    { code: "es", name: "ES" },
+    { code: "zh", name: "CN" },
+  ];
+
   const navItems = [
-    {
-      name: "Cyberbay Platform",
-      href: "/cyberbay-platform",
-    },
     {
       name: "Solutions",
       href: "#",
@@ -137,19 +110,13 @@ export const Nav: React.FC<NavProps> = ({
       href: "/pricing",
     },
     {
-      name: "Ethical Hackers",
-      href: "/ethical-hackers",
+      name: "Bug Hunters",
+      href: "/bug-hunters",
     },
     {
       name: "Company",
       href: "/company",
     },
-  ];
-
-  const languages = [
-    { code: "en", name: "EN", flag: EN },
-    { code: "es", name: "ES", flag: ES },
-    { code: "zh", name: "CN", flag: CN },
   ];
 
   const menuData = [
@@ -168,84 +135,79 @@ export const Nav: React.FC<NavProps> = ({
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 w-[95%] h-[72px] mt-[40px] mx-auto bg-neutral-50 z-[9999] shadow-sm rounded-lg">
-      <div className="max-w-[1440px] mx-auto px-[20px] h-full flex items-center justify-between">
-        <div className="flex items-center gap-[34px]">
+    <nav className="fixed left-0 right-0 top-8 z-[9999] mx-auto h-[60px] w-full max-w-[1440px] px-4">
+      <div
+        className={`relative mx-auto flex h-full items-center justify-between bg-neutral-50 px-4 shadow-lg ${
+          showSolutionsDropdown ? "rounded-t-lg" : "rounded-lg"
+        }`}
+      >
+        <div className="flex items-center gap-8">
           <Link href="/">
-            <img src={Logo.src} alt="Cyberbay" />
+            <img alt="Cyberbay" src="/images/cyberbay-logo.svg" />
           </Link>
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden items-center gap-3 md:flex">
             {navItems.map((item) => (
-              <div key={item.name} className="relative">
+              <div key={item.name}>
                 {item.hasDropdown ? (
                   <button
                     ref={buttonRef}
-                    className={`flex items-center group font-medium text-base transition-colors hover:bg-[#EFF0F2CC] rounded-lg px-3 py-2 ${
-                      showSolutionsDropdown
-                        ? "text-primary-500"
-                        : "text-primary-800 hover:text-primary-500"
+                    className={`group flex items-center rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
+                      showSolutionsDropdown ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
                     }`}
-                    onClick={() =>
-                      setShowSolutionsDropdown(!showSolutionsDropdown)
-                    }
+                    onClick={() => setShowSolutionsDropdown(!showSolutionsDropdown)}
                   >
                     {item.name}
                     <span
                       className={`ml-1 inline-block transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
                     >
-                      <img src={ChevronDown.src} alt="Chevron Down" />
+                      <img alt="Chevron Down" src="/images/chevron-down.svg" />
                     </span>
                   </button>
                 ) : (
-                  <button
-                    className={`font-medium text-base group transition-colors hover:bg-[#EFF0F2CC] rounded-lg px-3 py-2 ${
-                      router.pathname === item.href
-                        ? "text-primary-500"
-                        : "text-primary-800 hover:text-primary-500"
+                  <Link
+                    className={`group rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
+                      pathname === item.href ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
                     }`}
-                    onClick={() => router.push(item.href)}
+                    href={item.href}
                   >
                     {item.name}
-                  </button>
+                  </Link>
                 )}
 
                 {item.hasDropdown && showSolutionsDropdown && (
                   <div
                     ref={dropdownRef}
-                    className="fixed left-1/2 -translate-x-1/2 w-[90%] bg-neutral-50 shadow-lg rounded-b-xl mt-4"
-                    style={{ top: "96px" }}
+                    className="absolute left-0 top-[60px] w-full rounded-b-xl bg-neutral-50 shadow-lg"
                   >
-                    <div className="pt-5 pb-10 px-10">
-                      <div className="flex flex-row justify-between">
+                    <div className="px-10 pb-10 pt-5">
+                      <div className="grid grid-cols-3 gap-[44px]">
                         {menuData.map((section) => (
-                          <div key={section.title}>
-                            <h3 className="text-[16px] font-primarySemiBold text-primary-800 mb-5">
-                              {section.title}
-                            </h3>
+                          <div key={section.title} className="w-full">
+                            <h3 className="paragraph-md mb-5 font-semibold text-primary-800">{section.title}</h3>
                             <div className="space-y-6">
                               {section.items.map((item) => (
-                                <a
+                                <Link
                                   key={item.name}
+                                  className="group block rounded-[8px] p-4 hover:bg-primary-500"
                                   href={item.href}
-                                  className="block group"
                                 >
                                   <div className="flex items-start gap-2">
-                                    <span className="text-2xl">
-                                      <img
-                                        src={item.icon.src}
-                                        alt={item.name}
+                                    <span className="rounded-[4px] p-1 text-2xl group-hover:bg-neutral-50">
+                                      <IconRenderer
+                                        className="text-primary-80 h-[20px] w-[20px]"
+                                        iconName={item.icon}
                                       />
                                     </span>
-                                    <div>
-                                      <div className="text-[15px] text-primary-500 font-medium mb-1">
+                                    <div className="w-full">
+                                      <div className="paragraph-md mb-1 text-primary-800 group-hover:text-neutral-50">
                                         {item.name}
                                       </div>
-                                      <p className="text-[13px] text-neutral-500 leading-snug">
+                                      <p className="paragraph-sm text-neutral-800 group-hover:text-neutral-50">
                                         {item.description}
                                       </p>
                                     </div>
                                   </div>
-                                </a>
+                                </Link>
                               ))}
                             </div>
                           </div>
@@ -259,36 +221,29 @@ export const Nav: React.FC<NavProps> = ({
           </div>
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden items-center gap-3 md:flex">
           <div className="relative">
             <button
-              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[#EFF0F2CC] transition-colors"
+              className="flex items-center gap-2 rounded-lg px-3 py-2 transition-colors hover:bg-[#EFF0F2CC]"
               onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
             >
-              <img
-                src={selectedLanguage.flag.src}
-                alt={selectedLanguage.name}
-              />
               <span className="text-primary-800">{selectedLanguage.name}</span>
-              <span
-                className={`transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}
-              >
-                <img src={ChevronDown.src} alt="Chevron Down" />
+              <span className={`transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}>
+                <img alt="Chevron Down" src="/images/chevron-down.svg" />
               </span>
             </button>
 
             {showLanguageDropdown && (
-              <div className="absolute top-full right-0 mt-2 bg-neutral-50 rounded-lg shadow-lg py-2 min-w-[120px]">
+              <div className="absolute left-0 top-full mt-2 w-full min-w-16 rounded-lg bg-neutral-50 py-2 shadow-lg">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
-                    className="w-full flex items-center gap-2 px-4 py-2 hover:bg-[#EFF0F2CC] transition-colors"
+                    className="flex w-full items-center gap-2 px-4 py-2 transition-colors hover:bg-[#EFF0F2CC]"
                     onClick={() => {
                       setSelectedLanguage(lang);
                       setShowLanguageDropdown(false);
                     }}
                   >
-                    <img src={lang.flag.src} alt={lang.name} />
                     <span className="text-primary-800">{lang.name}</span>
                   </button>
                 ))}
@@ -296,40 +251,27 @@ export const Nav: React.FC<NavProps> = ({
             )}
           </div>
 
-          <a
-            href="/login"
-            className="text-primary-500 hover:text-blue-700 rounded-lg px-4 py-2 border border-[#045DE3] font-medium text-base"
-          >
+          <Button href="/login" transparent>
             Log In / Sign Up
-          </a>
+          </Button>
 
-          <a
-            href="/contact"
-            className="bg-primary-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-base transition-colors"
-          >
-            Contact Us
-          </a>
+          <Button href="/contact-us">Contact Us</Button>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-primary-800"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
+        <button className="text-primary-800 md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           ---
         </button>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="absolute top-[72px] left-0 right-0 bg-neutral-50 shadow-lg md:hidden">
+          <div className="absolute left-0 right-0 top-[72px] bg-neutral-50 shadow-lg md:hidden">
             <div className="flex flex-col p-4">
               {navItems.map((item) => (
                 <div key={item.name}>
                   <button
-                    className={`w-full text-left py-2 px-4 font-medium text-base ${
-                      router.pathname === item.href
-                        ? "text-primary-500"
-                        : "text-primary-800"
+                    className={`w-full px-4 py-2 text-left text-base ${
+                      pathname === item.href ? "text-primary-500" : "text-primary-800"
                     }`}
                     onClick={() => {
                       if (item.hasDropdown) {
@@ -349,26 +291,16 @@ export const Nav: React.FC<NavProps> = ({
                       <div className="py-2">
                         {menuData.map((section) => (
                           <div key={section.title}>
-                            <div className="text-sm font-semibold text-gray-500 px-4 py-2">
-                              {section.title}
-                            </div>
+                            <div className="px-4 py-2 text-sm font-semibold text-gray-500">{section.title}</div>
                             {section.items.map((item) => (
-                              <a
-                                key={item.name}
-                                href={item.href}
-                                className="block px-4 py-2"
-                              >
+                              <a key={item.name} className="block px-4 py-2" href={item.href}>
                                 <div className="flex items-start">
-                                  <span className="text-xl mr-3">
-                                    <img src={item.icon.src} alt={item.name} />
+                                  <span className="mr-3 text-xl">
+                                    <img alt={item.name} src={item.icon} />
                                   </span>
                                   <div>
-                                    <div className="text-primary-800">
-                                      {item.name}
-                                    </div>
-                                    <p className="text-sm text-gray-500">
-                                      {item.description}
-                                    </p>
+                                    <div className="text-primary-800">{item.name}</div>
+                                    <p className="text-sm text-gray-500">{item.description}</p>
                                   </div>
                                 </div>
                               </a>
@@ -384,62 +316,38 @@ export const Nav: React.FC<NavProps> = ({
               <hr className="my-2" />
               <div className="relative">
                 <button
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[#EFF0F2CC] transition-colors"
+                  className="flex items-center gap-2 rounded-lg px-3 py-2 transition-colors hover:bg-[#EFF0F2CC]"
                   onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
                 >
-                  <img
-                    src={selectedLanguage.flag.src}
-                    alt={selectedLanguage.name}
-                  />
-                  <span className="text-primary-800">
-                    {selectedLanguage.name}
-                  </span>
-                  <span
-                    className={`transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}
-                  >
-                    <img src={ChevronDown.src} alt="Chevron Down" />
+                  <span className="text-primary-800">{selectedLanguage.name}</span>
+                  <span className={`transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}>
+                    <img alt="Chevron Down" src="/images/chevron-down.svg" />
                   </span>
                 </button>
 
                 {showLanguageDropdown && (
-                  <div className="absolute top-full right-0 mt-2 bg-neutral-50 rounded-lg shadow-lg py-2 min-w-[120px]">
+                  <div className="absolute right-0 top-full mt-2 min-w-[120px] rounded-lg bg-neutral-50 py-2 shadow-lg">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
-                        className="w-full flex items-center gap-2 px-4 py-2 hover:bg-[#EFF0F2CC] transition-colors"
+                        className="flex w-full items-center gap-2 px-4 py-2 transition-colors hover:bg-[#EFF0F2CC]"
                         onClick={() => {
                           setSelectedLanguage(lang);
                           setShowLanguageDropdown(false);
                         }}
                       >
-                        <img src={lang.flag.src} alt={lang.name} />
                         <span className="text-primary-800">{lang.name}</span>
                       </button>
                     ))}
                   </div>
                 )}
               </div>
-              {isAuthenticated ? (
-                <button
-                  onClick={onSignOut}
-                  className="py-2 px-4 text-primary-500  font-medium text-base text-left"
-                >
-                  Sign Out
-                </button>
-              ) : (
-                <a
-                  href="/login"
-                  className="py-2 px-4 text-primary-500 font-medium text-base"
-                >
-                  Log In / Sign Up
-                </a>
-              )}
-              <a
-                href="/contact"
-                className="mt-2 mx-4 bg-primary-500 text-white py-2 px-4 rounded-lg font-medium text-base text-center"
-              >
-                Get Started
-              </a>
+
+              <Button href="/login" transparent>
+                Log In / Sign Up
+              </Button>
+
+              <Button href="/contact-us">Contact Us</Button>
             </div>
           </div>
         )}

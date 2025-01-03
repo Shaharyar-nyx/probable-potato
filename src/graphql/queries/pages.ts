@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+
 import { HOMEPAGE_BLOCKS_FRAGMENT } from "../fragments/blocks";
 
 export const GET_HOMEPAGE = gql`

@@ -1,0 +1,79 @@
+.container {
+  @apply relative w-full bg-primary-800 px-16 py-20;
+}
+
+.content {
+  @apply mx-auto w-full max-w-screen-2xl px-4;
+}
+
+.header {
+  @apply flex gap-8;
+}
+
+.clientsSection {
+  @apply w-[200px] shrink-0 space-y-8;
+}
+
+.title {
+  @apply border-b border-neutral-200 pb-5 font-bold text-neutral-200;
+}
+
+.sectionTitle {
+  @apply mb-10 border-b border-neutral-200 pb-5 text-[32px] text-neutral-200;
+}
+
+.clientsList {
+  @apply flex flex-col gap-6;
+}
+
+.client {
+  @apply cursor-pointer text-[16px] text-white opacity-50 transition-opacity hover:opacity-100;
+}
+
+.clientActive {
+  @apply border-b border-neutral-200 bg-primary-800 pb-2 opacity-100;
+}
+
+.testimonialSection {
+  @apply min-w-0 flex-1 space-y-8;
+}
+
+.testimonialSlide {
+  @apply flex h-full gap-8;
+}
+
+.testimonialLeft {
+  @apply flex w-[200px] shrink-0 flex-col justify-between;
+}
+
+.testimonialRight {
+  @apply flex min-w-0 flex-1 flex-col;
+}
+
+.testimonialAuthor {
+  @apply mb-1 text-[20px] text-white;
+}
+
+.testimonialPosition {
+  @apply text-[16px] text-white opacity-80;
+}
+
+.testimonialLogo {
+  @apply w-[120px];
+}
+
+.progressContainer {
+  @apply absolute bottom-0 left-0 w-full;
+}
+
+.progressBar {
+  @apply h-[10px] bg-primary-500/20;
+}
+
+.progressBarFill {
+  @apply h-full w-0 bg-primary-500 transition-all duration-100 ease-linear;
+}
+
+.progressBarActive .progressBarFill {
+  @apply w-full;
+}

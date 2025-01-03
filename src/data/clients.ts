@@ -1,50 +1,72 @@
 import { StaticImageData } from "next/image";
-import naverLogo from "assets/images/leaders/naver.svg";
-import hktLogo from "assets/images/leaders/hkt.svg";
-import transunionLogo from "assets/images/leaders/transunion.svg";
-import ficoLogo from "assets/images/leaders/fico.svg";
-import cyberportLogo from "assets/images/leaders/cyberport.svg";
-import ricohLogo from "assets/images/leaders/ricoh.svg";
 
 export interface Client {
+  logo: string;
   name: string;
-  logo: StaticImageData;
+  description: string;
 }
 
 export interface ClientsContent {
-  title: string;
   clients: Client[];
   sliderSettings: {
-    dots: boolean;
     arrows: boolean;
-    infinite: boolean;
-    speed: number;
-    slidesToShow: number;
-    cssEase: string;
-    slidesToScroll: number;
-    mobileFirst: boolean;
     autoplay: boolean;
     autoplaySpeed: number;
+    cssEase: string;
+    dots: boolean;
+    infinite: boolean;
+    mobileFirst: boolean;
     responsive: Array<{
       breakpoint: number;
       settings: {
-        slidesToShow: number;
-        dots: boolean;
         arrows: boolean;
+        dots: boolean;
+        slidesToShow: number;
       };
     }>;
+    slidesToScroll: number;
+    slidesToShow: number;
+    speed: number;
   };
+  title: string;
+  description: string;
 }
 
 export const clientsContent: ClientsContent = {
-  title: "Trusted by industry leaders worldwide",
+  title: "Trusted by Industry Leaders",
+  description:
+    "Join the ranks of industry leaders who trust Cyberbay for their cybersecurity needs. Our proven track record speaks for itself.",
   clients: [
-    { name: "NAVER", logo: naverLogo },
-    { name: "HKT", logo: hktLogo },
-    { name: "TransUnion", logo: transunionLogo },
-    { name: "FICO", logo: ficoLogo },
-    { name: "Cyberport", logo: cyberportLogo },
-    { name: "RICOH", logo: ricohLogo },
+    {
+      logo: "/images/leaders/cyberport.svg",
+      name: "Cyberport",
+      description: "Digital technology hub and innovative ecosystem",
+    },
+    {
+      logo: "/images/leaders/fico.svg",
+      name: "FICO",
+      description: "Analytics software company",
+    },
+    {
+      logo: "/images/leaders/hkt.svg",
+      name: "HKT",
+      description: "Premier telecommunications service provider",
+    },
+    {
+      logo: "/images/leaders/naver.svg",
+      name: "Naver",
+      description: "South Korean online platform company",
+    },
+    {
+      logo: "/images/leaders/ricoh.svg",
+      name: "Ricoh",
+      description: "Japanese multinational imaging company",
+    },
+    {
+      logo: "/images/leaders/transunion.svg",
+      name: "TransUnion",
+      description: "Global information and insights company",
+    },
   ],
   sliderSettings: {
     dots: false,

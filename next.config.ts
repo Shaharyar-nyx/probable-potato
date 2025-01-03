@@ -2,30 +2,30 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   eslint: { ignoreDuringBuilds: true },
-  trailingSlash: true,
-
   env: {
-    DIRECTUS_GRAPHQL_ENDPOINT: process.env.DIRECTUS_GRAPHQL_ENDPOINT,
-    DIRECTUS_ASSETS_URL: process.env.DIRECTUS_ASSETS_URL,
+    NEXT_PUBLIC_STRAPI_GRAPHQL_URL: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL,
+    NEXT_PUBLIC_STRAPI_ASSETS: process.env.NEXT_PUBLIC_STRAPI_ASSETS,
   },
-
   publicRuntimeConfig: {
     Directus: {
-      assetsUrl: process.env.DIRECTUS_ASSETS_URL,
-      url: process.env.DIRECTUS_GRAPHQL_ENDPOINT,
+      assetsUrl: process.env.NEXT_PUBLIC_STRAPI_ASSETS,
+      url: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL,
     },
   },
-
   images: {
     dangerouslyAllowSVG: true,
-    contentDispositionType: 'attachment',
-    formats: ['image/avif', 'image/webp'],
+    contentDispositionType: "attachment",
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "**",
       },
     ],
+  },
+
+  sassOptions: {
+    silenceDeprecations: ["legacy-js-api", "import"],
   },
 };
 

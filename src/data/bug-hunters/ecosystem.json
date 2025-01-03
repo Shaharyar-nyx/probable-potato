@@ -1,0 +1,30 @@
+{
+  "title": "Building an Ecosystem of Leading Bug Hunters",
+  "description": "For every malicious cracker, there are thousands of dedicated bug hunters committed to building the future of cybersecurity. Join a community that values your contributions, sharpens your skills, and rewards your expertise in ethical hacking.",
+  "features": [
+    {
+      "id": "1",
+      "title": "Exclusive Rewards",
+      "description": "Earn recognition and rewards for your valuable contributions to cybersecurity.",
+      "icon": "/bug-hunters/ecosystem/exclusive-rewards.svg"
+    },
+    {
+      "id": "2",
+      "title": "Networking Opportunities",
+      "description": "Connect with industry leaders and fellow bug hunters to expand your professional network and industry contacts.",
+      "icon": "/bug-hunters/ecosystem/networking-opportunities.svg"
+    },
+    {
+      "id": "3",
+      "title": "Skill Development",
+      "description": "Participate in challenges that sharpen your skills and keep you ahead in cybersecurity.",
+      "icon": "/bug-hunters/ecosystem/skill-development.svg"
+    },
+    {
+      "id": "4",
+      "title": "Event Access",
+      "description": "Gain exclusive access to workshops and events tailored for bug hunters to continuously sharpen their skills.",
+      "icon": "/bug-hunters/ecosystem/event-access.svg"
+    }
+  ]
+}

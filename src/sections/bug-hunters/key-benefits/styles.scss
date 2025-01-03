@@ -1,0 +1,32 @@
+.key-benefits {
+  &-parent-container {
+    @apply relative;
+  }
+  &-background {
+    @apply absolute right-0 top-0 z-0 h-full w-full bg-[url('/bug-hunters/join-and-benefits-bg.svg')] bg-cover bg-no-repeat;
+  }
+  &-container {
+    @apply relative z-10 mx-auto max-w-screen-3xl px-16;
+  }
+  &-join-container {
+    @apply flex justify-between pb-[1.25rem] pt-[7.5rem];
+  }
+  &-benefits-container {
+    @apply pb-[7.5rem] pt-[1.25rem];
+  }
+  &-title {
+    @apply mb-5 font-bold text-neutral-50;
+  }
+  &-paragraph {
+    @apply mb-9 text-neutral-50;
+  }
+  &-tagline {
+    @apply mb-10 mt-6 inline-block text-neutral-50;
+  }
+  &-feature-container {
+    @apply flex flex-col gap-3 rounded-xl bg-neutral-50 p-10;
+  }
+  &-benefit-container {
+    @apply flex flex-col gap-3 rounded-xl border border-primary-500 bg-transparent p-10;
+  }
+}

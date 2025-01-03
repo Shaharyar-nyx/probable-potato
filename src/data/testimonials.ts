@@ -1,42 +1,40 @@
-import HkcssLogo from "assets/images/clients/hkcss-logo.svg";
-
 export const testimonialsContent = {
   testimonials: [
     {
       author: "Charlie Ng",
       position: "Position",
       quote: `We're happy with the campaign because bugs were found in two months. Cyberbay is user-friendly and provides technical details for each bug, which helps us understand its impact and risks. Also, the platform offers a proof of concept on how the bug was discovered, which allowed our team to fix the bugs effectively.`,
-      logo: HkcssLogo,
+      logo: "/images/clients/hkcss-logo.svg",
       client: "HKCSS",
     },
     {
       author: "Mark Szeto",
       position: "Position",
       quote: `While I held genuine confidence in the quality of my platform's construction, the insights they shared has enabled me to pinpoint areas for enhancement.`,
-      logo: HkcssLogo,
+      logo: "/images/clients/hkcss-logo.svg",
       client: "In Good Health",
     },
     {
       author: "Darren Chiu",
       position: "Position",
       quote: `Unlike traditional security measures that perform scans semiannually or annually, Cyberbay enables us to check any updated versions before they go into production, helping to ensure that the updates are safe. It supports our day-to-day workflow and software release processes. We recommend it for startups like us with limited resources for cybersecurity.`,
-      logo: HkcssLogo,
+      logo: "/images/clients/hkcss-logo.svg",
       client: "TalentLabs",
     },
     {
       author: "Lisa Park",
       position: "Position",
       quote: `We're happy with the campaign because bugs were found in two months. Cyberbay is user-friendly and provides technical details for each bug, which helps us understand its impact and risks. Also, the platform offers a proof of concept on how the bug was discovered, which allowed our team to fix the bugs effectively.`,
-      logo: HkcssLogo,
+      logo: "/images/clients/hkcss-logo.svg",
       client: "Just A Moment",
     },
   ],
   sections: {
     clients: {
-      title: "Clients"
+      title: "Clients",
     },
     testimonials: {
-      title: "Testimonials"
-    }
-  }
+      title: "Testimonials",
+    },
+  },
 };

@@ -1,21 +1,17 @@
-import styles from "./styles.module.css";
-import { headerContent } from "@/data/header";
+import React from "react";
 
-const Header = () => {
+import styles from "./styles.module.scss";
+import { HeaderProps } from "@/types/components";
+
+export const Header: React.FC<HeaderProps> = ({ title, description, backgroundImage }) => {
   return (
     <section className={styles.container}>
-      <img
-        src={headerContent.backgroundImage.src}
-        alt="header background"
-        className={styles.image}
-      />
+      <img alt="header background" className={styles.image} src={backgroundImage} />
       <div className={styles.overlay} />
       <div className={styles.content}>
-        <h1 className={`${styles.title} font-primaryBold`}>{headerContent.title}</h1>
-        <p className={styles.description}>{headerContent.description}</p>
+        <h2 className={`heading-2 font-bold`}>{title}</h2>
+        <p className={styles.description}>{description}</p>
       </div>
     </section>
   );
 };
-
-export default Header;

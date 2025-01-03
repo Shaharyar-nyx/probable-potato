@@ -1,0 +1,38 @@
+.btn {
+  @apply rounded-lg px-4 py-3;
+}
+
+.btn-large {
+  @apply text-base font-normal leading-6;
+}
+
+.btn-medium {
+  @apply text-sm font-medium leading-5;
+}
+
+.btn-small {
+  @apply text-xs font-medium leading-4;
+}
+
+.btn-primary {
+  @apply text-neutral-50 transition-colors;
+  @apply bg-primary-500 hover:bg-primary-600 disabled:bg-primary-100;
+}
+
+.btn-primary-transparent {
+  @apply border bg-transparent transition-colors;
+  @apply border-primary-500 hover:border-primary-700 disabled:bg-primary-100;
+  @apply text-primary-500 hover:text-primary-700 disabled:text-primary-100;
+}
+
+.btn-neutral {
+  @apply transition-colors;
+  @apply bg-neutral-50 hover:bg-neutral-100 disabled:bg-neutral-50;
+  @apply text-primary-800 disabled:text-neutral-100;
+}
+
+.btn-neutral-transparent {
+  @apply border bg-transparent transition-colors;
+  @apply border-neutral-500 hover:border-neutral-700 disabled:bg-neutral-100;
+  @apply text-neutral-500 hover:text-neutral-700 disabled:text-neutral-100;
+}

@@ -1,0 +1,60 @@
+.our-core-team {
+  @apply mx-auto max-w-[1440px] px-16 pt-7 pb-24;
+
+  .title {
+    @apply mb-4 text-center text-primary-800;
+  }
+
+  .content {
+    @apply mb-16 text-center text-primary-800;
+  }
+
+  .grid {
+    @apply flex flex-col gap-6;
+  }
+
+  .row {
+    @apply flex gap-6;
+  }
+
+  .row:last-child {
+    @apply justify-center;
+  }
+
+  .row:last-child .card {
+    @apply w-[calc((100%-32px)/3)];
+  }
+
+  .card {
+    @apply w-[calc((100%-48px)/3)] px-4 py-5;
+    border-radius: 16px;
+    border: 1px solid rgba(107, 114, 128, 0);
+    box-shadow:
+      0px 1px 3px 0px rgba(16, 24, 40, 0.1),
+      0px 1px 2px -1px rgba(16, 24, 40, 0.1);
+
+    .header {
+      @apply mb-6;
+    }
+
+    .name {
+      @apply mb-1 text-primary-800;
+    }
+
+    .title {
+      @apply mb-4 text-left font-semibold text-primary-500;
+    }
+
+    .description {
+      @apply text-neutral-700;
+    }
+
+    .social {
+      @apply flex gap-1;
+
+      .link {
+        @apply flex h-6 w-6 items-center justify-center rounded-lg bg-neutral-600;
+      }
+    }
+  }
+}

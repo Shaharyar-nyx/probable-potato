@@ -1,0 +1,30 @@
+{
+  "title": "Why Do Bug Hunters Join Cyberbay?",
+  "text": "Earn real financial rewards for successful bug discoveries while building skills and achievements. Unique platform features match you with top  bounties and rewards.",
+  "features": [
+    {
+      "id": "1",
+      "title": "Smart Matches",
+      "text": "Save time and find the perfect fit with tech clues like CVEs and stacks to pinpoint the right missions.",
+      "icon": "ArrowsPointingInIcon"
+    },
+    {
+      "id": "2",
+      "title": "Prime Time",
+      "text": "Get exclusive early access to new missions for successful bug discoveries.",
+      "icon": "ClockIcon"
+    },
+    {
+      "id": "3",
+      "title": "Payment Guaranteed",
+      "text": "Earn 100% guaranteed payment for valid reports on missions under this tab.",
+      "icon": "BanknotesIcon"
+    },
+    {
+      "id": "4",
+      "title": "Incentivization Challenge",
+      "text": "Participate in time-limited events with generous rewards, tailored for dedicated hunters.",
+      "icon": "StarIcon"
+    }
+  ]
+}

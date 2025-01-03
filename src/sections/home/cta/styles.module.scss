@@ -1,0 +1,45 @@
+.container {
+  @apply relative w-full overflow-hidden bg-primary-800;
+}
+
+.backgroundWrapper {
+  @apply absolute left-0 top-0 z-0 h-full w-full overflow-hidden;
+}
+
+.parallaxWrapper {
+  @apply absolute top-[-10%] h-[120%] w-full;
+}
+
+.banner {
+  @apply h-full w-full object-cover;
+}
+
+.overlay {
+  @apply absolute left-0 top-0 h-full w-full bg-gradient-to-t from-black/30 to-black/30;
+}
+
+.content {
+  @apply relative z-10 flex items-center px-32 py-32;
+}
+
+.contentLeft {
+  @apply max-w-[60%] space-y-8 rounded-xl bg-primary-800 p-12 text-white;
+}
+
+.title {
+  @apply mb-6;
+}
+
+.buttonGroup {
+  @apply flex gap-4;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    @apply flex-col items-center px-8 py-16 text-center;
+  }
+
+  .contentLeft {
+    @apply mb-16;
+  }
+}
