@@ -17,4 +17,83 @@
   &-description {
     @apply mb-10 max-w-screen-xl text-neutral-50;
   }
+  &-top-hunters {
+    &-container {
+      @apply grid w-full max-w-screen-xl grid-cols-3 gap-6;
+    }
+    &-item {
+      @apply flex flex-col gap-6;
+    }
+    &-card {
+      @apply overflow-hidden rounded-xl bg-primary-500;
+    }
+    &-image {
+      @apply z-10 aspect-[31/38] object-cover;
+    }
+    &-headline {
+      &-container {
+        @apply absolute bottom-[40px] left-1/2 w-[90%] -translate-x-1/2 transform rounded-[8px] p-2 backdrop-blur-sm;
+      }
+      &-heading {
+        @apply mb-1 font-bold text-neutral-50;
+      }
+      &-text {
+        @apply text-neutral-50;
+      }
+    }
+    &-tag {
+      &-container {
+        @apply bg-primary-500 py-3;
+      }
+      &-text {
+        @apply text-center text-neutral-50;
+      }
+    }
+    &-description {
+      @apply text-center text-neutral-50;
+    }
+  }
+  &-hunters {
+    &-container {
+      scrollbar-color: #045de3 #c1c4ca;
+      scrollbar-width: thin;
+      @apply max-h-[800px] w-full max-w-screen-lg overflow-auto pr-3;
+    }
+    &-item {
+      @apply mb-5 flex h-[128px] justify-between gap-5 rounded-xl bg-[#045DE31A] p-6 shadow-[8px_8px_40px_0px_rgba(0,0,0,0.12)];
+    }
+    &-position {
+      &-container {
+        @apply flex w-[128px] flex-col justify-between;
+      }
+      &-text {
+        @apply text-neutral-50;
+      }
+    }
+    &-headline {
+      &-container {
+        @apply flex w-[640px] flex-col justify-between;
+      }
+      &-title {
+        @apply font-bold text-neutral-50;
+      }
+      &-text {
+        @apply text-neutral-50;
+      }
+      &-avatar-container {
+        @apply flex items-center gap-4;
+      }
+    }
+    &-score {
+      &-score {
+        @apply w-[100px] rounded-2xl py-[2px] text-center capitalize;
+      }
+      &-container {
+        @apply flex w-[110px] flex-col justify-between;
+      }
+      &-text {
+        @apply text-neutral-50;
+      }
+    }
+  }
 }
