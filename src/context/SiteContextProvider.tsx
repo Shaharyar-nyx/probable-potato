@@ -6,7 +6,13 @@ import { useSiteContext } from "@/hooks/use-site";
 
 const SiteContext = createContext(null);
 
-export const SiteContextProvider = ({ children, mainNav, footerNav }) => {
+export type SiteContextType = {
+  children: React.ReactNode;
+  mainNav: any; // To be replace when proper types are available when fetching navigation.
+  footerNav: any; // To be replace when proper types are available when fetching navigation.
+};
+
+export const SiteContextProvider = ({ children, mainNav, footerNav }: SiteContextType) => {
   const site = useSiteContext({ mainNav, footerNav });
 
   return <SiteContext.Provider value={site}>{children}</SiteContext.Provider>;
