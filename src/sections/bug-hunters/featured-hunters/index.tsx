@@ -15,13 +15,16 @@ export const FeaturedHunters: React.FC = () => {
         <p className="paragraph-md featured-hunters-description">{data.description}</p>
         <div className="featured-hunters-top-hunters-container">
           {data["top-hunters"].map((hunter) => (
-            <div key={hunter.id} className="overflow-hidden rounded-xl">
-              <div className="relative rounded-xl">
+            <div key={hunter.id} className="featured-hunters-top-hunters-item">
+              <div className="relative overflow-hidden rounded-xl">
                 <img alt={hunter.name} className="featured-hunters-top-hunters-image" src={hunter.picture} />
-                <div className="featured-hunters-top-hunters-text-container">
-                  <h3 className="heading-5 featured-hunters-top-hunters-text-heading">{hunter.name}</h3>
-                  <p className="paragraph-md featured-hunters-top-hunters-text-description">{hunter.description}</p>
+                <div className="featured-hunters-top-hunters-headline-container">
+                  <h3 className="heading-5 featured-hunters-top-hunters-headline-heading">{hunter.name}</h3>
+                  <p className="paragraph-md featured-hunters-top-hunters-headline-description">{hunter.headline}</p>
                 </div>
+              </div>
+              <div className="featured-hunters-top-hunters-tag-container">
+                <p className="paragraph-md featured-hunters-top-hunters-tag-text">{hunter.tag}</p>
               </div>
             </div>
           ))}

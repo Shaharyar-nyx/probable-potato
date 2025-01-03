@@ -22,11 +22,12 @@
       @apply grid w-full max-w-screen-xl grid-cols-3 gap-6;
     }
     &-item {
+      @apply overflow-hidden rounded-xl bg-primary-500;
     }
     &-image {
       @apply z-10 aspect-[31/38] object-cover;
     }
-    &-text {
+    &-headline {
       &-container {
         @apply absolute bottom-[40px] left-1/2 w-[90%] -translate-x-1/2 transform rounded-[8px] p-2 backdrop-blur-sm;
       }
@@ -35,6 +36,14 @@
       }
       &-description {
         @apply text-neutral-50;
+      }
+    }
+    &-tag {
+      &-container {
+        @apply bg-primary-500 py-3;
+      }
+      &-text {
+        @apply text-center text-neutral-50;
       }
     }
   }
