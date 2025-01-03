@@ -57,10 +57,43 @@
     &-container {
       scrollbar-color: #045de3 #c1c4ca;
       scrollbar-width: thin;
-      @apply flex max-h-[800px] w-full max-w-screen-lg flex-col gap-4 overflow-auto pr-3;
+      @apply max-h-[800px] w-full max-w-screen-lg overflow-auto pr-3;
     }
     &-item {
-      @apply flex gap-5 rounded-xl bg-[#045DE31A] p-6 shadow-[8px_8px_40px_0px_rgba(0,0,0,0.12)];
+      @apply mb-5 flex h-[128px] justify-between gap-5 rounded-xl bg-[#045DE31A] p-6 shadow-[8px_8px_40px_0px_rgba(0,0,0,0.12)];
+    }
+    &-position {
+      &-container {
+        @apply flex w-[128px] flex-col justify-between;
+      }
+      &-text {
+        @apply text-neutral-50;
+      }
+    }
+    &-headline {
+      &-container {
+        @apply flex w-[640px] flex-col justify-between;
+      }
+      &-title {
+        @apply font-bold text-neutral-50;
+      }
+      &-text {
+        @apply text-neutral-50;
+      }
+      &-avatar-container {
+        @apply flex items-center gap-4;
+      }
+    }
+    &-score {
+      &-score {
+        @apply w-[100px] rounded-2xl py-[2px] text-center capitalize;
+      }
+      &-container {
+        @apply flex w-[110px] flex-col justify-between;
+      }
+      &-text {
+        @apply text-neutral-50;
+      }
     }
   }
 }
