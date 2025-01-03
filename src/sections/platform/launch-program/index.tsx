@@ -8,23 +8,23 @@ const steps = [
     id: 1,
     title: "Account Creation",
     description: "Confirm your domain and set up your bounty program preferences.",
-    imagePath: "/step1-image.png",
+    imagePath: "/platform/step-1.png",
   },
   {
     id: 2,
     title: "Program Configuration",
     description: "Define your scope, rewards, and program rules.",
-    imagePath: "/step2-image.png",
+    imagePath: "/platform/step-2.png",
   },
   {
     id: 3,
     title: "Launch & Monitor",
     description: "Review submissions and manage your program.",
-    imagePath: "/step3-image.png",
+    imagePath: "/platform/step-3.png",
   },
 ];
 
-export default function LaunchProgram() {
+export const LaunchProgram = () => {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const nextStep = () => {
@@ -45,25 +45,33 @@ export default function LaunchProgram() {
             <p className="paragraph">Three simple steps to execute your bug bounty program.</p>
           </div>
           <div className="relative">
-            <button
-              onClick={prevStep}
-              className="absolute left-0 z-50 -translate-x-1/2 rounded-full p-4 shadow-lg transition hover:scale-105"
-            >
-              <Image src="/icons/arrow-left.svg" alt="Previous" width={24} height={24} />
-            </button>
-            <button
-              onClick={nextStep}
-              className="absolute right-0 z-50 translate-x-1/2 rounded-full p-4 shadow-lg transition hover:scale-105"
-            >
-              <Image src="/icons/arrow-right.svg" alt="Next" width={24} height={24} />
-            </button>
-            <div className="relative h-[512px] w-full max-w-lg">
+            <div className="absolute left-0 right-[-20px] top-1/2 z-50 flex -translate-y-1/2 items-center justify-between">
+              <button
+                onClick={prevStep}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-primary-800 transition-all hover:bg-neutral-50"
+                style={{
+                  boxShadow: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
+                }}
+              >
+                <Image src="/company/arrow-left.svg" alt="Previous" width={24} height={24} />
+              </button>
+              <button
+                onClick={nextStep}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-primary-800 transition-all hover:bg-neutral-50"
+                style={{
+                  boxShadow: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
+                }}
+              >
+                <Image src="/company/arrow-right.svg" alt="Next" width={24} height={24} />
+              </button>
+            </div>
+            <div className="relative mx-auto h-[512px] w-full max-w-lg">
               {steps.map((step, index) => {
                 const position = (index - currentStep + steps.length) % steps.length;
                 return (
                   <div
                     key={step.id}
-                    className={`absolute left-0 top-0 h-[500px] w-full rounded-2xl bg-primary-600 p-8 transition-all duration-500 ${
+                    className={`absolute left-0 top-0 h-[500px] w-full rounded-2xl bg-primary-500 p-8 transition-all duration-500 ${
                       position === 0
                         ? "z-30 translate-x-0 translate-y-0 opacity-100"
                         : position === 1
@@ -73,16 +81,16 @@ export default function LaunchProgram() {
                   >
                     <div className="flex h-full flex-col">
                       <div className="text-center text-white">
-                        <span className="heading-7 mb-2">Step {step.id}:</span>
-                        <h4 className="heading-7 mb-4">{step.title}</h4>
-                        <p className="paragraph mb-8">{step.description}</p>
+                        <span className="heading-7 mb-2 font-bold">Step {step.id}:</span>
+                        <h4 className="heading-7 mb-4 font-bold">{step.title}</h4>
+                        <p className="paragraph-md mb-8">{step.description}</p>
                       </div>
-                      <div className="relative mt-auto flex-1 rounded-lg bg-white/10">
+                      <div className="relative mt-auto flex-1 rounded-lg">
                         <Image
                           src={step.imagePath}
                           alt="Step Image"
                           layout="fill"
-                          objectFit="cover"
+                          objectFit="contain"
                           className="rounded-lg"
                         />
                       </div>
@@ -96,4 +104,4 @@ export default function LaunchProgram() {
       </div>
     </section>
   );
-}
+};

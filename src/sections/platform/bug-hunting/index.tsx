@@ -1,21 +1,21 @@
 import React from "react";
 import Image from "next/image";
 
-export default function ContinuousBugHunting() {
+export const ContinuousBugHunting = () => {
   const features = [
     {
       title: "Early\nDevelopment",
-      icon: "🔍",
+      icon: "/platform/development.svg",
       description: "Integrate security testing from the start",
     },
     {
       title: "Product\nLaunch Protection",
-      icon: "🚀",
+      icon: "/platform/protection.svg",
       description: "Ensure secure deployment with pre-launch testing",
     },
     {
       title: "Ongoing Maintenance\nand Updates",
-      icon: "🛡️",
+      icon: "/platform/maintenance.svg",
       description: "Continuous monitoring and vulnerability assessment",
     },
   ];
@@ -42,18 +42,22 @@ export default function ContinuousBugHunting() {
               className="group relative flex h-[300px] flex-col justify-between rounded-lg bg-primary-800 p-12 shadow-md transition-all duration-300 ease-in-out hover:bg-primary-500"
             >
               <div className="flex items-center gap-3">
-                <div className="text-4xl transition-all duration-300 ease-in-out group-hover:scale-110">
-                  {feature.icon}
-                </div>
-                <h3 className="heading-7 font-semibold text-neutral-50 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100">
+                <Image
+                  src={feature.icon}
+                  alt={feature.title}
+                  height={105}
+                  width={105}
+                  className="text-4xl transition-all duration-300 ease-in-out group-hover:scale-100"
+                />
+                <h3 className="heading-7 font-bold text-neutral-50 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100">
                   {feature.title}
                 </h3>
               </div>
               <div className="relative flex h-32 flex-col items-end justify-end">
-                <p className="absolute left-0 right-0 text-neutral-50 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100">
+                <p className="paragraph-md absolute left-0 right-0 text-neutral-50 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100">
                   {feature.description}
                 </p>
-                <h3 className="heading-7 absolute left-0 right-0 whitespace-pre font-semibold text-neutral-50 transition-all duration-300 ease-in-out group-hover:translate-y-8 group-hover:opacity-0">
+                <h3 className="heading-7 absolute left-0 right-0 whitespace-pre font-bold text-neutral-50 transition-all duration-300 ease-in-out group-hover:translate-y-8 group-hover:opacity-0">
                   {feature.title}
                 </h3>
               </div>
@@ -63,4 +67,4 @@ export default function ContinuousBugHunting() {
       </div>
     </section>
   );
-}
+};

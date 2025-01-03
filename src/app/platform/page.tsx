@@ -2,10 +2,7 @@ import { Metadata } from "next";
 import React from "react";
 
 import { Header } from "@/components";
-import BugBountyPrograms from "@/components/platform/BugBountyPrograms";
-import ContinuousBugHunting from "@/components/platform/ContinuousBugHunting";
-import LaunchProgram from "@/components/platform/LaunchProgram";
-import { CTA, Packages } from "@/sections";
+import { BugBountyGrid, ContinuousBugHunting, CTA, LaunchProgram, Packages } from "@/sections";
 
 export const metadata: Metadata = {
   title: "Cyberbay Platform - Fortify, Scale, and Triage",
@@ -21,7 +18,7 @@ const PlatformPage = () => {
         description="Execute public and private bug bounty programs with Cyberbay’s pre-vetted community of bug hunters."
         title="Fortify, Scale, and Triage with the Cyberbay Platform"
       />
-      <BugBountyPrograms />
+      <BugBountyGrid />
       <ContinuousBugHunting />
       <LaunchProgram />
       <Packages />
