@@ -180,9 +180,9 @@ export const Nav: React.FC = () => {
                     className="absolute left-0 top-[60px] w-full rounded-b-xl bg-neutral-50 shadow-lg"
                   >
                     <div className="px-10 pb-10 pt-5">
-                      <div className="flex flex-row justify-between">
+                      <div className="grid grid-cols-3 gap-[44px]">
                         {menuData.map((section) => (
-                          <div key={section.title}>
+                          <div key={section.title} className="w-full">
                             <h3 className="paragraph-md mb-5 font-semibold text-primary-800">{section.title}</h3>
                             <div className="space-y-6">
                               {section.items.map((item) => (
@@ -198,11 +198,11 @@ export const Nav: React.FC = () => {
                                         iconName={item.icon}
                                       />
                                     </span>
-                                    <div>
+                                    <div className="w-full">
                                       <div className="paragraph-md mb-1 text-primary-800 group-hover:text-neutral-50">
                                         {item.name}
                                       </div>
-                                      <p className="paragraph-sm w-[80%] text-neutral-800 group-hover:text-neutral-50">
+                                      <p className="paragraph-sm text-neutral-800 group-hover:text-neutral-50">
                                         {item.description}
                                       </p>
                                     </div>
