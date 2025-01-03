@@ -13,7 +13,7 @@ export const Header: React.FC<HeaderProps> = ({ cta, title, description, backgro
         <h2 className={`heading-2 font-bold`}>{title}</h2>
         <p className={styles.description}>{description}</p>
         {cta && (
-          <Button iconName={cta.icon} transparent>
+          <Button iconName={cta.icon}>
             {cta.label}
           </Button>
         )}

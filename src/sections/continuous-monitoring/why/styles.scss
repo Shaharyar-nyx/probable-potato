@@ -1,0 +1,17 @@
+.why {
+  &-parent-container {
+    @apply relative bg-primary-800;
+  }
+  &-container {
+    @apply flex max-w-screen-3xl justify-between px-16 py-[7.5rem];
+  }
+  &-tagline {
+    @apply mb-10 inline-block text-neutral-50;
+  }
+  &-title {
+    @apply mb-5 font-bold text-neutral-50;
+  }
+  &-content {
+    @apply text-neutral-50;
+  }
+}

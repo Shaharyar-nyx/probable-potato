@@ -2,6 +2,7 @@ import React from "react";
 
 import { Header } from "@/components";
 import heroData from "@/data/continuous-monitoring/hero.json";
+import { Why } from "@/sections";
 
 const ContinuousMonitoringPage: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const ContinuousMonitoringPage: React.FC = () => {
         description={heroData.description}
         title={heroData.title}
       />
+      <Why />
     </main>
   );
 };
