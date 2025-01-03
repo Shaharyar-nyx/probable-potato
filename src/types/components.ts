@@ -4,6 +4,11 @@ import { solutionsContent } from "@/data/solutions";
 
 export interface HeaderProps {
   backgroundImage: string;
+  cta?: {
+    icon?: string;
+    label: string;
+    link: string;
+  };
   description: string;
   title: string;
 }
@@ -23,6 +28,7 @@ interface BaseButtonProps {
   children: React.ReactNode;
   className?: string;
   icon?: React.ReactNode;
+  iconName?: string;
   loading?: boolean;
   size?: "large" | "medium" | "small";
   transparent?: boolean;

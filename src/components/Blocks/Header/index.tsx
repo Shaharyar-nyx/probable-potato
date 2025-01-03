@@ -1,9 +1,10 @@
 import React from "react";
 
 import styles from "./styles.module.scss";
+import { Button } from "@/components";
 import { HeaderProps } from "@/types/components";
 
-export const Header: React.FC<HeaderProps> = ({ title, description, backgroundImage }) => {
+export const Header: React.FC<HeaderProps> = ({ cta, title, description, backgroundImage }) => {
   return (
     <section className={styles.container}>
       <img alt="header background" className={styles.image} src={backgroundImage} />
@@ -11,6 +12,11 @@ export const Header: React.FC<HeaderProps> = ({ title, description, backgroundIm
       <div className={styles.content}>
         <h2 className={`heading-2 font-bold`}>{title}</h2>
         <p className={styles.description}>{description}</p>
+        {cta && (
+          <Button iconName={cta.icon} transparent>
+            {cta.label}
+          </Button>
+        )}
       </div>
     </section>
   );
