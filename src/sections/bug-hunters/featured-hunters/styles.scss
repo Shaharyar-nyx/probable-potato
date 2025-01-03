@@ -22,6 +22,9 @@
       @apply grid w-full max-w-screen-xl grid-cols-3 gap-6;
     }
     &-item {
+      @apply flex flex-col gap-6;
+    }
+    &-card {
       @apply overflow-hidden rounded-xl bg-primary-500;
     }
     &-image {
@@ -34,7 +37,7 @@
       &-heading {
         @apply mb-1 font-bold text-neutral-50;
       }
-      &-description {
+      &-text {
         @apply text-neutral-50;
       }
     }
@@ -45,6 +48,19 @@
       &-text {
         @apply text-center text-neutral-50;
       }
+    }
+    &-description {
+      @apply text-center text-neutral-50;
+    }
+  }
+  &-hunters {
+    &-container {
+      scrollbar-color: #045de3 #c1c4ca;
+      scrollbar-width: thin;
+      @apply flex max-h-[800px] w-full max-w-screen-lg flex-col gap-4 overflow-auto pr-3;
+    }
+    &-item {
+      @apply flex gap-5 rounded-xl bg-[#045DE31A] p-6 shadow-[8px_8px_40px_0px_rgba(0,0,0,0.12)];
     }
   }
 }
