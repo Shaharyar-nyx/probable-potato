@@ -8,7 +8,7 @@ import { brandMissionContent } from "@/data/brandMission";
 export const BrandMission: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef({ current: 0, target: 0 });
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number>(0);
 
   const lerp = (start: number, end: number, factor: number) => {
     return start + (end - start) * factor;

@@ -28,7 +28,7 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
       {items.map((item, index) => (
         <div key={index} className={styles.accordionItem}>
           <button
-            ref={(el) => (headerRefs.current[index] = el)}
+            ref={(el: any) => (headerRefs.current[index] = el)}
             className={styles.accordionHeader}
             type="button"
             onClick={() => toggleAccordion(index)}
