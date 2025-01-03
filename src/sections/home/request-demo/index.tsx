@@ -25,7 +25,7 @@ export const RequestDemo: React.FC = ({ content = requestDemoContent }: RequestD
         <div className={styles.content}>
           {/* Left Content */}
           <div className={styles.contentLeft}>
-            <h2 className={`${styles.title} heading-2 font-bold`}>{content.title}</h2>
+            <h1 className={`${styles.title} heading-1 font-bold`}>{content.title}</h1>
             <p className={styles.subtitle}>{content.subtitle}</p>
             <div className={styles.buttonGroup}>
               <button className={styles.primaryButton}>

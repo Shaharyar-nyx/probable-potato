@@ -30,60 +30,8 @@
   @apply mb-6;
 }
 
-.subtitle {
-  @apply mb-10 w-[80%] text-[18px] leading-7 text-white opacity-90;
-}
-
 .buttonGroup {
   @apply flex gap-4;
-}
-
-.primaryButton {
-  @apply flex cursor-pointer items-center gap-2 rounded-lg border-0 bg-[#0066ff] px-6 py-3 text-[16px] text-white transition-all duration-300;
-}
-
-.primaryButton:hover {
-  @apply bg-[#0052cc];
-}
-
-.contentRight {
-  @apply absolute right-0 top-0 h-full w-1/2;
-}
-
-.featureCard {
-  @apply absolute flex w-fit items-center gap-3 whitespace-nowrap rounded-lg bg-black/20 px-5 py-3 text-white shadow-[0px_0px_8px_0px_rgba(255,255,255,0.25)] backdrop-blur-md;
-}
-
-.featureCard:nth-child(1) {
-  @apply left-[7rem] top-[25%];
-}
-
-.featureCard:nth-child(2) {
-  @apply right-[8rem] top-[40%] rounded-lg bg-primary-800 text-primary-800 shadow-none backdrop-blur-none;
-}
-
-.featureCard:nth-child(2) .iconWrapper {
-  @apply bg-neutral-50 text-white;
-}
-
-.featureCard:nth-child(3) {
-  @apply right-[8rem] top-[60%] rounded-lg bg-primary-100 text-primary-800 shadow-none backdrop-blur-none;
-}
-
-.featureCard:nth-child(3) .iconWrapper {
-  @apply bg-primary-800 text-white;
-}
-
-.featureCard:nth-child(4) {
-  @apply left-[4rem] top-[75%] bg-neutral-50 text-primary-800 shadow-none backdrop-blur-none;
-}
-
-.featureCard:nth-child(4) .iconWrapper {
-  @apply bg-primary-800/10 text-primary-800;
-}
-
-.iconWrapper {
-  @apply flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-xl text-white;
 }
 
 @media (max-width: 1024px) {
@@ -93,17 +41,5 @@
 
   .contentLeft {
     @apply mb-16;
-  }
-
-  .buttonGroup {
-    @apply justify-center;
-  }
-
-  .contentRight {
-    @apply pt-0;
-  }
-
-  .featureCard {
-    @apply w-full max-w-[400px];
   }
 }

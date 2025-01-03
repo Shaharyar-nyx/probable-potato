@@ -59,7 +59,7 @@ export const Testimonials = ({ content = testimonialsContent }: TestimonialsProp
       <div className={styles.content}>
         <div className={styles.header}>
           <div className={styles.clientsSection}>
-            <h4 className={`heading-4 font-bold text-neutral-200`}>{content.sections.clients.title}</h4>
+            <h4 className={`${styles.title} heading-4`}>{content.sections.clients.title}</h4>
             <div className={styles.clientsList}>
               {content.testimonials.map((testimonial, index) => (
                 <div
@@ -74,7 +74,7 @@ export const Testimonials = ({ content = testimonialsContent }: TestimonialsProp
           </div>
 
           <div className={styles.testimonialSection}>
-            <h4 className={`heading-4 font-bold text-neutral-200`}>{content.sections.testimonials.title}</h4>
+            <h4 className={`${styles.title} heading-4`}>{content.sections.testimonials.title}</h4>
             <Swiper
               ref={swiperRef}
               autoplay={{

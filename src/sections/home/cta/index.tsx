@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import React from "react";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import styles from "./styles.module.scss";
+import { Button } from "@/components";
 import { CTAProps } from "@/types";
 
 export const CTA: React.FC<CTAProps> = ({ backgroundImage, description, title, tagline, buttonText, href }) => {
@@ -24,7 +26,13 @@ export const CTA: React.FC<CTAProps> = ({ backgroundImage, description, title, t
             <h2 className={`heading-2 font-bold`}>{title}</h2>
             <p className={styles.description}>{description}</p>
             <div className={styles.buttonGroup}>
-              <button className={styles.primaryButton}>{buttonText}</button>
+              <Button
+                externalHref={undefined}
+                href={href}
+                icon={<Image alt="arrow up right" height={24} src="/images/arrow-up-right.svg" width={24} />}
+              >
+                {buttonText}
+              </Button>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@
       "category": "Category",
       "readTime": "5 min read",
       "image": "/company/news-1.png",
-      "title": "PoC Release for Critical Pre-Authentication RCE V...",
+      "title": "PoC Release for Critical Pre-Authentication RCE Vulnerability in Citrix",
       "description": "On 13 June, Citrix released a security advisory and patch for a critical remote code execution (RCE) vulnerability (CVE-...",
       "link": "#"
     },
@@ -15,7 +15,7 @@
       "category": "Category",
       "readTime": "5 min read",
       "image": "/company/news-2.png",
-      "title": "PoC Released for Cisco AnyConnect Privilege Eslit...",
+      "title": "PoC Released for Cisco AnyConnect Privilege Eslity in Citrix",
       "description": "On 7 June, Cisco released a security advisory regarding a privilege escalation vulnerability impacting Cis",
       "link": "#"
     },
@@ -31,7 +31,7 @@
       "category": "Category",
       "readTime": "5 min read",
       "image": "/company/news-4.png",
-      "title": "VMware Aria Operations Logs RCE Vulnerability",
+      "title": "VMware Aria Operations for Logs RCE Vulnerability (CVE-2023-20864) Exploit Code Released",
       "description": "CVE-2023-20864 is a critical deserialization vulnerability that enables an unauthorized attacker with n",
       "link": "#"
     },

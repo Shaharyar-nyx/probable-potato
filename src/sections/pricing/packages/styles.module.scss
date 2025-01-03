@@ -31,7 +31,7 @@
 }
 
 .packageContentWrapper {
-  @apply mb-8;
+  @apply flex flex-col gap-8;
 }
 
 .packageIcon {
@@ -39,7 +39,7 @@
 }
 
 .packageName {
-  @apply m-0 text-2xl capitalize text-white;
+  @apply capitalize text-white;
 }
 
 .priceContainer {
@@ -47,11 +47,11 @@
 }
 
 .price {
-  @apply m-0 flex items-center gap-2 text-[48px] text-white;
+  @apply m-0 flex items-center gap-2 text-white;
 }
 
 .perYear {
-  @apply w-[10%] text-xs text-white/80;
+  @apply w-[10%] text-white/80;
 }
 
 .packageDescription {

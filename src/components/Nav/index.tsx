@@ -3,13 +3,10 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
+import { IconRenderer } from "../IconRenderer";
+import { Button } from "../UI";
 
-interface NavProps {
-  isAuthenticated?: boolean;
-  onSignOut?: () => void;
-}
-
-export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) => {
+export const Nav: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -17,7 +14,6 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState({
     code: "en",
-    flag: "/images/languages/en.svg",
     name: "EN",
   });
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -51,32 +47,20 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
       name: "Platform",
       href: "/platform",
       description: "Connect to vetted researchers, manage programs, and reporting",
-      icon: "/images/solutions/eye.svg",
+      icon: "WindowIcon",
     },
     {
       name: "Continuous Monitoring",
       href: "/solutions/continuous-monitoring",
       description: "24/7 Monitoring for Instant Threat Detection",
-      icon: "/images/solutions/eye.svg",
+      icon: "EyeIcon",
     },
     {
       name: "Bug Bounty Programs",
       href: "/solutions/bug-bounty",
       description: "Crowdsourced Security at Your Fingertips.",
-      icon: "/images/solutions/viewfinder-dot.svg",
+      icon: "ViewfinderCircleIcon",
     },
-    /* {
-      name: "Vendor Risk Management",
-      href: "/solutions/vendor-risk-management",
-      description: "Crowdsourced Security at Your Fingertips.",
-      icon: "/images/solutions/shield-check.svg",
-    },
-    {
-      name: "Regulatory and Compliance Certifications",
-      href: "/solutions/regulatory-compliance",
-      description: "Advisory and assistance with SOC2 certification.",
-      icon: "/images/solutions/clipboard-document-check.svg",
-    }, */
   ];
 
   const industries = [
@@ -84,13 +68,13 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
       name: "For Organizations",
       href: "/solutions/organizations",
       description: "Tailored solutions for your industry's needs",
-      icon: "/images/solutions/building-office.svg",
+      icon: "BuildingOfficeIcon",
     },
     {
       name: "For X (will replace by industry)",
       href: "/solutions/industry",
       description: "Protect your clients data, etc. (will replace by industry)",
-      icon: "/images/solutions/rocket-launch.svg",
+      icon: "RocketLaunchIcon",
     },
   ];
 
@@ -99,20 +83,20 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
       name: "Partner Program",
       href: "/partners/program",
       description: "Join Our Network of World-Class Service Providers",
-      icon: "/images/solutions/eye.svg",
+      icon: "EyeIcon",
     },
     {
       name: "Partner Directory",
       href: "/partners/directory",
       description: "Find a Partner",
-      icon: "/images/solutions/magnifying-glass.svg",
+      icon: "MagnifyingGlassIcon",
     },
   ];
 
   const languages = [
-    { code: "en", name: "EN", flag: "/images/languages/en.svg" },
-    { code: "es", name: "ES", flag: "/images/languages/es.svg" },
-    { code: "zh", name: "CN", flag: "/images/languages/cn.svg" },
+    { code: "en", name: "EN" },
+    { code: "es", name: "ES" },
+    { code: "zh", name: "CN" },
   ];
 
   const navItems = [
@@ -199,17 +183,28 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                       <div className="flex flex-row justify-between">
                         {menuData.map((section) => (
                           <div key={section.title}>
-                            <h3 className="mb-5 text-[16px] font-semibold text-primary-800">{section.title}</h3>
+                            <h3 className="paragraph-md mb-5 font-semibold text-primary-800">{section.title}</h3>
                             <div className="space-y-6">
                               {section.items.map((item) => (
-                                <Link key={item.name} className="group block" href={item.href}>
+                                <Link
+                                  key={item.name}
+                                  className="group block rounded-[8px] p-4 hover:bg-primary-500"
+                                  href={item.href}
+                                >
                                   <div className="flex items-start gap-2">
-                                    <span className="text-2xl">
-                                      <img alt={item.name} src={item.icon} />
+                                    <span className="rounded-[4px] p-1 text-2xl group-hover:bg-neutral-50">
+                                      <IconRenderer
+                                        className="text-primary-80 h-[20px] w-[20px]"
+                                        iconName={item.icon}
+                                      />
                                     </span>
                                     <div>
-                                      <div className="mb-1 text-[15px] text-primary-500">{item.name}</div>
-                                      <p className="text-[13px] leading-snug text-neutral-500">{item.description}</p>
+                                      <div className="paragraph-md mb-1 text-primary-800 group-hover:text-neutral-50">
+                                        {item.name}
+                                      </div>
+                                      <p className="paragraph-sm w-[80%] text-neutral-800 group-hover:text-neutral-50">
+                                        {item.description}
+                                      </p>
                                     </div>
                                   </div>
                                 </Link>
@@ -232,7 +227,6 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
               className="flex items-center gap-2 rounded-lg px-3 py-2 transition-colors hover:bg-[#EFF0F2CC]"
               onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
             >
-              {/* <img alt={selectedLanguage.name} src={selectedLanguage.flag} /> */}
               <span className="text-primary-800">{selectedLanguage.name}</span>
               <span className={`transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}>
                 <img alt="Chevron Down" src="/images/chevron-down.svg" />
@@ -250,7 +244,6 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                       setShowLanguageDropdown(false);
                     }}
                   >
-                    {/* <img alt={lang.name} src={lang.flag} /> */}
                     <span className="text-primary-800">{lang.name}</span>
                   </button>
                 ))}
@@ -258,19 +251,11 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
             )}
           </div>
 
-          <a
-            className="rounded-lg border border-primary-500 px-4 py-2 text-base text-primary-500 hover:text-blue-700"
-            href="/login"
-          >
+          <Button href="/login" transparent>
             Log In / Sign Up
-          </a>
+          </Button>
 
-          <a
-            className="rounded-lg bg-primary-500 px-4 py-2 text-base text-white transition-colors hover:bg-blue-700"
-            href="/contact-us"
-          >
-            Contact Us
-          </a>
+          <Button href="/contact-us">Contact Us</Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -334,7 +319,6 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                   className="flex items-center gap-2 rounded-lg px-3 py-2 transition-colors hover:bg-[#EFF0F2CC]"
                   onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
                 >
-                  <img alt={selectedLanguage.name} src={selectedLanguage.flag} />
                   <span className="text-primary-800">{selectedLanguage.name}</span>
                   <span className={`transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}>
                     <img alt="Chevron Down" src="/images/chevron-down.svg" />
@@ -352,28 +336,18 @@ export const Nav: React.FC<NavProps> = ({ isAuthenticated = false, onSignOut }) 
                           setShowLanguageDropdown(false);
                         }}
                       >
-                        <img alt={lang.name} src={lang.flag} />
                         <span className="text-primary-800">{lang.name}</span>
                       </button>
                     ))}
                   </div>
                 )}
               </div>
-              {isAuthenticated ? (
-                <button className="px-4 py-2 text-left text-base text-primary-500" onClick={onSignOut}>
-                  Sign Out
-                </button>
-              ) : (
-                <a className="px-4 py-2 text-base text-primary-500" href="/login">
-                  Log In / Sign Up
-                </a>
-              )}
-              <a
-                className="mx-4 mt-2 rounded-lg bg-primary-500 px-4 py-2 text-center text-base text-white"
-                href="/contact-us"
-              >
-                Contact Us
-              </a>
+
+              <Button href="/login" transparent>
+                Log In / Sign Up
+              </Button>
+
+              <Button href="/contact-us">Contact Us</Button>
             </div>
           </div>
         )}

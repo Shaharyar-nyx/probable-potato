@@ -12,6 +12,7 @@ export interface SolutionCardProps {
   description: string;
   icon: string;
   isEven: boolean;
+  link?: string;
   title: string;
 }
 
@@ -77,6 +78,18 @@ export interface CTAProps {
   title: string;
 }
 
+export interface IntroductionProps {
+  description: string;
+  title: string;
+}
+
+export interface AccordionProps {
+  items: {
+    content: string;
+    title: string;
+  }[];
+}
+
 export interface OurCultureProps {
   buttonText: string;
   content: string;
@@ -130,4 +143,10 @@ export interface EventsProps {
     title: string;
     type: string;
   }[];
+}
+
+export interface TaglineProps {
+  buttonText: string;
+  content: string;
+  title: string;
 }

@@ -3,17 +3,9 @@
 import { useRef, useState } from "react";
 
 import styles from "./styles.module.scss";
+import { AccordionProps } from "@/types";
 
-interface AccordionItem {
-  content: string;
-  title: string;
-}
-
-interface AccordionProps {
-  items: AccordionItem[];
-}
-
-const Accordion: React.FC<AccordionProps> = ({ items }) => {
+export const Accordion: React.FC<AccordionProps> = ({ items }) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const headerRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -67,5 +59,3 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
     </div>
   );
 };
-
-export default Accordion;

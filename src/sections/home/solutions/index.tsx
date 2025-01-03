@@ -46,7 +46,7 @@ const staggerChildren = {
   },
 };
 
-const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, description, isEven }) => {
+const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, link, description, isEven }) => {
   return (
     <motion.div
       className={`${styles.solutionCard} ${isEven ? styles.even : ""}`}
@@ -57,12 +57,14 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, description, i
     >
       <div className={styles.cardContent}>
         <div className={styles.iconWrapper}>
-          <Image alt={title} height={48} src={icon} width={48} />
+          <Image alt={title} height={100} src={icon} width={100} />
         </div>
         <div className={`${styles.textContent} ${isEven ? styles.even : ""}`}>
-          <h3 className={`${styles.cardTitle} heading-4`}>{title}</h3>
+          <h4 className={`${styles.cardTitle} heading-4 font-bold`}>{title}</h4>
           <p className={`${styles.cardDescription} paragraph-md`}>{description}</p>
-          <Button>Learn More</Button>
+          <Button externalHref={undefined} href={link}>
+            Learn More
+          </Button>
         </div>
       </div>
     </motion.div>
@@ -75,79 +77,75 @@ export const Solutions: React.FC<SolutionsProps> = ({ content = solutionsContent
       <div className={styles.sectionBackground} style={{ backgroundImage: `url(/images/bg-image.jpeg)` }}>
         <div className={styles.overlay} />
 
-        <motion.div
-          className={styles.container}
-          initial="hidden"
-          variants={fadeInUp}
-          viewport={{ once: true }}
-          whileInView="visible"
-        >
-          <motion.h2
-            className="heading-2 font-bold text-primary-800"
-            initial="hidden"
-            variants={fadeInUp}
-            viewport={{ once: true }}
-            whileInView="visible"
-          >
-            {content.title}
-          </motion.h2>
+        <div className={styles.container}>
+          <motion.div initial="hidden" variants={fadeInUp} viewport={{ once: true }} whileInView="visible">
+            <motion.h1
+              className="heading-1 font-bold text-primary-800"
+              initial="hidden"
+              variants={fadeInUp}
+              viewport={{ once: true }}
+              whileInView="visible"
+            >
+              {content.title}
+            </motion.h1>
+
+            <motion.div
+              className={styles.solutionsWrapper}
+              initial="hidden"
+              variants={staggerChildren}
+              viewport={{ once: true }}
+              whileInView="visible"
+            >
+              {content.solutions.map((solution, index) => (
+                <SolutionCard key={index} {...solution} isEven={index % 2 === 1} />
+              ))}
+            </motion.div>
+          </motion.div>
 
           <motion.div
-            className={styles.solutionsWrapper}
+            className={styles.crowdsourcing}
             initial="hidden"
             variants={staggerChildren}
             viewport={{ once: true }}
             whileInView="visible"
           >
-            {content.solutions.map((solution, index) => (
-              <SolutionCard key={index} {...solution} isEven={index % 2 === 1} />
-            ))}
-          </motion.div>
-        </motion.div>
+            <motion.div className={styles.crowdsourcingContent}>
+              <motion.span className="tagline text-primary-800" variants={fadeInUp}>
+                {content.crowdsourcing.label}
+              </motion.span>
 
-        <motion.div
-          className={`${styles.container} ${styles.crowdsourcing}`}
-          initial="hidden"
-          variants={staggerChildren}
-          viewport={{ once: true }}
-          whileInView="visible"
-        >
-          <motion.div className={styles.crowdsourcingContent}>
-            <motion.span className="tagline text-primary-800" variants={fadeInUp}>
-              {content.crowdsourcing.label}
-            </motion.span>
+              <motion.div>
+                <motion.h1 className={`${styles.crowdsourcingTitle} heading-1`} variants={fadeInUp}>
+                  {content.crowdsourcing.title}
+                </motion.h1>
+                <motion.p className={`${styles.crowdsourcingDescription} paragraph-md`} variants={fadeInUp}>
+                  {content.crowdsourcing.description}
+                </motion.p>
+              </motion.div>
 
-            <motion.div>
-              <motion.h2 className={`${styles.crowdsourcingTitle} heading-2`} variants={fadeInUp}>
-                {content.crowdsourcing.title}
-              </motion.h2>
-              <motion.p className={`${styles.crowdsourcingDescription} paragraph-md`} variants={fadeInUp}>
-                {content.crowdsourcing.description}
-              </motion.p>
+              <motion.div className={styles.benefitsGrid} variants={staggerChildren}>
+                {content.crowdsourcing.benefits.map((benefit, index) => (
+                  <motion.div key={index} className={styles.benefitItem} variants={fadeInUp}>
+                    <h3 className={`${styles.benefitTitle} heading-7`}>{benefit.title}</h3>
+                    <p className={`${styles.benefitDescription} paragraph-md`}>{benefit.description}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <MotionButton
+                className="self-start"
+                initial="hidden"
+                size="large"
+                variant="primary"
+                variants={fadeInUp}
+                viewport={{ once: true }}
+                whileInView="visible"
+              >
+                Learn More
+              </MotionButton>
             </motion.div>
-
-            <motion.div className={styles.benefitsGrid} variants={staggerChildren}>
-              {content.crowdsourcing.benefits.map((benefit, index) => (
-                <motion.div key={index} className={styles.benefitItem} variants={fadeInUp}>
-                  <h3 className={`${styles.benefitTitle} heading-7`}>{benefit.title}</h3>
-                  <p className={`${styles.benefitDescription} paragraph-md`}>{benefit.description}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            <MotionButton
-              className="self-start"
-              initial="hidden"
-              size="large"
-              variant="primary"
-              variants={fadeInUp}
-              viewport={{ once: true }}
-              whileInView="visible"
-            >
-              Learn More
-            </MotionButton>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

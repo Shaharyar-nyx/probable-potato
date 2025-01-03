@@ -6,6 +6,8 @@ import { Tooltip } from "react-tooltip";
 
 import styles from "./styles.module.scss";
 import { Feature, PACKAGES_CONFIG, PackageData } from "@/data/packages";
+import { Button } from "@/components";
+import Image from "next/image";
 
 const PackageIcons = {
   cyberscan: (
@@ -59,39 +61,32 @@ const PackageCard = ({ data, type }: { data: PackageData; type: keyof typeof Pac
     <div>
       <div className={styles.packageHeaderWrapper}>
         <div className={styles.packageIcon}>{PackageIcons[type]}</div>
-        <h3 className={`${styles.packageName} ${roboto.className}`}>{type}</h3>
+        <h3 className={`${styles.packageName} ${roboto.className} heading-6`}>{type}</h3>
       </div>
       <div className={styles.packageContentWrapper}>
         <div className={styles.priceContainer}>
-          <h3
-            className={`${styles.price} `}
-            style={{
-              fontSize: data.period ? "48px" : "32px",
-            }}
-          >
-            {data.price}
-            {data.period && <span className={`${styles.perYear} font-sans`}>{data.period}</span>}
-          </h3>
+          {data.period ? (
+            <h1 className={`${styles.price} heading-1 font-bold`}>
+              {data.price}
+              <span className={`${styles.perYear} paragraph-xs font-normal`}>{data.period}</span>
+            </h1>
+          ) : (
+            <h3 className={`${styles.price} heading-3 font-bold`}>{data.price}</h3>
+          )}
         </div>
         <p className={styles.packageDescription}>{data.description}</p>
       </div>
     </div>
 
     <div className={styles.packageFooter}>
-      <button className={styles.button}>
+      <Button
+        className="w-full text-center !font-normal"
+        icon={<Image alt="arrow up right" height={16} src="/images/arrow-right-black.svg" width={16} />}
+        size="small"
+        variant="neutral"
+      >
         {data.buttonText}
-        <svg fill="none" height="16" viewBox="0 0 17 16" width="17" xmlns="http://www.w3.org/2000/svg">
-          <g id="arrow-up-right">
-            <path
-              d="M3.5 13L13.5 3M13.5 3L6 3M13.5 3V10.5"
-              id="Vector 431"
-              stroke="#02255B"
-              strokeLinecap="round"
-              strokeWidth="2"
-            />
-          </g>
-        </svg>
-      </button>
+      </Button>
     </div>
   </div>
 );
@@ -218,7 +213,7 @@ export const Packages = () => {
   return (
     <div className={styles.container} style={{ backgroundImage: `url(/images/bg-image.jpeg)` }}>
       <div className={styles.header}>
-        <h2 className="heading-2 mb-3 font-bold text-primary-800">{PACKAGES_CONFIG.header.title}</h2>
+        <h1 className="heading-1 mb-3 font-bold text-primary-800">{PACKAGES_CONFIG.header.title}</h1>
         <p className={styles.subtitle}>{PACKAGES_CONFIG.header.description}</p>
       </div>
 
@@ -229,7 +224,7 @@ export const Packages = () => {
       </div>
 
       <div className={styles.featuresTable}>
-        <h2 className={`${styles.featuresHeader} heading-2`}>Package features</h2>
+        <p className={`${styles.featuresHeader} paragraph-xl font-semibold`}>Package features</p>
         <table className={styles.table}>
           <tbody>
             {PACKAGES_CONFIG.features.map((feature) => (

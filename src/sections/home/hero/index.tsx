@@ -5,6 +5,7 @@ import React from "react";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import styles from "./styles.module.scss";
+import { Button } from "@/components";
 import { heroContent } from "@/data/hero";
 
 export const Hero: React.FC = () => {
@@ -17,12 +18,11 @@ export const Hero: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.textContent}>
-            <h1 className={`${styles.title} heading-1`}>{heroContent.title}</h1>
-            <p className={styles.description}>{heroContent.description}</p>
-            <button className={styles.ctaButton}>
+            <div className={`${styles.title} display-1 font-bold`}>{heroContent.title}</div>
+            <p className={`${styles.description} paragraph-lg`}>{heroContent.description}</p>
+            <Button icon={<Image alt="arrow up right" height={24} src="/images/arrow-up-right.svg" width={24} />}>
               {heroContent.cta.text}
-              <Image alt="arrow up right" height={24} src={heroContent.cta.icon} width={24} />
-            </button>
+            </Button>
           </div>
 
           <ParallaxProvider>

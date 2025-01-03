@@ -2,45 +2,45 @@
   @apply py-24;
   background: linear-gradient(180deg, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
 
-  &-container {
+  .container {
     @apply mx-auto max-w-[1440px] px-16;
   }
 
-  &-header {
+  .header {
     @apply mb-6 flex items-start justify-between;
   }
 
-  &-link {
+  .link {
     @apply mb-10 block text-primary-800;
   }
 
-  &-title {
+  .title {
     @apply mb-5 text-primary-800;
   }
 
-  &-description {
+  .description {
     @apply text-primary-800;
   }
 
-  &-controls {
+  .controls {
     @apply mt-[60px] flex items-center justify-between;
   }
 
-  &-navigation {
+  .navigation {
     @apply flex gap-3;
 
-    &-prev,
-    &-next {
+    .prev,
+    .next {
       @apply flex h-10 w-10 items-center justify-center rounded-full border border-primary-800;
       box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
     }
   }
 
-  &-swiper-container {
+  .swiper-container {
     @apply relative;
   }
 
-  &-swiper {
+  .swiper {
     @apply relative;
     margin: 0 -12px;
     padding: 0 12px;
@@ -50,7 +50,7 @@
     }
   }
 
-  &-pagination {
+  .pagination {
     @apply flex items-center;
 
     .swiper-pagination-bullet {
@@ -61,16 +61,16 @@
         @apply ml-0;
       }
 
-      &-active {
+      .active {
         @apply bg-primary-800;
       }
     }
   }
 
-  &-card {
+  .card {
     @apply flex h-full flex-col rounded-[12px];
 
-    &-image {
+    .image {
       @apply relative mb-6 h-[342px] w-[342px] overflow-hidden rounded-2xl;
 
       img {
@@ -78,32 +78,32 @@
       }
     }
 
-    &-meta {
+    .meta {
       @apply absolute left-4 top-4 flex gap-2;
     }
 
-    &-category {
+    .category {
       @apply flex items-center rounded-full bg-primary-500 px-3 py-1 text-xs font-medium leading-[18px] text-white;
       height: 28px;
     }
 
-    &-read-time {
+    .read-time {
       @apply flex items-center px-3 py-1 text-xs font-medium leading-[18px] text-white;
       height: 28px;
     }
 
-    &-title {
-      @apply mb-2 text-[20px] font-semibold leading-[30px] text-primary-800;
+    .title {
+      @apply mb-2 text-primary-800;
       display: -webkit-box;
-      -webkit-line-clamp: 1;
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
-    &-description {
-      @apply mb-6 text-base leading-6 text-neutral-700;
+    .description {
+      @apply mb-6  text-primary-800;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }

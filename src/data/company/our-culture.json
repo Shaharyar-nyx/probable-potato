@@ -5,22 +5,22 @@
   "coreTitle": "Core Values:",
   "features": [
     {
-      "icon": "ArrowsPointingInIcon",
+      "icon": "RocketLaunchIcon",
       "title": "Relentless Innovation",
       "text": "We embrace change and constantly push the boundaries of what's possible in cybersecurity. Status quo is our enemy."
     },
     {
-      "icon": "ArrowsPointingInIcon",
+      "icon": "ShieldCheckIcon",
       "title": "Proactive Protection",
       "text": "We don't wait for threats to emerge. We anticipate, prepare, and stay steps ahead of potential risks."
     },
     {
-      "icon": "ArrowsPointingInIcon",
+      "icon": "StarIcon",
       "title": "Ethical Excellence",
       "text": "We operate with unwavering integrity, ensuring our actions always align with our commitment to doing what's right, not what's easy."
     },
     {
-      "icon": "ArrowsPointingInIcon",
+      "icon": "LightBulbIcon",
       "title": "Collaborative Intelligence",
       "text": "We believe the best solutions emerge when diverse minds work together. Every voice matters, every perspective counts."
     }

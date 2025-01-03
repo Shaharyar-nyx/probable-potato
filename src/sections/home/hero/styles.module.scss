@@ -22,7 +22,7 @@
 }
 
 .content {
-  @apply grid grid-cols-1 items-center gap-[24px] py-12 lg:grid-cols-3 lg:py-20;
+  @apply grid grid-cols-1 items-center gap-[24px] py-12 px-16 lg:grid-cols-3 lg:py-20;
 }
 
 .textContent {
@@ -34,7 +34,7 @@
 }
 
 .description {
-  @apply w-[70%] text-md text-primary-800;
+  @apply w-[70%] text-primary-800;
 }
 
 .ctaButton {
