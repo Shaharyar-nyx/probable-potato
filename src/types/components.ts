@@ -1,4 +1,4 @@
-import React from "react";
+import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 
 import { solutionsContent } from "@/data/solutions";
 
