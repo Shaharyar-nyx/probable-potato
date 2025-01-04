@@ -8,7 +8,7 @@ import { brandMissionContent } from "@/data/brandMission";
 export const BrandMission: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef({ current: 0, target: 0 });
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number>(0);
 
   const lerp = (start: number, end: number, factor: number) => {
     return start + (end - start) * factor;
@@ -76,7 +76,7 @@ export const BrandMission: React.FC = () => {
       ))}
 
       <div className={styles.content}>
-        <h2 className={`${styles.title} heading-2`}>{brandMissionContent.title}</h2>
+        <h1 className={`${styles.title} heading-1`}>{brandMissionContent.title}</h1>
         <p className={`${styles.description} paragraph-md`}>{brandMissionContent.description}</p>
       </div>
 
@@ -92,4 +92,3 @@ export const BrandMission: React.FC = () => {
     </div>
   );
 };
-

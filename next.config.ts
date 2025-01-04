@@ -3,13 +3,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   eslint: { ignoreDuringBuilds: true },
   env: {
-    DIRECTUS_GRAPHQL_ENDPOINT: process.env.DIRECTUS_GRAPHQL_ENDPOINT,
-    DIRECTUS_ASSETS_URL: process.env.DIRECTUS_ASSETS_URL,
+    NEXT_PUBLIC_STRAPI_GRAPHQL_URL: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL,
+    NEXT_PUBLIC_STRAPI_ASSETS: process.env.NEXT_PUBLIC_STRAPI_ASSETS,
   },
   publicRuntimeConfig: {
     Directus: {
-      assetsUrl: process.env.DIRECTUS_ASSETS_URL,
-      url: process.env.DIRECTUS_GRAPHQL_ENDPOINT,
+      assetsUrl: process.env.NEXT_PUBLIC_STRAPI_ASSETS,
+      url: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL,
     },
   },
   images: {

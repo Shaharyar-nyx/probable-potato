@@ -42,10 +42,10 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, description, i
     <div ref={cardRef} className={`${styles.solutionCard} ${isEven ? styles.even : ""}`}>
       <div className={styles.cardContent}>
         <div className={styles.iconWrapper}>
-          <Image alt={title} height={64} src={icon} width={64} />
+          <Image alt={title} height={100} src={icon} width={100} />
         </div>
         <div className={`${styles.textContent} ${isEven ? styles.even : ""}`}>
-          <h3 className={`heading-6 whitespace-pre font-bold`}>{title}</h3>
+          <h4 className={`${styles.cardTitle} heading-4`}>{title}</h4>
           <p className={styles.cardDescription}>{description}</p>
           <button className={styles.button}>Learn More</button>
         </div>
@@ -149,7 +149,7 @@ const Solutions: React.FC<SolutionsProps> = ({ content = solutionsContent }) => 
             <div ref={benefitsRef} className={styles.benefitsGrid}>
               {content.crowdsourcing.benefits.map((benefit, index) => (
                 <div key={index} className={styles.benefitItem}>
-                  <h6 className={`heading-6 font-bold`}>{benefit.title}</h6>
+                  <div className={`${styles.benefitTitle} heading-7`}>{benefit.title}</div>
                   <p className={`${styles.benefitDescription} paragraph`}>{benefit.description}</p>
                 </div>
               ))}

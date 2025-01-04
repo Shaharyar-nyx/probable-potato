@@ -23,7 +23,7 @@ const navigationData: NavSection[] = [
   {
     title: "Solutions",
     links: [
-      { label: "Cyberbay Platform", href: "/cyberbay-platform" },
+      { label: "Cyberbay Platform", href: "/platform" },
       { label: "Bug Bounty", href: "/bug-bounty" },
       { label: "Continuous Monitoring", href: "/continuous-monitoring" },
     ],
@@ -163,7 +163,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="border-t border-neutral-200 pt-8">
-            <div className="flex flex-col items-center justify-between md:flex-row">
+            <div className="grid grid-cols-3 items-center">
               <div className="flex items-center space-x-6 text-[14px] text-neutral-200">
                 {legalLinks.map((link) => (
                   <Link key={link.href} href={link.href}>
@@ -171,8 +171,8 @@ const Footer: React.FC = () => {
                   </Link>
                 ))}
               </div>
-              <div className="text-[14px] text-neutral-200"> {moment().year()} Cyberbay.</div>
-              <div className="flex items-center space-x-4">
+              <div className="text-center text-[14px] text-neutral-200">&copy; {moment().year()} Cyberbay.</div>
+              <div className="flex items-center justify-end space-x-4">
                 {socialLinks.map((social) => (
                   <Link
                     key={social.platform}
