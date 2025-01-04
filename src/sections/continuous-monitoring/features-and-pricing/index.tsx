@@ -1,9 +1,11 @@
 import React from "react";
 
 import "./styles.scss";
-import { Button, IconRenderer } from "@/components";
+import { Button, IconRenderer, Tooltip } from "@/components";
 import data from "@/data/continuous-monitoring/features-and-pricing.json";
 import { formatToCurrency } from "@/lib";
+
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 export const FeaturesAndPricing: React.FC = () => {
   return (
@@ -20,7 +22,7 @@ export const FeaturesAndPricing: React.FC = () => {
                   {feature.sub_features.map((subFeature) => (
                     <div key={subFeature.id} className="features-and-pricing-sub-feature-item">
                       <div className="features-and-pricing-sub-feature-icon-container">
-                        <IconRenderer className="features-and-pricing-sub-feature-icon" iconName={subFeature.icon} />
+                        <IconRenderer className="h-5 w-5 text-primary-800" iconName="InformationCircleIcon" />
                       </div>
                       <div>
                         <h4 className="paragraph-lg features-and-pricing-sub-feature-title">{subFeature.title}</h4>
@@ -57,14 +59,25 @@ export const FeaturesAndPricing: React.FC = () => {
           <table className="w-full">
             <thead>
               <tr>
-                <th className="inline-block px-7 py-2 text-left">{data.package_features.title}</th>
+                <th className="paragraph-xl inline-block px-7 py-2 text-left font-semibold text-primary-800">
+                  {data.package_features.title}
+                </th>
               </tr>
             </thead>
             <tbody>
               {data.package_features.items.map((packageItem) => (
                 <tr key={packageItem.id} className="flex">
-                  <td className="w-[64%] px-7 py-4 text-left">{packageItem.title}</td>
-                  <td className="w-[36%] px-7 py-4 text-center">Hello world</td>
+                  <td className="paragraph-sm flex w-[64%] gap-2 px-7 py-4 text-left text-primary-800">
+                    <span>{packageItem.title}</span>
+                    {packageItem.tooltip !== undefined && (
+                      <Tooltip content={packageItem.tooltip}>
+                        <InformationCircleIcon className="h-5 w-5 text-primary-800" />
+                      </Tooltip>
+                    )}
+                  </td>
+                  <td className="paragraph-sm w-[36%] px-7 py-4 text-center text-primary-800">
+                    {packageItem.feature ?? packageItem.badge}
+                  </td>
                 </tr>
               ))}
             </tbody>
