@@ -18,5 +18,10 @@
       "text": "Predict Breach Risk",
       "icon": "/continuous-monitoring/harness-ai/risk.svg"
     }
-  ]
+  ],
+  "cta": {
+    "icon": "ArrowUpRightIcon",
+    "label": "Request a Demo",
+    "link": "/"
+  }
 }
