@@ -5,4 +5,49 @@
   &-container {
     @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-16 py-[60px];
   }
+  &-title {
+    @apply mb-6 text-center font-bold text-primary-800;
+  }
+  &-text {
+    @apply mb-10 max-w-screen-xl text-center text-primary-800;
+  }
+  &-content {
+    @apply mb-5 flex w-full gap-24;
+  }
+  &-feature {
+    &-title {
+      @apply mb-6 font-bold text-primary-800;
+    }
+    &-subtitle {
+      @apply font-semibold text-primary-800;
+    }
+    &-container {
+      @apply flex w-[calc(100%-440px)] flex-col justify-center gap-[60px];
+    }
+  }
+  &-sub-feature {
+    &-container {
+      @apply flex flex-col gap-6;
+    }
+    &-item {
+      @apply flex items-start gap-6;
+    }
+    &-icon {
+      @apply h-4 w-4 text-neutral-50;
+      &-container {
+        @apply rounded-[4px] bg-primary-500 p-1;
+      }
+    }
+    &-title {
+      @apply font-semibold text-primary-800;
+    }
+    &-text {
+      @apply text-primary-800;
+    }
+  }
+  &-card {
+    &-container {
+      @apply w-[440px] bg-primary-500 px-10 py-[60px] pb-10;
+    }
+  }
 }
