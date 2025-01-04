@@ -1,0 +1,94 @@
+{
+  "title": "CyberScan Features and Pricing",
+  "text": "Discover our competitive pricing for CyberScan, including comprehensive features for your security needs.",
+  "card": {
+    "icon": "MagnifyingGlassIcon",
+    "title": "CyberScan",
+    "price": {
+      "type": "per year",
+      "number": 4500
+    },
+    "text": "24/7 Real-time Monitoring Service for Vulnerabilities and Threat Detection. Includes a monthly digital footprint report of your assets (darkweb included), likelihood of attack, and actions required.",
+    "cta": {
+      "label": "Request a Demo",
+      "link": "/",
+      "icon": "ArrowUpRightIcon"
+    }
+  },
+  "features": [
+    {
+      "id": "1",
+      "title": "Continuous Monitoring",
+      "sub_features": [
+        {
+          "id": "1",
+          "title": "Comprehensive Monitoring",
+          "icon": "ShieldCheckIcon",
+          "text": "Real-time threat detection and alerts to keep your digital assets secure."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "CyberScan Monthly Report",
+      "sub_features": [
+        {
+          "id": "1",
+          "title": "Know Your Vulnerabilities",
+          "icon": "ArrowsPointingInIcon",
+          "text": "Hacker Spotlight details your risk of exposure across the Dark Web, leaked credentials, and sensitive information."
+        },
+        {
+          "id": "2",
+          "title": "Prioritize Urgent Issues",
+          "icon": "Bars3BottomLeftIcon",
+          "text": "Actionable intelligence guides your team to allocate resources across patching vulnerabilities, systems defense, and continuous testing."
+        },
+        {
+          "id": "3",
+          "title": "Guide Your Security Strategy",
+          "icon": "PresentationChartBarIcon",
+          "text": "Actionable intelligence guides your team to allocate resources across patching vulnerabilities, systems defense, and continuous testing."
+        }
+      ]
+    }
+  ],
+  "package_features": {
+    "title": "Package Features",
+    "items": [
+      {
+        "id": "1",
+        "title": "Root Domain Protection",
+        "tooltip": "The primary level of a site that is secure",
+        "feature": "1"
+      },
+      {
+        "id": "2",
+        "title": "Subdomain Protection",
+        "feature": "Unlimited"
+      },
+      {
+        "id": "3",
+        "title": "24/7 Monitoring",
+        "badge": true
+      },
+      {
+        "id": "4",
+        "title": "Digital Footprint Scan",
+        "tooltip": "It confirms the information about you or your business can be found online",
+        "badge": true
+      },
+      {
+        "id": "5",
+        "title": "Dark Web Scan",
+        "tooltip": "Identifies non-indexed internet risks to your organization or employees",
+        "badge": true
+      },
+      {
+        "id": "6",
+        "title": "Monthly Digital Footprint Report",
+        "badge": true
+      }
+    ]
+  }
+}
