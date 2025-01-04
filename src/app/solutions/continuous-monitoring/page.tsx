@@ -2,7 +2,7 @@ import React from "react";
 
 import { Header } from "@/components";
 import heroData from "@/data/continuous-monitoring/hero.json";
-import { Why, HarnessAi } from "@/sections";
+import { Why, HarnessAi, FeaturesAndPricing } from "@/sections";
 
 const ContinuousMonitoringPage: React.FC = () => {
   return (
@@ -15,6 +15,7 @@ const ContinuousMonitoringPage: React.FC = () => {
       />
       <Why />
       <HarnessAi />
+      <FeaturesAndPricing />
     </main>
   );
 };

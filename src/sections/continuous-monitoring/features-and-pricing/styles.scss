@@ -1,0 +1,8 @@
+.features-and-pricing {
+  &-parent-container {
+    @apply relative bg-neutral-50;
+  }
+  &-container {
+    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-16 py-[60px];
+  }
+}
