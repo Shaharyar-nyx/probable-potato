@@ -53,6 +53,23 @@ export const FeaturesAndPricing: React.FC = () => {
             </Button>
           </div>
         </div>
+        <div className="features-and-pricing-content">
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th className="inline-block px-7 py-2 text-left">{data.package_features.title}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.package_features.items.map((packageItem) => (
+                <tr key={packageItem.id} className="flex">
+                  <td className="w-[64%] px-7 py-4 text-left">{packageItem.title}</td>
+                  <td className="w-[36%] px-7 py-4 text-center">Hello world</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   );

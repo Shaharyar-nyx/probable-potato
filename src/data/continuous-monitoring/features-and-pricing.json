@@ -53,38 +53,42 @@
       ]
     }
   ],
-  "package_features": [
-    {
-      "id": "1",
-      "title": "Root Domain Protection",
-      "tooltip": "The primary level of a site that is secure",
-      "feature": "1"
-    },
-    {
-      "id": "2",
-      "title": "Subdomain Protection",
-      "feature": "Unlimited"
-    },
-    {
-      "id": "3",
-      "title": "24/7 Monitoring",
-      "badge": true
-    },
-    {
-      "id": "4",
-      "title": "Digital Footprint Scan",
-      "tooltip": "It confirms the information about you or your business can be found online",
-      "badge": true
-    },
-    {
-      "id": "5",
-      "title": "Dark Web Scan",
-      "tooltip": "Identifies non-indexed internet risks to your organization or employees",
-      "badge": true
-    },{
-      "id": "6",
-      "title": "Monthly Digital Footprint Report",
-      "badge": true
-    }
-  ]
+  "package_features": {
+    "title": "Package Features",
+    "items": [
+      {
+        "id": "1",
+        "title": "Root Domain Protection",
+        "tooltip": "The primary level of a site that is secure",
+        "feature": "1"
+      },
+      {
+        "id": "2",
+        "title": "Subdomain Protection",
+        "feature": "Unlimited"
+      },
+      {
+        "id": "3",
+        "title": "24/7 Monitoring",
+        "badge": true
+      },
+      {
+        "id": "4",
+        "title": "Digital Footprint Scan",
+        "tooltip": "It confirms the information about you or your business can be found online",
+        "badge": true
+      },
+      {
+        "id": "5",
+        "title": "Dark Web Scan",
+        "tooltip": "Identifies non-indexed internet risks to your organization or employees",
+        "badge": true
+      },
+      {
+        "id": "6",
+        "title": "Monthly Digital Footprint Report",
+        "badge": true
+      }
+    ]
+  }
 }
