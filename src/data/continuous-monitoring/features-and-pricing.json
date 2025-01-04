@@ -5,7 +5,8 @@
     "icon": "MagnifyingGlassIcon",
     "title": "CyberScan",
     "price": {
-      "yearly": 4500
+      "type": "per year",
+      "number": 4500
     },
     "text": "24/7 Real-time Monitoring Service for Vulnerabilities and Threat Detection. Includes a monthly digital footprint report of your assets (darkweb included), likelihood of attack, and actions required.",
     "cta": {

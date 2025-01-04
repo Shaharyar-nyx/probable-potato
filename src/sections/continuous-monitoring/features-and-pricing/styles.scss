@@ -47,7 +47,32 @@
   }
   &-card {
     &-container {
-      @apply w-[440px] bg-primary-500 px-10 py-[60px] pb-10;
+      @apply flex min-h-[540px] w-[440px] flex-col justify-between rounded-xl bg-primary-500 px-10 py-[60px] pb-10;
+    }
+    &-title {
+      @apply font-bold text-neutral-50;
+      &-container {
+        @apply mb-3 flex items-center gap-5;
+      }
+    }
+    &-price {
+      &-number {
+        @apply font-bold text-neutral-50;
+      }
+      &-text {
+        @apply text-neutral-50;
+      }
+      &-container {
+      }
+    }
+    &-icon {
+      @apply h-6 w-6 text-primary-500;
+      &-container {
+        @apply rounded-[4px] bg-neutral-50 p-1;
+      }
+    }
+    &-text {
+      @apply text-neutral-50 border-b border-b-neutral-50 pb-24;
     }
   }
 }
