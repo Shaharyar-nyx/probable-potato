@@ -5,11 +5,11 @@
     "text": "Your monthly CyberScan report analyzes your online footprint, vulnerability to attack, and recommends actions to improve your security posture.",
     "features": [
       {
-        "id": "1",
-        "title": "People",
-        "icon_light": "/continuous-monitoring/security-posture/people-light.svg",
-        "icon_dark": "/continuous-monitoring/security-posture/people-dark.svg",
-        "text": "Identify Human Vulnerabilities"
+        "id": "3",
+        "title": "Technology",
+        "icon_light": "/continuous-monitoring/security-posture/technology-light.svg",
+        "icon_dark": "/continuous-monitoring/security-posture/technology-dark.svg",
+        "text": "Evaluate System and Infrastructure Weaknesses"
       },
       {
         "id": "2",
@@ -19,11 +19,11 @@
         "text": "Pinpoint Gaps in Security Protocols"
       },
       {
-        "id": "3",
-        "title": "Technology",
-        "icon_light": "/continuous-monitoring/security-posture/technology-light.svg",
-        "icon_dark": "/continuous-monitoring/security-posture/technology-dark.svg",
-        "text": "Evaluate System and Infrastructure Weaknesses"
+        "id": "1",
+        "title": "People",
+        "icon_light": "/continuous-monitoring/security-posture/people-light.svg",
+        "icon_dark": "/continuous-monitoring/security-posture/people-dark.svg",
+        "text": "Identify Human Vulnerabilities"
       }
     ]
   }

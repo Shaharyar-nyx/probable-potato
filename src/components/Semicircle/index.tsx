@@ -19,12 +19,23 @@ export const SemiCircle: React.FC<SemiCircleProps> = ({ text, data }) => {
     const renderedData = data.map((item, index) => ({
       value,
       customContent: `
-        <div style="text-align: center;">
-            <img src="${hoveredIndex === index ? item.icon_light : item.icon_dark}" alt="${item.title}" style="width: 15px; height: 15px; margin-bottom: 2px;" />
-            <h3 style="font-size: 7px; font-weight: bold; color: ${
-              hoveredIndex === index ? "#F6F7F8" : "#02255B"
-            }; margin-bottom: 2px">${item.title}</h3>
-        </div>`,
+        <g style="text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center">
+            <img
+                src="${hoveredIndex === index ? item.icon_light : item.icon_dark}"
+                alt="${item.title}"
+                style="width: 15px; height: 15px; margin-bottom: 2px;"
+            />
+            <h3
+                style="font-size: 7px; font-weight: bold; color: ${hoveredIndex === index ? "#F6F7F8" : "#02255B"}; margin-bottom: 2px"
+            >
+                ${item.title}
+            </h3>
+            <p
+                style="font-size: 5px; color: ${hoveredIndex === index ? "#F6F7F8" : "#02255B"}; margin: 0"
+            >
+                ${item.text}
+            </p>
+        </g>`,
     }));
 
     const width = 400;
@@ -46,28 +57,8 @@ export const SemiCircle: React.FC<SemiCircleProps> = ({ text, data }) => {
 
     const arcGenerator = d3
       .arc<d3.PieArcDatum<DataType>>()
-      .innerRadius(radius * 0.6)
+      .innerRadius(radius * 0.5)
       .outerRadius(radius)
-      .startAngle((d) => d.startAngle)
-      .endAngle((d) => d.endAngle)
-      .padAngle(0.02)
-      .padRadius(50)
-      .cornerRadius(5);
-
-    const innerBorderArcGenerator = d3
-      .arc<d3.PieArcDatum<DataType>>()
-      .innerRadius(radius * 0.6 - innerBorderThickness) // Inner radius minus thickness
-      .outerRadius(radius * 0.6)
-      .startAngle((d) => d.startAngle)
-      .endAngle((d) => d.endAngle)
-      .padAngle(0.02)
-      .padRadius(50)
-      .cornerRadius(5);
-
-    const outerBorderArcGenerator = d3
-      .arc<d3.PieArcDatum<DataType>>()
-      .innerRadius(radius) // Outer radius of main arc
-      .outerRadius(radius + outerBorderThickness) // Outer border half as thick as inner border
       .startAngle((d) => d.startAngle)
       .endAngle((d) => d.endAngle)
       .padAngle(0.02)
@@ -94,75 +85,66 @@ export const SemiCircle: React.FC<SemiCircleProps> = ({ text, data }) => {
       .append("g")
       .attr("transform", `translate(${width / 2}, 10)`); // Center the semi-circle
 
-    // Draw background doughnut
-    chartGroup
-      .append("path")
-      .attr(
-        "d",
-        d3
-          .arc()
-          .innerRadius(radius * 0.6 - innerBorderThickness) // Same as inner border's inner radius
-          .outerRadius(radius) // Same as main arc's outer radius
-          .startAngle(Math.PI / 2)
-          .endAngle((3 * Math.PI) / 2),
-      )
-      .attr("fill", backgroundColor)
-      .attr("class", "doughnut-background");
+    // Draw main arcs and foreignObjects together
+    const arcGroups = chartGroup
+      .selectAll("g.arc-group")
+      .data(pieData)
+      .join("g")
+      .attr("class", "arc-group")
+      .on("mouseover", function (event, d) {
+        setHoveredIndex(d.index); // Set hovered index
+        d3.select(this).select("path.arc").attr("fill", hoverColor);
+        innerBorders.filter((borderD) => borderD.index === d.index).attr("fill", hoverInnerBorderColor);
+        outerBorders.filter((borderD) => borderD.index === d.index).attr("fill", hoverOuterBorderColor);
+      })
+      .on("mouseout", function (event, d) {
+        setHoveredIndex(null); // Reset hovered index
+        d3.select(this).select("path.arc").attr("fill", baseColor);
+        innerBorders.filter((borderD) => borderD.index === d.index).attr("fill", innerBorderColor);
+        outerBorders.filter((borderD) => borderD.index === d.index).attr("fill", outerBorderColor);
+      });
+
+    // Draw the arc paths inside the group
+    arcGroups.append("path").attr("class", "arc").attr("d", arcGenerator).attr("fill", baseColor);
+
+    // Add custom HTML labels inside each portion using foreignObject
+    arcGroups
+      .append("foreignObject")
+      .attr("x", (d) => arcGenerator.centroid(d)[0] - 25)
+      .attr("y", (d) => arcGenerator.centroid(d)[1] - 25)
+      .attr("width", 50)
+      .attr("height", 50)
+      .html((d) => d.data.customContent);
 
     // Draw inner border arcs
     const innerBorders = chartGroup
       .selectAll("path.inner-border")
       .data(pieData)
       .join("path")
-      .attr("d", innerBorderArcGenerator)
+      .attr(
+        "d",
+        d3
+          .arc()
+          .innerRadius(radius * 0.5 - innerBorderThickness)
+          .outerRadius(radius * 0.5),
+      )
       .attr("fill", innerBorderColor)
       .attr("class", "inner-border");
-
-    // Draw main arcs
-    const mainArcs = chartGroup
-      .selectAll("path.arc")
-      .data(pieData)
-      .join("path")
-      .attr("d", arcGenerator)
-      .attr("fill", baseColor)
-      .attr("class", "arc");
 
     // Draw outer border arcs
     const outerBorders = chartGroup
       .selectAll("path.outer-border")
       .data(pieData)
       .join("path")
-      .attr("d", outerBorderArcGenerator)
+      .attr(
+        "d",
+        d3
+          .arc()
+          .innerRadius(radius)
+          .outerRadius(radius + outerBorderThickness),
+      )
       .attr("fill", outerBorderColor)
       .attr("class", "outer-border");
-
-    // Add hover effect to arcs and borders
-    mainArcs
-      .on("mouseover", function (event, d) {
-        d3.select(this).attr("fill", hoverColor);
-        innerBorders.filter((borderD) => borderD.index === d.index).attr("fill", hoverInnerBorderColor);
-        outerBorders.filter((borderD) => borderD.index === d.index).attr("fill", hoverOuterBorderColor);
-        setHoveredIndex(d.index); // Set hovered index
-        d3.select(this).attr("fill", hoverColor);
-      })
-      .on("mouseout", function (event, d) {
-        d3.select(this).attr("fill", baseColor);
-        innerBorders.filter((borderD) => borderD.index === d.index).attr("fill", innerBorderColor);
-        outerBorders.filter((borderD) => borderD.index === d.index).attr("fill", outerBorderColor);
-        setHoveredIndex(null); // Reset hovered index
-        d3.select(this).attr("fill", baseColor);
-      });
-
-    // Add custom HTML labels inside each portion using foreignObject
-    chartGroup
-      .selectAll("foreignObject")
-      .data(pieData)
-      .join("foreignObject")
-      .attr("x", (d) => arcGenerator.centroid(d)[0] - 20)
-      .attr("y", (d) => arcGenerator.centroid(d)[1] - 10)
-      .attr("width", 40)
-      .attr("height", 20)
-      .html((d) => d.data.customContent);
   }, [data, hoveredIndex]);
 
   return (
