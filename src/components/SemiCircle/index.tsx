@@ -44,13 +44,13 @@ export const SemiCircle: React.FC<SemiCircleProps> = ({ text, data }) => {
     const baseColor = "#F6F7F8";
     const innerBorderColor = "#045DE3";
     const outerBorderColor = "#EFF0F2";
-    const backgroundColor = "#EFF0F2"; // Background color for the doughnut
+    const sideBorderColor = "#EFF0F2";
     const hoverColor = "#045DE3";
     const hoverInnerBorderColor = "#B4CEF7";
     const hoverOuterBorderColor = "#B4CEF7";
 
     // Inner border thickness
-    const innerBorderThickness = radius * 0.05; // 5% of the radius
+    const innerBorderThickness = radius * 0.05;
 
     // Outer border thickness (half of inner border)
     const outerBorderThickness = innerBorderThickness / 2;
@@ -104,8 +104,14 @@ export const SemiCircle: React.FC<SemiCircleProps> = ({ text, data }) => {
         outerBorders.filter((borderD) => borderD.index === d.index).attr("fill", outerBorderColor);
       });
 
-    // Draw the arc paths inside the group
-    arcGroups.append("path").attr("class", "arc").attr("d", arcGenerator).attr("fill", baseColor);
+    // Draw the arc paths inside the group with side borders
+    arcGroups
+      .append("path")
+      .attr("class", "arc")
+      .attr("d", arcGenerator)
+      .attr("fill", baseColor)
+      .attr("stroke", sideBorderColor) // Add side border color
+      .attr("stroke-width", innerBorderThickness / 4); // Side border thickness: 1/4 of inner border
 
     // Add custom HTML labels inside each portion using foreignObject
     arcGroups
