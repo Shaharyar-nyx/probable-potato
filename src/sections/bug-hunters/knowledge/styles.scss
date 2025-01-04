@@ -1,0 +1,20 @@
+.knowledge {
+  &-parent-container {
+    @apply relative;
+  }
+  &-container {
+    @apply relative z-20 mx-auto flex max-w-screen-3xl px-16 py-[7.5rem];
+  }
+  &-overlay {
+    @apply absolute z-10 h-full w-full;
+  }
+  &-text-container {
+    @apply w-3/4 bg-primary-800 p-10;
+  }
+  &-title {
+    @apply mb-6 font-bold text-neutral-50;
+  }
+  &-description {
+    @apply mb-10 text-neutral-50;
+  }
+}

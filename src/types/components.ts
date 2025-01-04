@@ -31,19 +31,19 @@ interface BaseButtonProps {
 }
 
 export type ButtonAsButton = BaseButtonProps &
-  React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  ButtonHTMLAttributes<HTMLButtonElement> & {
     externalHref?: never;
     href?: never;
   };
 
 export type ButtonAsInternalLink = BaseButtonProps &
-  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
     externalHref?: never;
     href: string;
   };
 
 export type ButtonAsExternalLink = BaseButtonProps &
-  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
     externalHref: string;
     href?: never;
   };
