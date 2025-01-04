@@ -3,7 +3,7 @@
     @apply relative bg-primary-800;
   }
   &-container {
-    @apply flex max-w-screen-3xl justify-between px-16 py-[7.5rem];
+    @apply mx-auto flex max-w-screen-3xl justify-between px-16 py-[7.5rem];
   }
   &-tagline {
     @apply mb-10 inline-block text-neutral-50;
@@ -13,5 +13,30 @@
   }
   &-content {
     @apply text-neutral-50;
+  }
+  &-feature {
+    &-container {
+      @apply absolute min-h-[148px] w-1/2 min-w-[270px] rounded-xl p-5 shadow-[0px_5px_25px_0px_rgba(2,37,91,0.5)];
+      &-first {
+        @apply left-0 top-0 z-10;
+      }
+      &-second {
+        @apply right-0 top-[34%] xl:top-1/4 z-30;
+      }
+      &-third {
+        @apply bottom-0 right-1/2 z-20 translate-x-1/2;
+      }
+    }
+    &-title {
+      @apply font-bold;
+      &-container {
+        @apply mb-4 flex items-center gap-3;
+      }
+    }
+    &-number {
+      &-container {
+        @apply mb-2 flex items-end gap-3;
+      }
+    }
   }
 }
