@@ -1,23 +1,31 @@
 "use client";
 
 import * as d3 from "d3";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+
+import { SemiCircleProps } from "@/types";
 
 interface DataType {
   customContent: string;
-  label: string;
   value: number;
 }
 
-export const SemiCircle: React.FC = () => {
+export const SemiCircle: React.FC<SemiCircleProps> = ({ text, data }) => {
   const svgRef = useRef<SVGSVGElement>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null); // Track hovered index
 
   useEffect(() => {
-    const data = [
-      { label: "A", value: 33, customContent: '<div style="color: red;">A</div>' },
-      { label: "B", value: 33, customContent: '<div style="color: blue;">B</div>' },
-      { label: "C", value: 33, customContent: '<div style="color: green;">C</div>' },
-    ];
+    const value = 100 / data.length;
+    const renderedData = data.map((item, index) => ({
+      value,
+      customContent: `
+        <div style="text-align: center;">
+            <img src="${hoveredIndex === index ? item.icon_light : item.icon_dark}" alt="${item.title}" style="width: 15px; height: 15px; margin-bottom: 2px;" />
+            <h3 style="font-size: 7px; font-weight: bold; color: ${
+              hoveredIndex === index ? "#F6F7F8" : "#02255B"
+            }; margin-bottom: 2px">${item.title}</h3>
+        </div>`,
+    }));
 
     const width = 400;
     const height = 220;
@@ -73,7 +81,7 @@ export const SemiCircle: React.FC = () => {
       .endAngle((3 * Math.PI) / 2)
       .sort(null);
 
-    const pieData = pieGenerator(data);
+    const pieData = pieGenerator(renderedData);
 
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove(); // Clear previous content
@@ -134,11 +142,15 @@ export const SemiCircle: React.FC = () => {
         d3.select(this).attr("fill", hoverColor);
         innerBorders.filter((borderD) => borderD.index === d.index).attr("fill", hoverInnerBorderColor);
         outerBorders.filter((borderD) => borderD.index === d.index).attr("fill", hoverOuterBorderColor);
+        setHoveredIndex(d.index); // Set hovered index
+        d3.select(this).attr("fill", hoverColor);
       })
       .on("mouseout", function (event, d) {
         d3.select(this).attr("fill", baseColor);
         innerBorders.filter((borderD) => borderD.index === d.index).attr("fill", innerBorderColor);
         outerBorders.filter((borderD) => borderD.index === d.index).attr("fill", outerBorderColor);
+        setHoveredIndex(null); // Reset hovered index
+        d3.select(this).attr("fill", baseColor);
       });
 
     // Add custom HTML labels inside each portion using foreignObject
@@ -151,7 +163,22 @@ export const SemiCircle: React.FC = () => {
       .attr("width", 40)
       .attr("height", 20)
       .html((d) => d.data.customContent);
-  }, []);
+  }, [data, hoveredIndex]);
 
-  return <svg ref={svgRef} />;
+  return (
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+      <svg ref={svgRef} />
+      <div
+        style={{
+          position: "absolute",
+          top: "25%", // 25% down from the top
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          textAlign: "center",
+        }}
+      >
+        <p className="paragraph-md w-[290px] font-semibold text-primary-800">{text}</p>
+      </div>
+    </div>
+  );
 };

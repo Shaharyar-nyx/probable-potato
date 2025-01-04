@@ -156,3 +156,8 @@ export interface TaglineProps {
   content: string;
   title: string;
 }
+
+export interface SemiCircleProps {
+  data: { icon_dark: string; icon_light: string; text: string; title: string }[];
+  text: string;
+}
