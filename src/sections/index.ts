@@ -5,3 +5,4 @@ export * from "./pricing";
 export * from "./privacy-policy";
 export * from "./company";
 export * from "./platform";
+export * from "./continuous-monitoring";
