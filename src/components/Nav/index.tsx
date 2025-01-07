@@ -4,8 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
-import { IconRenderer } from "../IconRenderer";
-import { Button } from "../UI";
+import { Button, IconRenderer } from "@/components";
 
 export const Nav: React.FC = () => {
   const router = useRouter();

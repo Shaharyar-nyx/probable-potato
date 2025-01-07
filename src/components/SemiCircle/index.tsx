@@ -85,6 +85,40 @@ export const SemiCircle: React.FC<SemiCircleProps> = ({ text, data }) => {
       .append("g")
       .attr("transform", `translate(${width / 2}, 10)`); // Center the semi-circle
 
+    // Draw inner border arcs
+    const innerBorders = chartGroup
+      .selectAll("path.inner-border")
+      .data(pieData)
+      .join("path")
+      .attr(
+        "d",
+        d3
+          .arc<d3.PieArcDatum<DataType>>()
+          .innerRadius(radius * 0.5 - innerBorderThickness)
+          .outerRadius(radius * 0.5)
+          .startAngle((d) => d.startAngle)
+          .endAngle((d) => d.endAngle),
+      )
+      .attr("fill", innerBorderColor)
+      .attr("class", "inner-border");
+
+    // Draw outer border arcs
+    const outerBorders = chartGroup
+      .selectAll("path.outer-border")
+      .data(pieData)
+      .join("path")
+      .attr(
+        "d",
+        d3
+          .arc<d3.PieArcDatum<DataType>>()
+          .innerRadius(radius * 0.5)
+          .outerRadius(radius * 0.5 + outerBorderThickness)
+          .startAngle((d) => d.startAngle)
+          .endAngle((d) => d.endAngle),
+      )
+      .attr("fill", outerBorderColor)
+      .attr("class", "outer-border");
+
     // Draw main arcs and foreignObjects together
     const arcGroups = chartGroup
       .selectAll("g.arc-group")
@@ -121,40 +155,6 @@ export const SemiCircle: React.FC<SemiCircleProps> = ({ text, data }) => {
       .attr("width", 50)
       .attr("height", 50)
       .html((d) => d.data.customContent);
-
-    // Draw inner border arcs
-    const innerBorders = chartGroup
-      .selectAll("path.inner-border")
-      .data(pieData)
-      .join("path")
-      .attr(
-        "d",
-        d3
-          .arc<d3.PieArcDatum<DataType>>()
-          .innerRadius(radius * 0.5 - innerBorderThickness)
-          .outerRadius(radius * 0.5)
-          .startAngle((d) => d.startAngle)
-          .endAngle((d) => d.endAngle),
-      )
-      .attr("fill", innerBorderColor)
-      .attr("class", "inner-border");
-
-    // Draw outer border arcs
-    const outerBorders = chartGroup
-      .selectAll("path.outer-border")
-      .data(pieData)
-      .join("path")
-      .attr(
-        "d",
-        d3
-          .arc<d3.PieArcDatum<DataType>>()
-          .innerRadius(radius * 0.5)
-          .outerRadius(radius * 0.5 + outerBorderThickness)
-          .startAngle((d) => d.startAngle)
-          .endAngle((d) => d.endAngle),
-      )
-      .attr("fill", outerBorderColor)
-      .attr("class", "outer-border");
   }, [data, hoveredIndex]);
 
   return (

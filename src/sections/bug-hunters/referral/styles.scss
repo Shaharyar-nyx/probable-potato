@@ -8,4 +8,7 @@
       @apply basis-1/2;
     }
   }
+  &-overlay {
+    @apply fixed top-0 left-0 w-full h-screen bg-neutral-50 flex items-center justify-center z-50;
+  }
 }
