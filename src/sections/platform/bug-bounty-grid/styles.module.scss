@@ -1,0 +1,55 @@
+.section {
+  @apply pt-[120px] pb-[60px];
+}
+
+.container {
+  @apply mx-auto max-w-screen-2xl px-4 md:px-8;
+}
+
+.gridContent {
+  @apply items-center gap-16 md:grid-cols-2;
+}
+
+.content {
+  @apply text-primary-800;
+}
+
+.cardContainer {
+  @apply flex items-stretch gap-4;
+}
+
+.cardColumn {
+  @apply flex w-1/2 flex-col gap-4;
+}
+
+.programCard {
+  @apply rounded-xl bg-primary-500 p-4;
+}
+
+.programCardContent {
+  @apply flex flex-col items-center text-neutral-50;
+}
+
+.programImage {
+  @apply -mb-4 rounded-lg shadow-lg;
+}
+
+.featureCard {
+  @apply flex flex-col gap-6 rounded-xl bg-primary-800 p-10 text-neutral-50;
+}
+
+.featureHeader {
+  @apply flex flex-row items-start gap-4;
+}
+
+.featureIcon {
+  @apply -mb-4 rounded-lg shadow-lg;
+}
+
+.missionsCard {
+  @apply flex items-end justify-end overflow-hidden rounded-xl bg-primary-500 pl-16 pt-4;
+}
+
+.missionImage {
+  @apply rounded-lg;
+}

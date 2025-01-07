@@ -1,0 +1,22 @@
+.importance-bug-testing {
+  @apply py-[120px] px-16;
+  .background {
+    @apply bg-neutral-50;
+  }
+
+  .container {
+    @apply mx-auto flex gap-6;
+  }
+
+  .title {
+    @apply mb-6 font-bold text-primary-800;
+  }
+
+  .paragraph {
+    @apply text-primary-800;
+  }
+
+  .feature-container {
+    @apply flex flex-col gap-3 rounded-2xl bg-white p-10;
+  }
+}

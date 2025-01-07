@@ -68,10 +68,10 @@ export const News: React.FC<NewsProps> = ({ content, title, subtitle, news }) =>
             <div className={styles.pagination} />
             <div className={styles.navigation}>
               <button className={styles.prev}>
-                <Image alt="Previous" height={24} src="/company/arrow-left.svg" width={24} />
+                <Image alt="Previous" height={24} src="/images/company/arrow-left.svg" width={24} />
               </button>
               <button className={styles.next}>
-                <Image alt="Next" height={24} src="/company/arrow-right.svg" width={24} />
+                <Image alt="Next" height={24} src="/images/company/arrow-right.svg" width={24} />
               </button>
             </div>
           </div>

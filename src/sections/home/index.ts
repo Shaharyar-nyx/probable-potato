@@ -3,5 +3,4 @@ export * from "./solutions";
 export * from "./brand-mission";
 export * from "./testimonials";
 export * from "./clients";
-export * from "./request-demo";
 export * from "./cta";
