@@ -1,6 +1,6 @@
 {
   "tagline": "Community Growth",
-    "title": "Bug Hunter Referral Program",
+  "title": "Bug Hunter Referral Program",
   "subtitle": "Become a valued partner and join mission to secure the digital world by participating in our Referral Program.",
   "text": "This initiative rewards you for connecting skilled bug hunters and cybersecurity experts who have a shared vision with this community, creating a safer digital ecosystem while unlocking exciting earning opportunities.",
   "features": [
@@ -15,6 +15,50 @@
       "title": "Empower Ethical Hacking",
       "text": "Build a community that values integrity, innovation, and impactful solutions.",
       "icon": "UserGroupIcon"
+    }
+  ],
+  "referral_features": [
+    {
+      "id": "1",
+      "title": "How it works",
+      "features": [
+        {
+          "id": "1",
+          "icon": "PaperAirplaneIcon",
+          "title": "Refer Bug hunters",
+          "text": "Invite cybersecurity researchers skilled in ethical hacking to join Cyberbay."
+        },
+        {
+          "id": "2",
+          "icon": "CheckCircleIcon",
+          "title": "Seamless Registration",
+          "text": "Ensure your referrals complete our registration process and meet the eligibility standards for responsible hacking."
+        },
+        {
+          "id": "3",
+          "icon": "CalendarDaysIcon",
+          "title": "Reap the Rewards",
+          "text": "Earn 5% of the bounty fees every time your referred hackers successfully contribute to our platform for the first 6 months."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Program Highlights",
+      "features": [
+        {
+          "id": "1",
+          "icon": "CalendarDaysIcon",
+          "title": "Rewarding Referrals",
+          "text": "Earn a 5% referral fee on the total bounty fees secured by the bug hunters you refer for the first 6 months."
+        },
+        {
+          "id": "2",
+          "icon": "UserGroupIcon",
+          "title": "Empower Ethical Hacking",
+          "text": "Support a mission-driven program focused on responsible vulnerability disclosure and proactive security measures."
+        }
+      ]
     }
   ]
 }

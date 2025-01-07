@@ -8,22 +8,7 @@
       @apply basis-1/2;
     }
   }
-}
-
-.referral-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.overlay-content {
-  text-align: center;
-  color: white;
+  &-overlay {
+    @apply fixed top-0 left-0 w-full h-screen bg-neutral-50 flex items-center justify-center z-50;
+  }
 }
