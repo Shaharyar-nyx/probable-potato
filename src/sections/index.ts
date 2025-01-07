@@ -6,3 +6,4 @@ export * from "./pricing";
 export * from "./company";
 export * from "./contact-us";
 export * from "./privacy-policy";
+export * from "./continuous-monitoring";

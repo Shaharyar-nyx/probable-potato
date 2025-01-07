@@ -12,7 +12,11 @@ export interface HeroProps {
 }
 export interface HeaderProps {
   backgroundImage: string;
-  buttonText?: string;
+  cta?: {
+    icon?: string;
+    label: string;
+    link: string;
+  };
   description: string;
   link?: string;
   tagline?: string;
@@ -98,6 +102,7 @@ export interface BaseButtonProps {
   children: React.ReactNode;
   className?: string;
   icon?: React.ReactNode;
+  iconName?: string;
   loading?: boolean;
   size?: "large" | "medium" | "small";
   transparent?: boolean;
@@ -319,4 +324,8 @@ export interface ProgramTypeProps {
     title: string;
   }[];
   title: string;
+}
+export interface SemiCircleProps {
+  data: { icon_dark: string; icon_light: string; text: string; title: string }[];
+  text: string;
 }

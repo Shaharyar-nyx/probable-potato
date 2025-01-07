@@ -1,0 +1,11 @@
+{
+  "backgroundImage": "/continuous-monitoring/hero.webp",
+  "title":
+  "CyberScan: Your All-in-One Solution for Continuous Security Monitoring",
+  "description": "Discover CyberScan, the AI-driven continuous monitoring solution designed to protect your digital assets. Request your free CyberScan-Lite report today and witness the future of cybersecurity in action.",
+  "cta": {
+    "label": "Get Your Free Report",
+    "link": "/",
+    "icon": "ArrowUpRightIcon"
+  }
+}

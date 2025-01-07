@@ -24,6 +24,7 @@
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "clsx": "^2.1.1",
+    "d3": "^7.9.0",
     "graphql": "^16.9.0",
     "gsap": "^3.12.5",
     "isomorphic-dompurify": "^2.16.0",
@@ -42,6 +43,7 @@
     "vanilla-cookieconsent": "^3.0.1"
   },
   "devDependencies": {
+    "@types/d3": "^7.4.3",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",

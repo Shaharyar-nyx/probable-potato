@@ -45,7 +45,7 @@ const staggerChildren = {
 const SafeguardCard: React.FC<SafeguardsProps> = ({ icon, title, description, isEven }) => {
   return (
     <motion.div
-      className={`${styles.solutionsWrapper} ${styles.solutionCard} ${isEven ? styles.even : ""}`}
+      className={`${styles.solutionCard} ${isEven ? styles.even : ""}`}
       initial="hidden"
       variants={slideIn(isEven)}
       viewport={{ once: true }}

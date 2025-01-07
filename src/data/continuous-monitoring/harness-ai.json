@@ -1,0 +1,27 @@
+{
+  "tagline": "AI-Powered Detection and Prediction",
+  "title": "Harness AI for Real-Time Threat Detection",
+  "text": "Shield your organization with 24/7 AI-driven monitoring and risk assessments. Monthly CyberScan reports analyze your digital footprint, assess threat susceptibility, and offer strategic recommendations to strengthen your overall security posture.",
+  "features": [
+    {
+      "id": "1",
+      "text": "Identify Vulnerabilities and Weak Spots",
+      "icon": "/continuous-monitoring/harness-ai/vulnerabilities.svg"
+    },
+    {
+      "id": "2",
+      "text": "Anticipate Threats Using Predictive Capabilities",
+      "icon": "/continuous-monitoring/harness-ai/threats.svg"
+    },
+    {
+      "id": "3",
+      "text": "Predict Breach Risk",
+      "icon": "/continuous-monitoring/harness-ai/risk.svg"
+    }
+  ],
+  "cta": {
+    "icon": "ArrowUpRightIcon",
+    "label": "Request a Demo",
+    "link": "/"
+  }
+}
