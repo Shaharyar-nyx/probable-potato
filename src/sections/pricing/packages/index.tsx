@@ -1,13 +1,13 @@
 "use client";
 
 import { Roboto } from "next/font/google";
+import Image from "next/image";
 import { useState } from "react";
 import { Tooltip } from "react-tooltip";
 
 import styles from "./styles.module.scss";
-import { Feature, PACKAGES_CONFIG, PackageData } from "@/data/packages";
 import { Button } from "@/components";
-import Image from "next/image";
+import { Feature, PackageData, PackagesProps } from "@/types";
 
 const PackageIcons = {
   cyberscan: (
@@ -132,10 +132,12 @@ const FeatureRow = ({
   feature,
   hoveredColumn,
   onColumnHover,
+  packages,
 }: {
   feature: Feature;
   hoveredColumn: number | null;
   onColumnHover: (index: number | null) => void;
+  packages: PackageData[];
 }) => {
   const renderValue = (value: boolean | string) => {
     if (typeof value === "string") return value;
@@ -194,43 +196,46 @@ const FeatureRow = ({
           </>
         )}
       </td>
-      <td className={getColumnClass(0)} onMouseEnter={() => onColumnHover(0)} onMouseLeave={() => onColumnHover(null)}>
-        {renderValue(feature.cyberscan)}
-      </td>
-      <td className={getColumnClass(1)} onMouseEnter={() => onColumnHover(1)} onMouseLeave={() => onColumnHover(null)}>
-        {renderValue(feature.cybershield)}
-      </td>
-      <td className={getColumnClass(2)} onMouseEnter={() => onColumnHover(2)} onMouseLeave={() => onColumnHover(null)}>
-        {renderValue(feature.cyberswarm)}
-      </td>
+      {Object.keys(packages || {}).map((packageKey, index) => (
+        <td
+          key={packageKey}
+          className={getColumnClass(index)}
+          onMouseEnter={() => onColumnHover(index)}
+          onMouseLeave={() => onColumnHover(null)}
+        >
+          {renderValue(feature[packageKey as keyof typeof feature])}
+        </td>
+      ))}
     </tr>
   );
 };
 
-export const Packages = () => {
+export const Packages: React.FC<PackagesProps> = ({ packages, features, description, title, backgroundImage }) => {
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
 
   return (
-    <div className={styles.container} style={{ backgroundImage: `url(/images/bg-image.jpeg)` }}>
+    <div className={styles.container} style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className={styles.header}>
-        <h1 className="heading-1 mb-3 font-bold text-primary-800">{PACKAGES_CONFIG.header.title}</h1>
-        <p className={styles.subtitle}>{PACKAGES_CONFIG.header.description}</p>
+        <h1 className="heading-1 mb-3 font-bold text-primary-800">{title}</h1>
+        <p className={styles.subtitle}>{description}</p>
       </div>
 
-      <div className={styles.packagesGrid}>
-        <PackageCard data={PACKAGES_CONFIG.packages.cyberscan} type="cyberscan" />
-        <PackageCard data={PACKAGES_CONFIG.packages.cybershield} type="cybershield" />
-        <PackageCard data={PACKAGES_CONFIG.packages.cyberswarm} type="cyberswarm" />
+      <div className={`${styles.packagesGrid} grid grid-cols-${packages ? Object.keys(packages).length + 1 : 1}`}>
+        <div />
+        {packages?.cyberscan && <PackageCard data={packages.cyberscan} type="cyberscan" />}
+        {packages?.cybershield && <PackageCard data={packages.cybershield} type="cybershield" />}
+        {packages?.cyberswarm && <PackageCard data={packages.cyberswarm} type="cyberswarm" />}
       </div>
 
       <div className={styles.featuresTable}>
         <p className={`${styles.featuresHeader} paragraph-xl font-semibold`}>Package features</p>
         <table className={styles.table}>
           <tbody>
-            {PACKAGES_CONFIG.features.map((feature) => (
+            {features.map((feature) => (
               <FeatureRow
                 key={feature.name}
                 feature={feature}
+                packages={packages}
                 hoveredColumn={hoveredColumn}
                 onColumnHover={setHoveredColumn}
               />

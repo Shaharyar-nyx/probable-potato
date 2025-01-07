@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
+
 import { IconRenderer } from "../IconRenderer";
 import { Button } from "../UI";
 
@@ -45,7 +46,7 @@ export const Nav: React.FC = () => {
   const services = [
     {
       name: "Platform",
-      href: "/platform",
+      href: "/solutions/platform",
       description: "Connect to vetted researchers, manage programs, and reporting",
       icon: "WindowIcon",
     },

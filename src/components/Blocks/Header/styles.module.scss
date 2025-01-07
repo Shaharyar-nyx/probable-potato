@@ -11,7 +11,7 @@
 }
 
 .content {
-  @apply relative mx-auto flex w-full max-w-screen-lg flex-col items-center justify-center space-y-8 rounded-lg bg-black/30 p-8 shadow-[0px_0px_20px_0px_rgba(239,240,242,0.25)_inset] backdrop-blur-lg;
+  @apply relative mx-auto flex w-full max-w-screen-lg flex-col items-center justify-center space-y-5 rounded-lg bg-black/30 p-8 shadow-[0px_0px_20px_0px_rgba(239,240,242,0.25)_inset] backdrop-blur-lg;
 }
 
 .title {

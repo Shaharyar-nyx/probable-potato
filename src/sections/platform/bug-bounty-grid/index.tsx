@@ -1,80 +1,70 @@
-import React from "react";
 import Image from "next/image";
-import missionsWindow from "public/platform/missions-window.png";
+import React from "react";
 
-export const BugBountyGrid: React.FC = () => {
+import styles from "./styles.module.scss";
+import { BugBountyGridProps } from "@/types";
+
+export const BugBountyGrid: React.FC<BugBountyGridProps> = ({ tagline, title, content, gridLeft, gridRight }) => {
   return (
-    <section className="bg-white py-16">
-      <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-        <div className="grid items-center gap-16 md:grid-cols-2">
-          <div className="space-y-8 text-primary-800">
-            <span className="tagline">Cost-Effective Scalability with On-Demand, Pre-Vetted Talent</span>
-            <h2 className="mb-6 text-3xl font-bold">Bug Bounty Programs</h2>
-            <p className="paragraph">
-              Identifying vulnerabilities requires diverse skills often not available in-house. Crowdsourcing offers a
-              highly effective solution, and the Cyberbay Platform connects you with pre-vetted bug hunters who provide
-              specialized expertise when you need it.
-            </p>
+    <section className={styles.section}>
+      <div className={styles.container}>
+        <div className={`${styles.gridContent} grid`}>
+          <div className={styles.content}>
+            <div className="tagline mb-10">{tagline}</div>
+            <h2 className="heading-2 mb-6 font-bold">{title}</h2>
+            <p className="paragraph-md">{content}</p>
           </div>
           <div className="relative">
-            <div className="flex items-stretch gap-4">
-              <div className="flex w-1/2 flex-col gap-4">
-                <div className="rounded-xl bg-primary-500 p-4">
-                  <div className="flex flex-col items-center text-neutral-50">
+            <div className={styles.cardContainer}>
+              <div className={styles.cardColumn}>
+                <div className={styles.programCard}>
+                  <div className={styles.programCardContent}>
                     <div className="paragraph-sm">Bug Bounty</div>
                     <div className="paragraph-xxl font-semibold">Programs</div>
                   </div>
                   <Image
-                    src="/platform/bug-bounty-programs-window.png"
                     alt="Bug Bounty Programs"
-                    width={600}
+                    className={styles.programImage}
                     height={400}
-                    className="-mb-4 rounded-lg shadow-lg"
+                    src="/platform/bug-bounty-programs-window.png"
+                    width={600}
                   />
                 </div>
-                <div className="flex flex-col gap-6 rounded-xl bg-primary-800 p-10 text-neutral-50">
-                  <div className="flex flex-row items-center gap-4">
+                <div className={styles.featureCard}>
+                  <div className={styles.featureHeader}>
                     <Image
-                      src="/platform/matters.svg"
                       alt="Bug Bounty Programs"
-                      width={60}
+                      className={styles.featureIcon}
                       height={60}
-                      className="-mb-4 rounded-lg shadow-lg"
+                      src={gridLeft.icon}
+                      width={60}
                     />
-                    <h3 className="heading-7 font-bold">Why This Matters</h3>
+                    <h3 className="heading-7 font-bold">{gridLeft.title}</h3>
                   </div>
-                  <p className="paragraph-md">
-                    Crowdsourcing your bug bounty programs provides cost-effective, on-demand scalability and a wider
-                    talent pool to strengthen your defenses against cyber attacks.
-                  </p>
+                  <p className="paragraph-md">{gridLeft.description}</p>
                 </div>
               </div>
-              <div className="flex w-1/2 flex-col gap-4">
-                <div className="flex flex-col gap-6 rounded-xl bg-primary-800 p-10 text-neutral-50">
-                  <div className="flex flex-row items-center gap-4">
+              <div className={styles.cardColumn}>
+                <div className={styles.featureCard}>
+                  <div className={styles.featureHeader}>
                     <Image
-                      src="/platform/program.svg"
                       alt="Bug Bounty Programs"
-                      width={60}
+                      className={styles.featureIcon}
                       height={60}
-                      className="-mb-4 rounded-lg shadow-lg"
+                      src={gridRight.icon}
+                      width={60}
                     />
-                    <h3 className="heading-7 font-bold">Public vs. Private Programs</h3>
+                    <h3 className="heading-7 font-bold">{gridRight.title}</h3>
                   </div>
-                  <p className="paragraph-md">
-                    Public programs are open to all Cyberbay bug hunters, while private programs are invitation-only.
-                    Contact us to discuss which type of program is best for you.
-                  </p>
+                  <p className="paragraph-md">{gridRight.description}</p>
                 </div>
-                <div className="flex items-end justify-end overflow-hidden rounded-xl bg-primary-500 pl-16 pt-4">
+                <div className={styles.missionsCard}>
                   <Image
-                    src={missionsWindow}
                     alt="Missions"
-                    sizes="100vw"
-                    style={{
-                      width: "100%",
-                      height: "auto",
-                    }}
+                    className={styles.missionImage}
+                    height={400}
+                    src="/platform/missions-window.png"
+                    width={600}
                   />
                 </div>
               </div>

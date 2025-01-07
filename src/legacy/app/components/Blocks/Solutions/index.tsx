@@ -6,7 +6,7 @@ import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 
 import styles from "./styles.module.scss";
-import { solutionsContent } from "@/data/solutions";
+import { solutionsContent } from "@/data/home/solutions";
 import { SolutionCardProps, SolutionsProps } from "@/types/components";
 
 gsap.registerPlugin(ScrollTrigger);

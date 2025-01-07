@@ -1,0 +1,29 @@
+{
+  "title": "Trusted by Industry Leaders",
+  "clients": [
+    {
+      "logo": "/images/leaders/cyberport.svg",
+      "name": "Cyberport"
+    },
+    {
+      "logo": "/images/leaders/fico.svg",
+      "name": "FICO"
+    },
+    {
+      "logo": "/images/leaders/hkt.svg",
+      "name": "HKT"
+    },
+    {
+      "logo": "/images/leaders/naver.svg",
+      "name": "Naver"
+    },
+    {
+      "logo": "/images/leaders/ricoh.svg",
+      "name": "Ricoh"
+    },
+    {
+      "logo": "/images/leaders/transunion.svg",
+      "name": "TransUnion"
+    }
+  ]
+}

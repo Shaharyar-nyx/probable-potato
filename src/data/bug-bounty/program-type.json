@@ -1,0 +1,18 @@
+{
+  "title": "Types of Bug Bounty Programs",
+  "content": "Choose between public and private programs to match your security needs and goals.",
+  "features": [
+    {
+      "icon": "UserGroupIcon",
+      "title": "Public Bug Bounty Programs",
+      "text": "Public programs invite a larger pool of talent and diverse perspectives. Utilizing public programs is a highly cost-efficient way to scale your cybersecurity efforts.",
+      "content": "<ul><li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li><li>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</li><li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li><li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li></ul>"
+    },
+    {
+      "icon": "KeyIcon",
+      "title": "Private Bug Bounty Programs",
+      "text": "Private programs offer complete control over participation. Cyberbay connects you with qualified cybersecurity Hackers based on their expertise, allowing you to handpick members for your program.",
+      "content": "<ul><li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li><li>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</li><li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li><li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li></ul>"
+    }
+  ]
+}

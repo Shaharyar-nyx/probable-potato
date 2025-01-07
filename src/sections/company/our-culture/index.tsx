@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./styles.module.scss";
 import { Button, IconRenderer } from "@/components";
 import { OurCultureProps } from "@/types";
@@ -11,7 +9,7 @@ export const OurCulture: React.FC<OurCultureProps> = ({ title, content, buttonTe
       <div className={styles.container}>
         <div className="w-1/2">
           <h2 className={`${styles.title} heading-2`}>{title}</h2>
-          <p className={`${styles.paragraph} paragraph-2`}>{content}</p>
+          <p className={`${styles.paragraph} paragraph-md`}>{content}</p>
           <Button variant="neutral">{buttonText}</Button>
         </div>
         <div className="flex w-1/2 flex-col">

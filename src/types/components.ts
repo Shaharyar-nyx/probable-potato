@@ -1,10 +1,32 @@
-import React from "react";
+import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 
-import { solutionsContent } from "@/data/solutions";
-
+export interface HeroProps {
+  backgroundVideo: string;
+  buttonText: string;
+  description: string;
+  featuredImage: {
+    alt: string;
+    image: string;
+  };
+  title: string;
+}
 export interface HeaderProps {
   backgroundImage: string;
+  buttonText?: string;
   description: string;
+  link?: string;
+  tagline?: string;
+  title: string;
+}
+
+export interface BrandMissionProps {
+  description: string;
+  tags: string[];
+  teamMembers: {
+    image: string;
+    name: string;
+    title: string;
+  }[];
   title: string;
 }
 
@@ -17,10 +39,62 @@ export interface SolutionCardProps {
 }
 
 export interface SolutionsProps {
-  content?: typeof solutionsContent;
+  crowdsourcing: {
+    benefits: {
+      description: string;
+      link: string;
+      title: string;
+    }[];
+    description: string;
+    label: string;
+    title: string;
+  };
+  solutions: SolutionCardProps[];
+  title: string;
 }
 
-interface BaseButtonProps {
+export interface TestimonialsProps {
+  testimonials: {
+    author: string;
+    client: string;
+    logo: string;
+    position: string;
+    quote: string;
+  }[];
+}
+
+export interface ClientsProps {
+  clients: {
+    logo: string;
+    name: string;
+  }[];
+  title: string;
+}
+
+export interface Feature {
+  cyberscan?: boolean | string;
+  cybershield?: boolean | string;
+  cyberswarm?: boolean | string;
+  name: string;
+  tooltip?: string;
+}
+
+export interface PackageData {
+  buttonText: string;
+  description: string;
+  period?: string;
+  price: string;
+}
+
+export interface PackagesProps {
+  backgroundImage: string | null;
+  description: string;
+  features: Feature[];
+  packages: PackageData[];
+  title: string;
+}
+
+export interface BaseButtonProps {
   children: React.ReactNode;
   className?: string;
   icon?: React.ReactNode;
@@ -90,6 +164,18 @@ export interface AccordionProps {
   }[];
 }
 
+export interface BugBountyProgramsProps {
+  description: string;
+  slides: {
+    description: string;
+    images: string;
+    subtitle: string;
+    title: string;
+  }[];
+  subtitle: string;
+  title: string;
+}
+
 export interface OurCultureProps {
   buttonText: string;
   content: string;
@@ -148,5 +234,89 @@ export interface EventsProps {
 export interface TaglineProps {
   buttonText: string;
   content: string;
+  title: string;
+}
+
+export interface BugBountyGridProps {
+  content: string;
+  gridLeft: {
+    description: string;
+    icon: string;
+    title: string;
+  };
+  gridRight: {
+    description: string;
+    icon: string;
+    title: string;
+  };
+  tagline: string;
+  title: string;
+}
+
+export interface ContinuousBugHuntingProps {
+  content: string;
+  features: {
+    description: string;
+    icon: string;
+    title: string;
+  }[];
+  tagline: string;
+  title: string;
+}
+
+export interface LaunchProgramProps {
+  content: string;
+  steps: {
+    description: string;
+    icon: string;
+    title: string;
+  }[];
+  tagline: string;
+  title: string;
+}
+
+export interface FindingBugBountyProps {
+  content: string;
+  features: {
+    icon: string;
+    text: string;
+    title: string;
+  }[];
+  tagline: string;
+  title: string;
+}
+
+export interface ImportanceBugTestingProps {
+  content: string;
+  features: {
+    icon: string;
+    text: string;
+    title: string;
+  }[];
+  tagline: string;
+  title: string;
+}
+
+export interface SafeguardsProps {
+  description: string;
+  icon: string;
+  isEven?: boolean;
+  title: string;
+}
+
+export interface ProgramSafeguardsProps {
+  content: string;
+  safeguards: SafeguardsProps[];
+  title: string;
+}
+
+export interface ProgramTypeProps {
+  content: string;
+  features: {
+    content: string;
+    icon: string;
+    text: string;
+    title: string;
+  }[];
   title: string;
 }

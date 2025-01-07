@@ -3,9 +3,9 @@
 import React, { useEffect, useRef } from "react";
 
 import styles from "./styles.module.scss";
-import { brandMissionContent } from "@/data/brandMission";
+import { BrandMissionProps } from "@/types";
 
-export const BrandMission: React.FC = () => {
+export const BrandMission: React.FC<BrandMissionProps> = ({ tags, title, description, teamMembers }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef({ current: 0, target: 0 });
   const rafRef = useRef<number>(0);
@@ -69,18 +69,18 @@ export const BrandMission: React.FC = () => {
 
   return (
     <div ref={containerRef} className={styles.container}>
-      {brandMissionContent.tags.map((tag) => (
+      {tags.map((tag) => (
         <div key={tag} className={styles[`${tag.toLowerCase()}Tag`]}>
           {tag}
         </div>
       ))}
 
       <div className={styles.content}>
-        <h1 className={`${styles.title} heading-1`}>{brandMissionContent.title}</h1>
-        <p className={`${styles.description} paragraph-md`}>{brandMissionContent.description}</p>
+        <h1 className={`${styles.title} heading-1`}>{title}</h1>
+        <p className={`${styles.description} paragraph-md`}>{description}</p>
       </div>
 
-      {brandMissionContent.teamMembers.map((member, index) => (
+      {teamMembers.map((member, index) => (
         <div key={member.name} className={`${styles.memberCard} ${styles["member" + (index + 1)]}`}>
           <img alt={member.name} className={styles.memberImage} src={member.image} />
           <div className={styles.memberInfo}>

@@ -1,0 +1,134 @@
+.solutionsContainer {
+  @apply relative overflow-hidden bg-gradient-to-br from-white to-[#f8f9fa];
+}
+
+.container {
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-16 py-[120px] text-primary-800;
+}
+
+.glassBackground {
+  @apply bg-[#eff0f2]/10 shadow-[0px_0px_20px_0px_rgba(255,255,255,0.25)_inset] backdrop-blur-lg;
+}
+
+.sectionBackground {
+  @apply relative isolate min-h-screen bg-inherit bg-right-top bg-no-repeat;
+}
+
+.overlay {
+  @apply absolute inset-0 opacity-80;
+  background: linear-gradient(180deg, rgba(246, 247, 248, 0) 74.68%, #f6f7f8 100%),
+    linear-gradient(0deg, var(--Neutral-50, #f6f7f8) 0%, var(--Neutral-50, #f6f7f8) 100%);
+  background-blend-mode: normal, color;
+}
+
+.solutionsWrapper {
+  composes: glassBackground;
+}
+
+// Solution Card Styles
+.solutionCard {
+  @apply flex w-full flex-row items-start gap-8;
+
+  &.even {
+    @apply justify-end;
+  }
+}
+
+.cardContent {
+  @apply flex flex-row items-start gap-6 rounded-xl border p-10;
+}
+
+.iconWrapper {
+  @apply flex-shrink-0;
+}
+
+.textContent {
+  @apply flex flex-col items-start text-left;
+}
+
+.cardTitle {
+  @apply mb-2 max-w-[600px] text-left text-primary-800;
+  white-space: break-spaces;
+}
+
+.cardDescription {
+  @apply mb-6 max-w-[600px] text-primary-800;
+}
+
+.button {
+  @apply rounded bg-primary-500 px-6 py-2 text-white transition-colors hover:bg-blue-700;
+
+  &.large {
+    @apply w-fit px-8 py-3;
+  }
+}
+
+// Crowdsourcing Section Styles
+.crowdsourcingContent {
+  composes: glassBackground;
+  @apply flex flex-col gap-10 p-12;
+}
+
+.label {
+  @apply font-sans text-[14px];
+}
+
+.crowdsourcingTitle {
+  @apply mb-6 font-bold text-primary-800;
+}
+
+.crowdsourcingDescription {
+  @apply text-primary-800;
+}
+
+.benefitsGrid {
+  @apply grid grid-cols-2 gap-24;
+}
+
+.benefitItem {
+  @apply flex flex-col;
+}
+
+.benefitTitle {
+  @apply mb-3 font-bold text-primary-800;
+}
+
+.benefitDescription {
+  @apply text-primary-800;
+}
+
+// Responsive Styles
+@media (max-width: 1024px) {
+  .benefitsGrid {
+    @apply grid-cols-1 gap-12;
+  }
+
+  .crowdsourcingContent {
+    @apply p-8;
+  }
+
+  .solutionsWrapper {
+    @apply p-8;
+  }
+
+  .cardContent {
+    @apply flex-col;
+  }
+
+  .textContent {
+    &.even {
+      @apply items-start text-left;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    @apply px-4;
+  }
+
+  .solutionsWrapper,
+  .crowdsourcingContent {
+    @apply p-6;
+  }
+}
