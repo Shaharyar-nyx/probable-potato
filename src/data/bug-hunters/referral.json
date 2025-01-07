@@ -22,6 +22,7 @@
     {
       "id": "1",
       "title": "How it works",
+      "columns": 3,
       "features": [
         {
           "id": "1",
@@ -46,6 +47,7 @@
     {
       "id": "2",
       "title": "Program Highlights",
+      "columns": 2,
       "features": [
         {
           "id": "1",

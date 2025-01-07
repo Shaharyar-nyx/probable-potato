@@ -112,27 +112,49 @@ export const Referral: React.FC = () => {
                   Close
                 </Button>
               </nav>
-              <Swiper
-                modules={[Navigation]}
-                navigation={false}
-                onSlideChange={(swiper) => {
-                  // Update state when slide changes
-                  setIsBeginning(swiper.isBeginning);
-                  setIsEnd(swiper.isEnd);
-                }}
-                onSwiper={(swiper) => {
-                  // Set initial state when Swiper is initialized
-                  setIsBeginning(swiper.isBeginning);
-                  setIsEnd(swiper.isEnd);
-                }}
-              >
-                <SwiperSlide>Slide 1</SwiperSlide>
-                <SwiperSlide>Slide 2</SwiperSlide>
-                <div className="flex gap-5">
-                  <SwiperButtonPrev disabled={isBeginning} />
-                  <SwiperButtonNext disabled={isEnd} />
+              <div className="overlay-content">
+                <div className="swiper-parent-container">
+                  <Swiper
+                    modules={[Navigation]}
+                    navigation={false}
+                    onSlideChange={(swiper) => {
+                      // Update state when slide changes
+                      setIsBeginning(swiper.isBeginning);
+                      setIsEnd(swiper.isEnd);
+                    }}
+                    onSwiper={(swiper) => {
+                      // Set initial state when Swiper is initialized
+                      setIsBeginning(swiper.isBeginning);
+                      setIsEnd(swiper.isEnd);
+                    }}
+                  >
+                    {data.referral_features.map((referralFeature) => (
+                      <SwiperSlide key={referralFeature.id}>
+                        <div className="w-full max-w-screen-3xl">
+                          <h3 className="heading-1 mb-10 font-bold text-primary-800">{referralFeature.title}</h3>
+                          <div className={`grid grid-cols-${referralFeature.columns} gap-6`}>
+                            {referralFeature.features.map((referralFeature) => (
+                              <div key={referralFeature.id} className="p-10">
+                                <div className="mb-3 flex gap-3">
+                                  <div className="flex items-center justify-center rounded bg-primary-500 p-1">
+                                    <IconRenderer className="h-6 w-6 text-neutral-50" iconName={referralFeature.icon} />
+                                  </div>
+                                  <h4 className="heading-4 font-bold text-primary-800">{referralFeature.title}</h4>
+                                </div>
+                                <p className="paragraph-xl text-primary-800">{referralFeature.text}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                    <div className="flex justify-end gap-5 px-16">
+                      <SwiperButtonPrev disabled={isBeginning} />
+                      <SwiperButtonNext disabled={isEnd} />
+                    </div>
+                  </Swiper>
                 </div>
-              </Swiper>
+              </div>
             </div>
           </motion.div>
         )}
