@@ -1,0 +1,22 @@
+{
+  "tagline": "How It Works",
+  "title": "Launch Your Bug Bounty Program With The Cyberbay Platform",
+  "content": "Three simple steps to execute your bug bounty program.",
+  "steps": [
+    {
+      "title": "Account Creation",
+      "description": "Confirm your domain and set up your bounty program preferences.",
+      "icon": "/platform/step-1.png"
+    },
+    {
+      "title": "Program Configuration",
+      "description": "Define your scope, rewards, and program rules.",
+      "icon": "/platform/step-2.png"
+    },
+    {
+      "title": "Launch & Monitor",
+      "description": "Review submissions and manage your program.",
+      "icon": "/platform/step-3.png"
+    }
+  ]
+}

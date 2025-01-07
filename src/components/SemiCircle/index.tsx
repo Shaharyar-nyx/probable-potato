@@ -130,9 +130,11 @@ export const SemiCircle: React.FC<SemiCircleProps> = ({ text, data }) => {
       .attr(
         "d",
         d3
-          .arc()
+          .arc<d3.PieArcDatum<DataType>>()
           .innerRadius(radius * 0.5 - innerBorderThickness)
-          .outerRadius(radius * 0.5),
+          .outerRadius(radius * 0.5)
+          .startAngle((d) => d.startAngle)
+          .endAngle((d) => d.endAngle),
       )
       .attr("fill", innerBorderColor)
       .attr("class", "inner-border");
@@ -145,9 +147,11 @@ export const SemiCircle: React.FC<SemiCircleProps> = ({ text, data }) => {
       .attr(
         "d",
         d3
-          .arc()
-          .innerRadius(radius)
-          .outerRadius(radius + outerBorderThickness),
+          .arc<d3.PieArcDatum<DataType>>()
+          .innerRadius(radius * 0.5)
+          .outerRadius(radius * 0.5 + outerBorderThickness)
+          .startAngle((d) => d.startAngle)
+          .endAngle((d) => d.endAngle),
       )
       .attr("fill", outerBorderColor)
       .attr("class", "outer-border");

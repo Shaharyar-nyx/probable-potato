@@ -1,0 +1,66 @@
+.solutionsContainer {
+  @apply relative overflow-hidden bg-gradient-to-br from-white to-[#f8f9fa];
+}
+
+.container {
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-16 py-[120px] text-primary-800;
+}
+
+.glassBackground {
+  @apply bg-[#eff0f2]/10 shadow-[0px_0px_20px_0px_rgba(255,255,255,0.25)_inset] backdrop-blur-lg;
+}
+
+.sectionBackground {
+  @apply relative isolate min-h-screen bg-inherit bg-right-top bg-no-repeat;
+}
+
+.overlay {
+  @apply absolute inset-0 opacity-80;
+  background: linear-gradient(180deg, rgba(246, 247, 248, 0) 74.68%, #f6f7f8 100%),
+    linear-gradient(0deg, var(--Neutral-50, #f6f7f8) 0%, var(--Neutral-50, #f6f7f8) 100%);
+  background-blend-mode: normal, color;
+}
+
+.solutionCard {
+  @apply flex w-full flex-row items-start gap-8;
+
+  &.even {
+    @apply justify-end;
+  }
+}
+
+.cardContent {
+  composes: glassBackground;
+  @apply flex flex-row items-center gap-6 rounded-xl border p-10;
+}
+
+.iconWrapper {
+  @apply flex-shrink-0 px-5;
+}
+
+.textContent {
+  @apply flex flex-col items-start text-left;
+}
+
+.cardTitle {
+  @apply mb-2 max-w-[600px] text-left text-primary-800;
+  white-space: break-spaces;
+}
+
+.cardDescription {
+  @apply max-w-[600px] text-primary-800;
+}
+
+.button {
+  @apply rounded bg-primary-500 px-6 py-2 text-white transition-colors hover:bg-blue-700;
+
+  &.large {
+    @apply w-fit px-8 py-3;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    @apply px-4;
+  }
+}

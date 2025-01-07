@@ -6,35 +6,35 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
-import { heroContent } from "@/data/hero";
+import { HeroProps } from "@/types";
 
-export const Hero: React.FC = () => {
+export const Hero: React.FC<HeroProps> = ({ backgroundVideo, buttonText, description, featuredImage, title }) => {
   return (
     <header className={styles.header}>
       <div className={styles.backgroundWrapper}>
-        <Image alt="background animation" fill priority src={heroContent.backgroundVideo} />
+        <Image alt="background animation" fill priority src={backgroundVideo} />
       </div>
       <div className={styles.overlay} />
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.textContent}>
-            <div className={`${styles.title} display-1 font-bold`}>{heroContent.title}</div>
-            <p className={`${styles.description} paragraph-lg`}>{heroContent.description}</p>
+            <div className={`${styles.title} display-1 font-bold`}>{title}</div>
+            <p className={`${styles.description} paragraph-lg`}>{description}</p>
             <Button icon={<Image alt="arrow up right" height={24} src="/images/arrow-up-right.svg" width={24} />}>
-              {heroContent.cta.text}
+              {buttonText}
             </Button>
           </div>
 
           <ParallaxProvider>
             <div className={styles.imageContainer}>
               <div className={styles.imageWrapper}>
-                <Parallax className="h-full" translateY={heroContent.styles.parallaxRange.image}>
+                <Parallax className="h-full" translateY={[-20, 20]}>
                   <Image
-                    alt={heroContent.featuredImage.alt}
+                    alt={featuredImage.alt}
                     className="rounded-2xl"
                     layout="fill"
                     objectFit="cover"
-                    src={heroContent.featuredImage.image}
+                    src={featuredImage.image}
                   />
                 </Parallax>
               </div>

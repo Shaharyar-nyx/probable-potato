@@ -189,7 +189,7 @@ export const ContactForm: React.FC = () => {
             </div>
           </div>
 
-          <Button size="large" className="!px-20" type="submit">
+          <Button className="!px-20" size="large" type="submit">
             Submit
           </Button>
         </form>
