@@ -3,6 +3,7 @@
 import React from "react";
 
 import { Header } from "@/components";
+import bugBountyData from "@/data/company/bug-bounty.json";
 import events from "@/data/company/events.json";
 import heroData from "@/data/company/hero.json";
 import newsData from "@/data/company/news.json";
@@ -15,7 +16,7 @@ const CompanyPage: React.FC = () => {
   return (
     <main>
       <Header {...heroData} />
-      <BugBountyPrograms />
+      <BugBountyPrograms {...bugBountyData} />
       <OurCoreTeam {...ourCoreTeamData} />
       <OurCulture {...ourCultureData} />
       <Events {...events} />

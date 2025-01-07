@@ -1,0 +1,55 @@
+.finding-bug-bounty {
+  @apply relative px-16 pb-[120px] pt-20;
+
+  .background {
+    @apply absolute inset-0 -z-10 bg-primary-500 bg-[url('/bug-hunters/join-and-benefits-bg.svg')] bg-cover bg-no-repeat;
+  }
+
+  .content-wrapper {
+    @apply mx-auto mb-10 px-28 text-center text-neutral-50;
+  }
+
+  .container {
+    @apply mx-auto flex gap-24 px-28;
+  }
+
+  .features-grid {
+    @apply flex flex-col gap-6;
+  }
+
+  .feature-row {
+    @apply flex flex-row gap-6;
+  }
+
+  .feature-icon-container {
+    @apply flex w-[30%] flex-col gap-3 rounded-2xl bg-primary-500 p-10;
+  }
+
+  .icon-wrapper {
+    @apply flex items-center gap-3;
+  }
+
+  .icon-background {
+    @apply rounded-md bg-neutral-50 p-1;
+  }
+
+  .icon {
+    @apply h-[24px] w-[24px] text-primary-500;
+  }
+
+  .feature-text-container {
+    @apply flex h-full items-center rounded-2xl bg-primary-500 p-10;
+  }
+
+  .title {
+    @apply mb-6 font-bold text-neutral-50;
+  }
+
+  .paragraph {
+    @apply mb-10 text-neutral-50;
+  }
+
+  .feature-container {
+    @apply rounded-2xl bg-primary-500 p-10;
+  }
+}

@@ -1,30 +1,12 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
-const steps = [
-  {
-    id: 1,
-    title: "Account Creation",
-    description: "Confirm your domain and set up your bounty program preferences.",
-    imagePath: "/platform/step-1.png",
-  },
-  {
-    id: 2,
-    title: "Program Configuration",
-    description: "Define your scope, rewards, and program rules.",
-    imagePath: "/platform/step-2.png",
-  },
-  {
-    id: 3,
-    title: "Launch & Monitor",
-    description: "Review submissions and manage your program.",
-    imagePath: "/platform/step-3.png",
-  },
-];
+import styles from "./styles.module.scss";
+import { LaunchProgramProps } from "@/types";
 
-export const LaunchProgram = () => {
+export const LaunchProgram: React.FC<LaunchProgramProps> = ({ tagline, title, content, steps }) => {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const nextStep = () => {
@@ -36,62 +18,68 @@ export const LaunchProgram = () => {
   };
 
   return (
-    <section className="bg-neutral-50 py-16">
-      <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
-        <div className="grid items-center gap-12 md:grid-cols-2">
-          <div className="space-y-8 text-primary-800">
-            <span className="tagline">How It Works</span>
-            <h2 className="heading-2 font-bold">Launch Your Bug Bounty Program With The Cyberbay Platform</h2>
-            <p className="paragraph">Three simple steps to execute your bug bounty program.</p>
+    <section className={styles.section}>
+      <div className={styles.container}>
+        <div className={`${styles.gridContent} grid`}>
+          <div className={styles.content}>
+            <div className="tagline mb-10">{tagline}</div>
+            <h2 className="heading-2 mb-6 font-bold">{title}</h2>
+            <p className="paragraph-md">{content}</p>
           </div>
-          <div className="relative">
-            <div className="absolute left-0 right-[-20px] top-1/2 z-50 flex -translate-y-1/2 items-center justify-between">
+          <div className={styles.sliderContainer}>
+            <div className={styles.navigationButtons}>
               <button
-                onClick={prevStep}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-primary-800 transition-all hover:bg-neutral-50"
+                className={styles.navigationButton}
+                disabled={currentStep === 0}
                 style={{
                   boxShadow: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
                 }}
+                onClick={prevStep}
               >
-                <Image src="/company/arrow-left.svg" alt="Previous" width={24} height={24} />
+                <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
+                    fill={currentStep === 0 ? "#B4CEF7" : "#02255B"}
+                  />
+                </svg>
               </button>
               <button
-                onClick={nextStep}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-primary-800 transition-all hover:bg-neutral-50"
+                className={styles.navigationButton}
+                disabled={currentStep === steps.length - 1}
                 style={{
                   boxShadow: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
                 }}
+                onClick={nextStep}
               >
-                <Image src="/company/arrow-right.svg" alt="Next" width={24} height={24} />
+                <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z"
+                    fill={currentStep === steps.length - 1 ? "#B4CEF7" : "#02255B"}
+                  />
+                </svg>
               </button>
             </div>
-            <div className="relative mx-auto h-[512px] w-full max-w-lg">
+            <div className={styles.carouselContainer}>
               {steps.map((step, index) => {
                 const position = (index - currentStep + steps.length) % steps.length;
+                const positionClass =
+                  position === 0 ? styles.slideActive : position === 1 ? styles.slideNext : styles.slideFar;
+
                 return (
-                  <div
-                    key={step.id}
-                    className={`absolute left-0 top-0 h-[500px] w-full rounded-2xl bg-primary-500 p-8 transition-all duration-500 ${
-                      position === 0
-                        ? "z-30 translate-x-0 translate-y-0 opacity-100"
-                        : position === 1
-                          ? "z-20 translate-x-4 translate-y-4 opacity-40"
-                          : "z-10 translate-x-8 translate-y-8 opacity-20"
-                    }`}
-                  >
-                    <div className="flex h-full flex-col">
-                      <div className="text-center text-white">
-                        <span className="heading-7 mb-2 font-bold">Step {step.id}:</span>
-                        <h4 className="heading-7 mb-4 font-bold">{step.title}</h4>
-                        <p className="paragraph-md mb-8">{step.description}</p>
+                  <div key={index} className={`${styles.slide} ${positionClass}`}>
+                    <div className={styles.slideContent}>
+                      <div className={styles.slideHeader}>
+                        <h4 className="heading-7 font-bold">Step {index + 1}:</h4>
+                        <h4 className={`heading-7 ${styles.stepTitle}`}>{step.title}</h4>
+                        <p className={`paragraph-md mb-6`}>{step.description}</p>
                       </div>
-                      <div className="relative mt-auto flex-1 rounded-lg">
+                      <div className={styles.imageContainer}>
                         <Image
-                          src={step.imagePath}
                           alt="Step Image"
+                          className={styles.stepImage}
                           layout="fill"
                           objectFit="contain"
-                          className="rounded-lg"
+                          src={step.icon}
                         />
                       </div>
                     </div>

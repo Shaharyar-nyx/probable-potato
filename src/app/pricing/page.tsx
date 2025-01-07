@@ -2,13 +2,14 @@ import React from "react";
 
 import { Header } from "@/components";
 import heroData from "@/data/pricing/hero.json";
+import packagesData from "@/data/pricing/packages.json";
 import { CTA, Packages } from "@/sections";
 
 const Pricing: React.FC = () => {
   return (
     <main>
       <Header {...heroData} />
-      <Packages />
+      <Packages {...packagesData} />
       <CTA
         backgroundImage={{
           src: "/pricing/pricing-cta-bg.webp",

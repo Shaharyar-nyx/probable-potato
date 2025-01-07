@@ -25,16 +25,16 @@ export const Button: React.FC<ButtonProps> = ({
   const [hovered, setHovered] = useState(false);
   const isDisabled = "disabled" in props && props.disabled === true;
 
-  const handleEnter = (e: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+  const handleEnter = (e: MouseEvent<HTMLButtonElement> | MouseEvent<HTMLAnchorElement>) => {
     if (isDisabled) return;
     setHovered(true);
-    if (onMouseEnter) onMouseEnter(e);
+    if (onMouseEnter) onMouseEnter(e as any);
   };
 
-  const handleLeave = (e: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+  const handleLeave = (e: MouseEvent<HTMLButtonElement> | MouseEvent<HTMLAnchorElement>) => {
     if (isDisabled) return;
     setHovered(false);
-    if (onMouseLeave) onMouseLeave(e);
+    if (onMouseLeave) onMouseLeave(e as any);
   };
 
   const commonClassNames = clsx(

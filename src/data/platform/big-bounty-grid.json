@@ -1,0 +1,15 @@
+{
+  "tagline": "Cost-Effective Scalability with On-Demand, Pre-Vetted Talent",
+  "title": "Bug Bounty Programs",
+  "content": "Identifying vulnerabilities requires diverse skills often not available in-house. Crowdsourcing offers a highly effective solution, and the Cyberbay Platform connects you with pre-vetted bug hunters who provide specialized expertise when you need it.",
+  "gridLeft": {
+    "icon": "/platform/matters.svg",
+    "title": "Why This Matters",
+    "description": "Crowdsourcing your bug bounty programs provides cost-effective, on-demand scalability and a wider talent pool to strengthen your defenses against cyber attacks."
+  },
+  "gridRight": {
+    "icon": "/platform/program.svg",
+    "title": "Public vs. Private Programs",
+    "description": "Public programs are open to all Cyberbay bug hunters, while private programs are invitation-only. Contact us to discuss which type of program is best for you."
+  }
+}

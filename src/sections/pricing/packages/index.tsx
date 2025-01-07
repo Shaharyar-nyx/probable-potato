@@ -1,13 +1,17 @@
 "use client";
 
 import { Roboto } from "next/font/google";
-import { useState } from "react";
+import Image from "next/image";
+import { useCallback, useState } from "react";
 import { Tooltip } from "react-tooltip";
 
 import styles from "./styles.module.scss";
-import { Feature, PACKAGES_CONFIG, PackageData } from "@/data/packages";
 import { Button } from "@/components";
-import Image from "next/image";
+import { Feature, PackageData as BasePackageData, PackagesProps } from "@/types";
+
+interface ExtendedPackageData extends BasePackageData {
+  type: keyof typeof PackageIcons;
+}
 
 const PackageIcons = {
   cyberscan: (
@@ -56,7 +60,7 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-const PackageCard = ({ data, type }: { data: PackageData; type: keyof typeof PackageIcons }) => (
+const PackageCard = ({ data, type }: { data: BasePackageData; type: keyof typeof PackageIcons }) => (
   <div className={styles.package}>
     <div>
       <div className={styles.packageHeaderWrapper}>
@@ -132,12 +136,15 @@ const FeatureRow = ({
   feature,
   hoveredColumn,
   onColumnHover,
+  packages,
 }: {
   feature: Feature;
   hoveredColumn: number | null;
   onColumnHover: (index: number | null) => void;
+  packages: ExtendedPackageData[];
 }) => {
-  const renderValue = (value: boolean | string) => {
+  const renderValue = (value: boolean | string | undefined) => {
+    if (typeof value === "undefined") return null;
     if (typeof value === "string") return value;
     return value ? (
       <div className={styles.iconContainer}>
@@ -194,43 +201,67 @@ const FeatureRow = ({
           </>
         )}
       </td>
-      <td className={getColumnClass(0)} onMouseEnter={() => onColumnHover(0)} onMouseLeave={() => onColumnHover(null)}>
-        {renderValue(feature.cyberscan)}
-      </td>
-      <td className={getColumnClass(1)} onMouseEnter={() => onColumnHover(1)} onMouseLeave={() => onColumnHover(null)}>
-        {renderValue(feature.cybershield)}
-      </td>
-      <td className={getColumnClass(2)} onMouseEnter={() => onColumnHover(2)} onMouseLeave={() => onColumnHover(null)}>
-        {renderValue(feature.cyberswarm)}
-      </td>
+      {packages.map((pkg, index) => (
+        <td
+          key={pkg.type}
+          className={getColumnClass(index)}
+          onMouseEnter={() => onColumnHover(index)}
+          onMouseLeave={() => onColumnHover(null)}
+        >
+          {renderValue(feature[pkg.type as keyof typeof feature])}
+        </td>
+      ))}
     </tr>
   );
 };
 
-export const Packages = () => {
+export const Packages: React.FC<PackagesProps> = ({ packages, features, description, title, backgroundImage }) => {
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
 
+  const packagesList = useCallback(() => {
+    if (!packages) return [] as ExtendedPackageData[];
+    return Object.entries(packages).map(([key, value]) => ({
+      ...value,
+      type: key,
+    })) as ExtendedPackageData[];
+  }, [packages]);
+
+  const GridCols = useCallback(() => {
+    return packages ? String(Object.keys(packages || {}).length + 1) : "1";
+  }, [packages]);
+
+  const packageArray = packagesList();
+
   return (
-    <div className={styles.container} style={{ backgroundImage: `url(/images/bg-image.jpeg)` }}>
+    <div className={styles.container} style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className={styles.header}>
-        <h1 className="heading-1 mb-3 font-bold text-primary-800">{PACKAGES_CONFIG.header.title}</h1>
-        <p className={styles.subtitle}>{PACKAGES_CONFIG.header.description}</p>
+        <h1 className="heading-1 mb-3 font-bold text-primary-800">{title}</h1>
+        <p className={styles.subtitle}>{description}</p>
       </div>
 
-      <div className={styles.packagesGrid}>
-        <PackageCard data={PACKAGES_CONFIG.packages.cyberscan} type="cyberscan" />
-        <PackageCard data={PACKAGES_CONFIG.packages.cybershield} type="cybershield" />
-        <PackageCard data={PACKAGES_CONFIG.packages.cyberswarm} type="cyberswarm" />
+      <div
+        className={`${styles.packagesGrid} grid gap-6`}
+        style={{ gridTemplateColumns: `repeat(${GridCols()}, minmax(0, 1fr))` }}
+      >
+        <div />
+        {packageArray.map((pkg) => (
+          <PackageCard key={pkg.type} data={pkg} type={pkg.type as keyof typeof PackageIcons} />
+        ))}
       </div>
 
+      <div className="paragraph-xl relative top-[1px] inline-block text-left font-semibold text-primary-800">
+        <div className="rounded-tl-xl rounded-tr-xl border border-b-[#fff] border-l-neutral-100 border-r-neutral-100 border-t-neutral-100 bg-white px-7 py-2">
+          Package features
+        </div>
+      </div>
       <div className={styles.featuresTable}>
-        <p className={`${styles.featuresHeader} paragraph-xl font-semibold`}>Package features</p>
         <table className={styles.table}>
           <tbody>
-            {PACKAGES_CONFIG.features.map((feature) => (
+            {features.map((feature) => (
               <FeatureRow
                 key={feature.name}
                 feature={feature}
+                packages={packageArray}
                 hoveredColumn={hoveredColumn}
                 onColumnHover={setHoveredColumn}
               />

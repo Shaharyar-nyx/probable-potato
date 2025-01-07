@@ -8,7 +8,7 @@
       "date": "Feb 9 2025",
       "location": "Los Angeles",
       "description": "Introductory event designed to teach the fundamental principles of cybersecurity to people with no prior experience.",
-      "image": "/events/event-1.png",
+      "image": "/images/company/event-1.png",
       "type": "Virtual",
       "link": "https://www.eventbrite.com/e/cybersecurity-basics-tickets-123456789"
     },
@@ -17,7 +17,7 @@
       "date": "Feb 14 2025",
       "location": "Hong Kong",
       "description": "Training in advanced techniques to identify and mitigate sophisticated cyber threats.",
-      "image": "/events/event-2.png",
+      "image": "/images/company/event-2.png",
       "type": "In-Person",
       "link": "https://www.eventbrite.com/e/cybersecurity-basics-tickets-123456789"
     },
@@ -26,7 +26,7 @@
       "date": "Feb 20 2025",
       "location": "Hong Kong",
       "description": "Explore the latest trends and innovative solutions in cybersecurity.",
-      "image": "/events/event-3.png",
+      "image": "/images/company/event-3.png",
       "type": "Hybrid",
       "link": "https://www.eventbrite.com/e/cybersecurity-basics-tickets-123456789"
     },
@@ -35,7 +35,7 @@
       "date": "Mar 14 2025",
       "location": "Hong Kong",
       "description": "Training in advanced techniques to identify and mitigate sophisticated cyber threats.",
-      "image": "/events/event-2.png",
+      "image": "/images/company/event-2.png",
       "type": "In-Person",
       "link": "https://www.eventbrite.com/e/cybersecurity-basics-tickets-123456789"
     },
@@ -44,7 +44,7 @@
       "date": "Apr 20 2025",
       "location": "Hong Kong",
       "description": "Explore the latest trends and innovative solutions in cybersecurity.",
-      "image": "/events/event-3.png",
+      "image": "/images/company/event-3.png",
       "type": "Hybrid",
       "link": "https://www.eventbrite.com/e/cybersecurity-basics-tickets-123456789"
     }

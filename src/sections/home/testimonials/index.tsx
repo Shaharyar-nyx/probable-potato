@@ -8,13 +8,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import styles from "./styles.module.scss";
-import { testimonialsContent } from "@/data/testimonials";
+import { TestimonialsProps } from "@/types";
 
-interface TestimonialsProps {
-  content?: typeof testimonialsContent;
-}
-
-export const Testimonials = ({ content = testimonialsContent }: TestimonialsProps) => {
+export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const swiperRef = useRef<any>(null);
@@ -59,9 +55,9 @@ export const Testimonials = ({ content = testimonialsContent }: TestimonialsProp
       <div className={styles.content}>
         <div className={styles.header}>
           <div className={styles.clientsSection}>
-            <h4 className={`${styles.title} heading-4`}>{content.sections.clients.title}</h4>
+            <h4 className={`${styles.title} heading-4`}>Clients</h4>
             <div className={styles.clientsList}>
-              {content.testimonials.map((testimonial, index) => (
+              {testimonials.map((testimonial, index) => (
                 <div
                   key={testimonial.client}
                   className={`${styles.client} ${index === activeIndex ? styles.clientActive : ""}`}
@@ -74,7 +70,7 @@ export const Testimonials = ({ content = testimonialsContent }: TestimonialsProp
           </div>
 
           <div className={styles.testimonialSection}>
-            <h4 className={`${styles.title} heading-4`}>{content.sections.testimonials.title}</h4>
+            <h4 className={`${styles.title} heading-4`}>Testimonials</h4>
             <Swiper
               ref={swiperRef}
               autoplay={{
@@ -89,7 +85,7 @@ export const Testimonials = ({ content = testimonialsContent }: TestimonialsProp
                 startProgress();
               }}
             >
-              {content.testimonials.map((testimonial, index) => (
+              {testimonials.map((testimonial, index) => (
                 <SwiperSlide key={index}>
                   <div className={styles.testimonialSlide}>
                     <div className={styles.testimonialLeft}>

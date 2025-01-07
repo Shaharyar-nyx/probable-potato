@@ -23,9 +23,9 @@ const navigationData: NavSection[] = [
   {
     title: "Solutions",
     links: [
-      { label: "Cyberbay Platform", href: "/platform" },
-      { label: "Bug Bounty", href: "/bug-bounty" },
-      { label: "Continuous Monitoring", href: "/continuous-monitoring" },
+      { label: "Cyberbay Platform", href: "/solutions/platform" },
+      { label: "Bug Bounty", href: "/solutions/bug-bounty" },
+      { label: "Continuous Monitoring", href: "/solutions/continuous-monitoring" },
     ],
   },
   {

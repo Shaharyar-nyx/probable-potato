@@ -19,11 +19,11 @@
 }
 
 .packagesGrid {
-  @apply mb-12 ml-auto grid w-[75%] grid-cols-3 gap-6;
+  @apply mb-12 gap-6;
 }
 
 .package {
-  @apply flex flex-col justify-between gap-6 rounded-2xl bg-primary-500 p-8;
+  @apply flex w-full flex-col justify-between gap-6 rounded-2xl bg-primary-500 p-8;
 }
 
 .packageHeaderWrapper {
@@ -67,7 +67,7 @@
 }
 
 .featuresTable {
-  @apply mt-8 overflow-hidden rounded-2xl bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.05)];
+  @apply overflow-hidden rounded-bl-2xl rounded-br-2xl rounded-tr-2xl border border-neutral-200;
 }
 
 .featuresHeader {
@@ -75,7 +75,7 @@
 }
 
 .table {
-  @apply w-full table-fixed border-separate border-spacing-0;
+  @apply w-full table-fixed border-separate border-spacing-0 border-neutral-200 shadow-[0px_4px_20px_rgba(0,0,0,0.05)];
 }
 
 .tableRow {
@@ -87,7 +87,7 @@
 }
 
 .tableCell {
-  @apply w-[calc(75%/3)] border-b border-neutral-300 bg-white p-4 text-center text-primary-800 transition-all duration-200 ease-in-out;
+  @apply border-b border-[#C1C4CA] bg-white p-4 text-center text-primary-800 transition-all duration-200 ease-in-out;
 
   &:first-child {
     @apply flex w-full items-center pl-8 text-left text-primary-800;
@@ -97,7 +97,7 @@
     @apply bg-primary-500 text-white;
 
     svg {
-      @apply text-white
+      @apply text-white;
     }
   }
 }
