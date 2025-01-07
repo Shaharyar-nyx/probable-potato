@@ -329,3 +329,22 @@ export interface SemiCircleProps {
   data: { icon_dark: string; icon_light: string; text: string; title: string }[];
   text: string;
 }
+
+export interface BenefitsProps {
+  benefits: {
+    icon: string;
+    title: string;
+  }[];
+  subtitle: string;
+  title: string;
+  description: string;
+}
+
+export interface JobOpeningsProps {
+  jobOpenings: {
+    contractType: string;
+    location: string;
+    title: string;
+    link: string;
+  }[];
+}
