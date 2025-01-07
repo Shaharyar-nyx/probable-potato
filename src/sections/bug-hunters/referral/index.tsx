@@ -1,15 +1,49 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
 import { Button, IconRenderer } from "@/components";
 import data from "@/data/bug-hunters/referral.json";
 
 import "./styles.scss";
 
+const SwiperButtonNext: React.FC<{ disabled: boolean }> = ({ disabled }) => {
+  const swiper = useSwiper();
+
+  return (
+    <Button
+      className="border-none p-3"
+      disabled={disabled}
+      iconName="ArrowRightIcon"
+      transparent
+      variant="neutral"
+      onClick={() => swiper.slideNext()}
+    />
+  );
+};
+
+const SwiperButtonPrev: React.FC<{ disabled: boolean }> = ({ disabled }) => {
+  const swiper = useSwiper();
+
+  return (
+    <Button
+      className="border-none p-3"
+      disabled={disabled}
+      iconName="ArrowLeftIcon"
+      transparent
+      variant="neutral"
+      onClick={() => swiper.slidePrev()}
+    />
+  );
+};
+
 export const Referral: React.FC = () => {
   const [showReferralScreen, setShowReferralScreen] = useState(false);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
 
   const handleOpenReferral = () => {
     setShowReferralScreen(true);
@@ -18,6 +52,20 @@ export const Referral: React.FC = () => {
   const handleCloseReferral = () => {
     setShowReferralScreen(false);
   };
+
+  // Handle body overflow when the referral screen is shown
+  useEffect(() => {
+    if (showReferralScreen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
+
+    // Cleanup function to reset overflow when component unmounts
+    return () => {
+      document.body.style.overflow = "visible";
+    };
+  }, [showReferralScreen]);
 
   return (
     <section className="referral-parent-container">
@@ -55,8 +103,36 @@ export const Referral: React.FC = () => {
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             <div className="overlay-content">
-              <h1 className="text-white">Hello World</h1>
-              <Button onClick={handleCloseReferral}>Close</Button>
+              <nav className="mt-[7rem] flex w-full justify-between bg-primary-500 px-16 py-5">
+                <div className="flex items-center gap-3">
+                  <Button className="p-3" iconName="ArrowLeftIcon" onClick={handleCloseReferral} />
+                  <h2 className="heading-5 text-neutral-50">{data.referral_title}</h2>
+                </div>
+                <Button className="p-3" iconName="XMarkIcon" onClick={handleCloseReferral}>
+                  Close
+                </Button>
+              </nav>
+              <Swiper
+                modules={[Navigation]}
+                navigation={false}
+                onSlideChange={(swiper) => {
+                  // Update state when slide changes
+                  setIsBeginning(swiper.isBeginning);
+                  setIsEnd(swiper.isEnd);
+                }}
+                onSwiper={(swiper) => {
+                  // Set initial state when Swiper is initialized
+                  setIsBeginning(swiper.isBeginning);
+                  setIsEnd(swiper.isEnd);
+                }}
+              >
+                <SwiperSlide>Slide 1</SwiperSlide>
+                <SwiperSlide>Slide 2</SwiperSlide>
+                <div className="flex gap-5">
+                  <SwiperButtonPrev disabled={isBeginning} />
+                  <SwiperButtonNext disabled={isEnd} />
+                </div>
+              </Swiper>
             </div>
           </motion.div>
         )}

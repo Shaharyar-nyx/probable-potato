@@ -99,7 +99,7 @@ export interface PackagesProps {
 }
 
 export interface BaseButtonProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   icon?: React.ReactNode;
   iconName?: string;

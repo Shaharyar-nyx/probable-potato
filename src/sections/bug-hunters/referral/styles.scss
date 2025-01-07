@@ -9,6 +9,23 @@
     }
   }
   &-overlay {
-    @apply fixed top-0 left-0 w-full h-screen bg-neutral-50 flex items-center justify-center z-50;
+    @apply fixed left-0 top-0 z-50 flex h-screen w-full items-center justify-center bg-neutral-50;
   }
+}
+
+.overlay-content {
+  @apply h-full w-full;
+}
+
+.swiper-slide {
+  @apply bg-neutral-50;
+}
+
+.swiper-slide img {
+  @apply block w-full h-full object-cover;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  @apply hidden;
 }
