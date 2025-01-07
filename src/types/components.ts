@@ -37,7 +37,7 @@ export interface BrandMissionProps {
 export interface SolutionCardProps {
   description: string;
   icon: string;
-  isEven: boolean;
+  isEven?: boolean;
   link?: string;
   title: string;
 }
@@ -46,7 +46,7 @@ export interface SolutionsProps {
   crowdsourcing: {
     benefits: {
       description: string;
-      link: string;
+      link: string | null;
       title: string;
     }[];
     description: string;
@@ -94,7 +94,7 @@ export interface PackagesProps {
   backgroundImage: string | null;
   description: string;
   features: Feature[];
-  packages: PackageData[];
+  packages: Record<string, PackageData>;
   title: string;
 }
 

@@ -7,7 +7,11 @@ import { Tooltip } from "react-tooltip";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
-import { Feature, PackageData, PackagesProps } from "@/types";
+import { Feature, PackageData as BasePackageData, PackagesProps } from "@/types";
+
+interface ExtendedPackageData extends BasePackageData {
+  type: keyof typeof PackageIcons;
+}
 
 const PackageIcons = {
   cyberscan: (
@@ -56,7 +60,7 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-const PackageCard = ({ data, type }: { data: PackageData; type: keyof typeof PackageIcons }) => (
+const PackageCard = ({ data, type }: { data: BasePackageData; type: keyof typeof PackageIcons }) => (
   <div className={styles.package}>
     <div>
       <div className={styles.packageHeaderWrapper}>
@@ -137,9 +141,10 @@ const FeatureRow = ({
   feature: Feature;
   hoveredColumn: number | null;
   onColumnHover: (index: number | null) => void;
-  packages: PackageData[];
+  packages: ExtendedPackageData[];
 }) => {
-  const renderValue = (value: boolean | string) => {
+  const renderValue = (value: boolean | string | undefined) => {
+    if (typeof value === "undefined") return null;
     if (typeof value === "string") return value;
     return value ? (
       <div className={styles.iconContainer}>
@@ -196,14 +201,14 @@ const FeatureRow = ({
           </>
         )}
       </td>
-      {Object.keys(packages || {}).map((packageKey, index) => (
+      {packages.map((pkg, index) => (
         <td
-          key={packageKey}
+          key={pkg.type}
           className={getColumnClass(index)}
           onMouseEnter={() => onColumnHover(index)}
           onMouseLeave={() => onColumnHover(null)}
         >
-          {renderValue(feature[packageKey as keyof typeof feature])}
+          {renderValue(feature[pkg.type as keyof typeof feature])}
         </td>
       ))}
     </tr>
@@ -213,9 +218,19 @@ const FeatureRow = ({
 export const Packages: React.FC<PackagesProps> = ({ packages, features, description, title, backgroundImage }) => {
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
 
+  const packagesList = useCallback(() => {
+    if (!packages) return [] as ExtendedPackageData[];
+    return Object.entries(packages).map(([key, value]) => ({
+      ...value,
+      type: key,
+    })) as ExtendedPackageData[];
+  }, [packages]);
+
   const GridCols = useCallback(() => {
     return packages ? String(Object.keys(packages || {}).length + 1) : "1";
   }, [packages]);
+
+  const packageArray = packagesList();
 
   return (
     <div className={styles.container} style={{ backgroundImage: `url(${backgroundImage})` }}>
@@ -229,9 +244,9 @@ export const Packages: React.FC<PackagesProps> = ({ packages, features, descript
         style={{ gridTemplateColumns: `repeat(${GridCols()}, minmax(0, 1fr))` }}
       >
         <div />
-        {packages?.cyberscan && <PackageCard data={packages.cyberscan} type="cyberscan" />}
-        {packages?.cybershield && <PackageCard data={packages.cybershield} type="cybershield" />}
-        {packages?.cyberswarm && <PackageCard data={packages.cyberswarm} type="cyberswarm" />}
+        {packageArray.map((pkg) => (
+          <PackageCard key={pkg.type} data={pkg} type={pkg.type as keyof typeof PackageIcons} />
+        ))}
       </div>
 
       <div className="paragraph-xl relative top-[1px] inline-block text-left font-semibold text-primary-800">
@@ -246,7 +261,7 @@ export const Packages: React.FC<PackagesProps> = ({ packages, features, descript
               <FeatureRow
                 key={feature.name}
                 feature={feature}
-                packages={packages}
+                packages={packageArray}
                 hoveredColumn={hoveredColumn}
                 onColumnHover={setHoveredColumn}
               />

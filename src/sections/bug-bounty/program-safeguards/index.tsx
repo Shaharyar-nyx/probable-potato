@@ -19,7 +19,7 @@ const fadeInUp = {
   },
 };
 
-const slideIn = (isEven: boolean) => ({
+const slideIn = (isEven: boolean | undefined = false) => ({
   hidden: { opacity: 0, x: isEven ? 100 : -100 },
   visible: {
     opacity: 1,
