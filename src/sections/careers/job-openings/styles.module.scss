@@ -1,0 +1,35 @@
+.section {
+  @apply bg-primary-800 px-16 pb-[60px] pt-[120px];
+}
+
+.container {
+  @apply text-neutral-50;
+}
+
+.title {
+  @apply mb-6 font-bold;
+}
+
+.description {
+  @apply mb-16;
+}
+
+.gridContent {
+  @apply grid grid-cols-[2fr_1fr_1fr_auto] items-center gap-x-8;
+}
+
+.columnHeader {
+  @apply font-semibold;
+}
+
+.row {
+  @apply py-10 font-bold;
+}
+
+.buttonWrapper {
+  @apply flex items-center py-10;
+}
+
+.divider {
+  @apply col-span-4 border-b border-neutral-50;
+}
