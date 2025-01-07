@@ -1,11 +1,9 @@
-import { GET_FOOTER_NAV, GET_MAIN_NAV } from "graphql/queries";
-import { getApolloClient } from "lib/apollo-client";
+import { GET_FOOTER_NAV, GET_MAIN_NAV } from "@/graphql/queries";
+import client from "@/lib/apollo-client";
 
 export async function getMainMenusDirectus() {
-  const apolloClient = getApolloClient();
-
   try {
-    const data = await apolloClient.query({
+    const data = await client.query({
       query: GET_MAIN_NAV,
     });
 
@@ -21,10 +19,8 @@ export async function getMainMenusDirectus() {
 }
 
 export async function getFooterMenusDirectus() {
-  const apolloClient = getApolloClient();
-
   try {
-    const data = await apolloClient.query({
+    const data = await client.query({
       query: GET_FOOTER_NAV,
     });
 
