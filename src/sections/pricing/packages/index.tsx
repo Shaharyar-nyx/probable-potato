@@ -2,7 +2,7 @@
 
 import { Roboto } from "next/font/google";
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Tooltip } from "react-tooltip";
 
 import styles from "./styles.module.scss";
@@ -213,6 +213,10 @@ const FeatureRow = ({
 export const Packages: React.FC<PackagesProps> = ({ packages, features, description, title, backgroundImage }) => {
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
 
+  const GridCols = useCallback(() => {
+    return packages ? String(Object.keys(packages || {}).length + 1) : "1";
+  }, [packages]);
+
   return (
     <div className={styles.container} style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className={styles.header}>
@@ -220,15 +224,22 @@ export const Packages: React.FC<PackagesProps> = ({ packages, features, descript
         <p className={styles.subtitle}>{description}</p>
       </div>
 
-      <div className={`${styles.packagesGrid} grid grid-cols-${packages ? Object.keys(packages).length + 1 : 1}`}>
+      <div
+        className={`${styles.packagesGrid} grid gap-6`}
+        style={{ gridTemplateColumns: `repeat(${GridCols()}, minmax(0, 1fr))` }}
+      >
         <div />
         {packages?.cyberscan && <PackageCard data={packages.cyberscan} type="cyberscan" />}
         {packages?.cybershield && <PackageCard data={packages.cybershield} type="cybershield" />}
         {packages?.cyberswarm && <PackageCard data={packages.cyberswarm} type="cyberswarm" />}
       </div>
 
+      <div className="paragraph-xl relative top-[1px] inline-block text-left font-semibold text-primary-800">
+        <div className="rounded-tl-xl rounded-tr-xl border border-b-[#fff] border-l-neutral-100 border-r-neutral-100 border-t-neutral-100 bg-white px-7 py-2">
+          Package features
+        </div>
+      </div>
       <div className={styles.featuresTable}>
-        <p className={`${styles.featuresHeader} paragraph-xl font-semibold`}>Package features</p>
         <table className={styles.table}>
           <tbody>
             {features.map((feature) => (

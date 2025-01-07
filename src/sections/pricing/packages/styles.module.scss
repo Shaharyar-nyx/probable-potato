@@ -19,7 +19,7 @@
 }
 
 .packagesGrid {
-  @apply mb-12 grid gap-6;
+  @apply mb-12 gap-6;
 }
 
 .package {
@@ -67,7 +67,7 @@
 }
 
 .featuresTable {
-  @apply mt-8 overflow-hidden rounded-2xl bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.05)];
+  @apply overflow-hidden rounded-bl-2xl rounded-br-2xl rounded-tr-2xl border border-neutral-200;
 }
 
 .featuresHeader {
@@ -75,7 +75,7 @@
 }
 
 .table {
-  @apply w-full table-fixed border-separate border-spacing-0;
+  @apply w-full table-fixed border-separate border-spacing-0 border-neutral-200 shadow-[0px_4px_20px_rgba(0,0,0,0.05)];
 }
 
 .tableRow {
@@ -87,7 +87,7 @@
 }
 
 .tableCell {
-  @apply border-b border-neutral-300 bg-white p-4 text-center text-primary-800 transition-all duration-200 ease-in-out;
+  @apply border-b border-[#C1C4CA] bg-white p-4 text-center text-primary-800 transition-all duration-200 ease-in-out;
 
   &:first-child {
     @apply flex w-full items-center pl-8 text-left text-primary-800;
