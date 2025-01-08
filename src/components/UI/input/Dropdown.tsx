@@ -80,6 +80,7 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
         aria-describedby={ariaDescribedBy}
         aria-expanded={isOpen && !disabled}
         aria-haspopup="listbox"
+        aria-labelledby={`${id}-label ${id}`}
         className={clsx("dropdown-input-container", {
           "input-error": error,
           "dropdown-disabled": disabled,
