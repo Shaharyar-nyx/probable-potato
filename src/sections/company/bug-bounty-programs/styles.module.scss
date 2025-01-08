@@ -1,8 +1,8 @@
 .section {
-  @apply mx-auto w-full max-w-[1440px] px-16 pt-[60px];
+  @apply mx-auto w-full max-w-screen-2xl px-6 pt-16 lg:px-16 lg:pt-[60px];
 
   .navigation {
-    @apply mb-24 flex items-center justify-between gap-4 rounded-2xl bg-[#045DE333] p-4;
+    @apply flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 rounded-2xl bg-[#045DE333] p-4;
 
     .navButton {
       @apply flex-1 rounded-xl px-4 py-3 text-center text-primary-800 transition-all;
@@ -18,16 +18,16 @@
   }
 
   .content {
-    @apply relative min-h-[500px];
+    @apply my-24;
 
     .slide {
-      @apply absolute left-0 right-0 top-0 w-full;
+      @apply w-full;
 
       .slideContent {
-        @apply grid grid-cols-2 gap-16;
+        @apply grid lg:grid-cols-2 gap-16;
 
         &.reverse {
-          @apply grid-cols-2;
+          @apply lg:grid-cols-2;
           direction: rtl;
 
           > * {
@@ -41,7 +41,7 @@
       }
 
       .imageContent {
-        @apply relative h-full w-[80%] m-auto overflow-hidden;
+        @apply relative h-full w-full m-auto overflow-hidden;
 
         .image {
           @apply h-full w-full object-contain;

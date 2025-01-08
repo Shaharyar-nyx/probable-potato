@@ -1,6 +1,10 @@
 .container {
-  @apply relative mx-auto my-32 flex h-full max-w-[1440px] items-center justify-center py-32;
+  @apply relative mx-auto my-32 flex h-full max-w-screen-2xl items-center justify-center py-32;
   perspective: 1000px;
+
+  @media (max-width: 768px) {
+    @apply max-w-screen-sm;
+  }
 }
 
 .content {
@@ -16,12 +20,16 @@
 }
 
 .memberCard {
-  @apply absolute w-[200px] overflow-hidden rounded-2xl bg-transparent transition-transform duration-300 ease-in-out;
+  @apply absolute overflow-hidden rounded-2xl bg-transparent transition-transform duration-300 ease-in-out;
   aspect-ratio: 1;
+
+  @media (max-width: 768px) {
+    @apply hidden;
+  }
 }
 
 .memberImage {
-  @apply w-full h-full rounded-2xl object-cover;
+  @apply h-full w-full rounded-2xl object-cover;
 }
 
 .memberInfo {
@@ -82,7 +90,7 @@
 
 .academyTag {
   composes: tag;
-  @apply px-3 py-2 text-xs right-[28%] top-[5%];
+  @apply right-[28%] top-[5%] px-3 py-2 text-xs;
 }
 
 .organizationsTag {
@@ -91,7 +99,7 @@
 }
 
 // Responsive styles
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .container {
     @apply py-24;
   }

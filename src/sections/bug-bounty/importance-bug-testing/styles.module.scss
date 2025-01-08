@@ -1,11 +1,11 @@
 .importance-bug-testing {
-  @apply py-[120px] px-16;
+  @apply px-6 py-16 lg:px-16 lg:py-[120px];
   .background {
     @apply bg-neutral-50;
   }
 
   .container {
-    @apply mx-auto h-full max-w-screen-2xl flex gap-6;
+    @apply mx-auto flex h-full max-w-screen-2xl flex-col gap-6 lg:flex-row;
   }
 
   .title {

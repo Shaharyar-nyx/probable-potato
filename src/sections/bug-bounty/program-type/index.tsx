@@ -23,7 +23,7 @@ export const ProgramType: React.FC<ProgramTypeProps> = ({ title, content, featur
           <p className={`${styles.paragraph} paragraph-md`}>{content}</p>
         </div>
         <div className="flex flex-col gap-6">
-          <div className={`flex flex-row gap-6`}>
+          <div className={`flex flex-col lg:flex-row gap-6`}>
             {features.map((feature, id) => (
               <motion.div
                 key={id}
@@ -72,7 +72,7 @@ export const ProgramType: React.FC<ProgramTypeProps> = ({ title, content, featur
               </motion.div>
             ))}
           </div>
-          <div className={`${styles["feature-container"]} !flex-row items-end justify-between`}>
+          <div className={`${styles["feature-container"]} lg:!flex-row lg:items-end justify-between`}>
             <div className="flex flex-col gap-3">
               <h3 className="heading-7 font-bold text-neutral-50">Want to become a Bug Bounty Hunter?</h3>
               <p className="paragraph-md text-neutral-50">

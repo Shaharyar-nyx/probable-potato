@@ -57,8 +57,14 @@ export const News: React.FC<NewsProps> = ({ content, title, subtitle, news }) =>
               el: `.${styles.pagination}`,
             }}
             ref={swiperRef}
-            slidesPerView={3.5}
-            spaceBetween={24}
+            breakpoints={{
+              768: {
+                slidesPerView: 3.5,
+                spaceBetween: 24,
+              },
+            }}
+            slidesPerView={1}
+            spaceBetween={16}
           >
             {news.map((item, index) => (
               <SwiperSlide key={index}>

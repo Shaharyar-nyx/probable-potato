@@ -1,9 +1,9 @@
 .section {
-  @apply bg-primary-800 px-16 pb-[60px] pt-[120px];
+  @apply bg-primary-800 px-6 py-16 lg:px-16 lg:pb-[60px] lg:pt-[120px];
 }
 
 .container {
-  @apply text-neutral-50 mx-auto max-w-screen-2xl;
+  @apply mx-auto max-w-screen-2xl text-neutral-50;
 }
 
 .title {
@@ -12,24 +12,47 @@
 
 .description {
   @apply mb-16;
+
+  @media (max-width: 768px) {
+    @apply mb-8;
+  }
 }
 
 .gridContent {
   @apply grid grid-cols-[2fr_1fr_1fr_auto] items-center gap-x-8;
+
+  @media (max-width: 768px) {
+    @apply grid-cols-1 gap-y-4;
+  }
 }
 
 .columnHeader {
   @apply font-semibold;
+
+  @media (max-width: 768px) {
+    @apply hidden;
+  }
 }
 
 .row {
   @apply py-10 font-bold;
+  @media (max-width: 768px) {
+    @apply py-1;
+  }
 }
 
 .buttonWrapper {
   @apply flex items-center py-10;
+
+  @media (max-width: 768px) {
+    @apply py-1 justify-start;
+  }
 }
 
 .divider {
   @apply col-span-4 border-b border-neutral-50;
+
+  @media (max-width: 768px) {
+    @apply col-span-1 mt-4;
+  }
 }

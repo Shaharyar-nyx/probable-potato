@@ -20,7 +20,7 @@ export const Hero: React.FC<HeroProps> = ({ backgroundVideo, buttonText, descrip
           <div className={styles.textContent}>
             <div className={`${styles.title} display-1 font-bold`}>{title}</div>
             <p className={`${styles.description} paragraph-lg`}>{description}</p>
-            <Button icon={<Image alt="arrow up right" height={24} src="/images/arrow-up-right.svg" width={24} />}>
+            <Button className={styles.ctaButton} icon={<Image alt="arrow up right" height={24} src="/images/arrow-up-right.svg" width={24} />}>
               {buttonText}
             </Button>
           </div>

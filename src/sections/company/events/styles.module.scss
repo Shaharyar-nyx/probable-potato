@@ -1,5 +1,5 @@
 .events {
-  @apply px-16 py-[60px];
+  @apply px-6 py-16 lg:px-16 lg:py-[60px];
 
   .container {
     @apply mx-auto max-w-screen-2xl;
@@ -22,7 +22,7 @@
   }
 
   .monthsGrid {
-    @apply grid grid-cols-3 gap-y-8 p-8;
+    @apply grid lg:grid-cols-3 gap-y-8 p-8;
 
     .monthButton {
       @apply relative text-center transition-colors;
@@ -64,7 +64,7 @@
       @apply cursor-pointer rounded-2xl border-b border-neutral-100 p-8 transition-shadow hover:bg-white hover:shadow-lg;
 
       .cardContent {
-        @apply flex w-full items-center justify-between;
+        @apply flex flex-col lg:flex-row gap-4 lg:gap-0 w-full items-center justify-between;
 
         .leftContent {
           @apply flex items-center justify-start gap-[44px];

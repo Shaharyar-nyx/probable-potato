@@ -3,7 +3,11 @@
 }
 
 .container {
-  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-16 py-32 text-primary-800;
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 py-32 text-primary-800 lg:px-16;
+
+  @media (max-width: 768px) {
+    @apply max-w-screen-sm space-y-12 px-16 py-16;
+  }
 }
 
 .glassBackground {
@@ -23,7 +27,7 @@
 
 .solutionsWrapper {
   composes: glassBackground;
-  @apply flex flex-col gap-16 p-10;
+  @apply flex flex-col gap-16 px-10 py-16;
 }
 
 // Solution Card Styles
@@ -32,6 +36,14 @@
 
   &.even {
     @apply justify-end;
+  }
+
+  @media (max-width: 768px) {
+    @apply flex-col gap-4;
+
+    &.even {
+      @apply justify-start;
+    }
   }
 }
 
@@ -48,12 +60,48 @@
 }
 
 .cardTitle {
-  @apply mb-2 max-w-[600px] text-primary-800 text-left;
+  @apply mb-2 max-w-[600px] text-left text-primary-800;
   white-space: break-spaces;
 }
 
 .cardDescription {
   @apply mb-6 max-w-[600px] text-primary-800;
+}
+
+.cardImage {
+  @apply relative h-[400px] w-[600px] overflow-hidden rounded-xl;
+
+  img {
+    @apply h-full w-full object-cover;
+  }
+
+  @media (max-width: 768px) {
+    @apply h-[200px] w-full;
+  }
+}
+
+.cardFeatures {
+  @apply mt-6 grid grid-cols-2 gap-4;
+
+  @media (max-width: 768px) {
+    @apply grid-cols-1 gap-3;
+  }
+}
+
+.feature {
+  @apply flex items-center gap-2;
+
+  @media (max-width: 768px) {
+    @apply justify-center;
+  }
+}
+
+.featureIcon {
+  @apply flex h-5 w-5 items-center justify-center rounded-full bg-primary-50 text-primary-500;
+}
+
+.featureText {
+  @apply text-sm text-neutral-600;
 }
 
 .button {
@@ -68,6 +116,10 @@
 .crowdsourcingContent {
   composes: glassBackground;
   @apply flex flex-col gap-10 p-10;
+
+  @media (max-width: 768px) {
+    @apply p-6;
+  }
 }
 
 .label {
@@ -84,6 +136,10 @@
 
 .benefitsGrid {
   @apply grid grid-cols-2 gap-24;
+
+  @media (max-width: 768px) {
+    @apply grid-cols-1 gap-12;
+  }
 }
 
 .benefitItem {
@@ -99,13 +155,13 @@
 }
 
 // Responsive Styles
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .benefitsGrid {
     @apply grid-cols-1 gap-12;
   }
 
   .crowdsourcingContent {
-    @apply p-8;
+    @apply p-6;
   }
 
   .solutionsWrapper {
@@ -114,6 +170,10 @@
 
   .cardContent {
     @apply flex-col;
+
+    @media (max-width: 768px) {
+      @apply flex-row;
+    }
   }
 
   .textContent {

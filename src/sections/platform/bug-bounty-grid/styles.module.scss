@@ -1,5 +1,5 @@
 .section {
-  @apply pt-[120px] pb-[60px] px-16;
+  @apply px-6 py-16 lg:px-16 lg:pb-[60px] lg:pt-[120px];
 }
 
 .container {
@@ -7,7 +7,7 @@
 }
 
 .gridContent {
-  @apply items-center gap-16 md:grid-cols-2;
+  @apply items-center gap-16 lg:grid-cols-2;
 }
 
 .content {
@@ -15,11 +15,11 @@
 }
 
 .cardContainer {
-  @apply flex items-stretch gap-4;
+  @apply flex flex-col lg:flex-row items-stretch gap-4;
 }
 
 .cardColumn {
-  @apply flex w-1/2 flex-col gap-4;
+  @apply flex lg:w-1/2 flex-col gap-4;
 }
 
 .programCard {

@@ -1,5 +1,5 @@
 .our-core-team {
-  @apply mx-auto max-w-[1440px] px-16 pt-7 pb-24;
+  @apply mx-auto max-w-screen-2xl px-6 pt-5 pb-16 lg:px-16 lg:pt-7 lg:pb-24;
 
   .title {
     @apply mb-4 text-center text-primary-800;
@@ -15,14 +15,26 @@
 
   .row {
     @apply flex gap-6;
+
+    @media (max-width: 768px) {
+      @apply flex-col;
+    }
   }
 
   .row:last-child {
     @apply justify-center;
+
+    @media (max-width: 768px) {
+      @apply justify-start;
+    }
   }
 
   .row:last-child .card {
     @apply w-[calc((100%-32px)/3)];
+
+    @media (max-width: 768px) {
+      @apply w-full;
+    }
   }
 
   .card {
@@ -32,6 +44,10 @@
     box-shadow:
       0px 1px 3px 0px rgba(16, 24, 40, 0.1),
       0px 1px 2px -1px rgba(16, 24, 40, 0.1);
+
+    @media (max-width: 768px) {
+      @apply w-full;
+    }
 
     .header {
       @apply mb-6;

@@ -73,7 +73,7 @@ export const ProgramSafeguards: React.FC<ProgramSafeguardsProps> = ({ title, con
         <div className={styles.container}>
           <motion.div initial="hidden" variants={fadeInUp} viewport={{ once: true }} whileInView="visible">
             <motion.div
-              className="flex flex-col gap-6 px-28 mb-20 text-center"
+              className="flex flex-col gap-6 lg:px-28 mb-20 text-center"
               initial="hidden"
               variants={fadeInUp}
               viewport={{ once: true }}

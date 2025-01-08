@@ -1,13 +1,26 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./styles.module.scss";
 import { OurCoreTeamProps } from "@/types";
 
 export const OurCoreTeam: React.FC<OurCoreTeamProps> = ({ title, content, core }) => {
-  const CARDS_PER_ROW = 3;
+  const [cardsPerRow, setCardsPerRow] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setCardsPerRow(window.innerWidth <= 768 ? 1 : 3);
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const rows = core.reduce<Array<typeof core>>((acc, item, index) => {
-    const rowIndex = Math.floor(index / CARDS_PER_ROW);
+    const rowIndex = Math.floor(index / cardsPerRow);
     if (!acc[rowIndex]) {
       acc[rowIndex] = [];
     }

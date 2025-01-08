@@ -3,7 +3,7 @@
 }
 
 .container {
-  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-16 py-[120px] text-primary-800;
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 py-16 text-primary-800 lg:px-16 lg:py-[120px];
 }
 
 .glassBackground {
@@ -31,7 +31,7 @@
 
 .cardContent {
   composes: glassBackground;
-  @apply flex flex-row items-center gap-6 rounded-xl border p-10;
+  @apply flex flex-col gap-6 rounded-xl border p-10 lg:flex-row lg:items-center;
 }
 
 .iconWrapper {

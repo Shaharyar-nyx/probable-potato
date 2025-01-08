@@ -1,5 +1,5 @@
 .program-type {
-  @apply relative h-full bg-primary-800 py-24 px-16;
+  @apply relative h-full bg-primary-800 px-6 py-16 lg:px-16 lg:py-24;
 
   .background {
     @apply absolute inset-0 z-0 bg-[url('/images/bg-program-type.png')] bg-cover bg-center bg-no-repeat opacity-30;
@@ -25,7 +25,7 @@
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     .container {
       @apply px-4;
     }

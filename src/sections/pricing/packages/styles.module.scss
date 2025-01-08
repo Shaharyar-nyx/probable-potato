@@ -1,9 +1,17 @@
 .container {
-  @apply relative h-full bg-inherit bg-right-top bg-no-repeat px-16 py-24;
+  @apply relative px-6 py-16 lg:px-16 lg:py-24;
+}
+
+.background {
+  @apply absolute inset-0 z-[-1] h-full bg-inherit bg-right-top bg-no-repeat;
 }
 
 .content {
   @apply mx-auto max-w-screen-2xl;
+
+  @media (max-width: 768px) {
+    @apply px-0;
+  }
 }
 
 .header {
@@ -19,7 +27,11 @@
 }
 
 .packagesGrid {
-  @apply mb-12 gap-6;
+  @apply grid gap-8;
+
+  @media (max-width: 768px) {
+    @apply gap-6 mb-10;
+  }
 }
 
 .package {
@@ -114,7 +126,7 @@
   @apply ml-2 inline-flex cursor-pointer;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .packagesGrid {
     @apply grid-cols-2;
   }

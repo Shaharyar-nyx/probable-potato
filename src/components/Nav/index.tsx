@@ -19,27 +19,27 @@ export const Nav: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        setShowSolutionsDropdown(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (
+  //       dropdownRef.current &&
+  //       !dropdownRef.current.contains(event.target as Node) &&
+  //       buttonRef.current &&
+  //       !buttonRef.current.contains(event.target as Node)
+  //     ) {
+  //       setShowSolutionsDropdown(false);
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
-    setShowSolutionsDropdown(false);
+    // setShowSolutionsDropdown(false);
   }, [pathname]);
 
   const services = [
@@ -135,7 +135,7 @@ export const Nav: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed left-0 right-0 top-8 z-[9999] mx-auto h-[60px] w-full max-w-[1440px] px-4">
+    <nav className="fixed left-0 right-0 top-8 z-[9999] mx-auto h-[60px] w-full max-w-screen-2xl px-4">
       <div
         className={`relative mx-auto flex h-full items-center justify-between bg-neutral-50 px-4 shadow-lg ${
           showSolutionsDropdown ? "rounded-t-lg" : "rounded-lg"
@@ -145,7 +145,7 @@ export const Nav: React.FC = () => {
           <Link href="/">
             <img alt="Cyberbay" src="/images/cyberbay-logo.svg" />
           </Link>
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden items-center gap-3 lg:flex">
             {navItems.map((item) => (
               <div key={item.name}>
                 {item.hasDropdown ? (
@@ -221,7 +221,7 @@ export const Nav: React.FC = () => {
           </div>
         </div>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <div className="relative">
             <button
               className="flex items-center gap-2 rounded-lg px-3 py-2 transition-colors hover:bg-[#EFF0F2CC]"
@@ -234,7 +234,7 @@ export const Nav: React.FC = () => {
             </button>
 
             {showLanguageDropdown && (
-              <div className="absolute left-0 top-full mt-2 w-full min-w-16 rounded-lg bg-neutral-50 py-2 shadow-lg">
+              <div className="absolute right-0 top-full mt-2 w-full min-w-[120px] rounded-lg bg-neutral-50 py-2 shadow-lg">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
@@ -259,98 +259,128 @@ export const Nav: React.FC = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="text-primary-800 md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          ---
+        <button
+          className="flex items-center justify-center rounded-lg p-2 text-primary-800 hover:bg-[#EFF0F2CC] lg:hidden"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+        >
+          {isMobileMenuOpen ? (
+            <IconRenderer iconName="XMarkIcon" className="h-6 w-6" />
+          ) : (
+            <IconRenderer iconName="Bars3Icon" className="h-6 w-6" />
+          )}
         </button>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="absolute left-0 right-0 top-[72px] bg-neutral-50 shadow-lg md:hidden">
-            <div className="flex flex-col p-4">
-              {navItems.map((item) => (
-                <div key={item.name}>
+        <div
+          className={`absolute left-0 right-0  top-[55px] lg:top-[72px] bg-neutral-50 shadow-lg overflow-y-scroll transition-all duration-300 ease-in-out lg:hidden ${
+            isMobileMenuOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
+          }`}
+        >
+          <div className="flex flex-col space-y-2 p-4">
+            {navItems.map((item) => (
+              <div key={item.name} className="w-full">
+                {item.hasDropdown ? (
                   <button
-                    className={`w-full px-4 py-2 text-left text-base ${
-                      pathname === item.href ? "text-primary-500" : "text-primary-800"
+                    className={`w-full rounded-lg px-4 py-3 text-left text-base font-medium transition-colors hover:bg-[#EFF0F2CC] ${
+                      pathname === item.href ? "bg-primary-50 text-primary-500" : "text-primary-800"
                     }`}
                     onClick={() => {
-                      if (item.hasDropdown) {
-                        setShowSolutionsDropdown(!showSolutionsDropdown);
-                      } else {
-                        router.push(item.href);
-                        setIsMobileMenuOpen(false);
-                      }
+                      setShowSolutionsDropdown(!showSolutionsDropdown);
                     }}
                   >
-                    {item.name}
-                    {item.hasDropdown && <span className="ml-1">▾</span>}
-                  </button>
-
-                  {item.hasDropdown && showSolutionsDropdown && (
-                    <div className="pl-4">
-                      <div className="py-2">
-                        {menuData.map((section) => (
-                          <div key={section.title}>
-                            <div className="px-4 py-2 text-sm font-semibold text-gray-500">{section.title}</div>
-                            {section.items.map((item) => (
-                              <a key={item.name} className="block px-4 py-2" href={item.href}>
-                                <div className="flex items-start">
-                                  <span className="mr-3 text-xl">
-                                    <img alt={item.name} src={item.icon} />
-                                  </span>
-                                  <div>
-                                    <div className="text-primary-800">{item.name}</div>
-                                    <p className="text-sm text-gray-500">{item.description}</p>
-                                  </div>
-                                </div>
-                              </a>
-                            ))}
-                          </div>
-                        ))}
-                      </div>
+                    <div className="flex items-center justify-between">
+                      <span>{item.name}</span>
+                      {item.hasDropdown && (
+                        <IconRenderer
+                          iconName="ChevronDownIcon"
+                          className={`h-5 w-5 transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
+                        />
+                      )}
                     </div>
-                  )}
-                </div>
-              ))}
+                  </button>
+                ) : (
+                  <div className="w-full px-4 py-3 text-left transition-colors">
+                    <Link href={item.href} className={`text-base font-medium text-primary-800`}>
+                      {item.name}
+                    </Link>
+                  </div>
+                )}
 
-              <hr className="my-2" />
-              <div className="relative">
-                <button
-                  className="flex items-center gap-2 rounded-lg px-3 py-2 transition-colors hover:bg-[#EFF0F2CC]"
-                  onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-                >
-                  <span className="text-primary-800">{selectedLanguage.name}</span>
-                  <span className={`transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}>
-                    <img alt="Chevron Down" src="/images/chevron-down.svg" />
-                  </span>
-                </button>
-
-                {showLanguageDropdown && (
-                  <div className="absolute right-0 top-full mt-2 min-w-[120px] rounded-lg bg-neutral-50 py-2 shadow-lg">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        className="flex w-full items-center gap-2 px-4 py-2 transition-colors hover:bg-[#EFF0F2CC]"
-                        onClick={() => {
-                          setSelectedLanguage(lang);
-                          setShowLanguageDropdown(false);
-                        }}
-                      >
-                        <span className="text-primary-800">{lang.name}</span>
-                      </button>
+                {item.hasDropdown && showSolutionsDropdown && (
+                  <div className="mt-2 space-y-2 pl-4">
+                    {menuData.map((section) => (
+                      <div key={section.title} className="py-4">
+                        <div className="mb-3 text-sm font-semibold text-primary-800">{section.title}</div>
+                        <div className="space-y-3">
+                          {section.items.map((menuItem) => (
+                            <Link
+                              key={menuItem.name}
+                              href={menuItem.href}
+                              className="group flex items-start space-x-3 rounded-lg p-2 transition-colors hover:bg-primary-500 group-hover:text-neutral-50"
+                            >
+                              <span className="flex-shrink-0 rounded-md bg-primary-50 p-1">
+                                <IconRenderer iconName={menuItem.icon} className="h-5 w-5 text-primary-500" />
+                              </span>
+                              <div>
+                                <div className="text-sm font-medium text-primary-800 group-hover:text-neutral-50">
+                                  {menuItem.name}
+                                </div>
+                                <p className="text-xs text-neutral-600 group-hover:text-neutral-50">{menuItem.description}</p>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     ))}
                   </div>
                 )}
               </div>
+            ))}
 
-              <Button href="/login" transparent>
+            <hr className="my-4 border-neutral-200" />
+
+            <div className="relative">
+              <button
+                className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-[#EFF0F2CC]"
+                onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
+              >
+                <span className="text-primary-800">{selectedLanguage.name}</span>
+                <IconRenderer
+                  iconName="ChevronDownIcon"
+                  className={`h-5 w-5 transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {showLanguageDropdown && (
+                <div className="absolute right-0 top-full mt-2 w-full rounded-lg bg-neutral-50 py-2 shadow-lg">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      className="flex w-full items-center px-4 py-2 text-base transition-colors hover:bg-[#EFF0F2CC]"
+                      onClick={() => {
+                        setSelectedLanguage(lang);
+                        setShowLanguageDropdown(false);
+                      }}
+                    >
+                      <span className="text-primary-800">{lang.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="flex flex-col space-y-3 pt-4">
+              <Button href="/login" transparent onClick={() => setIsMobileMenuOpen(false)}>
                 Log In / Sign Up
               </Button>
 
-              <Button href="/contact-us">Contact Us</Button>
+              <Button href="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>
+                Contact Us
+              </Button>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
