@@ -190,6 +190,7 @@ export const Nav: React.FC = () => {
                                   key={item.name}
                                   className="group block rounded-[8px] p-4 hover:bg-primary-500"
                                   href={item.href}
+                                  onClick={() => setShowSolutionsDropdown(false)}
                                 >
                                   <div className="flex items-start gap-2">
                                     <span className="rounded-[4px] p-1 text-2xl group-hover:bg-neutral-50">
