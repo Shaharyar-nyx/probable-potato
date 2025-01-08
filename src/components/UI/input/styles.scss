@@ -41,6 +41,7 @@
   @apply rounded-xl border border-primary-800;
   @apply text-[14px] leading-5 placeholder:text-neutral-400;
   @apply cursor-pointer;
+  @apply focus:outline-none;
   @apply disabled:cursor-not-allowed disabled:border-primary-100 disabled:text-primary-100;
 
   &.dropdown-focused {

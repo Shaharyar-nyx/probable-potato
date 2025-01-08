@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 import styles from "./styles.module.scss";
 import { Button, Dropdown, Input, Textarea } from "@/components";
@@ -11,6 +11,7 @@ import { ContactUsFormType } from "@/types";
 export const ContactForm: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -47,28 +48,58 @@ export const ContactForm: React.FC = () => {
           </p>
         </div>
 
-        <form className={styles.formContainer}>
-          <Input disabled={formLoading} iconName="UserIcon" name="fullName" placeholder="Full Name" />
-          <Input disabled={formLoading} iconName="EnvelopeIcon" name="email" placeholder="Email" />
-          <Dropdown
+        <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
+          <Input
             disabled={formLoading}
-            iconName="BarsArrowUpIcon"
-            id="request-type"
-            label="Request Type"
-            options={formData.request_types.map((requestType) => requestType.label)}
+            iconName="UserIcon"
+            placeholder="Full Name"
+            {...register("name", { required: "Full Name is required" })}
+            error={errors.name?.message}
           />
+          <Input
+            disabled={formLoading}
+            iconName="EnvelopeIcon"
+            placeholder="Email"
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                message: "Please enter a valid email address",
+              },
+            })}
+            error={errors.email?.message}
+          />
+          <Controller
+            control={control}
+            name="requestType"
+            render={({ field }) => (
+              <Dropdown
+                disabled={formLoading}
+                error={errors.requestType?.message}
+                handleChange={field.onChange}
+                iconName="BarsArrowUpIcon"
+                id="request-type"
+                label="Request Type"
+                options={formData.request_types.map((requestType) => requestType.label)}
+                value={field.value}
+              />
+            )}
+            rules={{ required: "Request type is required" }}
+          />
+
           <Textarea
             disabled={formLoading}
             iconName="ChatBubbleOvalLeftEllipsisIcon"
-            name="message"
             placeholder="Your Message (Optional)..."
             rows={4}
+            {...register("message")}
           />
-          <Button className="!px-20" disabled={formLoading} size="large" type="submit">
+          <Button className="self-start px-20" disabled={formLoading} size="large" type="submit">
             Submit
           </Button>
+
           {formSubmitted && (
-            <p aria-live="polite" className="text-sm text-green-500">
+            <p aria-live="polite" className="paragraph-sm text-green-500">
               Information sent successfully!
             </p>
           )}

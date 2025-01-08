@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -25,15 +25,10 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
   onClick,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [innerValue, setInnerValue] = useState<string | undefined>(value);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
   const [hasFocus, setHasFocus] = useState(false); // Focus state for styling
   const dropdownRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
-
-  useEffect(() => {
-    setInnerValue(value);
-  }, [value]);
 
   const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
     setHasFocus(true);
@@ -47,7 +42,6 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
 
   const handleSelect = (selectedOption: string) => {
     if (disabled) return;
-    setInnerValue(selectedOption);
     if (handleChange) {
       handleChange(selectedOption);
     }
@@ -133,12 +127,12 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
                 ? "text-neutral-300"
                 : error !== undefined
                   ? "text-red-400"
-                  : innerValue !== undefined
+                  : value !== undefined
                     ? "text-primary-800"
                     : "text-neutral-300",
             )}
           >
-            {innerValue ?? label}
+            {value ?? label}
           </span>
         </div>
         <ChevronDownIcon
@@ -162,7 +156,7 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
             {options.map((option, index) => (
               <li
                 key={index}
-                aria-selected={innerValue === option}
+                aria-selected={value === option}
                 className={clsx("dropdown-input-options-item", {
                   "dropdown-input-options-item-highlighted": highlightedIndex === index,
                 })}
