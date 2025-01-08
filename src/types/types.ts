@@ -4,3 +4,10 @@ export type ContactUsFormType = {
   name: string;
   requestType: string;
 };
+
+export type ApplyFormType = {
+  email: string;
+  message: string;
+  name: string;
+  resume: File | null;
+}

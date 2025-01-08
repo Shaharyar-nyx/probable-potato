@@ -1,37 +1,70 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 
 import styles from "./styles.module.scss";
-import { Button, IconRenderer } from "@/components";
-import { Input } from "@/legacy/Input";
-import { Textarea } from "@/legacy/Textarea";
-
-interface FormData {
-  fullName: string;
-  email: string;
-  resume: File | null;
-  message: string;
-}
+import { Button, IconRenderer, Input, Textarea } from "@/components";
+import { ApplyFormType } from "@/types";
 
 export const ApplicationForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    fullName: "",
-    email: "",
-    resume: null,
-    message: "",
-  });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    setError,
+    clearErrors,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm<ApplyFormType>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
+  const MAX_FILE_SIZE = 3 * 1024 * 1024; // 10MB in bytes
+
+  const onSubmit = (data: ApplyFormType) => {
+    setFormLoading(true);
+    // Fetching logic
+    console.log(data);
+    setFormSubmitted(true);
+    setFormLoading(false);
+    reset();
   };
 
+  const selectedFile = watch("resume"); // Watch for the selected file
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    setFormData((prev) => ({ ...prev, resume: file }));
+
+    if (file) {
+      if (file.size > MAX_FILE_SIZE) {
+        setError("resume", {
+          type: "manual",
+          message: `File size exceeds ${MAX_FILE_SIZE / 1024 / 1024}MB. Please upload a smaller file.`,
+        });
+        return;
+      }
+      clearErrors("resume");
+      setValue("resume", file);
+    } else {
+      setValue("resume", null);
+    }
   };
+
+  const handleUploadClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
+  useEffect(() => {
+    if (formSubmitted) {
+      const timeout = setTimeout(() => setFormSubmitted(false), 5000);
+      return () => clearTimeout(timeout);
+    }
+  }, [formSubmitted]);
 
   return (
     <section className={styles.section}>
@@ -55,57 +88,72 @@ export const ApplicationForm: React.FC = () => {
           <h1 className={`heading-1 ${styles.formTitle}`}>
             Your next career move <br /> starts here.
           </h1>
-          <p className={`paragraph-lg ${styles.formSubtitle}`}>Let&apos;s grow together.</p>
 
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <div className={styles.inputWrapper}>
-              <IconRenderer className={styles.inputIcon} iconName="UserIcon" />
-              <Input
-                className={`${styles.input} paragraph-sm`}
-                id="fullname"
-                placeholder="Full Name"
-                value={formData.fullName}
-                onChange={(e) => setFormData((prev) => ({ ...prev, fullName: e.target.value }))}
-              />
-            </div>
-
-            <div className={styles.inputWrapper}>
-              <IconRenderer className={styles.inputIcon} iconName="EnvelopeIcon" />
-              <Input
-                className={`${styles.input} paragraph-sm`}
-                id="email"
-                placeholder="Email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-              />
-            </div>
-
+          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <p className={`paragraph-lg ${styles.formSubtitle}`}>Let&apos;s grow together.</p>
+            {/* Full Name Input */}
+            <Input
+              disabled={formLoading}
+              iconName="UserIcon"
+              placeholder="Full Name"
+              {...register("name", { required: "Full Name is required" })}
+              error={errors.name?.message}
+            />
+            {/* Email Input */}
+            <Input
+              disabled={formLoading}
+              iconName="EnvelopeIcon"
+              placeholder="Email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                  message: "Please enter a valid email address",
+                },
+              })}
+              error={errors.email?.message}
+            />
+            <p className={`paragraph-lg ${styles.uploadLabel}`}>Let us know about your experience</p>
+            {/* File Input */}
             <div>
-              <p className={`paragraph-lg ${styles.uploadLabel}`}>Let us know about your experience</p>
-              <div className="relative">
-                <label className={styles.uploadButton}>
-                  <span>Upload your resume</span>
-                  <IconRenderer className="h-6 w-6" iconName="ArrowUpTrayIcon" />
-                  <input accept=".pdf" className="hidden" id="resume" type="file" onChange={handleFileChange} />
-                </label>
-              </div>
+              <input
+                ref={inputRef}
+                accept=".pdf"
+                className="hidden"
+                id="resume"
+                type="file"
+                onChange={handleFileChange}
+              />
+              <Button
+                className="border border-primary-800"
+                disabled={formLoading}
+                iconName="ArrowUpTrayIcon"
+                variant="neutral"
+                onClick={handleUploadClick}
+              >
+                {selectedFile ? selectedFile.name : "Upload your resume"}
+              </Button>
               <div className="flex flex-row items-end gap-1">
                 <IconRenderer className="h-[15px] w-[15px] text-[#02255B80]" iconName="ExclamationCircleIcon" />
-                <p className={`paragraph-xs ${styles.uploadHelperText}`}>Format: .pdf, Max file size: 10MB</p>
+                <p className={`paragraph-xs ${styles.uploadHelperText}`}>
+                  Format: .pdf, Max file size: {MAX_FILE_SIZE / 1024 / 1024}MB
+                </p>
               </div>
+              {errors.resume && (
+                <p aria-live="assertive" className="mt-1 text-xs text-red-500">
+                  {errors.resume.message}
+                </p>
+              )}
             </div>
 
-            <div className={styles.inputWrapper}>
-              <IconRenderer className={styles.textareaIcon} iconName="ChatBubbleOvalLeftEllipsisIcon" />
-              <Textarea
-                className={`${styles.textarea} paragraph-sm`}
-                id="message"
-                placeholder="Tell us what's excited about the future of cybersecurity..."
-                value={formData.message}
-                onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
-              />
-            </div>
+            {/* Message Textarea */}
+            <Textarea
+              disabled={formLoading}
+              iconName="ChatBubbleOvalLeftEllipsisIcon"
+              placeholder="Your Message (Optional)..."
+              rows={4}
+              {...register("message")}
+            />
 
             <Button className={styles.submitButton} type="submit">
               Submit

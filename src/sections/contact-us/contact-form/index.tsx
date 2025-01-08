@@ -20,7 +20,7 @@ export const ContactForm: React.FC = () => {
     reset,
   } = useForm<ContactUsFormType>();
 
-  const onSubmit = async (data: ContactUsFormType) => {
+  const onSubmit = (data: ContactUsFormType) => {
     setFormLoading(true);
     // Fetching logic
     console.log(data);
