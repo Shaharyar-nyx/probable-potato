@@ -4,37 +4,37 @@ import getConfig from "next/config";
 
 import { removeLastTrailingSlash } from "lib/util";
 
-const { publicRuntimeConfig } = getConfig();
-const { Directus } = publicRuntimeConfig;
+// const { publicRuntimeConfig } = getConfig();
+// const { Directus } = publicRuntimeConfig;
 
-const directusLink = new HttpLink({
-  uri: removeLastTrailingSlash(Directus.url),
-  fetchOptions: {
-    credentials: "include",
-  },
-  onError: ({ graphQLErrors, networkError }) => {
-    if (graphQLErrors) {
-      graphQLErrors.forEach(({ message, locations, path }) =>
-        console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
-      );
-    }
-    if (networkError) {
-      console.log(`[Network error]: ${networkError}`);
-    }
-  },
-});
+// const directusLink = new HttpLink({
+//   uri: removeLastTrailingSlash(Directus.url),
+//   fetchOptions: {
+//     credentials: "include",
+//   },
+//   onError: ({ graphQLErrors, networkError }) => {
+//     if (graphQLErrors) {
+//       graphQLErrors.forEach(({ message, locations, path }) =>
+//         console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
+//       );
+//     }
+//     if (networkError) {
+//       console.log(`[Network error]: ${networkError}`);
+//     }
+//   },
+// });
 
-const splitLink = split(({ query }) => {
-  const definition = getMainDefinition(query);
-  return (
-    definition.kind === "OperationDefinition" &&
-    definition.operation === "query" &&
-    definition.name?.value.startsWith("Directus")
-  );
-}, directusLink);
+// const splitLink = split(({ query }) => {
+//   const definition = getMainDefinition(query);
+//   return (
+//     definition.kind === "OperationDefinition" &&
+//     definition.operation === "query" &&
+//     definition.name?.value.startsWith("Directus")
+//   );
+// }, directusLink);
 
 const client = new ApolloClient({
-  link: splitLink,
+  // link: splitLink,
   cache: new InMemoryCache(),
   defaultOptions: {
     watchQuery: {

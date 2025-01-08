@@ -10,6 +10,10 @@
   }
 
   .container {
+    @apply mx-auto h-full max-w-screen-2xl
+  }
+
+  .content {
     @apply mx-auto flex gap-24 px-28;
   }
 

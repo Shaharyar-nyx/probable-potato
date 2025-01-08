@@ -16,7 +16,7 @@ const Pricing: React.FC = () => {
         }}
         buttonText="Contact Sales"
         description="Need help creating a package that best suits your needs? Reach out to schedule a consultation."
-        href="/contact"
+        href="/contact-us"
         title="Schedule A Personalized Consultation"
       />
     </main>

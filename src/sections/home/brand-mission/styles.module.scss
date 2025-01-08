@@ -1,5 +1,5 @@
 .container {
-  @apply relative mx-auto my-32 flex min-h-screen max-w-[1440px] items-center justify-center py-32;
+  @apply relative mx-auto my-32 flex h-full max-w-[1440px] items-center justify-center py-32;
   perspective: 1000px;
 }
 
@@ -21,69 +21,73 @@
 }
 
 .memberImage {
-  @apply h-full w-full rounded-2xl object-contain object-[center_top];
+  @apply w-full h-full rounded-2xl object-cover;
 }
 
 .memberInfo {
-  @apply absolute bottom-0 left-0 right-0 m-2 rounded-lg p-2 text-left text-white;
+  @apply absolute bottom-0 left-0 right-0 m-2 rounded-lg p-2 text-white;
   background: rgba(0, 0, 0, 0.25);
   box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.5) inset;
   backdrop-filter: blur(2px);
 }
 
-.memberName {
-  @apply mb-1 text-sm font-semibold leading-5;
-}
-
-.memberRole {
-  @apply text-xs leading-4 opacity-90;
-}
-
 /* Position each member card */
 .member1 {
-  @apply left-0 top-[15%];
+  @apply left-[10%] top-[13%];
+  width: 198px;
+  height: 209px;
 }
 
 .member2 {
-  @apply left-1/2 top-[-10%] -translate-x-1/2 transform;
+  @apply left-[42%] top-[-5%] -translate-x-1/2 transform;
+  width: 138px;
+  height: 152px;
 }
 
 .member3 {
-  @apply right-0 top-[15%];
+  @apply right-[8%] top-[-10%];
+  width: 163px;
+  height: 186px;
 }
 
 .member4 {
-  @apply bottom-0 left-1/2 -translate-x-1/2 transform;
+  @apply bottom-[-8%] left-[35%] -translate-x-1/2 transform;
+  width: 241px;
+  height: 215px;
 }
 
 .member5 {
-  @apply bottom-[25%] right-[10%];
+  @apply bottom-[28%] right-[10%];
+  width: 128px;
+  height: 149px;
 }
 
 .member6 {
-  @apply bottom-[25%] left-[10%];
+  @apply bottom-[0%] left-[5%];
+  width: 136px;
+  height: 137px;
 }
 
 /* Tags */
 .tag {
-  @apply absolute rounded-full px-4 py-2 text-sm text-white;
+  @apply absolute rounded-[12px] px-5 py-3 text-white;
   background-color: theme("colors.primary.800");
 }
 
 .accessibilityTag {
   composes: tag;
-  @apply left-[20%] top-[5%];
+  @apply left-[12%] top-[-8%];
   background-color: rgba(2, 37, 91, 0.8); // #02255bcc
 }
 
 .academyTag {
   composes: tag;
-  @apply right-[20%] top-[15%];
+  @apply px-3 py-2 text-xs right-[28%] top-[5%];
 }
 
 .organizationsTag {
   composes: tag;
-  @apply bottom-[15%] right-[10%];
+  @apply bottom-[5%] right-[15%];
 }
 
 // Responsive styles

@@ -11,7 +11,7 @@
 }
 
 .sectionBackground {
-  @apply relative isolate min-h-screen bg-inherit bg-right-top bg-no-repeat;
+  @apply relative isolate h-full bg-inherit bg-right-top bg-no-repeat;
 }
 
 .overlay {

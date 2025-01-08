@@ -5,7 +5,7 @@
   }
 
   .container {
-    @apply mx-auto flex gap-6;
+    @apply mx-auto h-full max-w-screen-2xl flex gap-6;
   }
 
   .title {

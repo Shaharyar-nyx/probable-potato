@@ -1,5 +1,5 @@
 .container {
-  @apply relative w-full overflow-hidden bg-primary-800;
+  @apply relative overflow-hidden bg-primary-800;
 }
 
 .backgroundWrapper {
@@ -19,7 +19,7 @@
 }
 
 .content {
-  @apply relative z-10 flex items-center px-32 py-32;
+  @apply relative mx-auto max-w-screen-2xl z-10 flex items-center px-16 py-32;
 }
 
 .contentLeft {

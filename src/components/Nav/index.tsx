@@ -124,14 +124,14 @@ export const Nav: React.FC = () => {
       title: "Services",
       items: services,
     },
-    {
-      title: "Explore Strategies by Industry",
-      items: industries,
-    },
-    {
-      title: "Partners",
-      items: partners,
-    },
+    // {
+    //   title: "Explore Strategies by Industry",
+    //   items: industries,
+    // },
+    // {
+    //   title: "Partners",
+    //   items: partners,
+    // },
   ];
 
   return (

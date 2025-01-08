@@ -3,7 +3,7 @@
 }
 
 .container {
-  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-8 py-32 text-primary-800;
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-16 py-32 text-primary-800;
 }
 
 .glassBackground {
@@ -11,7 +11,7 @@
 }
 
 .sectionBackground {
-  @apply relative isolate min-h-screen bg-inherit bg-right-top bg-no-repeat;
+  @apply relative isolate h-full bg-inherit bg-right-top bg-no-repeat;
 }
 
 .overlay {
@@ -23,7 +23,7 @@
 
 .solutionsWrapper {
   composes: glassBackground;
-  @apply flex flex-col gap-16 p-12;
+  @apply flex flex-col gap-16 p-10;
 }
 
 // Solution Card Styles
@@ -67,7 +67,7 @@
 // Crowdsourcing Section Styles
 .crowdsourcingContent {
   composes: glassBackground;
-  @apply flex flex-col gap-10 p-12;
+  @apply flex flex-col gap-10 p-10;
 }
 
 .label {

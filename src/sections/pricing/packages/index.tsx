@@ -85,6 +85,7 @@ const PackageCard = ({ data, type }: { data: BasePackageData; type: keyof typeof
     <div className={styles.packageFooter}>
       <Button
         className="w-full text-center !font-normal"
+        href={data.link}
         icon={<Image alt="arrow up right" height={16} src="/images/arrow-right-black.svg" width={16} />}
         size="small"
         variant="neutral"
@@ -234,40 +235,42 @@ export const Packages: React.FC<PackagesProps> = ({ packages, features, descript
 
   return (
     <div className={styles.container} style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className={styles.header}>
-        <h1 className="heading-1 mb-3 font-bold text-primary-800">{title}</h1>
-        <p className={styles.subtitle}>{description}</p>
-      </div>
-
-      <div
-        className={`${styles.packagesGrid} grid gap-6`}
-        style={{ gridTemplateColumns: `repeat(${GridCols()}, minmax(0, 1fr))` }}
-      >
-        <div />
-        {packageArray.map((pkg) => (
-          <PackageCard key={pkg.type} data={pkg} type={pkg.type as keyof typeof PackageIcons} />
-        ))}
-      </div>
-
-      <div className="paragraph-xl relative top-[1px] inline-block text-left font-semibold text-primary-800">
-        <div className="rounded-tl-xl rounded-tr-xl border border-b-[#fff] border-l-neutral-100 border-r-neutral-100 border-t-neutral-100 bg-white px-7 py-2">
-          Package features
+      <div className={styles.content}>
+        <div className={styles.header}>
+          <h1 className="heading-1 mb-3 font-bold text-primary-800">{title}</h1>
+          <p className={styles.subtitle}>{description}</p>
         </div>
-      </div>
-      <div className={styles.featuresTable}>
-        <table className={styles.table}>
-          <tbody>
-            {features.map((feature) => (
-              <FeatureRow
-                key={feature.name}
-                feature={feature}
-                packages={packageArray}
-                hoveredColumn={hoveredColumn}
-                onColumnHover={setHoveredColumn}
-              />
-            ))}
-          </tbody>
-        </table>
+
+        <div
+          className={`${styles.packagesGrid} grid gap-6`}
+          style={{ gridTemplateColumns: `repeat(${GridCols()}, minmax(0, 1fr))` }}
+        >
+          <div />
+          {packageArray.map((pkg) => (
+            <PackageCard key={pkg.type} data={pkg} type={pkg.type as keyof typeof PackageIcons} />
+          ))}
+        </div>
+
+        <div className="paragraph-xl relative top-[1px] inline-block text-left font-semibold text-primary-800">
+          <div className="rounded-tl-xl rounded-tr-xl border border-b-[#fff] border-l-neutral-100 border-r-neutral-100 border-t-neutral-100 bg-white px-7 py-2">
+            Package features
+          </div>
+        </div>
+        <div className={styles.featuresTable}>
+          <table className={styles.table}>
+            <tbody>
+              {features.map((feature) => (
+                <FeatureRow
+                  key={feature.name}
+                  feature={feature}
+                  packages={packageArray}
+                  hoveredColumn={hoveredColumn}
+                  onColumnHover={setHoveredColumn}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

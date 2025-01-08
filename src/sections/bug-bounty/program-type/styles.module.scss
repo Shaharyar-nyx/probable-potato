@@ -1,12 +1,12 @@
 .program-type {
-  @apply relative min-h-screen bg-primary-800 py-24;
+  @apply relative h-full bg-primary-800 py-24 px-16;
 
   .background {
     @apply absolute inset-0 z-0 bg-[url('/images/bg-program-type.png')] bg-cover bg-center bg-no-repeat opacity-30;
   }
 
   .container {
-    @apply relative z-10 mx-auto flex max-w-screen-2xl flex-col gap-16 px-8;
+    @apply relative z-10 mx-auto flex max-w-screen-2xl flex-col gap-16;
   }
 
   .title {

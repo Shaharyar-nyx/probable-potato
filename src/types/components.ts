@@ -86,6 +86,7 @@ export interface Feature {
 export interface PackageData {
   buttonText: string;
   description: string;
+  link: string;
   period?: string;
   price: string;
 }

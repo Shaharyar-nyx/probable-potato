@@ -41,7 +41,7 @@
       }
 
       .imageContent {
-        @apply relative;
+        @apply relative h-full w-[80%] m-auto overflow-hidden;
 
         .image {
           @apply h-full w-full object-contain;

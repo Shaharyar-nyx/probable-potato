@@ -10,7 +10,7 @@ export const OurCulture: React.FC<OurCultureProps> = ({ title, content, buttonTe
         <div className="w-1/2">
           <h2 className={`${styles.title} heading-2`}>{title}</h2>
           <p className={`${styles.paragraph} paragraph-md`}>{content}</p>
-          <Button variant="neutral">{buttonText}</Button>
+          <Button variant="neutral" href="/careers" className="w-fit">{buttonText}</Button>
         </div>
         <div className="flex w-1/2 flex-col">
           <h3 className="heading-7 mb-6 text-neutral-50">{coreTitle}</h3>

@@ -81,7 +81,7 @@ export const ProgramType: React.FC<ProgramTypeProps> = ({ title, content, featur
                 needs.
               </p>
             </div>
-            <Button className="h-fit w-fit" externalHref={undefined} href="/contact-us" variant="neutral">
+            <Button className="h-fit w-fit" href="/contact-us" variant="neutral">
               Contact Sales
             </Button>
           </div>

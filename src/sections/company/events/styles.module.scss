@@ -1,6 +1,10 @@
 .events {
   @apply px-16 py-[60px];
 
+  .container {
+    @apply mx-auto max-w-screen-2xl;
+  }
+
   .header {
     @apply mb-10 text-center;
 

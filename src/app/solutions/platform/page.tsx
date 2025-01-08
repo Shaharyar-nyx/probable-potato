@@ -25,7 +25,7 @@ const PlatformPage: React.FC = () => {
         }}
         buttonText="Contact Sales"
         description="Schedule a consult to receive tailored advice on launching your bug bounty program. Our experts will guide you through program setup and bounty pricing to ensure a smooth launch."
-        href="/contact"
+        href="/contact-us"
         tagline="Connect"
         title="Get Expert Guidance for Your Bug Bounty"
       />
