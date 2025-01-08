@@ -68,6 +68,7 @@ export const ContactForm: React.FC = () => {
           <Input iconName="EnvelopeIcon" name="email" placeholder="Email" />
           <Dropdown
             iconName="BarsArrowUpIcon"
+            id="request-type"
             label="Request Type"
             options={requestTypes.map((requestType) => requestType.label)}
           />
@@ -77,7 +78,6 @@ export const ContactForm: React.FC = () => {
             placeholder="Your Message (Optional)..."
             rows={4}
           />
-
           <Button className="!px-20" size="large" type="submit">
             Submit
           </Button>
