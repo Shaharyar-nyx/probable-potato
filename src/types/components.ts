@@ -1,4 +1,11 @@
-import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
+import React, {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  HTMLAttributes,
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+} from "react";
+import { FieldError, UseFormClearErrors, UseFormRegister, UseFormSetError } from "react-hook-form";
 
 export interface HeroProps {
   backgroundVideo: string;
@@ -355,4 +362,40 @@ export interface JobOpeningsProps {
     title: string;
     link: string;
   }[];
+}
+
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  error?: string;
+  iconName?: string;
+  parentClassName?: string;
+}
+
+export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  error?: string;
+  iconName?: string;
+  parentClassName?: string;
+}
+
+export interface DropdownPropsInput extends ButtonHTMLAttributes<HTMLButtonElement> {
+  ariaDescribedBy?: string;
+  className?: string;
+  disabled?: boolean;
+  error?: string;
+  handleChange?: (value: string) => void;
+  iconName?: string;
+  id?: string;
+  label: string;
+  options: string[];
+  value?: string;
+}
+
+export interface InputFileProps {
+  clearErrors?: UseFormClearErrors<any>;
+  error?: FieldError;
+  formLoading?: boolean;
+  id?: string;
+  maxFileSize: number;
+  name: string;
+  register?: UseFormRegister<any>;
+  setError?: UseFormSetError<any>;
 }

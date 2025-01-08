@@ -1,0 +1,82 @@
+.input-container {
+  @apply flex items-center gap-3;
+  @apply w-full px-[10px] py-[14px];
+  @apply rounded-xl border border-primary-800;
+  @apply text-[14px] leading-5 placeholder:text-neutral-400;
+  @apply disabled:cursor-not-allowed;
+
+  &.input-focused {
+    @apply shadow-[0px_0px_0px_1px_#02255B_inset];
+  }
+
+  &.input-focused-error {
+    @apply shadow-[0px_0px_0px_1px_#f87171_inset];
+  }
+
+  &.input-error {
+    @apply border-red-500 text-red-400 placeholder:text-red-400;
+  }
+
+  &.input-disabled {
+    @apply cursor-not-allowed border-primary-100 text-primary-100;
+
+    input::placeholder,
+    textarea::placeholder {
+      @apply text-primary-100;
+    }
+  }
+
+  .input-text-error {
+    @apply mt-1 text-sm text-red-500;
+  }
+}
+
+.dropdown-container {
+  @apply relative;
+}
+
+.dropdown-input-container {
+  @apply flex items-center justify-between;
+  @apply w-full px-[10px] py-[14px];
+  @apply rounded-xl border border-primary-800;
+  @apply text-[14px] leading-5 placeholder:text-neutral-400;
+  @apply cursor-pointer;
+  @apply focus:outline-none;
+  @apply disabled:cursor-not-allowed disabled:border-primary-100 disabled:text-primary-100;
+
+  &.dropdown-focused {
+    @apply shadow-[0px_0px_0px_1px_#02255B_inset];
+  }
+
+  &.dropdown-focused-error {
+    @apply shadow-[0px_0px_0px_1px_#f87171_inset];
+  }
+
+  &.input-error {
+    @apply border-red-500 text-red-400 placeholder:text-red-400;
+  }
+}
+
+.dropdown-input-arrow {
+  @apply h-5 w-5 transition-transform duration-300;
+}
+
+.dropdown-input-options-container {
+  @apply absolute left-0 top-full z-10;
+  @apply mt-1 max-h-72 w-full overflow-auto px-3 py-2;
+  @apply rounded border-2 border-primary-800 bg-neutral-50 shadow-lg;
+}
+
+.dropdown-input-options-item {
+  @apply cursor-pointer;
+  @apply rounded px-2 py-1 text-primary-800 hover:bg-primary-100;
+  @apply text-[14px] leading-5;
+}
+
+.dropdown-input-options-item-highlighted {
+  @apply bg-primary-100;
+}
+
+.input-text-error {
+  @apply mt-1 text-xs text-red-500;
+}
