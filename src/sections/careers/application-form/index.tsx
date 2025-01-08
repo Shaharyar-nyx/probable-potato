@@ -1,17 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import styles from "./styles.module.scss";
-import { Button, IconRenderer, Input, Textarea } from "@/components";
+import { Button, IconRenderer, Input, Textarea, InputFile } from "@/components";
 import { ApplyFormType } from "@/types";
 
 export const ApplicationForm: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB in bytes
 
@@ -21,7 +20,6 @@ export const ApplicationForm: React.FC = () => {
     setError,
     clearErrors,
     reset,
-    watch,
     formState: { errors },
   } = useForm<ApplyFormType>();
 
@@ -34,33 +32,6 @@ export const ApplicationForm: React.FC = () => {
       setFormLoading(false);
       reset();
     }, 1000);
-  };
-
-  const selectedFile = watch("resume");
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const validType = "application/pdf";
-      const MAX_SIZE = MAX_FILE_SIZE * 1024 * 1024; // 2MB
-      if (file.type !== validType) {
-        setError("resume", { type: "manual", message: "Only PDF files are allowed" });
-        return;
-      }
-      if (file.size > MAX_SIZE) {
-        setError("resume", { type: "manual", message: "File size must be less than 2MB" });
-        return;
-      }
-      clearErrors("resume");
-    } else {
-      setError("resume", { type: "manual", message: "Please select a file" });
-    }
-  };
-
-  const handleUploadClick = () => {
-    if (inputRef.current) {
-      inputRef.current.click();
-    }
   };
 
   useEffect(() => {
@@ -119,42 +90,16 @@ export const ApplicationForm: React.FC = () => {
             />
             <p className={`paragraph-lg ${styles.uploadLabel}`}>Let us know about your experience</p>
             {/* File Input */}
-            <div>
-              <input
-                type="file"
-                {...register("resume", {
-                  required: "File is required",
-                  validate: (file) =>
-                    file ? file.type === "application/pdf" || "Only PDF files are allowed" : "Please select a file",
-                })}
-                ref={inputRef}
-                accept=".pdf"
-                className="hidden"
-                id="resume"
-                onChange={handleFileChange}
-              />
-              <Button
-                className="border border-primary-800"
-                disabled={formLoading}
-                iconName="ArrowUpTrayIcon"
-                type="button"
-                variant="neutral"
-                onClick={handleUploadClick}
-              >
-                {selectedFile ? selectedFile.name : "Upload your resume"}
-              </Button>
-              <div className="flex flex-row items-end gap-1">
-                <IconRenderer className="h-[15px] w-[15px] text-[#02255B80]" iconName="ExclamationCircleIcon" />
-                <p className={`paragraph-xs ${styles.uploadHelperText}`}>
-                  Format: .pdf, Max file size: {MAX_FILE_SIZE / 1024 / 1024}MB
-                </p>
-              </div>
-              {errors.resume && (
-                <p aria-live="assertive" className="mt-1 text-xs text-red-500">
-                  {errors.resume.message}
-                </p>
-              )}
-            </div>
+            <InputFile
+              clearErrors={clearErrors}
+              error={errors.resume}
+              formLoading={formLoading}
+              id="resume"
+              maxFileSize={MAX_FILE_SIZE}
+              name="resume"
+              register={register}
+              setError={setError}
+            />
 
             {/* Message Textarea */}
             <Textarea

@@ -24,9 +24,11 @@ export const ContactForm: React.FC = () => {
     setFormLoading(true);
     // Fetching logic
     console.log(data);
-    setFormSubmitted(true);
-    setFormLoading(false);
-    reset();
+    setTimeout(() => {
+      setFormSubmitted(true);
+      setFormLoading(false);
+      reset();
+    }, 1000);
   };
 
   useEffect(() => {

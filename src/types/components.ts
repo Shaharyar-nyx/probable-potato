@@ -5,6 +5,7 @@ import React, {
   InputHTMLAttributes,
   TextareaHTMLAttributes,
 } from "react";
+import { FieldError, UseFormClearErrors, UseFormRegister, UseFormSetError } from "react-hook-form";
 
 export interface HeroProps {
   backgroundVideo: string;
@@ -378,4 +379,15 @@ export interface DropdownPropsInput extends ButtonHTMLAttributes<HTMLButtonEleme
   label: string;
   options: string[];
   value?: string;
+}
+
+export interface InputFileProps {
+  clearErrors?: UseFormClearErrors<any>;
+  error?: FieldError;
+  formLoading?: boolean;
+  id?: string;
+  maxFileSize: number;
+  name: string;
+  register?: UseFormRegister<any>;
+  setError?: UseFormSetError<any>;
 }
