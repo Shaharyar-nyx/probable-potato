@@ -2,7 +2,11 @@ import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 
 export interface HeroProps {
   backgroundVideo: string;
-  buttonText: string;
+  cta: {
+    label: string;
+    link: string;
+    icon: string;
+  };
   description: string;
   featuredImage: {
     alt: string;
@@ -151,9 +155,12 @@ export interface CTAProps {
   backgroundImage: {
     src: string;
   };
-  buttonText: string;
+  cta: {
+    label: string;
+    link: string;
+    icon?: string;
+  };
   description: string;
-  href?: string;
   tagline?: string;
   title: string;
 }

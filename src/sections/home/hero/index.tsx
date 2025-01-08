@@ -8,7 +8,7 @@ import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import { HeroProps } from "@/types";
 
-export const Hero: React.FC<HeroProps> = ({ backgroundVideo, buttonText, description, featuredImage, title }) => {
+export const Hero: React.FC<HeroProps> = ({ backgroundVideo, cta, description, featuredImage, title }) => {
   return (
     <header className={styles.header}>
       <div className={styles.backgroundWrapper}>
@@ -20,9 +20,7 @@ export const Hero: React.FC<HeroProps> = ({ backgroundVideo, buttonText, descrip
           <div className={styles.textContent}>
             <div className={`${styles.title} display-1 font-bold`}>{title}</div>
             <p className={`${styles.description} paragraph-lg`}>{description}</p>
-            <Button className={styles.ctaButton} icon={<Image alt="arrow up right" height={24} src="/images/arrow-up-right.svg" width={24} />}>
-              {buttonText}
-            </Button>
+            {cta && <Button iconName={cta.icon}>{cta.label}</Button>}
           </div>
 
           <ParallaxProvider>

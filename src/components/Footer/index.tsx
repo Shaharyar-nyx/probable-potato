@@ -35,15 +35,15 @@ const navigationData: NavSection[] = [
   //     { label: "Partner Directory", href: "/partner-directory" },
   //   ],
   // },
-  {
-    title: "Knowledge Base",
-    links: [
-      // { label: "Consumer Resources", href: "/consumer-resources" },
-      { label: "Bug hunters Resources", href: "/bug-hunters" },
-      // { label: "Events", href: "/events" },
-      // { label: "Blog", href: "/blog" },
-    ],
-  },
+  // {
+  //   title: "Knowledge Base",
+  //   links: [
+  //     { label: "Consumer Resources", href: "/consumer-resources" },
+  //     { label: "Bug hunters Resources", href: "/bug-hunters" },
+  //     { label: "Events", href: "/events" },
+  //     { label: "Blog", href: "/blog" },
+  //   ],
+  // },
   {
     title: "Company",
     links: [
@@ -113,7 +113,7 @@ const socialLinks: SocialLink[] = [
 const Footer: React.FC = () => {
   return (
     <footer className="bg-[#00205B] text-white">
-      <div className="mx-auto max-w-screen-2xl px-6 lg:px-16 py-16 lg:py-20">
+      <div className="mx-auto max-w-screen-2xl px-6 py-16 lg:px-16 lg:py-20">
         <div className="flex flex-col space-y-8">
           {/* Main Content */}
           <div className="flex flex-col justify-between gap-16 lg:flex-row">

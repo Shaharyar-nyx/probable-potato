@@ -19,23 +19,23 @@ export const Nav: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (
-  //       dropdownRef.current &&
-  //       !dropdownRef.current.contains(event.target as Node) &&
-  //       buttonRef.current &&
-  //       !buttonRef.current.contains(event.target as Node)
-  //     ) {
-  //       setShowSolutionsDropdown(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        // setShowSolutionsDropdown(false);
+      }
+    };
 
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -223,7 +223,7 @@ export const Nav: React.FC = () => {
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <div className="relative">
+          {/* <div className="relative">
             <button
               className="flex items-center gap-2 rounded-lg px-3 py-2 transition-colors hover:bg-[#EFF0F2CC]"
               onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
@@ -250,7 +250,7 @@ export const Nav: React.FC = () => {
                 ))}
               </div>
             )}
-          </div>
+          </div> */}
 
           <Button href="/login" transparent>
             Log In / Sign Up
@@ -341,7 +341,7 @@ export const Nav: React.FC = () => {
 
             <hr className="my-4 border-neutral-200" />
 
-            <div className="relative">
+            {/* <div className="relative">
               <button
                 className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-[#EFF0F2CC]"
                 onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
@@ -369,7 +369,7 @@ export const Nav: React.FC = () => {
                   ))}
                 </div>
               )}
-            </div>
+            </div> */}
 
             <div className="flex flex-col space-y-3 pt-4">
               <Button href="/login" transparent onClick={() => setIsMobileMenuOpen(false)}>

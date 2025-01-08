@@ -14,9 +14,11 @@ const Pricing: React.FC = () => {
         backgroundImage={{
           src: "/pricing/pricing-cta-bg.webp",
         }}
-        buttonText="Contact Sales"
+        cta={{
+          label: "Contact Sales",
+          link: "/",
+        }}
         description="Need help creating a package that best suits your needs? Reach out to schedule a consultation."
-        href="/contact-us"
         title="Schedule A Personalized Consultation"
       />
     </main>
