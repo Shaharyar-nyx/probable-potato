@@ -6,7 +6,7 @@ import { IconRenderer } from "@/components";
 import { TextareaProps } from "@/types";
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ error, id, iconName, parentClassName, ...props }, ref) => {
+  ({ error, id, iconName, parentClassName, disabled, ...props }, ref) => {
     const errorId = error !== undefined ? `${id}-error` : undefined;
 
     return (
@@ -15,13 +15,14 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           "input-error": error !== undefined,
         })}
       >
-        {iconName !== undefined && <IconRenderer className="h-6 w-6 text-primary-800" iconName={iconName} />}
+        {iconName !== undefined && <IconRenderer className="h-6 w-6" iconName={iconName} />}
         <textarea
           ref={ref}
-          {...props}
           aria-describedby={errorId}
           className="w-full bg-transparent outline-none"
+          disabled={disabled}
           id={id}
+          {...props}
         />
         {error !== undefined && (
           <p aria-live="assertive" className="input-text-error" id={errorId}>

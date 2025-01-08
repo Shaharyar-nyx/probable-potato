@@ -6,6 +6,10 @@
 
   &:focus-within {
     @apply border-2 outline-none;
+
+    svg {
+      @apply text-primary-800;
+    }
   }
 
   @apply disabled:cursor-not-allowed disabled:border-primary-100 disabled:text-primary-100;
@@ -16,6 +20,14 @@
 
   &.input-error {
     @apply border-b-red-500 text-red-500 placeholder:text-red-400;
+
+    svg {
+      @apply text-red-400;
+    }
+  }
+
+  svg {
+    @apply text-neutral-400;
   }
 }
 
