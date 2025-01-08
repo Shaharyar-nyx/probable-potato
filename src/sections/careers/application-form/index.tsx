@@ -11,45 +11,49 @@ import { ApplyFormType } from "@/types";
 export const ApplicationForm: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB in bytes
+
   const {
     register,
     handleSubmit,
-    setValue,
     setError,
     clearErrors,
     reset,
     watch,
     formState: { errors },
   } = useForm<ApplyFormType>();
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const MAX_FILE_SIZE = 3 * 1024 * 1024; // 10MB in bytes
 
   const onSubmit = (data: ApplyFormType) => {
     setFormLoading(true);
-    // Fetching logic
-    console.log(data);
-    setFormSubmitted(true);
-    setFormLoading(false);
-    reset();
+    console.log("Form submitted:", data);
+    // Simulate fetching logic
+    setTimeout(() => {
+      setFormSubmitted(true);
+      setFormLoading(false);
+      reset();
+    }, 1000);
   };
 
-  const selectedFile = watch("resume"); // Watch for the selected file
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
+  const selectedFile = watch("resume");
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
     if (file) {
-      if (file.size > MAX_FILE_SIZE) {
-        setError("resume", {
-          type: "manual",
-          message: `File size exceeds ${MAX_FILE_SIZE / 1024 / 1024}MB. Please upload a smaller file.`,
-        });
+      const validType = "application/pdf";
+      const MAX_SIZE = MAX_FILE_SIZE * 1024 * 1024; // 2MB
+      if (file.type !== validType) {
+        setError("resume", { type: "manual", message: "Only PDF files are allowed" });
+        return;
+      }
+      if (file.size > MAX_SIZE) {
+        setError("resume", { type: "manual", message: "File size must be less than 2MB" });
         return;
       }
       clearErrors("resume");
-      setValue("resume", file);
     } else {
-      setValue("resume", null);
+      setError("resume", { type: "manual", message: "Please select a file" });
     }
   };
 
@@ -94,14 +98,15 @@ export const ApplicationForm: React.FC = () => {
             {/* Full Name Input */}
             <Input
               disabled={formLoading}
+              error={errors.name?.message}
               iconName="UserIcon"
               placeholder="Full Name"
               {...register("name", { required: "Full Name is required" })}
-              error={errors.name?.message}
             />
             {/* Email Input */}
             <Input
               disabled={formLoading}
+              error={errors.email?.message}
               iconName="EnvelopeIcon"
               placeholder="Email"
               {...register("email", {
@@ -111,23 +116,28 @@ export const ApplicationForm: React.FC = () => {
                   message: "Please enter a valid email address",
                 },
               })}
-              error={errors.email?.message}
             />
             <p className={`paragraph-lg ${styles.uploadLabel}`}>Let us know about your experience</p>
             {/* File Input */}
             <div>
               <input
+                type="file"
+                {...register("resume", {
+                  required: "File is required",
+                  validate: (file) =>
+                    file ? file.type === "application/pdf" || "Only PDF files are allowed" : "Please select a file",
+                })}
                 ref={inputRef}
                 accept=".pdf"
                 className="hidden"
                 id="resume"
-                type="file"
                 onChange={handleFileChange}
               />
               <Button
                 className="border border-primary-800"
                 disabled={formLoading}
                 iconName="ArrowUpTrayIcon"
+                type="button"
                 variant="neutral"
                 onClick={handleUploadClick}
               >
@@ -155,9 +165,15 @@ export const ApplicationForm: React.FC = () => {
               {...register("message")}
             />
 
-            <Button className={styles.submitButton} type="submit">
+            <Button className={styles.submitButton} disabled={formLoading} type="submit">
               Submit
             </Button>
+
+            {formSubmitted && (
+              <p aria-live="polite" className="paragraph-sm text-green-500">
+                Information sent successfully!
+              </p>
+            )}
           </form>
         </div>
       </div>
