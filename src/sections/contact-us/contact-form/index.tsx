@@ -1,55 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 import styles from "./styles.module.scss";
 import { Button, Dropdown, Input, Textarea } from "@/components";
-
-interface FormData {
-  email: string;
-  fullName: string;
-  message: string;
-  requestType: string;
-}
+import formData from "@/data/contact-us/form.json";
+import { ContactUsFormType } from "@/types";
 
 export const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    fullName: "",
-    email: "",
-    requestType: "",
-    message: "",
-  });
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm<ContactUsFormType>();
 
-  const requestTypes = [
-    { value: "demo", label: "Request a demo" },
-    { value: "sales", label: "Contact Sales" },
-    { value: "recruitment", label: "Recruitment" },
-    { value: "hacker", label: "Join Hacker Community" },
-    { value: "partner", label: "Become a Partner" },
-    { value: "others", label: "others" },
-  ];
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const onSubmit = async (data: ContactUsFormType) => {
+    setFormLoading(true);
+    // Fetching logic
+    console.log(data);
+    setFormSubmitted(true);
+    setFormLoading(false);
+    reset();
   };
 
-  const handleSelectOption = (value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      requestType: value,
-    }));
-    setIsDropdownOpen(false);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted with data:", formData);
-  };
+  useEffect(() => {
+    if (formSubmitted) {
+      const timeout = setTimeout(() => setFormSubmitted(false), 5000);
+      return () => clearTimeout(timeout);
+    }
+  }, [formSubmitted]);
 
   return (
     <div className={styles.container}>
@@ -63,24 +47,31 @@ export const ContactForm: React.FC = () => {
           </p>
         </div>
 
-        <form className={styles.formContainer} onSubmit={handleSubmit}>
-          <Input iconName="UserIcon" name="fullName" placeholder="Full Name" />
-          <Input iconName="EnvelopeIcon" name="email" placeholder="Email" />
+        <form className={styles.formContainer}>
+          <Input disabled={formLoading} iconName="UserIcon" name="fullName" placeholder="Full Name" />
+          <Input disabled={formLoading} iconName="EnvelopeIcon" name="email" placeholder="Email" />
           <Dropdown
+            disabled={formLoading}
             iconName="BarsArrowUpIcon"
             id="request-type"
             label="Request Type"
-            options={requestTypes.map((requestType) => requestType.label)}
+            options={formData.request_types.map((requestType) => requestType.label)}
           />
           <Textarea
+            disabled={formLoading}
             iconName="ChatBubbleOvalLeftEllipsisIcon"
             name="message"
             placeholder="Your Message (Optional)..."
             rows={4}
           />
-          <Button className="!px-20" size="large" type="submit">
+          <Button className="!px-20" disabled={formLoading} size="large" type="submit">
             Submit
           </Button>
+          {formSubmitted && (
+            <p aria-live="polite" className="text-sm text-green-500">
+              Information sent successfully!
+            </p>
+          )}
         </form>
       </div>
     </div>
