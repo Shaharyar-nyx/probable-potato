@@ -9,6 +9,10 @@
     @apply shadow-[0px_0px_0px_1px_#02255B_inset];
   }
 
+  &.input-focused-error {
+    @apply shadow-[0px_0px_0px_1px_#f87171_inset];
+  }
+
   &.input-error {
     @apply border-red-500 text-red-400 placeholder:text-red-400;
   }
@@ -16,7 +20,8 @@
   &.input-disabled {
     @apply cursor-not-allowed border-primary-100 text-primary-100;
 
-    input::placeholder, textarea::placeholder {
+    input::placeholder,
+    textarea::placeholder {
       @apply text-primary-100;
     }
   }

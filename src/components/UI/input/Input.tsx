@@ -9,9 +9,23 @@ import { InputProps } from "@/types";
 import "./styles.scss";
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ error, id, iconName, parentClassName, disabled = false, ...props }, ref) => {
-    const [hasFocus, setHasFocus] = useState(false); // State to track focus
+  ({ error, id, iconName, parentClassName, disabled = false, onFocus, onBlur, ...props }, ref) => {
+    const [hasFocus, setHasFocus] = useState(false);
     const errorId = error !== undefined ? `${id}-error` : undefined;
+
+    const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+      setHasFocus(true);
+      if (onFocus) {
+        onFocus(event);
+      }
+    };
+
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+      setHasFocus(false);
+      if (onBlur) {
+        onBlur(event);
+      }
+    };
 
     return (
       <div>
@@ -19,16 +33,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           className={clsx("input-container", parentClassName, {
             "input-error": error !== undefined,
             "input-disabled": disabled,
-            "input-focused": hasFocus && !disabled,
+            "input-focused": hasFocus && !disabled && error === undefined,
+            "input-focused-error": hasFocus && !disabled && error !== undefined,
           })}
         >
           {iconName !== undefined && (
             <IconRenderer
               className={clsx("h-6 w-6", {
-                "text-primary-800": hasFocus && !disabled && error !== undefined,
-                "text-neutral-400": !hasFocus && error !== undefined && !disabled,
+                "text-red-400": error !== undefined,
+                "text-primary-800": hasFocus && !disabled && error === undefined,
+                "text-neutral-400": !hasFocus && error === undefined && !disabled,
                 "text-primary-100": disabled,
-                "text-red-400": error,
               })}
               iconName={iconName}
             />
@@ -39,8 +54,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className="w-full bg-transparent outline-none"
             disabled={disabled}
             id={id}
-            onBlur={() => setHasFocus(false)}
-            onFocus={() => setHasFocus(true)}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
             {...props}
           />
         </div>

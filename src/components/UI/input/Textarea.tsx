@@ -17,16 +17,17 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         className={clsx("input-container", parentClassName, {
           "input-error": error !== undefined,
           "input-disabled": disabled,
-          "input-focused": hasFocus && !disabled,
+          "input-focused": hasFocus && !disabled && error === undefined,
+          "input-focused-error": hasFocus && !disabled && error !== undefined,
         })}
       >
         {iconName !== undefined && (
           <IconRenderer
             className={clsx("h-6 w-6", {
-              "text-primary-800": hasFocus && !disabled && error !== undefined,
-              "text-neutral-400": !hasFocus && error !== undefined && !disabled,
+              "text-red-400": error !== undefined,
+              "text-primary-800": hasFocus && !disabled && error === undefined,
+              "text-neutral-400": !hasFocus && error === undefined && !disabled,
               "text-primary-100": disabled,
-              "text-red-400": error,
             })}
             iconName={iconName}
           />
