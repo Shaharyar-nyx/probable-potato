@@ -1,5 +1,5 @@
 .container {
-  @apply relative flex h-[80vh] items-center justify-center overflow-hidden px-8 py-24 text-center text-neutral-50;
+  @apply relative flex h-[80vh] items-center justify-center overflow-hidden px-6 py-16 lg:px-16 lg:py-24 text-center text-neutral-50;
 }
 
 .image {
@@ -11,7 +11,7 @@
 }
 
 .content {
-  @apply relative mx-auto flex w-full max-w-screen-lg flex-col items-center justify-center space-y-5 rounded-lg bg-black/30 p-8 shadow-[0px_0px_20px_0px_rgba(239,240,242,0.25)_inset] backdrop-blur-lg;
+  @apply relative mx-auto flex max-w-screen-2xl flex-col items-center justify-center space-y-5 rounded-lg bg-black/30 p-8 shadow-[0px_0px_20px_0px_rgba(239,240,242,0.25)_inset] backdrop-blur-lg;
 }
 
 .title {
@@ -19,15 +19,5 @@
 }
 
 .description {
-  @apply max-w-screen-sm text-[18px] leading-7;
-}
-
-@media (max-width: 768px) {
-  .container {
-    @apply px-4 py-16;
-  }
-
-  .description {
-    @apply text-[1.125rem];
-  }
+  @apply max-w-screen-md;
 }

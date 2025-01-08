@@ -2,7 +2,7 @@ import React from "react";
 
 import { Header } from "@/components";
 import heroData from "@/data/bug-hunters/hero.json";
-import { Ecosystem, FeaturedHunters, HunterLevels, KeyBenefits, Knowledge, Referral } from "@/sections";
+import { CTA, Ecosystem, FeaturedHunters, HunterLevels, KeyBenefits, Referral } from "@/sections";
 
 const EthicalHackersPage: React.FC = () => {
   return (
@@ -13,7 +13,17 @@ const EthicalHackersPage: React.FC = () => {
       <Ecosystem />
       <HunterLevels />
       <FeaturedHunters />
-      <Knowledge />
+      <CTA
+        backgroundImage={{
+          src: "/bug-hunters/knowledge/background.webp",
+        }}
+        cta={{
+          label: "Learn More",
+          link: "/",
+        }}
+        description="Discover valuable resources, tutorials, and community insights tailored for bug hunters."
+        title="Head to the Knowledge Base to enhance your skills and stay updated on the latest cybersecurity trends."
+      />
     </main>
   );
 };

@@ -8,7 +8,7 @@ import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import { CTAProps } from "@/types";
 
-export const CTA: React.FC<CTAProps> = ({ backgroundImage, description, title, tagline, buttonText, href }) => {
+export const CTA: React.FC<CTAProps> = ({ backgroundImage, description, title, tagline, cta }) => {
   return (
     <ParallaxProvider>
       <div className={styles.container}>
@@ -25,15 +25,7 @@ export const CTA: React.FC<CTAProps> = ({ backgroundImage, description, title, t
             {tagline !== undefined && <span className="tagline text-white">{tagline}</span>}
             <h2 className={`heading-2 font-bold`}>{title}</h2>
             <p className={styles.description}>{description}</p>
-            <div className={styles.buttonGroup}>
-              <Button
-                externalHref={undefined}
-                href={href}
-                icon={<Image alt="arrow up right" height={24} src="/images/arrow-up-right.svg" width={24} />}
-              >
-                {buttonText}
-              </Button>
-            </div>
+            {cta && <Button iconName={cta.icon}>{cta.label}</Button>}
           </div>
         </div>
       </div>

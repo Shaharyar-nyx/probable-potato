@@ -7,14 +7,14 @@ export const OurCulture: React.FC<OurCultureProps> = ({ title, content, buttonTe
     <section className={styles["our-culture"]}>
       <div className={styles.background} />
       <div className={styles.container}>
-        <div className="w-1/2">
+        <div className="w-full lg:w-1/2">
           <h2 className={`${styles.title} heading-2`}>{title}</h2>
           <p className={`${styles.paragraph} paragraph-md`}>{content}</p>
-          <Button variant="neutral">{buttonText}</Button>
+          <Button variant="neutral" href="/careers" className="w-fit">{buttonText}</Button>
         </div>
-        <div className="flex w-1/2 flex-col">
+        <div className="flex w-full lg:w-1/2 flex-col">
           <h3 className="heading-7 mb-6 text-neutral-50">{coreTitle}</h3>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid lg:grid-cols-2 gap-6">
             {features.map((feature, id) => (
               <div key={id} className={styles["feature-container"]}>
                 <div className="flex items-center gap-3">

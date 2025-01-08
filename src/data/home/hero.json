@@ -2,7 +2,11 @@
   "backgroundVideo": "/images/bg-video.gif",
   "title": "Building a Future Ecosystem of Cybersecurity Excellence",
   "description": "We are on a mission to make cybersecurity proactive, inclusive, and accessible, empowering a safer digital age.",
-  "buttonText": "Request a Demo",
+  "cta": {
+    "label": "Request a Demo",
+    "link": "/",
+    "icon": "ArrowUpRightIcon"
+  },
   "featuredImage": {
     "image": "/images/cyber-img-1.png",
     "alt": "Cybersecurity Monitoring"

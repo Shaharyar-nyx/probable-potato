@@ -19,9 +19,12 @@ const Home: React.FC = () => {
         backgroundImage={{
           src: "/images/demo/banner1.png",
         }}
-        buttonText="Request a Demo"
+        cta={{
+          label: "Request a Demo",
+          link: "/",
+          icon: "ArrowUpRightIcon",
+        }}
         description="Experience the power of proactive cybersecurity tailored to your organization's unique needs."
-        href="/contact"
         title="Secure Your Digital Future"
       />
     </main>

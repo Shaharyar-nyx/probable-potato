@@ -1,5 +1,5 @@
 .container {
-  @apply mx-auto max-w-[1440px] px-16 py-10;
+  @apply mx-auto max-w-screen-2xl px-6 py-16 lg:px-16 lg:py-10;
 }
 
 .accordionItem {
@@ -15,7 +15,7 @@
 }
 
 .accordionTitle {
-  @apply text-2xl text-left text-primary-800;
+  @apply text-left text-primary-800;
 }
 
 .accordionIcon {
@@ -35,7 +35,7 @@
 }
 
 .accordionText {
-  @apply text-base leading-relaxed text-primary-800 pb-6;
+  @apply text-primary-800 pb-6;
 
   h3 {
     @apply text-xl font-bold mb-4 mt-6;

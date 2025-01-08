@@ -7,7 +7,7 @@
 }
 
 .container {
-  @apply px-16 pb-[120px] pt-[60px];
+  @apply mx-auto max-w-screen-2xl px-6 py-16 lg:px-16 lg:pb-[120px] lg:pt-[60px];
 }
 
 .content {
@@ -23,7 +23,7 @@
 }
 
 .gridContent {
-  @apply mx-[10%] mt-10 grid grid-cols-2 gap-12 md:grid-cols-4;
+  @apply mx-[10%] mt-10 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4;
 }
 
 .card {

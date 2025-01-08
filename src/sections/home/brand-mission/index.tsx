@@ -70,7 +70,7 @@ export const BrandMission: React.FC<BrandMissionProps> = ({ tags, title, descrip
   return (
     <div ref={containerRef} className={styles.container}>
       {tags.map((tag) => (
-        <div key={tag} className={styles[`${tag.toLowerCase()}Tag`]}>
+        <div key={tag} className={`${styles[`${tag.toLowerCase()}Tag`]} paragraph-xs`}>
           {tag}
         </div>
       ))}
@@ -84,8 +84,8 @@ export const BrandMission: React.FC<BrandMissionProps> = ({ tags, title, descrip
         <div key={member.name} className={`${styles.memberCard} ${styles["member" + (index + 1)]}`}>
           <img alt={member.name} className={styles.memberImage} src={member.image} />
           <div className={styles.memberInfo}>
-            <div className={styles.memberName}>{member.name}</div>
-            <div className={styles.memberRole}>{member.title}</div>
+            <p className="paragraph-sm font-semibold mb-1">{member.name}</p>
+            <p className="paragraph-xs">{member.title}</p>
           </div>
         </div>
       ))}

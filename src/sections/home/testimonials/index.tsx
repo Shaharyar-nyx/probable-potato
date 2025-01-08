@@ -100,7 +100,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
                       />
                     </div>
                     <div className={styles.testimonialRight}>
-                      <p className={"paragraph-xxl break-words text-neutral-50"}>{testimonial.quote}</p>
+                      <p className={`${styles.testimonialQuote} paragraph-xxl`}>{testimonial.quote}</p>
                     </div>
                   </div>
                 </SwiperSlide>
