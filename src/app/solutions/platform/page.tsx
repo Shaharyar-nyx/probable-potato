@@ -23,9 +23,11 @@ const PlatformPage: React.FC = () => {
         backgroundImage={{
           src: "/platform/platform-cta-bg.webp",
         }}
-        buttonText="Contact Sales"
+        cta={{
+          label: "Contact Sales",
+          link: "/",
+        }}
         description="Schedule a consult to receive tailored advice on launching your bug bounty program. Our experts will guide you through program setup and bounty pricing to ensure a smooth launch."
-        href="/contact"
         tagline="Connect"
         title="Get Expert Guidance for Your Bug Bounty"
       />

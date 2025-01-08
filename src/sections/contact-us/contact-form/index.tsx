@@ -41,7 +41,7 @@ export const ContactForm: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.gridContainer}>
-        <div className="w-[40%]">
+        <div className="w-full lg:w-[40%]">
           <h2 className={`${styles.title} heading-2 font-bold`}>Get In Touch</h2>
           <p className={styles.description}>
             <span className="font-semibold">Looking to speak with a member of our team?</span>

@@ -7,13 +7,13 @@ export const ImportanceBugTesting: React.FC<ImportanceBugTestingProps> = ({ tagl
     <section className={styles["importance-bug-testing"]}>
       <div className={styles.background} />
       <div className={styles.container}>
-        <div className="w-1/2">
+        <div className="lg:w-1/2">
           <div className="tagline mb-10 text-primary-800">{tagline}</div>
           <h2 className={`${styles.title} heading-2`}>{title}</h2>
           <p className={`${styles.paragraph} paragraph-md`}>{content}</p>
         </div>
-        <div className="flex w-1/2 flex-col">
-          <div className="grid grid-cols-2 gap-6">
+        <div className="flex lg:w-1/2 flex-col">
+          <div className="grid lg:grid-cols-2 gap-6">
             {features.map((feature, id) => (
               <div key={id} className={styles["feature-container"]}>
                 <div className="flex items-center gap-3">
