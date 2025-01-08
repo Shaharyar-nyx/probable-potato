@@ -1,9 +1,12 @@
 "use client";
 
-import { Button, IconRenderer, Input, Textarea } from "@/components";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+
 import styles from "./styles.module.scss";
+import { Button, IconRenderer } from "@/components";
+import { Input } from "@/legacy/Input";
+import { Textarea } from "@/legacy/Textarea";
 
 interface FormData {
   fullName: string;
@@ -60,9 +63,9 @@ export const ApplicationForm: React.FC = () => {
               <Input
                 className={`${styles.input} paragraph-sm`}
                 id="fullname"
-                onChange={(e) => setFormData((prev) => ({ ...prev, fullName: e.target.value }))}
                 placeholder="Full Name"
                 value={formData.fullName}
+                onChange={(e) => setFormData((prev) => ({ ...prev, fullName: e.target.value }))}
               />
             </div>
 
@@ -71,10 +74,10 @@ export const ApplicationForm: React.FC = () => {
               <Input
                 className={`${styles.input} paragraph-sm`}
                 id="email"
-                onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
                 placeholder="Email"
                 type="email"
                 value={formData.email}
+                onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
               />
             </div>
 
@@ -84,7 +87,7 @@ export const ApplicationForm: React.FC = () => {
                 <label className={styles.uploadButton}>
                   <span>Upload your resume</span>
                   <IconRenderer className="h-6 w-6" iconName="ArrowUpTrayIcon" />
-                  <input accept=".pdf" className="hidden" id="resume" onChange={handleFileChange} type="file" />
+                  <input accept=".pdf" className="hidden" id="resume" type="file" onChange={handleFileChange} />
                 </label>
               </div>
               <div className="flex flex-row items-end gap-1">
@@ -98,9 +101,9 @@ export const ApplicationForm: React.FC = () => {
               <Textarea
                 className={`${styles.textarea} paragraph-sm`}
                 id="message"
-                onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
                 placeholder="Tell us what's excited about the future of cybersecurity..."
                 value={formData.message}
+                onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
               />
             </div>
 

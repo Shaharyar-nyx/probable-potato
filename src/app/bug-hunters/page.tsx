@@ -20,7 +20,7 @@ const EthicalHackersPage: React.FC = () => {
         }}
         buttonText={knowledgeData.button_text}
         description={knowledgeData.text}
-        href="/"
+        href="/contact-us"
         title={knowledgeData.title}
       />
     </main>

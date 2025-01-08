@@ -1,4 +1,4 @@
-import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
+import React, {AnchorHTMLAttributes, ButtonHTMLAttributes, InputHTMLAttributes, TextareaHTMLAttributes} from "react";
 
 export interface HeroProps {
   backgroundVideo: string;
@@ -347,4 +347,30 @@ export interface JobOpeningsProps {
     title: string;
     link: string;
   }[];
+}
+
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  error?: string;
+  iconName?: string;
+  parentClassName?: string;
+}
+
+export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  error?: string;
+  iconName?: string;
+  parentClassName?: string;
+}
+
+export interface DropdownPropsInput {
+  ariaDescribedBy?: string;
+  ariaInvalid?: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
+  ariaRequired?: boolean | "true" | "false" | undefined;
+  className?: string;
+  disabled?: boolean;
+  error?: string;
+  id?: string;
+  label: string;
+  onChange?: (value: string) => void;
+  options: string[];
+  value?: string;
 }

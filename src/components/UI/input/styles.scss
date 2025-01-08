@@ -1,0 +1,19 @@
+.input-container {
+  @apply flex w-full items-center gap-3 rounded-xl border border-primary-800 px-[10px] py-[14px] placeholder:text-neutral-400;
+  @apply text-sm;
+  @apply leading-5;
+
+  &:focus-within {
+    @apply border-2 outline-none;
+  }
+
+  @apply disabled:cursor-not-allowed disabled:border-primary-100 disabled:text-primary-100;
+
+  &-text-error {
+    @apply mt-1 text-sm text-red-500;
+  }
+
+  &.input-error {
+    @apply border-b-red-500 text-red-500 placeholder:text-red-400;
+  }
+}
