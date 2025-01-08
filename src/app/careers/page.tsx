@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Header } from "@/components";
 import benefitsData from "@/data/careers/benefits.json";
 import clientsContent from "@/data/careers/clients.json";
