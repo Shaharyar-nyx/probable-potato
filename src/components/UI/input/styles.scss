@@ -3,31 +3,26 @@
   @apply w-full px-[10px] py-[14px];
   @apply rounded-xl border border-primary-800;
   @apply text-[14px] leading-5 placeholder:text-neutral-400;
+  @apply disabled:cursor-not-allowed;
 
-  &:focus-within {
-    @apply border-2 outline-none;
-
-    svg {
-      @apply text-primary-800;
-    }
-  }
-
-  @apply disabled:cursor-not-allowed disabled:border-primary-100 disabled:text-primary-100;
-
-  &-text-error {
-    @apply mt-1 text-sm text-red-500;
+  &.input-focused {
+    @apply shadow-[0px_0px_0px_1px_#02255B_inset];
   }
 
   &.input-error {
-    @apply border-b-red-500 text-red-500 placeholder:text-red-400;
+    @apply border-red-500 text-red-400 placeholder:text-red-400;
+  }
 
-    svg {
-      @apply text-red-400;
+  &.input-disabled {
+    @apply cursor-not-allowed border-primary-100 text-primary-100;
+
+    input::placeholder, textarea::placeholder {
+      @apply text-primary-100;
     }
   }
 
-  svg {
-    @apply text-neutral-400;
+  .input-text-error {
+    @apply mt-1 text-sm text-red-500;
   }
 }
 
@@ -44,14 +39,15 @@
   @apply disabled:cursor-not-allowed disabled:border-primary-100 disabled:text-primary-100;
 
   &:hover {
+    //@apply border-2 outline-none;
   }
 
-  &:focus {
-    @apply border-2 outline-none;
+  &.dropdown-disabled {
+    @apply cursor-not-allowed border-primary-100 text-primary-100;
   }
 
   &.input-error {
-    @apply border-b-red-500 text-red-500 placeholder:text-red-400;
+    @apply border-red-500 text-red-400 placeholder:text-red-400;
   }
 }
 
@@ -76,5 +72,5 @@
 }
 
 .input-text-error {
-  @apply mt-1 text-sm text-red-500;
+  @apply mt-1 text-xs text-red-500;
 }

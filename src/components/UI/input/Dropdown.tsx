@@ -24,6 +24,7 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [innerValue, setInnerValue] = useState<string | undefined>(value);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
+  const [hasFocus, setHasFocus] = useState(false); // Focus state for icon color
   const dropdownRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
@@ -74,7 +75,12 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
   }, [highlightedIndex]);
 
   return (
-    <div ref={dropdownRef} className={clsx("dropdown-container", className)}>
+    <div
+      ref={dropdownRef}
+      className={clsx("dropdown-container", className)}
+      onBlur={() => setHasFocus(false)}
+      onFocus={() => setHasFocus(true)}
+    >
       <button
         aria-controls={isOpen ? `${id}-listbox` : undefined}
         aria-describedby={ariaDescribedBy}
@@ -91,7 +97,21 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
         onClick={toggleDropdown}
       >
         <div className="flex gap-3">
-          {iconName !== undefined && <IconRenderer className="h-6 w-6 text-primary-800" iconName={iconName} />}
+          {iconName !== undefined && (
+            <IconRenderer
+              className={clsx(
+                "h-6 w-6",
+                disabled
+                  ? "text-primary-100"
+                  : error !== undefined
+                    ? "text-red-400"
+                    : hasFocus
+                      ? "text-primary-800"
+                      : "text-neutral-400",
+              )}
+              iconName={iconName}
+            />
+          )}
           <span
             className={clsx(
               disabled
@@ -109,7 +129,14 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
         <ChevronDownIcon
           className={clsx(
             "dropdown-input-arrow",
-            disabled ? "text-primary-100" : isOpen ? "rotate-180 text-primary-800" : "text-neutral-400",
+            isOpen ? "rotate-180" : "rotate-0",
+            disabled
+              ? "text-primary-100"
+              : error !== undefined
+                ? "text-red-400"
+                : hasFocus
+                  ? "text-primary-800"
+                  : "text-neutral-400",
           )}
         />
       </button>
