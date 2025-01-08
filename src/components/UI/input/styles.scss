@@ -1,7 +1,8 @@
 .input-container {
-  @apply flex w-full items-center gap-3 rounded-xl border border-primary-800 px-[10px] py-[14px] placeholder:text-neutral-400;
-  @apply text-sm;
-  @apply leading-5;
+  @apply flex items-center gap-3;
+  @apply w-full px-[10px] py-[14px];
+  @apply rounded-xl border border-primary-800;
+  @apply text-[14px] leading-5 placeholder:text-neutral-400;
 
   &:focus-within {
     @apply border-2 outline-none;
@@ -18,21 +19,23 @@
   }
 }
 
+.dropdown-container {
+  @apply relative;
+}
+
 .dropdown-input-container {
-  @apply relative flex w-full items-center gap-3 rounded-xl border border-primary-800 px-[10px] py-[14px];
-  @apply text-sm leading-5 placeholder:text-neutral-400;
+  @apply flex items-center justify-between;
+  @apply w-full px-[10px] py-[14px];
+  @apply rounded-xl border border-primary-800;
+  @apply text-[14px] leading-5 placeholder:text-neutral-400;
   @apply cursor-pointer;
+  @apply disabled:cursor-not-allowed disabled:border-primary-100 disabled:text-primary-100;
 
   &:hover {
-    @apply border-2 outline-none;
   }
 
-  &:focus-within {
+  &:focus {
     @apply border-2 outline-none;
-  }
-
-  &.dropdown-disabled {
-    @apply cursor-not-allowed border-primary-100 text-primary-100;
   }
 
   &.input-error {
@@ -40,31 +43,24 @@
   }
 }
 
-.dropdown-inner-container {
-  @apply flex w-full items-center gap-3;
-}
-
-.dropdown-input-button {
-  @apply flex w-full items-center justify-between bg-transparent outline-none;
-  @apply disabled:cursor-not-allowed;
-}
-
 .dropdown-input-arrow {
-  @apply h-5 w-5 text-neutral-200 transition-transform duration-300;
+  @apply h-5 w-5 transition-transform duration-300;
 }
 
 .dropdown-input-options-container {
-  @apply absolute left-0 top-full z-10 mt-1 max-h-72 w-full overflow-auto rounded border border-neutral-200 bg-neutral-100 px-3 py-2 shadow-lg;
+  @apply absolute left-0 top-full z-10;
+  @apply mt-1 max-h-72 w-full overflow-auto px-3 py-2;
+  @apply rounded border-2 border-primary-800 bg-neutral-50 shadow-lg;
 }
 
 .dropdown-input-options-item {
-  @apply cursor-pointer rounded px-2 py-1 text-neutral-200 hover:bg-neutral-400;
-  @apply text-sm lg:text-[18px];
-  @apply leading-4 lg:leading-6;
+  @apply cursor-pointer;
+  @apply rounded px-2 py-1 text-primary-800 hover:bg-primary-100;
+  @apply text-[14px] leading-5;
 }
 
 .dropdown-input-options-item-highlighted {
-  @apply bg-neutral-400;
+  @apply bg-primary-100;
 }
 
 .input-text-error {

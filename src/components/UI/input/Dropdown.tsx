@@ -11,8 +11,6 @@ import "./styles.scss";
 
 export const Dropdown: React.FC<DropdownPropsInput> = ({
   ariaDescribedBy,
-  ariaInvalid,
-  ariaRequired,
   disabled = false,
   label,
   iconName,
@@ -43,7 +41,7 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
     setHighlightedIndex(-1);
   };
 
-  const handleButtonClick = () => {
+  const toggleDropdown = () => {
     if (!disabled) {
       setIsOpen((prev) => !prev);
     }
@@ -64,35 +62,35 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
     };
   }, [disabled]);
 
-  return (
-    <div
-      ref={dropdownRef}
-      aria-controls={isOpen ? `${id}-listbox` : undefined}
-      aria-describedby={ariaDescribedBy}
-      aria-expanded={isOpen && !disabled}
-      aria-haspopup="listbox"
-      aria-invalid={ariaInvalid}
-      aria-labelledby={`${id}-button`}
-      aria-required={ariaRequired}
-      className={clsx("dropdown-input-container", className, {
-        "input-error": error,
-        "dropdown-disabled": disabled,
-      })}
-      id={id}
-      role="combobox"
-    >
-      <div className="dropdown-inner-container">
-        {iconName !== undefined && <IconRenderer className="h-6 w-6 text-primary-800" iconName={iconName} />}
+  useEffect(() => {
+    if (highlightedIndex >= 0 && listRef.current) {
+      const highlightedOption = listRef.current.children[highlightedIndex];
+      if (highlightedOption !== undefined) {
+        (highlightedOption as HTMLElement).scrollIntoView({
+          block: "nearest",
+        });
+      }
+    }
+  }, [highlightedIndex]);
 
-        <button
-          aria-controls={`${id}-listbox`}
-          aria-disabled={disabled}
-          className="dropdown-input-button"
-          disabled={disabled}
-          id={`${id}-button`}
-          type="button"
-          onClick={handleButtonClick}
-        >
+  return (
+    <div ref={dropdownRef} className={clsx("dropdown-container", className)}>
+      <button
+        aria-controls={isOpen ? `${id}-listbox` : undefined}
+        aria-describedby={ariaDescribedBy}
+        aria-expanded={isOpen && !disabled}
+        aria-haspopup="listbox"
+        className={clsx("dropdown-input-container", {
+          "input-error": error,
+          "dropdown-disabled": disabled,
+        })}
+        disabled={disabled}
+        id={id}
+        type="button"
+        onClick={toggleDropdown}
+      >
+        <div className="flex gap-3">
+          {iconName !== undefined && <IconRenderer className="h-6 w-6 text-primary-800" iconName={iconName} />}
           <span
             className={clsx(
               disabled
@@ -100,19 +98,24 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
                 : error !== undefined
                   ? "text-red-400"
                   : innerValue !== undefined
-                    ? "text-neutral-200"
+                    ? "text-primary-800"
                     : "text-neutral-300",
             )}
           >
             {innerValue ?? label}
           </span>
-          <ChevronDownIcon className={clsx("dropdown-input-arrow", isOpen ? "rotate-180" : "rotate-0")} />
-        </button>
-      </div>
+        </div>
+        <ChevronDownIcon
+          className={clsx(
+            "dropdown-input-arrow",
+            disabled ? "text-primary-100" : isOpen ? "rotate-180 text-primary-800" : "text-neutral-400",
+          )}
+        />
+      </button>
 
       {isOpen && !disabled && (
         <div className="dropdown-input-options-container" role="presentation">
-          <ul ref={listRef} aria-labelledby={`${id}-button`} id={`${id}-listbox`} role="listbox" tabIndex={-1}>
+          <ul ref={listRef} aria-labelledby={id} id={`${id}-listbox`} role="listbox" tabIndex={-1}>
             {options.map((option, index) => (
               <li
                 key={index}
@@ -124,6 +127,7 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
                 role="option"
                 tabIndex={-1}
                 onClick={() => handleSelect(option)}
+                onMouseEnter={() => setHighlightedIndex(index)}
               >
                 {option}
               </li>

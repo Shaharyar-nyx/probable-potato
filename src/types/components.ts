@@ -363,8 +363,6 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 
 export interface DropdownPropsInput {
   ariaDescribedBy?: string;
-  ariaInvalid?: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
-  ariaRequired?: boolean | "true" | "false" | undefined;
   className?: string;
   disabled?: boolean;
   error?: string;
