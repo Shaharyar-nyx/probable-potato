@@ -368,6 +368,7 @@ export interface DropdownPropsInput {
   className?: string;
   disabled?: boolean;
   error?: string;
+  iconName?: string;
   id?: string;
   label: string;
   onChange?: (value: string) => void;
