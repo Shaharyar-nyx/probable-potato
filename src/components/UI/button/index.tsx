@@ -51,7 +51,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       className,
     );
 
-    const iconClassNames = clsx("ml-2", styles[`icon-${size}`], {
+    const iconClassNames = clsx(styles[`icon-${size}`], {
       // Default styles
       [styles[`icon-${variant}`]]: !transparent && !hovered && !isDisabled,
       [styles[`icon-${variant}-transparent`]]: transparent && !hovered && !isDisabled,
@@ -69,7 +69,11 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
 
     const content = (
       <>
-        {loading ? <span>Loading...</span> : <span>{children}</span>}
+        {loading ? (
+          <span>Loading...</span>
+        ) : (
+          children && <span>{children}</span> // Only render children if it's provided
+        )}
         {iconName !== undefined && <IconRenderer className={iconClassNames} iconName={iconName} />}
       </>
     );
