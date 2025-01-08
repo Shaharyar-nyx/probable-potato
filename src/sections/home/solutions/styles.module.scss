@@ -3,11 +3,7 @@
 }
 
 .container {
-  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 py-32 text-primary-800 lg:px-16;
-
-  @media (max-width: 768px) {
-    @apply max-w-screen-sm space-y-12 px-16 py-16;
-  }
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 py-16 text-primary-800 lg:px-16 lg:py-32;
 }
 
 .glassBackground {
@@ -169,11 +165,7 @@
   }
 
   .cardContent {
-    @apply flex-col;
-
-    @media (max-width: 768px) {
-      @apply flex-row;
-    }
+    @apply flex-row lg:flex-col;
   }
 
   .textContent {

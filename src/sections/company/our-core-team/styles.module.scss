@@ -1,5 +1,5 @@
 .our-core-team {
-  @apply mx-auto max-w-screen-2xl px-6 pt-5 pb-16 lg:px-16 lg:pt-7 lg:pb-24;
+  @apply mx-auto max-w-screen-2xl px-6 pb-16 pt-5 lg:px-16 lg:pb-24 lg:pt-7;
 
   .title {
     @apply mb-4 text-center text-primary-800;
@@ -14,40 +14,24 @@
   }
 
   .row {
-    @apply flex gap-6;
-
-    @media (max-width: 768px) {
-      @apply flex-col;
-    }
+    @apply flex flex-col gap-6 lg:flex-row;
   }
 
   .row:last-child {
-    @apply justify-center;
-
-    @media (max-width: 768px) {
-      @apply justify-start;
-    }
+    @apply justify-start lg:justify-center;
   }
 
   .row:last-child .card {
-    @apply w-[calc((100%-32px)/3)];
-
-    @media (max-width: 768px) {
-      @apply w-full;
-    }
+    @apply w-full lg:w-[calc((100%-32px)/3)];
   }
 
   .card {
-    @apply w-[calc((100%-48px)/3)] px-4 py-5;
+    @apply w-full px-4 py-5 lg:w-[calc((100%-48px)/3)];
     border-radius: 16px;
     border: 1px solid rgba(107, 114, 128, 0);
     box-shadow:
       0px 1px 3px 0px rgba(16, 24, 40, 0.1),
       0px 1px 2px -1px rgba(16, 24, 40, 0.1);
-
-    @media (max-width: 768px) {
-      @apply w-full;
-    }
 
     .header {
       @apply mb-6;

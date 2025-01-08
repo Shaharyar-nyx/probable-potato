@@ -3,19 +3,11 @@
 }
 
 .content {
-  @apply mx-auto w-full max-w-screen-2xl px-16 py-20;
-
-  @media (max-width: 768px) {
-    @apply max-w-screen-sm px-4 py-12;
-  }
+  @apply mx-auto w-full px-6 py-16 max-w-screen-2xl lg:px-16 lg:py-20;
 }
 
 .header {
-  @apply flex gap-8;
-
-  @media (max-width: 768px) {
-    @apply flex-col;
-  }
+  @apply flex flex-col gap-8 lg:flex-row;
 }
 
 .clientsSection {
@@ -47,11 +39,7 @@
 }
 
 .testimonialSlide {
-  @apply flex h-full gap-8;
-
-  @media (max-width: 768px) {
-    @apply flex-col;
-  }
+  @apply flex h-full flex-col gap-8 lg:flex-row;
 }
 
 .testimonialLeft {
@@ -66,7 +54,7 @@
   @apply break-words text-neutral-50;
 
   @media (max-width: 768px) {
-    @apply text-md;
+    @apply text-sm;
   }
 }
 
@@ -79,11 +67,7 @@
 }
 
 .testimonialLogo {
-  @apply w-[120px];
-
-  @media (max-width: 768px) {
-    @apply w-[100px];
-  }
+  @apply w-[100px] lg:w-[120px];
 }
 
 .progressContainer {

@@ -27,7 +27,7 @@ export const ProgramType: React.FC<ProgramTypeProps> = ({ title, content, featur
             {features.map((feature, id) => (
               <motion.div
                 key={id}
-                className={`${styles["feature-container"]} ${expandedFeature === id ? styles.expanded : expandedFeature !== id && expandedFeature !== null ? "h-max w-[20%]" : ""}`}
+                className={`${styles["feature-container"]} ${expandedFeature === id ? styles.expanded : expandedFeature !== id && expandedFeature !== null ? "h-max lg:w-[20%]" : ""}`}
                 initial={false}
                 layout
               >

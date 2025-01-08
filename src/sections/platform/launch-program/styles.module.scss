@@ -7,11 +7,7 @@
 }
 
 .gridContent {
-  @apply grid-cols-2 items-center gap-12;
-
-  @media (max-width: 768px) {
-    @apply grid-cols-1;
-  }
+  @apply lg:grid-cols-2 items-center gap-12;
 }
 
 .content {

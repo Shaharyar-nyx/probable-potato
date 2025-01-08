@@ -1,9 +1,5 @@
 .header {
-  @apply relative h-full w-full overflow-hidden pt-16;
-
-  @media (max-width: 768px) {
-    @apply pt-40;
-  }
+  @apply relative h-full w-full overflow-hidden pt-40 lg:pt-16;
 }
 
 .backgroundWrapper {
@@ -23,10 +19,6 @@
 
 .container {
   @apply relative z-20 mx-auto h-full max-w-screen-2xl;
-
-  @media (max-width: 768px) {
-    @apply max-w-screen-sm;
-  }
 }
 
 .content {
@@ -63,7 +55,7 @@
 
 .ctaButton {
   @media (max-width: 768px) {
-    @apply w-fit m-auto justify-center;
+    @apply m-auto w-fit justify-center;
   }
 }
 

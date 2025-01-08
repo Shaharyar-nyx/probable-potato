@@ -12,7 +12,7 @@ export const Header: React.FC<HeaderProps> = ({ cta, tagline, title, description
       <div className={styles.content}>
         {tagline && <div className="tagline">{tagline}</div>}
         <h2 className="heading-2 font-bold max-w-screen-md">{title}</h2>
-        <p className={styles.description}>{description}</p>
+        <p className={`${styles.description} paragraph-lg`}>{description}</p>
         {cta && <Button iconName={cta.icon}>{cta.label}</Button>}
       </div>
     </section>

@@ -7,11 +7,7 @@
 }
 
 .content {
-  @apply mx-auto max-w-screen-2xl;
-
-  @media (max-width: 768px) {
-    @apply px-0;
-  }
+  @apply mx-auto max-w-screen-2xl px-0;
 }
 
 .header {
@@ -27,11 +23,7 @@
 }
 
 .packagesGrid {
-  @apply grid gap-8;
-
-  @media (max-width: 768px) {
-    @apply gap-6 mb-10;
-  }
+  @apply mb-10 grid gap-6 lg:mb-0 lg:gap-8;
 }
 
 .package {
@@ -133,10 +125,6 @@
 }
 
 @media (max-width: 768px) {
-  .container {
-    @apply px-4 py-16;
-  }
-
   .packagesGrid {
     @apply grid-cols-1;
   }

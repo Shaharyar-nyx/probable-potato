@@ -1,5 +1,5 @@
 .container {
-  @apply relative flex h-[80vh] items-center justify-center overflow-hidden px-16 py-24 text-center text-neutral-50;
+  @apply relative flex h-[80vh] items-center justify-center overflow-hidden px-6 py-16 lg:px-16 lg:py-24 text-center text-neutral-50;
 }
 
 .image {
@@ -19,15 +19,5 @@
 }
 
 .description {
-  @apply max-w-screen-md text-[18px] leading-7;
-}
-
-@media (max-width: 768px) {
-  .container {
-    @apply px-4 py-16;
-  }
-
-  .description {
-    @apply text-[1.125rem];
-  }
+  @apply max-w-screen-md;
 }

@@ -11,48 +11,25 @@
 }
 
 .description {
-  @apply mb-16;
-
-  @media (max-width: 768px) {
-    @apply mb-8;
-  }
+  @apply mb-8 lg:mb-16;
 }
 
 .gridContent {
-  @apply grid grid-cols-[2fr_1fr_1fr_auto] items-center gap-x-8;
-
-  @media (max-width: 768px) {
-    @apply grid-cols-1 gap-y-4;
-  }
+  @apply grid items-center gap-x-8 gap-y-2 lg:gap-y-0 lg:grid-cols-[2fr_1fr_1fr_auto];
 }
 
 .columnHeader {
-  @apply font-semibold;
-
-  @media (max-width: 768px) {
-    @apply hidden;
-  }
+  @apply hidden font-semibold lg:flex;
 }
 
 .row {
-  @apply py-10 font-bold;
-  @media (max-width: 768px) {
-    @apply py-1;
-  }
+  @apply py-1 font-bold lg:py-10;
 }
 
 .buttonWrapper {
-  @apply flex items-center py-10;
-
-  @media (max-width: 768px) {
-    @apply py-1 justify-start;
-  }
+  @apply flex items-center justify-start py-1 lg:py-10;
 }
 
 .divider {
-  @apply col-span-4 border-b border-neutral-50;
-
-  @media (max-width: 768px) {
-    @apply col-span-1 mt-4;
-  }
+  @apply col-span-1 mt-4 border-b border-neutral-50 lg:col-span-4 lg:mt-0;
 }
