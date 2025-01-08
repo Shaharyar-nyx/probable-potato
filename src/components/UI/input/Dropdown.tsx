@@ -19,12 +19,15 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
   className,
   error,
   value,
-  onChange,
+  handleChange,
+  onFocus,
+  onBlur,
+  onClick,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [innerValue, setInnerValue] = useState<string | undefined>(value);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
-  const [hasFocus, setHasFocus] = useState(false); // Focus state for icon color
+  const [hasFocus, setHasFocus] = useState(false); // Focus state for styling
   const dropdownRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
@@ -32,19 +35,32 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
     setInnerValue(value);
   }, [value]);
 
+  const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
+    setHasFocus(true);
+    if (onFocus) onFocus(event);
+  };
+
+  const handleBlur = (event: React.FocusEvent<HTMLButtonElement>) => {
+    setHasFocus(false);
+    if (onBlur) onBlur(event);
+  };
+
   const handleSelect = (selectedOption: string) => {
     if (disabled) return;
     setInnerValue(selectedOption);
-    if (onChange) {
-      onChange(selectedOption);
+    if (handleChange) {
+      handleChange(selectedOption);
     }
     setIsOpen(false);
     setHighlightedIndex(-1);
   };
 
-  const toggleDropdown = () => {
+  const toggleDropdown = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (!disabled) {
       setIsOpen((prev) => !prev);
+    }
+    if (onClick) {
+      onClick(event);
     }
   };
 
@@ -75,12 +91,7 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
   }, [highlightedIndex]);
 
   return (
-    <div
-      ref={dropdownRef}
-      className={clsx("dropdown-container", className)}
-      onBlur={() => setHasFocus(false)}
-      onFocus={() => setHasFocus(true)}
-    >
+    <div ref={dropdownRef} className={clsx("dropdown-container", className)}>
       <button
         aria-controls={isOpen ? `${id}-listbox` : undefined}
         aria-describedby={ariaDescribedBy}
@@ -88,13 +99,17 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
         aria-haspopup="listbox"
         aria-labelledby={`${id}-label ${id}`}
         className={clsx("dropdown-input-container", {
-          "input-error": error,
+          "input-error": error !== undefined,
           "dropdown-disabled": disabled,
+          "dropdown-focused": hasFocus && !disabled && error === undefined,
+          "dropdown-focused-error": hasFocus && !disabled && error !== undefined,
         })}
         disabled={disabled}
         id={id}
         type="button"
+        onBlur={handleBlur}
         onClick={toggleDropdown}
+        onFocus={handleFocus}
       >
         <div className="flex gap-3">
           {iconName !== undefined && (

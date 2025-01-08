@@ -43,12 +43,12 @@
   @apply cursor-pointer;
   @apply disabled:cursor-not-allowed disabled:border-primary-100 disabled:text-primary-100;
 
-  &:hover {
-    //@apply border-2 outline-none;
+  &.dropdown-focused {
+    @apply shadow-[0px_0px_0px_1px_#02255B_inset];
   }
 
-  &.dropdown-disabled {
-    @apply cursor-not-allowed border-primary-100 text-primary-100;
+  &.dropdown-focused-error {
+    @apply shadow-[0px_0px_0px_1px_#f87171_inset];
   }
 
   &.input-error {

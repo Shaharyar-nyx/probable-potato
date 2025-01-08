@@ -1,4 +1,10 @@
-import React, {AnchorHTMLAttributes, ButtonHTMLAttributes, InputHTMLAttributes, TextareaHTMLAttributes} from "react";
+import React, {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  HTMLAttributes,
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+} from "react";
 
 export interface HeroProps {
   backgroundVideo: string;
@@ -361,15 +367,15 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   parentClassName?: string;
 }
 
-export interface DropdownPropsInput {
+export interface DropdownPropsInput extends ButtonHTMLAttributes<HTMLButtonElement> {
   ariaDescribedBy?: string;
   className?: string;
   disabled?: boolean;
   error?: string;
+  handleChange?: (value: string) => void;
   iconName?: string;
   id?: string;
   label: string;
-  onChange?: (value: string) => void;
   options: string[];
   value?: string;
 }
