@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import React, { useRef, useState } from "react";
 
 import { Button, IconRenderer } from "@/components";
@@ -68,8 +69,9 @@ export const InputFile: React.FC<InputFileProps> = ({
         onChange={handleFileChange}
       />
       <Button
-        className="border border-primary-800"
+        className={clsx("max-w-[250px] border", error ? "border-red-400" : "border-primary-800")}
         disabled={formLoading}
+        error={!!error}
         iconName="ArrowUpTrayIcon"
         type="button"
         variant="neutral"
@@ -84,7 +86,7 @@ export const InputFile: React.FC<InputFileProps> = ({
         </p>
       </div>
       {error && (
-        <p aria-live="assertive" className="mt-1 text-xs text-red-500">
+        <p aria-live="assertive" className="mt-1 text-xs text-red-400">
           {error.message}
         </p>
       )}

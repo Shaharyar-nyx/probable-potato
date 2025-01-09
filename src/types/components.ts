@@ -113,6 +113,7 @@ export interface PackagesProps {
 export interface BaseButtonProps {
   children?: React.ReactNode;
   className?: string;
+  error?: boolean;
   icon?: React.ReactNode;
   iconName?: string;
   loading?: boolean;
