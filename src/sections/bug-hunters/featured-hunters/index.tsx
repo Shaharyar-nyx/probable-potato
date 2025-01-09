@@ -56,10 +56,17 @@ export const FeaturedHunters: React.FC = () => {
               <tbody className="inline-flex w-full flex-col gap-3">
                 {data.hunters.data.map((data) => (
                   <tr key={data.rank} className="featured-hunters-hunters-table-row">
-                    <td className="inline-block w-[55px] text-center">{data.rank}</td>
-                    <td className="inline-block w-[160px] text-center">{data.hunter_name}</td>
-                    <td className="inline-block w-[230px] text-center">{data.submission_accepted}</td>
-                    <td className="inline-block w-[105px] text-center">{data.time}</td>
+                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[55px]">{data.rank}</td>
+                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[160px]">
+                      <div className="featured-hunters-hunters-table-avatar-cell">
+                        <img alt={data.hunter_name} className="h-6 w-6 rounded-full object-cover" src={data.avatar} />
+                        <span>{data.hunter_name}</span>
+                      </div>
+                    </td>
+                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[230px]">
+                      {data.submission_accepted}
+                    </td>
+                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[105px]">{data.time}</td>
                   </tr>
                 ))}
               </tbody>
