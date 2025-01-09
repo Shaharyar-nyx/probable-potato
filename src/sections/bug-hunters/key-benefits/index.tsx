@@ -12,8 +12,8 @@ export const KeyBenefits: React.FC = () => {
       <div className="key-benefits-background" />
       <div className="key-benefits-container key-benefits-join-container">
         <div className="w-[32%]">
-          <h2 className={`heading-2 key-benefits-title`}>{joinData.title}</h2>
-          <p className={`paragraph-2 key-benefits-paragraph`}>{joinData.text}</p>
+          <h2 className={`heading-1 key-benefits-title`}>{joinData.title}</h2>
+          <p className={`paragraph-md key-benefits-paragraph`}>{joinData.text}</p>
           <Button className="w-[160px]" variant="neutral">
             Join Now!
           </Button>
@@ -35,8 +35,8 @@ export const KeyBenefits: React.FC = () => {
       <div className={`key-benefits-container key-benefits-benefits-container`}>
         <span className="tagline key-benefits-tagline">{benefitsData.tagline}</span>
         <div className="mb-12">
-          <h2 className="heading-2 key-benefits-title">{benefitsData.title}</h2>
-          <p className="paragraph-2 key-benefits-paragraph">{benefitsData.text}</p>
+          <h2 className="heading-1 key-benefits-title">{benefitsData.title}</h2>
+          <p className="paragraph-md key-benefits-paragraph">{benefitsData.text}</p>
         </div>
         <div className="grid grid-cols-2 gap-6">
           {benefitsData.features.map((feature) => (

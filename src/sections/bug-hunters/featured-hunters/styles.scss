@@ -3,10 +3,10 @@
     @apply relative bg-primary-800;
   }
   &-top-container {
-    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-16 py-[30px];
+    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-6 py-[30px] lg:px-16;
   }
   &-bottom-container {
-    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-16 pb-[120px] pt-[30px];
+    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-6 pb-16 pt-16 lg:px-16 lg:pb-[7.5rem];
   }
   &-tagline {
     @apply mb-10 text-neutral-50;
