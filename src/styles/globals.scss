@@ -55,40 +55,40 @@
 }
 
 .heading-7 {
-  @apply text-lg leading-6;
+  @apply text-lg leading-6 md:text-[1.25rem] md:leading-7;
 }
 
 .heading-8 {
-  @apply text-base leading-5;
+  @apply text-base leading-5 md:text-[1.125rem] md:leading-6;
 }
 
 .heading-9 {
-  @apply text-sm leading-4;
+  @apply text-sm leading-4 md:text-base md:leading-5;
 }
 
 .paragraph {
   @apply font-sans;
 
   &-xs {
-    @apply text-[12px] leading-4;
+    @apply text-[12px] leading-4 md:text-[14px] md:leading-5;
   }
   &-sm {
-    @apply text-[14px] leading-5;
+    @apply text-[14px] leading-5 md:text-[16px] md:leading-6;
   }
   &-md {
-    @apply text-[16px] leading-6;
+    @apply text-[16px] leading-6 md:text-[18px] md:leading-7;
   }
   &-lg {
-    @apply text-[18px] leading-7;
+    @apply text-[18px] leading-7 md:text-[20px] md:leading-8;
   }
   &-xl {
-    @apply text-[22px] leading-8;
+    @apply text-[22px] leading-8 md:text-[26px] md:leading-9;
   }
   &-xxl {
-    @apply text-[28px] leading-10;
+    @apply text-[28px] leading-10 md:text-[32px] md:leading-[3rem];
   }
 }
 
 .tagline {
-  @apply text-[14px] leading-5;
+  @apply text-[14px] leading-5 md:text-[16px] md:leading-6;
 }
