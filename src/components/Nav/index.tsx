@@ -255,8 +255,8 @@ export const Nav: React.FC = () => {
             )}
           </div> */}
 
-          <Button href="/login" transparent>
-            Log In / Sign Up
+          <Button externalHref="https://community.cyberbay.tech/signin" transparent>
+            Log In / Sign In
           </Button>
 
           <Button href="/contact-us">Contact Us</Button>
@@ -264,14 +264,14 @@ export const Nav: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           className="flex items-center justify-center rounded-lg p-2 text-primary-800 hover:bg-[#EFF0F2CC] lg:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         >
           {isMobileMenuOpen ? (
-            <IconRenderer iconName="XMarkIcon" className="h-6 w-6" />
+            <IconRenderer className="h-6 w-6" iconName="XMarkIcon" />
           ) : (
-            <IconRenderer iconName="Bars3Icon" className="h-6 w-6" />
+            <IconRenderer className="h-6 w-6" iconName="Bars3Icon" />
           )}
         </button>
 
@@ -297,15 +297,15 @@ export const Nav: React.FC = () => {
                       <span>{item.name}</span>
                       {item.hasDropdown && (
                         <IconRenderer
-                          iconName="ChevronDownIcon"
                           className={`h-5 w-5 transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
+                          iconName="ChevronDownIcon"
                         />
                       )}
                     </div>
                   </button>
                 ) : (
                   <div className="w-full px-4 py-3 text-left transition-colors">
-                    <Link href={item.href} className={`text-base font-medium text-primary-800`}>
+                    <Link className={`text-base font-medium text-primary-800`} href={item.href}>
                       {item.name}
                     </Link>
                   </div>
@@ -320,11 +320,11 @@ export const Nav: React.FC = () => {
                           {section.items.map((menuItem) => (
                             <Link
                               key={menuItem.name}
-                              href={menuItem.href}
                               className="group flex items-start space-x-3 rounded-lg p-2 transition-colors hover:bg-primary-500 group-hover:text-neutral-50"
+                              href={menuItem.href}
                             >
                               <span className="flex-shrink-0 rounded-md bg-primary-50 p-1">
-                                <IconRenderer iconName={menuItem.icon} className="h-5 w-5 text-primary-500" />
+                                <IconRenderer className="h-5 w-5 text-primary-500" iconName={menuItem.icon} />
                               </span>
                               <div>
                                 <div className="text-sm font-medium text-primary-800 group-hover:text-neutral-50">
@@ -377,8 +377,12 @@ export const Nav: React.FC = () => {
             </div> */}
 
             <div className="flex flex-col space-y-3 pt-4">
-              <Button href="/login" transparent onClick={() => setIsMobileMenuOpen(false)}>
-                Log In / Sign Up
+              <Button
+                externalHref="https://community.cyberbay.tech/signin"
+                transparent
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Log In / Sign In
               </Button>
 
               <Button href="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>
