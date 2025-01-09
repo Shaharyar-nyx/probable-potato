@@ -5,7 +5,7 @@ import React, {
   InputHTMLAttributes,
   TextareaHTMLAttributes,
 } from "react";
-import { FieldError, UseFormClearErrors, UseFormRegister, UseFormSetError } from "react-hook-form";
+import {Field, FieldError, UseFormClearErrors, UseFormRegister, UseFormSetError} from "react-hook-form";
 
 export interface HeroProps {
   backgroundVideo: string;
@@ -118,7 +118,7 @@ export interface PackagesProps {
 export interface BaseButtonProps {
   children?: React.ReactNode;
   className?: string;
-  error?: boolean;
+  error?: string;
   icon?: React.ReactNode;
   iconName?: string;
   loading?: boolean;
@@ -146,6 +146,17 @@ export type ButtonAsExternalLink = BaseButtonProps &
   };
 
 export type ButtonProps = ButtonAsButton | ButtonAsInternalLink | ButtonAsExternalLink;
+
+export type InputFileProps = {
+  clearErrors?: UseFormClearErrors<any>;
+  error?: string;
+  formLoading?: boolean | undefined;
+  id?: string;
+  maxFileSize: number;
+  name: string;
+  register?: UseFormRegister<any>;
+  setError?: UseFormSetError<any>;
+} & ButtonProps;
 
 export interface IconRendererProps {
   className?: string;
@@ -405,15 +416,4 @@ export interface DropdownPropsInput extends ButtonHTMLAttributes<HTMLButtonEleme
   label: string;
   options: string[];
   value?: string;
-}
-
-export interface InputFileProps {
-  clearErrors?: UseFormClearErrors<any>;
-  error?: FieldError;
-  formLoading?: boolean;
-  id?: string;
-  maxFileSize: number;
-  name: string;
-  register?: UseFormRegister<any>;
-  setError?: UseFormSetError<any>;
 }

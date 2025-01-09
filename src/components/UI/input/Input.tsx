@@ -30,7 +30,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div>
         <div
-          className={clsx("input-container", parentClassName, {
+          className={clsx("input-container items-center", parentClassName, {
             "input-error": error !== undefined,
             "input-disabled": disabled,
             "input-focused": hasFocus && !disabled && error === undefined,

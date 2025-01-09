@@ -1,5 +1,5 @@
 .input-container {
-  @apply flex items-start gap-3;
+  @apply flex gap-3;
   @apply w-full px-[10px] py-[14px];
   @apply rounded-xl border border-primary-800;
   @apply text-[14px] leading-5 placeholder:text-neutral-400;

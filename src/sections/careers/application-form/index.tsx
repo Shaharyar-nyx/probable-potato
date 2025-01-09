@@ -92,7 +92,7 @@ export const ApplicationForm: React.FC = () => {
             {/* File Input */}
             <InputFile
               clearErrors={clearErrors}
-              error={errors.resume}
+              error={errors.resume?.message}
               formLoading={formLoading}
               id="resume"
               maxFileSize={MAX_FILE_SIZE}

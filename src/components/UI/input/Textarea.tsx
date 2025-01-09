@@ -8,13 +8,27 @@ import { IconRenderer } from "@/components";
 import { TextareaProps } from "@/types";
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ error, id, iconName, parentClassName, disabled = false, ...props }, ref) => {
+  ({ error, id, iconName, parentClassName, disabled = false, onFocus, onBlur, ...props }, ref) => {
     const [hasFocus, setHasFocus] = useState(false); // State to track focus
     const errorId = error !== undefined ? `${id}-error` : undefined;
 
+    const handleFocus = (event: React.FocusEvent<HTMLTextAreaElement>) => {
+      setHasFocus(true);
+      if (onFocus) {
+        onFocus(event);
+      }
+    };
+
+    const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
+      setHasFocus(false);
+      if (onBlur) {
+        onBlur(event);
+      }
+    };
+
     return (
       <div
-        className={clsx("input-container", parentClassName, {
+        className={clsx("input-container items-start", parentClassName, {
           "input-error": error !== undefined,
           "input-disabled": disabled,
           "input-focused": hasFocus && !disabled && error === undefined,
@@ -38,8 +52,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           className="w-full bg-transparent outline-none"
           disabled={disabled}
           id={id}
-          onBlur={() => setHasFocus(false)}
-          onFocus={() => setHasFocus(true)}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
           {...props}
         />
         {error !== undefined && (
