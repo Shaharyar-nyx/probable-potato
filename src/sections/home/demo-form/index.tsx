@@ -64,11 +64,37 @@ export const DemoForm: React.FC = () => {
       <div className={styles.gridContainer}>
         <div className="w-full lg:w-1/2">
           <h1 className={`${styles.title} heading-1 font-bold`}>Experience our security solution in real time</h1>
-          <p className={styles.description}>
-            <span className="font-semibold">Looking to speak with a member of our team?</span>
-            <br />
-            Fill out the form with your contact details and a short message and we&apos;ll be in touch.
-          </p>
+          <div className="flex flex-col gap-10">
+            {[
+              {
+                title: "Proactive Defense",
+                text: "Identify vulnerabilities before they become problems, saving time and costs.",
+                icon: "ShieldCheckIcon",
+              },
+              {
+                title: "Expert Support",
+                text: "Access a global network of ethical hackers for on-demand, specialized protection.",
+                icon: "UserCircleIcon",
+              },
+              {
+                title: "Actionable Insights",
+                text: "Optimize ROI and strengthen compliance through continuous, data-driven security strategies.",
+                icon: "PresentationChartLineIcon",
+              },
+            ].map((feature, id) => (
+              <div key={id} className="flex flex-row gap-6 items-start">
+                <div className="flex items-center gap-3">
+                  <div className="rounded-md bg-primary-500 p-1">
+                    <IconRenderer className="h-[24px] w-[24px] text-neutral-50" iconName={feature.icon} />
+                  </div>
+                </div>
+                <div>
+                  <p className="paragraph-lg font-semibold text-primary-800">{feature.title}</p>
+                  <p className="paragraph-sm text-primary-800">{feature.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <form className={styles.formContainer} onSubmit={handleSubmit}>
