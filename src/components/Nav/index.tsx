@@ -255,11 +255,13 @@ export const Nav: React.FC = () => {
             )}
           </div> */}
 
-          <Button externalHref="https://community.cyberbay.tech/signin" transparent>
+          <Button className="py-2" externalHref="https://community.cyberbay.tech/signin" transparent>
             Sign In
           </Button>
 
-          <Button href="/contact-us">Contact Us</Button>
+          <Button className="py-2" href="/contact-us">
+            Contact Us
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}

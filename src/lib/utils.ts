@@ -6,3 +6,7 @@ export const formatToCurrency = (number: number, locale: string = "en-US", curre
     maximumFractionDigits: 0,
   }).format(number);
 };
+
+export const formatNumberWithCommas = (points: string): string => {
+  return parseInt(points, 10).toLocaleString("en-US");
+};
