@@ -1,6 +1,13 @@
 .container {
   @apply relative mx-auto my-32 flex h-full max-w-screen-2xl items-center justify-center px-6 py-16 lg:py-32;
   perspective: 1000px;
+
+  &::before {
+    content: "";
+    @apply absolute right-[-10%] top-[35%] -z-10 h-[426px] w-[426px] -translate-x-1/2 -translate-y-1/2 rounded-[426px];
+    background: rgba(2, 37, 91, 0.10);
+    filter: blur(100px);
+  }
 }
 
 .content {

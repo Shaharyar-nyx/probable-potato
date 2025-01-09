@@ -16,7 +16,7 @@ const Pricing: React.FC = () => {
         }}
         cta={{
           label: "Contact Sales",
-          link: "/",
+          link: "/contact-us",
         }}
         description="Need help creating a package that best suits your needs? Reach out to schedule a consultation."
         title="Schedule A Personalized Consultation"

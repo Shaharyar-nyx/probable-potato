@@ -8,7 +8,7 @@ import { CTA, Ecosystem, FeaturedHunters, HunterLevels, KeyBenefits, Referral } 
 const EthicalHackersPage: React.FC = () => {
   return (
     <main className="relative">
-      <Header backgroundImage={heroData.backgroundImage} description={heroData.description} title={heroData.title} />
+      <Header {...heroData} />
       <KeyBenefits />
       <Referral />
       <Ecosystem />
