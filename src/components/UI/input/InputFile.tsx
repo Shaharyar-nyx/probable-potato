@@ -69,8 +69,9 @@ export const InputFile: React.FC<InputFileProps> = ({
         onChange={handleFileChange}
       />
       <Button
-        className={clsx("border", error ? "border-red-400" : "border-primary-800")}
+        className={clsx("max-w-[250px] border", error ? "border-red-400" : "border-primary-800")}
         disabled={formLoading}
+        error={!!error}
         iconName="ArrowUpTrayIcon"
         type="button"
         variant="neutral"
