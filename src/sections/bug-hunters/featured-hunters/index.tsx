@@ -3,6 +3,7 @@ import clsx from "clsx";
 import React from "react";
 
 import data from "@/data/bug-hunters/featured-hunters.json";
+import { formatNumberWithCommas } from "@/lib";
 
 export const FeaturedHunters: React.FC = () => {
   return (
@@ -41,11 +42,10 @@ export const FeaturedHunters: React.FC = () => {
                   {data.hunters.col_headers.map((header, index) => (
                     <th
                       key={header}
-                      className={clsx("heading-7 inline-block w-max text-neutral-50", {
+                      className={clsx("heading-7 inline-block text-neutral-50", {
                         "w-[55px]": index === 0,
-                        "w-[160px]": index === 1,
-                        "w-[230px]": index === 2,
-                        "w-[105px]": index === 3,
+                        "w-[230px]": index === 1,
+                        "w-[160px]": index === 2,
                       })}
                     >
                       {header}
@@ -57,16 +57,15 @@ export const FeaturedHunters: React.FC = () => {
                 {data.hunters.data.map((data) => (
                   <tr key={data.rank} className="featured-hunters-hunters-table-row">
                     <td className="featured-hunters-hunters-table-cell paragraph-sm w-[55px]">{data.rank}</td>
-                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[160px]">
+                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[230px]">
                       <div className="featured-hunters-hunters-table-avatar-cell">
                         <img alt={data.hunter_name} className="h-6 w-6 rounded-full object-cover" src={data.avatar} />
                         <span>{data.hunter_name}</span>
                       </div>
                     </td>
-                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[230px]">
-                      {data.submission_accepted}
+                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[160px]">
+                      {formatNumberWithCommas(data.points)}
                     </td>
-                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[105px]">{data.time}</td>
                   </tr>
                 ))}
               </tbody>
