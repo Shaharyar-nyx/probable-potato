@@ -22,17 +22,17 @@ const poppins = Poppins({
 });
 
 const RootLayout = async ({ children }: { children: React.ReactNode }): Promise<JSX.Element> => {
-  const { mainNav } = await getMainMenusDirectus();
-  const { footerNav } = await getFooterMenusDirectus();
+  // const { mainNav } = await getMainMenusDirectus();
+  // const { footerNav } = await getFooterMenusDirectus();
 
   return (
     <html className={poppins.className} lang="en">
       <body>
         <Nav />
-        <SiteContextProvider footerNav={footerNav} mainNav={mainNav}>
-          {children}
-          <CookieConsent />
-        </SiteContextProvider>
+        {/* <SiteContextProvider footerNav={footerNav} mainNav={mainNav}> */}
+        {children}
+        {/* <CookieConsent /> */}
+        {/* </SiteContextProvider> */}
         <Footer />
       </body>
     </html>

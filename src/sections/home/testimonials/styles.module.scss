@@ -1,13 +1,13 @@
 .container {
-  @apply relative w-full bg-primary-800 px-16 py-20;
+  @apply relative w-full bg-primary-800;
 }
 
 .content {
-  @apply mx-auto w-full max-w-screen-2xl px-4;
+  @apply mx-auto w-full px-6 py-16 max-w-screen-2xl lg:px-16 lg:py-20;
 }
 
 .header {
-  @apply flex gap-8;
+  @apply flex flex-col gap-8 lg:flex-row;
 }
 
 .clientsSection {
@@ -39,7 +39,7 @@
 }
 
 .testimonialSlide {
-  @apply flex h-full gap-8;
+  @apply flex h-full flex-col gap-8 lg:flex-row;
 }
 
 .testimonialLeft {
@@ -48,6 +48,14 @@
 
 .testimonialRight {
   @apply flex min-w-0 flex-1 flex-col;
+}
+
+.testimonialQuote {
+  @apply break-words text-neutral-50;
+
+  @media (max-width: 768px) {
+    @apply text-sm;
+  }
 }
 
 .testimonialAuthor {
@@ -59,7 +67,7 @@
 }
 
 .testimonialLogo {
-  @apply w-[120px];
+  @apply w-[100px] lg:w-[120px];
 }
 
 .progressContainer {

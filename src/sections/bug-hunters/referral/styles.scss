@@ -8,4 +8,35 @@
       @apply basis-1/2;
     }
   }
+  &-overlay {
+    @apply fixed left-0 top-0 z-50 flex h-screen w-full items-center justify-center bg-neutral-50;
+  }
+}
+
+.overlay-content {
+  @apply h-full w-full;
+}
+
+.swiper-parent-container {
+  @apply flex h-[calc(100vh-248px)] items-center;
+
+  .swiper {
+    @apply flex flex-col;
+  }
+
+  .swiper-slide {
+    @apply w-full px-16 py-[134px];
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    display: none; /* Hide default Swiper arrows */
+  }
 }

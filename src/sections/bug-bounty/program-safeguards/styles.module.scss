@@ -3,7 +3,7 @@
 }
 
 .container {
-  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-16 py-[120px] text-primary-800;
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 py-16 text-primary-800 lg:px-16 lg:py-[120px];
 }
 
 .glassBackground {
@@ -11,7 +11,7 @@
 }
 
 .sectionBackground {
-  @apply relative isolate min-h-screen bg-inherit bg-right-top bg-no-repeat;
+  @apply relative isolate h-full bg-inherit bg-right-top bg-no-repeat;
 }
 
 .overlay {
@@ -31,7 +31,7 @@
 
 .cardContent {
   composes: glassBackground;
-  @apply flex flex-row items-center gap-6 rounded-xl border p-10;
+  @apply flex flex-col gap-6 rounded-xl border p-10 lg:flex-row lg:items-center;
 }
 
 .iconWrapper {
@@ -56,11 +56,5 @@
 
   &.large {
     @apply w-fit px-8 py-3;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    @apply px-4;
   }
 }

@@ -1,5 +1,5 @@
 .header {
-  @apply relative min-h-screen w-full overflow-hidden pt-16;
+  @apply relative h-full w-full overflow-hidden pt-40 lg:pt-16;
 }
 
 .backgroundWrapper {
@@ -22,31 +22,57 @@
 }
 
 .content {
-  @apply grid grid-cols-1 items-center gap-[24px] py-12 px-16 lg:grid-cols-3 lg:py-20;
+  @apply grid grid-cols-1 items-center gap-[24px] px-6 py-12 lg:grid-cols-3 lg:px-16 lg:py-20;
+
+  @media (max-width: 768px) {
+    @apply gap-[16px] px-4 py-12;
+  }
 }
 
 .textContent {
   @apply col-span-2 space-y-6;
+
+  @media (max-width: 768px) {
+    @apply col-span-full text-center;
+  }
 }
 
 .title {
   @apply text-primary-800;
+
+  @media (max-width: 768px) {
+    @apply text-[2.5rem] leading-[3rem];
+  }
 }
 
 .description {
   @apply w-[70%] text-primary-800;
+
+  @media (max-width: 768px) {
+    @apply mx-auto w-full;
+  }
 }
 
 .ctaButton {
-  @apply flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700;
+  @media (max-width: 768px) {
+    @apply m-auto w-fit justify-center;
+  }
 }
 
 .imageContainer {
   @apply relative h-[500px] lg:h-[600px];
+
+  @media (max-width: 768px) {
+    @apply hidden;
+  }
 }
 
 .imageWrapper {
   @apply absolute inset-0 overflow-hidden rounded-2xl;
+
+  img {
+    @apply h-full w-full object-cover;
+  }
 }
 
 .label {

@@ -33,7 +33,7 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
             type="button"
             onClick={() => toggleAccordion(index)}
           >
-            <h3 className={styles.accordionTitle}>{item.title}</h3>
+            <h4 className={`${styles.accordionTitle} heading-4`}>{item.title}</h4>
             <svg
               className={`${styles.accordionIcon} ${expandedIndex === index ? styles.expanded : ""}`}
               fill="none"
@@ -51,7 +51,7 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
           </button>
           {expandedIndex === index && (
             <div className={`${styles.accordionContent} ${styles.expanded}`}>
-              <div className={styles.accordionText} dangerouslySetInnerHTML={{ __html: item.content }} />
+              <div className={`${styles.accordionText} paragraph-md`} dangerouslySetInnerHTML={{ __html: item.content }} />
             </div>
           )}
         </div>

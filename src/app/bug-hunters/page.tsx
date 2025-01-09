@@ -2,7 +2,8 @@ import React from "react";
 
 import { Header } from "@/components";
 import heroData from "@/data/bug-hunters/hero.json";
-import { Ecosystem, FeaturedHunters, HunterLevels, KeyBenefits, Knowledge, Referral } from "@/sections";
+import knowledgeData from "@/data/bug-hunters/knowledge.json";
+import { CTA, Ecosystem, FeaturedHunters, HunterLevels, KeyBenefits, Referral } from "@/sections";
 
 const EthicalHackersPage: React.FC = () => {
   return (
@@ -13,7 +14,17 @@ const EthicalHackersPage: React.FC = () => {
       <Ecosystem />
       <HunterLevels />
       <FeaturedHunters />
-      <Knowledge />
+      <CTA
+        backgroundImage={{
+          src: knowledgeData.background,
+        }}
+        description={knowledgeData.text}
+        cta={{
+          label: knowledgeData.button_text,
+          link: "#",
+        }}
+        title={knowledgeData.title}
+      />
     </main>
   );
 };

@@ -1,9 +1,8 @@
 .news {
-  @apply py-24;
   background: linear-gradient(180deg, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
 
   .container {
-    @apply mx-auto max-w-[1440px] px-16;
+    @apply mx-auto max-w-screen-2xl px-6 py-16 lg:px-16 lg:py-24;
   }
 
   .header {

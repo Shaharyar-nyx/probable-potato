@@ -1,16 +1,20 @@
 .finding-bug-bounty {
-  @apply relative px-16 pb-[120px] pt-20;
+  @apply relative px-6 py-16 lg:px-16 lg:pb-[120px] lg:pt-20;
 
   .background {
     @apply absolute inset-0 -z-10 bg-primary-500 bg-[url('/bug-hunters/join-and-benefits-bg.svg')] bg-cover bg-no-repeat;
   }
 
   .content-wrapper {
-    @apply mx-auto mb-10 px-28 text-center text-neutral-50;
+    @apply mx-auto mb-10 lg:px-28 text-center text-neutral-50;
   }
 
   .container {
-    @apply mx-auto flex gap-24 px-28;
+    @apply mx-auto h-full max-w-screen-2xl
+  }
+
+  .content {
+    @apply mx-auto flex gap-24 lg:px-28;
   }
 
   .features-grid {
@@ -18,11 +22,11 @@
   }
 
   .feature-row {
-    @apply flex flex-row gap-6;
+    @apply flex flex-col lg:flex-row gap-6;
   }
 
   .feature-icon-container {
-    @apply flex w-[30%] flex-col gap-3 rounded-2xl bg-primary-500 p-10;
+    @apply flex lg:w-[30%] flex-col gap-3 rounded-2xl bg-primary-500 p-10;
   }
 
   .icon-wrapper {

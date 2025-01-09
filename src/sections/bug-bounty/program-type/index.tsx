@@ -23,11 +23,11 @@ export const ProgramType: React.FC<ProgramTypeProps> = ({ title, content, featur
           <p className={`${styles.paragraph} paragraph-md`}>{content}</p>
         </div>
         <div className="flex flex-col gap-6">
-          <div className={`flex flex-row gap-6`}>
+          <div className={`flex flex-col lg:flex-row gap-6`}>
             {features.map((feature, id) => (
               <motion.div
                 key={id}
-                className={`${styles["feature-container"]} ${expandedFeature === id ? styles.expanded : expandedFeature !== id && expandedFeature !== null ? "h-max w-[20%]" : ""}`}
+                className={`${styles["feature-container"]} ${expandedFeature === id ? styles.expanded : expandedFeature !== id && expandedFeature !== null ? "h-max lg:w-[20%]" : ""}`}
                 initial={false}
                 layout
               >
@@ -72,7 +72,7 @@ export const ProgramType: React.FC<ProgramTypeProps> = ({ title, content, featur
               </motion.div>
             ))}
           </div>
-          <div className={`${styles["feature-container"]} !flex-row items-end justify-between`}>
+          <div className={`${styles["feature-container"]} lg:!flex-row lg:items-end justify-between`}>
             <div className="flex flex-col gap-3">
               <h3 className="heading-7 font-bold text-neutral-50">Want to become a Bug Bounty Hunter?</h3>
               <p className="paragraph-md text-neutral-50">
@@ -81,7 +81,7 @@ export const ProgramType: React.FC<ProgramTypeProps> = ({ title, content, featur
                 needs.
               </p>
             </div>
-            <Button className="h-fit w-fit" externalHref={undefined} href="/contact-us" variant="neutral">
+            <Button className="h-fit w-fit" href="/contact-us" variant="neutral">
               Contact Sales
             </Button>
           </div>

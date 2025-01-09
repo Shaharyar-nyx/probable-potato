@@ -5,33 +5,33 @@
   "teamMembers": [
     {
       "image": "/images/team/mira.png",
-      "name": "Mira",
-      "title": "Chief Financial Officer"
+      "name": "Mira Siphron",
+      "title": "Engineer Student"
     },
     {
       "image": "/images/team/brandon.png",
-      "name": "Brandon",
-      "title": "Chief Executive Officer"
+      "name": "Brandon Donin",
+      "title": "Entrepreneur"
     },
     {
       "image": "/images/team/wilson.png",
-      "name": "Wilson",
-      "title": "Chief Security Officer"
+      "name": "Wilson Geidt",
+      "title": "Hacker"
     },
     {
       "image": "/images/team/jirou.png",
-      "name": "Jirou",
-      "title": "Chief Operating Officer"
+      "name": "Jirou Yuuma",
+      "title": "CEO"
     },
     {
       "image": "/images/team/marcela.png",
-      "name": "Marcela",
-      "title": "Chief Marketing Officer"
+      "name": "Marcela Nora",
+      "title": "Collage Dean"
     },
     {
       "image": "/images/team/craig.png",
-      "name": "Craig",
-      "title": "Chief Technology Officer"
+      "name": "Craig Culhane",
+      "title": "Hacker Leader"
     }
   ]
 }

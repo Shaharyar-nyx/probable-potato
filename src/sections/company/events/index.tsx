@@ -54,74 +54,76 @@ export const Events: React.FC<EventsProps> = ({ title, subtitle, content, upcomi
 
   return (
     <section className={styles.events}>
-      <div className={styles.header}>
-        <p className={`${styles.subtitle} tagline`}>{subtitle}</p>
-        <h1 className={`${styles.title} heading-1`}>{title}</h1>
-        <p className={`${styles.content} paragraph-md`}>{content}</p>
-      </div>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <p className={`${styles.subtitle} tagline`}>{subtitle}</p>
+          <h1 className={`${styles.title} heading-1`}>{title}</h1>
+          <p className={`${styles.content} paragraph-md`}>{content}</p>
+        </div>
 
-      <div className={styles.monthsGrid}>
-        {availableMonthsAndYears.map((my) => (
-          <button
-            key={`${my.month}-${my.year}`}
-            className={`${styles.monthButton} ${
-              selectedMonthYear.month === my.month && selectedMonthYear.year === my.year ? styles.active : ""
-            } group`}
-            onClick={() => setSelectedMonthYear(my)}
-          >
-            <div className={styles.monthContent}>
-              <h1 className={`${styles.month} heading-1`}>{my.month}</h1>
-              <p className={`${styles.year} paragraph-md`}>{my.year}</p>
-            </div>
-            <div
-              className={`${styles.indicator} ${
+        <div className={styles.monthsGrid}>
+          {availableMonthsAndYears.map((my) => (
+            <button
+              key={`${my.month}-${my.year}`}
+              className={`${styles.monthButton} ${
                 selectedMonthYear.month === my.month && selectedMonthYear.year === my.year ? styles.active : ""
-              }`}
-            />
-          </button>
-        ))}
-      </div>
-
-      <div className={styles.eventsList}>
-        {filteredEvents.map((event, index) => (
-          <div key={index} className={`${styles.eventCard} group`}>
-            <div className={styles.cardContent}>
-              <div className={styles.leftContent}>
-                <div className={styles.imageContainer}>
-                  <div className={`${styles.eventType} paragraph-xs`}>{event.type}</div>
-                  <Image alt={event.title} className={styles.eventImage} fill src={event.image} />
-                </div>
-                <div className={styles.eventInfo}>
-                  <h3 className={`${styles.eventTitle} heading-6`}>{event.title}</h3>
-                  <p className={`${styles.eventDescription} paragraph-md`}>{event.description}</p>
-                </div>
+              } group`}
+              onClick={() => setSelectedMonthYear(my)}
+            >
+              <div className={styles.monthContent}>
+                <h1 className={`${styles.month} heading-1`}>{my.month}</h1>
+                <p className={`${styles.year} paragraph-md`}>{my.year}</p>
               </div>
-              <div className={styles.rightContent}>
-                <div className={styles.eventDetails}>
-                  <div className={styles.detailItem}>
-                    <IconRenderer className={styles.icon} iconName="MapPinIcon" />
-                    <span className={`${styles.text} heading-7`}>{event.location}</span>
+              <div
+                className={`${styles.indicator} ${
+                  selectedMonthYear.month === my.month && selectedMonthYear.year === my.year ? styles.active : ""
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+
+        <div className={styles.eventsList}>
+          {filteredEvents.map((event, index) => (
+            <div key={index} className={`${styles.eventCard} group`}>
+              <div className={styles.cardContent}>
+                <div className={styles.leftContent}>
+                  <div className={styles.imageContainer}>
+                    <div className={`${styles.eventType} paragraph-xs`}>{event.type}</div>
+                    <Image alt={event.title} className={styles.eventImage} fill src={event.image} />
                   </div>
-                  <div className={styles.detailItem}>
-                    <IconRenderer className={styles.icon} iconName="CalendarIcon" />
-                    <span className={`${styles.text} heading-7`}>{moment(event.date).format("dddd DD")}</span>
+                  <div className={styles.eventInfo}>
+                    <h3 className={`${styles.eventTitle} heading-6`}>{event.title}</h3>
+                    <p className={`${styles.eventDescription} paragraph-md`}>{event.description}</p>
                   </div>
                 </div>
-                <div className={styles.actionButton}>
-                  <Button
-                    className="w-max group-hover:bg-primary-500 group-hover:text-white"
-                    transparent
-                    variant="primary"
-                  >
-                    <Link href={event.link} target="_blank">
-                      View Details
-                    </Link>
-                  </Button>
+                <div className={styles.rightContent}>
+                  <div className={styles.eventDetails}>
+                    <div className={styles.detailItem}>
+                      <IconRenderer className={styles.icon} iconName="MapPinIcon" />
+                      <span className={`${styles.text} heading-7`}>{event.location}</span>
+                    </div>
+                    <div className={styles.detailItem}>
+                      <IconRenderer className={styles.icon} iconName="CalendarIcon" />
+                      <span className={`${styles.text} heading-7`}>{moment(event.date).format("dddd DD")}</span>
+                    </div>
+                  </div>
+                  <div className={styles.actionButton}>
+                    <Button
+                      className="w-max group-hover:bg-primary-500 group-hover:text-white"
+                      transparent
+                      variant="primary"
+                    >
+                      <Link href={event.link} target="_blank">
+                        View Details
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,8 +1,19 @@
-import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
+import React, {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  HTMLAttributes,
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+} from "react";
+import { FieldError, UseFormClearErrors, UseFormRegister, UseFormSetError } from "react-hook-form";
 
 export interface HeroProps {
   backgroundVideo: string;
-  buttonText: string;
+  cta: {
+    label: string;
+    link: string;
+    icon: string;
+  };
   description: string;
   featuredImage: {
     alt: string;
@@ -86,6 +97,7 @@ export interface Feature {
 export interface PackageData {
   buttonText: string;
   description: string;
+  link: string;
   period?: string;
   price: string;
 }
@@ -99,7 +111,7 @@ export interface PackagesProps {
 }
 
 export interface BaseButtonProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   icon?: React.ReactNode;
   iconName?: string;
@@ -150,9 +162,12 @@ export interface CTAProps {
   backgroundImage: {
     src: string;
   };
-  buttonText: string;
+  cta: {
+    label: string;
+    link: string;
+    icon?: string;
+  };
   description: string;
-  href?: string;
   tagline?: string;
   title: string;
 }
@@ -347,4 +362,40 @@ export interface JobOpeningsProps {
     title: string;
     link: string;
   }[];
+}
+
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  error?: string;
+  iconName?: string;
+  parentClassName?: string;
+}
+
+export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  error?: string;
+  iconName?: string;
+  parentClassName?: string;
+}
+
+export interface DropdownPropsInput extends ButtonHTMLAttributes<HTMLButtonElement> {
+  ariaDescribedBy?: string;
+  className?: string;
+  disabled?: boolean;
+  error?: string;
+  handleChange?: (value: string) => void;
+  iconName?: string;
+  id?: string;
+  label: string;
+  options: string[];
+  value?: string;
+}
+
+export interface InputFileProps {
+  clearErrors?: UseFormClearErrors<any>;
+  error?: FieldError;
+  formLoading?: boolean;
+  id?: string;
+  maxFileSize: number;
+  name: string;
+  register?: UseFormRegister<any>;
+  setError?: UseFormSetError<any>;
 }

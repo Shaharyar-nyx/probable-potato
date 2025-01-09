@@ -1,9 +1,9 @@
 .container {
-  @apply mx-auto max-w-[1440px] px-16 py-28;
+  @apply mx-auto max-w-screen-2xl px-6 py-16 lg:px-16 lg:py-28;
 }
 
 .gridContainer {
-  @apply flex flex-row gap-20;
+  @apply flex flex-col gap-10 lg:flex-row lg:gap-20;
 }
 
 .title {
@@ -15,7 +15,7 @@
 }
 
 .formContainer {
-  @apply space-y-4 w-[60%];
+  @apply flex w-full flex-col gap-6 lg:w-[60%];
 }
 
 .inputGrid {
@@ -35,7 +35,7 @@
 }
 
 .selectOption {
-  @apply text-[#02255B80] text-sm py-3 px-4 hover:bg-neutral-50 cursor-pointer;
+  @apply cursor-pointer px-4 py-3 text-sm text-[#02255B80] hover:bg-neutral-50;
 }
 
 .selectDropdown {

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -15,6 +15,20 @@ import { Button } from "@/components/UI";
 import { NewsProps } from "@/types";
 
 export const News: React.FC<NewsProps> = ({ content, title, subtitle, news }) => {
+  const swiperRef = React.useRef<SwiperRef>(null);
+
+  const handlePrev = () => {
+    if (swiperRef.current?.swiper) {
+      swiperRef.current.swiper.slidePrev();
+    }
+  };
+
+  const handleNext = () => {
+    if (swiperRef.current?.swiper) {
+      swiperRef.current.swiper.slideNext();
+    }
+  };
+
   return (
     <section className={styles.news}>
       <div className={styles.container}>
@@ -42,8 +56,15 @@ export const News: React.FC<NewsProps> = ({ content, title, subtitle, news }) =>
               clickable: true,
               el: `.${styles.pagination}`,
             }}
-            slidesPerView={3.5}
-            spaceBetween={24}
+            ref={swiperRef}
+            breakpoints={{
+              768: {
+                slidesPerView: 3.5,
+                spaceBetween: 24,
+              },
+            }}
+            slidesPerView={1}
+            spaceBetween={16}
           >
             {news.map((item, index) => (
               <SwiperSlide key={index}>
@@ -67,10 +88,10 @@ export const News: React.FC<NewsProps> = ({ content, title, subtitle, news }) =>
           <div className={styles.controls}>
             <div className={styles.pagination} />
             <div className={styles.navigation}>
-              <button className={styles.prev}>
+              <button className={styles.prev} onClick={handlePrev}>
                 <Image alt="Previous" height={24} src="/images/company/arrow-left.svg" width={24} />
               </button>
-              <button className={styles.next}>
+              <button className={styles.next} onClick={handleNext}>
                 <Image alt="Next" height={24} src="/images/company/arrow-right.svg" width={24} />
               </button>
             </div>
