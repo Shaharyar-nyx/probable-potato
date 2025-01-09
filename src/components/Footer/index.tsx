@@ -145,7 +145,7 @@ const Footer: React.FC = () => {
 
             {/* Right Side - Stay Connected */}
             <div className="flex-shrink-0 lg:w-[360px]">
-              <h3 className="mb-4 text-base">Subscribe to Our Newsletter</h3>
+              <h3 className="mb-4 text-base font-bold">Subscribe to Our Newsletter</h3>
               <p className="mb-6 text-[14px]">
                 Get the latest cybersecurity insights and updates. You can unsubscribe at any time.
               </p>

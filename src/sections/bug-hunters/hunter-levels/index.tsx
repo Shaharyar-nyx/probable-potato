@@ -22,7 +22,11 @@ export const HunterLevels: React.FC = () => {
                   <p className="paragraph-lg hunter-levels-feature-subtitle">{feature.subtitle}</p>
                   <p className="paragraph-md hunter-levels-feature-description">{feature.description}</p>
                 </div>
-                {feature.button_text !== undefined && <Button variant="neutral">{feature.button_text}</Button>}
+                {feature.button_text !== undefined && (
+                  <Button variant="neutral" externalHref={feature.button_link}>
+                    {feature.button_text}
+                  </Button>
+                )}
               </div>
             </div>
           ))}
