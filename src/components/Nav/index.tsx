@@ -256,7 +256,7 @@ export const Nav: React.FC = () => {
           </div> */}
 
           <Button externalHref="https://community.cyberbay.tech/signin" transparent>
-            Log In / Sign In
+            Sign In
           </Button>
 
           <Button href="/contact-us">Contact Us</Button>
@@ -382,7 +382,7 @@ export const Nav: React.FC = () => {
                 transparent
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Log In / Sign In
+                Sign In
               </Button>
 
               <Button href="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>
