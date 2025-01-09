@@ -3,7 +3,7 @@
     @apply relative bg-primary-800;
   }
   &-container {
-    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-16 pb-[3.75rem] pt-[7.5rem];
+    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-6 pb-[3.75rem] pt-16 lg:px-16 lg:pt-[7.5rem];
   }
   &-title {
     @apply mb-6 text-center font-bold text-neutral-50;

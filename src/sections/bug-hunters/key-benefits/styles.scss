@@ -6,13 +6,13 @@
     @apply absolute right-0 top-0 z-0 h-full w-full bg-[url('/bug-hunters/join-and-benefits-bg.svg')] bg-cover bg-no-repeat;
   }
   &-container {
-    @apply relative z-10 mx-auto max-w-screen-3xl px-16;
+    @apply relative z-10 mx-auto max-w-screen-3xl px-6 lg:px-16;
   }
   &-join-container {
-    @apply flex justify-between pb-[1.25rem] pt-[7.5rem];
+    @apply flex justify-between pb-[1.25rem] pt-16 lg:pt-[7.5rem];
   }
   &-benefits-container {
-    @apply pb-[7.5rem] pt-[1.25rem];
+    @apply pb-16 pt-[1.25rem] lg:pb-[7.5rem];
   }
   &-title {
     @apply mb-5 font-bold text-neutral-50;
