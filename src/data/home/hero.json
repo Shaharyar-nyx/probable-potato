@@ -4,7 +4,7 @@
   "description": "We are on a mission to make cybersecurity proactive, inclusive, and accessible, empowering a safer digital age.",
   "cta": {
     "label": "Request a Demo",
-    "link": "/",
+    "isModal": true,
     "icon": "ArrowUpRightIcon"
   },
   "featuredImage": {

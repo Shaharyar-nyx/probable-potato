@@ -6,6 +6,8 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import { CTAProps } from "@/types";
+import Modal from "@/components/UI/modal";
+import { DemoForm } from "../demo-form";
 
 export const CTA: React.FC<CTAProps> = ({ backgroundImage, description, title, tagline, cta }) => {
   return (
@@ -24,7 +26,19 @@ export const CTA: React.FC<CTAProps> = ({ backgroundImage, description, title, t
             {tagline !== undefined && <span className="tagline text-white">{tagline}</span>}
             <h2 className={`heading-2 font-bold`}>{title}</h2>
             <p className={styles.description}>{description}</p>
-            {cta && <Button iconName={cta.icon}>{cta.label}</Button>}
+            {cta && (
+              <>
+                {cta?.isModal ? (
+                  <Modal cta={cta}>
+                    <DemoForm />
+                  </Modal>
+                ) : (
+                  <Button className="w-fit" href={cta.link} iconName={cta.icon}>
+                    {cta.label}
+                  </Button>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -9,10 +9,11 @@ import { FieldError, UseFormClearErrors, UseFormRegister, UseFormSetError } from
 
 export interface HeroProps {
   backgroundVideo: string;
-  cta: {
+  cta?: {
+    icon?: string;
+    isModal?: boolean;
     label: string;
-    link: string;
-    icon: string;
+    link?: string;
   };
   description: string;
   featuredImage: {
@@ -25,11 +26,11 @@ export interface HeaderProps {
   backgroundImage: string;
   cta?: {
     icon?: string;
+    isModal?: boolean;
     label: string;
-    link: string;
+    link?: string;
   };
   description: string;
-  link?: string;
   tagline?: string;
   title: string;
 }
@@ -95,11 +96,15 @@ export interface Feature {
 }
 
 export interface PackageData {
-  buttonText: string;
   description: string;
-  link: string;
   period?: string;
   price: string;
+  cta?: {
+    icon?: string;
+    isModal?: boolean;
+    label: string;
+    link?: string;
+  };
 }
 
 export interface PackagesProps {
@@ -136,7 +141,7 @@ export type ButtonAsInternalLink = BaseButtonProps &
 
 export type ButtonAsExternalLink = BaseButtonProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
-    externalHref: string;
+    externalHref?: string;
     href?: never;
   };
 
@@ -163,10 +168,11 @@ export interface CTAProps {
   backgroundImage: {
     src: string;
   };
-  cta: {
-    label: string;
-    link: string;
+  cta?: {
     icon?: string;
+    isModal?: boolean;
+    label: string;
+    link?: string;
   };
   description: string;
   tagline?: string;
@@ -365,6 +371,17 @@ export interface JobOpeningsProps {
   }[];
 }
 
+export interface ModalProps {
+  buttonSize?: "large" | "medium" | "small";
+  buttonStyle?: string;
+  buttonVariant?: "primary" | "neutral";
+  className?: string;
+  children: React.ReactNode;
+  cta?: {
+    icon?: string;
+    label: string;
+  };
+}
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   iconName?: string;

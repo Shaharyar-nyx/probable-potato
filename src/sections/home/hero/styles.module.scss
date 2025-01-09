@@ -1,5 +1,12 @@
 .header {
   @apply relative h-full w-full overflow-hidden pt-40 lg:pt-16;
+
+  &::before {
+    content: "";
+    @apply absolute right-[0%] bottom-[-50%] z-50 h-[513px] w-[513px] -translate-x-1/2 -translate-y-1/2 rounded-[513px];
+    background: rgba(4, 93, 227, 0.1);
+    filter: blur(100px);
+  }
 }
 
 .backgroundWrapper {

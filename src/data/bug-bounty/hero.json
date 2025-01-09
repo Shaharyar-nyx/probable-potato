@@ -5,7 +5,7 @@
   "description": "Experience how bug bounty programs can cost-effectively scale your security posture. Public and Private Programs available, request a demo today to see program capabilities in action.",
   "cta": {
     "label": "Request a Demo",
-    "icon": "ArrowUpRightIcon",
-    "link": "#"
+    "isModal": true,
+    "icon": "ArrowUpRightIcon"
   }
 }

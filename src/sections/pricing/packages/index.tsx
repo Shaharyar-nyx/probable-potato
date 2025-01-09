@@ -1,13 +1,14 @@
 "use client";
 
 import { Roboto } from "next/font/google";
-import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import { Feature, PackageData as BasePackageData, PackagesProps } from "@/types";
+import Modal from "@/components/UI/modal";
+import { DemoForm } from "@/sections/home/demo-form";
 
 interface ExtendedPackageData extends BasePackageData {
   type: keyof typeof PackageIcons;
@@ -83,15 +84,30 @@ const PackageCard = ({ data, type }: { data: BasePackageData; type: keyof typeof
     </div>
 
     <div className={styles.packageFooter}>
-      <Button
-        className="w-full text-center !font-normal"
-        href={data.link}
-        icon={<Image alt="arrow up right" height={16} src="/images/arrow-right-black.svg" width={16} />}
-        size="small"
-        variant="neutral"
-      >
-        {data.buttonText}
-      </Button>
+      {data?.cta && (
+        <>
+          {data?.cta?.isModal ? (
+            <Modal
+              cta={data.cta}
+              buttonStyle="w-full text-center !font-normal text-primary-800"
+              buttonSize="small"
+              buttonVariant="neutral"
+            >
+              <DemoForm />
+            </Modal>
+          ) : (
+            <Button
+              className="w-full text-center !font-normal text-primary-800"
+              href={data.cta.link}
+              iconName={data.cta.icon}
+              size="small"
+              variant="neutral"
+            >
+              {data.cta.label}
+            </Button>
+          )}
+        </>
+      )}
     </div>
   </div>
 );
@@ -243,6 +259,8 @@ export const Packages: React.FC<PackagesProps> = ({ packages, features, descript
   return (
     <div className={styles.container}>
       <div className={styles.background} style={{ backgroundImage: `url(${backgroundImage})` }} />
+      <div className={styles.overlay} />
+      
       <div className={styles.content}>
         <div className={styles.header}>
           <h1 className="heading-1 mb-3 font-bold text-primary-800">{title}</h1>

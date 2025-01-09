@@ -61,11 +61,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, link, descript
         <div className={`${styles.textContent} ${isEven ? styles.even : ""}`}>
           <h4 className={`${styles.cardTitle} heading-4 font-bold`}>{title}</h4>
           <p className={`${styles.cardDescription} paragraph-md`}>{description}</p>
-          {(link ?? "") && (
-            <Button externalHref={undefined} href={link}>
-              Learn More
-            </Button>
-          )}
+          {(link ?? "") && <Button href={link}>Learn More</Button>}
         </div>
       </div>
     </motion.div>
