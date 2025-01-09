@@ -1,13 +1,20 @@
 .container {
-  @apply relative px-6 py-16 lg:px-16 lg:py-24;
+  @apply relative overflow-hidden bg-gradient-to-br from-white to-[#f8f9fa];
 }
 
 .background {
-  @apply absolute inset-0 z-[-1] h-full bg-inherit bg-right-top bg-no-repeat;
+  @apply absolute inset-0 z-[1] h-full w-full bg-cover bg-right-top bg-no-repeat;
+}
+
+.overlay {
+  @apply absolute inset-0 z-[2] opacity-80;
+  background: linear-gradient(180deg, rgba(246, 247, 248, 0) 74.68%, #f6f7f8 100%),
+    linear-gradient(0deg, var(--Neutral-50, #f6f7f8) 0%, var(--Neutral-50, #f6f7f8) 100%);
+  background-blend-mode: normal, color;
 }
 
 .content {
-  @apply mx-auto max-w-screen-2xl px-0;
+  @apply relative z-[3] mx-auto max-w-screen-2xl px-6 py-16 text-primary-800 lg:px-16 lg:py-24;
 }
 
 .header {

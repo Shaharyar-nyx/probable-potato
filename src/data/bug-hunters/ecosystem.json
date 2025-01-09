@@ -6,25 +6,29 @@
       "id": "1",
       "title": "Exclusive Rewards",
       "description": "Earn recognition and rewards for your valuable contributions to cybersecurity.",
-      "icon": "/bug-hunters/ecosystem/exclusive-rewards.svg"
+      "icon_dark": "/bug-hunters/ecosystem/exclusive-rewards-dark.svg",
+      "icon_light": "/bug-hunters/ecosystem/exclusive-rewards-light.svg"
     },
     {
       "id": "2",
       "title": "Networking Opportunities",
       "description": "Connect with industry leaders and fellow bug hunters to expand your professional network and industry contacts.",
-      "icon": "/bug-hunters/ecosystem/networking-opportunities.svg"
+      "icon_dark": "/bug-hunters/ecosystem/networking-opportunities-dark.svg",
+      "icon_light": "/bug-hunters/ecosystem/networking-opportunities-light.svg"
     },
     {
       "id": "3",
       "title": "Skill Development",
       "description": "Participate in challenges that sharpen your skills and keep you ahead in cybersecurity.",
-      "icon": "/bug-hunters/ecosystem/skill-development.svg"
+      "icon_dark": "/bug-hunters/ecosystem/skill-development-dark.svg",
+      "icon_light": "/bug-hunters/ecosystem/skill-development-light.svg"
     },
     {
       "id": "4",
       "title": "Event Access",
       "description": "Gain exclusive access to workshops and events tailored for bug hunters to continuously sharpen their skills.",
-      "icon": "/bug-hunters/ecosystem/event-access.svg"
+      "icon_dark": "/bug-hunters/ecosystem/event-access-dark.svg",
+      "icon_light": "/bug-hunters/ecosystem/event-access-light.svg"
     }
   ]
 }

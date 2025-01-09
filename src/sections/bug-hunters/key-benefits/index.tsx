@@ -11,14 +11,18 @@ export const KeyBenefits: React.FC = () => {
     <section className="key-benefits-parent-container">
       <div className="key-benefits-background" />
       <div className="key-benefits-container key-benefits-join-container">
-        <div className="w-[32%]">
-          <h2 className={`heading-2 key-benefits-title`}>{joinData.title}</h2>
-          <p className={`paragraph-2 key-benefits-paragraph`}>{joinData.text}</p>
-          <Button className="w-[160px]" variant="neutral">
+        <div className="w-full lg:w-[32%]">
+          <h2 className="heading-1 key-benefits-title">{joinData.title}</h2>
+          <p className={`paragraph-md key-benefits-paragraph`}>{joinData.text}</p>
+          <Button
+            className="w-[160px]"
+            externalHref="https://community.cyberbay.tech/signup/bounty-hunter"
+            variant="neutral"
+          >
             Join Now!
           </Button>
         </div>
-        <div className="grid w-[66%] grid-cols-2 gap-6">
+        <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:w-[66%]">
           {joinData.features.map((feature) => (
             <div key={feature.id} className="key-benefits-feature-container">
               <div className="flex items-center gap-3">
@@ -32,13 +36,13 @@ export const KeyBenefits: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className={`key-benefits-container key-benefits-benefits-container`}>
+      <div className="key-benefits-container key-benefits-benefits-container">
         <span className="tagline key-benefits-tagline">{benefitsData.tagline}</span>
         <div className="mb-12">
-          <h2 className="heading-2 key-benefits-title">{benefitsData.title}</h2>
-          <p className="paragraph-2 key-benefits-paragraph">{benefitsData.text}</p>
+          <h2 className="heading-1 key-benefits-title">{benefitsData.title}</h2>
+          <p className="paragraph-md key-benefits-paragraph">{benefitsData.text}</p>
         </div>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {benefitsData.features.map((feature) => (
             <div key={feature.id} className="key-benefits-benefit-container">
               <div className="flex items-center gap-3">

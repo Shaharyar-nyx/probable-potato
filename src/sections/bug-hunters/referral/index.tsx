@@ -79,8 +79,8 @@ export const Referral: React.FC = () => {
         </div>
         <div className="referral-container-item grid grid-cols-2 gap-6">
           {data.features.map((feature) => (
-            <div key={feature.id} className="flex flex-col gap-3 p-10">
-              <div className="flex gap-3">
+            <div key={feature.id} className="flex flex-col gap-3 p-6 xl:p-10">
+              <div className="flex items-start gap-3">
                 <div className="inline-block rounded-[4px] bg-primary-500 p-1">
                   <IconRenderer className="h-6 w-6 text-primary-50" iconName={feature.icon} />
                 </div>

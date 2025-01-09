@@ -21,13 +21,16 @@ export const Nav: React.FC = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        // setShowSolutionsDropdown(false);
+      // Only handle click outside in desktop view (>= 1024px)
+      if (window.innerWidth >= 1024) {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(event.target as Node) &&
+          buttonRef.current &&
+          !buttonRef.current.contains(event.target as Node)
+        ) {
+          setShowSolutionsDropdown(false);
+        }
       }
     };
 
@@ -39,7 +42,7 @@ export const Nav: React.FC = () => {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
-    // setShowSolutionsDropdown(false);
+    setShowSolutionsDropdown(false);
   }, [pathname]);
 
   const services = [
@@ -252,29 +255,31 @@ export const Nav: React.FC = () => {
             )}
           </div> */}
 
-          <Button href="/login" transparent>
-            Log In / Sign Up
+          <Button className="py-2" externalHref="https://community.cyberbay.tech/signin" transparent>
+            Sign In
           </Button>
 
-          <Button href="/contact-us">Contact Us</Button>
+          <Button className="py-2" href="/contact-us">
+            Contact Us
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           className="flex items-center justify-center rounded-lg p-2 text-primary-800 hover:bg-[#EFF0F2CC] lg:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         >
           {isMobileMenuOpen ? (
-            <IconRenderer iconName="XMarkIcon" className="h-6 w-6" />
+            <IconRenderer className="h-6 w-6" iconName="XMarkIcon" />
           ) : (
-            <IconRenderer iconName="Bars3Icon" className="h-6 w-6" />
+            <IconRenderer className="h-6 w-6" iconName="Bars3Icon" />
           )}
         </button>
 
         {/* Mobile Menu */}
         <div
-          className={`absolute left-0 right-0  top-[55px] lg:top-[72px] bg-neutral-50 shadow-lg overflow-y-scroll transition-all duration-300 ease-in-out lg:hidden ${
+          className={`absolute left-0 right-0 top-[55px] overflow-y-scroll bg-neutral-50 shadow-lg transition-all duration-300 ease-in-out lg:top-[72px] lg:hidden ${
             isMobileMenuOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
           }`}
         >
@@ -294,15 +299,15 @@ export const Nav: React.FC = () => {
                       <span>{item.name}</span>
                       {item.hasDropdown && (
                         <IconRenderer
-                          iconName="ChevronDownIcon"
                           className={`h-5 w-5 transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
+                          iconName="ChevronDownIcon"
                         />
                       )}
                     </div>
                   </button>
                 ) : (
                   <div className="w-full px-4 py-3 text-left transition-colors">
-                    <Link href={item.href} className={`text-base font-medium text-primary-800`}>
+                    <Link className={`text-base font-medium text-primary-800`} href={item.href}>
                       {item.name}
                     </Link>
                   </div>
@@ -317,17 +322,19 @@ export const Nav: React.FC = () => {
                           {section.items.map((menuItem) => (
                             <Link
                               key={menuItem.name}
-                              href={menuItem.href}
                               className="group flex items-start space-x-3 rounded-lg p-2 transition-colors hover:bg-primary-500 group-hover:text-neutral-50"
+                              href={menuItem.href}
                             >
                               <span className="flex-shrink-0 rounded-md bg-primary-50 p-1">
-                                <IconRenderer iconName={menuItem.icon} className="h-5 w-5 text-primary-500" />
+                                <IconRenderer className="h-5 w-5 text-primary-500" iconName={menuItem.icon} />
                               </span>
                               <div>
                                 <div className="text-sm font-medium text-primary-800 group-hover:text-neutral-50">
                                   {menuItem.name}
                                 </div>
-                                <p className="text-xs text-neutral-600 group-hover:text-neutral-50">{menuItem.description}</p>
+                                <p className="text-xs text-neutral-600 group-hover:text-neutral-50">
+                                  {menuItem.description}
+                                </p>
                               </div>
                             </Link>
                           ))}
@@ -372,8 +379,12 @@ export const Nav: React.FC = () => {
             </div> */}
 
             <div className="flex flex-col space-y-3 pt-4">
-              <Button href="/login" transparent onClick={() => setIsMobileMenuOpen(false)}>
-                Log In / Sign Up
+              <Button
+                externalHref="https://community.cyberbay.tech/signin"
+                transparent
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Sign In
               </Button>
 
               <Button href="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>

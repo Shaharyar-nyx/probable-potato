@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import React, { useRef, useState } from "react";
+import React, { ButtonHTMLAttributes, useRef, useState } from "react";
 
 import { Button, IconRenderer } from "@/components";
 import styles from "@/sections/careers/application-form/styles.module.scss";
@@ -16,6 +16,9 @@ export const InputFile: React.FC<InputFileProps> = ({
   name,
   register,
   setError,
+  className,
+  children = "Upload your resume",
+  ...buttonProps
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -69,15 +72,16 @@ export const InputFile: React.FC<InputFileProps> = ({
         onChange={handleFileChange}
       />
       <Button
-        className={clsx("max-w-[250px] border", error ? "border-red-400" : "border-primary-800")}
+        className={clsx("max-w-[250px] border", error !== undefined ? "border-red-400" : "border-primary-800")}
         disabled={formLoading}
-        error={!!error}
+        error={error}
         iconName="ArrowUpTrayIcon"
         type="button"
         variant="neutral"
         onClick={handleUploadClick}
+        {...(buttonProps as ButtonHTMLAttributes<HTMLButtonElement>)}
       >
-        {selectedFile ? selectedFile.name : "Upload your resume"}
+        {selectedFile ? selectedFile.name : children}
       </Button>
       <div className="flex flex-row items-end gap-1">
         <IconRenderer className="h-[15px] w-[15px] text-[#02255B80]" iconName="ExclamationCircleIcon" />
@@ -85,11 +89,13 @@ export const InputFile: React.FC<InputFileProps> = ({
           Format: .pdf, Max file size: {maxFileSize / 1024 / 1024}MB
         </p>
       </div>
-      {error && (
+      {error !== undefined && (
         <p aria-live="assertive" className="mt-1 text-xs text-red-400">
-          {error.message}
+          {error}
         </p>
       )}
     </div>
   );
 };
+
+export default InputFile;

@@ -8,21 +8,20 @@
       "title": "Academic",
       "subtitle": "Cyberbay Academy Enrollees can practice and gain experience with public bug bounty programs, learn from the community, and build connections with experienced bounty hunters.",
       "description": "Academic Participants must complete training with the Cyberbay Academy to earn access to the Cyberbay Platform and may only participate in public programs. This is a practice environment only. Academic Enrollees may apply for Professional status upon completing their program and receiving positive feedback from the community.",
-      "button-text": "Enroll in academy"
+      "button_text": "Join waitlist"
     },
     {
       "id": "2",
       "title": "Hunter",
       "subtitle": "Hunters must sign up for the platform and complete a background check to verify their identity. A government-issued ID and facial recognition are required to for verification.",
       "description": "Upon successful completion of the background check, you will be able to submit any certifications and networking information you’d like to share. Compensation is based on your performance and track record, which will grow as you build your reputation on the Cyberbay Platform and receive feedback from organizations and the community. ",
-      "button-text": "Join Waitlist"
+      "button_text": "Join community"
     },
     {
       "id": "3",
       "title": "Leader",
       "subtitle": "Level up to Leader by establishing a strong performance track record from successful bug hunts and earning positive feedback from organizations and your fellow bug hunter community.",
-      "description": "As a Leader, you can form your CyberCrew by inviting Hunters and Academics for mentorship and collaboration on bug bounty programs. Become a keystone in the Ethical Hacker Community and help build the future of cybersecurity. Compensation is the highest for Leaders, rewarding your performance, consistency, and leadership.",
-      "button-text": "Join Waitlist"
+      "description": "As a Leader, you can form your CyberCrew by inviting Hunters and Academics for mentorship and collaboration on bug bounty programs. Become a keystone in the Ethical Hacker Community and help build the future of cybersecurity. Compensation is the highest for Leaders, rewarding your performance, consistency, and leadership."
     }
   ]
 }

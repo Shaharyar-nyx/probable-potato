@@ -5,14 +5,15 @@ import React, {
   InputHTMLAttributes,
   TextareaHTMLAttributes,
 } from "react";
-import { FieldError, UseFormClearErrors, UseFormRegister, UseFormSetError } from "react-hook-form";
+import {Field, FieldError, UseFormClearErrors, UseFormRegister, UseFormSetError} from "react-hook-form";
 
 export interface HeroProps {
   backgroundVideo: string;
-  cta: {
+  cta?: {
+    icon?: string;
+    isModal?: boolean;
     label: string;
-    link: string;
-    icon: string;
+    link?: string;
   };
   description: string;
   featuredImage: {
@@ -25,11 +26,11 @@ export interface HeaderProps {
   backgroundImage: string;
   cta?: {
     icon?: string;
+    isModal?: boolean;
     label: string;
-    link: string;
+    link?: string;
   };
   description: string;
-  link?: string;
   tagline?: string;
   title: string;
 }
@@ -95,11 +96,15 @@ export interface Feature {
 }
 
 export interface PackageData {
-  buttonText: string;
   description: string;
-  link: string;
   period?: string;
   price: string;
+  cta?: {
+    icon?: string;
+    isModal?: boolean;
+    label: string;
+    link?: string;
+  };
 }
 
 export interface PackagesProps {
@@ -113,7 +118,7 @@ export interface PackagesProps {
 export interface BaseButtonProps {
   children?: React.ReactNode;
   className?: string;
-  error?: boolean;
+  error?: string;
   icon?: React.ReactNode;
   iconName?: string;
   loading?: boolean;
@@ -136,11 +141,22 @@ export type ButtonAsInternalLink = BaseButtonProps &
 
 export type ButtonAsExternalLink = BaseButtonProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
-    externalHref: string;
+    externalHref?: string;
     href?: never;
   };
 
 export type ButtonProps = ButtonAsButton | ButtonAsInternalLink | ButtonAsExternalLink;
+
+export type InputFileProps = {
+  clearErrors?: UseFormClearErrors<any>;
+  error?: string;
+  formLoading?: boolean | undefined;
+  id?: string;
+  maxFileSize: number;
+  name: string;
+  register?: UseFormRegister<any>;
+  setError?: UseFormSetError<any>;
+} & ButtonProps;
 
 export interface IconRendererProps {
   className?: string;
@@ -163,10 +179,11 @@ export interface CTAProps {
   backgroundImage: {
     src: string;
   };
-  cta: {
-    label: string;
-    link: string;
+  cta?: {
     icon?: string;
+    isModal?: boolean;
+    label: string;
+    link?: string;
   };
   description: string;
   tagline?: string;
@@ -365,6 +382,18 @@ export interface JobOpeningsProps {
   }[];
 }
 
+export interface ModalProps {
+  buttonSize?: "large" | "medium" | "small";
+  buttonStyle?: string;
+  buttonVariant?: "primary" | "neutral";
+  buttonTransparent?: boolean;
+  className?: string;
+  children: React.ReactNode;
+  cta?: {
+    icon?: string;
+    label: string;
+  };
+}
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   iconName?: string;
@@ -388,15 +417,4 @@ export interface DropdownPropsInput extends ButtonHTMLAttributes<HTMLButtonEleme
   label: string;
   options: string[];
   value?: string;
-}
-
-export interface InputFileProps {
-  clearErrors?: UseFormClearErrors<any>;
-  error?: FieldError;
-  formLoading?: boolean;
-  id?: string;
-  maxFileSize: number;
-  name: string;
-  register?: UseFormRegister<any>;
-  setError?: UseFormSetError<any>;
 }

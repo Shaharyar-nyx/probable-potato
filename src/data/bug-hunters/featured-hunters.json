@@ -29,112 +29,97 @@
     }
   ],
   "hunters": {
-    "col_headers": ["Rank", "Bounty Hunter", "Submission Accepted", "Time"],
+    "col_headers": ["Rank", "Bounty Hunter", "Points"],
     "data": [
       {
         "rank": "1st",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+1",
         "hunter_name": "Hunter 1",
-        "submission_accepted": "69",
-        "time": "9d 7h 13m"
+        "points": "9881"
       },
       {
         "rank": "2nd",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+2",
         "hunter_name": "Hunter 2",
-        "submission_accepted": "56",
-        "time": "7d 8h 19m"
+        "points": "99761"
       },
       {
         "rank": "3rd",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+3",
         "hunter_name": "Hunter 3",
-        "submission_accepted": "82",
-        "time": "45d 17h 10m"
+        "points": "64382"
       },
       {
         "rank": "4th",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+4",
         "hunter_name": "Hunter 4",
-        "submission_accepted": "31",
-        "time": "12d 5h 44m"
+        "points": "42715"
       },
       {
         "rank": "5th",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+5",
         "hunter_name": "Hunter 5",
-        "submission_accepted": "16",
-        "time": "79d 4h 58m"
+        "points": "26180"
       },
       {
         "rank": "6th",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+6",
         "hunter_name": "Hunter 6",
-        "submission_accepted": "90",
-        "time": "20d 15h 33m"
+        "points": "85401"
       },
       {
         "rank": "7th",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+7",
         "hunter_name": "Hunter 7",
-        "submission_accepted": "74",
-        "time": "34d 18h 12m"
+        "points": "11904"
       },
       {
         "rank": "8th",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+8",
         "hunter_name": "Hunter 8",
-        "submission_accepted": "43",
-        "time": "11d 2h 27m"
+        "points": "73490"
       },
       {
         "rank": "9th",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+9",
         "hunter_name": "Hunter 9",
-        "submission_accepted": "62",
-        "time": "59d 6h 21m"
+        "points": "53516"
       },
       {
         "rank": "10th",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+10",
         "hunter_name": "Hunter 10",
-        "submission_accepted": "81",
-        "time": "17d 19h 41m"
+        "points": "42987"
       },
       {
         "rank": "11th",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+11",
         "hunter_name": "Hunter 11",
-        "submission_accepted": "27",
-        "time": "44d 10h 5m"
+        "points": "38007"
       },
       {
         "rank": "12th",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+12",
         "hunter_name": "Hunter 12",
-        "submission_accepted": "88",
-        "time": "32d 11h 50m"
+        "points": "91556"
       },
       {
         "rank": "13th",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+13",
         "hunter_name": "Hunter 13",
-        "submission_accepted": "49",
-        "time": "78d 9h 36m"
+        "points": "40866"
       },
       {
         "rank": "14th",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+14",
         "hunter_name": "Hunter 14",
-        "submission_accepted": "65",
-        "time": "6d 14h 9m"
+        "points": "49130"
       },
       {
         "rank": "15th",
         "avatar": "https://ui-avatars.com/api/?name=Hunter+15",
         "hunter_name": "Hunter 15",
-        "submission_accepted": "98",
-        "time": "28d 13h 2m"
+        "points": "30572"
       }
     ]
   }

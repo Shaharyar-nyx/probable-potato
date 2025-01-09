@@ -10,8 +10,8 @@
     },
     "text": "24/7 Real-time Monitoring Service for Vulnerabilities and Threat Detection. Includes a monthly digital footprint report of your assets (darkweb included), likelihood of attack, and actions required.",
     "cta": {
-      "label": "Request a Demo",
-      "link": "/",
+      "label": "Contact Sales",
+      "isModal": true,
       "icon": "ArrowUpRightIcon"
     }
   },
