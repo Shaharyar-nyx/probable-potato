@@ -13,7 +13,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     {
       children,
       loading = false,
-      error = false,
+      error,
       iconName,
       variant = "primary",
       size = "large",
@@ -46,30 +46,30 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       styles.btn,
       styles[`btn-${size}`],
       {
-        [styles[`btn-${variant}`]]: !transparent && !error,
-        [styles[`btn-${variant}-transparent`]]: transparent && !error,
-        "text-red-400": error,
+        [styles[`btn-${variant}`]]: !transparent && error === undefined,
+        [styles[`btn-${variant}-transparent`]]: transparent && error === undefined,
+        "text-red-400": error !== undefined,
       },
       className,
     );
 
     const iconClassNames = clsx(styles[`icon-${size}`], {
       // Error styles
-      "text-red-400": error,
+      "text-red-400": error !== undefined, // Apply red icon color if error is present
 
       // Default styles
-      [styles[`icon-${variant}`]]: !transparent && !hovered && !isDisabled && !error,
-      [styles[`icon-${variant}-transparent`]]: transparent && !hovered && !isDisabled && !error,
+      [styles[`icon-${variant}`]]: !transparent && !hovered && !isDisabled && error === undefined,
+      [styles[`icon-${variant}-transparent`]]: transparent && !hovered && !isDisabled && error === undefined,
 
       // Hovered styles
-      "text-primary-700": hovered && variant === "primary" && transparent && !isDisabled && !error,
-      "text-neutral-700": hovered && variant === "neutral" && transparent && !isDisabled && !error,
+      "text-primary-700": hovered && variant === "primary" && transparent && !isDisabled && error === undefined,
+      "text-neutral-700": hovered && variant === "neutral" && transparent && !isDisabled && error === undefined,
 
       // Disabled styles
-      "text-neutral-50": isDisabled && variant === "primary" && !transparent && !error,
-      "text-primary-100": isDisabled && variant === "primary" && transparent && !error,
-      "text-primary-800": isDisabled && variant === "neutral" && !transparent && !error,
-      "text-neutral-100": isDisabled && variant === "neutral" && transparent && !error,
+      "text-neutral-50": isDisabled && variant === "primary" && !transparent && error === undefined,
+      "text-primary-100": isDisabled && variant === "primary" && transparent && error === undefined,
+      "text-primary-800": isDisabled && variant === "neutral" && !transparent && error === undefined,
+      "text-neutral-100": isDisabled && variant === "neutral" && transparent && error === undefined,
     });
 
     const content = (
@@ -77,7 +77,8 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
         {loading ? (
           <span>Loading...</span>
         ) : (
-          children && <span className="overflow-hidden text-ellipsis whitespace-nowrap">{children}</span> // Only render children if it's provided
+          children !== undefined &&
+          children !== null && <span className="overflow-hidden text-ellipsis whitespace-nowrap">{children}</span>
         )}
         {iconName !== undefined && <IconRenderer className={iconClassNames} iconName={iconName} />}
       </>
