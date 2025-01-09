@@ -21,13 +21,16 @@ export const Nav: React.FC = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        // setShowSolutionsDropdown(false);
+      // Only handle click outside in desktop view (>= 1024px)
+      if (window.innerWidth >= 1024) {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(event.target as Node) &&
+          buttonRef.current &&
+          !buttonRef.current.contains(event.target as Node)
+        ) {
+          setShowSolutionsDropdown(false);
+        }
       }
     };
 
@@ -39,7 +42,7 @@ export const Nav: React.FC = () => {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
-    // setShowSolutionsDropdown(false);
+    setShowSolutionsDropdown(false);
   }, [pathname]);
 
   const services = [
@@ -274,7 +277,7 @@ export const Nav: React.FC = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`absolute left-0 right-0  top-[55px] lg:top-[72px] bg-neutral-50 shadow-lg overflow-y-scroll transition-all duration-300 ease-in-out lg:hidden ${
+          className={`absolute left-0 right-0 top-[55px] overflow-y-scroll bg-neutral-50 shadow-lg transition-all duration-300 ease-in-out lg:top-[72px] lg:hidden ${
             isMobileMenuOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
           }`}
         >
@@ -327,7 +330,9 @@ export const Nav: React.FC = () => {
                                 <div className="text-sm font-medium text-primary-800 group-hover:text-neutral-50">
                                   {menuItem.name}
                                 </div>
-                                <p className="text-xs text-neutral-600 group-hover:text-neutral-50">{menuItem.description}</p>
+                                <p className="text-xs text-neutral-600 group-hover:text-neutral-50">
+                                  {menuItem.description}
+                                </p>
                               </div>
                             </Link>
                           ))}

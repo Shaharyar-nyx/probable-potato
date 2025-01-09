@@ -22,7 +22,7 @@ export const Hero: React.FC<HeroProps> = ({ backgroundVideo, cta, description, f
             <div className={`${styles.title} display-1 font-bold`}>{title}</div>
             <p className={`${styles.description} paragraph-lg`}>{description}</p>
             {cta && (
-              <Modal cta={cta}>
+              <Modal cta={cta} buttonStyle="mx-auto lg:mx-0">
                 <DemoForm />
               </Modal>
             )}

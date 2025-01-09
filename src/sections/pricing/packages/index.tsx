@@ -1,7 +1,6 @@
 "use client";
 
 import { Roboto } from "next/font/google";
-import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 
@@ -260,6 +259,8 @@ export const Packages: React.FC<PackagesProps> = ({ packages, features, descript
   return (
     <div className={styles.container}>
       <div className={styles.background} style={{ backgroundImage: `url(${backgroundImage})` }} />
+      <div className={styles.overlay} />
+      
       <div className={styles.content}>
         <div className={styles.header}>
           <h1 className="heading-1 mb-3 font-bold text-primary-800">{title}</h1>

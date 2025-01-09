@@ -21,9 +21,8 @@ const Home: React.FC = () => {
         }}
         cta={{
           label: "Request a Demo",
-          link: "demo",
           icon: "ArrowUpRightIcon",
-          isModal: false,
+          isModal: true,
         }}
         description="Experience the power of proactive cybersecurity tailored to your organization's unique needs."
         title="Secure Your Digital Future"
