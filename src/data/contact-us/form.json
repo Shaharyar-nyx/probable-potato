@@ -1,10 +1,9 @@
 {
   "request_types": [
-    { "value": "demo", "label": "Request a demo" },
+    { "value": "demo", "label": "Request a Demo" },
     { "value": "sales", "label": "Contact Sales" },
-    { "value": "recruitment", "label": "Recruitment" },
-    { "value": "hacker", "label": "Join Hacker Community" },
-    { "value": "partner", "label": "Become a Partner" },
-    { "value": "others", "label": "Others" }
+    { "value": "join-hunter", "label": "Join Hunter Community" },
+    { "value": "careers", "label": "Careers" },
+    { "value": "other", "label": "Other" }
   ]
 }

@@ -11,9 +11,9 @@ const CareersPage: React.FC = () => {
   return (
     <main>
       <Header {...heroData} />
-      <JobOpenings {...jobOpeningsData} />
-      <Benefits {...benefitsData} />
       <ApplicationForm />
+      <Benefits {...benefitsData} />
+      <JobOpenings {...jobOpeningsData} />
       <Clients {...clientsContent} />
     </main>
   );

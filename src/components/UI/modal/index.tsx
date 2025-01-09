@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Button } from "../button";
 import { ModalProps } from "@/types";
 
-export const Modal: React.FC<ModalProps> = ({ cta, children, buttonStyle, buttonSize, buttonVariant, className }) => {
+export const Modal: React.FC<ModalProps> = ({ cta, children, buttonStyle, buttonSize, buttonVariant, buttonTransparent, className }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const openModal = () => {
@@ -27,6 +27,7 @@ export const Modal: React.FC<ModalProps> = ({ cta, children, buttonStyle, button
         className={buttonStyle}
         size={buttonSize}
         variant={buttonVariant}
+        transparent={buttonTransparent}
       >
         {cta?.label}
       </Button>
