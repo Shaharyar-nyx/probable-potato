@@ -17,16 +17,6 @@
   }
 }
 
-  /**
-   * A gradient overlay used to add a subtle background effect to the hero section.
-   *
-   * The overlay is a combination of two linear gradients. The first gradient goes from
-   * transparent to #f6f7f8, while the second gradient goes from #f6f7f8 to transparent.
-   * The result is a gradient that is lighter at the top and darker at the bottom.
-   *
-   * The background-blend-mode is set to "normal" to ensure that the gradient overlays
-   * the background image correctly.
-   */
 .overlay {
   @apply absolute inset-0;
   background: linear-gradient(180deg, rgba(246, 247, 248, 0) 74.68%, #f6f7f8 100%),
