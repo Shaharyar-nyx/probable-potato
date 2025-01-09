@@ -4,9 +4,11 @@ import clsx from "clsx";
 import React from "react";
 
 import "./styles.scss";
-import { Button, IconRenderer, Tooltip } from "@/components";
+import { IconRenderer, Tooltip } from "@/components";
 import data from "@/data/continuous-monitoring/features-and-pricing.json";
 import { formatToCurrency } from "@/lib";
+import Modal from "@/components/UI/modal";
+import { DemoForm } from "@/sections/home";
 
 export const FeaturesAndPricing: React.FC = () => {
   return (
@@ -51,9 +53,11 @@ export const FeaturesAndPricing: React.FC = () => {
               </div>
             </div>
             <p className="paragraph-md features-and-pricing-card-text">{data.card.text}</p>
-            <Button className="w-full" iconName={data.card.cta.icon} variant="neutral">
-              {data.card.cta.label}
-            </Button>
+            {data.card.cta.isModal && (
+              <Modal cta={data.card.cta} buttonVariant="neutral">
+                <DemoForm />
+              </Modal>
+            )}
           </div>
         </div>
         <div className="features-and-pricing-content">

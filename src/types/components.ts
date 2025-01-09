@@ -386,6 +386,7 @@ export interface ModalProps {
   buttonSize?: "large" | "medium" | "small";
   buttonStyle?: string;
   buttonVariant?: "primary" | "neutral";
+  buttonTransparent?: boolean;
   className?: string;
   children: React.ReactNode;
   cta?: {

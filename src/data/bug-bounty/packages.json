@@ -19,7 +19,7 @@
       "cta": {
         "label": "Contact Sales",
         "icon": "ArrowUpRightIcon",
-        "link": "/contact-us"
+        "isModal": true
       }
     }
   },

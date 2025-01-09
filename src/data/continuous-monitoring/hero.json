@@ -4,7 +4,7 @@
   "description": "Discover CyberScan, the AI-driven continuous monitoring solution designed to protect your digital assets. Request your free CyberScan-Lite report today and witness the future of cybersecurity in action.",
   "cta": {
     "label": "Get Your Free Report",
-    "link": "#",
+    "isModal": true,
     "icon": "ArrowUpRightIcon"
   }
 }
