@@ -13,6 +13,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     {
       children,
       loading = false,
+      error,
       iconName,
       variant = "primary",
       size = "large",
@@ -81,9 +82,11 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     if (href !== undefined && externalHref === undefined) {
       // Internal link (Next.js Link)
       return (
-        <Link href={href} legacyBehavior passHref onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+        <Link href={href} legacyBehavior passHref>
           <a
             className={commonClassNames}
+            onMouseEnter={handleEnter}
+            onMouseLeave={handleLeave}
             {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
             ref={ref as React.Ref<HTMLAnchorElement>}
           >

@@ -28,171 +28,114 @@
       "description": "Potter ipsum wand elf parchment wingardium. Beuxbatons in quills large green cars animagus."
     }
   ],
-  "hunters": [
-    {
-      "id": "1",
-      "position": 63150,
-      "status": "Resolved",
-      "title": "Security Breach Resolved #290",
-      "headline": "Details of the resolution process for breach #4734",
-      "avatar": "https://randomuser.me/api/portraits/thumb/women/67.jpg",
-      "name": "Bug Hunter #1",
-      "score": "critical",
-      "cvss_score": 5.7
-    },
-    {
-      "id": "2",
-      "position": 92398,
-      "status": "Resolved",
-      "title": "Security Breach Resolved #699",
-      "headline": "Details of the resolution process for breach #4810",
-      "avatar": "https://randomuser.me/api/portraits/thumb/men/61.jpg",
-      "name": "Bug Hunter #2",
-      "score": "high",
-      "cvss_score": 0.2
-    },
-    {
-      "id": "3",
-      "position": 39962,
-      "status": "In Progress",
-      "title": "Security Breach Resolved #97",
-      "headline": "Details of the resolution process for breach #3343",
-      "avatar": "https://randomuser.me/api/portraits/thumb/women/52.jpg",
-      "name": "Bug Hunter #3",
-      "score": "low",
-      "cvss_score": 1.3
-    },
-    {
-      "id": "4",
-      "position": 34272,
-      "status": "Resolved",
-      "title": "Security Breach Resolved #810",
-      "headline": "Details of the resolution process for breach #4473",
-      "avatar": "https://randomuser.me/api/portraits/thumb/men/96.jpg",
-      "name": "Bug Hunter #4",
-      "score": "medium",
-      "cvss_score": 1.9
-    },
-    {
-      "id": "5",
-      "position": 36405,
-      "status": "Resolved",
-      "title": "Security Breach Resolved #659",
-      "headline": "Details of the resolution process for breach #8336",
-      "avatar": "https://randomuser.me/api/portraits/thumb/women/64.jpg",
-      "name": "Bug Hunter #5",
-      "score": "medium",
-      "cvss_score": 6.0
-    },
-    {
-      "id": "6",
-      "position": 99507,
-      "status": "In Progress",
-      "title": "Security Breach Resolved #158",
-      "headline": "Details of the resolution process for breach #3139",
-      "avatar": "https://randomuser.me/api/portraits/thumb/men/87.jpg",
-      "name": "Bug Hunter #6",
-      "score": "high",
-      "cvss_score": 8.7
-    },
-    {
-      "id": "7",
-      "position": 27662,
-      "status": "In Progress",
-      "title": "Security Breach Resolved #838",
-      "headline": "Details of the resolution process for breach #8265",
-      "avatar": "https://randomuser.me/api/portraits/thumb/men/95.jpg",
-      "name": "Bug Hunter #7",
-      "score": "medium",
-      "cvss_score": 9.7
-    },
-    {
-      "id": "8",
-      "position": 1276,
-      "status": "Resolved",
-      "title": "Security Breach Resolved #935",
-      "headline": "Details of the resolution process for breach #2074",
-      "avatar": "https://randomuser.me/api/portraits/thumb/women/92.jpg",
-      "name": "Bug Hunter #8",
-      "score": "critical",
-      "cvss_score": 0.5
-    },
-    {
-      "id": "9",
-      "position": 60630,
-      "status": "Resolved",
-      "title": "Security Breach Resolved #69",
-      "headline": "Details of the resolution process for breach #1327",
-      "avatar": "https://randomuser.me/api/portraits/thumb/men/42.jpg",
-      "name": "Bug Hunter #9",
-      "score": "high",
-      "cvss_score": 3.2
-    },
-    {
-      "id": "10",
-      "position": 73747,
-      "status": "Resolved",
-      "title": "Security Breach Resolved #34",
-      "headline": "Details of the resolution process for breach #8293",
-      "avatar": "https://randomuser.me/api/portraits/thumb/men/49.jpg",
-      "name": "Bug Hunter #10",
-      "score": "medium",
-      "cvss_score": 6.3
-    },
-    {
-      "id": "11",
-      "position": 45850,
-      "status": "In Progress",
-      "title": "Security Breach Resolved #611",
-      "headline": "Details of the resolution process for breach #9925",
-      "avatar": "https://randomuser.me/api/portraits/thumb/men/61.jpg",
-      "name": "Bug Hunter #11",
-      "score": "high",
-      "cvss_score": 6.1
-    },
-    {
-      "id": "12",
-      "position": 76522,
-      "status": "In Progress",
-      "title": "Security Breach Resolved #586",
-      "headline": "Details of the resolution process for breach #3320",
-      "avatar": "https://randomuser.me/api/portraits/thumb/women/19.jpg",
-      "name": "Bug Hunter #12",
-      "score": "medium",
-      "cvss_score": 5.0
-    },
-    {
-      "id": "13",
-      "position": 70247,
-      "status": "Resolved",
-      "title": "Security Breach Resolved #665",
-      "headline": "Details of the resolution process for breach #2611",
-      "avatar": "https://randomuser.me/api/portraits/thumb/women/1.jpg",
-      "name": "Bug Hunter #13",
-      "score": "critical",
-      "cvss_score": 2.7
-    },
-    {
-      "id": "14",
-      "position": 95915,
-      "status": "Resolved",
-      "title": "Security Breach Resolved #740",
-      "headline": "Details of the resolution process for breach #7237",
-      "avatar": "https://randomuser.me/api/portraits/thumb/men/70.jpg",
-      "name": "Bug Hunter #14",
-      "score": "medium",
-      "cvss_score": 0.6
-    },
-    {
-      "id": "15",
-      "position": 4832,
-      "status": "In Progress",
-      "title": "Security Breach Resolved #383",
-      "headline": "Details of the resolution process for breach #5129",
-      "avatar": "https://randomuser.me/api/portraits/thumb/women/45.jpg",
-      "name": "Bug Hunter #15",
-      "score": "critical",
-      "cvss_score": 2.0
-    }
-  ]
+  "hunters": {
+    "col_headers": ["Rank", "Bounty Hunter", "Submission Accepted", "Time"],
+    "data": [
+      {
+        "rank": "1st",
+        "avatar": "https://mockavatar.com/avatar1.png",
+        "hunter_name": "Hunter_1",
+        "submission_accepted": "69",
+        "time": "9d 7h 13m"
+      },
+      {
+        "rank": "2nd",
+        "avatar": "https://mockavatar.com/avatar2.png",
+        "hunter_name": "Hunter_2",
+        "submission_accepted": "56",
+        "time": "7d 8h 19m"
+      },
+      {
+        "rank": "3rd",
+        "avatar": "https://mockavatar.com/avatar3.png",
+        "hunter_name": "Hunter_3",
+        "submission_accepted": "82",
+        "time": "45d 17h 10m"
+      },
+      {
+        "rank": "4th",
+        "avatar": "https://mockavatar.com/avatar4.png",
+        "hunter_name": "Hunter_4",
+        "submission_accepted": "31",
+        "time": "12d 5h 44m"
+      },
+      {
+        "rank": "5th",
+        "avatar": "https://mockavatar.com/avatar5.png",
+        "hunter_name": "Hunter_5",
+        "submission_accepted": "16",
+        "time": "79d 4h 58m"
+      },
+      {
+        "rank": "6th",
+        "avatar": "https://mockavatar.com/avatar6.png",
+        "hunter_name": "Hunter_6",
+        "submission_accepted": "90",
+        "time": "20d 15h 33m"
+      },
+      {
+        "rank": "7th",
+        "avatar": "https://mockavatar.com/avatar7.png",
+        "hunter_name": "Hunter_7",
+        "submission_accepted": "74",
+        "time": "34d 18h 12m"
+      },
+      {
+        "rank": "8th",
+        "avatar": "https://mockavatar.com/avatar8.png",
+        "hunter_name": "Hunter_8",
+        "submission_accepted": "43",
+        "time": "11d 2h 27m"
+      },
+      {
+        "rank": "9th",
+        "avatar": "https://mockavatar.com/avatar9.png",
+        "hunter_name": "Hunter_9",
+        "submission_accepted": "62",
+        "time": "59d 6h 21m"
+      },
+      {
+        "rank": "10th",
+        "avatar": "https://mockavatar.com/avatar10.png",
+        "hunter_name": "Hunter_10",
+        "submission_accepted": "81",
+        "time": "17d 19h 41m"
+      },
+      {
+        "rank": "11th",
+        "avatar": "https://mockavatar.com/avatar11.png",
+        "hunter_name": "Hunter_11",
+        "submission_accepted": "27",
+        "time": "44d 10h 5m"
+      },
+      {
+        "rank": "12th",
+        "avatar": "https://mockavatar.com/avatar12.png",
+        "hunter_name": "Hunter_12",
+        "submission_accepted": "88",
+        "time": "32d 11h 50m"
+      },
+      {
+        "rank": "13th",
+        "avatar": "https://mockavatar.com/avatar13.png",
+        "hunter_name": "Hunter_13",
+        "submission_accepted": "49",
+        "time": "78d 9h 36m"
+      },
+      {
+        "rank": "14th",
+        "avatar": "https://mockavatar.com/avatar14.png",
+        "hunter_name": "Hunter_14",
+        "submission_accepted": "65",
+        "time": "6d 14h 9m"
+      },
+      {
+        "rank": "15th",
+        "avatar": "https://mockavatar.com/avatar15.png",
+        "hunter_name": "Hunter_15",
+        "submission_accepted": "98",
+        "time": "28d 13h 2m"
+      }
+    ]
+  }
 }

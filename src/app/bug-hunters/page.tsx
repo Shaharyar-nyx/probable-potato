@@ -18,9 +18,8 @@ const EthicalHackersPage: React.FC = () => {
         backgroundImage={{
           src: knowledgeData.background,
         }}
-        buttonText={knowledgeData.button_text}
+        cta={knowledgeData.cta}
         description={knowledgeData.text}
-        href="/contact-us"
         title={knowledgeData.title}
       />
     </main>
