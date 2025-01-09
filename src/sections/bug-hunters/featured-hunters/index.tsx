@@ -7,60 +7,98 @@ import data from "@/data/bug-hunters/featured-hunters.json";
 export const FeaturedHunters: React.FC = () => {
   return (
     <section className="featured-hunters-parent-container">
-      <div className="featured-hunters-top-container">
-        <span className="tagline featured-hunters-tagline">{data.tagline}</span>
-        <h2 className="heading-1 featured-hunters-title">{data.title}</h2>
-        <p className="paragraph-md featured-hunters-description">{data.description}</p>
-        <div className="featured-hunters-top-hunters-container">
-          {data["top-hunters"].map((hunter) => (
-            <div key={hunter.id} className="featured-hunters-top-hunters-item">
-              <div className="featured-hunters-top-hunters-card">
-                <div className="relative overflow-hidden rounded-xl">
-                  <img alt={hunter.name} className="featured-hunters-top-hunters-image" src={hunter.picture} />
-                  <div className="featured-hunters-top-hunters-headline-container">
-                    <h3 className="heading-5 featured-hunters-top-hunters-headline-heading">{hunter.name}</h3>
-                    <p className="paragraph-md featured-hunters-top-hunters-headline-text">{hunter.headline}</p>
-                  </div>
-                </div>
-                <div className="featured-hunters-top-hunters-tag-container">
-                  <p className="paragraph-md featured-hunters-top-hunters-tag-text">{hunter.tag}</p>
-                </div>
-              </div>
-              <p className="paragraph-md featured-hunters-top-hunters-description">{hunter.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      {/*<div className="featured-hunters-top-container">*/}
+      {/*  <span className="tagline featured-hunters-tagline">{data.tagline}</span>*/}
+      {/*  <h2 className="heading-1 featured-hunters-title">{data.title}</h2>*/}
+      {/*  <p className="paragraph-md featured-hunters-description">{data.description}</p>*/}
+      {/*  <div className="featured-hunters-top-hunters-container">*/}
+      {/*    {data["top-hunters"].map((hunter) => (*/}
+      {/*      <div key={hunter.id} className="featured-hunters-top-hunters-item">*/}
+      {/*        <div className="featured-hunters-top-hunters-card">*/}
+      {/*          <div className="relative overflow-hidden rounded-xl">*/}
+      {/*            <img alt={hunter.name} className="featured-hunters-top-hunters-image" src={hunter.picture} />*/}
+      {/*            <div className="featured-hunters-top-hunters-headline-container">*/}
+      {/*              <h3 className="heading-5 featured-hunters-top-hunters-headline-heading">{hunter.name}</h3>*/}
+      {/*              <p className="paragraph-md featured-hunters-top-hunters-headline-text">{hunter.headline}</p>*/}
+      {/*            </div>*/}
+      {/*          </div>*/}
+      {/*          <div className="featured-hunters-top-hunters-tag-container">*/}
+      {/*            <p className="paragraph-md featured-hunters-top-hunters-tag-text">{hunter.tag}</p>*/}
+      {/*          </div>*/}
+      {/*        </div>*/}
+      {/*        <p className="paragraph-md featured-hunters-top-hunters-description">{hunter.description}</p>*/}
+      {/*      </div>*/}
+      {/*    ))}*/}
+      {/*  </div>*/}
+      {/*</div>*/}
       <div className="featured-hunters-bottom-container">
         <h2 className="heading-1 featured-hunters-title">{data.title}</h2>
         <div className="featured-hunters-hunters-container">
-          {data.hunters.map((hunter) => (
-            <div key={hunter.id} className="featured-hunters-hunters-item">
-              <div className="featured-hunters-hunters-position-container">
-                <p className="paragraph-md featured-hunters-hunters-position-text">#{hunter.position}</p>
-                <p className="paragraph-md featured-hunters-hunters-position-text">{hunter.status}</p>
-              </div>
-              <div className="featured-hunters-hunters-headline-container">
-                <h3 className="heading-7 featured-hunters-hunters-headline-title">{hunter.title}</h3>
-                <div className="featured-hunters-hunters-headline-avatar-container">
-                  <img alt={hunter.name} className="h-8 w-8 rounded-full object-cover" src={hunter.avatar} />
-                  <p className="paragraph-sm featured-hunters-hunters-headline-text">{hunter.name}</p>
-                </div>
-              </div>
-              <div className="featured-hunters-hunters-score-container">
-                <p
-                  className={clsx("paragraph-sm featured-hunters-hunters-score-score", {
-                    "bg-[#1e49af] text-neutral-50": hunter.score === "low" || hunter.score === "high",
-                    "bg-[#dfdca6] text-primary-800": hunter.score === "medium",
-                    "bg-[#dd6c6c] text-neutral-50": hunter.score === "critical",
-                  })}
-                >
-                  {hunter.score}
-                </p>
-                <p className="paragraph-sm featured-hunters-hunters-score-text">CVSS Score: {hunter["cvss_score"]}</p>
-              </div>
-            </div>
-          ))}
+          <div className="w-full">
+            <table className="w-full">
+              <thead className="inline-block w-full">
+                <tr className="featured-hunters-hunters-table-row mb-3">
+                  {data.hunters.col_headers.map((header, index) => (
+                    <th
+                      key={header}
+                      className={clsx("heading-7 inline-block w-max text-neutral-50", {
+                        "w-[55px]": index === 0,
+                        "w-[160px]": index === 1,
+                        "w-[230px]": index === 2,
+                        "w-[105px]": index === 3,
+                      })}
+                    >
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="inline-flex w-full flex-col gap-3">
+                {data.hunters.data.map((data) => (
+                  <tr key={data.rank} className="featured-hunters-hunters-table-row">
+                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[55px]">{data.rank}</td>
+                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[160px]">
+                      <div className="featured-hunters-hunters-table-avatar-cell">
+                        <img alt={data.hunter_name} className="h-6 w-6 rounded-full object-cover" src={data.avatar} />
+                        <span>{data.hunter_name}</span>
+                      </div>
+                    </td>
+                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[230px]">
+                      {data.submission_accepted}
+                    </td>
+                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[105px]">{data.time}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {/*{data.hunters.data.map((hunter) => (*/}
+          {/*  <div key={hunter.id} className="featured-hunters-hunters-item">*/}
+          {/*    <div className="featured-hunters-hunters-position-container">*/}
+          {/*      <p className="paragraph-md featured-hunters-hunters-position-text">#{hunter.position}</p>*/}
+          {/*      <p className="paragraph-md featured-hunters-hunters-position-text">{hunter.status}</p>*/}
+          {/*    </div>*/}
+          {/*    <div className="featured-hunters-hunters-headline-container">*/}
+          {/*      <h3 className="heading-7 featured-hunters-hunters-headline-title">{hunter.title}</h3>*/}
+          {/*      <div className="featured-hunters-hunters-headline-avatar-container">*/}
+          {/*        <img alt={hunter.name} className="h-8 w-8 rounded-full object-cover" src={hunter.avatar} />*/}
+          {/*        <p className="paragraph-sm featured-hunters-hunters-headline-text">{hunter.name}</p>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*    <div className="featured-hunters-hunters-score-container">*/}
+          {/*      <p*/}
+          {/*        className={clsx("paragraph-sm featured-hunters-hunters-score-score", {*/}
+          {/*          "bg-[#1e49af] text-neutral-50": hunter.score === "low" || hunter.score === "high",*/}
+          {/*          "bg-[#dfdca6] text-primary-800": hunter.score === "medium",*/}
+          {/*          "bg-[#dd6c6c] text-neutral-50": hunter.score === "critical",*/}
+          {/*        })}*/}
+          {/*      >*/}
+          {/*        {hunter.score}*/}
+          {/*      </p>*/}
+          {/*      <p className="paragraph-sm featured-hunters-hunters-score-text">CVSS Score: {hunter["cvss_score"]}</p>*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
+          {/*))}*/}
         </div>
       </div>
     </section>

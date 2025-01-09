@@ -23,12 +23,12 @@ export const Modal: React.FC<ModalProps> = ({ cta, children, buttonStyle, button
           openModal();
           e.preventDefault();
         }}
-        iconName={cta.icon}
+        iconName={cta?.icon}
         className={buttonStyle}
         size={buttonSize}
         variant={buttonVariant}
       >
-        {cta.label}
+        {cta?.label}
       </Button>
 
       <Dialog open={isOpenModal} onClose={closeModal} className="relative z-[99999]">

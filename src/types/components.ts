@@ -1,12 +1,19 @@
-import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
+import React, {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  HTMLAttributes,
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+} from "react";
+import { FieldError, UseFormClearErrors, UseFormRegister, UseFormSetError } from "react-hook-form";
 
 export interface HeroProps {
   backgroundVideo: string;
-  cta: {
+  cta?: {
+    icon?: string;
+    isModal?: boolean;
     label: string;
     link?: string;
-    icon: string;
-    isModal?: boolean;
   };
   description: string;
   featuredImage: {
@@ -24,7 +31,6 @@ export interface HeaderProps {
     link?: string;
   };
   description: string;
-  link?: string;
   tagline?: string;
   title: string;
 }
@@ -93,11 +99,11 @@ export interface PackageData {
   description: string;
   period?: string;
   price: string;
-  cta: {
-    icon: string;
+  cta?: {
+    icon?: string;
+    isModal?: boolean;
     label: string;
     link?: string;
-    isModal?: boolean;
   };
 }
 
@@ -112,6 +118,7 @@ export interface PackagesProps {
 export interface BaseButtonProps {
   children?: React.ReactNode;
   className?: string;
+  error?: boolean;
   icon?: React.ReactNode;
   iconName?: string;
   loading?: boolean;
@@ -161,11 +168,11 @@ export interface CTAProps {
   backgroundImage: {
     src: string;
   };
-  cta: {
+  cta?: {
     icon?: string;
     isModal?: boolean;
     label: string;
-    link: string;
+    link?: string;
   };
   description: string;
   tagline?: string;
@@ -370,9 +377,43 @@ export interface ModalProps {
   buttonVariant?: "primary" | "neutral";
   className?: string;
   children: React.ReactNode;
-  cta: {
+  cta?: {
     icon?: string;
     label: string;
-    link?: string;
   };
+}
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  error?: string;
+  iconName?: string;
+  parentClassName?: string;
+}
+
+export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  error?: string;
+  iconName?: string;
+  parentClassName?: string;
+}
+
+export interface DropdownPropsInput extends ButtonHTMLAttributes<HTMLButtonElement> {
+  ariaDescribedBy?: string;
+  className?: string;
+  disabled?: boolean;
+  error?: string;
+  handleChange?: (value: string) => void;
+  iconName?: string;
+  id?: string;
+  label: string;
+  options: string[];
+  value?: string;
+}
+
+export interface InputFileProps {
+  clearErrors?: UseFormClearErrors<any>;
+  error?: FieldError;
+  formLoading?: boolean;
+  id?: string;
+  maxFileSize: number;
+  name: string;
+  register?: UseFormRegister<any>;
+  setError?: UseFormSetError<any>;
 }

@@ -95,5 +95,16 @@
         @apply text-neutral-50;
       }
     }
+    &-table {
+      &-row {
+        @apply inline-flex w-full items-center justify-around rounded-xl bg-[#045DE31A] py-6 shadow-[8px_8px_40px_0px_rgba(0,0,0,0.12)];
+      }
+      &-cell {
+        @apply inline-block text-center text-neutral-50;
+      }
+      &-avatar-cell {
+        @apply flex w-full items-center justify-center gap-3;
+      }
+    }
   }
 }

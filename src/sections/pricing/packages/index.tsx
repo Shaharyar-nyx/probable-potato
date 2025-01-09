@@ -9,7 +9,7 @@ import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import { Feature, PackageData as BasePackageData, PackagesProps } from "@/types";
 import Modal from "@/components/UI/modal";
-import { DemoForm } from "@/sections/home";
+import { DemoForm } from "@/sections/home/demo-form";
 
 interface ExtendedPackageData extends BasePackageData {
   type: keyof typeof PackageIcons;
@@ -85,9 +85,9 @@ const PackageCard = ({ data, type }: { data: BasePackageData; type: keyof typeof
     </div>
 
     <div className={styles.packageFooter}>
-      {data.cta && (
+      {data?.cta && (
         <>
-          {data.cta.isModal ? (
+          {data?.cta?.isModal ? (
             <Modal
               cta={data.cta}
               buttonStyle="w-full text-center !font-normal text-primary-800"

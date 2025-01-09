@@ -23,6 +23,7 @@ const Home: React.FC = () => {
           label: "Request a Demo",
           link: "demo",
           icon: "ArrowUpRightIcon",
+          isModal: false,
         }}
         description="Experience the power of proactive cybersecurity tailored to your organization's unique needs."
         title="Secure Your Digital Future"

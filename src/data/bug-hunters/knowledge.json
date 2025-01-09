@@ -1,0 +1,9 @@
+{
+  "background": "/bug-hunters/knowledge/background.webp",
+  "title": "Head to the Knowledge Base to enhance your skills and stay updated on the latest cybersecurity trends.",
+  "text": "Discover valuable resources, tutorials, and community insights tailored for bug hunters.",
+  "cta": {
+    "label": "Learn More",
+    "link": "#"
+  }
+}

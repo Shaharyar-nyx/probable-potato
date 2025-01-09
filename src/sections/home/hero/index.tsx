@@ -7,7 +7,7 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import styles from "./styles.module.scss";
 import { HeroProps } from "@/types";
 import Modal from "@/components/UI/modal";
-import { DemoForm } from "@/sections";
+import { DemoForm } from "../demo-form";
 
 export const Hero: React.FC<HeroProps> = ({ backgroundVideo, cta, description, featuredImage, title }) => {
   return (

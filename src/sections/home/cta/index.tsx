@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import React from "react";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
@@ -29,7 +28,7 @@ export const CTA: React.FC<CTAProps> = ({ backgroundImage, description, title, t
             <p className={styles.description}>{description}</p>
             {cta && (
               <>
-                {cta.isModal? (
+                {cta?.isModal ? (
                   <Modal cta={cta}>
                     <DemoForm />
                   </Modal>

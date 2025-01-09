@@ -1,55 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 
 import styles from "./styles.module.scss";
-import { Button, IconRenderer } from "@/components";
-
-interface FormData {
-  email: string;
-  fullName: string;
-  message: string;
-  requestType: string;
-}
+import { Button, Dropdown, Input, Textarea } from "@/components";
+import formData from "@/data/contact-us/form.json";
+import { ContactUsFormType } from "@/types";
 
 export const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    fullName: "",
-    email: "",
-    requestType: "",
-    message: "",
-  });
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
 
-  const requestTypes = [
-    { value: "demo", label: "Request a demo" },
-    { value: "sales", label: "Contact Sales" },
-    { value: "recruitment", label: "Recruitment" },
-    { value: "hacker", label: "Join Hacker Community" },
-    { value: "partner", label: "Become a Partner" },
-    { value: "others", label: "others" },
-  ];
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm<ContactUsFormType>();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const onSubmit = (data: ContactUsFormType) => {
+    setFormLoading(true);
+    // Fetching logic
+    console.log(data);
+    setTimeout(() => {
+      setFormSubmitted(true);
+      setFormLoading(false);
+      reset();
+    }, 1000);
   };
 
-  const handleSelectOption = (value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      requestType: value,
-    }));
-    setIsDropdownOpen(false);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted with data:", formData);
-  };
+  useEffect(() => {
+    if (formSubmitted) {
+      const timeout = setTimeout(() => setFormSubmitted(false), 5000);
+      return () => clearTimeout(timeout);
+    }
+  }, [formSubmitted]);
 
   return (
     <div className={styles.container}>
@@ -63,76 +50,61 @@ export const ContactForm: React.FC = () => {
           </p>
         </div>
 
-        <form className={styles.formContainer} onSubmit={handleSubmit}>
-          <div className={styles.inputWrapper}>
-            <input
-              className={styles.input}
-              name="fullName"
-              placeholder="Full Name"
-              required
-              type="text"
-              value={formData.fullName}
-              onChange={handleInputChange}
-            />
-            <div className={styles.iconWrapper}>
-              <IconRenderer iconName="UserIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-          </div>
-
-          <div className={styles.inputWrapper}>
-            <input
-              className={styles.input}
-              name="email"
-              placeholder="Email"
-              required
-              type="email"
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-            <div className={styles.iconWrapper}>
-              <IconRenderer iconName="EnvelopeIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-          </div>
-
-          <div className={styles.inputWrapper}>
-            <button className={styles.select} type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-              {formData.requestType
-                ? requestTypes.find((type) => type.value === formData.requestType)?.label
-                : "Request Type"}
-            </button>
-            <div className={styles.iconWrapper}>
-              <IconRenderer iconName="ListBulletIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-            <div className={styles.selectIconWrapper}>
-              <IconRenderer iconName="ChevronDownIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-            {isDropdownOpen && (
-              <div className={styles.selectDropdown}>
-                {requestTypes.map((type) => (
-                  <div key={type.value} className={styles.selectOption} onClick={() => handleSelectOption(type.value)}>
-                    {type.label}
-                  </div>
-                ))}
-              </div>
+        <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            disabled={formLoading}
+            iconName="UserIcon"
+            placeholder="Full Name"
+            {...register("name", { required: "Full Name is required" })}
+            error={errors.name?.message}
+          />
+          <Input
+            disabled={formLoading}
+            iconName="EnvelopeIcon"
+            placeholder="Email"
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                message: "Please enter a valid email address",
+              },
+            })}
+            error={errors.email?.message}
+          />
+          <Controller
+            control={control}
+            name="requestType"
+            render={({ field }) => (
+              <Dropdown
+                disabled={formLoading}
+                error={errors.requestType?.message}
+                handleChange={field.onChange}
+                iconName="BarsArrowUpIcon"
+                id="request-type"
+                label="Request Type"
+                options={formData.request_types.map((requestType) => requestType.label)}
+                value={field.value}
+              />
             )}
-          </div>
+            rules={{ required: "Request type is required" }}
+          />
 
-          <div className={styles.inputWrapper}>
-            <textarea
-              className={styles.textarea}
-              name="message"
-              placeholder="Your Message (Optional)..."
-              value={formData.message}
-              onChange={handleInputChange}
-            />
-            <div className={styles.textareaIconWrapper}>
-              <IconRenderer iconName="ChatBubbleOvalLeftEllipsisIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-          </div>
-
-          <Button className="!px-20" size="large" type="submit">
+          <Textarea
+            disabled={formLoading}
+            iconName="ChatBubbleOvalLeftEllipsisIcon"
+            placeholder="Your Message (Optional)..."
+            rows={4}
+            {...register("message")}
+          />
+          <Button className="self-start px-20" disabled={formLoading} size="large" type="submit">
             Submit
           </Button>
+
+          {formSubmitted && (
+            <p aria-live="polite" className="paragraph-sm text-green-500">
+              Information sent successfully!
+            </p>
+          )}
         </form>
       </div>
     </div>

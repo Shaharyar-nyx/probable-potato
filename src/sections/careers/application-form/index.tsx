@@ -1,34 +1,45 @@
 "use client";
 
-import { Button, IconRenderer, Input, Textarea } from "@/components";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
-import styles from "./styles.module.scss";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
-interface FormData {
-  fullName: string;
-  email: string;
-  resume: File | null;
-  message: string;
-}
+import styles from "./styles.module.scss";
+import { Button, IconRenderer, Input, Textarea, InputFile } from "@/components";
+import { ApplyFormType } from "@/types";
 
 export const ApplicationForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    fullName: "",
-    email: "",
-    resume: null,
-    message: "",
-  });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
+  const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB in bytes
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    clearErrors,
+    reset,
+    formState: { errors },
+  } = useForm<ApplyFormType>();
+
+  const onSubmit = (data: ApplyFormType) => {
+    setFormLoading(true);
+    console.log("Form submitted:", data);
+    // Simulate fetching logic
+    setTimeout(() => {
+      setFormSubmitted(true);
+      setFormLoading(false);
+      reset();
+    }, 1000);
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setFormData((prev) => ({ ...prev, resume: file }));
-  };
+  useEffect(() => {
+    if (formSubmitted) {
+      const timeout = setTimeout(() => setFormSubmitted(false), 5000);
+      return () => clearTimeout(timeout);
+    }
+  }, [formSubmitted]);
 
   return (
     <section className={styles.section}>
@@ -52,61 +63,62 @@ export const ApplicationForm: React.FC = () => {
           <h1 className={`heading-1 ${styles.formTitle}`}>
             Your next career move <br /> starts here.
           </h1>
-          <p className={`paragraph-lg ${styles.formSubtitle}`}>Let&apos;s grow together.</p>
 
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <div className={styles.inputWrapper}>
-              <IconRenderer className={styles.inputIcon} iconName="UserIcon" />
-              <Input
-                className={`${styles.input} paragraph-sm`}
-                id="fullname"
-                onChange={(e) => setFormData((prev) => ({ ...prev, fullName: e.target.value }))}
-                placeholder="Full Name"
-                value={formData.fullName}
-              />
-            </div>
+          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <p className={`paragraph-lg ${styles.formSubtitle}`}>Let&apos;s grow together.</p>
+            {/* Full Name Input */}
+            <Input
+              disabled={formLoading}
+              error={errors.name?.message}
+              iconName="UserIcon"
+              placeholder="Full Name"
+              {...register("name", { required: "Full Name is required" })}
+            />
+            {/* Email Input */}
+            <Input
+              disabled={formLoading}
+              error={errors.email?.message}
+              iconName="EnvelopeIcon"
+              placeholder="Email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                  message: "Please enter a valid email address",
+                },
+              })}
+            />
+            <p className={`paragraph-lg ${styles.uploadLabel}`}>Let us know about your experience</p>
+            {/* File Input */}
+            <InputFile
+              clearErrors={clearErrors}
+              error={errors.resume}
+              formLoading={formLoading}
+              id="resume"
+              maxFileSize={MAX_FILE_SIZE}
+              name="resume"
+              register={register}
+              setError={setError}
+            />
 
-            <div className={styles.inputWrapper}>
-              <IconRenderer className={styles.inputIcon} iconName="EnvelopeIcon" />
-              <Input
-                className={`${styles.input} paragraph-sm`}
-                id="email"
-                onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                placeholder="Email"
-                type="email"
-                value={formData.email}
-              />
-            </div>
+            {/* Message Textarea */}
+            <Textarea
+              disabled={formLoading}
+              iconName="ChatBubbleOvalLeftEllipsisIcon"
+              placeholder="Your Message (Optional)..."
+              rows={4}
+              {...register("message")}
+            />
 
-            <div>
-              <p className={`paragraph-lg ${styles.uploadLabel}`}>Let us know about your experience</p>
-              <div className="relative">
-                <label className={styles.uploadButton}>
-                  <span>Upload your resume</span>
-                  <IconRenderer className="h-6 w-6" iconName="ArrowUpTrayIcon" />
-                  <input accept=".pdf" className="hidden" id="resume" onChange={handleFileChange} type="file" />
-                </label>
-              </div>
-              <div className="flex flex-row items-end gap-1">
-                <IconRenderer className="h-[15px] w-[15px] text-[#02255B80]" iconName="ExclamationCircleIcon" />
-                <p className={`paragraph-xs ${styles.uploadHelperText}`}>Format: .pdf, Max file size: 10MB</p>
-              </div>
-            </div>
-
-            <div className={styles.inputWrapper}>
-              <IconRenderer className={styles.textareaIcon} iconName="ChatBubbleOvalLeftEllipsisIcon" />
-              <Textarea
-                className={`${styles.textarea} paragraph-sm`}
-                id="message"
-                onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
-                placeholder="Tell us what's excited about the future of cybersecurity..."
-                value={formData.message}
-              />
-            </div>
-
-            <Button className={styles.submitButton} type="submit">
+            <Button className={styles.submitButton} disabled={formLoading} type="submit">
               Submit
             </Button>
+
+            {formSubmitted && (
+              <p aria-live="polite" className="paragraph-sm text-green-500">
+                Information sent successfully!
+              </p>
+            )}
           </form>
         </div>
       </div>

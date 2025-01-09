@@ -2,12 +2,13 @@ import React from "react";
 
 import { Header } from "@/components";
 import heroData from "@/data/bug-hunters/hero.json";
+import knowledgeData from "@/data/bug-hunters/knowledge.json";
 import { CTA, Ecosystem, FeaturedHunters, HunterLevels, KeyBenefits, Referral } from "@/sections";
 
 const EthicalHackersPage: React.FC = () => {
   return (
     <main className="relative">
-      <Header backgroundImage={heroData.backgroundImage} description={heroData.description} title={heroData.title} />
+      <Header {...heroData} />
       <KeyBenefits />
       <Referral />
       <Ecosystem />
@@ -15,14 +16,11 @@ const EthicalHackersPage: React.FC = () => {
       <FeaturedHunters />
       <CTA
         backgroundImage={{
-          src: "/bug-hunters/knowledge/background.webp",
+          src: knowledgeData.background,
         }}
-        cta={{
-          label: "Learn More",
-          link: "/",
-        }}
-        description="Discover valuable resources, tutorials, and community insights tailored for bug hunters."
-        title="Head to the Knowledge Base to enhance your skills and stay updated on the latest cybersecurity trends."
+        cta={knowledgeData.cta}
+        description={knowledgeData.text}
+        title={knowledgeData.title}
       />
     </main>
   );

@@ -1,0 +1,10 @@
+{
+  "request_types": [
+    { "value": "demo", "label": "Request a demo" },
+    { "value": "sales", "label": "Contact Sales" },
+    { "value": "recruitment", "label": "Recruitment" },
+    { "value": "hacker", "label": "Join Hacker Community" },
+    { "value": "partner", "label": "Become a Partner" },
+    { "value": "others", "label": "Others" }
+  ]
+}

@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import { HeaderProps } from "@/types/components";
 import Modal from "@/components/UI/modal";
-import { DemoForm } from "@/sections";
+import { DemoForm } from "@/sections/home/demo-form";
 
 export const Header: React.FC<HeaderProps> = ({ cta, tagline, title, description, backgroundImage }) => {
   return (

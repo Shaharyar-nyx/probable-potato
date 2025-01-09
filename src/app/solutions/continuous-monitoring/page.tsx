@@ -7,12 +7,7 @@ import { Why, HarnessAi, FeaturesAndPricing, SecurityPosture } from "@/sections"
 const ContinuousMonitoringPage: React.FC = () => {
   return (
     <main className="relative">
-      <Header
-        backgroundImage={heroData.backgroundImage}
-        cta={heroData.cta}
-        description={heroData.description}
-        title={heroData.title}
-      />
+      <Header {...heroData} />
       <Why />
       <SecurityPosture />
       <HarnessAi />
