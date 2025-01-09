@@ -5,8 +5,9 @@ import React from "react";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import styles from "./styles.module.scss";
-import { Button } from "@/components";
 import { HeroProps } from "@/types";
+import Modal from "@/components/UI/modal";
+import { DemoForm } from "@/sections";
 
 export const Hero: React.FC<HeroProps> = ({ backgroundVideo, cta, description, featuredImage, title }) => {
   return (
@@ -20,7 +21,11 @@ export const Hero: React.FC<HeroProps> = ({ backgroundVideo, cta, description, f
           <div className={styles.textContent}>
             <div className={`${styles.title} display-1 font-bold`}>{title}</div>
             <p className={`${styles.description} paragraph-lg`}>{description}</p>
-            {cta && <Button iconName={cta.icon}>{cta.label}</Button>}
+            {cta && (
+              <Modal cta={cta}>
+                <DemoForm />
+              </Modal>
+            )}
           </div>
 
           <ParallaxProvider>

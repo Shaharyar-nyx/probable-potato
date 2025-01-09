@@ -6,28 +6,30 @@ import styles from "./styles.module.scss";
 import { Button, IconRenderer } from "@/components";
 
 interface FormData {
+  company: string;
   email: string;
+  jobTitle: string;
   fullName: string;
   message: string;
-  requestType: string;
+  requestType: string[];
 }
 
-export const ContactForm: React.FC = () => {
+export const DemoForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
+    company: "",
     fullName: "",
+    jobTitle: "",
     email: "",
-    requestType: "",
+    requestType: [],
     message: "",
   });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const requestTypes = [
-    { value: "demo", label: "Request a demo" },
-    { value: "sales", label: "Contact Sales" },
-    { value: "recruitment", label: "Recruitment" },
-    { value: "hacker", label: "Join Hacker Community" },
-    { value: "partner", label: "Become a Partner" },
-    { value: "others", label: "others" },
+    { value: "bug-bounty", label: "Bug Bounty" },
+    { value: "continuous-monitoring", label: "Continuous Monitoring" },
+    { value: "cybersecurity-advisory", label: "Cybersecurity Advisory" },
+    { value: "other", label: "Other" },
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -41,21 +43,27 @@ export const ContactForm: React.FC = () => {
   const handleSelectOption = (value: string) => {
     setFormData((prev) => ({
       ...prev,
-      requestType: value,
+      requestType: prev.requestType.includes(value)
+        ? prev.requestType.filter((type) => type !== value)
+        : [...prev.requestType, value],
     }));
-    setIsDropdownOpen(false);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (formData.requestType.length === 0) {
+      return;
+    }
+
     console.log("Form submitted with data:", formData);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.gridContainer}>
-        <div className="w-full lg:w-[40%]">
-          <h2 className={`${styles.title} heading-2 font-bold`}>Get In Touch</h2>
+        <div className="w-full lg:w-1/2">
+          <h1 className={`${styles.title} heading-1 font-bold`}>Experience our security solution in real time</h1>
           <p className={styles.description}>
             <span className="font-semibold">Looking to speak with a member of our team?</span>
             <br />
@@ -68,7 +76,7 @@ export const ContactForm: React.FC = () => {
             <input
               className={styles.input}
               name="fullName"
-              placeholder="Full Name"
+              placeholder="Full Name *"
               required
               type="text"
               value={formData.fullName}
@@ -83,7 +91,7 @@ export const ContactForm: React.FC = () => {
             <input
               className={styles.input}
               name="email"
-              placeholder="Email"
+              placeholder="Email *"
               required
               type="email"
               value={formData.email}
@@ -95,10 +103,44 @@ export const ContactForm: React.FC = () => {
           </div>
 
           <div className={styles.inputWrapper}>
-            <button className={styles.select} type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-              {formData.requestType
-                ? requestTypes.find((type) => type.value === formData.requestType)?.label
-                : "Request Type"}
+            <input
+              className={styles.input}
+              name="company"
+              placeholder="Company Website*"
+              required
+              type="text"
+              value={formData.company}
+              onChange={handleInputChange}
+            />
+            <div className={styles.iconWrapper}>
+              <IconRenderer iconName="GlobeAltIcon" className="h-5 w-5 text-primary-800" />
+            </div>
+          </div>
+
+          <div className={styles.inputWrapper}>
+            <input
+              className={styles.input}
+              name="jobTitle"
+              placeholder="Job Title *"
+              required
+              type="text"
+              value={formData.jobTitle}
+              onChange={handleInputChange}
+            />
+            <div className={styles.iconWrapper}>
+              <IconRenderer iconName="BriefcaseIcon" className="h-5 w-5 text-primary-800" />
+            </div>
+          </div>
+
+          <div className={styles.inputWrapper}>
+            <button
+              className={`${styles.select} ${formData.requestType.length === 0 && "text-neutral-400"}`}
+              type="button"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              {formData.requestType.length > 0
+                ? formData.requestType.map((type) => requestTypes.find((t) => t.value === type)?.label).join(", ")
+                : "Services you are interested (multiple choice)"}
             </button>
             <div className={styles.iconWrapper}>
               <IconRenderer iconName="ListBulletIcon" className="h-5 w-5 text-primary-800" />
@@ -109,7 +151,22 @@ export const ContactForm: React.FC = () => {
             {isDropdownOpen && (
               <div className={styles.selectDropdown}>
                 {requestTypes.map((type) => (
-                  <div key={type.value} className={styles.selectOption} onClick={() => handleSelectOption(type.value)}>
+                  <div
+                    key={type.value}
+                    className={`${styles.selectOption} flex items-center gap-2 ${
+                      formData.requestType.includes(type.value) ? "text-primary-800" : ""
+                    }`}
+                    onClick={() => handleSelectOption(type.value)}
+                  >
+                    <div
+                      className={`flex h-5 w-5 items-center justify-center rounded border border-primary-800 ${
+                        formData.requestType.includes(type.value) ? "bg-primary-500 text-white" : "bg-white"
+                      }`}
+                    >
+                      {formData.requestType.includes(type.value) && (
+                        <IconRenderer iconName="CheckIcon" className="h-4 w-4" />
+                      )}
+                    </div>
                     {type.label}
                   </div>
                 ))}
@@ -121,7 +178,7 @@ export const ContactForm: React.FC = () => {
             <textarea
               className={styles.textarea}
               name="message"
-              placeholder="Your Message (Optional)..."
+              placeholder="Your Message (Optional)... "
               value={formData.message}
               onChange={handleInputChange}
             />

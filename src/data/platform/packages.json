@@ -7,14 +7,20 @@
       "price": "$10,000",
       "period": "/per year",
       "description": "All the features of Cyberscan, plus a subscription to the Cyberbay Platform giving you access to bug bounty programs. Protection for one root domain is included. Cost to run bug bounties is additional.",
-      "buttonText": "Request a Demo",
-      "link": "#"
+      "cta": {
+        "label": "Request a Demo",
+        "icon": "ArrowUpRightIcon",
+        "isModal": true
+      }
     },
     "cyberswarm": {
       "price": "Get a Quote",
       "description": "Looking for something different? Let's create a custom action plan based on your organization's needs.",
-      "buttonText": "Contact Sales",
-      "link": "/contact-us"
+      "cta": {
+        "label": "Contact Sales",
+        "icon": "ArrowUpRightIcon",
+        "link": "/contact-us"
+      }
     }
   },
   "features": [

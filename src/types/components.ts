@@ -4,8 +4,9 @@ export interface HeroProps {
   backgroundVideo: string;
   cta: {
     label: string;
-    link: string;
+    link?: string;
     icon: string;
+    isModal?: boolean;
   };
   description: string;
   featuredImage: {
@@ -18,8 +19,9 @@ export interface HeaderProps {
   backgroundImage: string;
   cta?: {
     icon?: string;
+    isModal?: boolean;
     label: string;
-    link: string;
+    link?: string;
   };
   description: string;
   link?: string;
@@ -88,11 +90,15 @@ export interface Feature {
 }
 
 export interface PackageData {
-  buttonText: string;
   description: string;
-  link: string;
   period?: string;
   price: string;
+  cta: {
+    icon: string;
+    label: string;
+    link?: string;
+    isModal?: boolean;
+  };
 }
 
 export interface PackagesProps {
@@ -128,7 +134,7 @@ export type ButtonAsInternalLink = BaseButtonProps &
 
 export type ButtonAsExternalLink = BaseButtonProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
-    externalHref: string;
+    externalHref?: string;
     href?: never;
   };
 
@@ -156,9 +162,10 @@ export interface CTAProps {
     src: string;
   };
   cta: {
+    icon?: string;
+    isModal?: boolean;
     label: string;
     link: string;
-    icon?: string;
   };
   description: string;
   tagline?: string;
@@ -355,4 +362,17 @@ export interface JobOpeningsProps {
     title: string;
     link: string;
   }[];
+}
+
+export interface ModalProps {
+  buttonSize?: "large" | "medium" | "small";
+  buttonStyle?: string;
+  buttonVariant?: "primary" | "neutral";
+  className?: string;
+  children: React.ReactNode;
+  cta: {
+    icon?: string;
+    label: string;
+    link?: string;
+  };
 }
