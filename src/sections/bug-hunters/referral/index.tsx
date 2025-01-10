@@ -103,12 +103,12 @@ export const Referral: React.FC = () => {
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             <div className="overlay-content">
-              <nav className="mt-[7rem] flex w-full justify-between bg-primary-500 px-16 py-5">
+              <nav className="mt-[7rem] flex w-full justify-between bg-primary-500 px-6 py-4 lg:px-16 lg:py-5">
                 <div className="flex items-center gap-3">
-                  <Button className="p-3" iconName="ArrowLeftIcon" onClick={handleCloseReferral} />
+                  <Button className="p-1 lg:p-3" iconName="ArrowLeftIcon" onClick={handleCloseReferral} />
                   <h2 className="heading-5 text-neutral-50">{data.referral_title}</h2>
                 </div>
-                <Button className="p-3" iconName="XMarkIcon" onClick={handleCloseReferral}>
+                <Button className="p-1 lg:p-3" iconName="XMarkIcon" onClick={handleCloseReferral}>
                   Close
                 </Button>
               </nav>
@@ -131,11 +131,13 @@ export const Referral: React.FC = () => {
                     {data.referral_features.map((referralFeature) => (
                       <SwiperSlide key={referralFeature.id}>
                         <div className="w-full max-w-screen-3xl">
-                          <h3 className="heading-1 mb-10 font-bold text-primary-800">{referralFeature.title}</h3>
-                          <div className={`grid grid-cols-${referralFeature.columns} gap-6`}>
+                          <h3 className="heading-1 mb-6 font-bold text-primary-800 lg:mb-10">
+                            {referralFeature.title}
+                          </h3>
+                          <div className={`grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-6`}>
                             {referralFeature.features.map((referralFeature) => (
-                              <div key={referralFeature.id} className="p-10">
-                                <div className="mb-3 flex gap-3">
+                              <div key={referralFeature.id} className="md:py-6 lg:px-10 lg:py-10">
+                                <div className="mb-3 flex items-start gap-3">
                                   <div className="flex items-center justify-center rounded bg-primary-500 p-1">
                                     <IconRenderer className="h-6 w-6 text-neutral-50" iconName={referralFeature.icon} />
                                   </div>
@@ -148,7 +150,7 @@ export const Referral: React.FC = () => {
                         </div>
                       </SwiperSlide>
                     ))}
-                    <div className="flex justify-end gap-5 px-16">
+                    <div className="relative z-10 flex justify-end gap-5 px-16 py-6 lg:py-[unset]">
                       <SwiperButtonPrev disabled={isBeginning} />
                       <SwiperButtonNext disabled={isEnd} />
                     </div>
