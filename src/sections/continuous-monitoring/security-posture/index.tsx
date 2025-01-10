@@ -15,11 +15,12 @@ export const SecurityPosture: React.FC = () => {
         </div>
         <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-3 lg:hidden">
           {data.chart.features.map((feature) => (
-            <div key={feature.id} className="rounded-xl bg-primary-500 p-5">
+            <div key={feature.id} className="flex flex-col gap-6 rounded-xl bg-primary-500 p-5">
               <div className="flex items-start gap-4">
                 <img alt={feature.title} className="h-8 w-8" src={feature.icon_light} />
                 <h3 className="heading-8 font-bold text-neutral-50">{feature.title}</h3>
               </div>
+              <p className="paragraph-sm text-neutral-50">{feature.text}</p>
             </div>
           ))}
         </div>

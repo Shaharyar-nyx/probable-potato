@@ -3,7 +3,7 @@
     @apply relative bg-neutral-50;
   }
   &-container {
-    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-16 py-[60px];
+    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-6 py-8 lg:px-16 lg:py-[60px];
   }
   &-title {
     @apply mb-6 text-center font-bold text-primary-800;
@@ -12,7 +12,7 @@
     @apply mb-10 max-w-screen-xl text-center text-primary-800;
   }
   &-content {
-    @apply mb-5 flex w-full gap-24;
+    @apply mb-10 lg:mb-5 flex w-full flex-col-reverse gap-12 lg:gap-24 lg:flex-row;
   }
   &-feature {
     &-title {
@@ -22,7 +22,7 @@
       @apply font-semibold text-primary-800;
     }
     &-container {
-      @apply flex w-[calc(100%-440px)] flex-col justify-center gap-[60px];
+      @apply flex w-full flex-col justify-center gap-[60px] lg:w-[calc(100%-440px)];
     }
   }
   &-sub-feature {
@@ -47,7 +47,7 @@
   }
   &-card {
     &-container {
-      @apply flex min-h-[540px] w-[440px] flex-col justify-between rounded-xl bg-primary-500 px-10 py-[60px] pb-10;
+      @apply flex min-h-[540px] w-full flex-col justify-between rounded-xl bg-primary-500 px-10 py-[60px] pb-10 lg:w-[440px];
     }
     &-title {
       @apply font-bold text-neutral-50;
@@ -72,10 +72,9 @@
       }
     }
     &-text {
-      @apply text-neutral-50 border-b border-b-neutral-50 pb-24;
+      @apply border-b border-b-neutral-50 pb-24 text-neutral-50;
     }
   }
   &-packages {
-
   }
 }
