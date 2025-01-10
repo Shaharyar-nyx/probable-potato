@@ -8,7 +8,7 @@
       "period": "/per year",
       "description": "All the features of Cyberscan, plus a subscription to the Cyberbay Platform giving you access to bug bounty programs. Protection for one root domain is included. Cost to run bug bounties is additional.",
       "cta": {
-        "label": "Request a Demo",
+        "label": "Contact Sales",
         "icon": "ArrowUpRightIcon",
         "isModal": true
       }
@@ -19,7 +19,7 @@
       "cta": {
         "label": "Contact Sales",
         "icon": "ArrowUpRightIcon",
-        "link": "/contact-us"
+        "isModal": true
       }
     }
   },

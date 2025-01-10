@@ -22,7 +22,7 @@ const PlatformPage: React.FC = () => {
         }}
         cta={{
           label: "Contact Sales",
-          link: "/contact-us",
+          isModal: true,
         }}
         description="Schedule a consult to receive tailored advice on launching your bug bounty program. Our experts will guide you through program setup and bounty pricing to ensure a smooth launch."
         tagline="Connect"
