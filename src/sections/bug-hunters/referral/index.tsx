@@ -77,7 +77,7 @@ export const Referral: React.FC = () => {
           <p className="paragraph-md mb-5 text-primary-800">{data.text}</p>
           <Button onClick={handleOpenReferral}>Send a Referral</Button>
         </div>
-        <div className="referral-container-item grid grid-cols-2 gap-6">
+        <div className="referral-container-item grid grid-cols-1 gap-6 md:grid-cols-2">
           {data.features.map((feature) => (
             <div key={feature.id} className="flex flex-col gap-3 p-6 xl:p-10">
               <div className="flex items-start gap-3">
