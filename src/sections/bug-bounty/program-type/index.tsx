@@ -72,7 +72,7 @@ export const ProgramType: React.FC<ProgramTypeProps> = ({ title, content, featur
               </motion.div>
             ))}
           </div>
-          <div className={`${styles["feature-container"]} lg:!flex-row lg:items-end justify-between`}>
+          {/* <div className={`${styles["feature-container"]} lg:!flex-row lg:items-end justify-between`}>
             <div className="flex flex-col gap-3">
               <h3 className="heading-7 font-bold text-neutral-50">Want to become a Bug Bounty Hunter?</h3>
               <p className="paragraph-md text-neutral-50">
@@ -84,7 +84,7 @@ export const ProgramType: React.FC<ProgramTypeProps> = ({ title, content, featur
             <Button className="h-fit w-fit" href="/contact-us" variant="neutral">
               Get in Touch
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
