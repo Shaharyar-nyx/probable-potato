@@ -13,7 +13,7 @@ const CareersPage: React.FC = () => {
       <Header {...heroData} />
       <ApplicationForm />
       <Benefits {...benefitsData} />
-      <JobOpenings {...jobOpeningsData} />
+      {/* <JobOpenings {...jobOpeningsData} /> */}
       <Clients {...clientsContent} />
     </main>
   );
