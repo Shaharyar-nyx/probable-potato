@@ -5,9 +5,9 @@ import React from "react";
 
 import "./styles.scss";
 import { IconRenderer, Tooltip } from "@/components";
+import Modal from "@/components/UI/modal";
 import data from "@/data/continuous-monitoring/features-and-pricing.json";
 import { formatToCurrency } from "@/lib";
-import Modal from "@/components/UI/modal";
 import { DemoForm } from "@/sections/home";
 
 export const FeaturesAndPricing: React.FC = () => {
@@ -54,7 +54,7 @@ export const FeaturesAndPricing: React.FC = () => {
             </div>
             <p className="paragraph-md features-and-pricing-card-text">{data.card.text}</p>
             {data.card.cta.isModal && (
-              <Modal cta={data.card.cta} buttonVariant="neutral">
+              <Modal buttonVariant="neutral" cta={data.card.cta}>
                 <DemoForm />
               </Modal>
             )}

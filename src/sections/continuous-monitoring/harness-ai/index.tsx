@@ -1,8 +1,8 @@
 import React from "react";
 
 import "./styles.scss";
-import data from "@/data/continuous-monitoring/harness-ai.json";
 import Modal from "@/components/UI/modal";
+import data from "@/data/continuous-monitoring/harness-ai.json";
 import { DemoForm } from "@/sections/home";
 
 export const HarnessAi: React.FC = () => {
@@ -21,10 +21,10 @@ export const HarnessAi: React.FC = () => {
           ))}
         </div>
         <Modal
-          cta={{ label: "Request a demo", icon: "ArrowUpRightIcon" }}
-          buttonStyle="mx-auto"
           buttonSize="large"
+          buttonStyle="mx-auto"
           buttonTransparent
+          cta={{ label: "Request a demo", icon: "ArrowUpRightIcon" }}
         >
           <DemoForm />
         </Modal>

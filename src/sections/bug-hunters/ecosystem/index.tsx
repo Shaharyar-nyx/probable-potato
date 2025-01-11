@@ -27,7 +27,7 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon_light,
   const screenWidth = useScreenWidth();
 
   // Determine if cards should always be in "hovered" state for smaller screens
-  const alwaysHovered = screenWidth <= 1024;
+  const alwaysHovered = screenWidth < 1024;
 
   // Determine padding and icon sizes based on screen width
   const currentBoxPadding = screenWidth > 1280 ? XL_BOX_PADDING : screenWidth > 1024 ? LG_BOX_PADDING : BOX_PADDING;
@@ -35,7 +35,7 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon_light,
   const ICON_SIZE_SMALL = screenWidth > 1280 ? XL_ICON_SIZE_SMALL : LG_ICON_SIZE_SMALL;
 
   // Determine left shift based on screen width
-  const leftShift = screenWidth > 1280 ? 52 : screenWidth > 1024 ? 46 : 44;
+  const leftShift = screenWidth > 1280 ? 52 : screenWidth > 1024 ? 46 : 48;
 
   return (
     <motion.div
@@ -84,7 +84,7 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon_light,
           alwaysHovered || isHovered
             ? {
                 left: currentBoxPadding + leftShift,
-                top: currentBoxPadding - 4,
+                top: currentBoxPadding,
                 width: "calc(100% - 110px)",
                 color: "#F6F7F8",
               }
@@ -120,7 +120,7 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon_light,
             style={{
               display: "block",
               position: "absolute",
-              bottom: "40px",
+              bottom: currentBoxPadding,
               left: currentBoxPadding,
               maxWidth: `calc(100% - ${2 * currentBoxPadding}px)`, // Ensures width respects padding
             }}

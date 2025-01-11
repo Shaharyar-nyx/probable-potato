@@ -163,13 +163,15 @@ export const SemiCircle: React.FC<SemiCircleProps> = ({ text, data }) => {
       <div
         style={{
           position: "absolute",
-          top: "25%", // 25% down from the top
+          top: "25%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           textAlign: "center",
         }}
       >
-        <p className="paragraph-md w-[290px] font-semibold text-primary-800">{text}</p>
+        <p className="w-[290px] font-semibold text-primary-800" style={{ fontSize: "clamp(12px, 1vw, 16px) " }}>
+          {text}
+        </p>
       </div>
     </div>
   );

@@ -13,10 +13,10 @@
   }
   &-feature {
     &-container {
-      @apply grid w-full grid-cols-4 gap-3 lg:gap-4 xl:gap-6;
+      @apply grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-4 xl:gap-6;
     }
     &-item {
-      @apply relative h-[280px] rounded-xl bg-neutral-50 p-4 lg:p-6 xl:p-10;
+      @apply relative h-[140px] md:h-[160px] lg:h-[280px] rounded-xl bg-neutral-50 p-4 lg:p-6 xl:p-10;
     }
     &-icon {
       @apply mb-12;
