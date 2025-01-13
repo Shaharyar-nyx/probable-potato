@@ -42,7 +42,7 @@ export const Modal: React.FC<ModalProps> = ({
       </Button>
 
       <Dialog className="relative z-[99999]" open={isOpenModal} onClose={closeModal}>
-        <div aria-hidden="true" className="fixed inset-0 bg-black/30" />
+        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
 
         <div className="fixed inset-0 flex w-screen items-center justify-center md:p-4">
           <DialogPanel

@@ -1,40 +1,42 @@
-import { ApolloClient, HttpLink, InMemoryCache, split } from "@apollo/client";
-import { getMainDefinition } from "@apollo/client/utilities";
-import getConfig from "next/config";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
+import { from } from "@apollo/client";
 
-import { removeLastTrailingSlash } from "lib/util";
+import { removeLastTrailingSlash } from "lib/utils";
 
-// const { publicRuntimeConfig } = getConfig();
-// const { Directus } = publicRuntimeConfig;
+export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL;
+export const STRAPI_ASSETS = process.env.NEXT_PUBLIC_STRAPI_ASSETS;
 
-// const directusLink = new HttpLink({
-//   uri: removeLastTrailingSlash(Directus.url),
-//   fetchOptions: {
-//     credentials: "include",
-//   },
-//   onError: ({ graphQLErrors, networkError }) => {
-//     if (graphQLErrors) {
-//       graphQLErrors.forEach(({ message, locations, path }) =>
-//         console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
-//       );
-//     }
-//     if (networkError) {
-//       console.log(`[Network error]: ${networkError}`);
-//     }
-//   },
-// });
+// Add logging to check Strapi configuration
+console.log('Strapi Config:', { url: STRAPI_URL });
 
-// const splitLink = split(({ query }) => {
-//   const definition = getMainDefinition(query);
-//   return (
-//     definition.kind === "OperationDefinition" &&
-//     definition.operation === "query" &&
-//     definition.name?.value.startsWith("Directus")
-//   );
-// }, directusLink);
+if (!STRAPI_URL) {
+  throw new Error('Strapi GraphQL URL is not configured. Please check your environment variables.');
+}
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ message, locations, path }) =>
+      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
+    );
+  }
+  if (networkError) {
+    console.log(`[Network error]: ${networkError}`);
+  }
+});
+
+const httpLink = new HttpLink({
+  uri: removeLastTrailingSlash(STRAPI_URL),
+  fetchOptions: {
+    credentials: "include",
+  },
+});
+
+// Combine error handling with the HTTP link
+const link = from([errorLink, httpLink]);
 
 const client = new ApolloClient({
-  // link: splitLink,
+  link,
   cache: new InMemoryCache(),
   defaultOptions: {
     watchQuery: {
@@ -45,11 +47,7 @@ const client = new ApolloClient({
       fetchPolicy: "no-cache",
       errorPolicy: "all",
     },
-    mutate: {
-      errorPolicy: "all",
-    },
   },
-  connectToDevTools: true,
 });
 
 export default client;

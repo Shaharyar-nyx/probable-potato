@@ -6,12 +6,6 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_STRAPI_GRAPHQL_URL: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL,
     NEXT_PUBLIC_STRAPI_ASSETS: process.env.NEXT_PUBLIC_STRAPI_ASSETS,
   },
-  publicRuntimeConfig: {
-    Directus: {
-      assetsUrl: process.env.NEXT_PUBLIC_STRAPI_ASSETS,
-      url: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL,
-    },
-  },
   images: {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
@@ -23,7 +17,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-
   sassOptions: {
     silenceDeprecations: ["legacy-js-api", "import"],
   },

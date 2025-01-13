@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 import { Button, IconRenderer } from "@/components";
 
-export const Nav: React.FC = () => {
-  const router = useRouter();
+import { STRAPI_ASSETS } from "@/lib/apollo-client";
+
+export const Nav: React.FC<any> = ({ company_logo, navigations, supported_languages }) => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showSolutionsDropdown, setShowSolutionsDropdown] = useState(false);
@@ -45,98 +46,6 @@ export const Nav: React.FC = () => {
     setShowSolutionsDropdown(false);
   }, [pathname]);
 
-  const services = [
-    {
-      name: "Platform",
-      href: "/solutions/platform",
-      description: "Connect to vetted researchers, manage programs, and reporting",
-      icon: "WindowIcon",
-    },
-    {
-      name: "Continuous Monitoring",
-      href: "/solutions/continuous-monitoring",
-      description: "24/7 Monitoring for Instant Threat Detection",
-      icon: "EyeIcon",
-    },
-    {
-      name: "Bug Bounty Programs",
-      href: "/solutions/bug-bounty",
-      description: "Crowdsourced Security at Your Fingertips.",
-      icon: "ViewfinderCircleIcon",
-    },
-  ];
-
-  const industries = [
-    {
-      name: "For Organizations",
-      href: "/solutions/organizations",
-      description: "Tailored solutions for your industry's needs",
-      icon: "BuildingOfficeIcon",
-    },
-    {
-      name: "For X (will replace by industry)",
-      href: "/solutions/industry",
-      description: "Protect your clients data, etc. (will replace by industry)",
-      icon: "RocketLaunchIcon",
-    },
-  ];
-
-  const partners = [
-    {
-      name: "Partner Program",
-      href: "/partners/program",
-      description: "Join Our Network of World-Class Service Providers",
-      icon: "EyeIcon",
-    },
-    {
-      name: "Partner Directory",
-      href: "/partners/directory",
-      description: "Find a Partner",
-      icon: "MagnifyingGlassIcon",
-    },
-  ];
-
-  const languages = [
-    { code: "en", name: "EN" },
-    { code: "es", name: "ES" },
-    { code: "zh", name: "CN" },
-  ];
-
-  const navItems = [
-    {
-      name: "Solutions",
-      href: "#",
-      hasDropdown: true,
-    },
-    {
-      name: "Pricing",
-      href: "/pricing",
-    },
-    {
-      name: "Bug Hunters",
-      href: "/bug-hunters",
-    },
-    {
-      name: "Company",
-      href: "/company",
-    },
-  ];
-
-  const menuData = [
-    {
-      title: "Services",
-      items: services,
-    },
-    // {
-    //   title: "Explore Strategies by Industry",
-    //   items: industries,
-    // },
-    // {
-    //   title: "Partners",
-    //   items: partners,
-    // },
-  ];
-
   return (
     <nav className="fixed left-0 right-0 top-8 z-[9999] mx-auto h-[60px] w-full max-w-screen-2xl px-4">
       <div
@@ -146,12 +55,13 @@ export const Nav: React.FC = () => {
       >
         <div className="flex items-center gap-8">
           <Link href="/">
-            <img alt="Cyberbay" src="/images/cyberbay-logo.svg" />
+            <img alt="Cyberbay" src={STRAPI_ASSETS + company_logo.data.attributes.url} />
           </Link>
+
           <div className="hidden items-center gap-3 lg:flex">
-            {navItems.map((item) => (
-              <div key={item.name}>
-                {item.hasDropdown ? (
+            {navigations.data[0].attributes.items.data.map(({ attributes: item }: any) => (
+              <div key={item.title}>
+                {item.has_children ? (
                   <button
                     ref={buttonRef}
                     className={`group flex items-center rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
@@ -159,7 +69,7 @@ export const Nav: React.FC = () => {
                     }`}
                     onClick={() => setShowSolutionsDropdown(!showSolutionsDropdown)}
                   >
-                    {item.name}
+                    {item.title}
                     <span
                       className={`ml-1 inline-block transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
                     >
@@ -169,53 +79,59 @@ export const Nav: React.FC = () => {
                 ) : (
                   <Link
                     className={`group rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
-                      pathname === item.href ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
+                      pathname === item.url ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
                     }`}
-                    href={item.href}
+                    href={item.url}
                   >
-                    {item.name}
+                    {item.title}
                   </Link>
                 )}
 
-                {item.hasDropdown && showSolutionsDropdown && (
+                {item.has_children && showSolutionsDropdown && (
                   <div
                     ref={dropdownRef}
                     className="absolute left-0 top-[60px] w-full rounded-b-xl bg-neutral-50 shadow-lg"
                   >
                     <div className="px-10 pb-10 pt-5">
                       <div className="grid grid-cols-3 gap-[44px]">
-                        {menuData.map((section) => (
-                          <div key={section.title} className="w-full">
-                            <h3 className="paragraph-md mb-5 font-semibold text-primary-800">{section.title}</h3>
-                            <div className="space-y-6">
-                              {section.items.map((item) => (
-                                <Link
-                                  key={item.name}
-                                  className="group block rounded-[8px] p-4 hover:bg-primary-500"
-                                  href={item.href}
-                                  onClick={() => setShowSolutionsDropdown(false)}
-                                >
-                                  <div className="flex items-start gap-2">
-                                    <span className="rounded-[4px] p-1 text-2xl group-hover:bg-neutral-50">
-                                      <IconRenderer
-                                        className="text-primary-80 h-[20px] w-[20px]"
-                                        iconName={item.icon}
-                                      />
-                                    </span>
-                                    <div className="w-full">
-                                      <div className="paragraph-md mb-1 text-primary-800 group-hover:text-neutral-50">
-                                        {item.name}
+                        {item?.children?.data.map(({ attributes: { title, children } }: any) => {
+                          return (
+                            <div key={title} className="w-full">
+                              <h3 className="paragraph-md mb-5 font-semibold text-primary-800">{title}</h3>
+                              <div className="space-y-6">
+                                {children?.data.map(({ attributes: section }: any) => (
+                                  <Link
+                                    key={section?.title}
+                                    className="group block rounded-[8px] p-4 hover:bg-primary-500"
+                                    href={section?.url}
+                                    onClick={() => setShowSolutionsDropdown(false)}
+                                  >
+                                    <div className="flex items-start gap-2">
+                                      <span className="rounded-[4px] p-1 text-2xl group-hover:bg-neutral-50">
+                                        {section.icon?.data?.attributes?.url ? (
+                                          <img
+                                            className="text-primary-80 h-[20px] w-[20px]"
+                                            src={STRAPI_ASSETS + section.icon?.data?.attributes?.url}
+                                          />
+                                        ) : (
+                                          <div className="h-[20px] w-[20px] bg-neutral-300" />
+                                        )}
+                                      </span>
+                                      <div className="w-full">
+                                        <div className="paragraph-md mb-1 text-primary-800 group-hover:text-neutral-50">
+                                          {section.title}
+                                        </div>
+                                        <p className="paragraph-sm text-neutral-800 group-hover:text-neutral-50">
+                                          {section.description}
+                                        </p>
                                       </div>
-                                      <p className="paragraph-sm text-neutral-800 group-hover:text-neutral-50">
-                                        {item.description}
-                                      </p>
                                     </div>
-                                  </div>
-                                </Link>
-                              ))}
+                                  </Link>
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -239,7 +155,7 @@ export const Nav: React.FC = () => {
 
             {showLanguageDropdown && (
               <div className="absolute right-0 top-full mt-2 w-full min-w-[120px] rounded-lg bg-neutral-50 py-2 shadow-lg">
-                {languages.map((lang) => (
+                {supported_languages.data.map(({ attributes: lang }: any) => (
                   <button
                     key={lang.code}
                     className="flex w-full items-center gap-2 px-4 py-2 transition-colors hover:bg-[#EFF0F2CC]"
@@ -284,20 +200,20 @@ export const Nav: React.FC = () => {
           }`}
         >
           <div className="flex flex-col space-y-2 p-4">
-            {navItems.map((item) => (
-              <div key={item.name} className="w-full">
-                {item.hasDropdown ? (
+            {navigations.data[0].attributes.items.data.map(({ attributes: item }: any) => (
+              <div key={item.title} className="w-full">
+                {item.has_children ? (
                   <button
                     className={`w-full rounded-lg px-4 py-3 text-left text-base font-medium transition-colors hover:bg-[#EFF0F2CC] ${
-                      pathname === item.href ? "bg-primary-50 text-primary-500" : "text-primary-800"
+                      pathname === item.url ? "bg-primary-50 text-primary-500" : "text-primary-800"
                     }`}
                     onClick={() => {
                       setShowSolutionsDropdown(!showSolutionsDropdown);
                     }}
                   >
                     <div className="flex items-center justify-between">
-                      <span>{item.name}</span>
-                      {item.hasDropdown && (
+                      <span>{item.title}</span>
+                      {item.has_children && (
                         <IconRenderer
                           className={`h-5 w-5 transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
                           iconName="ChevronDownIcon"
@@ -307,30 +223,33 @@ export const Nav: React.FC = () => {
                   </button>
                 ) : (
                   <div className="w-full px-4 py-3 text-left transition-colors">
-                    <Link className={`text-base font-medium text-primary-800`} href={item.href}>
-                      {item.name}
+                    <Link className={`text-base font-medium text-primary-800`} href={item.url}>
+                      {item.title}
                     </Link>
                   </div>
                 )}
 
-                {item.hasDropdown && showSolutionsDropdown && (
+                {item.has_children && showSolutionsDropdown && (
                   <div className="mt-2 space-y-2 pl-4">
-                    {menuData.map((section) => (
-                      <div key={section.title} className="py-4">
-                        <div className="mb-3 text-sm font-semibold text-primary-800">{section.title}</div>
+                    {item?.children?.data.map(({ attributes: { title, children } }: any) => (
+                      <div key={title} className="py-4">
+                        <div className="mb-3 text-sm font-semibold text-primary-800">{title}</div>
                         <div className="space-y-3">
-                          {section.items.map((menuItem) => (
+                          {children?.data.map(({ attributes: menuItem }: any) => (
                             <Link
-                              key={menuItem.name}
+                              key={menuItem.title}
                               className="group flex items-start space-x-3 rounded-lg p-2 transition-colors hover:bg-primary-500 group-hover:text-neutral-50"
-                              href={menuItem.href}
+                              href={menuItem.url}
                             >
-                              <span className="flex-shrink-0 rounded-md bg-primary-50 p-1">
-                                <IconRenderer className="h-5 w-5 text-primary-500" iconName={menuItem.icon} />
+                              <span className="flex-shrink-0 rounded-md p-1">
+                                <img
+                                  className="h-5 w-5 text-primary-500"
+                                  src={STRAPI_ASSETS + menuItem.icon?.data?.attributes?.url}
+                                />
                               </span>
                               <div>
                                 <div className="text-sm font-medium text-primary-800 group-hover:text-neutral-50">
-                                  {menuItem.name}
+                                  {menuItem.title}
                                 </div>
                                 <p className="text-xs text-neutral-600 group-hover:text-neutral-50">
                                   {menuItem.description}
@@ -347,8 +266,8 @@ export const Nav: React.FC = () => {
             ))}
 
             <hr className="my-4 border-neutral-200" />
-
-            {/* <div className="relative">
+            {/* 
+            <div className="relative">
               <button
                 className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-[#EFF0F2CC]"
                 onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
@@ -362,7 +281,7 @@ export const Nav: React.FC = () => {
 
               {showLanguageDropdown && (
                 <div className="absolute right-0 top-full mt-2 w-full rounded-lg bg-neutral-50 py-2 shadow-lg">
-                  {languages.map((lang) => (
+                  {supported_languages.data.map(({ attributes: lang }: any) => (
                     <button
                       key={lang.code}
                       className="flex w-full items-center px-4 py-2 text-base transition-colors hover:bg-[#EFF0F2CC]"
