@@ -8,7 +8,7 @@ import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import { Feature, PackageData as BasePackageData, PackagesProps } from "@/types";
 import Modal from "@/components/UI/modal";
-import { DemoForm } from "@/sections/home/demo-form";
+import { ContactSalesForm } from "@/sections";
 
 interface ExtendedPackageData extends BasePackageData {
   type: keyof typeof PackageIcons;
@@ -93,7 +93,7 @@ const PackageCard = ({ data, type }: { data: BasePackageData; type: keyof typeof
               buttonSize="small"
               buttonVariant="neutral"
             >
-              <DemoForm />
+              <ContactSalesForm />
             </Modal>
           ) : (
             <Button
@@ -260,7 +260,7 @@ export const Packages: React.FC<PackagesProps> = ({ packages, features, descript
     <div className={styles.container}>
       <div className={styles.background} style={{ backgroundImage: `url(${backgroundImage})` }} />
       <div className={styles.overlay} />
-      
+
       <div className={styles.content}>
         <div className={styles.header}>
           <h1 className="heading-1 mb-3 font-bold text-primary-800">{title}</h1>
