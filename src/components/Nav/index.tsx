@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { Button, IconRenderer } from "@/components";
 
-import { STRAPI_ASSETS } from "@/lib/apollo-client";
+import { STRAPI_ASSETS } from "@/lib";
 
 export const Nav: React.FC<any> = ({ company_logo, navigations, supported_languages }) => {
   const pathname = usePathname();
