@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_STRAPI_GRAPHQL_URL: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL,
     NEXT_PUBLIC_STRAPI_ASSETS: process.env.NEXT_PUBLIC_STRAPI_ASSETS,
+    NEXT_PUBLIC_APOLLO_URL: process.env.NEXT_PUBLIC_APOLLO_URL,
+    NEXT_PUBLIC_APOLLO_API_KEY: process.env.NEXT_PUBLIC_APOLLO_API_KEY,
   },
   images: {
     dangerouslyAllowSVG: true,

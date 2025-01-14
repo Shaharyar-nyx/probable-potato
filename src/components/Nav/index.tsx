@@ -175,7 +175,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
             Sign In
           </Button>
 
-          <Button className="py-2" href="/contact-us">
+          <Button className="py-2" href="/contact-us" variant="primary">
             Contact Us
           </Button>
         </div>
@@ -306,7 +306,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                 Sign In
               </Button>
 
-              <Button href="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button href="/contact-us" variant="primary" onClick={() => setIsMobileMenuOpen(false)}>
                 Contact Us
               </Button>
             </div>
