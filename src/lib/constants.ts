@@ -1,3 +1,4 @@
+export const CYBERBAY_LEADERBOARD_URL = process.env.NEXT_PUBLIC_CYBERBAY_URL;
 export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL;
 export const STRAPI_ASSETS = process.env.NEXT_PUBLIC_STRAPI_ASSETS;
 export const APOLLO_URL = process.env.NEXT_PUBLIC_APOLLO_URL;
