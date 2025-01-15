@@ -1,8 +1,9 @@
 export type ContactUsFormType = {
   email: string;
-  message: string;
-  name: string;
-  requestType: string;
+  notes: string;
+  first_name: string;
+  last_name: string;
+  request_type: string;
 };
 
 export type ApplyFormType = {

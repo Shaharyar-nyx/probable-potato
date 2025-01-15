@@ -6,12 +6,8 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_STRAPI_GRAPHQL_URL: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL,
     NEXT_PUBLIC_STRAPI_ASSETS: process.env.NEXT_PUBLIC_STRAPI_ASSETS,
     NEXT_PUBLIC_CYBERBAY_URL: process.env.NEXT_PUBLIC_CYBERBAY_URL,
-  },
-  publicRuntimeConfig: {
-    Directus: {
-      assetsUrl: process.env.NEXT_PUBLIC_STRAPI_ASSETS,
-      url: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL,
-    },
+    NEXT_PUBLIC_APOLLO_URL: process.env.NEXT_PUBLIC_APOLLO_URL,
+    NEXT_PUBLIC_APOLLO_API_KEY: process.env.NEXT_PUBLIC_APOLLO_API_KEY,
   },
   images: {
     dangerouslyAllowSVG: true,
@@ -24,7 +20,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-
   sassOptions: {
     silenceDeprecations: ["legacy-js-api", "import"],
   },

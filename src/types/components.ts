@@ -1,11 +1,5 @@
-import React, {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-  HTMLAttributes,
-  InputHTMLAttributes,
-  TextareaHTMLAttributes,
-} from "react";
-import {Field, FieldError, UseFormClearErrors, UseFormRegister, UseFormSetError} from "react-hook-form";
+import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, InputHTMLAttributes, TextareaHTMLAttributes } from "react";
+import { UseFormClearErrors, UseFormRegister, UseFormSetError } from "react-hook-form";
 
 export interface HeroProps {
   backgroundVideo: string;
@@ -417,4 +411,11 @@ export interface DropdownPropsInput extends ButtonHTMLAttributes<HTMLButtonEleme
   label: string;
   options: string[];
   value?: string;
+}
+
+export interface BlockType {
+  __typename?: string;
+  collection: string;
+  item: any;
+  sort: number;
 }

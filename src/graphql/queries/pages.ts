@@ -1,29 +1,38 @@
 import { gql } from "@apollo/client";
 
-import { HOMEPAGE_BLOCKS_FRAGMENT } from "../fragments/blocks";
+import { BLOCKS_FRAGMENT } from "../fragments/blocks";
 
-export const GET_HOMEPAGE = gql`
-  query DirectusPagesByPerma($permalink: String) {
-    pages(filter: { permalink: { _eq: $permalink } }) {
-      status
-      title
-      permalink
-      seo {
-        canonical_url
-        id
-        meta_description
-        no_follow
-        no_index
-        sitemap_change_frequency
-        sitemap_priority
-        title
-        image {
-          id
+export const GET_PAGE_BY_SLUG = gql`
+  query GetPageBySlug($slug: String) {
+     pages(filter: { slug: { _eq: $slug } }) {
+      data {
+        attributes {
           title
-          type
+          slug
+          publishedAt
+          seo {
+            title
+            meta_description
+            canonical_url
+            no_follow
+            no_index
+            sitemap_frequency
+            sitemap_priority
+            keywords
+            og_image {
+              data {
+                attributes {
+                  name
+                  alternativeText
+                  mime
+                  url
+                }
+              }
+            }
+          }
+          ${BLOCKS_FRAGMENT}
         }
       }
-     ${HOMEPAGE_BLOCKS_FRAGMENT}
     }
   }
 `;
