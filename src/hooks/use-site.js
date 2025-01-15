@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 
 import config from "../../package.json";
 
-import { removeLastTrailingSlash } from "lib/util";
+import { removeLastTrailingSlash } from "lib/utils";
 
 export const SiteContext = createContext();
 

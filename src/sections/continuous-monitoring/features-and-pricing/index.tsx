@@ -8,7 +8,7 @@ import { IconRenderer, Tooltip } from "@/components";
 import Modal from "@/components/UI/modal";
 import data from "@/data/continuous-monitoring/features-and-pricing.json";
 import { formatToCurrency } from "@/lib";
-import { DemoForm } from "@/sections/home";
+import { ContactSalesForm } from "@/sections/pricing";
 
 export const FeaturesAndPricing: React.FC = () => {
   return (
@@ -55,7 +55,7 @@ export const FeaturesAndPricing: React.FC = () => {
             <p className="paragraph-md features-and-pricing-card-text">{data.card.text}</p>
             {data.card.cta.isModal && (
               <Modal buttonVariant="neutral" cta={data.card.cta}>
-                <DemoForm />
+                <ContactSalesForm />
               </Modal>
             )}
           </div>

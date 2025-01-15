@@ -10,3 +10,8 @@ export const formatToCurrency = (number: number, locale: string = "en-US", curre
 export const formatNumberWithCommas = (points: string): string => {
   return parseInt(points, 10).toLocaleString("en-US");
 };
+
+export const removeLastTrailingSlash = (url: string) => {
+  if (typeof url !== "string") return url;
+  return url.replace(/\/$/, "");
+};
