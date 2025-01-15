@@ -5,7 +5,7 @@ import "./styles.scss";
 import clsx from "clsx";
 
 import data from "@/data/bug-hunters/featured-hunters.json";
-import { formatNumberWithCommas, cyberbayApi } from "@/lib";
+import { formatNumberWithCommas, cyberbayApi, getOrdinalSuffix } from "@/lib";
 
 export const FeaturedHunters: React.FC = () => {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -75,7 +75,9 @@ export const FeaturedHunters: React.FC = () => {
               <tbody className="inline-flex w-full flex-col gap-3">
                 {leaderboard?.map((data: { points: string }, index) => (
                   <tr key={index} className="featured-hunters-hunters-table-row">
-                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[55px]">{index + 1}</td>
+                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[55px]">
+                      {getOrdinalSuffix(index + 1)}
+                    </td>
                     <td className="featured-hunters-hunters-table-cell paragraph-sm w-[230px]">
                       <div className="featured-hunters-hunters-table-avatar-cell">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-neutral-50 text-primary-800">
