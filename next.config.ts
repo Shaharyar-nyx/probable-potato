@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_STRAPI_GRAPHQL_URL: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL,
     NEXT_PUBLIC_STRAPI_ASSETS: process.env.NEXT_PUBLIC_STRAPI_ASSETS,
+    NEXT_PUBLIC_CYBERBAY_LEADERBOARD_URL: process.env.NEXT_PUBLIC_CYBERBAY_LEADERBOARD_URL,
   },
   publicRuntimeConfig: {
     Directus: {

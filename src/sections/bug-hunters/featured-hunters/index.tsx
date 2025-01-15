@@ -1,11 +1,30 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import clsx from "clsx";
-import React from "react";
 
 import data from "@/data/bug-hunters/featured-hunters.json";
-import { formatNumberWithCommas } from "@/lib";
+import { formatNumberWithCommas, cyberbayApi } from "@/lib";
 
 export const FeaturedHunters: React.FC = () => {
+  const [leaderboard, setLeaderboard] = useState([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    cyberbayApi
+      .getLeaderboard()
+      .then((res) => setLeaderboard(res.rankers))
+      .catch((err) => {
+        if (!controller.signal.aborted) {
+          console.error("Error fetching leaderboard:", err);
+        }
+      });
+
+    return () => controller.abort();
+  }, []);
+
   return (
     <section className="featured-hunters-parent-container">
       {/*<div className="featured-hunters-top-container">*/}
@@ -54,17 +73,19 @@ export const FeaturedHunters: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="inline-flex w-full flex-col gap-3">
-                {data.hunters.data.map((data) => (
-                  <tr key={data.rank} className="featured-hunters-hunters-table-row">
-                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[55px]">{data.rank}</td>
+                {leaderboard?.map((data: { points: string }, index) => (
+                  <tr key={index} className="featured-hunters-hunters-table-row">
+                    <td className="featured-hunters-hunters-table-cell paragraph-sm w-[55px]">{index + 1}</td>
                     <td className="featured-hunters-hunters-table-cell paragraph-sm w-[230px]">
                       <div className="featured-hunters-hunters-table-avatar-cell">
-                        <img alt={data.hunter_name} className="h-6 w-6 rounded-full object-cover" src={data.avatar} />
-                        <span>{data.hunter_name}</span>
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-neutral-50 text-primary-800">
+                          H
+                        </span>
+                        <span>Bug Hunter #{index + 1}</span>
                       </div>
                     </td>
                     <td className="featured-hunters-hunters-table-cell paragraph-sm w-[160px]">
-                      {formatNumberWithCommas(data.points)}
+                      {formatNumberWithCommas(data?.points)}
                     </td>
                   </tr>
                 ))}
