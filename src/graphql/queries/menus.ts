@@ -121,6 +121,14 @@ export const GET_MAIN_NAV = gql`
             }
           }
           background_color
+          button_group {
+            id
+            title
+            external_href
+            href
+            transparent
+            variant
+          }
         }
       }
     }

@@ -8,7 +8,7 @@ import { Button, IconRenderer } from "@/components";
 
 import { STRAPI_ASSETS } from "@/lib";
 
-export const Nav: React.FC<any> = ({ company_logo, navigations, supported_languages }) => {
+export const Nav: React.FC<any> = ({ company_logo, navigations, supported_languages, button_group }) => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showSolutionsDropdown, setShowSolutionsDropdown] = useState(false);
@@ -148,7 +148,9 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
               onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
             >
               <span className="text-primary-800">{selectedLanguage.name}</span>
-              <span className={`transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}>
+              <span
+                className={`transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}
+              >
                 <img alt="Chevron Down" src="/images/chevron-down.svg" />
               </span>
             </button>
@@ -171,13 +173,18 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
             )}
           </div> */}
 
-          <Button className="py-2" externalHref="https://community.cyberbay.tech/signin" transparent>
-            Sign In
-          </Button>
-
-          <Button className="py-2" href="/contact-us" variant="primary">
-            Contact Us
-          </Button>
+          {button_group?.map((data: any, index: number) => (
+            <Button
+              key={index}
+              href={data.href || undefined}
+              externalHref={data.external_href || undefined}
+              variant={data.variant}
+              transparent={data.transparent}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {data.title}
+            </Button>
+          ))}
         </div>
 
         {/* Mobile Menu Button */}
@@ -298,17 +305,18 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
             </div> */}
 
             <div className="flex flex-col space-y-3 pt-4">
-              <Button
-                externalHref="https://community.cyberbay.tech/signin"
-                transparent
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Sign In
-              </Button>
-
-              <Button href="/contact-us" variant="primary" onClick={() => setIsMobileMenuOpen(false)}>
-                Contact Us
-              </Button>
+              {button_group?.map((data: any, index: number) => (
+                <Button
+                  key={index}
+                  href={data.href || undefined}
+                  externalHref={data.external_href || undefined}
+                  variant={data.variant}
+                  transparent={data.transparent}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {data.title}
+                </Button>
+              ))}
             </div>
           </div>
         </div>
