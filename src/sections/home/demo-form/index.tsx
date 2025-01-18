@@ -1,62 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 
 import styles from "./styles.module.scss";
-import { Button, IconRenderer } from "@/components";
-
-interface FormData {
-  company: string;
-  email: string;
-  jobTitle: string;
-  fullName: string;
-  message: string;
-  requestType: string[];
-}
+import { Button, Dropdown, IconRenderer, Input, Textarea } from "@/components";
+import formData from "@/data/home/demo-form.json";
+import { DemoFormType } from "@/types";
+import { useSubmitRequestDemo } from "@/hooks/useSubmitRequestDemo";
 
 export const DemoForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    company: "",
-    fullName: "",
-    jobTitle: "",
-    email: "",
-    requestType: [],
-    message: "",
-  });
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm<DemoFormType>();
 
-  const requestTypes = [
-    { value: "bug-bounty", label: "Bug Bounty" },
-    { value: "continuous-monitoring", label: "Continuous Monitoring" },
-    { value: "cybersecurity-advisory", label: "Cybersecurity Advisory" },
-    { value: "other", label: "Other" },
-  ];
+  const { submit, loading, error, called } = useSubmitRequestDemo(reset);
+  const shouldShowSuccessMessage = called && !loading && !error;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSelectOption = (value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      requestType: prev.requestType.includes(value)
-        ? prev.requestType.filter((type) => type !== value)
-        : [...prev.requestType, value],
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (formData.requestType.length === 0) {
-      return;
-    }
-
-    console.log("Form submitted with data:", formData);
+  const onSubmit = async (data: DemoFormType) => {
+    submit(data);
   };
 
   return (
@@ -82,7 +47,7 @@ export const DemoForm: React.FC = () => {
                 icon: "PresentationChartLineIcon",
               },
             ].map((feature, id) => (
-              <div key={id} className="flex flex-row gap-6 items-start">
+              <div key={id} className="flex flex-row items-start gap-6">
                 <div className="flex items-center gap-3">
                   <div className="rounded-md bg-primary-500 p-1">
                     <IconRenderer className="h-[24px] w-[24px] text-neutral-50" iconName={feature.icon} />
@@ -97,125 +62,96 @@ export const DemoForm: React.FC = () => {
           </div>
         </div>
 
-        <form className={styles.formContainer} onSubmit={handleSubmit}>
-          <div className={styles.inputWrapper}>
-            <input
-              className={styles.input}
-              name="fullName"
-              placeholder="Full Name *"
-              required
-              type="text"
-              value={formData.fullName}
-              onChange={handleInputChange}
-            />
-            <div className={styles.iconWrapper}>
-              <IconRenderer iconName="UserIcon" className="h-5 w-5 text-primary-800" />
+        <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-row gap-4">
+            <div className="w-full">
+              <Input
+                className="bg-transparent outline-none"
+                disabled={loading}
+                iconName="UserIcon"
+                placeholder="First Name"
+                {...register("first_name", { required: "First Name is required" })}
+                error={errors.first_name?.message}
+              />
+            </div>
+            <div className="w-full">
+              <Input
+                className="h-6 bg-transparent pl-2 outline-none"
+                disabled={loading}
+                placeholder="Last Name"
+                {...register("last_name", { required: "Last Name is required" })}
+                error={errors.last_name?.message}
+              />
             </div>
           </div>
 
-          <div className={styles.inputWrapper}>
-            <input
-              className={styles.input}
-              name="email"
-              placeholder="Email *"
-              required
-              type="email"
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-            <div className={styles.iconWrapper}>
-              <IconRenderer iconName="EnvelopeIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-          </div>
+          <Input
+            disabled={loading}
+            iconName="EnvelopeIcon"
+            placeholder="Email"
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                message: "Please enter a valid email address",
+              },
+            })}
+            error={errors.email?.message}
+          />
 
-          <div className={styles.inputWrapper}>
-            <input
-              className={styles.input}
-              name="company"
-              placeholder="Company Website*"
-              required
-              type="text"
-              value={formData.company}
-              onChange={handleInputChange}
-            />
-            <div className={styles.iconWrapper}>
-              <IconRenderer iconName="GlobeAltIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-          </div>
+          <Input
+            className="bg-transparent outline-none"
+            disabled={loading}
+            iconName="GlobeAltIcon"
+            placeholder="Company Website *"
+            {...register("company", { required: "Company is required" })}
+            error={errors.company?.message}
+          />
 
-          <div className={styles.inputWrapper}>
-            <input
-              className={styles.input}
-              name="jobTitle"
-              placeholder="Job Title *"
-              required
-              type="text"
-              value={formData.jobTitle}
-              onChange={handleInputChange}
-            />
-            <div className={styles.iconWrapper}>
-              <IconRenderer iconName="BriefcaseIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-          </div>
+          <Input
+            className="bg-transparent outline-none"
+            disabled={loading}
+            iconName="BriefcaseIcon"
+            placeholder="Job Title *"
+            {...register("job_title", { required: "Job Title is required" })}
+            error={errors.job_title?.message}
+          />
 
-          <div className={styles.inputWrapper}>
-            <button
-              className={`${styles.select} ${formData.requestType.length === 0 && "text-neutral-400"}`}
-              type="button"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            >
-              {formData.requestType.length > 0
-                ? formData.requestType.map((type) => requestTypes.find((t) => t.value === type)?.label).join(", ")
-                : "Services you are interested (multiple choice)"}
-            </button>
-            <div className={styles.iconWrapper}>
-              <IconRenderer iconName="ListBulletIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-            <div className={styles.selectIconWrapper}>
-              <IconRenderer iconName="ChevronDownIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-            {isDropdownOpen && (
-              <div className={styles.selectDropdown}>
-                {requestTypes.map((type) => (
-                  <div
-                    key={type.value}
-                    className={`${styles.selectOption} flex items-center gap-2 ${
-                      formData.requestType.includes(type.value) ? "text-primary-800" : ""
-                    }`}
-                    onClick={() => handleSelectOption(type.value)}
-                  >
-                    <div
-                      className={`flex h-5 w-5 items-center justify-center rounded border border-primary-800 ${
-                        formData.requestType.includes(type.value) ? "bg-primary-500 text-white" : "bg-white"
-                      }`}
-                    >
-                      {formData.requestType.includes(type.value) && (
-                        <IconRenderer iconName="CheckIcon" className="h-4 w-4" />
-                      )}
-                    </div>
-                    {type.label}
-                  </div>
-                ))}
-              </div>
+          <Controller
+            control={control}
+            name="services"
+            render={({ field }) => (
+              <Dropdown
+                disabled={loading}
+                error={errors.services?.message}
+                handleChange={field.onChange}
+                iconName="ListBulletIcon"
+                id="services"
+                label="Services you are interested (multiple choice)"
+                multiple
+                options={formData.demoFormData.serviceTypes.map((service) => service.label)}
+                value={field.value}
+              />
             )}
-          </div>
+            rules={{ required: "Please select at least one service" }}
+          />
 
-          <div className={styles.inputWrapper}>
-            <textarea
-              className={styles.textarea}
-              name="message"
-              placeholder="Your Message (Optional)... "
-              value={formData.message}
-              onChange={handleInputChange}
-            />
-            <div className={styles.textareaIconWrapper}>
-              <IconRenderer iconName="ChatBubbleOvalLeftEllipsisIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-          </div>
-
-          <Button className="!px-20" size="large" type="submit">
+          <Textarea
+            disabled={loading}
+            iconName="ChatBubbleOvalLeftEllipsisIcon"
+            placeholder="Your Message (Optional)..."
+            rows={4}
+            {...register("message")}
+          />
+          <Button className="self-start px-20" disabled={loading} size="large" type="submit">
             Submit
           </Button>
+
+          {shouldShowSuccessMessage && (
+            <p aria-live="polite" className="paragraph-sm text-green-500">
+              Thank you for reaching out! We will get back to you shortly.
+            </p>
+          )}
         </form>
       </div>
     </div>

@@ -400,17 +400,21 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   parentClassName?: string;
 }
 
-export interface DropdownPropsInput extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface DropdownPropsInput {
   ariaDescribedBy?: string;
   className?: string;
   disabled?: boolean;
   error?: string;
-  handleChange?: (value: string) => void;
+  handleChange?: (value: string | string[]) => void;
   iconName?: string;
   id?: string;
   label: string;
+  multiple?: boolean;
   options: string[];
-  value?: string;
+  value?: string | string[];
+  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface BlockType {
