@@ -39,7 +39,6 @@ export const ContactForm: React.FC = () => {
 
         <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
           <Input
-            className="bg-transparent outline-none"
             disabled={loading}
             iconName="UserIcon"
             placeholder="Full Name *"

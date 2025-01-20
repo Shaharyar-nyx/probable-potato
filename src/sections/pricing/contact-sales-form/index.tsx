@@ -62,7 +62,6 @@ export const ContactSalesForm: React.FC = () => {
 
         <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
           <Input
-            className="bg-transparent outline-none"
             disabled={loading}
             iconName="UserIcon"
             placeholder="Full Name *"
@@ -85,7 +84,6 @@ export const ContactSalesForm: React.FC = () => {
           />
 
           <Input
-            className="bg-transparent outline-none"
             disabled={loading}
             iconName="BuildingOffice2Icon"
             placeholder="Company Name *"
@@ -96,7 +94,6 @@ export const ContactSalesForm: React.FC = () => {
           />
 
           <Input
-            className="bg-transparent outline-none"
             disabled={loading}
             iconName="BriefcaseIcon"
             placeholder="Job Title *"

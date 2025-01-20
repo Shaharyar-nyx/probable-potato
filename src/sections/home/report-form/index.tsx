@@ -33,7 +33,6 @@ export const ReportForm: React.FC = () => {
 
         <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
           <Input
-            className="bg-transparent outline-none"
             disabled={loading}
             iconName="UserIcon"
             placeholder="Full Name *"
@@ -56,7 +55,6 @@ export const ReportForm: React.FC = () => {
           />
 
           <Input
-            className="bg-transparent outline-none"
             disabled={loading}
             iconName="BuildingOffice2Icon"
             placeholder="Company website URL*"
@@ -71,7 +69,6 @@ export const ReportForm: React.FC = () => {
           />
 
           <Input
-            className="bg-transparent outline-none"
             disabled={loading}
             iconName="BriefcaseIcon"
             placeholder="Job Title *"

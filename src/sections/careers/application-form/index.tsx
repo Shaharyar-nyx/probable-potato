@@ -25,7 +25,14 @@ export const ApplicationForm: React.FC = () => {
   const shouldShowSuccessMessage = called && !loading && !error;
 
   const onSubmit = async (data: ApplyFormType) => {
-    submit(data);
+    const resumeFile = data.resume instanceof FileList ? data.resume[0] : data.resume;
+
+    const formData = {
+      ...data,
+      resume: resumeFile,
+    };
+
+    submit(formData);
   };
 
   return (
@@ -55,7 +62,6 @@ export const ApplicationForm: React.FC = () => {
             <p className={`paragraph-lg ${styles.formSubtitle}`}>Let&apos;s grow together.</p>
 
             <Input
-              className="bg-transparent outline-none"
               disabled={loading}
               iconName="UserIcon"
               placeholder="Full Name *"

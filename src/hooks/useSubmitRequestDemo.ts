@@ -13,7 +13,6 @@ export async function submitRequestDemo(
 ) {
   const payloadData = {
     ...payload,
-    label_names: ["Demo Form"],
     isSaveApollo: true,
   };
 

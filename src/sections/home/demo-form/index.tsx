@@ -86,7 +86,6 @@ export const DemoForm: React.FC = () => {
           />
 
           <Input
-            className="bg-transparent outline-none"
             disabled={loading}
             iconName="GlobeAltIcon"
             placeholder="Company Website *"
@@ -101,7 +100,6 @@ export const DemoForm: React.FC = () => {
           />
 
           <Input
-            className="bg-transparent outline-none"
             disabled={loading}
             iconName="BriefcaseIcon"
             placeholder="Job Title *"

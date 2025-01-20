@@ -13,7 +13,6 @@ export async function submitReport(
 ) {
   const payloadData = {
     ...payload,
-    label_names: ["Free Report Form"],
     isSaveApollo: true,
   };
 

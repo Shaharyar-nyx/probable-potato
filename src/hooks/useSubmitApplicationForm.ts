@@ -13,7 +13,6 @@ export async function submitApplicationForm(
 ) {
   const payloadData = {
     ...payload,
-    label_names: ["Careers Form"],
     isSaveApollo: false,
   };
 
@@ -36,7 +35,6 @@ export function useSubmitApplicationForm(reset: UseFormReset<ApplyFormType>) {
 
   function submit(payload: ApplyFormType) {
     setLoading(true);
-
     executeRecaptcha(CaptchaAction.CAREERS_FORM_SUBMIT)
       .then(() => {
         console.log("Captcha verified");

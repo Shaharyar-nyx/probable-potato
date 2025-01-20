@@ -51,7 +51,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             ref={ref}
             aria-describedby={errorId}
-            className="w-full bg-transparent outline-none"
+            className="!w-full bg-transparent outline-none"
             disabled={disabled}
             id={id}
             onBlur={handleBlur}

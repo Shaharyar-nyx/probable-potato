@@ -13,7 +13,6 @@ export async function submitContactUs(
 ) {
   const payloadData = {
     ...payload,
-    label_names: ["Contact Us Form"],
     isSaveApollo: true,
   };
 
