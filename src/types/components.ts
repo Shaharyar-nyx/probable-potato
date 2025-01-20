@@ -141,16 +141,18 @@ export type ButtonAsExternalLink = BaseButtonProps &
 
 export type ButtonProps = ButtonAsButton | ButtonAsInternalLink | ButtonAsExternalLink;
 
-export type InputFileProps = {
+export interface InputFileProps {
   clearErrors?: UseFormClearErrors<any>;
   error?: string;
-  formLoading?: boolean | undefined;
+  loading?: boolean;
   id?: string;
   maxFileSize: number;
   name: string;
   register?: UseFormRegister<any>;
   setError?: UseFormSetError<any>;
-} & ButtonProps;
+  className?: string;
+  children?: React.ReactNode;
+}
 
 export interface IconRendererProps {
   className?: string;

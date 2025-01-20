@@ -9,7 +9,8 @@ export type ContactUsFormType = {
 export type ApplyFormType = {
   email: string;
   message: string;
-  name: string;
+  first_name: string;
+  last_name: string;
   resume: File | null;
 }
 

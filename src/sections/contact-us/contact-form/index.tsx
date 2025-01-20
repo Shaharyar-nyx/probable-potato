@@ -38,7 +38,7 @@ export const ContactForm: React.FC = () => {
         </div>
 
         <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-col lg:flex-row gap-4">
             <div className="w-full">
               <Input
                 className="bg-transparent outline-none"

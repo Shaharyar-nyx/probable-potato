@@ -63,7 +63,7 @@ export const DemoForm: React.FC = () => {
         </div>
 
         <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-col lg:flex-row gap-4">
             <div className="w-full">
               <Input
                 className="bg-transparent outline-none"
@@ -104,7 +104,13 @@ export const DemoForm: React.FC = () => {
             disabled={loading}
             iconName="GlobeAltIcon"
             placeholder="Company Website *"
-            {...register("company", { required: "Company is required" })}
+            {...register("company", {
+              required: "Company Website is required",
+              pattern: {
+                value: /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})(\/[\w .-]*)*\/?$/,
+                message: "Please enter a valid URL",
+              },
+            })}
             error={errors.company?.message}
           />
 

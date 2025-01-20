@@ -2,18 +2,18 @@
 
 import { useState } from "react";
 import useCaptcha, { CaptchaAction } from "./useCaptcha";
-import { DemoFormType } from "@/types";
+import { ApplyFormType } from "@/types";
 import { apolloIoClient } from "@/lib";
 import { UseFormReset } from "react-hook-form";
 
-export async function submitRequestDemo(
-  payload: DemoFormType,
-  reset: UseFormReset<DemoFormType>,
+export async function submitApplicationForm(
+  payload: ApplyFormType,
+  reset: UseFormReset<ApplyFormType>,
   onDone: (error: Error | null, data: { message: string } | null) => void,
 ) {
   const payloadData = {
     ...payload,
-    label_names: ["Demo Form"],
+    label_names: ["Careers Form"],
   };
 
   try {
@@ -26,20 +26,20 @@ export async function submitRequestDemo(
   }
 }
 
-export function useSubmitRequestDemo(reset: UseFormReset<DemoFormType>) {
+export function useSubmitApplicationForm(reset: UseFormReset<ApplyFormType>) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [data, setData] = useState<{ message: string } | null>(null);
   const [called, setCalled] = useState(false);
   const executeRecaptcha = useCaptcha();
 
-  function submit(payload: DemoFormType) {
+  function submit(payload: ApplyFormType) {
     setLoading(true);
 
-    executeRecaptcha(CaptchaAction.REQUEST_DEMO_FORM_SUBMIT)
+    executeRecaptcha(CaptchaAction.CAREERS_FORM_SUBMIT)
       .then(() => {
         console.log("Captcha verified");
-        submitRequestDemo(payload, reset, (err, data) => {
+        submitApplicationForm(payload, reset, (err, data) => {
           setLoading(false);
           setCalled(true);
           setError(err);
