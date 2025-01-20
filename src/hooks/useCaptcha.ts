@@ -8,6 +8,7 @@ export const CaptchaAction = {
   CONTACT_US_FORM_SUBMIT: "contact_us_form_submit",
   CAREERS_FORM_SUBMIT: "careers_form_submit",
   CONTACT_SALES_FORM_SUBMIT: "contact_sales_form_submit",
+  FREE_REPORT_FORM_SUBMIT: "free_report_form_submit",
 };
 export default function useCaptcha() {
   const { executeRecaptcha } = useGoogleReCaptcha();
