@@ -36,7 +36,7 @@ export function useSubmitReport(reset: UseFormReset<ReportFormType>) {
   function submit(payload: ReportFormType) {
     setLoading(true);
 
-    executeRecaptcha(CaptchaAction.CONTACT_SALES_FORM_SUBMIT)
+    executeRecaptcha(CaptchaAction.FREE_REPORT_FORM_SUBMIT)
       .then(() => {
         console.log("Captcha verified");
         submitReport(payload, reset, (err, data) => {
