@@ -36,3 +36,7 @@ export type ReportFormType = {
   website_url: string;
   title: string;
 };
+
+export type SubscribeType = {
+  email: string;
+}
