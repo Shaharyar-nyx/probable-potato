@@ -1,5 +1,4 @@
-const APOLLO_URL = process.env.NEXT_PUBLIC_APOLLO_URL;
-const APOLLO_API_KEY = process.env.NEXT_PUBLIC_APOLLO_API_KEY;
+import { CYBERBAY_FORM_URL } from "./constants";
 
 interface ContactResponse {
   contact: {
@@ -8,19 +7,18 @@ interface ContactResponse {
   };
 }
 
-export const apolloIoClient = {
+export const cyberbayClient = {
   async createContact(data: any): Promise<ContactResponse> {
-    const response = await fetch(`${APOLLO_URL}/contacts`, {
+    const response = await fetch(`${CYBERBAY_FORM_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Api-Key": APOLLO_API_KEY || "",
       },
       body: JSON.stringify(data),
     });
 
     if (!response.ok) {
-      throw new Error(`Apollo.io API error: ${response.statusText}`);
+      throw new Error(`Cyberbay API error: ${response.statusText}`);
     }
 
     return response.json();

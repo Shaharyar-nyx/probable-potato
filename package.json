@@ -24,6 +24,7 @@
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "clsx": "^2.1.1",
+    "company-email-validator": "^1.1.0",
     "d3": "^7.9.0",
     "graphql": "^16.9.0",
     "gsap": "^3.12.5",

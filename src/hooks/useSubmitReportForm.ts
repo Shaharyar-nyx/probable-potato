@@ -3,21 +3,24 @@
 import { useState } from "react";
 import useCaptcha, { CaptchaAction } from "./useCaptcha";
 import { ReportFormType } from "@/types";
-import { apolloIoClient } from "@/lib/forms";
+import { cyberbayClient } from "@/lib/forms";
 import { UseFormReset } from "react-hook-form";
+import * as CompanyEmailValidator from "company-email-validator";
 
 export async function submitReport(
   payload: ReportFormType,
   reset: UseFormReset<ReportFormType>,
   onDone: (error: Error | null, data: { message: string } | null) => void,
 ) {
+  const isCompanyEmail = CompanyEmailValidator.isCompanyEmail(payload.email);
+
   const payloadData = {
     ...payload,
-    isSaveApollo: true,
+    isSaveApollo: isCompanyEmail,
   };
 
   try {
-    await apolloIoClient.createContact(payloadData);
+    await cyberbayClient.createContact(payloadData);
     reset();
     onDone(null, { message: "Form submitted successfully!" });
   } catch (error) {

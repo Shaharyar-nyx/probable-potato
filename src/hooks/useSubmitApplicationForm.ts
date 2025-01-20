@@ -3,7 +3,7 @@
 import { useState } from "react";
 import useCaptcha, { CaptchaAction } from "./useCaptcha";
 import { ApplyFormType } from "@/types";
-import { apolloIoClient } from "@/lib";
+import { cyberbayClient } from "@/lib";
 import { UseFormReset } from "react-hook-form";
 
 export async function submitApplicationForm(
@@ -17,7 +17,7 @@ export async function submitApplicationForm(
   };
 
   try {
-    await apolloIoClient.createContact(payloadData);
+    await cyberbayClient.createContact(payloadData);
     reset();
     onDone(null, { message: "Form submitted successfully!" });
   } catch (error) {
