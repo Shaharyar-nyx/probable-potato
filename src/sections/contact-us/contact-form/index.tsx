@@ -38,27 +38,15 @@ export const ContactForm: React.FC = () => {
         </div>
 
         <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col lg:flex-row gap-4">
-            <div className="w-full">
-              <Input
-                className="bg-transparent outline-none"
-                disabled={loading}
-                iconName="UserIcon"
-                placeholder="First Name *"
-                {...register("first_name", { required: "First Name is required" })}
-                error={errors.first_name?.message}
-              />
-            </div>
-            <div className="w-full">
-              <Input
-                className="h-6 bg-transparent pl-2 outline-none"
-                disabled={loading}
-                placeholder="Last Name *"
-                {...register("last_name", { required: "Last Name is required" })}
-                error={errors.last_name?.message}
-              />
-            </div>
-          </div>
+          <Input
+            className="bg-transparent outline-none"
+            disabled={loading}
+            iconName="UserIcon"
+            placeholder="Full Name *"
+            {...register("name", { required: "Full Name is required" })}
+            error={errors.name?.message}
+          />
+
           <Input
             disabled={loading}
             iconName="EnvelopeIcon"
@@ -74,14 +62,14 @@ export const ContactForm: React.FC = () => {
           />
           <Controller
             control={control}
-            name="request_type"
+            name="channel"
             render={({ field }) => (
               <Dropdown
                 disabled={loading}
-                error={errors.request_type?.message}
+                error={errors.channel?.message}
                 handleChange={field.onChange}
                 iconName="BarsArrowUpIcon"
-                id="request_type"
+                id="channel"
                 label="Request Type"
                 options={formData.request_types.map((requestType) => requestType.label)}
                 value={field.value}

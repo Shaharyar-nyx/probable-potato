@@ -63,27 +63,13 @@ export const DemoForm: React.FC = () => {
         </div>
 
         <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col lg:flex-row gap-4">
-            <div className="w-full">
-              <Input
-                className="bg-transparent outline-none"
-                disabled={loading}
-                iconName="UserIcon"
-                placeholder="First Name *"
-                {...register("first_name", { required: "First Name is required" })}
-                error={errors.first_name?.message}
-              />
-            </div>
-            <div className="w-full">
-              <Input
-                className="h-6 bg-transparent pl-2 outline-none"
-                disabled={loading}
-                placeholder="Last Name *"
-                {...register("last_name", { required: "Last Name is required" })}
-                error={errors.last_name?.message}
-              />
-            </div>
-          </div>
+          <Input
+            disabled={loading}
+            iconName="UserIcon"
+            placeholder="Full Name *"
+            {...register("name", { required: "Full Name is required" })}
+            error={errors.name?.message}
+          />
 
           <Input
             disabled={loading}
@@ -104,14 +90,14 @@ export const DemoForm: React.FC = () => {
             disabled={loading}
             iconName="GlobeAltIcon"
             placeholder="Company Website *"
-            {...register("company", {
+            {...register("website_url", {
               required: "Company Website is required",
               pattern: {
                 value: /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})(\/[\w .-]*)*\/?$/,
                 message: "Please enter a valid URL",
               },
             })}
-            error={errors.company?.message}
+            error={errors.website_url?.message}
           />
 
           <Input
@@ -119,20 +105,20 @@ export const DemoForm: React.FC = () => {
             disabled={loading}
             iconName="BriefcaseIcon"
             placeholder="Job Title *"
-            {...register("job_title", { required: "Job Title is required" })}
-            error={errors.job_title?.message}
+            {...register("title", { required: "Job Title is required" })}
+            error={errors.title?.message}
           />
 
           <Controller
             control={control}
-            name="services"
+            name="channel"
             render={({ field }) => (
               <Dropdown
                 disabled={loading}
-                error={errors.services?.message}
+                error={errors.channel?.message}
                 handleChange={field.onChange}
                 iconName="ListBulletIcon"
-                id="services"
+                id="channel"
                 label="Services you are interested (multiple choice)"
                 multiple
                 options={formData.demoFormData.serviceTypes.map((service) => service.label)}

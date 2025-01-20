@@ -53,28 +53,16 @@ export const ApplicationForm: React.FC = () => {
 
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <p className={`paragraph-lg ${styles.formSubtitle}`}>Let&apos;s grow together.</p>
-           
-            <div className="flex flex-col lg:flex-row gap-4">
-              <div className="w-full">
-                <Input
-                  className="bg-transparent outline-none"
-                  disabled={loading}
-                  iconName="UserIcon"
-                  placeholder="First Name *"
-                  {...register("first_name", { required: "First Name is required" })}
-                  error={errors.first_name?.message}
-                />
-              </div>
-              <div className="w-full">
-                <Input
-                  className="h-6 bg-transparent pl-2 outline-none"
-                  disabled={loading}
-                  placeholder="Last Name *"
-                  {...register("last_name", { required: "Last Name is required" })}
-                  error={errors.last_name?.message}
-                />
-              </div>
-            </div>
+
+            <Input
+              className="bg-transparent outline-none"
+              disabled={loading}
+              iconName="UserIcon"
+              placeholder="Full Name *"
+              {...register("name", { required: "Full Name is required" })}
+              error={errors.name?.message}
+            />
+
             {/* Email Input */}
             <Input
               disabled={loading}

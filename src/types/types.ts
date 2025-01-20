@@ -1,43 +1,38 @@
 export type ContactUsFormType = {
   email: string;
   message: string;
-  first_name: string;
-  last_name: string;
-  request_type: string;
+  name: string;
+  channel: string;
 };
 
 export type ApplyFormType = {
   email: string;
   message: string;
-  first_name: string;
-  last_name: string;
+  name: string;
   resume: File | null;
 };
 
 export interface DemoFormType {
-  company: string;
+  website_url: string;
   email: string;
-  job_title: string;
-  first_name: string;
-  last_name: string;
+  title: string;
+  name: string;
   message: string;
-  services: string[];
+  channel: string[];
 }
 
 export type ContactSalesFormType = {
   email: string;
   message: string;
-  first_name: string;
-  last_name: string;
-  company: string;
-  job_title: string;
+  name: string;
+  organization_name: string;
+  title: string;
 };
 
 export type ReportFormType = {
   email: string;
   message: string;
-  first_name: string;
-  last_name: string;
-  company: string;
-  job_title: string;
+  name: string;
+  website_url: string;
+  title: string;
 };

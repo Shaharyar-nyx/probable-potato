@@ -61,27 +61,14 @@ export const ContactSalesForm: React.FC = () => {
         </div>
 
         <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col gap-4 lg:flex-row">
-            <div className="w-full">
-              <Input
-                className="bg-transparent outline-none"
-                disabled={loading}
-                iconName="UserIcon"
-                placeholder="First Name *"
-                {...register("first_name", { required: "First Name is required" })}
-                error={errors.first_name?.message}
-              />
-            </div>
-            <div className="w-full">
-              <Input
-                className="h-6 bg-transparent pl-2 outline-none"
-                disabled={loading}
-                placeholder="Last Name *"
-                {...register("last_name", { required: "Last Name is required" })}
-                error={errors.last_name?.message}
-              />
-            </div>
-          </div>
+          <Input
+            className="bg-transparent outline-none"
+            disabled={loading}
+            iconName="UserIcon"
+            placeholder="Full Name *"
+            {...register("name", { required: "Full Name is required" })}
+            error={errors.name?.message}
+          />
 
           <Input
             disabled={loading}
@@ -102,10 +89,10 @@ export const ContactSalesForm: React.FC = () => {
             disabled={loading}
             iconName="BuildingOffice2Icon"
             placeholder="Company Name *"
-            {...register("company", {
+            {...register("organization_name", {
               required: "Company is required",
             })}
-            error={errors.company?.message}
+            error={errors.organization_name?.message}
           />
 
           <Input
@@ -113,8 +100,8 @@ export const ContactSalesForm: React.FC = () => {
             disabled={loading}
             iconName="BriefcaseIcon"
             placeholder="Job Title *"
-            {...register("job_title", { required: "Job Title is required" })}
-            error={errors.job_title?.message}
+            {...register("title", { required: "Job Title is required" })}
+            error={errors.title?.message}
           />
 
           <Textarea

@@ -1,10 +1,10 @@
 {
   "demoFormData": {
     "serviceTypes": [
-      { "value": "bug-bounty", "label": "Bug Bounty" },
-      { "value": "continuous-monitoring", "label": "Continuous Monitoring" },
-      { "value": "cybersecurity-advisory", "label": "Cybersecurity Advisory" },
-      { "value": "other", "label": "Other" }
+      { "value": "Bug Bounty Program", "label": "Bug Bounty" },
+      { "value": "Continuous Monitoring", "label": "Continuous Monitoring" },
+      { "value": "Cybersecurity Monitoring", "label": "Cybersecurity Advisory" },
+      { "value": "Other", "label": "Other" }
     ]
   }
 }
