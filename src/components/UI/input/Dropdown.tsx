@@ -128,7 +128,7 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
                     ? "text-red-400"
                     : hasFocus
                       ? "text-primary-800"
-                      : "text-neutral-400",
+                      : "text-primary-800",
               )}
               iconName={iconName}
             />

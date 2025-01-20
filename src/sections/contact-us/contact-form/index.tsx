@@ -44,7 +44,7 @@ export const ContactForm: React.FC = () => {
                 className="bg-transparent outline-none"
                 disabled={loading}
                 iconName="UserIcon"
-                placeholder="First Name"
+                placeholder="First Name *"
                 {...register("first_name", { required: "First Name is required" })}
                 error={errors.first_name?.message}
               />
@@ -53,7 +53,7 @@ export const ContactForm: React.FC = () => {
               <Input
                 className="h-6 bg-transparent pl-2 outline-none"
                 disabled={loading}
-                placeholder="Last Name"
+                placeholder="Last Name *"
                 {...register("last_name", { required: "Last Name is required" })}
                 error={errors.last_name?.message}
               />
@@ -62,7 +62,7 @@ export const ContactForm: React.FC = () => {
           <Input
             disabled={loading}
             iconName="EnvelopeIcon"
-            placeholder="Email"
+            placeholder="Email *"
             {...register("email", {
               required: "Email is required",
               pattern: {

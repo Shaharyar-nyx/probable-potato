@@ -12,7 +12,7 @@ export type ApplyFormType = {
   first_name: string;
   last_name: string;
   resume: File | null;
-}
+};
 
 export interface DemoFormType {
   company: string;
@@ -23,3 +23,21 @@ export interface DemoFormType {
   message: string;
   services: string[];
 }
+
+export type ContactSalesFormType = {
+  email: string;
+  message: string;
+  first_name: string;
+  last_name: string;
+  company: string;
+  job_title: string;
+};
+
+export type ReportFormType = {
+  email: string;
+  message: string;
+  first_name: string;
+  last_name: string;
+  company: string;
+  job_title: string;
+};

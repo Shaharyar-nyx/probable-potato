@@ -2,18 +2,18 @@
 
 import { useState } from "react";
 import useCaptcha, { CaptchaAction } from "./useCaptcha";
-import { ContactUsFormType } from "@/types";
+import { ContactSalesFormType } from "@/types";
 import { apolloIoClient } from "@/lib/forms";
 import { UseFormReset } from "react-hook-form";
 
-export async function submitContactUs(
-  payload: ContactUsFormType,
-  reset: UseFormReset<ContactUsFormType>,
+export async function submitContactSales(
+  payload: ContactSalesFormType,
+  reset: UseFormReset<ContactSalesFormType>,
   onDone: (error: Error | null, data: { message: string } | null) => void,
 ) {
   const payloadData = {
     ...payload,
-    label_names: ["Contact Us Form"],
+    label_names: ["Contact Sales Form"],
     isSaveApollo: true,
   };
 
@@ -27,20 +27,20 @@ export async function submitContactUs(
   }
 }
 
-export function useSubmitContactUs(reset: UseFormReset<ContactUsFormType>) {
+export function useSubmitContactSales(reset: UseFormReset<ContactSalesFormType>) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [data, setData] = useState<{ message: string } | null>(null);
   const [called, setCalled] = useState(false);
   const executeRecaptcha = useCaptcha();
 
-  function submit(payload: ContactUsFormType) {
+  function submit(payload: ContactSalesFormType) {
     setLoading(true);
 
-    executeRecaptcha(CaptchaAction.CONTACT_US_FORM_SUBMIT)
+    executeRecaptcha(CaptchaAction.CONTACT_SALES_FORM_SUBMIT)
       .then(() => {
         console.log("Captcha verified");
-        submitContactUs(payload, reset, (err, data) => {
+        submitContactSales(payload, reset, (err, data) => {
           setLoading(false);
           setCalled(true);
           setError(err);

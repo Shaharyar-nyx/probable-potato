@@ -110,7 +110,7 @@ export const InputFile: React.FC<InputFileProps> = ({
         {selectedFile ? selectedFile.name : children}
       </Button>
       <div className="flex flex-row items-end gap-1">
-        <IconRenderer className="h-[15px] w-[15px] text-[#02255B80]" iconName="ExclamationCircleIcon" />
+        <IconRenderer className="h-[15px] w-[15px] text-primary-800" iconName="ExclamationCircleIcon" />
         <p className={`paragraph-xs ${styles.uploadHelperText}`}>
           Format: .pdf, Max file size: {maxFileSize / 1024 / 1024}MB
         </p>

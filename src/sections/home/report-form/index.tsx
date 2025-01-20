@@ -1,41 +1,25 @@
 "use client";
 
-import { useState } from "react";
-
 import styles from "./styles.module.scss";
-import { Button, IconRenderer } from "@/components";
-
-interface FormData {
-  domain: string;
-  email: string;
-  jobTitle: string;
-  fullName: string;
-  message: string;
-}
+import { Button, Input, Textarea } from "@/components";
+import { ReportFormType } from "@/types";
+import { useForm } from "react-hook-form";
+import { useSubmitReport } from "@/hooks/useSubmitReportForm";
 
 export const ReportForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    domain: "",
-    fullName: "",
-    jobTitle: "",
-    email: "",
-    message: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ReportFormType>();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const { submit, loading, error, called } = useSubmitReport(reset);
+  const shouldShowSuccessMessage = called && !loading && !error;
+
+  const onSubmit = async (data: ReportFormType) => {
+    submit(data);
   };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    console.log("Form submitted with data:", formData);
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.gridContainer}>
@@ -47,83 +31,84 @@ export const ReportForm: React.FC = () => {
           </p>
         </div>
 
-        <form className={styles.formContainer} onSubmit={handleSubmit}>
-          <div className={styles.inputWrapper}>
-            <input
-              className={styles.input}
-              name="fullName"
-              placeholder="Full Name *"
-              required
-              type="text"
-              value={formData.fullName}
-              onChange={handleInputChange}
-            />
-            <div className={styles.iconWrapper}>
-              <IconRenderer iconName="UserIcon" className="h-5 w-5 text-primary-800" />
+        <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col gap-4 lg:flex-row">
+            <div className="w-full">
+              <Input
+                className="bg-transparent outline-none"
+                disabled={loading}
+                iconName="UserIcon"
+                placeholder="First Name *"
+                {...register("first_name", { required: "First Name is required" })}
+                error={errors.first_name?.message}
+              />
+            </div>
+            <div className="w-full">
+              <Input
+                className="h-6 bg-transparent pl-2 outline-none"
+                disabled={loading}
+                placeholder="Last Name *"
+                {...register("last_name", { required: "Last Name is required" })}
+                error={errors.last_name?.message}
+              />
             </div>
           </div>
 
-          <div className={styles.inputWrapper}>
-            <input
-              className={styles.input}
-              name="email"
-              placeholder="Email *"
-              required
-              type="email"
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-            <div className={styles.iconWrapper}>
-              <IconRenderer iconName="EnvelopeIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-          </div>
+          <Input
+            disabled={loading}
+            iconName="EnvelopeIcon"
+            placeholder="Email *"
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                message: "Please enter a valid email address",
+              },
+            })}
+            error={errors.email?.message}
+          />
 
-          <div className={styles.inputWrapper}>
-            <input
-              className={styles.input}
-              name="domain"
-              placeholder="Root Domain*"
-              required
-              type="text"
-              value={formData.domain}
-              onChange={handleInputChange}
-            />
-            <div className={styles.iconWrapper}>
-              <IconRenderer iconName="BuildingOffice2Icon" className="h-5 w-5 text-primary-800" />
-            </div>
-          </div>
+          <Input
+            className="bg-transparent outline-none"
+            disabled={loading}
+            iconName="BuildingOffice2Icon"
+            placeholder="Company website URL*"
+            {...register("company", {
+              required: "Company Website is required",
+              pattern: {
+                value: /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})(\/[\w .-]*)*\/?$/,
+                message: "Please enter a valid URL",
+              },
+            })}
+            error={errors.company?.message}
+          />
 
-          <div className={styles.inputWrapper}>
-            <input
-              className={styles.input}
-              name="jobTitle"
-              placeholder="Job Title *"
-              required
-              type="text"
-              value={formData.jobTitle}
-              onChange={handleInputChange}
-            />
-            <div className={styles.iconWrapper}>
-              <IconRenderer iconName="BriefcaseIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-          </div>
+          <Input
+            className="bg-transparent outline-none"
+            disabled={loading}
+            iconName="BriefcaseIcon"
+            placeholder="Job Title *"
+            {...register("job_title", { required: "Job Title is required" })}
+            error={errors.job_title?.message}
+          />
 
-          <div className={styles.inputWrapper}>
-            <textarea
-              className={styles.textarea}
-              name="message"
-              placeholder="Your Message (Optional)... "
-              value={formData.message}
-              onChange={handleInputChange}
-            />
-            <div className={styles.textareaIconWrapper}>
-              <IconRenderer iconName="ChatBubbleOvalLeftEllipsisIcon" className="h-5 w-5 text-primary-800" />
-            </div>
-          </div>
+          <Textarea
+            disabled={loading}
+            iconName="ChatBubbleOvalLeftEllipsisIcon"
+            placeholder="Your Message (Optional)..."
+            rows={4}
+            {...register("message")}
+          />
 
-          <Button className="!px-20" size="large" type="submit">
+          <Button className="self-start px-20" disabled={loading} size="large" type="submit">
             Submit
           </Button>
+
+          {shouldShowSuccessMessage && (
+            <p aria-live="polite" className="paragraph-sm text-green-500">
+              Thank you for reaching out! We will get back to you shortly.
+            </p>
+          )}
         </form>
       </div>
     </div>

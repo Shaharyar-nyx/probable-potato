@@ -14,6 +14,7 @@ export async function submitApplicationForm(
   const payloadData = {
     ...payload,
     label_names: ["Careers Form"],
+    isSaveApollo: false,
   };
 
   try {
