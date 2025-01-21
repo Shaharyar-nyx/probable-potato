@@ -2,7 +2,7 @@ import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, InputHTMLAttributes,
 import { UseFormClearErrors, UseFormRegister, UseFormSetError } from "react-hook-form";
 
 export interface HeroProps {
-  backgroundVideo: string;
+  background_file: string;
   cta?: {
     icon?: string;
     isModal?: boolean;
@@ -41,10 +41,11 @@ export interface BrandMissionProps {
 }
 
 export interface SolutionCardProps {
-  description: string;
-  icon: string;
+  content: string;
+  icon: any;
   isEven?: boolean;
-  link?: string;
+  cta_text?: string;
+  cta_url?: string;
   title: string;
 }
 

@@ -5,23 +5,40 @@ import React from "react";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import styles from "./styles.module.scss";
-import { HeroProps } from "@/types";
 import Modal from "@/components/UI/modal";
 import { DemoForm } from "../demo-form";
+import { STRAPI_ASSETS } from "@/lib";
 
-export const Hero: React.FC<HeroProps> = ({ backgroundVideo, cta, description, featuredImage, title }) => {
+export const Hero: React.FC<any> = (item) => {
+  const { background_file, cta_text, content, featured_image, title } = item || {};
+
+  const cta = {
+    label: cta_text,
+    isModal: true,
+    icon: "ArrowUpRightIcon",
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.backgroundWrapper}>
-        <Image alt="background animation" fill priority src={backgroundVideo} />
+        <video
+          src={`${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`}
+          playsInline
+          preload="true"
+          loop
+          muted
+          autoPlay
+          aria-hidden="true"
+          className="z-20"
+        />
       </div>
       <div className={styles.overlay} />
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.textContent}>
             <div className={`${styles.title} display-1 font-bold`}>{title}</div>
-            <p className={`${styles.description} paragraph-lg`}>{description}</p>
-            {cta && (
+            <p className={`${styles.description} paragraph-lg`}>{content}</p>
+            {cta_text && (
               <Modal cta={cta} buttonStyle="mx-auto lg:mx-0">
                 <DemoForm />
               </Modal>
@@ -33,11 +50,11 @@ export const Hero: React.FC<HeroProps> = ({ backgroundVideo, cta, description, f
               <div className={styles.imageWrapper}>
                 <Parallax className="h-full" translateY={[-20, 20]}>
                   <Image
-                    alt={featuredImage.alt}
+                    alt={featured_image?.data?.attributes?.name}
                     className="rounded-2xl"
                     layout="fill"
                     objectFit="cover"
-                    src={featuredImage.image}
+                    src={`${STRAPI_ASSETS}${featured_image?.data?.attributes?.url}`}
                   />
                 </Parallax>
               </div>

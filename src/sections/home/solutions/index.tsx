@@ -7,6 +7,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import { SolutionCardProps, SolutionsProps } from "@/types/components";
+import { STRAPI_ASSETS } from "@/lib";
 
 const MotionButton = motion(Button);
 
@@ -45,7 +46,7 @@ const staggerChildren = {
   },
 };
 
-const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, link, description, isEven }) => {
+const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, cta_text, cta_url, content, isEven }) => {
   return (
     <motion.div
       className={`${styles.solutionCard} ${isEven ? styles.even : ""}`}
@@ -56,19 +57,25 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, link, descript
     >
       <div className={styles.cardContent}>
         <div className={styles.iconWrapper}>
-          <Image alt={title} height={100} src={icon} width={100} />
+          <Image
+            alt={icon?.data?.attributes?.name}
+            height={100}
+            src={`${STRAPI_ASSETS}${icon?.data?.attributes?.url}`}
+            width={100}
+          />
         </div>
         <div className={`${styles.textContent} ${isEven ? styles.even : ""}`}>
           <h4 className={`${styles.cardTitle} heading-4 font-bold`}>{title}</h4>
-          <p className={`${styles.cardDescription} paragraph-md`}>{description}</p>
-          {(link ?? "") && <Button href={link}>Learn More</Button>}
+          <p className={`${styles.cardDescription} paragraph-md`}>{content}</p>
+          {(cta_url ?? "") && <Button href={cta_url}>{cta_text}</Button>}
         </div>
       </div>
     </motion.div>
   );
 };
 
-export const Solutions: React.FC<SolutionsProps> = ({ title, solutions, crowdsourcing }) => {
+export const Solutions: React.FC<any> = (item) => {
+  const { title, cards, crowdsourcing } = item || {};
   return (
     <div className={styles.solutionsContainer}>
       <div className={styles.sectionBackground} style={{ backgroundImage: `url(/images/bg-image.jpeg)` }}>
@@ -93,7 +100,7 @@ export const Solutions: React.FC<SolutionsProps> = ({ title, solutions, crowdsou
               viewport={{ once: true }}
               whileInView="visible"
             >
-              {solutions.map((solution, index) => (
+              {cards.map((solution: any, index: number) => (
                 <SolutionCard key={index} {...solution} isEven={index % 2 === 1} />
               ))}
             </motion.div>

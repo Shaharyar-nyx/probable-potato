@@ -26,7 +26,9 @@ export async function getPageBySlug(slug: string | null) {
       return null;
     }
 
-    return response.data.pages.data[0].attributes;
+    const items = response.data.pages.data[0].attributes;
+
+    return items;
   } catch (error) {
     console.error("Error fetching page data:", error);
     return null;
