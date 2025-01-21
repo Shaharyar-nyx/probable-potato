@@ -12,7 +12,7 @@
     @apply mb-10 text-neutral-50;
   }
   &-title {
-    @apply mb-5 font-bold text-neutral-50;
+    @apply mb-5 text-center font-bold text-neutral-50;
   }
   &-description {
     @apply mb-10 max-w-screen-xl text-neutral-50;
@@ -57,7 +57,7 @@
     &-container {
       scrollbar-color: #045de3 #c1c4ca;
       scrollbar-width: thin;
-      @apply max-h-[800px] w-full max-w-screen-lg overflow-auto pr-3;
+      @apply max-h-[800px] w-full max-w-screen-lg overflow-auto lg:pr-3;
     }
     &-item {
       @apply mb-5 flex h-[128px] justify-between gap-5 rounded-xl bg-[#045DE31A] p-6 shadow-[8px_8px_40px_0px_rgba(0,0,0,0.12)];
@@ -97,7 +97,7 @@
     }
     &-table {
       &-row {
-        @apply inline-flex w-full items-center justify-around rounded-xl bg-[#045DE31A] py-6 shadow-[8px_8px_40px_0px_rgba(0,0,0,0.12)];
+        @apply inline-flex w-full items-center justify-around rounded-xl bg-[#045DE31A] p-4 shadow-[8px_8px_40px_0px_rgba(0,0,0,0.12)] lg:py-6;
       }
       &-cell {
         @apply inline-block text-center text-neutral-50;

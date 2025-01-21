@@ -20,7 +20,7 @@ const CompanyPage: React.FC = () => {
       <OurCoreTeam {...ourCoreTeamData} />
       <OurCulture {...ourCultureData} />
       <Events {...events} />
-      <News {...newsData} />
+      {/* <News {...newsData} /> */}
       <Tagline {...taglineData} />
     </main>
   );

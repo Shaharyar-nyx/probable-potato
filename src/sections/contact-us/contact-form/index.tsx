@@ -7,6 +7,7 @@ import styles from "./styles.module.scss";
 import { Button, Dropdown, Input, Textarea } from "@/components";
 import formData from "@/data/contact-us/form.json";
 import { ContactUsFormType } from "@/types";
+import { apolloIoClient } from "@/lib";
 
 export const ContactForm: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -20,10 +21,18 @@ export const ContactForm: React.FC = () => {
     reset,
   } = useForm<ContactUsFormType>();
 
-  const onSubmit = (data: ContactUsFormType) => {
+  const onSubmit = async (data: ContactUsFormType) => {
     setFormLoading(true);
-    // Fetching logic
-    console.log(data);
+    const payload = {
+      ...data,
+      label_names: ["Contact Us Form"],
+    };
+
+    try {
+      await apolloIoClient.createContact(payload);
+    } catch (error) {
+      console.error("Failed to create contact:", error);
+    }
     setTimeout(() => {
       setFormSubmitted(true);
       setFormLoading(false);
@@ -51,13 +60,27 @@ export const ContactForm: React.FC = () => {
         </div>
 
         <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            disabled={formLoading}
-            iconName="UserIcon"
-            placeholder="Full Name"
-            {...register("name", { required: "Full Name is required" })}
-            error={errors.name?.message}
-          />
+          <div className="flex flex-row gap-4">
+            <div className="w-full">
+              <Input
+                className="bg-transparent outline-none"
+                disabled={formLoading}
+                iconName="UserIcon"
+                placeholder="First Name"
+                {...register("first_name", { required: "First Name is required" })}
+                error={errors.first_name?.message}
+              />
+            </div>
+            <div className="w-full">
+              <Input
+                className="h-6 bg-transparent pl-2 outline-none"
+                disabled={formLoading}
+                placeholder="Last Name"
+                {...register("last_name", { required: "Last Name is required" })}
+                error={errors.last_name?.message}
+              />
+            </div>
+          </div>
           <Input
             disabled={formLoading}
             iconName="EnvelopeIcon"
@@ -73,14 +96,14 @@ export const ContactForm: React.FC = () => {
           />
           <Controller
             control={control}
-            name="requestType"
+            name="request_type"
             render={({ field }) => (
               <Dropdown
                 disabled={formLoading}
-                error={errors.requestType?.message}
+                error={errors.request_type?.message}
                 handleChange={field.onChange}
                 iconName="BarsArrowUpIcon"
-                id="request-type"
+                id="request_type"
                 label="Request Type"
                 options={formData.request_types.map((requestType) => requestType.label)}
                 value={field.value}
@@ -94,7 +117,7 @@ export const ContactForm: React.FC = () => {
             iconName="ChatBubbleOvalLeftEllipsisIcon"
             placeholder="Your Message (Optional)..."
             rows={4}
-            {...register("message")}
+            {...register("notes")}
           />
           <Button className="self-start px-20" disabled={formLoading} size="large" type="submit">
             Submit

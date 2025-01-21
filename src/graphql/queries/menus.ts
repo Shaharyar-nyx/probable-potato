@@ -1,127 +1,255 @@
 import { gql } from "@apollo/client";
 
-export const QUERY_FOOTER_DIRECTUS = gql`
-  query DirectusFooter {
-    navigation {
-      id
-      title
-      items {
-        title
-        url
-        page {
-          permalink
-          title
-        }
-        has_children
-        children {
-          title
-          url
-        }
-      }
-      blocks {
-        id
-        item {
-          ... on block_form {
-            id
-            title
-            form {
-              id
-              forms_id {
-                id
-                key
-                submit_label
-                title
+export const GET_MAIN_NAV = gql`
+  query Header {
+    header {
+      data {
+        attributes {
+          company_logo {
+            data {
+              attributes {
+                name
+                alternativeText
+                mime
+                url
               }
             }
           }
+          navigations {
+            data {
+              attributes {
+                title
+                key
+                items {
+                  data {
+                    attributes {
+                      title
+                      description
+                      has_children
+                      url
+                      icon {
+                        data {
+                          attributes {
+                            name
+                            alternativeText
+                            url
+                          }
+                        }
+                      }
+                      page {
+                        data {
+                          attributes {
+                            title
+                            slug
+                          }
+                        }
+                      }
+                      children {
+                        data {
+                          attributes {
+                            title
+                            description
+                            has_children
+                            children {
+                              data {
+                                attributes {
+                                  title
+                                  description
+                                  has_children
+                                  url
+                                  name
+                                  icon {
+                                    data {
+                                      attributes {
+                                        name
+                                        alternativeText
+                                        mime
+                                        url
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                            url
+                            name
+                            icon {
+                              data {
+                                attributes {
+                                  name
+                                  alternativeText
+                                  mime
+                                  url
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          supported_languages {
+            data {
+              attributes {
+                name
+                code
+                image {
+                  data {
+                    attributes {
+                      name
+                      alternativeText
+                      mime
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+          background_file {
+            data {
+              attributes {
+                name
+                alternativeText
+                mime
+                url
+              }
+            }
+          }
+          background_color
+          button_group {
+            id
+            title
+            external_href
+            href
+            transparent
+            variant
+          }
         }
-        collection
-      }
-    }
-  }
-`;
-
-export const GET_MAIN_NAV = gql`
-  query DirectusPagesByPerma {
-    navigation(filter: { id: { _eq: "main" } }) {
-      id
-      status
-      title
-      logo_default {
-        id
-        title
-        type
-      }
-      logo_on_hover {
-        id
-        title
-        type
-      }
-      background_file {
-        id
-        title
-        type
-      }
-      items {
-        icon
-        id
-        open_in_new_tab
-        sort
-        title
-        type
-        url
-        label
-      }
-      copyright
-      privacy_policy
-      social_medias {
-        id
-        sort
-        text
-        link
       }
     }
   }
 `;
 
 export const GET_FOOTER_NAV = gql`
-  query DirectusPagesByPerma {
-    navigation(filter: { id: { _eq: "footer" } }) {
-      id
-      status
-      title
-      logo_default {
-        id
-        title
-        type
-      }
-      logo_on_hover {
-        id
-        title
-        type
-      }
-      background_file {
-        id
-        title
-        type
-      }
-      items {
-        icon
-        id
-        open_in_new_tab
-        sort
-        title
-        type
-        url
-        label
-      }
-      copyright
-      privacy_policy
-      social_medias {
-        id
-        sort
-        text
-        link
+  query Footer {
+    footer {
+      data {
+        attributes {
+          company_logo {
+            data {
+              attributes {
+                name
+                alternativeText
+                mime
+                url
+              }
+            }
+          }
+          navigations {
+            data {
+              attributes {
+                title
+                key
+                items {
+                  data {
+                    attributes {
+                      title
+                      description
+                      has_children
+                      url
+                      icon {
+                        data {
+                          attributes {
+                            name
+                            alternativeText
+                            url
+                          }
+                        }
+                      }
+                      page {
+                        data {
+                          attributes {
+                            title
+                            slug
+                          }
+                        }
+                      }
+                      children {
+                        data {
+                          attributes {
+                            title
+                            description
+                            has_children
+                            url
+                            icon {
+                              data {
+                                attributes {
+                                  name
+                                  alternativeText
+                                  mime
+                                  url
+                                }
+                              }
+                            }
+                            page {
+                              data {
+                                attributes {
+                                  title
+                                  slug
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          company_socials {
+            data {
+              attributes {
+                name
+                url
+                social {
+                  data {
+                    attributes {
+                      name
+                      icon {
+                        data {
+                          attributes {
+                            name
+                            alternativeText
+                            mime
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          background_file {
+            data {
+              attributes {
+                name
+                alternativeText
+                mime
+                url
+              }
+            }
+          }
+          background_color
+        }
       }
     }
   }

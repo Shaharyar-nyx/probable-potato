@@ -9,12 +9,12 @@ export const Why: React.FC = () => {
   return (
     <section className="why-parent-container">
       <div className="why-container">
-        <div className="w-[60%]">
+        <div className="w-full lg:w-[60%]">
           <span className="tagline why-tagline">{data.tagline}</span>
           <h2 className="heading-1 why-title">{data.title}</h2>
           <p className="paragraph-md why-content">{data.text}</p>
         </div>
-        <div className="relative h-[460px] w-[38%] p-10 xl:h-[388px]">
+        <div className="relative grid h-auto w-full grid-cols-1 gap-6 md:grid-cols-3 lg:block lg:h-[460px] lg:w-[38%] lg:p-10 xl:h-[388px]">
           {data.features.map((feature, index) => (
             <div
               key={index}
