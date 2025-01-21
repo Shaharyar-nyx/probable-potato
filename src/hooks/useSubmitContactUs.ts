@@ -17,10 +17,12 @@ export async function submitContactUs(
   const payloadData = {
     ...payload,
     isSaveApollo: isCompanyEmail,
+    request: [payload.request],
+    channel: "Contact Us Form",
   };
 
   try {
-    await cyberbayClient.createContact(payloadData);
+    await cyberbayClient.createContact(JSON.stringify(payloadData));
     reset();
     onDone(null, { message: "Form submitted successfully!" });
   } catch (error) {

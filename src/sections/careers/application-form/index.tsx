@@ -16,6 +16,7 @@ export const ApplicationForm: React.FC = () => {
     register,
     handleSubmit,
     setError,
+    setValue,
     clearErrors,
     reset,
     formState: { errors },
@@ -25,14 +26,8 @@ export const ApplicationForm: React.FC = () => {
   const shouldShowSuccessMessage = called && !loading && !error;
 
   const onSubmit = async (data: ApplyFormType) => {
-    const resumeFile = data.resume instanceof FileList ? data.resume[0] : data.resume;
-
-    const formData = {
-      ...data,
-      resume: resumeFile,
-    };
-
-    submit(formData);
+    console.log(data, "xxx");
+    submit(data);
   };
 
   return (
@@ -94,6 +89,7 @@ export const ApplicationForm: React.FC = () => {
               name="resume"
               register={register}
               setError={setError}
+              setValue={setValue}
             />
 
             {/* Message Textarea */}
@@ -102,7 +98,7 @@ export const ApplicationForm: React.FC = () => {
               iconName="ChatBubbleOvalLeftEllipsisIcon"
               placeholder="Tell us what’s excited about the future of cybersecurity..."
               rows={4}
-              {...register("message", { required: "Message is required" })}
+              {...register("message")}
             />
 
             <Button className={styles.submitButton} disabled={loading} type="submit">

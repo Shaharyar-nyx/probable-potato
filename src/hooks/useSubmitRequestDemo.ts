@@ -17,10 +17,11 @@ export async function submitRequestDemo(
   const payloadData = {
     ...payload,
     isSaveApollo: isCompanyEmail,
+    channel: "Demo Form",
   };
 
   try {
-    await cyberbayClient.createContact(payloadData);
+    await cyberbayClient.createContact(JSON.stringify(payloadData));
     reset();
     onDone(null, { message: "Form submitted successfully!" });
   } catch (error) {

@@ -11,13 +11,20 @@ export async function submitApplicationForm(
   reset: UseFormReset<ApplyFormType>,
   onDone: (error: Error | null, data: { message: string } | null) => void,
 ) {
-  const payloadData = {
-    ...payload,
-    isSaveApollo: false,
-  };
+  const formData = new FormData();
+
+  formData.append("name", payload.name);
+  formData.append("email", payload.email);
+  formData.append("message", payload.message);
+  formData.append("isSaveApollo", "false");
+  formData.append("channel", "Careers Form");
+
+  if (payload.resume) {
+    formData.append("resume", payload.resume);
+  }
 
   try {
-    await cyberbayClient.createContact(payloadData);
+    await cyberbayClient.createContact(formData);
     reset();
     onDone(null, { message: "Form submitted successfully!" });
   } catch (error) {

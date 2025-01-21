@@ -13,14 +13,15 @@ export async function submitContactSales(
   onDone: (error: Error | null, data: { message: string } | null) => void,
 ) {
   const isCompanyEmail = CompanyEmailValidator.isCompanyEmail(payload.email);
-  
+
   const payloadData = {
     ...payload,
     isSaveApollo: isCompanyEmail,
+    channel: "Contact Sales Form",
   };
 
   try {
-    await cyberbayClient.createContact(payloadData);
+    await cyberbayClient.createContact(JSON.stringify(payloadData));
     reset();
     onDone(null, { message: "Form submitted successfully!" });
   } catch (error) {

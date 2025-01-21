@@ -11,10 +11,7 @@ export const cyberbayClient = {
   async createContact(data: any): Promise<ContactResponse> {
     const response = await fetch(`${CYBERBAY_FORM_URL}`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+      body: data,
     });
 
     if (!response.ok) {
