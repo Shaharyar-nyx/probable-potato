@@ -59,85 +59,87 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
           </Link>
 
           <div className="hidden items-center gap-3 lg:flex">
-            {navigations.data[0].attributes.items.data.map(({ attributes: item }: any) => (
-              <div key={item.title}>
-                {item.has_children ? (
-                  <button
-                    ref={buttonRef}
-                    className={`group flex items-center rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
-                      showSolutionsDropdown ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
-                    }`}
-                    onClick={() => setShowSolutionsDropdown(!showSolutionsDropdown)}
-                  >
-                    {item.title}
-                    <span
-                      className={`ml-1 inline-block transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
+            {navigations.data[0].attributes.items.data.map(
+              ({ attributes: { title, url, has_children, children } }: any) => (
+                <div key={title}>
+                  {has_children ? (
+                    <button
+                      ref={buttonRef}
+                      className={`group flex items-center rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
+                        showSolutionsDropdown ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
+                      }`}
+                      onClick={() => setShowSolutionsDropdown(!showSolutionsDropdown)}
                     >
-                      <img alt="Chevron Down" src="/images/chevron-down.svg" />
-                    </span>
-                  </button>
-                ) : (
-                  <Link
-                    className={`group rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
-                      pathname === item.url ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
-                    }`}
-                    href={item.url.startsWith('/') ? item.url : `/${item.url}`}
-                  >
-                    {item.title}
-                  </Link>
-                )}
+                      {title}
+                      <span
+                        className={`ml-1 inline-block transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
+                      >
+                        <img alt="Chevron Down" src="/images/chevron-down.svg" />
+                      </span>
+                    </button>
+                  ) : (
+                    <Link
+                      className={`group rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
+                        pathname === url ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
+                      }`}
+                      href={url.startsWith("/") ? url : `/${url}`}
+                    >
+                      {title}
+                    </Link>
+                  )}
 
-                {item.has_children && showSolutionsDropdown && (
-                  <div
-                    ref={dropdownRef}
-                    className="absolute left-0 top-[60px] w-full rounded-b-xl bg-neutral-50 shadow-lg"
-                  >
-                    <div className="px-10 pb-10 pt-5">
-                      <div className="grid grid-cols-3 gap-[44px]">
-                        {item?.children?.data.map(({ attributes: { title, children } }: any) => {
-                          return (
-                            <div key={title} className="w-full">
-                              <h3 className="paragraph-md mb-5 font-semibold text-primary-800">{title}</h3>
-                              <div className="space-y-6">
-                                {children?.data.map(({ attributes: section }: any) => (
-                                  <Link
-                                    key={section?.title}
-                                    className="group block rounded-[8px] p-4 hover:bg-primary-500"
-                                    href={section?.url.startsWith('/') ? section?.url : `/${section?.url}`}
-                                    onClick={() => setShowSolutionsDropdown(false)}
-                                  >
-                                    <div className="flex items-start gap-2">
-                                      <span className="rounded-[4px] p-1 text-2xl group-hover:bg-neutral-50">
-                                        {section.icon?.data?.attributes?.url ? (
-                                          <img
-                                            className="text-primary-80 h-[20px] w-[20px]"
-                                            src={STRAPI_ASSETS + section.icon?.data?.attributes?.url}
-                                          />
-                                        ) : (
-                                          <div className="h-[20px] w-[20px] bg-neutral-300" />
-                                        )}
-                                      </span>
-                                      <div className="w-full">
-                                        <div className="paragraph-md mb-1 text-primary-800 group-hover:text-neutral-50">
-                                          {section.title}
+                  {has_children && showSolutionsDropdown && (
+                    <div
+                      ref={dropdownRef}
+                      className="absolute left-0 top-[60px] w-full rounded-b-xl bg-neutral-50 shadow-lg"
+                    >
+                      <div className="px-10 pb-10 pt-5">
+                        <div className="grid grid-cols-3 gap-[44px]">
+                          {children?.data.map(({ attributes: { title, children } }: any) => {
+                            return (
+                              <div key={title} className="w-full">
+                                <h3 className="paragraph-md mb-5 font-semibold text-primary-800">{title}</h3>
+                                <div className="space-y-6">
+                                  {children?.data.map(({ attributes: { title, url, icon, description } }: any) => (
+                                    <Link
+                                      key={title}
+                                      className="group block rounded-[8px] p-4 hover:bg-primary-500"
+                                      href={url.startsWith("/") ? url : `/${url}`}
+                                      onClick={() => setShowSolutionsDropdown(false)}
+                                    >
+                                      <div className="flex items-start gap-2">
+                                        <span className="rounded-[4px] p-1 text-2xl group-hover:bg-neutral-50">
+                                          {icon?.data?.attributes?.url ? (
+                                            <img
+                                              className="text-primary-80 h-[20px] w-[20px]"
+                                              src={STRAPI_ASSETS + icon?.data?.attributes?.url}
+                                            />
+                                          ) : (
+                                            <div className="h-[20px] w-[20px] bg-neutral-300" />
+                                          )}
+                                        </span>
+                                        <div className="w-full">
+                                          <div className="paragraph-md mb-1 text-primary-800 group-hover:text-neutral-50">
+                                            {title}
+                                          </div>
+                                          <p className="paragraph-sm text-neutral-800 group-hover:text-neutral-50">
+                                            {description}
+                                          </p>
                                         </div>
-                                        <p className="paragraph-sm text-neutral-800 group-hover:text-neutral-50">
-                                          {section.description}
-                                        </p>
                                       </div>
-                                    </div>
-                                  </Link>
-                                ))}
+                                    </Link>
+                                  ))}
+                                </div>
                               </div>
-                            </div>
-                          );
-                        })}
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              ),
+            )}
           </div>
         </div>
 
@@ -207,70 +209,73 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
           }`}
         >
           <div className="flex flex-col space-y-2 p-4">
-            {navigations.data[0].attributes.items.data.map(({ attributes: item }: any) => (
-              <div key={item.title} className="w-full">
-                {item.has_children ? (
-                  <button
-                    className={`w-full rounded-lg px-4 py-3 text-left text-base font-medium transition-colors hover:bg-[#EFF0F2CC] ${
-                      pathname === item.url ? "bg-primary-50 text-primary-500" : "text-primary-800"
-                    }`}
-                    onClick={() => {
-                      setShowSolutionsDropdown(!showSolutionsDropdown);
-                    }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span>{item.title}</span>
-                      {item.has_children && (
-                        <IconRenderer
-                          className={`h-5 w-5 transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
-                          iconName="ChevronDownIcon"
-                        />
-                      )}
-                    </div>
-                  </button>
-                ) : (
-                  <div className="w-full px-4 py-3 text-left transition-colors">
-                    <Link className={`text-base font-medium text-primary-800`} href={item.url.startsWith('/') ? item.url : `/${item.url}`}>
-                      {item.title}
-                    </Link>
-                  </div>
-                )}
-
-                {item.has_children && showSolutionsDropdown && (
-                  <div className="mt-2 space-y-2 pl-4">
-                    {item?.children?.data.map(({ attributes: { title, children } }: any) => (
-                      <div key={title} className="py-4">
-                        <div className="mb-3 text-sm font-semibold text-primary-800">{title}</div>
-                        <div className="space-y-3">
-                          {children?.data.map(({ attributes: menuItem }: any) => (
-                            <Link
-                              key={menuItem.title}
-                              className="group flex items-start space-x-3 rounded-lg p-2 transition-colors hover:bg-primary-500 group-hover:text-neutral-50"
-                              href={menuItem.url.startsWith('/') ? menuItem.url : `/${menuItem.url}`}
-                            >
-                              <span className="flex-shrink-0 rounded-md p-1">
-                                <img
-                                  className="h-5 w-5 text-primary-500"
-                                  src={STRAPI_ASSETS + menuItem.icon?.data?.attributes?.url}
-                                />
-                              </span>
-                              <div>
-                                <div className="text-sm font-medium text-primary-800 group-hover:text-neutral-50">
-                                  {menuItem.title}
-                                </div>
-                                <p className="text-xs text-neutral-600 group-hover:text-neutral-50">
-                                  {menuItem.description}
-                                </p>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
+            {navigations.data[0].attributes.items.data.map(
+              ({ attributes: { url, has_children, children, title, description } }: any) => (
+                <div key={title} className="w-full">
+                  {has_children ? (
+                    <button
+                      className={`w-full rounded-lg px-4 py-3 text-left text-base font-medium transition-colors hover:bg-[#EFF0F2CC] ${
+                        pathname === url ? "bg-primary-50 text-primary-500" : "text-primary-800"
+                      }`}
+                      onClick={() => {
+                        setShowSolutionsDropdown(!showSolutionsDropdown);
+                      }}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span>{title}</span>
+                        {has_children && (
+                          <IconRenderer
+                            className={`h-5 w-5 transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
+                            iconName="ChevronDownIcon"
+                          />
+                        )}
                       </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+                    </button>
+                  ) : (
+                    <div className="w-full px-4 py-3 text-left transition-colors">
+                      <Link
+                        className={`text-base font-medium text-primary-800`}
+                        href={url.startsWith("/") ? url : `/${url}`}
+                      >
+                        {title}
+                      </Link>
+                    </div>
+                  )}
+
+                  {has_children && showSolutionsDropdown && (
+                    <div className="mt-2 space-y-2 pl-4">
+                      {children?.data.map(({ attributes: { title, children } }: any) => (
+                        <div key={title} className="py-4">
+                          <div className="mb-3 text-sm font-semibold text-primary-800">{title}</div>
+                          <div className="space-y-3">
+                            {children?.data.map(({ attributes: { title, url, icon, description } }: any) => (
+                              <Link
+                                key={title}
+                                className="group flex items-start space-x-3 rounded-lg p-2 transition-colors hover:bg-primary-500 group-hover:text-neutral-50"
+                                href={url.startsWith("/") ? url : `/${url}`}
+                              >
+                                <span className="flex-shrink-0 rounded-md p-1">
+                                  <img
+                                    className="h-5 w-5 text-primary-500"
+                                    src={STRAPI_ASSETS + icon?.data?.attributes?.url}
+                                  />
+                                </span>
+                                <div>
+                                  <div className="text-sm font-medium text-primary-800 group-hover:text-neutral-50">
+                                    {title}
+                                  </div>
+                                  <p className="text-xs text-neutral-600 group-hover:text-neutral-50">{description}</p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ),
+            )}
 
             <hr className="my-4 border-neutral-200" />
             {/* 
