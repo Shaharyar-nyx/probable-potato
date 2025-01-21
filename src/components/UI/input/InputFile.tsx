@@ -1,8 +1,6 @@
 "use client";
-
 import clsx from "clsx";
 import React, { ButtonHTMLAttributes, useRef, useState } from "react";
-
 import { Button, IconRenderer } from "@/components";
 import styles from "@/sections/careers/application-form/styles.module.scss";
 import { InputFileProps } from "@/types";
@@ -15,93 +13,56 @@ export const InputFile: React.FC<InputFileProps> = ({
   maxFileSize,
   name,
   register,
+  setValue,
   setError,
   className,
   children = "Upload your resume",
   ...buttonProps
 }) => {
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
-  const { ref: registerRef, onChange: registerOnChange, ...registerProps } = register?.(name, {
-    required: "File is required",
-    validate: {
-      fileType: (value: FileList | null) => {
-        if (!value?.length) return "File is required";
-        const file = value[0];
-        return file.type === "application/pdf" || "Only PDF files are allowed";
-      },
-      fileSize: (value: FileList | null) => {
-        if (!value?.length) return "File is required";
-        const file = value[0];
-        return file.size <= maxFileSize || `File size must be less than ${maxFileSize / 1024 / 1024}MB`;
-      },
-    },
-  }) || {};
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    
-    if (!file) {
-      setSelectedFile(null);
-      if (registerOnChange) {
-        registerOnChange(event);
+
+    if (file) {
+      const validType = "application/pdf";
+
+      if (setError !== undefined) {
+        if (file.type !== validType) {
+          setError(name, { type: "manual", message: "Only PDF files are allowed" });
+          return;
+        }
+
+        if (file.size > maxFileSize) {
+          setError(name, { type: "manual", message: `File size must be less than ${maxFileSize / 1024 / 1024}MB` });
+          return;
+        }
       }
-      return;
-    }
 
-    const validType = "application/pdf";
-    if (file.type !== validType) {
-      setError?.(name, { type: "manual", message: "Only PDF files are allowed" });
-      setSelectedFile(null);
-      event.target.value = '';
-      return;
-    }
+      if (clearErrors !== undefined) {
+        clearErrors?.(name);
+      }
 
-    if (file.size > maxFileSize) {
-      setError?.(name, { 
-        type: "manual", 
-        message: `File size must be less than ${maxFileSize / 1024 / 1024}MB` 
-      });
-      setSelectedFile(null);
-      event.target.value = '';
-      return;
-    }
-
-    clearErrors?.(name);
-    setSelectedFile(file);
-    if (registerOnChange) {
-      registerOnChange(event);
+      setValue?.(name, file);
+      setSelectedFile(file);
+    } else {
+      if (setError !== undefined) {
+        setError(name, { type: "manual", message: "Please select a file" });
+      }
     }
   };
 
   const handleUploadClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
+    inputRef.current?.click();
   };
 
   return (
     <div>
-      <input
-        type="file"
-        accept=".pdf"
-        className="hidden"
-        id={id}
-        name={name}
-        ref={(e) => {
-          fileInputRef.current = e;
-          if (registerRef) {
-            registerRef(e);
-          }
-        }}
-        onChange={handleFileChange}
-      />
+      <input type="file" ref={inputRef} accept=".pdf" className="hidden" id={id} onChange={handleFileChange} />
       <Button
         className={clsx("max-w-[250px] border", error ? "border-red-400" : "border-primary-800")}
         disabled={loading}
-        error={error}
-        iconName="ArrowUpTrayIcon"
         type="button"
         variant="neutral"
         onClick={handleUploadClick}

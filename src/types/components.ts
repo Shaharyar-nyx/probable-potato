@@ -1,5 +1,5 @@
 import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, InputHTMLAttributes, TextareaHTMLAttributes } from "react";
-import { UseFormClearErrors, UseFormRegister, UseFormSetError } from "react-hook-form";
+import { UseFormClearErrors, UseFormRegister, UseFormSetError, UseFormSetValue } from "react-hook-form";
 
 export interface HeroProps {
   backgroundVideo: string;
@@ -150,6 +150,7 @@ export interface InputFileProps {
   name: string;
   register?: UseFormRegister<any>;
   setError?: UseFormSetError<any>;
+  setValue?: UseFormSetValue<any>;
   className?: string;
   children?: React.ReactNode;
 }

@@ -21,7 +21,7 @@ export async function submitRequestDemo(
   };
 
   try {
-    await cyberbayClient.createContact(payloadData);
+    await cyberbayClient.createContact(JSON.stringify(payloadData));
     reset();
     onDone(null, { message: "Form submitted successfully!" });
   } catch (error) {
