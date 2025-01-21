@@ -17,6 +17,7 @@ export async function submitReport(
   const payloadData = {
     ...payload,
     isSaveApollo: isCompanyEmail,
+    channel: "Free Report Form",
   };
 
   try {

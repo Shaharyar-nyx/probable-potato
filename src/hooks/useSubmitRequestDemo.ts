@@ -17,6 +17,7 @@ export async function submitRequestDemo(
   const payloadData = {
     ...payload,
     isSaveApollo: isCompanyEmail,
+    channel: "Demo Form",
   };
 
   try {

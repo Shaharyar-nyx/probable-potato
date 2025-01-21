@@ -61,14 +61,14 @@ export const ContactForm: React.FC = () => {
           />
           <Controller
             control={control}
-            name="channel"
+            name="request"
             render={({ field }) => (
               <Dropdown
                 disabled={loading}
-                error={errors.channel?.message}
+                error={errors.request?.message}
                 handleChange={field.onChange}
                 iconName="BarsArrowUpIcon"
-                id="channel"
+                id="request"
                 label="Request Type"
                 options={formData.request_types.map((requestType) => requestType.label)}
                 value={field.value}

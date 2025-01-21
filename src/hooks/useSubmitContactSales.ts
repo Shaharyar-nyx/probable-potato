@@ -13,10 +13,11 @@ export async function submitContactSales(
   onDone: (error: Error | null, data: { message: string } | null) => void,
 ) {
   const isCompanyEmail = CompanyEmailValidator.isCompanyEmail(payload.email);
-  
+
   const payloadData = {
     ...payload,
     isSaveApollo: isCompanyEmail,
+    channel: "Contact Sales Form",
   };
 
   try {

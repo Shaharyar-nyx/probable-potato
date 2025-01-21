@@ -2,7 +2,7 @@ export type ContactUsFormType = {
   email: string;
   message: string;
   name: string;
-  channel: string;
+  request: string;
 };
 
 export type ApplyFormType = {
@@ -18,7 +18,7 @@ export interface DemoFormType {
   title: string;
   name: string;
   message: string;
-  channel: string[];
+  request: string[];
 }
 
 export type ContactSalesFormType = {

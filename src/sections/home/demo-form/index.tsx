@@ -109,14 +109,14 @@ export const DemoForm: React.FC = () => {
 
           <Controller
             control={control}
-            name="channel"
+            name="request"
             render={({ field }) => (
               <Dropdown
                 disabled={loading}
-                error={errors.channel?.message}
+                error={errors.request?.message}
                 handleChange={field.onChange}
                 iconName="ListBulletIcon"
-                id="channel"
+                id="request"
                 label="Services you are interested (multiple choice)"
                 multiple
                 options={formData.demoFormData.serviceTypes.map((service) => service.label)}

@@ -13,6 +13,7 @@ export async function submitSubscribe(
 ) {
   const payloadData = {
     ...payload,
+    channel: "Subscribe Form",
   };
 
   try {
