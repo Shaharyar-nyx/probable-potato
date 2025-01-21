@@ -1,18 +1,15 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import styles from "./styles.module.scss";
 import { Button, Dropdown, Input, Textarea } from "@/components";
 import formData from "@/data/contact-us/form.json";
 import { ContactUsFormType } from "@/types";
-import { apolloIoClient } from "@/lib";
+import { useSubmitContactUs } from "@/hooks/useSubmitContactUs";
 
 export const ContactForm: React.FC = () => {
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formLoading, setFormLoading] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -21,31 +18,12 @@ export const ContactForm: React.FC = () => {
     reset,
   } = useForm<ContactUsFormType>();
 
+  const { submit, loading, error, called } = useSubmitContactUs(reset);
+  const shouldShowSuccessMessage = called && !loading && !error;
+
   const onSubmit = async (data: ContactUsFormType) => {
-    setFormLoading(true);
-    const payload = {
-      ...data,
-      label_names: ["Contact Us Form"],
-    };
-
-    try {
-      await apolloIoClient.createContact(payload);
-    } catch (error) {
-      console.error("Failed to create contact:", error);
-    }
-    setTimeout(() => {
-      setFormSubmitted(true);
-      setFormLoading(false);
-      reset();
-    }, 1000);
+    submit(data);
   };
-
-  useEffect(() => {
-    if (formSubmitted) {
-      const timeout = setTimeout(() => setFormSubmitted(false), 5000);
-      return () => clearTimeout(timeout);
-    }
-  }, [formSubmitted]);
 
   return (
     <div className={styles.container}>
@@ -60,31 +38,18 @@ export const ContactForm: React.FC = () => {
         </div>
 
         <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-row gap-4">
-            <div className="w-full">
-              <Input
-                className="bg-transparent outline-none"
-                disabled={formLoading}
-                iconName="UserIcon"
-                placeholder="First Name"
-                {...register("first_name", { required: "First Name is required" })}
-                error={errors.first_name?.message}
-              />
-            </div>
-            <div className="w-full">
-              <Input
-                className="h-6 bg-transparent pl-2 outline-none"
-                disabled={formLoading}
-                placeholder="Last Name"
-                {...register("last_name", { required: "Last Name is required" })}
-                error={errors.last_name?.message}
-              />
-            </div>
-          </div>
           <Input
-            disabled={formLoading}
+            disabled={loading}
+            iconName="UserIcon"
+            placeholder="Full Name *"
+            {...register("name", { required: "Full Name is required" })}
+            error={errors.name?.message}
+          />
+
+          <Input
+            disabled={loading}
             iconName="EnvelopeIcon"
-            placeholder="Email"
+            placeholder="Email *"
             {...register("email", {
               required: "Email is required",
               pattern: {
@@ -96,14 +61,14 @@ export const ContactForm: React.FC = () => {
           />
           <Controller
             control={control}
-            name="request_type"
+            name="request"
             render={({ field }) => (
               <Dropdown
-                disabled={formLoading}
-                error={errors.request_type?.message}
+                disabled={loading}
+                error={errors.request?.message}
                 handleChange={field.onChange}
                 iconName="BarsArrowUpIcon"
-                id="request_type"
+                id="request"
                 label="Request Type"
                 options={formData.request_types.map((requestType) => requestType.label)}
                 value={field.value}
@@ -113,19 +78,19 @@ export const ContactForm: React.FC = () => {
           />
 
           <Textarea
-            disabled={formLoading}
+            disabled={loading}
             iconName="ChatBubbleOvalLeftEllipsisIcon"
             placeholder="Your Message (Optional)..."
             rows={4}
-            {...register("notes")}
+            {...register("message")}
           />
-          <Button className="self-start px-20" disabled={formLoading} size="large" type="submit">
+          <Button className="self-start px-20" disabled={loading} size="large" type="submit">
             Submit
           </Button>
 
-          {formSubmitted && (
+          {shouldShowSuccessMessage && (
             <p aria-live="polite" className="paragraph-sm text-green-500">
-              Information sent successfully!
+              Thank you for reaching out! We will get back to you shortly.
             </p>
           )}
         </form>

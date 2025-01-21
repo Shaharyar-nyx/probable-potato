@@ -141,16 +141,18 @@ export type ButtonAsExternalLink = BaseButtonProps &
 
 export type ButtonProps = ButtonAsButton | ButtonAsInternalLink | ButtonAsExternalLink;
 
-export type InputFileProps = {
+export interface InputFileProps {
   clearErrors?: UseFormClearErrors<any>;
   error?: string;
-  formLoading?: boolean | undefined;
+  loading?: boolean;
   id?: string;
   maxFileSize: number;
   name: string;
   register?: UseFormRegister<any>;
   setError?: UseFormSetError<any>;
-} & ButtonProps;
+  className?: string;
+  children?: React.ReactNode;
+}
 
 export interface IconRendererProps {
   className?: string;
@@ -400,17 +402,21 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   parentClassName?: string;
 }
 
-export interface DropdownPropsInput extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface DropdownPropsInput {
   ariaDescribedBy?: string;
   className?: string;
   disabled?: boolean;
   error?: string;
-  handleChange?: (value: string) => void;
+  handleChange?: (value: string | string[]) => void;
   iconName?: string;
   id?: string;
   label: string;
+  multiple?: boolean;
   options: string[];
-  value?: string;
+  value?: string | string[];
+  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface BlockType {

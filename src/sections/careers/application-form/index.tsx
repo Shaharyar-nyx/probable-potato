@@ -1,17 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
 import styles from "./styles.module.scss";
 import { Button, IconRenderer, Input, Textarea, InputFile } from "@/components";
 import { ApplyFormType } from "@/types";
+import { useSubmitApplicationForm } from "@/hooks/useSubmitApplicationForm";
 
 export const ApplicationForm: React.FC = () => {
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formLoading, setFormLoading] = useState(false);
-
   const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB in bytes
 
   const {
@@ -23,23 +21,19 @@ export const ApplicationForm: React.FC = () => {
     formState: { errors },
   } = useForm<ApplyFormType>();
 
-  const onSubmit = (data: ApplyFormType) => {
-    setFormLoading(true);
-    console.log("Form submitted:", data);
-    // Simulate fetching logic
-    setTimeout(() => {
-      setFormSubmitted(true);
-      setFormLoading(false);
-      reset();
-    }, 1000);
-  };
+  const { submit, loading, error, called } = useSubmitApplicationForm(reset);
+  const shouldShowSuccessMessage = called && !loading && !error;
 
-  useEffect(() => {
-    if (formSubmitted) {
-      const timeout = setTimeout(() => setFormSubmitted(false), 5000);
-      return () => clearTimeout(timeout);
-    }
-  }, [formSubmitted]);
+  const onSubmit = async (data: ApplyFormType) => {
+    const resumeFile = data.resume instanceof FileList ? data.resume[0] : data.resume;
+
+    const formData = {
+      ...data,
+      resume: resumeFile,
+    };
+
+    submit(formData);
+  };
 
   return (
     <section className={styles.section}>
@@ -66,20 +60,21 @@ export const ApplicationForm: React.FC = () => {
 
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <p className={`paragraph-lg ${styles.formSubtitle}`}>Let&apos;s grow together.</p>
-            {/* Full Name Input */}
+
             <Input
-              disabled={formLoading}
-              error={errors.name?.message}
+              disabled={loading}
               iconName="UserIcon"
-              placeholder="Full Name"
+              placeholder="Full Name *"
               {...register("name", { required: "Full Name is required" })}
+              error={errors.name?.message}
             />
+
             {/* Email Input */}
             <Input
-              disabled={formLoading}
+              disabled={loading}
               error={errors.email?.message}
               iconName="EnvelopeIcon"
-              placeholder="Email"
+              placeholder="Email *"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -93,7 +88,7 @@ export const ApplicationForm: React.FC = () => {
             <InputFile
               clearErrors={clearErrors}
               error={errors.resume?.message}
-              formLoading={formLoading}
+              loading={loading}
               id="resume"
               maxFileSize={MAX_FILE_SIZE}
               name="resume"
@@ -103,20 +98,20 @@ export const ApplicationForm: React.FC = () => {
 
             {/* Message Textarea */}
             <Textarea
-              disabled={formLoading}
+              disabled={loading}
               iconName="ChatBubbleOvalLeftEllipsisIcon"
-              placeholder="Your Message (Optional)..."
+              placeholder="Tell us what’s excited about the future of cybersecurity..."
               rows={4}
-              {...register("message")}
+              {...register("message", { required: "Message is required" })}
             />
 
-            <Button className={styles.submitButton} disabled={formLoading} type="submit">
+            <Button className={styles.submitButton} disabled={loading} type="submit">
               Submit
             </Button>
 
-            {formSubmitted && (
+            {shouldShowSuccessMessage && (
               <p aria-live="polite" className="paragraph-sm text-green-500">
-                Information sent successfully!
+                Thank you for reaching out! We will get back to you shortly.
               </p>
             )}
           </form>

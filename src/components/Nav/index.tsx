@@ -81,7 +81,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                     className={`group rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
                       pathname === item.url ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
                     }`}
-                    href={item.url}
+                    href={item.url.startsWith('/') ? item.url : `/${item.url}`}
                   >
                     {item.title}
                   </Link>
@@ -103,7 +103,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                                   <Link
                                     key={section?.title}
                                     className="group block rounded-[8px] p-4 hover:bg-primary-500"
-                                    href={section?.url}
+                                    href={section?.url.startsWith('/') ? section?.url : `/${section?.url}`}
                                     onClick={() => setShowSolutionsDropdown(false)}
                                   >
                                     <div className="flex items-start gap-2">
@@ -230,7 +230,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                   </button>
                 ) : (
                   <div className="w-full px-4 py-3 text-left transition-colors">
-                    <Link className={`text-base font-medium text-primary-800`} href={item.url}>
+                    <Link className={`text-base font-medium text-primary-800`} href={item.url.startsWith('/') ? item.url : `/${item.url}`}>
                       {item.title}
                     </Link>
                   </div>
@@ -246,7 +246,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                             <Link
                               key={menuItem.title}
                               className="group flex items-start space-x-3 rounded-lg p-2 transition-colors hover:bg-primary-500 group-hover:text-neutral-50"
-                              href={menuItem.url}
+                              href={menuItem.url.startsWith('/') ? menuItem.url : `/${menuItem.url}`}
                             >
                               <span className="flex-shrink-0 rounded-md p-1">
                                 <img

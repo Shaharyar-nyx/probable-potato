@@ -39,8 +39,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           <IconRenderer
             className={clsx("h-6 w-6", {
               "text-red-400": error !== undefined,
-              "text-primary-800": hasFocus && !disabled && error === undefined,
-              "text-neutral-400": !hasFocus && error === undefined && !disabled,
+              "text-primary-800":
+                (hasFocus && !disabled && error === undefined) || (!hasFocus && error === undefined && !disabled),
               "text-primary-100": disabled,
             })}
             iconName={iconName}

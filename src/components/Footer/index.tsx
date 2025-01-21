@@ -1,7 +1,12 @@
+"use client";
+
+import { useSubmitSubscribe } from "@/hooks/useSubmitSubscribe";
+import { SubscribeType } from "@/types";
 import moment from "moment";
-import Image from "next/image";
 import Link from "next/link";
 import React, { JSX } from "react";
+import { useForm } from "react-hook-form";
+import { Button, Input } from "../UI";
 
 interface NavItem {
   href: string;
@@ -111,6 +116,20 @@ const socialLinks: SocialLink[] = [
 ];
 
 const Footer: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<SubscribeType>();
+
+  const { submit, loading, error, called } = useSubmitSubscribe(reset);
+  const shouldShowSuccessMessage = called && !loading && !error;
+
+  const onSubmit = async (data: SubscribeType) => {
+    submit(data);
+  };
+
   return (
     <footer className="bg-[#00205B] text-white">
       <div className="mx-auto max-w-screen-2xl px-6 py-16 lg:px-16 lg:py-20">
@@ -149,16 +168,33 @@ const Footer: React.FC = () => {
               <p className="mb-6 text-[14px]">
                 Get the latest cybersecurity insights and updates. You can unsubscribe at any time.
               </p>
-              <div className="flex flex-col gap-3">
-                <input
-                  className="w-full border-b border-primary-500 bg-transparent px-1 py-2 text-[14px] text-white placeholder-[#EFF0F2B2] focus:outline-none"
-                  placeholder="Enter your email address"
-                  type="email"
-                />
-                <button className="w-full rounded bg-primary-500 px-8 py-3 text-[14px] text-white transition-colors hover:bg-[#1E90FF]/90">
-                  Subscribe
-                </button>
-              </div>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="flex flex-col gap-3">
+                  <Input
+                    parentClassName="shadow-none border-none px-0 pt-0 !outline-none"
+                    className="outline-none w-full border-b border-primary-500 bg-transparent px-1 py-2 text-[14px] text-white placeholder-[#EFF0F2B2] focus:!outline-none"
+                    disabled={loading}
+                    placeholder="Enter your email address"
+                    {...register("email", {
+                      required: "Email is required",
+                      pattern: {
+                        value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                        message: "Please enter a valid email address",
+                      },
+                    })}
+                    error={errors.email?.message}
+                  />
+
+                  <Button
+                    className="w-full rounded bg-primary-500 px-8 py-3 text-[14px] text-white transition-colors hover:bg-[#1E90FF]/90"
+                    disabled={loading}
+                    size="large"
+                    type="submit"
+                  >
+                    Subscribe
+                  </Button>
+                </div>
+              </form>
             </div>
           </div>
 

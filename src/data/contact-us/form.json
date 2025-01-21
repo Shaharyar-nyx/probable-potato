@@ -1,9 +1,10 @@
 {
   "request_types": [
-    { "value": "demo", "label": "Request a Demo" },
-    { "value": "sales", "label": "Contact Sales" },
-    { "value": "join-hunter", "label": "Join Hunter Community" },
-    { "value": "careers", "label": "Careers" },
-    { "value": "other", "label": "Other" }
+    { "value": "Request a Demo", "label": "Request a Demo" },
+    { "value": "Contact Sales", "label": "Contact Sales" },
+    { "value": "Join Hunter Community", "label": "Join Hunter Community" },
+    { "value": "Career Opportunity", "label": "Careers" },
+    { "value": "Become a Partner", "label": "Become a Partner" },
+    { "value": "Other", "label": "Other" }
   ]
 }
