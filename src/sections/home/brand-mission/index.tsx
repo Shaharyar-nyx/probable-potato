@@ -5,8 +5,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "./styles.module.scss";
 import { STRAPI_ASSETS } from "@/lib";
 
-export const BrandMission: React.FC<any> = (item) => {
-  const { highlights, title, content, hunters } = item;
+export const BrandMission: React.FC<any> = ({ highlights, title, content, hunters }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef({ current: 0, target: 0 });
   const rafRef = useRef<number>(0);

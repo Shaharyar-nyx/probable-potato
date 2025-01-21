@@ -5,17 +5,28 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
-import { CTAProps } from "@/types";
 import Modal from "@/components/UI/modal";
 import { DemoForm } from "../demo-form";
+import { STRAPI_ASSETS } from "@/lib";
 
-export const CTA: React.FC<CTAProps> = ({ backgroundImage, description, title, tagline, cta }) => {
+export const CTA: React.FC<any> = ({ background_file, headline, card }) => {
+  const cta = {
+    label: card.cta_text,
+    isModal: true,
+    icon: "ArrowUpRightIcon",
+    link: card.cta_url,
+  };
+
   return (
     <ParallaxProvider>
       <div className={styles.container}>
         <div className={styles.backgroundWrapper}>
           <Parallax className={styles.parallaxWrapper} translateY={[-20, 20]}>
-            <img alt="image" className={styles.banner} src={backgroundImage.src} />
+            <img
+              alt={background_file?.data?.attributes?.name}
+              className={styles.banner}
+              src={`${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`}
+            />
           </Parallax>
           <div className={styles.overlay} />
         </div>
@@ -23,18 +34,18 @@ export const CTA: React.FC<CTAProps> = ({ backgroundImage, description, title, t
         <div className={styles.content}>
           {/* Left Content */}
           <div className={styles.contentLeft}>
-            {tagline !== undefined && <span className="tagline text-white">{tagline}</span>}
-            <h2 className={`heading-2 font-bold`}>{title}</h2>
-            <p className={styles.description}>{description}</p>
-            {cta && (
+            {headline !== null && <span className="tagline text-white">{headline}</span>}
+            <h2 className={`heading-2 font-bold`}>{card.title}</h2>
+            <p className={styles.description}>{card.content}</p>
+            {card.cta_text && (
               <>
                 {cta?.isModal ? (
                   <Modal cta={cta}>
                     <DemoForm />
                   </Modal>
                 ) : (
-                  <Button className="w-fit" href={cta.link} iconName={cta.icon}>
-                    {cta.label}
+                  <Button className="w-fit" href={cta?.link} iconName={cta?.icon}>
+                    {cta?.label}
                   </Button>
                 )}
               </>

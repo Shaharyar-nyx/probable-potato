@@ -9,9 +9,7 @@ import Modal from "@/components/UI/modal";
 import { DemoForm } from "../demo-form";
 import { STRAPI_ASSETS } from "@/lib";
 
-export const Hero: React.FC<any> = (item) => {
-  const { background_file, cta_text, content, featured_image, title } = item || {};
-
+export const Hero: React.FC<any> = ({ background_file, cta_text, content, featured_image, title }) => {
   const cta = {
     label: cta_text,
     isModal: true,
