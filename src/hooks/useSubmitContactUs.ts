@@ -17,6 +17,7 @@ export async function submitContactUs(
   const payloadData = {
     ...payload,
     isSaveApollo: isCompanyEmail,
+    request: [payload.request],
     channel: "Contact Us Form",
   };
 

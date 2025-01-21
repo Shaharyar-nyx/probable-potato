@@ -14,7 +14,7 @@ export async function submitApplicationForm(
   const payloadData = {
     ...payload,
     isSaveApollo: false,
-    channel: "CareersForm",
+    channel: "Careers Form",
   };
 
   try {
