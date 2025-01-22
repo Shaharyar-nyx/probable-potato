@@ -112,6 +112,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                 {company_socials?.data?.map(
                   ({
                     attributes: {
+                      url: link,
                       social: {
                         data: {
                           attributes: {
@@ -125,7 +126,13 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                       },
                     },
                   }: any) => (
-                    <Link key={name} aria-label={name} className="text-neutral-200 hover:text-white" href={url}>
+                    <Link
+                      key={name}
+                      aria-label={name}
+                      className="text-neutral-200 hover:text-white"
+                      href={link}
+                      target="_blank"
+                    >
                       <Image src={`${STRAPI_ASSETS}${url}`} alt={name} width={24} height={24} />
                     </Link>
                   ),
