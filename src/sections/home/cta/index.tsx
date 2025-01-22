@@ -9,12 +9,12 @@ import Modal from "@/components/UI/modal";
 import { DemoForm } from "../demo-form";
 import { STRAPI_ASSETS } from "@/lib";
 
-export const CTA: React.FC<any> = ({ background_file, headline, card }) => {
+export const CTA: React.FC<any> = ({ background_file, headline, card: { cta_text, cta_url, content, title } }) => {
   const cta = {
-    label: card.cta_text,
+    label: cta_text,
     isModal: true,
     icon: "ArrowUpRightIcon",
-    link: card.cta_url,
+    link: cta_url,
   };
 
   return (
@@ -35,9 +35,9 @@ export const CTA: React.FC<any> = ({ background_file, headline, card }) => {
           {/* Left Content */}
           <div className={styles.contentLeft}>
             {headline !== null && <span className="tagline text-white">{headline}</span>}
-            <h2 className={`heading-2 font-bold`}>{card.title}</h2>
-            <p className={styles.description}>{card.content}</p>
-            {card.cta_text && (
+            <h2 className={`heading-2 font-bold`}>{title}</h2>
+            <p className={styles.description}>{content}</p>
+            {cta_text && (
               <>
                 {cta?.isModal ? (
                   <Modal cta={cta}>

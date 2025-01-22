@@ -18,7 +18,6 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
 
 const Home: React.FC = async () => {
   const data = await getPageBySlug(null);
-  console.log(data, 'xxx');
 
   if (!data?.blocks) {
     return null;
