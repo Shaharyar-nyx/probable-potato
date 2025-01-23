@@ -1,4 +1,4 @@
-import { CYBERBAY_FORM_URL } from "./constants";
+import { CYBERBAY_CMS_URL } from "./constants";
 
 interface ContactResponse {
   contact: {
@@ -9,7 +9,7 @@ interface ContactResponse {
 
 export const cyberbayClient = {
   async createContact(data: any): Promise<ContactResponse> {
-    const response = await fetch(`${CYBERBAY_FORM_URL}`, {
+    const response = await fetch(`${CYBERBAY_CMS_URL}`, {
       method: "POST",
       body: data,
     });
