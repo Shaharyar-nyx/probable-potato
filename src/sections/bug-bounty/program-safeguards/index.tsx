@@ -5,7 +5,7 @@ import Image from "next/image";
 import React from "react";
 
 import styles from "./styles.module.scss";
-import { ProgramSafeguardsProps, SafeguardsProps } from "@/types/components";
+import { STRAPI_ASSETS } from "@/lib";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -42,7 +42,7 @@ const staggerChildren = {
   },
 };
 
-const SafeguardCard: React.FC<SafeguardsProps> = ({ icon, title, description, isEven }) => {
+const SafeguardCard: React.FC<any> = ({ icon, title, content, isEven }) => {
   return (
     <motion.div
       className={`${styles.solutionCard} ${isEven ? styles.even : ""}`}
@@ -53,18 +53,23 @@ const SafeguardCard: React.FC<SafeguardsProps> = ({ icon, title, description, is
     >
       <div className={styles.cardContent}>
         <div className={styles.iconWrapper}>
-          <Image alt={title} height={100} src={icon} width={100} />
+          <Image
+            alt={icon?.data?.attributes?.name}
+            height={100}
+            src={`${STRAPI_ASSETS}${icon?.data?.attributes?.url}`}
+            width={100}
+          />
         </div>
         <div className={`${styles.textContent} ${isEven ? styles.even : ""}`}>
           <h4 className={`${styles.cardTitle} heading-4 font-bold`}>{title}</h4>
-          <p className={`${styles.cardDescription} paragraph-md`}>{description}</p>
+          <p className={`${styles.cardDescription} paragraph-md`}>{content}</p>
         </div>
       </div>
     </motion.div>
   );
 };
 
-export const ProgramSafeguards: React.FC<ProgramSafeguardsProps> = ({ title, content, safeguards }) => {
+export const ProgramSafeguards: React.FC<any> = ({ title, content, cards }) => {
   return (
     <div className={styles.solutionsContainer}>
       <div className={styles.sectionBackground} style={{ backgroundImage: `url(/images/bg-image.jpeg)` }}>
@@ -73,7 +78,7 @@ export const ProgramSafeguards: React.FC<ProgramSafeguardsProps> = ({ title, con
         <div className={styles.container}>
           <motion.div initial="hidden" variants={fadeInUp} viewport={{ once: true }} whileInView="visible">
             <motion.div
-              className="flex flex-col gap-6 lg:px-28 mb-20 text-center"
+              className="mb-20 flex flex-col gap-6 text-center lg:px-28"
               initial="hidden"
               variants={fadeInUp}
               viewport={{ once: true }}
@@ -90,7 +95,7 @@ export const ProgramSafeguards: React.FC<ProgramSafeguardsProps> = ({ title, con
               viewport={{ once: true }}
               whileInView="visible"
             >
-              {safeguards.map((safeguard, index) => (
+              {cards.map((safeguard: any, index: number) => (
                 <SafeguardCard key={index} {...safeguard} isEven={index % 2 === 1} />
               ))}
             </motion.div>

@@ -7,7 +7,10 @@ import { DemoForm } from "@/sections/home/demo-form";
 import { ReportForm } from "@/sections/home/report-form";
 import { STRAPI_ASSETS } from "@/lib";
 
-export const Header: React.FC<any> = ({ background_file, card: { cta_text, cta_url, content, headline, title } }) => {
+export const Header: React.FC<any> = ({
+  background_file,
+  card: { cta_text, cta_url, content, content_md, headline, title },
+}) => {
   const cta = {
     label: cta_text,
     isModal: true,
@@ -26,7 +29,11 @@ export const Header: React.FC<any> = ({ background_file, card: { cta_text, cta_u
       <div className={styles.content}>
         {headline && <div className="tagline">{headline}</div>}
         <h2 className="heading-2 max-w-screen-md font-bold">{title}</h2>
-        <p className={`${styles.description} paragraph-lg`}>{content}</p>
+        {content_md ? (
+          <div className={`${styles.description} paragraph-lg`} dangerouslySetInnerHTML={{ __html: content_md }} />
+        ) : (
+          <p className={`${styles.description} paragraph-lg`}>{content}</p>
+        )}
         {cta_text && (
           <>
             {cta.isModal ? (

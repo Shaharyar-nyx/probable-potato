@@ -204,7 +204,7 @@ const FeatureRow = ({
   );
 };
 
-export const Packages: React.FC<any> = ({ pricing_cards, table, content, title, backgroundImage }) => {
+export const Packages: React.FC<any> = ({ pricing_cards, features, table, content, title, backgroundImage }) => {
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
   const [gridCols, setGridCols] = useState(3);
 
@@ -235,7 +235,33 @@ export const Packages: React.FC<any> = ({ pricing_cards, table, content, title, 
             gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))`,
           }}
         >
-          <div />
+          {features ? (
+            <div>
+              {features.data.map(({ attributes: { title, items } }: any, index: number) => (
+                <div key={index} className="mb-16">
+                  <h3 className="heading-6 mb-5 font-bold text-primary-800">{title}</h3>
+                  {items.data.map(({ attributes: { title, description, icon } }: any, index: number) => (
+                    <div key={index} className="flex flex-row items-start gap-6 mb-5">
+                      <div className="flex items-center gap-4 rounded-[4px] bg-primary-500 p-2">
+                        <Image
+                          alt={icon.data.attributes.name}
+                          height={24}
+                          width={24}
+                          src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                        />
+                      </div>
+                      <div>
+                        <p className="paragraph-lg font-bold">{title}</p>
+                        <p className="paragraph-sm">{description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div />
+          )}
           {pricing_cards.map((pkg: any) => (
             <PackageCard key={pkg.name} data={pkg} />
           ))}

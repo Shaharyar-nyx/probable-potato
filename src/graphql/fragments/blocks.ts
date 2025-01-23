@@ -40,6 +40,7 @@ export const BLOCKS_FRAGMENT = `
                   }
               }
               content
+              content_md
               image {
                   data {
                       attributes {
@@ -111,6 +112,7 @@ export const BLOCKS_FRAGMENT = `
           title
           headline
           content
+          content_md
           cta_text
           cta_url
           cta_page {
@@ -135,6 +137,7 @@ export const BLOCKS_FRAGMENT = `
                   }
               }
               content
+              content_md
               image {
                   data {
                       attributes {
@@ -318,11 +321,73 @@ export const BLOCKS_FRAGMENT = `
               }
           }
       }
+      ... on ComponentBlocksCompanyWhoWeAre {
+          collection
+          title
+          headline
+          content
+          tabs {
+              title
+              headline
+              content
+              image {
+                  data {
+                      attributes {
+                          name
+                          alternativeText
+                          mime
+                          url
+                      }
+                  }
+              }
+          }
+      }
+      ... on ComponentBlocksCompanyCoreTeam {
+          collection
+          title
+          headline
+          content
+          member_profiles {
+              data {
+                  attributes {
+                      name
+                      job_title
+                      bio
+                      social_links {
+                          data {
+                              attributes {
+                                  url
+                                  social {
+                                      data {
+                                          attributes {
+                                              name
+                                              locale
+                                              icon {
+                                                  data {
+                                                      attributes {
+                                                          name
+                                                          alternativeText
+                                                          mime
+                                                          url
+                                                      }
+                                                  }
+                                              }
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
       ... on ComponentBlocksSingleCardSection {
           collection
           title
           headline
           content
+          content_md
           cta_text
           cta_url
           cta_page {
@@ -347,6 +412,7 @@ export const BLOCKS_FRAGMENT = `
                   }
               }
               content
+              content_md
               image {
                   data {
                       attributes {
@@ -390,5 +456,107 @@ export const BLOCKS_FRAGMENT = `
           }
           background_color
       }
+      ... on ComponentBlocksSimpleSection {
+        collection
+        title
+        headline
+        content
+        cta_text
+        cta_url
+        cta_page {
+            data {
+                attributes {
+                    title
+                    slug
+                }
+            }
+        }
+        background_file {
+            data {
+                attributes {
+                    name
+                    alternativeText
+                    mime
+                    url
+                }
+            }
+        }
+        background_color
+    }
+    ... on ComponentBlocksCmWhyEssential {
+      collection
+      title
+      headline
+      content
+      statistics_cards {
+          title
+          percentage
+          number
+          content
+          icon {
+              data {
+                  attributes {
+                      name
+                      alternativeText
+                      mime
+                      url
+                  }
+              }
+          }
+      }
+    }
+    ... on ComponentBlocksBhLevels {
+      collection
+      title
+      headline
+      content
+      levels
+      cards {
+        title
+        headline
+        icon {
+            data {
+                attributes {
+                    name
+                    alternativeText
+                    mime
+                    url
+                }
+            }
+        }
+        content
+        content_md
+        image {
+            data {
+                attributes {
+                    name
+                    alternativeText
+                    mime
+                    url
+                }
+            }
+        }
+        cta_text
+        cta_url
+        cta_page {
+            data {
+                attributes {
+                    title
+                    slug
+                }
+            }
+        }
+        background_image {
+            data {
+                attributes {
+                    name
+                    alternativeText
+                    url
+                }
+            }
+        }
+        background_color
+      }
+    }
   }
 `;

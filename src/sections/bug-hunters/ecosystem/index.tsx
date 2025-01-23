@@ -4,13 +4,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 
 import "./styles.scss";
-import data from "@/data/bug-hunters/ecosystem.json";
 import { useScreenWidth } from "@/hooks";
+import { STRAPI_ASSETS } from "@/lib";
 
 interface EcosystemItemProps {
-  description: string;
-  icon_dark: string;
-  icon_light: string;
+  content: string;
+  icon: any;
   title: string;
 }
 
@@ -22,7 +21,7 @@ const XL_ICON_SIZE_SMALL = 46;
 const LG_ICON_SIZE_BIG = 82;
 const LG_ICON_SIZE_SMALL = 38;
 
-const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon_light, icon_dark, description }) => {
+const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon, content }) => {
   const [isHovered, setIsHovered] = useState(false);
   const screenWidth = useScreenWidth();
 
@@ -50,7 +49,7 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon_light,
       {/* Dark Icon */}
       <div className="relative">
         <motion.img
-          alt={`${title} Dark Icon`}
+          alt={icon.data.attributes.name}
           animate={
             alwaysHovered || isHovered
               ? { width: ICON_SIZE_SMALL, height: ICON_SIZE_SMALL, opacity: 0 }
@@ -58,14 +57,14 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon_light,
           }
           className="ecosystem-feature-icon"
           initial={{ width: ICON_SIZE_BIG, height: ICON_SIZE_BIG, opacity: 1 }}
-          src={icon_dark}
+          src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
           style={{ position: "absolute", top: 0, left: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         />
 
         {/* Light Icon */}
         <motion.img
-          alt={`${title} Light Icon`}
+          alt={icon.data.attributes.name}
           animate={
             alwaysHovered || isHovered
               ? { width: ICON_SIZE_SMALL, height: ICON_SIZE_SMALL, opacity: 1 }
@@ -73,7 +72,7 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon_light,
           }
           className="ecosystem-feature-icon"
           initial={{ width: ICON_SIZE_BIG, height: ICON_SIZE_BIG, opacity: 0 }}
-          src={icon_light}
+          src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
           style={{ position: "absolute", top: 0, left: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         />
@@ -126,7 +125,7 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon_light,
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            {description}
+            {content}
           </motion.p>
         )}
       </AnimatePresence>
@@ -134,15 +133,15 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon_light,
   );
 };
 
-export const Ecosystem: React.FC = () => {
+export const Ecosystem: React.FC<any> = ({ title, content, cards }) => {
   return (
     <section className="ecosystem-parent-container">
       <div className="ecosystem-container">
-        <h2 className="heading-1 ecosystem-title">{data.title}</h2>
-        <p className="paragraph-md ecosystem-description">{data.description}</p>
+        <h2 className="heading-1 ecosystem-title">{title}</h2>
+        <p className="paragraph-md ecosystem-description">{content}</p>
         <div className="ecosystem-feature-container">
-          {data.features.map((feature) => (
-            <EcosystemFeatureItem key={feature.id} {...feature} />
+          {cards.map((attributes: any, index: number) => (
+            <EcosystemFeatureItem key={index} {...attributes} />
           ))}
         </div>
       </div>

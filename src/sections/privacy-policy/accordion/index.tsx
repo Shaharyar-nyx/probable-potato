@@ -3,9 +3,8 @@
 import { useRef, useState } from "react";
 
 import styles from "./styles.module.scss";
-import { AccordionProps } from "@/types";
 
-export const Accordion: React.FC<AccordionProps> = ({ items }) => {
+export const Accordion: React.FC<any> = ({ cards }) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const headerRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -25,7 +24,7 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
 
   return (
     <div className={styles.container}>
-      {items.map((item, index) => (
+      {cards.map(({ title, content_md }: any, index: number) => (
         <div key={index} className={styles.accordionItem}>
           <button
             ref={(el: any) => (headerRefs.current[index] = el)}
@@ -33,7 +32,7 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
             type="button"
             onClick={() => toggleAccordion(index)}
           >
-            <h4 className={`${styles.accordionTitle} heading-4`}>{item.title}</h4>
+            <h4 className={`${styles.accordionTitle} heading-4`}>{title}</h4>
             <svg
               className={`${styles.accordionIcon} ${expandedIndex === index ? styles.expanded : ""}`}
               fill="none"
@@ -51,7 +50,10 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
           </button>
           {expandedIndex === index && (
             <div className={`${styles.accordionContent} ${styles.expanded}`}>
-              <div className={`${styles.accordionText} paragraph-md`} dangerouslySetInnerHTML={{ __html: item.content }} />
+              <div
+                className={`${styles.accordionText} paragraph-md`}
+                dangerouslySetInnerHTML={{ __html: content_md }}
+              />
             </div>
           )}
         </div>

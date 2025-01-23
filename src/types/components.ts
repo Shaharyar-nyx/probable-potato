@@ -226,15 +226,28 @@ export interface OurCultureProps {
 
 export interface OurCoreTeamProps {
   content: string;
-  core: {
-    description: string;
-    name: string;
-    social: {
-      icon: string;
-      link: string;
+  member_profiles: {
+    data: {
+      attributes: {
+        name: string;
+        job_title: string;
+        social_links: {
+         data: {
+          attributes: {
+            icon: {
+              data: {
+                attributes: {
+                  name: string;
+                  url: string;
+                }
+              }
+            }
+          }
+         }[] 
+        };
+      };
     }[];
-    title: string;
-  }[];
+  };
   title: string;
 }
 
@@ -334,8 +347,8 @@ export interface ImportanceBugTestingProps {
 }
 
 export interface SafeguardsProps {
-  description: string;
-  icon: string;
+  content: string;
+  icon: any;
   isEven?: boolean;
   title: string;
 }
@@ -357,7 +370,7 @@ export interface ProgramTypeProps {
   title: string;
 }
 export interface SemiCircleProps {
-  data: { icon_dark: string; icon_light: string; text: string; title: string }[];
+  data: { icon: any; content: string; title: string }[];
   text: string;
 }
 

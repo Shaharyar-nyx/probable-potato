@@ -4,9 +4,9 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 import styles from "./styles.module.scss";
-import { OurCoreTeamProps } from "@/types";
+import { STRAPI_ASSETS } from "@/lib";
 
-export const OurCoreTeam: React.FC<OurCoreTeamProps> = ({ title, content, core }) => {
+export const OurCoreTeam: React.FC<any> = ({ title, content, member_profiles }) => {
   const [cardsPerRow, setCardsPerRow] = useState(3);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export const OurCoreTeam: React.FC<OurCoreTeamProps> = ({ title, content, core }
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const rows = core.reduce<Array<typeof core>>((acc, item, index) => {
+  const rows = member_profiles.data.reduce((acc: (typeof member_profiles.data)[], item: any, index: number) => {
     const rowIndex = Math.floor(index / cardsPerRow);
     if (!acc[rowIndex]) {
       acc[rowIndex] = [];
@@ -33,23 +33,34 @@ export const OurCoreTeam: React.FC<OurCoreTeamProps> = ({ title, content, core }
       <h1 className={`${styles.title} heading-1 font-bold`}>{title}</h1>
       <h3 className={`${styles.content} heading-7`}>{content}</h3>
       <div className={styles.grid}>
-        {rows.map((row, rowIndex) => (
+        {rows.map((row: any, rowIndex: number) => (
           <div key={rowIndex} className={styles.row}>
-            {row.map((member, index) => (
+            {row.map((member: any, index: number) => (
               <div key={index} className={styles.card}>
                 <div className="flex flex-row items-center justify-between">
-                  <h5 className={`${styles.name} heading-5 font-bold`}>{member.name}</h5>
+                  <h5 className={`${styles.name} heading-5 font-bold`}>{member?.attributes?.name}</h5>
 
                   <div className={styles.social}>
-                    {member.social.map((social, idx) => (
-                      <a key={idx} className={styles.link} href={social.link} rel="noopener noreferrer" target="_blank">
-                        <Image alt={social.icon} height={10} src={social.icon} width={10} />
+                    {member?.attributes?.social_links?.data?.map((social: any, idx: number) => (
+                      <a
+                        key={idx}
+                        className={styles.link}
+                        href={social?.attributes?.url}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <Image
+                          alt={social?.attributes?.social?.data?.attributes?.icon?.data?.attributes?.name}
+                          height={10}
+                          src={`${STRAPI_ASSETS}${social?.attributes?.social?.data?.attributes?.icon?.data?.attributes?.url}`}
+                          width={10}
+                        />
                       </a>
                     ))}
                   </div>
                 </div>
-                <p className={`${styles.title} paragraph-xs`}>{member.title}</p>
-                <p className={`${styles.description} paragraph-sm`}>{member.description}</p>
+                <p className={`${styles.title} paragraph-xs`}>{member?.attributes?.job_title}</p>
+                <p className={`${styles.description} paragraph-sm`}>{member?.attributes?.bio}</p>
               </div>
             ))}
           </div>

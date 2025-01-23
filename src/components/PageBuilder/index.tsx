@@ -15,7 +15,6 @@ export const PageBuilder: React.FC<{
     <>
       {sortedBlocks.map((block) => {
         const BlockComponent = blockComponents[block.collection];
-        console.log(block, 'xxx');
         return <BlockComponent key={block.collection} {...block} />;
       })}
     </>

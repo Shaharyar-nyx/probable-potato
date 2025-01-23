@@ -4,10 +4,10 @@ import Image from "next/image";
 import { useState } from "react";
 
 import styles from "./styles.module.scss";
-import { Button, IconRenderer } from "@/components";
-import { ProgramTypeProps } from "@/types";
+import { Button } from "@/components";
+import { STRAPI_ASSETS } from "@/lib";
 
-export const ProgramType: React.FC<ProgramTypeProps> = ({ title, content, features }) => {
+export const ProgramType: React.FC<any> = ({ title, content, cards }) => {
   const [expandedFeature, setExpandedFeature] = useState<number | null>(null);
 
   const handleLearnMore = (id: number | null) => {
@@ -23,48 +23,55 @@ export const ProgramType: React.FC<ProgramTypeProps> = ({ title, content, featur
           <p className={`${styles.paragraph} paragraph-md`}>{content}</p>
         </div>
         <div className="flex flex-col gap-6">
-          <div className={`flex flex-col lg:flex-row gap-6`}>
-            {features.map((feature, id) => (
+          <div className={`flex flex-col gap-6 lg:flex-row`}>
+            {cards.map(({ title, content, content_md, icon }: any, index: number) => (
               <motion.div
-                key={id}
-                className={`${styles["feature-container"]} ${expandedFeature === id ? styles.expanded : expandedFeature !== id && expandedFeature !== null ? "h-max lg:w-[20%]" : ""}`}
+                key={index}
+                className={`${styles["feature-container"]} ${expandedFeature === index ? styles.expanded : expandedFeature !== index && expandedFeature !== null ? "h-max lg:w-[20%]" : ""}`}
                 initial={false}
                 layout
               >
                 <div className="flex items-center gap-3">
-                  <div className="rounded-md bg-neutral-50 p-1">
-                    <IconRenderer className="h-[24px] w-[24px] text-primary-800" iconName={feature.icon} />
+                  <div className="rounded-md bg-neutral-50">
+                    <div className="flex h-8 w-8 items-center justify-center">
+                      <Image
+                        alt={icon?.data?.attributes?.name}
+                        height={24}
+                        width={24}
+                        src={`${STRAPI_ASSETS}${icon?.data?.attributes?.url}`}
+                      />
+                    </div>
                   </div>
-                  <h3 className="heading-7 font-bold text-neutral-50">{feature.title}</h3>
+                  <h3 className="heading-7 font-bold text-neutral-50">{title}</h3>
                 </div>
 
-                {expandedFeature !== id && expandedFeature !== null ? (
+                {expandedFeature !== index && expandedFeature !== null ? (
                   ""
                 ) : (
                   <div className="flex flex-col gap-4">
-                    {expandedFeature === id ? (
+                    {expandedFeature === index ? (
                       <div className="flex flex-col gap-3">
-                        <p className="paragraph-md text-neutral-50">{feature.text}</p>
+                        <p className="paragraph-md text-neutral-50">{content}</p>
                         <p
                           className="paragraph-md font-semibold text-neutral-50"
-                          dangerouslySetInnerHTML={{ __html: feature.content }}
+                          dangerouslySetInnerHTML={{ __html: content_md }}
                         />
                       </div>
                     ) : (
-                      <p className="paragraph-md text-neutral-50">{feature.text}</p>
+                      <p className="paragraph-md text-neutral-50">{content}</p>
                     )}
                   </div>
                 )}
 
                 <div>
-                  {expandedFeature === id ? (
+                  {expandedFeature === index ? (
                     <Button className="float-right" variant="neutral" onClick={() => handleLearnMore(null)}>
                       <Image alt="arrow up right" height={24} src="/images/arrow-up-left.svg" width={24} />
                     </Button>
-                  ) : expandedFeature !== id && expandedFeature !== null ? (
+                  ) : expandedFeature !== index && expandedFeature !== null ? (
                     ""
                   ) : (
-                    <Button className="w-max" variant="primary" onClick={() => handleLearnMore(id)}>
+                    <Button className="w-max" variant="primary" onClick={() => handleLearnMore(index)}>
                       Learn More
                     </Button>
                   )}
