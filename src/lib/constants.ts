@@ -1,4 +1,4 @@
-export const CYBERBAY_FORM_URL = process.env.NEXT_PUBLIC_CYBERBAY_FORM_URL;
+export const CYBERBAY_CMS_URL = process.env.NEXT_PUBLIC_CYBERBAY_CMS_URL;
 export const CYBERBAY_URL = process.env.NEXT_PUBLIC_CYBERBAY_URL;
 export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL;
 export const STRAPI_ASSETS = process.env.NEXT_PUBLIC_STRAPI_ASSETS;
