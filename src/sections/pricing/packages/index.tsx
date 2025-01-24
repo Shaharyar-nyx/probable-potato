@@ -151,7 +151,7 @@ const FeatureRow = ({
   };
 
   return (
-    <tr className={styles.tableRow}>
+    <tr className={styles.tableRow} key={feature.name}>
       <td className={styles.tableCell}>
         {feature.name}
         {feature.tooltip && (
@@ -192,7 +192,7 @@ const FeatureRow = ({
       </td>
       {packages.map((pkg: any, index: number) => (
         <td
-          key={pkg.type}
+          key={`${feature.name}-package-${index}-${pkg.title}`}
           className={getColumnClass(index)}
           onMouseEnter={() => onColumnHover(index)}
           onMouseLeave={() => onColumnHover(null)}
@@ -238,10 +238,10 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
           {features ? (
             <div>
               {features.data.map(({ attributes: { title, items } }: any, index: number) => (
-                <div key={index} className="mb-16">
+                <div key={`feature-${index}`} className="mb-16">
                   <h3 className="heading-6 mb-5 font-bold text-primary-800">{title}</h3>
                   {items.data.map(({ attributes: { title, description, icon } }: any, index: number) => (
-                    <div key={index} className="flex flex-row items-start gap-6 mb-5">
+                    <div key={`item-${index}`} className="mb-5 flex flex-row items-start gap-6">
                       <div className="flex items-center gap-4 rounded-[4px] bg-primary-500 p-2">
                         <Image
                           alt={icon.data.attributes.name}
@@ -262,8 +262,8 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
           ) : (
             <div />
           )}
-          {pricing_cards.map((pkg: any) => (
-            <PackageCard key={pkg.name} data={pkg} />
+          {pricing_cards.map((pkg: any, index: number) => (
+            <PackageCard key={`card-${index}`} data={pkg} />
           ))}
         </div>
 
@@ -298,7 +298,7 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
 
                   return (
                     <FeatureRow
-                      key={feature.name}
+                      key={`FeatureRow-${rowIndex}-${feature.name}`}
                       feature={{
                         name: feature.name,
                         tooltip: feature.tooltip,
