@@ -2,6 +2,7 @@ import { Poppins } from "next/font/google";
 
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
+import ReCaptchaProvider from "@/components/ReCaptchaProvider";
 import { SiteContextProvider } from "@/context";
 import { getFooterMenusStrapi, getMainMenusStrapi } from "@/lib/menus";
 
@@ -26,11 +27,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html className={poppins.className} lang="en">
       <body>
-        <Nav {...mainNav} />
-        <SiteContextProvider footerNav={footerNav} mainNav={mainNav}>
-          {children}
-        </SiteContextProvider>
-        <Footer {...footerNav} />
+        <ReCaptchaProvider>
+          <Nav {...mainNav} />
+          <SiteContextProvider footerNav={footerNav} mainNav={mainNav}>
+            {children}
+          </SiteContextProvider>
+          <Footer {...footerNav} />
+        </ReCaptchaProvider>
       </body>
     </html>
   );

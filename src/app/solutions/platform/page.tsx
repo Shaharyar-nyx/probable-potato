@@ -1,33 +1,30 @@
 import React from "react";
 
 import { Header } from "@/components";
-import heroData from "@/data/platform/hero.json";
-import bugBountyGridData from "@/data/platform/big-bounty-grid.json";
-import continuousBugHuntingData from "@/data/platform/bug-hunting.json";
-import launchProgramData from "@/data/platform/launch-program.json";
-import packagesData from "@/data/platform/packages.json";
 import { BugBountyGrid, ContinuousBugHunting, CTA, LaunchProgram, Packages } from "@/sections";
+import { BlockType } from "@/types";
+import { PageBuilder } from "@/components/PageBuilder";
+import { getPageBySlug } from "@/lib";
 
-const PlatformPage: React.FC = () => {
+const blockComponents: Record<string, React.FC<BlockType>> = {
+  hero_section: Header,
+  cp_bugbounty_programs: BugBountyGrid,
+  cp_countinuous_bug_hunting: ContinuousBugHunting,
+  cp_launch_your_bugbounty: LaunchProgram,
+  packages_section: Packages,
+  single_card_section: CTA,
+};
+
+const PlatformPage: React.FC = async () => {
+  const data = await getPageBySlug("platform");
+
+  if (!data?.blocks) {
+    return null;
+  }
+
   return (
     <main>
-      <Header {...heroData} />
-      <BugBountyGrid {...bugBountyGridData} />
-      <ContinuousBugHunting {...continuousBugHuntingData} />
-      <LaunchProgram {...launchProgramData} />
-      <Packages {...packagesData} />
-      <CTA
-        backgroundImage={{
-          src: "/platform/platform-cta-bg.webp",
-        }}
-        cta={{
-          label: "Contact Sales",
-          isModal: true,
-        }}
-        description="Schedule a consult to receive tailored advice on launching your bug bounty program. Our experts will guide you through program setup and bounty pricing to ensure a smooth launch."
-        tagline="Connect"
-        title="Get Expert Guidance for Your Bug Bounty"
-      />
+      <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
     </main>
   );
 };

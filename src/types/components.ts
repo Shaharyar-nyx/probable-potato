@@ -1,8 +1,8 @@
 import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, InputHTMLAttributes, TextareaHTMLAttributes } from "react";
-import { UseFormClearErrors, UseFormRegister, UseFormSetError } from "react-hook-form";
+import { UseFormClearErrors, UseFormRegister, UseFormSetError, UseFormSetValue } from "react-hook-form";
 
 export interface HeroProps {
-  backgroundVideo: string;
+  background_file: string;
   cta?: {
     icon?: string;
     isModal?: boolean;
@@ -41,10 +41,11 @@ export interface BrandMissionProps {
 }
 
 export interface SolutionCardProps {
-  description: string;
-  icon: string;
+  content: string;
+  icon: any;
   isEven?: boolean;
-  link?: string;
+  cta_text?: string;
+  cta_url?: string;
   title: string;
 }
 
@@ -141,16 +142,19 @@ export type ButtonAsExternalLink = BaseButtonProps &
 
 export type ButtonProps = ButtonAsButton | ButtonAsInternalLink | ButtonAsExternalLink;
 
-export type InputFileProps = {
+export interface InputFileProps {
   clearErrors?: UseFormClearErrors<any>;
   error?: string;
-  formLoading?: boolean | undefined;
+  loading?: boolean;
   id?: string;
   maxFileSize: number;
   name: string;
   register?: UseFormRegister<any>;
   setError?: UseFormSetError<any>;
-} & ButtonProps;
+  setValue?: UseFormSetValue<any>;
+  className?: string;
+  children?: React.ReactNode;
+}
 
 export interface IconRendererProps {
   className?: string;
@@ -222,15 +226,28 @@ export interface OurCultureProps {
 
 export interface OurCoreTeamProps {
   content: string;
-  core: {
-    description: string;
-    name: string;
-    social: {
-      icon: string;
-      link: string;
+  member_profiles: {
+    data: {
+      attributes: {
+        name: string;
+        job_title: string;
+        social_links: {
+         data: {
+          attributes: {
+            icon: {
+              data: {
+                attributes: {
+                  name: string;
+                  url: string;
+                }
+              }
+            }
+          }
+         }[] 
+        };
+      };
     }[];
-    title: string;
-  }[];
+  };
   title: string;
 }
 
@@ -330,8 +347,8 @@ export interface ImportanceBugTestingProps {
 }
 
 export interface SafeguardsProps {
-  description: string;
-  icon: string;
+  content: string;
+  icon: any;
   isEven?: boolean;
   title: string;
 }
@@ -353,7 +370,7 @@ export interface ProgramTypeProps {
   title: string;
 }
 export interface SemiCircleProps {
-  data: { icon_dark: string; icon_light: string; text: string; title: string }[];
+  data: { icon: any; content: string; title: string }[];
   text: string;
 }
 
@@ -400,17 +417,21 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   parentClassName?: string;
 }
 
-export interface DropdownPropsInput extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface DropdownPropsInput {
   ariaDescribedBy?: string;
   className?: string;
   disabled?: boolean;
   error?: string;
-  handleChange?: (value: string) => void;
+  handleChange?: (value: string | string[]) => void;
   iconName?: string;
   id?: string;
   label: string;
+  multiple?: boolean;
   options: string[];
-  value?: string;
+  value?: string | string[];
+  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface BlockType {

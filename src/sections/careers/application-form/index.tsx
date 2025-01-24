@@ -1,45 +1,39 @@
 "use client";
 
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
 import styles from "./styles.module.scss";
-import { Button, IconRenderer, Input, Textarea, InputFile } from "@/components";
+import { Button, Input, Textarea, InputFile } from "@/components";
 import { ApplyFormType } from "@/types";
+import { useSubmitApplicationForm } from "@/hooks/useSubmitApplicationForm";
+import Image from "next/image";
+import { STRAPI_ASSETS } from "@/lib";
 
-export const ApplicationForm: React.FC = () => {
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formLoading, setFormLoading] = useState(false);
-
+export const ApplicationForm: React.FC<any> = ({
+  title,
+  content,
+  headline,
+  card: { title: cardTitle, content_md, icon },
+}) => {
   const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB in bytes
 
   const {
     register,
     handleSubmit,
     setError,
+    setValue,
     clearErrors,
     reset,
     formState: { errors },
   } = useForm<ApplyFormType>();
 
-  const onSubmit = (data: ApplyFormType) => {
-    setFormLoading(true);
-    console.log("Form submitted:", data);
-    // Simulate fetching logic
-    setTimeout(() => {
-      setFormSubmitted(true);
-      setFormLoading(false);
-      reset();
-    }, 1000);
-  };
+  const { submit, loading, error, called } = useSubmitApplicationForm(reset);
+  const shouldShowSuccessMessage = called && !loading && !error;
 
-  useEffect(() => {
-    if (formSubmitted) {
-      const timeout = setTimeout(() => setFormSubmitted(false), 5000);
-      return () => clearTimeout(timeout);
-    }
-  }, [formSubmitted]);
+  const onSubmit = async (data: ApplyFormType) => {
+    submit(data);
+  };
 
   return (
     <section className={styles.section}>
@@ -47,39 +41,38 @@ export const ApplicationForm: React.FC = () => {
         <div className={styles.chatCard}>
           <div className={styles.chatHeader}>
             <div className={styles.iconWrapper}>
-              <IconRenderer className={styles.icon} iconName="ChatBubbleOvalLeftEllipsisIcon" />
+              <Image
+                alt={icon.data.attributes.name}
+                height={24}
+                width={24}
+                src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+              />
             </div>
-            <h3 className="heading-7 font-bold">Chat to us</h3>
+            <h3 className="heading-7 font-bold">{cardTitle}</h3>
           </div>
-          <p className={`paragraph-md ${styles.chatDescription}`}>
-            Our team is here to help <br />
-            <Link className={`paragraph-md ${styles.chatEmail}`} href="mailto:careers@cyberbay.tech">
-              careers@cyberbay.tech
-            </Link>
-          </p>
+          <div className={`paragraph-md ${styles.chatDescription}`} dangerouslySetInnerHTML={{ __html: content_md }} />
         </div>
 
         <div className={styles.formContainer}>
-          <h1 className={`heading-1 ${styles.formTitle}`}>
-            Your next career move <br /> starts here.
-          </h1>
+          <h1 className={`heading-1 ${styles.formTitle} lg:w-[90%]`}>{title}</h1>
 
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-            <p className={`paragraph-lg ${styles.formSubtitle}`}>Let&apos;s grow together.</p>
-            {/* Full Name Input */}
+            <p className={`paragraph-lg ${styles.formSubtitle}`}>{content}</p>
+
             <Input
-              disabled={formLoading}
-              error={errors.name?.message}
+              disabled={loading}
               iconName="UserIcon"
-              placeholder="Full Name"
+              placeholder="Full Name *"
               {...register("name", { required: "Full Name is required" })}
+              error={errors.name?.message}
             />
+
             {/* Email Input */}
             <Input
-              disabled={formLoading}
+              disabled={loading}
               error={errors.email?.message}
               iconName="EnvelopeIcon"
-              placeholder="Email"
+              placeholder="Email *"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -88,35 +81,36 @@ export const ApplicationForm: React.FC = () => {
                 },
               })}
             />
-            <p className={`paragraph-lg ${styles.uploadLabel}`}>Let us know about your experience</p>
+            <p className={`paragraph-lg ${styles.uploadLabel}`}>{headline}</p>
             {/* File Input */}
             <InputFile
               clearErrors={clearErrors}
               error={errors.resume?.message}
-              formLoading={formLoading}
+              loading={loading}
               id="resume"
               maxFileSize={MAX_FILE_SIZE}
               name="resume"
               register={register}
               setError={setError}
+              setValue={setValue}
             />
 
             {/* Message Textarea */}
             <Textarea
-              disabled={formLoading}
+              disabled={loading}
               iconName="ChatBubbleOvalLeftEllipsisIcon"
-              placeholder="Your Message (Optional)..."
+              placeholder="Tell us what’s excited about the future of cybersecurity..."
               rows={4}
               {...register("message")}
             />
 
-            <Button className={styles.submitButton} disabled={formLoading} type="submit">
+            <Button className={styles.submitButton} disabled={loading} type="submit">
               Submit
             </Button>
 
-            {formSubmitted && (
+            {shouldShowSuccessMessage && (
               <p aria-live="polite" className="paragraph-sm text-green-500">
-                Information sent successfully!
+                Thank you for reaching out! We will get back to you shortly.
               </p>
             )}
           </form>

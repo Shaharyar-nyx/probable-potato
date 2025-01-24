@@ -1,8 +1,6 @@
 "use client";
-
 import clsx from "clsx";
 import React, { ButtonHTMLAttributes, useRef, useState } from "react";
-
 import { Button, IconRenderer } from "@/components";
 import styles from "@/sections/careers/application-form/styles.module.scss";
 import { InputFileProps } from "@/types";
@@ -10,11 +8,12 @@ import { InputFileProps } from "@/types";
 export const InputFile: React.FC<InputFileProps> = ({
   clearErrors,
   error,
-  formLoading = false,
+  loading = false,
   id,
   maxFileSize,
   name,
   register,
+  setValue,
   setError,
   className,
   children = "Upload your resume",
@@ -42,8 +41,10 @@ export const InputFile: React.FC<InputFileProps> = ({
       }
 
       if (clearErrors !== undefined) {
-        clearErrors(name);
+        clearErrors?.(name);
       }
+
+      setValue?.(name, file);
       setSelectedFile(file);
     } else {
       if (setError !== undefined) {
@@ -58,24 +59,10 @@ export const InputFile: React.FC<InputFileProps> = ({
 
   return (
     <div>
-      <input
-        type="file"
-        {...register?.(name, {
-          required: "File is required",
-          validate: (file: File | null) =>
-            file ? file.type === "application/pdf" || "Only PDF files are allowed" : "Please select a file",
-        })}
-        ref={inputRef}
-        accept=".pdf"
-        className="hidden"
-        id={id}
-        onChange={handleFileChange}
-      />
+      <input type="file" ref={inputRef} accept=".pdf" className="hidden" id={id} onChange={handleFileChange} />
       <Button
-        className={clsx("max-w-[250px] border", error !== undefined ? "border-red-400" : "border-primary-800")}
-        disabled={formLoading}
-        error={error}
-        iconName="ArrowUpTrayIcon"
+        className={clsx("max-w-[250px] border", error ? "border-red-400" : "border-primary-800")}
+        disabled={loading}
         type="button"
         variant="neutral"
         onClick={handleUploadClick}
@@ -84,12 +71,12 @@ export const InputFile: React.FC<InputFileProps> = ({
         {selectedFile ? selectedFile.name : children}
       </Button>
       <div className="flex flex-row items-end gap-1">
-        <IconRenderer className="h-[15px] w-[15px] text-[#02255B80]" iconName="ExclamationCircleIcon" />
+        <IconRenderer className="h-[15px] w-[15px] text-primary-800" iconName="ExclamationCircleIcon" />
         <p className={`paragraph-xs ${styles.uploadHelperText}`}>
           Format: .pdf, Max file size: {maxFileSize / 1024 / 1024}MB
         </p>
       </div>
-      {error !== undefined && (
+      {error && (
         <p aria-live="assertive" className="mt-1 text-xs text-red-400">
           {error}
         </p>

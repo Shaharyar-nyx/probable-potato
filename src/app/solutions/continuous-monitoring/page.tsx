@@ -1,17 +1,28 @@
 import React from "react";
 
 import { Header } from "@/components";
-import heroData from "@/data/continuous-monitoring/hero.json";
-import { Why, HarnessAi, FeaturesAndPricing, SecurityPosture } from "@/sections";
+import { Why, HarnessAi, SecurityPosture, Packages } from "@/sections";
+import { getPageBySlug } from "@/lib";
+import { PageBuilder } from "@/components/PageBuilder";
 
-const ContinuousMonitoringPage: React.FC = () => {
+const blockComponents: Record<string, React.FC<any>> = {
+  hero_section: Header,
+  cm_why_essential: Why,
+  cm_strengthen_security: SecurityPosture,
+  cm_harness_ai: HarnessAi,
+  packages_section: Packages,
+};
+
+const ContinuousMonitoringPage: React.FC = async () => {
+  const data = await getPageBySlug("continuous-monitoring");
+
+  if (!data?.blocks) {
+    return null;
+  }
+
   return (
-    <main className="relative">
-      <Header {...heroData} />
-      <Why />
-      <SecurityPosture />
-      <HarnessAi />
-      <FeaturesAndPricing />
+    <main>
+      <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
     </main>
   );
 };

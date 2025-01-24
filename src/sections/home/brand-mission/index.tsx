@@ -3,9 +3,9 @@
 import React, { useEffect, useRef } from "react";
 
 import styles from "./styles.module.scss";
-import { BrandMissionProps } from "@/types";
+import { STRAPI_ASSETS } from "@/lib";
 
-export const BrandMission: React.FC<BrandMissionProps> = ({ tags, title, description, teamMembers }) => {
+export const BrandMission: React.FC<any> = ({ highlights, title, content, hunters }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef({ current: 0, target: 0 });
   const rafRef = useRef<number>(0);
@@ -69,26 +69,35 @@ export const BrandMission: React.FC<BrandMissionProps> = ({ tags, title, descrip
 
   return (
     <div ref={containerRef} className={styles.container}>
-      {tags.map((tag) => (
-        <div key={tag} className={`${styles[`${tag.toLowerCase()}Tag`]} paragraph-xs`}>
-          {tag}
+      {highlights.map((tag: { text: string }) => (
+        <div key={tag.text} className={`${styles[`${tag?.text?.toLowerCase()}Tag`]} paragraph-xs`}>
+          {tag.text}
         </div>
       ))}
 
       <div className={styles.content}>
         <h1 className={`${styles.title} heading-1`}>{title}</h1>
-        <p className={`${styles.description} paragraph-md`}>{description}</p>
+        <p className={`${styles.description} paragraph-md`}>{content}</p>
       </div>
 
-      {teamMembers.map((member, index) => (
-        <div key={member.name} className={`${styles.memberCard} ${styles["member" + (index + 1)]}`}>
-          <img alt={member.name} className={styles.memberImage} src={member.image} />
-          <div className={styles.memberInfo}>
-            <p className="paragraph-sm font-semibold mb-1">{member.name}</p>
-            <p className="paragraph-xs">{member.title}</p>
+      {hunters.map(
+        (
+          member: { name: string; job_title: string; image: { data: { attributes: { url: string; name: string } } } },
+          index: number,
+        ) => (
+          <div key={member.name} className={`${styles.memberCard} ${styles["member" + (index + 1)]}`}>
+            <img
+              alt={member.image?.data?.attributes?.name}
+              className={styles.memberImage}
+              src={`${STRAPI_ASSETS}${member.image?.data?.attributes?.url}`}
+            />
+            <div className={styles.memberInfo}>
+              <p className="paragraph-sm mb-1 font-semibold">{member.name}</p>
+              <p className="paragraph-xs">{member.job_title}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ),
+      )}
     </div>
   );
 };

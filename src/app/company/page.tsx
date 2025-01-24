@@ -1,27 +1,31 @@
-"use client";
-
 import React from "react";
 
 import { Header } from "@/components";
-import bugBountyData from "@/data/company/bug-bounty.json";
-import events from "@/data/company/events.json";
-import heroData from "@/data/company/hero.json";
-import newsData from "@/data/company/news.json";
-import ourCoreTeamData from "@/data/company/our-core-team.json";
-import ourCultureData from "@/data/company/our-culture.json";
-import taglineData from "@/data/company/tagline.json";
 import { BugBountyPrograms, Events, News, OurCoreTeam, OurCulture, Tagline } from "@/sections";
+import { getPageBySlug } from "@/lib";
+import { PageBuilder } from "@/components/PageBuilder";
+import { BlockType } from "@/types";
 
-const CompanyPage: React.FC = () => {
+const blockComponents: Record<string, React.FC<BlockType>> = {
+  hero_section: Header,
+  company_who_we_are: BugBountyPrograms,
+  company_core_team: OurCoreTeam,
+  company_our_culture: OurCulture,
+  // company_events: Events,
+  // company_latest_insights: News,
+  company_connect: Tagline,
+};
+
+const CompanyPage: React.FC = async () => {
+  const data = await getPageBySlug("company");
+
+  if (!data?.blocks) {
+    return null;
+  }
+
   return (
     <main>
-      <Header {...heroData} />
-      <BugBountyPrograms {...bugBountyData} />
-      <OurCoreTeam {...ourCoreTeamData} />
-      <OurCulture {...ourCultureData} />
-      <Events {...events} />
-      {/* <News {...newsData} /> */}
-      <Tagline {...taglineData} />
+      <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
     </main>
   );
 };

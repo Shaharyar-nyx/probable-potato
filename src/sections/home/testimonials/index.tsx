@@ -8,9 +8,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import styles from "./styles.module.scss";
-import { TestimonialsProps } from "@/types";
+import { STRAPI_ASSETS } from "@/lib";
 
-export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
+export const Testimonials: React.FC<any> = ({ testimonials }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const swiperRef = useRef<any>(null);
@@ -57,13 +57,13 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
           <div className={styles.clientsSection}>
             <h4 className={`${styles.title} heading-4`}>Clients</h4>
             <div className={styles.clientsList}>
-              {testimonials.map((testimonial, index) => (
+              {testimonials.map((testimonial: any, index: number) => (
                 <div
-                  key={testimonial.client}
+                  key={testimonial.client.data.attributes.company}
                   className={`${styles.client} ${index === activeIndex ? styles.clientActive : ""}`}
                   onClick={() => handleClientClick(index)}
                 >
-                  {testimonial.client}
+                  {testimonial.client.data.attributes.company}
                 </div>
               ))}
             </div>
@@ -85,22 +85,24 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
                 startProgress();
               }}
             >
-              {testimonials.map((testimonial, index) => (
+              {testimonials.map((testimonial: any, index: number) => (
                 <SwiperSlide key={index}>
                   <div className={styles.testimonialSlide}>
                     <div className={styles.testimonialLeft}>
                       <div>
-                        <h3 className={styles.testimonialAuthor}>{testimonial.author}</h3>
+                        <h3 className={styles.testimonialAuthor}>{testimonial.name}</h3>
                         <p className={styles.testimonialPosition}>{testimonial.position}</p>
                       </div>
-                      <img
-                        alt={`${testimonial.client} Logo`}
-                        className={styles.testimonialLogo}
-                        src={testimonial.logo}
-                      />
+                      {testimonial?.client?.data?.attributes?.logo?.data && (
+                        <img
+                          alt={`${testimonial.client?.data?.attributes?.name} Logo`}
+                          className={styles.testimonialLogo}
+                          src={`${STRAPI_ASSETS}${testimonial?.client?.data?.attributes?.logo?.data?.attributes?.url}`}
+                        />
+                      )}
                     </div>
                     <div className={styles.testimonialRight}>
-                      <p className={`${styles.testimonialQuote} paragraph-xxl`}>{testimonial.quote}</p>
+                      <p className={`${styles.testimonialQuote} paragraph-xxl`}>{testimonial.content}</p>
                     </div>
                   </div>
                 </SwiperSlide>

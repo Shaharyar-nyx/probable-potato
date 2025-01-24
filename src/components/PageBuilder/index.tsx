@@ -1,11 +1,15 @@
 import { BlockType } from "@/types";
 import React from "react";
 
-export const PageBuilder: React.FC<{ blockComponents: Record<string, React.FC<BlockType>>; blocks: BlockType[] }> = ({
-  blockComponents,
-  blocks,
-}) => {
-  const sortedBlocks = [...blocks].sort((a, b) => a.sort - b.sort);
+export const PageBuilder: React.FC<{
+  blockComponents: Record<string, React.FC<BlockType>>;
+  blocks: Array<{ collection: string; sort?: number } & Partial<BlockType>>;
+}> = ({ blockComponents, blocks }) => {
+  const sortedBlocks = blocks
+    .filter((block): block is BlockType => {
+      return typeof block.collection === "string" && block.collection in blockComponents;
+    })
+    .sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0));
 
   return (
     <>

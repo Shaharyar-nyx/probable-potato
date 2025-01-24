@@ -19,6 +19,7 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
   className,
   error,
   value,
+  multiple = false,
   handleChange,
   onFocus,
   onBlur,
@@ -26,9 +27,11 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
-  const [hasFocus, setHasFocus] = useState(false); // Focus state for styling
+  const [hasFocus, setHasFocus] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
+
+  const selectedValues = Array.isArray(value) ? value : value ? [value] : [];
 
   const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
     setHasFocus(true);
@@ -43,9 +46,16 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
   const handleSelect = (selectedOption: string) => {
     if (disabled) return;
     if (handleChange) {
-      handleChange(selectedOption);
+      if (multiple) {
+        const newValue = selectedValues.includes(selectedOption)
+          ? selectedValues.filter((v) => v !== selectedOption)
+          : [...selectedValues, selectedOption];
+        handleChange(newValue);
+      } else {
+        handleChange(selectedOption);
+        setIsOpen(false);
+      }
     }
-    setIsOpen(false);
     setHighlightedIndex(-1);
   };
 
@@ -84,6 +94,8 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
     }
   }, [highlightedIndex]);
 
+  const displayValue = multiple ? (selectedValues.length > 0 ? selectedValues.join(", ") : label) : value || label;
+
   return (
     <div ref={dropdownRef} className={clsx("dropdown-container", className)}>
       <button
@@ -116,13 +128,13 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
                     ? "text-red-400"
                     : hasFocus
                       ? "text-primary-800"
-                      : "text-neutral-400",
+                      : "text-primary-800",
               )}
               iconName={iconName}
             />
           )}
           <span
-            className={clsx(
+            className={`${clsx(
               disabled
                 ? "text-neutral-300"
                 : error !== undefined
@@ -130,9 +142,9 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
                   : value !== undefined
                     ? "text-primary-800"
                     : "text-neutral-300",
-            )}
+            )}} text-left pr-10`}
           >
-            {value ?? label}
+            {displayValue}
           </span>
         </div>
         <ChevronDownIcon
@@ -156,9 +168,10 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
             {options.map((option, index) => (
               <li
                 key={index}
-                aria-selected={value === option}
+                aria-selected={selectedValues.includes(option)}
                 className={clsx("dropdown-input-options-item", {
                   "dropdown-input-options-item-highlighted": highlightedIndex === index,
+                  "dropdown-input-options-item-selected": selectedValues.includes(option),
                 })}
                 id={`${id}-option-${index}`}
                 role="option"
@@ -166,6 +179,11 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
                 onClick={() => handleSelect(option)}
                 onMouseEnter={() => setHighlightedIndex(index)}
               >
+                {multiple && (
+                  <div className={clsx("checkbox", selectedValues.includes(option) && "checkbox-checked")}>
+                    {selectedValues.includes(option) && <IconRenderer iconName="CheckIcon" className="h-4 w-4" />}
+                  </div>
+                )}
                 {option}
               </li>
             ))}
