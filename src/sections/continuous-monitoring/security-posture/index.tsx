@@ -2,25 +2,31 @@ import React from "react";
 
 import "./styles.scss";
 import { SemiCircle } from "@/components";
-import data from "@/data/continuous-monitoring/security-posture.json";
+import { STRAPI_ASSETS } from "@/lib";
+import Image from "next/image";
 
-export const SecurityPosture: React.FC = () => {
+export const SecurityPosture: React.FC<any> = ({ title, headline, content, cards }) => {
   return (
     <section className="security-posture-parent-container">
       <div className="security-posture-container">
-        <h2 className="heading-1 mb-5 font-bold text-primary-800">{data.title}</h2>
-        <p className="paragraph-md mb-6 text-primary-800">{data.text}</p>
+        <h2 className="heading-1 mb-5 font-bold text-primary-800">{title}</h2>
+        <p className="paragraph-md mb-6 text-primary-800">{headline}</p>
         <div className="hidden w-full max-w-screen-xl lg:block">
-          <SemiCircle data={data.chart.features} text={data.chart.text} />
+          <SemiCircle data={cards} text={content} />
         </div>
         <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-3 lg:hidden">
-          {data.chart.features.map((feature) => (
-            <div key={feature.id} className="flex flex-col gap-6 rounded-xl bg-primary-500 p-5">
+          {cards.map(({ title, content, icon }: any, index: number) => (
+            <div key={index} className="flex flex-col gap-6 rounded-xl bg-primary-500 p-5">
               <div className="flex items-start gap-4">
-                <img alt={feature.title} className="h-8 w-8" src={feature.icon_light} />
-                <h3 className="heading-8 font-bold text-neutral-50">{feature.title}</h3>
+                <Image
+                  alt={icon.data.attributes.name}
+                  height={24}
+                  width={24}
+                  src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                />
+                <h3 className="heading-8 font-bold text-neutral-50">{title}</h3>
               </div>
-              <p className="paragraph-sm text-neutral-50">{feature.text}</p>
+              <p className="paragraph-sm text-neutral-50">{content}</p>
             </div>
           ))}
         </div>

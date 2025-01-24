@@ -5,10 +5,11 @@ import React, { useEffect, useState } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
-import { Button, IconRenderer } from "@/components";
-import data from "@/data/bug-hunters/referral.json";
+import { Button } from "@/components";
 
 import "./styles.scss";
+import Image from "next/image";
+import { STRAPI_ASSETS } from "@/lib";
 
 const SwiperButtonNext: React.FC<{ disabled: boolean }> = ({ disabled }) => {
   const swiper = useSwiper();
@@ -40,7 +41,7 @@ const SwiperButtonPrev: React.FC<{ disabled: boolean }> = ({ disabled }) => {
   );
 };
 
-export const Referral: React.FC = () => {
+export const Referral: React.FC<any> = ({ headline, title, content, content_md, cta_text, cards, collection }) => {
   const [showReferralScreen, setShowReferralScreen] = useState(false);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -67,100 +68,116 @@ export const Referral: React.FC = () => {
     };
   }, [showReferralScreen]);
 
+  const isSlide = collection === "bh_how_it_works_1";
+
   return (
     <section className="referral-parent-container">
-      <div className="referral-container">
+      <div className="referral-container" style={{ paddingTop: isSlide ? 0 : "", paddingBottom: !isSlide ? 0 : "" }}>
         <div className="referral-container-item">
-          <span className="tagline mb-10 inline-block">{data.tagline}</span>
-          <h2 className="heading-1 mb-5 font-bold text-primary-800">{data.title}</h2>
-          <p className="paragraph-md mb-2 font-bold text-primary-800">{data.subtitle}</p>
-          <p className="paragraph-md mb-5 text-primary-800">{data.text}</p>
-          <Button onClick={handleOpenReferral}>Send a Referral</Button>
+          {collection !== "bh_how_it_works_1" && (
+            <>
+              <span className="tagline mb-10 inline-block">{headline}</span>
+              <h2 className="heading-1 mb-5 font-bold text-primary-800">{title}</h2>
+              <p className="paragraph-md mb-5 text-primary-800" dangerouslySetInnerHTML={{ __html: content_md }} />
+            </>
+          )}
+          {collection === "bh_how_it_works_1" && <Button onClick={handleOpenReferral}>{cta_text}</Button>}
         </div>
-        <div className="referral-container-item grid grid-cols-1 gap-6 md:grid-cols-2">
-          {data.features.map((feature) => (
-            <div key={feature.id} className="flex flex-col gap-3 p-6 xl:p-10">
-              <div className="flex items-start gap-3">
-                <div className="inline-block rounded-[4px] bg-primary-500 p-1">
-                  <IconRenderer className="h-6 w-6 text-primary-50" iconName={feature.icon} />
+        {collection !== "bh_how_it_works_1" && (
+          <div className="referral-container-item grid grid-cols-1 gap-6 md:grid-cols-2">
+            {cards.map(({ title, content, icon }: any, index: number) => (
+              <div key={index} className="flex flex-col gap-3 p-6 xl:p-10">
+                <div className="flex items-start gap-3">
+                  <div className="inline-block rounded-[4px] bg-primary-500 p-1">
+                    <Image
+                      alt={icon.data.attributes.name}
+                      height={24}
+                      width={24}
+                      src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                    />
+                  </div>
+                  <h3 className="heading-7 font-bold text-primary-800">{title}</h3>
                 </div>
-                <h3 className="heading-7 font-bold text-primary-800">{feature.title}</h3>
+                <p className="paragraph-md text-primary-800">{content}</p>
               </div>
-              <p className="paragraph-md text-primary-800">{feature.text}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* AnimatePresence and Motion for Referral Screen */}
-      <AnimatePresence>
-        {showReferralScreen && (
-          <motion.div
-            animate={{ clipPath: "inset(0 0 0 0%)" }}
-            className="referral-overlay"
-            exit={{ clipPath: "inset(0 0 0 100%)" }}
-            initial={{ clipPath: "inset(0 0 0 100%)" }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            <div className="overlay-content">
-              <nav className="mt-[7rem] flex w-full justify-between bg-primary-500 px-6 py-4 lg:px-16 lg:py-5">
-                <div className="flex items-center gap-3">
-                  <Button className="p-1 lg:p-3" iconName="ArrowLeftIcon" onClick={handleCloseReferral} />
-                  <h2 className="heading-5 text-neutral-50">{data.referral_title}</h2>
-                </div>
-                <Button className="p-1 lg:p-3" iconName="XMarkIcon" onClick={handleCloseReferral}>
-                  Close
-                </Button>
-              </nav>
+      {collection === "bh_how_it_works_1" && (
+        <AnimatePresence>
+          {showReferralScreen && (
+            <motion.div
+              animate={{ clipPath: "inset(0 0 0 0%)" }}
+              className="referral-overlay"
+              exit={{ clipPath: "inset(0 0 0 100%)" }}
+              initial={{ clipPath: "inset(0 0 0 100%)" }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
               <div className="overlay-content">
-                <div className="swiper-parent-container">
-                  <Swiper
-                    modules={[Navigation]}
-                    navigation={false}
-                    onSlideChange={(swiper) => {
-                      // Update state when slide changes
-                      setIsBeginning(swiper.isBeginning);
-                      setIsEnd(swiper.isEnd);
-                    }}
-                    onSwiper={(swiper) => {
-                      // Set initial state when Swiper is initialized
-                      setIsBeginning(swiper.isBeginning);
-                      setIsEnd(swiper.isEnd);
-                    }}
-                  >
-                    {data.referral_features.map((referralFeature) => (
-                      <SwiperSlide key={referralFeature.id}>
+                <nav className="mt-[7rem] flex w-full justify-between bg-primary-500 px-6 py-4 lg:px-16 lg:py-5">
+                  <div className="flex items-center gap-3">
+                    <Button className="p-1 lg:p-3" iconName="ArrowLeftIcon" onClick={handleCloseReferral} />
+                    <h2 className="heading-5 text-neutral-50">{title}</h2>
+                  </div>
+                  <Button className="p-1 lg:p-3" iconName="XMarkIcon" onClick={handleCloseReferral}>
+                    Close
+                  </Button>
+                </nav>
+                <div className="overlay-content">
+                  <div className="swiper-parent-container">
+                    <Swiper
+                      modules={[Navigation]}
+                      navigation={false}
+                      onSlideChange={(swiper) => {
+                        // Update state when slide changes
+                        setIsBeginning(swiper.isBeginning);
+                        setIsEnd(swiper.isEnd);
+                      }}
+                      onSwiper={(swiper) => {
+                        // Set initial state when Swiper is initialized
+                        setIsBeginning(swiper.isBeginning);
+                        setIsEnd(swiper.isEnd);
+                      }}
+                    >
+                      <SwiperSlide>
                         <div className="w-full max-w-screen-3xl">
-                          <h3 className="heading-1 mb-6 font-bold text-primary-800 lg:mb-10">
-                            {referralFeature.title}
-                          </h3>
-                          <div className={`grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-6`}>
-                            {referralFeature.features.map((referralFeature) => (
-                              <div key={referralFeature.id} className="md:py-6 lg:px-10 lg:py-10">
+                          <p className="paragraph-sm mb-10 text-primary-800">{content}</p>
+                          <h3 className="heading-1 mb-6 font-bold text-primary-800 lg:mb-10">{title}</h3>
+                          <div className={`grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-6`}>
+                            {cards.map(({ title, content, icon }: any, index: number) => (
+                              <div key={index} className="md:py-6 lg:px-10 lg:py-10">
                                 <div className="mb-3 flex items-start gap-3">
-                                  <div className="flex items-center justify-center rounded bg-primary-500 p-1">
-                                    <IconRenderer className="h-6 w-6 text-neutral-50" iconName={referralFeature.icon} />
+                                  <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-500 p-2">
+                                    <Image
+                                      src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                                      alt={icon.data.attributes.name}
+                                      height={24}
+                                      width={24}
+                                    />
                                   </div>
-                                  <h4 className="heading-4 font-bold text-primary-800">{referralFeature.title}</h4>
+                                  <h4 className="heading-4 font-bold text-primary-800">{title}</h4>
                                 </div>
-                                <p className="paragraph-xl text-primary-800">{referralFeature.text}</p>
+                                <p className="paragraph-xl text-primary-800">{content}</p>
                               </div>
                             ))}
                           </div>
                         </div>
                       </SwiperSlide>
-                    ))}
-                    <div className="relative z-10 flex justify-end gap-5 px-16 py-6 lg:py-[unset]">
-                      <SwiperButtonPrev disabled={isBeginning} />
-                      <SwiperButtonNext disabled={isEnd} />
-                    </div>
-                  </Swiper>
+                      <div className="relative z-10 flex justify-end gap-5 px-16 py-6 lg:py-[unset]">
+                        <SwiperButtonPrev disabled={isBeginning} />
+                        <SwiperButtonNext disabled={isEnd} />
+                      </div>
+                    </Swiper>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
     </section>
   );
 };

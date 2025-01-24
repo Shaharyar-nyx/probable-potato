@@ -111,6 +111,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                                         <span className="rounded-[4px] p-1 text-2xl group-hover:bg-neutral-50">
                                           {icon?.data?.attributes?.url ? (
                                             <img
+                                              alt={title}
                                               className="text-primary-80 h-[20px] w-[20px]"
                                               src={STRAPI_ASSETS + icon?.data?.attributes?.url}
                                             />
@@ -256,6 +257,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                               >
                                 <span className="flex-shrink-0 rounded-md p-1">
                                   <img
+                                    alt={title}
                                     className="h-5 w-5 text-primary-500"
                                     src={STRAPI_ASSETS + icon?.data?.attributes?.url}
                                   />

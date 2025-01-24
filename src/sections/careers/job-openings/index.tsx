@@ -3,19 +3,15 @@
 import React from "react";
 
 import styles from "./styles.module.scss";
-import { Button } from "@/components";
-import { JobOpeningsProps } from "@/types";
 
-export const JobOpenings: React.FC<JobOpeningsProps> = ({ jobOpenings }) => {
+export const JobOpenings: React.FC<any> = ({ title, content }) => {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h1 className={`heading-1 ${styles.title}`}>Open Positions</h1>
-        <p className={`paragraph-lg ${styles.description}`}>
-          Explore exciting career opportunities and help shape the future of cybersecurity today.
-        </p>
+        <h1 className={`heading-1 ${styles.title}`}>{title}</h1>
+        <p className={`paragraph-lg ${styles.description}`}>{content}</p>
 
-        <div className={styles.gridContent}>
+        {/* <div className={styles.gridContent}>
           <p className={`paragraph-lg ${styles.columnHeader}`}>Job Title</p>
           <p className={`paragraph-lg ${styles.columnHeader}`}>Contract Type</p>
           <p className={`paragraph-lg ${styles.columnHeader}`}>Location</p>
@@ -34,7 +30,7 @@ export const JobOpenings: React.FC<JobOpeningsProps> = ({ jobOpenings }) => {
               {index !== jobOpenings.length - 1 && <div className={styles.divider} />}
             </React.Fragment>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

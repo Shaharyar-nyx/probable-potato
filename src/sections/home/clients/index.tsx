@@ -6,7 +6,7 @@ import React from "react";
 import Slider from "react-slick";
 
 import styles from "./styles.module.scss";
-import { ClientsProps } from "@/types";
+import { STRAPI_ASSETS } from "@/lib";
 
 const sliderSettings = {
   dots: false,
@@ -38,19 +38,33 @@ const sliderSettings = {
     },
   ],
 };
-export const Clients: React.FC<ClientsProps> = ({ clients, title }) => {
+export const Clients: React.FC<any> = ({ clients, title }) => {
   return (
     <div className={styles.clientsSection}>
       <h1 className={`${styles.title} heading-1 font-bold`}>{title}</h1>
       <div className={styles.carouselContainer}>
         <Slider {...sliderSettings}>
-          {clients.map((client, index) => (
-            <div key={`${client.name}-${index}`} className={styles.div}>
-              <div className={styles.logoWrapper}>
-                <img alt={`${client.name} logo`} className={styles.clientLogo} src={client.logo} />
+          {clients.data.map(
+            (
+              client: {
+                name: string;
+                attributes: {
+                  logo: { data: { attributes: { url: string } } };
+                };
+              },
+              index: number,
+            ) => (
+              <div key={`${client.name}-${index}`} className={styles.div}>
+                <div className={styles.logoWrapper}>
+                  <img
+                    alt={`${client.name} logo`}
+                    className={styles.clientLogo}
+                    src={`${STRAPI_ASSETS}${client.attributes.logo.data.attributes.url}`}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ),
+          )}
         </Slider>
       </div>
     </div>

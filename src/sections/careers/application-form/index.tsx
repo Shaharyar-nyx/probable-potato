@@ -1,15 +1,21 @@
 "use client";
 
-import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 
 import styles from "./styles.module.scss";
-import { Button, IconRenderer, Input, Textarea, InputFile } from "@/components";
+import { Button, Input, Textarea, InputFile } from "@/components";
 import { ApplyFormType } from "@/types";
 import { useSubmitApplicationForm } from "@/hooks/useSubmitApplicationForm";
+import Image from "next/image";
+import { STRAPI_ASSETS } from "@/lib";
 
-export const ApplicationForm: React.FC = () => {
+export const ApplicationForm: React.FC<any> = ({
+  title,
+  content,
+  headline,
+  card: { title: cardTitle, content_md, icon },
+}) => {
   const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB in bytes
 
   const {
@@ -26,7 +32,6 @@ export const ApplicationForm: React.FC = () => {
   const shouldShowSuccessMessage = called && !loading && !error;
 
   const onSubmit = async (data: ApplyFormType) => {
-    console.log(data, "xxx");
     submit(data);
   };
 
@@ -36,25 +41,23 @@ export const ApplicationForm: React.FC = () => {
         <div className={styles.chatCard}>
           <div className={styles.chatHeader}>
             <div className={styles.iconWrapper}>
-              <IconRenderer className={styles.icon} iconName="ChatBubbleOvalLeftEllipsisIcon" />
+              <Image
+                alt={icon.data.attributes.name}
+                height={24}
+                width={24}
+                src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+              />
             </div>
-            <h3 className="heading-7 font-bold">Chat to us</h3>
+            <h3 className="heading-7 font-bold">{cardTitle}</h3>
           </div>
-          <p className={`paragraph-md ${styles.chatDescription}`}>
-            Our team is here to help <br />
-            <Link className={`paragraph-md ${styles.chatEmail}`} href="mailto:careers@cyberbay.tech">
-              careers@cyberbay.tech
-            </Link>
-          </p>
+          <div className={`paragraph-md ${styles.chatDescription}`} dangerouslySetInnerHTML={{ __html: content_md }} />
         </div>
 
         <div className={styles.formContainer}>
-          <h1 className={`heading-1 ${styles.formTitle}`}>
-            Your next career move <br /> starts here.
-          </h1>
+          <h1 className={`heading-1 ${styles.formTitle} lg:w-[90%]`}>{title}</h1>
 
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-            <p className={`paragraph-lg ${styles.formSubtitle}`}>Let&apos;s grow together.</p>
+            <p className={`paragraph-lg ${styles.formSubtitle}`}>{content}</p>
 
             <Input
               disabled={loading}
@@ -78,7 +81,7 @@ export const ApplicationForm: React.FC = () => {
                 },
               })}
             />
-            <p className={`paragraph-lg ${styles.uploadLabel}`}>Let us know about your experience</p>
+            <p className={`paragraph-lg ${styles.uploadLabel}`}>{headline}</p>
             {/* File Input */}
             <InputFile
               clearErrors={clearErrors}

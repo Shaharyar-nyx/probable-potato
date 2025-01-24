@@ -3,14 +3,14 @@ import { gql } from "@apollo/client";
 import { BLOCKS_FRAGMENT } from "../fragments/blocks";
 
 export const GET_PAGE_BY_SLUG = gql`
-  query GetPageBySlug($slug: String) {
-     pages(filter: { slug: { _eq: $slug } }) {
+  query Pages($slug: String) {
+    pages(filters: { slug: { eq: $slug } }) {
       data {
         attributes {
           title
           slug
           publishedAt
-          seo {
+           seo {
             title
             meta_description
             canonical_url

@@ -9,7 +9,7 @@ import formData from "@/data/contact-us/form.json";
 import { ContactUsFormType } from "@/types";
 import { useSubmitContactUs } from "@/hooks/useSubmitContactUs";
 
-export const ContactForm: React.FC = () => {
+export const ContactForm: React.FC<any> = ({title, headline, content}) => {
   const {
     register,
     handleSubmit,
@@ -29,11 +29,11 @@ export const ContactForm: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.gridContainer}>
         <div className="w-full lg:w-[40%]">
-          <h2 className={`${styles.title} heading-2 font-bold`}>Get In Touch</h2>
+          <h2 className={`${styles.title} heading-2 font-bold`}>{title}</h2>
           <p className={styles.description}>
-            <span className="font-semibold">Looking to speak with a member of our team?</span>
+            <span className="font-semibold">{headline}</span>
             <br />
-            Fill out the form with your contact details and a short message and we&apos;ll be in touch.
+            {content}
           </p>
         </div>
 

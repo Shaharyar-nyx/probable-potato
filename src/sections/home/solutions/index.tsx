@@ -6,9 +6,8 @@ import React from "react";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
-import { SolutionCardProps, SolutionsProps } from "@/types/components";
-
-const MotionButton = motion(Button);
+import { SolutionCardProps } from "@/types/components";
+import { STRAPI_ASSETS } from "@/lib";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -45,7 +44,7 @@ const staggerChildren = {
   },
 };
 
-const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, link, description, isEven }) => {
+const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, cta_text, cta_url, content, isEven }) => {
   return (
     <motion.div
       className={`${styles.solutionCard} ${isEven ? styles.even : ""}`}
@@ -56,19 +55,24 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, link, descript
     >
       <div className={styles.cardContent}>
         <div className={styles.iconWrapper}>
-          <Image alt={title} height={100} src={icon} width={100} />
+          <Image
+            alt={icon?.data?.attributes?.name}
+            height={100}
+            src={`${STRAPI_ASSETS}${icon?.data?.attributes?.url}`}
+            width={100}
+          />
         </div>
         <div className={`${styles.textContent} ${isEven ? styles.even : ""}`}>
           <h4 className={`${styles.cardTitle} heading-4 font-bold`}>{title}</h4>
-          <p className={`${styles.cardDescription} paragraph-md`}>{description}</p>
-          {(link ?? "") && <Button href={link}>Learn More</Button>}
+          <p className={`${styles.cardDescription} paragraph-md`}>{content}</p>
+          {(cta_url ?? "") && <Button href={cta_url}>{cta_text}</Button>}
         </div>
       </div>
     </motion.div>
   );
 };
 
-export const Solutions: React.FC<SolutionsProps> = ({ title, solutions, crowdsourcing }) => {
+export const Solutions: React.FC<any> = ({ title, cards }) => {
   return (
     <div className={styles.solutionsContainer}>
       <div className={styles.sectionBackground} style={{ backgroundImage: `url(/images/bg-image.jpeg)` }}>
@@ -93,56 +97,9 @@ export const Solutions: React.FC<SolutionsProps> = ({ title, solutions, crowdsou
               viewport={{ once: true }}
               whileInView="visible"
             >
-              {solutions.map((solution, index) => (
+              {cards.map((solution: any, index: number) => (
                 <SolutionCard key={index} {...solution} isEven={index % 2 === 1} />
               ))}
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            className={styles.crowdsourcing}
-            initial="hidden"
-            variants={staggerChildren}
-            viewport={{ once: true }}
-            whileInView="visible"
-          >
-            <motion.div className={styles.crowdsourcingContent}>
-              <motion.span className="tagline text-primary-800" variants={fadeInUp}>
-                {crowdsourcing.label}
-              </motion.span>
-
-              <motion.div>
-                <motion.h1 className={`${styles.crowdsourcingTitle} heading-1`} variants={fadeInUp}>
-                  {crowdsourcing.title}
-                </motion.h1>
-                <motion.p className={`${styles.crowdsourcingDescription} paragraph-md`} variants={fadeInUp}>
-                  {crowdsourcing.description}
-                </motion.p>
-              </motion.div>
-
-              <motion.div className={styles.benefitsGrid} variants={staggerChildren}>
-                {crowdsourcing.benefits.map((benefit, index) => (
-                  <motion.div key={index} className={styles.benefitItem} variants={fadeInUp}>
-                    <h3 className={`${styles.benefitTitle} heading-7`}>{benefit.title}</h3>
-                    <p className={`${styles.benefitDescription} paragraph-md`}>{benefit.description}</p>
-
-                    {benefit.link && (
-                      <MotionButton
-                        className="mt-4 self-start"
-                        href={benefit.link}
-                        initial="hidden"
-                        size="large"
-                        variant="primary"
-                        variants={fadeInUp}
-                        viewport={{ once: true }}
-                        whileInView="visible"
-                      >
-                        Learn More
-                      </MotionButton>
-                    )}
-                  </motion.div>
-                ))}
-              </motion.div>
             </motion.div>
           </motion.div>
         </div>

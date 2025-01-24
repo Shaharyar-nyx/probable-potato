@@ -1,27 +1,33 @@
 import React from "react";
 
 import { Header } from "@/components";
-import heroData from "@/data/bug-hunters/hero.json";
-import knowledgeData from "@/data/bug-hunters/knowledge.json";
-import { CTA, Ecosystem, FeaturedHunters, HunterLevels, KeyBenefits, Referral } from "@/sections";
+import { CTA, Ecosystem, FeaturedHunters, HunterLevels, KeyBenefits, Referral, WhyJoin } from "@/sections";
+import { BlockType } from "@/types";
+import { getPageBySlug } from "@/lib";
+import { PageBuilder } from "@/components/PageBuilder";
 
-const EthicalHackersPage: React.FC = () => {
+const blockComponents: Record<string, React.FC<BlockType>> = {
+  hero_section: Header,
+  bh_why_bughunters_join: WhyJoin,
+  bh_key_benefits: KeyBenefits,
+  bh_referral_program: Referral,
+  bh_how_it_works_1: Referral,
+  bh_building_ecosystem: Ecosystem,
+  bh_levels: HunterLevels,
+  bh_featured_hunters: FeaturedHunters,
+  single_card_section: CTA,
+};
+
+const EthicalHackersPage: React.FC = async () => {
+  const data = await getPageBySlug("bug-hunters");
+
+  if (!data?.blocks) {
+    return null;
+  }
+
   return (
-    <main className="relative">
-      <Header {...heroData} />
-      <KeyBenefits />
-      <Referral />
-      <Ecosystem />
-      <HunterLevels />
-      <FeaturedHunters />
-      <CTA
-        backgroundImage={{
-          src: knowledgeData.background,
-        }}
-        cta={knowledgeData.cta}
-        description={knowledgeData.text}
-        title={knowledgeData.title}
-      />
+    <main>
+      <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
     </main>
   );
 };

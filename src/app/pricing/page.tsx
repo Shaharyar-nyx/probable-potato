@@ -1,28 +1,23 @@
 import React from "react";
 
 import { Header } from "@/components";
-import heroData from "@/data/pricing/hero.json";
-import packagesData from "@/data/pricing/packages.json";
 import { CTA, Packages } from "@/sections";
+import { BlockType } from "@/types";
+import { getPageBySlug } from "@/lib";
+import { PageBuilder } from "@/components/PageBuilder";
 
-const Pricing: React.FC = () => {
-  return (
-    <main>
-      <Header {...heroData} />
-      <Packages {...packagesData} />
-      <CTA
-        backgroundImage={{
-          src: "/pricing/pricing-cta-bg.webp",
-        }}
-        cta={{
-          label: "Contact Sales",
-          link: "/contact-us",
-        }}
-        description="Need help creating a package that best suits your needs? Reach out to schedule a consultation."
-        title="Schedule A Personalized Consultation"
-      />
-    </main>
-  );
+const blockComponents: Record<string, React.FC<BlockType>> = {
+  hero_section: Header,
+  packages_section: Packages,
+  single_card_section: CTA,
+};
+const Pricing: React.FC = async () => {
+  const data = await getPageBySlug("pricing");
+
+  if (!data?.blocks) {
+    return null;
+  }
+  return <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />;
 };
 
 export default Pricing;

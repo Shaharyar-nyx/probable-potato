@@ -1,59 +1,15 @@
 "use client";
 
 import { Roboto } from "next/font/google";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
-import { Feature, PackageData as BasePackageData, PackagesProps } from "@/types";
 import Modal from "@/components/UI/modal";
 import { ContactSalesForm } from "@/sections";
-
-interface ExtendedPackageData extends BasePackageData {
-  type: keyof typeof PackageIcons;
-}
-
-const PackageIcons = {
-  cyberscan: (
-    <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-      <g id="magnifying-glass">
-        <path
-          d="M21 21L15.8033 15.8033M15.8033 15.8033C17.1605 14.4461 18 12.5711 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18C12.5711 18 14.4461 17.1605 15.8033 15.8033Z"
-          id="Vector"
-          stroke="#045DE3"
-          strokeLinecap="round"
-          strokeWidth="1.5"
-        />
-      </g>
-    </svg>
-  ),
-  cybershield: (
-    <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-      <g id="shield-check">
-        <path
-          d="M9 12.7498L11.25 14.9998L15 9.74985M12 2.71411C9.8495 4.75073 6.94563 5.99986 3.75 5.99986C3.69922 5.99986 3.64852 5.99955 3.59789 5.99892C3.2099 7.17903 3 8.43995 3 9.74991C3 15.3414 6.82432 20.0397 12 21.3719C17.1757 20.0397 21 15.3414 21 9.74991C21 8.43995 20.7901 7.17903 20.4021 5.99892C20.3515 5.99955 20.3008 5.99986 20.25 5.99986C17.0544 5.99986 14.1505 4.75073 12 2.71411Z"
-          id="Vector"
-          stroke="#045DE3"
-          strokeLinecap="round"
-          strokeWidth="1.5"
-        />
-      </g>
-    </svg>
-  ),
-  cyberswarm: (
-    <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-      <g id="code-bracket-square">
-        <path
-          d="M14.25 9.75L16.5 12L14.25 14.25M9.75 14.25L7.5 12L9.75 9.75M6 20.25H18C19.2426 20.25 20.25 19.2426 20.25 18V6C20.25 4.75736 19.2426 3.75 18 3.75H6C4.75736 3.75 3.75 4.75736 3.75 6V18C3.75 19.2426 4.75736 20.25 6 20.25Z"
-          stroke="#045DE3"
-          strokeLinecap="round"
-          strokeWidth="1.5"
-        />
-      </g>
-    </svg>
-  ),
-};
+import { STRAPI_ASSETS } from "@/lib";
+import Image from "next/image";
 
 const roboto = Roboto({
   weight: ["700"],
@@ -61,56 +17,72 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-const PackageCard = ({ data, type }: { data: BasePackageData; type: keyof typeof PackageIcons }) => (
-  <div className={styles.package}>
-    <div>
-      <div className={styles.packageHeaderWrapper}>
-        <div className={styles.packageIcon}>{PackageIcons[type]}</div>
-        <h3 className={`${styles.packageName} ${roboto.className} heading-6`}>{type}</h3>
-      </div>
-      <div className={styles.packageContentWrapper}>
-        <div className={styles.priceContainer}>
-          {data.period ? (
-            <h1 className={`${styles.price} heading-1 font-bold`}>
-              {data.price}
-              <span className={`${styles.perYear} paragraph-xs font-normal`}>{data.period}</span>
-            </h1>
-          ) : (
-            <h3 className={`${styles.price} heading-3 font-bold`}>{data.price}</h3>
-          )}
-        </div>
-        <p className={styles.packageDescription}>{data.description}</p>
-      </div>
-    </div>
+const PackageCard = ({ data: { title, content, cta_text, cta_url, duration, icon, price } }: any) => {
+  const cta = {
+    label: cta_text,
+    isModal: true,
+    icon: "ArrowUpRightIcon",
+    link: cta_url,
+  };
 
-    <div className={styles.packageFooter}>
-      {data?.cta && (
-        <>
-          {data?.cta?.isModal ? (
-            <Modal
-              cta={data.cta}
-              buttonStyle="w-full text-center !font-normal text-primary-800"
-              buttonSize="small"
-              buttonVariant="neutral"
-            >
-              <ContactSalesForm />
-            </Modal>
-          ) : (
-            <Button
-              className="w-full text-center !font-normal text-primary-800"
-              href={data.cta.link}
-              iconName={data.cta.icon}
-              size="small"
-              variant="neutral"
-            >
-              {data.cta.label}
-            </Button>
-          )}
-        </>
-      )}
+  return (
+    <div className={styles.package}>
+      <div>
+        <div className={styles.packageHeaderWrapper}>
+          <div className={styles.packageIcon}>
+            <Image
+              alt={icon.data.attributes.name}
+              height={24}
+              src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+              width={24}
+            />
+          </div>
+          <h3 className={`${styles.packageName} ${roboto.className} heading-6`}>{title}</h3>
+        </div>
+        <div className={styles.packageContentWrapper}>
+          <div className={styles.priceContainer}>
+            {duration ? (
+              <h1 className={`${styles.price} heading-1 font-bold`}>
+                {price}
+                <span className={`${styles.perYear} paragraph-xs font-normal`}>{duration}</span>
+              </h1>
+            ) : (
+              <h3 className={`${styles.price} heading-3 font-bold`}>{price}</h3>
+            )}
+          </div>
+          <p className={styles.packageDescription}>{content}</p>
+        </div>
+      </div>
+
+      <div className={styles.packageFooter}>
+        {cta_text && (
+          <>
+            {cta?.isModal ? (
+              <Modal
+                cta={cta}
+                buttonStyle="w-full text-center !font-normal text-primary-800"
+                buttonSize="small"
+                buttonVariant="neutral"
+              >
+                <ContactSalesForm />
+              </Modal>
+            ) : (
+              <Button
+                className="w-full text-center !font-normal text-primary-800"
+                href={cta?.link}
+                iconName={cta?.icon}
+                size="small"
+                variant="neutral"
+              >
+                {cta?.label}
+              </Button>
+            )}
+          </>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const CheckIcon = () => (
   <svg
@@ -155,10 +127,10 @@ const FeatureRow = ({
   onColumnHover,
   packages,
 }: {
-  feature: Feature;
+  feature: any;
   hoveredColumn: number | null;
   onColumnHover: (index: number | null) => void;
-  packages: ExtendedPackageData[];
+  packages: any;
 }) => {
   const renderValue = (value: boolean | string | undefined) => {
     if (typeof value === "undefined") return null;
@@ -179,7 +151,7 @@ const FeatureRow = ({
   };
 
   return (
-    <tr className={styles.tableRow}>
+    <tr className={styles.tableRow} key={feature.name}>
       <td className={styles.tableCell}>
         {feature.name}
         {feature.tooltip && (
@@ -218,43 +190,33 @@ const FeatureRow = ({
           </>
         )}
       </td>
-      {packages.map((pkg, index) => (
+      {packages.map((pkg: any, index: number) => (
         <td
-          key={pkg.type}
+          key={`${feature.name}-package-${index}-${pkg.title}`}
           className={getColumnClass(index)}
           onMouseEnter={() => onColumnHover(index)}
           onMouseLeave={() => onColumnHover(null)}
         >
-          {renderValue(feature[pkg.type as keyof typeof feature])}
+          {renderValue(feature[pkg.title.toLowerCase().replace(/\s+/g, "") as keyof typeof feature])}
         </td>
       ))}
     </tr>
   );
 };
 
-export const Packages: React.FC<PackagesProps> = ({ packages, features, description, title, backgroundImage }) => {
+export const Packages: React.FC<any> = ({ pricing_cards, features, table, content, title, backgroundImage }) => {
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
   const [gridCols, setGridCols] = useState(3);
 
   useEffect(() => {
     const handleResize = () => {
-      setGridCols(window.innerWidth <= 768 ? 1 : Object.keys(packages || {}).length + 1);
+      setGridCols(window.innerWidth <= 768 ? 1 : Object.keys(pricing_cards || {}).length + 1);
     };
 
     handleResize(); // Initial check
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const packagesList = useCallback(() => {
-    if (!packages) return [] as ExtendedPackageData[];
-    return Object.entries(packages).map(([key, value]) => ({
-      ...value,
-      type: key,
-    })) as ExtendedPackageData[];
-  }, [packages]);
-
-  const packageArray = packagesList();
 
   return (
     <div className={styles.container}>
@@ -264,7 +226,7 @@ export const Packages: React.FC<PackagesProps> = ({ packages, features, descript
       <div className={styles.content}>
         <div className={styles.header}>
           <h1 className="heading-1 mb-3 font-bold text-primary-800">{title}</h1>
-          <p className={styles.subtitle}>{description}</p>
+          <p className={styles.subtitle}>{content}</p>
         </div>
 
         <div
@@ -273,9 +235,35 @@ export const Packages: React.FC<PackagesProps> = ({ packages, features, descript
             gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))`,
           }}
         >
-          <div />
-          {packageArray.map((pkg) => (
-            <PackageCard key={pkg.type} data={pkg} type={pkg.type as keyof typeof PackageIcons} />
+          {features ? (
+            <div>
+              {features.data.map(({ attributes: { title, items } }: any, index: number) => (
+                <div key={`feature-${index}`} className="mb-16">
+                  <h3 className="heading-6 mb-5 font-bold text-primary-800">{title}</h3>
+                  {items.data.map(({ attributes: { title, description, icon } }: any, index: number) => (
+                    <div key={`item-${index}`} className="mb-5 flex flex-row items-start gap-6">
+                      <div className="flex items-center gap-4 rounded-[4px] bg-primary-500 p-2">
+                        <Image
+                          alt={icon.data.attributes.name}
+                          height={24}
+                          width={24}
+                          src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                        />
+                      </div>
+                      <div>
+                        <p className="paragraph-lg font-bold">{title}</p>
+                        <p className="paragraph-sm">{description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div />
+          )}
+          {pricing_cards.map((pkg: any, index: number) => (
+            <PackageCard key={`card-${index}`} data={pkg} />
           ))}
         </div>
 
@@ -287,15 +275,42 @@ export const Packages: React.FC<PackagesProps> = ({ packages, features, descript
         <div className={styles.featuresTable}>
           <table className={styles.table}>
             <tbody>
-              {features.map((feature) => (
-                <FeatureRow
-                  key={feature.name}
-                  feature={feature}
-                  packages={packageArray}
-                  hoveredColumn={hoveredColumn}
-                  onColumnHover={setHoveredColumn}
-                />
-              ))}
+              {(() => {
+                const features = table.data.attributes.columns.data[0].attributes.rows.data.map((row: any) => ({
+                  name: row.attributes.value,
+                  tooltip: row.attributes.tooltip,
+                  has_tooltip: row.attributes.has_tooltip,
+                }));
+
+                const packageValues = table.data.attributes.columns.data.slice(1).map((column: any) =>
+                  column.attributes.rows.data.map((row: any) => ({
+                    value: row.attributes.value,
+                    hasCheckmark: row.attributes.image?.data !== null,
+                  })),
+                );
+
+                return features.map((feature: any, rowIndex: number) => {
+                  const featurePackages = packageValues.reduce((acc: any, columnValues: any, colIndex: number) => {
+                    const value = columnValues[rowIndex].hasCheckmark ? true : columnValues[rowIndex].value;
+                    const packageName = pricing_cards[colIndex].title.toLowerCase().replace(/\s+/g, "");
+                    return { ...acc, [packageName]: value };
+                  }, {});
+
+                  return (
+                    <FeatureRow
+                      key={`FeatureRow-${rowIndex}-${feature.name}`}
+                      feature={{
+                        name: feature.name,
+                        tooltip: feature.tooltip,
+                        ...featurePackages,
+                      }}
+                      packages={pricing_cards}
+                      hoveredColumn={hoveredColumn}
+                      onColumnHover={setHoveredColumn}
+                    />
+                  );
+                });
+              })()}
             </tbody>
           </table>
         </div>

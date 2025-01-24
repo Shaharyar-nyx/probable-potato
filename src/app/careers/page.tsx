@@ -1,20 +1,29 @@
 import React from "react";
 
 import { Header } from "@/components";
-import benefitsData from "@/data/careers/benefits.json";
-import clientsContent from "@/data/careers/clients.json";
-import heroData from "@/data/careers/hero.json";
-import jobOpeningsData from "@/data/careers/job-openings.json";
 import { ApplicationForm, Benefits, Clients, JobOpenings } from "@/sections";
+import { BlockType } from "@/types";
+import { PageBuilder } from "@/components/PageBuilder";
+import { getPageBySlug } from "@/lib";
 
-const CareersPage: React.FC = () => {
+const blockComponents: Record<string, React.FC<BlockType>> = {
+  hero_section: Header,
+  career_next_move: ApplicationForm,
+  career_benefits: Benefits,
+  // career_open_positions: JobOpenings,
+  industry_leaders_section: Clients,
+};
+
+const CareersPage: React.FC = async () => {
+  const data = await getPageBySlug("careers");
+
+  if (!data?.blocks) {
+    return null;
+  }
+
   return (
     <main>
-      <Header {...heroData} />
-      <ApplicationForm />
-      <Benefits {...benefitsData} />
-      {/* <JobOpenings {...jobOpeningsData} /> */}
-      <Clients {...clientsContent} />
+      <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
     </main>
   );
 };
