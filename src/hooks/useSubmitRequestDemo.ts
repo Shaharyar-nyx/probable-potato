@@ -14,12 +14,20 @@ export async function submitRequestDemo(
 ) {
   const isCompanyEmail = CompanyEmailValidator.isCompanyEmail(payload.email);
 
-  const payloadData = {
-    ...payload,
-    isSaveApollo: isCompanyEmail,
-    channel: "Demo Form",
-  };
+  const channel = "Demo Form";
 
+  const payloadData = {
+    data: {
+      body: {
+        ...payload,
+        isSaveApollo: isCompanyEmail,
+        channel,
+      },
+      name: channel,
+      key: channel?.toLowerCase()?.replace(/\s+/g, "_"),
+    },
+  };
+  
   try {
     await cyberbayClient.createContact(JSON.stringify(payloadData));
     reset();

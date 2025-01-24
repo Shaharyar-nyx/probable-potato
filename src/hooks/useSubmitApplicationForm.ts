@@ -11,13 +11,24 @@ export async function submitApplicationForm(
   reset: UseFormReset<ApplyFormType>,
   onDone: (error: Error | null, data: { message: string } | null) => void,
 ) {
+  const channel = "Careers Form";
   const formData = new FormData();
 
-  formData.append("name", payload.name);
-  formData.append("email", payload.email);
-  formData.append("message", payload.message);
-  formData.append("isSaveApollo", "false");
-  formData.append("channel", "Careers Form");
+  const payloadData = {
+    data: {
+      body: {
+        ...payload,
+        isSaveApollo: false,
+        channel,
+      },
+      name: channel,
+      key: channel?.toLowerCase()?.replace(/\s+/g, "_"),
+    },
+  };
+
+  Object.entries(payloadData.data).forEach(([key, value]) => {
+    formData.append(key, typeof value === "object" ? JSON.stringify(value) : value);
+  });
 
   if (payload.resume) {
     formData.append("resume", payload.resume);
