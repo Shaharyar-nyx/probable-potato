@@ -14,10 +14,18 @@ export async function submitReport(
 ) {
   const isCompanyEmail = CompanyEmailValidator.isCompanyEmail(payload.email);
 
+  const channel = "Free Report Form";
+
   const payloadData = {
-    ...payload,
-    isSaveApollo: isCompanyEmail,
-    channel: "Free Report Form",
+    data: {
+      body: {
+        ...payload,
+        isSaveApollo: isCompanyEmail,
+        channel,
+      },
+      name: channel,
+      key: channel?.toLowerCase()?.replace(/\s+/g, "_"),
+    },
   };
 
   try {

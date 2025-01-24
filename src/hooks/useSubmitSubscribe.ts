@@ -11,9 +11,17 @@ export async function submitSubscribe(
   reset: UseFormReset<SubscribeType>,
   onDone: (error: Error | null, data: { message: string } | null) => void,
 ) {
+  const channel = "Subscribe";
+
   const payloadData = {
-    ...payload,
-    channel: "Subscribe Form",
+    data: {
+      body: {
+        ...payload,
+        channel,
+      },
+      name: channel,
+      key: channel?.toLowerCase()?.replace(/\s+/g, "_"),
+    },
   };
 
   try {

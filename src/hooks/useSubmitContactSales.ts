@@ -14,10 +14,18 @@ export async function submitContactSales(
 ) {
   const isCompanyEmail = CompanyEmailValidator.isCompanyEmail(payload.email);
 
+  const channel = "Contact Sales Form";
+
   const payloadData = {
-    ...payload,
-    isSaveApollo: isCompanyEmail,
-    channel: "Contact Sales Form",
+    data: {
+      body: {
+        ...payload,
+        isSaveApollo: isCompanyEmail,
+        channel,
+      },
+      name: channel,
+      key: channel?.toLowerCase()?.replace(/\s+/g, "_"),
+    },
   };
 
   try {
