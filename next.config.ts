@@ -23,6 +23,14 @@ const nextConfig: NextConfig = {
   sassOptions: {
     silenceDeprecations: ["legacy-js-api", "import"],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://cyberbay-cms.staging.forgewerks.com/api/:path*",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
