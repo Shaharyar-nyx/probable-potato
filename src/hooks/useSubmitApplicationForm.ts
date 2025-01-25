@@ -12,7 +12,6 @@ export async function submitApplicationForm(
   onDone: (error: Error | null, data: { message: string } | null) => void,
 ) {
   const channel = "Careers Form";
-  const formData = new FormData();
 
   const payloadData = {
     data: {
@@ -26,16 +25,9 @@ export async function submitApplicationForm(
     },
   };
 
-  Object.entries(payloadData.data).forEach(([key, value]) => {
-    formData.append(key, typeof value === "object" ? JSON.stringify(value) : value);
-  });
-
-  if (payload.resume) {
-    formData.append("resume", payload.resume);
-  }
 
   try {
-    await cyberbayClient.createContact(formData);
+    await cyberbayClient.createContact(JSON.stringify(payloadData));
     reset();
     onDone(null, { message: "Form submitted successfully!" });
   } catch (error) {
