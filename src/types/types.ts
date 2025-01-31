@@ -9,7 +9,7 @@ export type ApplyFormType = {
   email: string;
   message: string;
   name: string;
-  resume: File | null;
+  file: File | null;
 };
 
 export interface DemoFormType {
@@ -39,4 +39,4 @@ export type ReportFormType = {
 
 export type SubscribeType = {
   email: string;
-}
+};

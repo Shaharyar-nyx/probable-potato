@@ -16,7 +16,7 @@ export const ApplicationForm: React.FC<any> = ({
   headline,
   card: { title: cardTitle, content_md, icon },
 }) => {
-  const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB in bytes
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB in bytes
 
   const {
     register,
@@ -32,7 +32,41 @@ export const ApplicationForm: React.FC<any> = ({
   const shouldShowSuccessMessage = called && !loading && !error;
 
   const onSubmit = async (data: ApplyFormType) => {
-    submit(data);
+    let fd = new FormData();
+
+    const channel = "Careers Form";
+    const formData: ApplyFormType = {
+      email: data.email,
+      message: data.message,
+      name: data.name,
+      file: data.file,
+    };
+
+    fd.append(
+      "data",
+      JSON.stringify({
+        body: {
+          ...formData,
+          isSaveApollo: false,
+          channel,
+        },
+        name: channel,
+        key: channel?.toLowerCase()?.replace(/\s+/g, "_"),
+      }),
+    );
+
+    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+
+    if (!fileInput || !fileInput.files?.length) {
+      console.error("No file input found or no file selected");
+      return;
+    }
+
+    const file = fileInput.files[0];
+
+    fd.append("files.file", file, file.name);
+
+    submit(fd);
   };
 
   return (
@@ -85,11 +119,11 @@ export const ApplicationForm: React.FC<any> = ({
             {/* File Input */}
             <InputFile
               clearErrors={clearErrors}
-              error={errors.resume?.message}
+              error={errors.file?.message}
               loading={loading}
-              id="resume"
+              id="file"
               maxFileSize={MAX_FILE_SIZE}
-              name="resume"
+              name="file"
               register={register}
               setError={setError}
               setValue={setValue}

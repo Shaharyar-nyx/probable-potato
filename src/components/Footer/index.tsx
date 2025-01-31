@@ -49,7 +49,8 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                             <li key={url}>
                               <Link
                                 className="transition-colors hover:text-gray-300"
-                                href={url?.startsWith("/") ? url : `/${url}`}
+                                href={url?.startsWith("http") ? url : url?.startsWith("/") ? url : `/${url}`}
+                                {...(url?.startsWith("http") && { target: "_blank" })}
                               >
                                 {title}
                               </Link>
@@ -102,7 +103,11 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
             <div className="grid grid-cols-3 items-center">
               <div className="flex items-center space-x-6 text-[14px] text-neutral-200">
                 {navigations.data[1].attributes.items.data.map(({ attributes: { title, url } }: any) => (
-                  <Link key={url} href={url?.startsWith("/") ? url : `/${url}`}>
+                  <Link
+                    key={url}
+                    href={url?.startsWith("http") ? url : url?.startsWith("/") ? url : `/${url}`}
+                    {...(url?.startsWith("http") && { target: "_blank" })}
+                  >
                     {title}
                   </Link>
                 ))}

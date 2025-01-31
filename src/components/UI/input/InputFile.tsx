@@ -16,7 +16,7 @@ export const InputFile: React.FC<InputFileProps> = ({
   setValue,
   setError,
   className,
-  children = "Upload your resume",
+  children = "Upload your file",
   ...buttonProps
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
