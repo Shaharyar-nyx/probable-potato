@@ -9,7 +9,7 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   bb_findings_bugs: FindingBugBounty,
   bb_continuous_bug_testing: ImportanceBugTesting,
   bb_program_safeguards: ProgramSafeguards,
-  bb_which_program: ProgramType,
+  // bb_which_program: ProgramType,
   packages_section: Packages,
 };
 
