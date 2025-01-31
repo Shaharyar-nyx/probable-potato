@@ -63,7 +63,7 @@ export const ProgramType: React.FC<any> = ({ title, content, cards }) => {
                   </div>
                 )}
 
-                <div>
+                {/* <div>
                   {expandedFeature === index ? (
                     <Button className="float-right" variant="neutral" onClick={() => handleLearnMore(null)}>
                       <Image alt="arrow up right" height={24} src="/images/arrow-up-left.svg" width={24} />
@@ -75,7 +75,7 @@ export const ProgramType: React.FC<any> = ({ title, content, cards }) => {
                       Learn More
                     </Button>
                   )}
-                </div>
+                </div> */}
               </motion.div>
             ))}
           </div>
