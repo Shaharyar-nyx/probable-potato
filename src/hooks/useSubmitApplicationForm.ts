@@ -3,31 +3,19 @@
 import { useState } from "react";
 import useCaptcha, { CaptchaAction } from "./useCaptcha";
 import { ApplyFormType } from "@/types";
-import { cyberbayClient } from "@/lib";
+import { CYBERBAY_CMS_URL } from "@/lib";
 import { UseFormReset } from "react-hook-form";
 
 export async function submitApplicationForm(
-  payload: ApplyFormType,
+  payload: any,
   reset: UseFormReset<ApplyFormType>,
   onDone: (error: Error | null, data: { message: string } | null) => void,
 ) {
-  const channel = "Careers Form";
-
-  const payloadData = {
-    data: {
-      body: {
-        ...payload,
-        isSaveApollo: false,
-        channel,
-      },
-      name: channel,
-      key: channel?.toLowerCase()?.replace(/\s+/g, "_"),
-    },
-  };
-
-
   try {
-    await cyberbayClient.createContact(JSON.stringify(payloadData));
+    await fetch(`${CYBERBAY_CMS_URL}/api/forms`, {
+      method: "POST",
+      body: payload,
+    });
     reset();
     onDone(null, { message: "Form submitted successfully!" });
   } catch (error) {
@@ -43,7 +31,7 @@ export function useSubmitApplicationForm(reset: UseFormReset<ApplyFormType>) {
   const [called, setCalled] = useState(false);
   const executeRecaptcha = useCaptcha();
 
-  function submit(payload: ApplyFormType) {
+  function submit(payload: any) {
     setLoading(true);
     executeRecaptcha(CaptchaAction.CAREERS_FORM_SUBMIT)
       .then(() => {
