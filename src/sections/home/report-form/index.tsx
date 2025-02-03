@@ -5,6 +5,7 @@ import { Button, Input, Textarea } from "@/components";
 import { ReportFormType } from "@/types";
 import { useForm } from "react-hook-form";
 import { useSubmitReport } from "@/hooks/useSubmitReportForm";
+import { Bounce, ToastContainer } from "react-toastify";
 
 export const ReportForm: React.FC = () => {
   const {
@@ -84,9 +85,23 @@ export const ReportForm: React.FC = () => {
             {...register("message")}
           />
 
-          <Button className="self-start px-20" disabled={loading} size="large" type="submit">
+          <Button className="self-start px-20" disabled={loading} loading={loading} size="large" type="submit">
             Submit
           </Button>
+
+          <ToastContainer
+            position="top-right"
+            autoClose={10000}
+            hideProgressBar
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
 
           {shouldShowSuccessMessage && (
             <p aria-live="polite" className="paragraph-sm text-green-500">

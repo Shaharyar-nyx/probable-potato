@@ -5,6 +5,7 @@ import useCaptcha, { CaptchaAction } from "./useCaptcha";
 import { SubscribeType } from "@/types";
 import { cyberbayClient } from "@/lib/forms";
 import { UseFormReset } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export async function submitSubscribe(
   payload: SubscribeType,
@@ -27,10 +28,12 @@ export async function submitSubscribe(
   try {
     await cyberbayClient.createContact(JSON.stringify(payloadData));
     reset();
-    onDone(null, { message: "Form submitted successfully!" });
+    onDone(null, { message: "Thank you for reaching out! We will get back to you shortly." });
+     toast.success("Thank you! We will get back to you shortly.");
   } catch (error) {
     console.error("Failed to create contact:", error);
     onDone(error instanceof Error ? error : new Error("Failed to submit form"), null);
+    toast.error("Failed to submit form");
   }
 }
 

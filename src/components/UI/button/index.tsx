@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, useState, MouseEvent } from "react";
+import { ArrowPathIcon } from "@heroicons/react/24/solid";
 
 import styles from "./styles.module.scss";
 import { IconRenderer } from "@/components";
@@ -72,7 +73,9 @@ export const Button = ({
   const content = (
     <>
       {loading ? (
-        <span>Loading...</span>
+        <span className="flex items-center gap-2">
+          <ArrowPathIcon className="h-5 w-5 animate-spin" /> Submit
+        </span>
       ) : (
         children !== undefined &&
         children !== null && <span className="overflow-hidden text-ellipsis whitespace-nowrap">{children}</span>

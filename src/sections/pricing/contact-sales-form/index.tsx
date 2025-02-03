@@ -6,6 +6,7 @@ import styles from "./styles.module.scss";
 import { Button, IconRenderer, Input, Textarea } from "@/components";
 import { ContactSalesFormType } from "@/types";
 import { useSubmitContactSales } from "@/hooks/useSubmitContactSales";
+import { Bounce, ToastContainer } from "react-toastify";
 
 export const ContactSalesForm: React.FC = () => {
   const {
@@ -109,9 +110,23 @@ export const ContactSalesForm: React.FC = () => {
             {...register("message")}
           />
 
-          <Button className="self-start px-20" disabled={loading} size="large" type="submit">
+          <Button className="self-start px-20" disabled={loading} loading={loading} size="large" type="submit">
             Submit
           </Button>
+
+          <ToastContainer
+            position="top-right"
+            autoClose={10000}
+            hideProgressBar
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
 
           {shouldShowSuccessMessage && (
             <p aria-live="polite" className="paragraph-sm text-green-500">
