@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { Button, Input } from "../UI";
 import { STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
+import { Bounce, ToastContainer } from "react-toastify";
 
 const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, background_color }) => {
   const {
@@ -18,7 +19,8 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
     reset,
   } = useForm<SubscribeType>();
 
-  const { submit, loading } = useSubmitSubscribe(reset);
+  const { submit, loading, error, called } = useSubmitSubscribe(reset);
+  const shouldShowSuccessMessage = called && !loading && !error;
 
   const onSubmit = async (data: SubscribeType) => {
     submit(data);
@@ -89,11 +91,32 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                   <Button
                     className="w-full rounded bg-primary-500 px-8 py-3 text-[14px] text-white transition-colors hover:bg-[#1E90FF]/90"
                     disabled={loading}
+                    loading={loading}
                     size="large"
                     type="submit"
                   >
                     Subscribe
                   </Button>
+
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={10000}
+                    hideProgressBar
+                    newestOnTop
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                    transition={Bounce}
+                  />
+
+                  {shouldShowSuccessMessage && (
+                    <p aria-live="polite" className="paragraph-sm text-neutral-50">
+                      Thank you for reaching out! We will get back to you shortly.
+                    </p>
+                  )}
                 </div>
               </form>
             </div>

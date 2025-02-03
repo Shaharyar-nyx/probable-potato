@@ -8,8 +8,9 @@ import { Button, Dropdown, Input, Textarea } from "@/components";
 import formData from "@/data/contact-us/form.json";
 import { ContactUsFormType } from "@/types";
 import { useSubmitContactUs } from "@/hooks/useSubmitContactUs";
+import { Bounce, ToastContainer } from "react-toastify";
 
-export const ContactForm: React.FC<any> = ({title, headline, content}) => {
+export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
   const {
     register,
     handleSubmit,
@@ -84,9 +85,23 @@ export const ContactForm: React.FC<any> = ({title, headline, content}) => {
             rows={4}
             {...register("message")}
           />
-          <Button className="self-start px-20" disabled={loading} size="large" type="submit">
+          <Button className="self-start px-20" disabled={loading} loading={loading} size="large" type="submit">
             Submit
           </Button>
+
+          <ToastContainer
+            position="top-right"
+            autoClose={10000}
+            hideProgressBar
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
 
           {shouldShowSuccessMessage && (
             <p aria-live="polite" className="paragraph-sm text-green-500">
