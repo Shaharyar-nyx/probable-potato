@@ -8,6 +8,8 @@ stages:
   - deploy
 
 build:
+  tags:
+    - test
   stage: build
   cache:
     key:
@@ -36,6 +38,8 @@ build:
     - feat/deploy-ssg
 
 deploy:
+  tags:
+    - test
   stage: deploy
   image: 
     name: amazon/aws-cli
