@@ -1,0 +1,70 @@
+image: node:20
+
+variables:
+  BUCKET_NAME: "cyberbay-dev-ssg-websites-public-helios"
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules/
+  script:
+    - |
+      echo "NEXT_PUBLIC_STRAPI_GRAPHQL_URL=${NEXT_PUBLIC_STRAPI_GRAPHQL_URL}" >> .env
+      echo "NEXT_PUBLIC_STRAPI_ASSETS=${NEXT_PUBLIC_STRAPI_ASSETS}" >> .env
+      echo "NEXT_PUBLIC_CYBERBAY_CMS_URL=${NEXT_PUBLIC_CYBERBAY_CMS_URL}" >> .env
+      echo "NEXT_PUBLIC_CYBERBAY_URL=${NEXT_PUBLIC_CYBERBAY_URL}" >> .env
+      echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}" >> .env
+    - yarn install
+    - yarn build
+  artifacts:
+    paths:
+      - .next/
+      - public/
+      - node_modules/
+      - package.json
+      - .env
+  only:
+    - staging
+    - feat/deploy-ssg
+
+deploy:
+  stage: deploy
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
+  dependencies:
+    - build
+  variables:
+    AWS_REGION: ${AWS_DEFAULT_REGION}
+    AWS_PROFILE: oidc
+  before_script:
+    - mkdir -p ~/.aws
+    - echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
+    - echo -e "[profile oidc]\nrole_arn=${DEV_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
+  script:
+    - >
+      export $(printf "AWS_ACCESS_KEY_ID=%s AWS_SECRET_ACCESS_KEY=%s AWS_SESSION_TOKEN=%s"
+      $(aws sts assume-role-with-web-identity
+      --role-arn ${DEV_ROLE_ARN}
+      --role-session-name "GitLabRunner-${CI_PROJECT_ID}-${CI_PIPELINE_ID}"
+      --web-identity-token ${GITLAB_OIDC_TOKEN}
+      --duration-seconds 3600
+      --query 'Credentials.[AccessKeyId,SecretAccessKey,SessionToken]'
+      --output text))
+
+    - aws s3 sync .next/ s3://${BUCKET_NAME}/.next/ --delete
+    - aws s3 sync public/ s3://${BUCKET_NAME}/public/ --delete
+    - aws s3 cp package.json s3://${BUCKET_NAME}/
+    - aws s3 cp .env s3://${BUCKET_NAME}/
+    - aws s3 sync node_modules/ s3://${BUCKET_NAME}/node_modules/ --delete
+  only:
+    - staging
+    - feat/deploy-ssg
