@@ -12,7 +12,7 @@ import { STRAPI_ASSETS } from "@/lib";
 export const CTA: React.FC<any> = ({ background_file, headline, card: { cta_text, cta_url, content, title } }) => {
   const cta = {
     label: cta_text,
-    isModal: true,
+    isModal: !cta_url ? true : false,
     icon: "ArrowUpRightIcon",
     link: cta_url,
   };
@@ -44,7 +44,7 @@ export const CTA: React.FC<any> = ({ background_file, headline, card: { cta_text
                     <DemoForm />
                   </Modal>
                 ) : (
-                  <Button className="w-fit" href={cta?.link} iconName={cta?.icon}>
+                  <Button className="w-fit" href={cta?.link} target="_blank" iconName={cta?.icon}>
                     {cta?.label}
                   </Button>
                 )}
