@@ -1,13 +1,13 @@
 .clientsSection {
-  @apply py-16 bg-white overflow-hidden;
+  @apply py-[120px] bg-white overflow-hidden;
 }
 
 .title {
-  @apply text-primary-800 text-center mb-12;
+  @apply text-primary-800 text-center;
 }
 
 .carouselContainer {
-  @apply relative py-8;
+  @apply relative pt-10;
 }
 
 .div {

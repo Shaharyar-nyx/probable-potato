@@ -10,7 +10,7 @@ export const SecurityPosture: React.FC<any> = ({ title, headline, content, cards
     <section className="security-posture-parent-container">
       <div className="security-posture-container">
         <h2 className="heading-1 mb-5 font-bold text-primary-800">{title}</h2>
-        <p className="paragraph-md mb-6 text-primary-800">{headline}</p>
+        <p className="paragraph-xl font-semibold mb-6 text-primary-800">{headline}</p>
         <div className="hidden w-full max-w-screen-xl lg:block">
           <SemiCircle data={cards} text={content} />
         </div>
