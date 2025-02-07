@@ -1,8 +1,5 @@
 image: node:20
 
-variables:
-  BUCKET_NAME: "cyberbay-dev-ssg-websites-public-helios"
-
 stages:
   - build
   - deploy
