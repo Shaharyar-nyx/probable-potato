@@ -15,7 +15,7 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
 
 const BugBountyPage: React.FC = async () => {
   const data = await getPageBySlug("bug-bounty");
-
+  
   if (!data?.blocks) {
     return null;
   }

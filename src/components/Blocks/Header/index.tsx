@@ -3,17 +3,16 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
-import { DemoForm } from "@/sections/home/demo-form";
-import { ReportForm } from "@/sections/home/report-form";
 import { STRAPI_ASSETS } from "@/lib";
 
 export const Header: React.FC<any> = ({
   background_file,
+  cta_modal,
   card: { cta_text, cta_url, content, content_md, headline, title },
 }) => {
   const cta = {
     label: cta_text,
-    isModal: true,
+    isModal: cta_modal,
     icon: "ArrowUpRightIcon",
     link: cta_url,
   };
@@ -37,13 +36,7 @@ export const Header: React.FC<any> = ({
         {cta_text && (
           <>
             {cta.isModal ? (
-              <Modal cta={cta}>
-                {title === "CyberScan: Your All-in-One Solution for Continuous Security Monitoring" ? (
-                  <ReportForm />
-                ) : (
-                  <DemoForm />
-                )}
-              </Modal>
+              <Modal cta={cta} />
             ) : (
               <Button className="w-fit" href={cta.link} iconName={cta.icon}>
                 {cta.label}

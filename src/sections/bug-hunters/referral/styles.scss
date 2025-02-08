@@ -25,11 +25,11 @@
   }
 
   .swiper-wrapper {
-    @apply max-h-[688px];
+    @apply max-h-max;
   }
 
   .swiper-slide {
-    @apply flex w-full items-center px-6 md:py-16 lg:px-16 lg:py-[134px];
+    @apply flex w-full px-6 md:py-16 lg:px-16 lg:py-[60px];
   }
 
   .swiper-slide img {

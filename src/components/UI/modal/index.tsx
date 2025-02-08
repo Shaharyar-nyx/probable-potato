@@ -1,14 +1,15 @@
 "use client";
 
 import { Dialog, DialogPanel } from "@headlessui/react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import { Button } from "../button";
 import { ModalProps } from "@/types";
+import { ReportForm } from "@/sections/home/report-form";
+import { ContactSalesForm, DemoForm } from "@/sections";
 
 export const Modal: React.FC<ModalProps> = ({
   cta,
-  children,
   buttonStyle,
   buttonSize,
   buttonVariant,
@@ -24,6 +25,19 @@ export const Modal: React.FC<ModalProps> = ({
   const closeModal = () => {
     setIsOpenModal(false);
   };
+
+  const getModalContent = useMemo(() => {
+    switch (cta?.isModal) {
+      case "contact_sales_form":
+        return <ContactSalesForm />;
+      case "demo_form":
+        return <DemoForm />;
+      case "free_report_form":
+        return <ReportForm />;
+      default:
+        return null;
+    }
+  }, [cta]);
 
   return (
     <>
@@ -53,7 +67,7 @@ export const Modal: React.FC<ModalProps> = ({
               iconName="XMarkIcon"
               onClick={closeModal}
             />
-            {children}
+            {getModalContent}
           </DialogPanel>
         </div>
       </Dialog>

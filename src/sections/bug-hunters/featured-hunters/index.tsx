@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 import { formatNumberWithCommas, cyberbayApi, getOrdinalSuffix } from "@/lib";
 
-export const FeaturedHunters: React.FC<any> = ({ title }) => {
+export const FeaturedHunters: React.FC<any> = ({ title, content, headline }) => {
   const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,9 @@ export const FeaturedHunters: React.FC<any> = ({ title }) => {
   return (
     <section className="featured-hunters-parent-container">
       <div className="featured-hunters-bottom-container">
-        <h2 className="heading-1 featured-hunters-title">{title}</h2>
+        <p className="tagline mb-10 text-neutral-50">{headline}</p>
+        <h2 className="heading-1 featured-hunters-title mb-5">{title}</h2>
+        <p className="paragraph-md text-neutral-50 mb-[60px]">{content}</p>
         <div className="featured-hunters-hunters-container">
           <div className="w-full">
             <table className="w-full">

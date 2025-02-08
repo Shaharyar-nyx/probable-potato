@@ -2,11 +2,10 @@ import React from "react";
 
 import "./styles.scss";
 import Modal from "@/components/UI/modal";
-import { DemoForm } from "@/sections/home";
 import { STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
 
-export const HarnessAi: React.FC<any> = ({ title, headline, content, cards, cta_text }) => {
+export const HarnessAi: React.FC<any> = ({ title, headline, content, cards, cta_text, cta_modal_multi }) => {
   return (
     <section className="harness-ai-parent-container">
       <div className="harness-ai-container">
@@ -30,10 +29,8 @@ export const HarnessAi: React.FC<any> = ({ title, headline, content, cards, cta_
           buttonSize="large"
           buttonStyle="mx-auto"
           buttonTransparent
-          cta={{ label: cta_text, icon: "ArrowUpRightIcon" }}
-        >
-          <DemoForm />
-        </Modal>
+          cta={{ label: cta_text, icon: "ArrowUpRightIcon", isModal: cta_modal_multi }}
+        />
       </div>
     </section>
   );

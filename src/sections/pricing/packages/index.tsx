@@ -7,7 +7,6 @@ import { Tooltip } from "react-tooltip";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
-import { ContactSalesForm } from "@/sections";
 import { STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
 
@@ -17,10 +16,12 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-const PackageCard = ({ data: { title, content, cta_text, cta_url, duration, icon, price } }: any) => {
+const PackageCard = ({
+  data: { title, content, cta_text, cta_modal_pricing, cta_url, duration, icon, price },
+}: any) => {
   const cta = {
     label: cta_text,
-    isModal: true,
+    isModal: cta_modal_pricing,
     icon: "ArrowUpRightIcon",
     link: cta_url,
   };
@@ -63,9 +64,7 @@ const PackageCard = ({ data: { title, content, cta_text, cta_url, duration, icon
                 buttonStyle="w-full text-center !font-normal text-primary-800"
                 buttonSize="small"
                 buttonVariant="neutral"
-              >
-                <ContactSalesForm />
-              </Modal>
+              />
             ) : (
               <Button
                 className="w-full text-center !font-normal text-primary-800"
@@ -242,7 +241,7 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
                   <h3 className="heading-6 mb-5 font-bold text-primary-800">{title}</h3>
                   {items.data.map(({ attributes: { title, description, icon } }: any, index: number) => (
                     <div key={`item-${index}`} className="mb-5 flex flex-row items-start gap-6">
-                      <div className="flex items-center gap-4 rounded-[4px] bg-primary-500 p-2">
+                      <div className="rounded-[4px] bg-primary-500 p-1">
                         <Image
                           alt={icon.data.attributes.name}
                           height={24}
@@ -250,7 +249,7 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
                           src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
                         />
                       </div>
-                      <div>
+                      <div className="w-[90%]">
                         <p className="paragraph-lg font-bold">{title}</p>
                         <p className="paragraph-sm">{description}</p>
                       </div>

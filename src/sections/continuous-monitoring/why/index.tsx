@@ -18,7 +18,7 @@ export const Why: React.FC<any> = ({ title, headline, content, statistics_cards 
         <div className="relative grid h-auto w-full grid-cols-1 gap-6 md:grid-cols-3 lg:block lg:h-[460px] lg:w-[38%] lg:p-10 xl:h-[388px]">
           {statistics_cards.map(
             (
-              { title, number, percentage, content, icon }: any,
+              { title, number, percentage, content, icon, status }: any,
               index: number,
             ) => (
               <div
@@ -67,19 +67,19 @@ export const Why: React.FC<any> = ({ title, headline, content, statistics_cards 
                   {percentage && (
                     <span
                       className={clsx("flex items-center gap-1", {
-                        "text-green-600": Number(percentage) >= 0,
-                        "text-red-600": Number(percentage) < 0,
+                        "text-green-600": status === "decrease",
+                        "text-red-600": status === "increase",
                       })}
                     >
                       <span
                         className={clsx("inline-flex h-4 w-4 items-center justify-center rounded-full", {
-                          "bg-green-100": Number(percentage) >= 0,
-                          "bg-red-100": Number(percentage) < 0,
+                          "bg-green-100": status === "decrease",
+                          "bg-red-100": status === "increase",
                         })}
                       >
                         <IconRenderer
                           className="h-[10px] w-[10px]"
-                          iconName={Number(percentage) >= 0 ? "ArrowUpIcon" : "ArrowDownIcon"}
+                          iconName={status === "decrease" ? "ArrowDownIcon" : "ArrowUpIcon"}
                         />
                       </span>
                       {percentage}%

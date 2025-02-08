@@ -6,13 +6,16 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
-import { DemoForm } from "../demo-form";
 import { STRAPI_ASSETS } from "@/lib";
 
-export const CTA: React.FC<any> = ({ background_file, headline, card: { cta_text, cta_url, content, title } }) => {
+export const CTA: React.FC<any> = ({
+  background_file,
+  headline,
+  card: { cta_text, cta_url, cta_modal, content, title },
+}) => {
   const cta = {
     label: cta_text,
-    isModal: !cta_url ? true : false,
+    isModal: cta_modal,
     icon: "ArrowUpRightIcon",
     link: cta_url,
   };
@@ -40,9 +43,7 @@ export const CTA: React.FC<any> = ({ background_file, headline, card: { cta_text
             {cta_text && (
               <>
                 {cta?.isModal ? (
-                  <Modal cta={cta}>
-                    <DemoForm />
-                  </Modal>
+                  <Modal cta={cta} />
                 ) : (
                   <Button className="w-fit" href={cta?.link} target="_blank" iconName={cta?.icon}>
                     {cta?.label}
