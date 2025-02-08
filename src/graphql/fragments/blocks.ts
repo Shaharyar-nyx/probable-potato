@@ -18,6 +18,7 @@ export const BLOCKS_FRAGMENT = `
           }
           cta_text
           cta_url
+          cta_modal
           cta_page {
               data {
                   attributes {
@@ -107,80 +108,81 @@ export const BLOCKS_FRAGMENT = `
               background_color
           }
       }
-      ... on ComponentBlocksMultiCardSection {
-          collection
-          title
-          headline
-          content
-          content_md
-          cta_text
-          cta_url
-          cta_page {
-              data {
-                  attributes {
-                      title
-                      slug
-                  }
-              }
-          }
-          cards {
-              title
-              headline
-              icon {
-                  data {
-                      attributes {
-                          name
-                          alternativeText
-                          mime
-                          url
-                      }
-                  }
-              }
-              content
-              content_md
-              image {
-                  data {
-                      attributes {
-                          name
-                          alternativeText
-                          mime
-                          url
-                      }
-                  }
-              }
-              cta_text
-              cta_url
-              cta_page {
-                  data {
-                      attributes {
-                          title
-                          slug
-                      }
-                  }
-              }
-              background_image {
-                  data {
-                      attributes {
-                          name
-                          alternativeText
-                          url
-                      }
-                  }
-              }
-              background_color
-          }
-          background_file {
-              data {
-                  attributes {
-                      name
-                      alternativeText
-                      mime
-                      url
-                  }
-              }
-          }
-          background_color
-      }
+        ... on ComponentBlocksMultiCardSection {
+            collection
+            title
+            headline
+            content
+            content_md
+            cta_text
+            cta_url
+            cta_modal_multi: cta_modal
+            cta_page {
+                data {
+                    attributes {
+                        title
+                        slug
+                    }
+                }
+            }
+            cards {
+                title
+                headline
+                icon {
+                    data {
+                        attributes {
+                            name
+                            alternativeText
+                            mime
+                            url
+                        }
+                    }
+                }
+                content
+                content_md
+                image {
+                    data {
+                        attributes {
+                            name
+                            alternativeText
+                            mime
+                            url
+                        }
+                    }
+                }
+                cta_text
+                cta_url
+                cta_page {
+                    data {
+                        attributes {
+                            title
+                            slug
+                        }
+                    }
+                }
+                background_image {
+                    data {
+                        attributes {
+                            name
+                            alternativeText
+                            url
+                        }
+                    }
+                }
+                background_color
+            }
+            background_file {
+                data {
+                    attributes {
+                        name
+                        alternativeText
+                        mime
+                        url
+                    }
+                }
+            }
+            background_color
+        }
       ... on ComponentBlocksHomeTestimonial {
           collection
           col_headers
@@ -265,6 +267,7 @@ export const BLOCKS_FRAGMENT = `
               content
               cta_text
               cta_url
+              cta_modal_pricing: cta_modal
               icon {
                   data {
                       attributes {
@@ -425,6 +428,7 @@ export const BLOCKS_FRAGMENT = `
               }
               cta_text
               cta_url
+              cta_modal
               cta_page {
                   data {
                       attributes {
@@ -491,6 +495,7 @@ export const BLOCKS_FRAGMENT = `
       statistics_cards {
           title
           percentage
+          status
           number
           content
           icon {

@@ -6,13 +6,12 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import styles from "./styles.module.scss";
 import Modal from "@/components/UI/modal";
-import { DemoForm } from "../demo-form";
 import { STRAPI_ASSETS } from "@/lib";
 
-export const Hero: React.FC<any> = ({ background_file, cta_text, content, featured_image, title }) => {
+export const Hero: React.FC<any> = ({ background_file, cta_text, cta_modal, content, featured_image, title }) => {
   const cta = {
     label: cta_text,
-    isModal: true,
+    isModal: cta_modal,
     icon: "ArrowUpRightIcon",
   };
 
@@ -36,11 +35,7 @@ export const Hero: React.FC<any> = ({ background_file, cta_text, content, featur
           <div className={styles.textContent}>
             <div className={`${styles.title} display-1 font-bold`}>{title}</div>
             <p className={`${styles.description} paragraph-lg`}>{content}</p>
-            {cta_text && (
-              <Modal cta={cta} buttonStyle="mx-auto lg:mx-0">
-                <DemoForm />
-              </Modal>
-            )}
+            {cta_text && <Modal cta={cta} buttonStyle="mx-auto lg:mx-0" />}
           </div>
 
           <ParallaxProvider>

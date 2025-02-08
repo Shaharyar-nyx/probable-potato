@@ -132,40 +132,45 @@ export const Referral: React.FC<any> = ({ headline, title, content, content_md, 
                       modules={[Navigation]}
                       navigation={false}
                       onSlideChange={(swiper) => {
-                        // Update state when slide changes
                         setIsBeginning(swiper.isBeginning);
                         setIsEnd(swiper.isEnd);
                       }}
                       onSwiper={(swiper) => {
-                        // Set initial state when Swiper is initialized
                         setIsBeginning(swiper.isBeginning);
                         setIsEnd(swiper.isEnd);
                       }}
                     >
-                      <SwiperSlide>
-                        <div className="w-full max-w-screen-3xl">
-                          <p className="paragraph-sm mb-10 text-primary-800">{content}</p>
-                          <h3 className="heading-1 mb-6 font-bold text-primary-800 lg:mb-10">{title}</h3>
-                          <div className={`grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-6`}>
-                            {cards.map(({ title, content, icon }: any, index: number) => (
-                              <div key={index} className="md:py-6 lg:px-10 lg:py-10">
-                                <div className="mb-3 flex items-start gap-3">
-                                  <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-500 p-2">
-                                    <Image
-                                      src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
-                                      alt={icon.data.attributes.name}
-                                      height={24}
-                                      width={24}
-                                    />
+                      {Array.from({ length: Math.ceil(cards.length / 2) }).map((_, slideIndex) => (
+                        <SwiperSlide key={slideIndex}>
+                          <div className="w-full max-w-screen-3xl">
+                            <p className="paragraph-sm mb-10 text-primary-800">{content}</p>
+                            <h3 className="heading-1 mb-6 font-bold text-primary-800 lg:mb-10">
+                              {slideIndex < 2 ? title : "Program Highlights"}
+                            </h3>
+                            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-6">
+                              {cards
+                                .slice(slideIndex * 2, slideIndex * 2 + 2)
+                                .map(({ title, content, icon }: any, index: number) => (
+                                  <div key={`${slideIndex}-${index}`} className="md:py-6 lg:px-10 lg:py-10">
+                                    <div className="mb-3 flex items-start gap-3">
+                                      <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-500 p-2">
+                                        <Image
+                                          src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                                          alt={icon.data.attributes.name}
+                                          height={24}
+                                          width={24}
+                                        />
+                                      </div>
+                                      <h4 className="heading-4 font-bold text-primary-800">{title}</h4>
+                                    </div>
+                                    <p className="paragraph-xl text-primary-800">{content}</p>
                                   </div>
-                                  <h4 className="heading-4 font-bold text-primary-800">{title}</h4>
-                                </div>
-                                <p className="paragraph-xl text-primary-800">{content}</p>
-                              </div>
-                            ))}
+                                ))}
+                            </div>
                           </div>
-                        </div>
-                      </SwiperSlide>
+                        </SwiperSlide>
+                      ))}
+
                       <div className="relative z-10 flex justify-end gap-5 px-16 py-6 lg:py-[unset]">
                         <SwiperButtonPrev disabled={isBeginning} />
                         <SwiperButtonNext disabled={isEnd} />

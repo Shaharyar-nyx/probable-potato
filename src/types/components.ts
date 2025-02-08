@@ -232,18 +232,18 @@ export interface OurCoreTeamProps {
         name: string;
         job_title: string;
         social_links: {
-         data: {
-          attributes: {
-            icon: {
-              data: {
-                attributes: {
-                  name: string;
-                  url: string;
-                }
-              }
-            }
-          }
-         }[] 
+          data: {
+            attributes: {
+              icon: {
+                data: {
+                  attributes: {
+                    name: string;
+                    url: string;
+                  };
+                };
+              };
+            };
+          }[];
         };
       };
     }[];
@@ -399,9 +399,9 @@ export interface ModalProps {
   buttonVariant?: "primary" | "neutral";
   buttonTransparent?: boolean;
   className?: string;
-  children: React.ReactNode;
   cta?: {
     icon?: string;
+    isModal?: "contact_sales_form" | "demo_form" | "free_report_form";
     label: string;
   };
 }

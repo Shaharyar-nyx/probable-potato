@@ -36,7 +36,7 @@ export const BugBountyGrid: React.FC<any> = ({ headline, title, content, cards }
                   <div className={styles.featureCard}>
                     <div className={styles.featureHeader}>
                       <Image
-                        alt={cards[1].icon?.data?.attributes?.alternativeText}
+                        alt={cards[1].icon?.data?.attributes?.name}
                         className={styles.featureIcon}
                         height={60}
                         src={`${STRAPI_ASSETS}${cards[1].icon?.data?.attributes?.url}`}
@@ -53,7 +53,7 @@ export const BugBountyGrid: React.FC<any> = ({ headline, title, content, cards }
                   <div className={styles.featureCard}>
                     <div className={styles.featureHeader}>
                       <Image
-                        alt={cards[2].icon?.data?.attributes?.alternativeText}
+                        alt={cards[2].icon?.data?.attributes?.name}
                         className={styles.featureIcon}
                         height={60}
                         src={`${STRAPI_ASSETS}${cards[2].icon?.data?.attributes?.url}`}
@@ -68,7 +68,7 @@ export const BugBountyGrid: React.FC<any> = ({ headline, title, content, cards }
                 {cards && cards[3] && (
                   <div className={styles.missionsCard}>
                     <Image
-                      alt={cards[3].image?.data?.attributes?.alternativeText}
+                      alt={cards[3].image?.data?.attributes?.name}
                       className={styles.missionImage}
                       height={400}
                       src={`${STRAPI_ASSETS}${cards[3].image?.data?.attributes?.url}`}
