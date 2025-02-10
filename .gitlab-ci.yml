@@ -18,6 +18,7 @@ publish_dev:
     AWS_PROFILE: oidc
     CLUSTER_NAME: helios-cooperate-ecs-cluster
     SERVICE_NAME: helios-public-web
+    REGISTRY_REPO_NAME: cb-helios-public-web
     DOCKER_REGISTRY: 631377496696.dkr.ecr.ap-southeast-1.amazonaws.com
   id_tokens:
     GITLAB_OIDC_TOKEN:
@@ -44,6 +45,8 @@ publish_dev:
     - source bin/env.sh
     - cp dev.env .env
     - aws ecr get-login-password | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
-    - docker build -t ${DOCKER_REGISTRY}/${SERVICE_NAME}:latest .
-    - docker push ${DOCKER_REGISTRY}/${SERVICE_NAME}:latest
+    - docker build -t ${DOCKER_REGISTRY}/${REGISTRY_REPO_NAME}:latest .
+    - docker push ${DOCKER_REGISTRY}/${REGISTRY_REPO_NAME}:latest
+    - docker tag ${DOCKER_REGISTRY}/${REGISTRY_REPO_NAME}:latest ${DOCKER_REGISTRY}/${REGISTRY_REPO_NAME}:${CI_COMMIT_SHORT_SHA}
+    - docker push ${DOCKER_REGISTRY}/${REGISTRY_REPO_NAME}:${CI_COMMIT_SHORT_SHA}
     - aws ecs update-service --cluster ${CLUSTER_NAME} --service ${SERVICE_NAME} --force-new-deployment
