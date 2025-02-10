@@ -18,7 +18,7 @@ publish_dev:
     AWS_PROFILE: oidc
     CLUSTER_NAME: helios-cooperate-ecs-cluster
     SERVICE_NAME: helios-public-web
-    DOCKER_REGISTRY: 631377496696.dkr.ecr.us-east-1.amazonaws.com
+    DOCKER_REGISTRY: 631377496696.dkr.ecr.ap-southeast-1.amazonaws.com
   id_tokens:
     GITLAB_OIDC_TOKEN:
       aud: https://gitlab.com
