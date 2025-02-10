@@ -1,4 +1,5 @@
-image: node:20
+stages:
+  - publish_dev
 
 publish_dev:
   tags:
@@ -8,6 +9,10 @@ publish_dev:
     entrypoint: [""]
   services:
     - docker:dind
+  stage: publish_dev
+  only:
+    - staging
+    - feat/deploy-ssg
   variables:
     AWS_REGION: ${AWS_DEFAULT_REGION}
     AWS_PROFILE: oidc
@@ -18,6 +23,10 @@ publish_dev:
     GITLAB_OIDC_TOKEN:
       aud: https://gitlab.com
   before_script:
+    - yum install -y jq
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
     - mkdir -p ~/.aws
     - echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
     - echo -e "[profile oidc]\nrole_arn=${DEV_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
@@ -32,10 +41,7 @@ publish_dev:
       --query 'Credentials.[AccessKeyId,SecretAccessKey,SessionToken]'
       --output text))
 
-    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
-    - docker build -t $DOCKER_REGISTRY/$SERVICE_NAME:latest .
-    - docker push $DOCKER_REGISTRY/$SERVICE_NAME:latest
-    - aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment
-  only:
-    - staging
-    - feat/deploy-ssg
+    - aws ecr get-login-password | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
+    - docker build -t ${DOCKER_REGISTRY}/${SERVICE_NAME}:latest .
+    - docker push ${DOCKER_REGISTRY}/${SERVICE_NAME}:latest
+    - aws ecs update-service --cluster ${CLUSTER_NAME} --service ${SERVICE_NAME} --force-new-deployment
