@@ -41,6 +41,8 @@ publish_dev:
       --query 'Credentials.[AccessKeyId,SecretAccessKey,SessionToken]'
       --output text))
 
+    - source bin/env.sh
+    - cp dev.env .env
     - aws ecr get-login-password | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
     - docker build -t ${DOCKER_REGISTRY}/${SERVICE_NAME}:latest .
     - docker push ${DOCKER_REGISTRY}/${SERVICE_NAME}:latest
