@@ -1,56 +1,19 @@
 image: node:20
 
-stages:
-  - build
-  - deploy
-
-build:
+publish_dev:
   tags:
     - test
-  stage: build
-  cache:
-    key:
-      files:
-        - yarn.lock
-    paths:
-      - node_modules/
-  script:
-    - |
-      echo ${NEXT_PUBLIC_STRAPI_GRAPHQL_URL}
-      echo ${NEXT_PUBLIC_STRAPI_ASSETS}
-      echo ${NEXT_PUBLIC_CYBERBAY_CMS_URL}
-      echo ${NEXT_PUBLIC_CYBERBAY_URL}
-      echo ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-      echo "NEXT_PUBLIC_STRAPI_GRAPHQL_URL=${NEXT_PUBLIC_STRAPI_GRAPHQL_URL}" >> .env
-      echo "NEXT_PUBLIC_STRAPI_ASSETS=${NEXT_PUBLIC_STRAPI_ASSETS}" >> .env
-      echo "NEXT_PUBLIC_CYBERBAY_CMS_URL=${NEXT_PUBLIC_CYBERBAY_CMS_URL}" >> .env
-      echo "NEXT_PUBLIC_CYBERBAY_URL=${NEXT_PUBLIC_CYBERBAY_URL}" >> .env
-      echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}" >> .env
-    - yarn install
-    - yarn build
-  artifacts:
-    paths:
-      - .next/
-      - public/
-      - node_modules/
-      - package.json
-      - .env
-  only:
-    - staging
-    - feat/deploy-ssg
-
-deploy:
-  tags:
-    - test
-  stage: deploy
   image: 
     name: amazon/aws-cli
     entrypoint: [""]
-  dependencies:
-    - build
+  services:
+    - docker:dind
   variables:
     AWS_REGION: ${AWS_DEFAULT_REGION}
     AWS_PROFILE: oidc
+    CLUSTER_NAME: helios-cooperate-ecs-cluster
+    SERVICE_NAME: helios-public-web
+    DOCKER_REGISTRY: 631377496696.dkr.ecr.us-east-1.amazonaws.com
   id_tokens:
     GITLAB_OIDC_TOKEN:
       aud: https://gitlab.com
@@ -69,11 +32,10 @@ deploy:
       --query 'Credentials.[AccessKeyId,SecretAccessKey,SessionToken]'
       --output text))
 
-    - aws s3 sync .next/ s3://${BUCKET_NAME}/.next/ --delete
-    - aws s3 sync public/ s3://${BUCKET_NAME}/public/ --delete
-    - aws s3 cp package.json s3://${BUCKET_NAME}/
-    - aws s3 cp .env s3://${BUCKET_NAME}/
-    - aws s3 sync node_modules/ s3://${BUCKET_NAME}/node_modules/ --delete
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+    - docker build -t $DOCKER_REGISTRY/$SERVICE_NAME:latest .
+    - docker push $DOCKER_REGISTRY/$SERVICE_NAME:latest
+    - aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment
   only:
     - staging
     - feat/deploy-ssg
