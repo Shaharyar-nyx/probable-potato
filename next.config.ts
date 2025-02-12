@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "https://cyberbay-cms.staging.forgewerks.com/api/:path*",
+        destination: "process.env.NEXT_PUBLIC_CYBERBAY_CMS_URL/api/:path*",
       },
     ];
   },
