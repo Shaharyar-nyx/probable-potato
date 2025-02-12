@@ -9,7 +9,6 @@ interface ContactResponse {
 
 export const cyberbayClient = {
   async createContact(data: any): Promise<ContactResponse> {
-    console.log('CYBERBAY_CMS_URL: ', CYBERBAY_CMS_URL);
     const response = await fetch(`${CYBERBAY_CMS_URL}/api/forms`, {
       method: "POST",
       headers: {
