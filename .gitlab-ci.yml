@@ -50,3 +50,4 @@ publish_dev:
     - docker tag ${DOCKER_REGISTRY}/${REGISTRY_REPO_NAME}:latest ${DOCKER_REGISTRY}/${REGISTRY_REPO_NAME}:${CI_COMMIT_SHORT_SHA}
     - docker push ${DOCKER_REGISTRY}/${REGISTRY_REPO_NAME}:${CI_COMMIT_SHORT_SHA}
     - aws ecs update-service --cluster ${CLUSTER_NAME} --service ${SERVICE_NAME} --force-new-deployment
+
