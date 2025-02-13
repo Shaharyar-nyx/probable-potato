@@ -183,6 +183,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
               externalHref={data.external_href || undefined}
               variant={data.variant}
               transparent={data.transparent}
+              className="py-2 px-3 min-w-[100px]"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {data.title}

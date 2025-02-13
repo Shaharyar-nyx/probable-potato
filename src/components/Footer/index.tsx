@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import { Button, Input } from "../UI";
 import { STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
-import { Bounce, ToastContainer } from "react-toastify";
 
 const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, background_color }) => {
   const {
@@ -98,19 +97,6 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                     Subscribe
                   </Button>
 
-                  <ToastContainer
-                    position="top-right"
-                    autoClose={10000}
-                    hideProgressBar
-                    newestOnTop
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light"
-                    transition={Bounce}
-                  />
 
                   {shouldShowSuccessMessage && (
                     <p aria-live="polite" className="paragraph-sm text-neutral-50">

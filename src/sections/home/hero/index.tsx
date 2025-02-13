@@ -8,11 +8,12 @@ import styles from "./styles.module.scss";
 import Modal from "@/components/UI/modal";
 import { STRAPI_ASSETS } from "@/lib";
 
-export const Hero: React.FC<any> = ({ background_file, cta_text, cta_modal, content, featured_image, title }) => {
+export const Hero: React.FC<any> = ({ background_file, cta_text, cta_modal, cta_url, content, featured_image, title }) => {
   const cta = {
     label: cta_text,
     isModal: cta_modal,
     icon: "ArrowUpRightIcon",
+    link: cta_url,
   };
 
   return (

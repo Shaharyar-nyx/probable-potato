@@ -1,5 +1,6 @@
 import { BlockType } from "@/types";
 import React from "react";
+import { Bounce, ToastContainer } from "react-toastify";
 
 export const PageBuilder: React.FC<{
   blockComponents: Record<string, React.FC<BlockType>>;
@@ -13,6 +14,19 @@ export const PageBuilder: React.FC<{
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={10000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       {sortedBlocks.map((block) => {
         const BlockComponent = blockComponents[block.collection];
         return <BlockComponent key={block.collection} {...block} />;

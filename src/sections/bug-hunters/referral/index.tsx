@@ -85,7 +85,7 @@ export const Referral: React.FC<any> = ({ headline, title, content, content_md, 
         </div>
         {collection !== "bh_how_it_works_1" && (
           <div className="referral-container-item grid grid-cols-1 gap-6 md:grid-cols-2">
-            {cards.map(({ title, content, icon }: any, index: number) => (
+            {cards.map(({ content_md, content, icon }: any, index: number) => (
               <div key={index} className="flex flex-col gap-3 p-6 xl:p-10">
                 <div className="flex items-start gap-3">
                   <div className="inline-block rounded-[4px] bg-primary-500 p-1">
@@ -96,9 +96,9 @@ export const Referral: React.FC<any> = ({ headline, title, content, content_md, 
                       src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
                     />
                   </div>
-                  <h3 className="heading-7 font-bold text-primary-800">{title}</h3>
+                  <h3 className="heading-7 font-bold text-primary-800" dangerouslySetInnerHTML={{ __html: content_md }} />
                 </div>
-                <p className="paragraph-md text-primary-800">{content}</p>
+                <p className="paragraph-md text-primary-800" dangerouslySetInnerHTML={{ __html: content }} />
               </div>
             ))}
           </div>
