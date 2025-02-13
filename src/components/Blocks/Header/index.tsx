@@ -7,8 +7,7 @@ import { STRAPI_ASSETS } from "@/lib";
 
 export const Header: React.FC<any> = ({
   background_file,
-  cta_modal,
-  card: { cta_text, cta_url, content, content_md, headline, title },
+  card: { cta_modal, cta_text, cta_url, content, content_md, headline, title },
 }) => {
   const cta = {
     label: cta_text,

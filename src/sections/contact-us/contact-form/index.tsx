@@ -8,7 +8,6 @@ import { Button, Dropdown, Input, Textarea } from "@/components";
 import formData from "@/data/contact-us/form.json";
 import { ContactUsFormType } from "@/types";
 import { useSubmitContactUs } from "@/hooks/useSubmitContactUs";
-import { Bounce, ToastContainer } from "react-toastify";
 
 export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
   const {
@@ -89,19 +88,6 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
             Submit
           </Button>
 
-          <ToastContainer
-            position="top-right"
-            autoClose={10000}
-            hideProgressBar
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-            transition={Bounce}
-          />
 
           {shouldShowSuccessMessage && (
             <p aria-live="polite" className="paragraph-sm text-green-500">

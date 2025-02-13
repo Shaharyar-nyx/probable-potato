@@ -7,7 +7,6 @@ import { Button, Dropdown, IconRenderer, Input, Textarea } from "@/components";
 import formData from "@/data/home/demo-form.json";
 import { DemoFormType } from "@/types";
 import { useSubmitRequestDemo } from "@/hooks/useSubmitRequestDemo";
-import { Bounce, ToastContainer } from "react-toastify";
 
 export const DemoForm: React.FC = () => {
   const {
@@ -138,19 +137,6 @@ export const DemoForm: React.FC = () => {
             Submit
           </Button>
 
-          <ToastContainer
-            position="top-right"
-            autoClose={10000}
-            hideProgressBar
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-            transition={Bounce}
-          />
 
           {shouldShowSuccessMessage && (
             <p aria-live="polite" className="paragraph-sm text-green-500">

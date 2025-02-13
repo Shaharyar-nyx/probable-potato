@@ -9,7 +9,6 @@ import { ApplyFormType } from "@/types";
 import { useSubmitApplicationForm } from "@/hooks/useSubmitApplicationForm";
 import Image from "next/image";
 import { STRAPI_ASSETS } from "@/lib";
-import { Bounce, ToastContainer } from "react-toastify";
 
 export const ApplicationForm: React.FC<any> = ({
   title,
@@ -143,19 +142,6 @@ export const ApplicationForm: React.FC<any> = ({
               Submit
             </Button>
 
-            <ToastContainer
-              position="top-right"
-              autoClose={10000}
-              hideProgressBar
-              newestOnTop
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-              transition={Bounce}
-            />
 
             {shouldShowSuccessMessage && (
               <p aria-live="polite" className="paragraph-sm text-green-500">

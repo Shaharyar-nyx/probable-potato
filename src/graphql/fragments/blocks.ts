@@ -18,7 +18,6 @@ export const BLOCKS_FRAGMENT = `
           }
           cta_text
           cta_url
-          cta_modal
           cta_page {
               data {
                   attributes {
@@ -54,6 +53,7 @@ export const BLOCKS_FRAGMENT = `
               }
               cta_text
               cta_url
+              cta_modal
               cta_page {
                   data {
                       attributes {
