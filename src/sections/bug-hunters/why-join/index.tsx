@@ -6,7 +6,7 @@ import "./styles.scss";
 import { STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
 
-export const WhyJoin: React.FC<any> = ({ title, content, cta_text, cta_link, cards }) => {
+export const WhyJoin: React.FC<any> = ({ title, content, cta_text, cta_url, cards }) => {
   return (
     <section className="why-join-parent-container">
       <div className="why-join-background" />
@@ -14,7 +14,7 @@ export const WhyJoin: React.FC<any> = ({ title, content, cta_text, cta_link, car
         <div className="w-full lg:w-[32%]">
           <h2 className="heading-1 why-join-title">{title}</h2>
           <p className={`paragraph-md why-join-paragraph`}>{content}</p>
-          <Button className="w-[160px]" externalHref={cta_link} variant="neutral">
+          <Button className="w-[160px]" externalHref={cta_url} target="_blank" variant="neutral">
             {cta_text}
           </Button>
         </div>
