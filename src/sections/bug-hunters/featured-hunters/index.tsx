@@ -29,7 +29,7 @@ export const FeaturedHunters: React.FC<any> = ({ title, content, headline }) => 
       <div className="featured-hunters-bottom-container">
         <p className="tagline mb-10 text-neutral-50">{headline}</p>
         <h2 className="heading-1 featured-hunters-title mb-5">{title}</h2>
-        <p className="paragraph-md text-neutral-50 mb-[60px]">{content}</p>
+        <p className="paragraph-md mb-[60px] text-neutral-50">{content}</p>
         <div className="featured-hunters-hunters-container">
           <div className="w-full">
             <table className="w-full">
@@ -50,17 +50,17 @@ export const FeaturedHunters: React.FC<any> = ({ title, content, headline }) => 
                 </tr>
               </thead>
               <tbody className="inline-flex w-full flex-col gap-3">
-                {leaderboard?.map((data: { points: string }, index) => (
+                {leaderboard?.map((data: { points: string; displayName: string }, index) => (
                   <tr key={index} className="featured-hunters-hunters-table-row">
                     <td className="featured-hunters-hunters-table-cell paragraph-sm w-[55px]">
                       {getOrdinalSuffix(index + 1)}
                     </td>
                     <td className="featured-hunters-hunters-table-cell paragraph-sm w-[230px]">
                       <div className="featured-hunters-hunters-table-avatar-cell">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-neutral-50 text-primary-800">
-                          H
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-neutral-50 text-primary-800 uppercase">
+                          {data.displayName[0]}
                         </span>
-                        <span>Bug Hunter #{index + 1}</span>
+                        <span>{data.displayName}</span>
                       </div>
                     </td>
                     <td className="featured-hunters-hunters-table-cell paragraph-sm w-[160px]">
