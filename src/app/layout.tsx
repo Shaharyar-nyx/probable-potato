@@ -9,11 +9,6 @@ import { getFooterMenusStrapi, getMainMenusStrapi } from "@/lib/menus";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 import "@/styles/globals.scss";
 
-export const metadata = {
-  title: "Cyberbay",
-  description: "Your App Description",
-};
-
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],

@@ -19,6 +19,7 @@ jobs:
           echo "NEXT_PUBLIC_CYBERBAY_CMS_URL=${{ vars.NEXT_PUBLIC_CYBERBAY_CMS_URL }}" >> .env
           echo "NEXT_PUBLIC_CYBERBAY_URL=${{ vars.NEXT_PUBLIC_CYBERBAY_URL }}" >> .env
           echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ vars.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}" >> .env
+          echo "NEXT_PUBLIC_SITE_URL=${{ vars.NEXT_PUBLIC_SITE_URL }}" >> .env
           # Add other environment variables as needed
       - name: Use Node.js ${{ matrix.node-version}}
         uses: actions/setup-node@v4

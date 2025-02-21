@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_CYBERBAY_CMS_URL: process.env.NEXT_PUBLIC_CYBERBAY_CMS_URL,
     NEXT_PUBLIC_CYBERBAY_URL: process.env.NEXT_PUBLIC_CYBERBAY_URL,
     NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
   },
   images: {
     dangerouslyAllowSVG: true,
