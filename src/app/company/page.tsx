@@ -25,18 +25,18 @@ export async function generateMetadata(): Promise<Metadata> {
   const data = await getCompanyData();
   if (!data?.seo) {
     return {
-      title: "Mercury",
+      title: "Cyberbay",
       description: "",
       openGraph: {
-        title: "Mercury",
+        title: "Cyberbay",
         description: "",
         type: "website",
-        siteName: "Mercury",
+        siteName: "Cyberbay",
         locale: "en_US",
       },
       twitter: {
         card: "summary_large_image",
-        title: "Mercury",
+        title: "Cyberbay",
         description: "",
       },
     };
@@ -56,7 +56,7 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [{ url: STRAPI_ASSETS + data.seo.og_image?.data?.attributes?.url || "/favicon.ico" }],
       url: data.seo.canonical_url,
       type: "website",
-      siteName: "Mercury",
+      siteName: "Cyberbay",
       locale: "en_US",
     },
     twitter: {
