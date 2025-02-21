@@ -17,9 +17,12 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   single_card_section: CTA,
 };
 
-export const data = await getPageBySlug(null);
+async function getHomeData() {
+  return getPageBySlug(null);
+}
 
 export async function generateMetadata(): Promise<Metadata> {
+  const data = await getHomeData();
   if (!data?.seo) {
     return {
       title: "Mercury",
@@ -65,7 +68,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const Home: React.FC = async () => {
+async function Home() {
+  const data = await getHomeData();
   if (!data?.blocks) {
     return null;
   }

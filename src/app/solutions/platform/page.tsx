@@ -16,9 +16,12 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   single_card_section: CTA,
 };
 
-export const data = await getPageBySlug("platform");
+async function getPlatformData() {
+  return getPageBySlug("platform");
+}
 
 export async function generateMetadata(): Promise<Metadata> {
+  const data = await getPlatformData();
   if (!data?.seo) {
     return {
       title: "Mercury",
@@ -64,7 +67,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const PlatformPage: React.FC = async () => {
+async function PlatformPage() {
+  const data = await getPlatformData();
   if (!data?.blocks) {
     return null;
   }

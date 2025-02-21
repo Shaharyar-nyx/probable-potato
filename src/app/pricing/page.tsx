@@ -13,9 +13,12 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   single_card_section: CTA,
 };
 
-export const data = await getPageBySlug("pricing");
+async function getPricingData() {
+  return getPageBySlug("pricing");
+}
 
 export async function generateMetadata(): Promise<Metadata> {
+  const data = await getPricingData();
   if (!data?.seo) {
     return {
       title: "Mercury",
@@ -61,7 +64,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const Pricing: React.FC = async () => {
+async function Pricing() {
+  const data = await getPricingData();
   if (!data?.blocks) {
     return null;
   }

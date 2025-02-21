@@ -15,9 +15,12 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   industry_leaders_section: Clients,
 };
 
-export const data = await getPageBySlug("careers");
+async function getCareersData() {
+  return getPageBySlug("careers");
+}
 
 export async function generateMetadata(): Promise<Metadata> {
+  const data = await getCareersData();
   if (!data?.seo) {
     return {
       title: "Mercury",
@@ -63,7 +66,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const CareersPage: React.FC = async () => {
+async function CareersPage() {
+  const data = await getCareersData();
   if (!data?.blocks) {
     return null;
   }

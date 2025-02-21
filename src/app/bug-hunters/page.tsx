@@ -19,9 +19,13 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   single_card_section: CTA,
 };
 
-export const data = await getPageBySlug("bug-hunters");
+
+async function getBugHuntersData() {
+  return getPageBySlug("bug-hunters");
+}
 
 export async function generateMetadata(): Promise<Metadata> {
+  const data = await getBugHuntersData();
   if (!data?.seo) {
     return {
       title: "Mercury",
@@ -67,7 +71,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const EthicalHackersPage: React.FC = async () => {
+async function EthicalHackersPage() {
+  const data = await getBugHuntersData();
   if (!data?.blocks) {
     return null;
   }
@@ -77,6 +82,6 @@ const EthicalHackersPage: React.FC = async () => {
       <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
     </main>
   );
-};
+}
 
 export default EthicalHackersPage;

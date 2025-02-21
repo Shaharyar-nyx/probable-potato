@@ -12,9 +12,12 @@ const blockComponents: Record<string, React.FC<any>> = {
   multi_card_section: Accordion,
 };
 
-export const data = await getPageBySlug("privacy-policy");
+async function getPrivacyPolicyData() {
+  return getPageBySlug("privacy-policy");
+}
 
 export async function generateMetadata(): Promise<Metadata> {
+  const data = await getPrivacyPolicyData();
   if (!data?.seo) {
     return {
       title: "Mercury",
@@ -60,7 +63,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const PrivacyPolicy: React.FC = async () => {
+async function PrivacyPolicy() {
+  const data = await getPrivacyPolicyData();
   if (!data?.blocks) {
     return null;
   }
