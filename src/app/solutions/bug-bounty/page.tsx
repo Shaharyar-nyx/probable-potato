@@ -14,9 +14,12 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   packages_section: Packages,
 };
 
-export const data = await getPageBySlug("bug-bounty");
+async function getBugBountyData() {
+  return getPageBySlug("bug-bounty");
+}
 
 export async function generateMetadata(): Promise<Metadata> {
+  const data = await getBugBountyData();
   if (!data?.seo) {
     return {
       title: "Mercury",
@@ -62,7 +65,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const BugBountyPage: React.FC = async () => {
+async function BugBountyPage() {
+  const data = await getBugBountyData();
   if (!data?.blocks) {
     return null;
   }

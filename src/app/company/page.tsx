@@ -17,9 +17,12 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   company_connect: Tagline,
 };
 
-export const data = await getPageBySlug("company");
+async function getCompanyData() {
+  return getPageBySlug("company");
+}
 
 export async function generateMetadata(): Promise<Metadata> {
+  const data = await getCompanyData();
   if (!data?.seo) {
     return {
       title: "Mercury",
@@ -65,7 +68,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const CompanyPage: React.FC = async () => {
+async function CompanyPage() {
+  const data = await getCompanyData();
   if (!data?.blocks) {
     return null;
   }

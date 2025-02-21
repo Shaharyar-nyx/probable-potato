@@ -12,9 +12,12 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   simple_section: ContactForm,
 };
 
-export const data = await getPageBySlug("contact-us");
+async function getContactUsData() {
+  return getPageBySlug("contact-us");
+}
 
 export async function generateMetadata(): Promise<Metadata> {
+  const data = await getContactUsData();
   if (!data?.seo) {
     return {
       title: "Mercury",
@@ -60,7 +63,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const ContactUs: React.FC = async () => {
+async function ContactUs() {
+  const data = await getContactUsData();
   if (!data?.blocks) {
     return null;
   }

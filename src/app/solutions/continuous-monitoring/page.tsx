@@ -14,9 +14,12 @@ const blockComponents: Record<string, React.FC<any>> = {
   packages_section: Packages,
 };
 
-export const data = await getPageBySlug("continuous-monitoring");
+async function getMonitoringData() {
+  return getPageBySlug("continuous-monitoring");
+}
 
 export async function generateMetadata(): Promise<Metadata> {
+  const data = await getMonitoringData();
   if (!data?.seo) {
     return {
       title: "Mercury",
@@ -62,7 +65,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const ContinuousMonitoringPage: React.FC = async () => {
+async function ContinuousMonitoringPage() {
+  const data = await getMonitoringData();
   if (!data?.blocks) {
     return null;
   }
