@@ -440,3 +440,22 @@ export interface BlockType {
   item: any;
   sort: number;
 }
+
+export interface SeoType {
+  title: string;
+  meta_description: string;
+  canonical_url: string;
+  no_follow: boolean;
+  no_index: boolean;
+  sitemap_frequency: string;
+  sitemap_priority: number;
+  keywords: string[];
+  og_image: {
+    data: {
+      attributes: {
+        name: string;
+        url: string;
+      };
+    };
+  };
+}
