@@ -7,6 +7,7 @@ import Slider from "react-slick";
 
 import styles from "./styles.module.scss";
 import { STRAPI_ASSETS } from "@/lib";
+import { useIsMobile } from "@/hooks";
 
 const sliderSettings = {
   dots: false,
@@ -19,6 +20,8 @@ const sliderSettings = {
   mobileFirst: true,
   autoplay: true,
   autoplaySpeed: 0,
+  centerMode: true,
+  centerPadding: '0px',
   responsive: [
     {
       breakpoint: 1200,
@@ -26,22 +29,33 @@ const sliderSettings = {
         slidesToShow: 4,
         dots: false,
         arrows: false,
+        centerMode: true,
       },
     },
     {
       breakpoint: 768,
       settings: {
-        slidesToShow: 3,
-        dots: false,
+        slidesToShow: 1,
+        dots: true,
+        infinite: true,
         arrows: false,
+        centerMode: true,
+        centerPadding: '50px',
+        focusOnSelect: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        cssEase: 'ease',
       },
     },
   ],
 };
 export const Clients: React.FC<any> = ({ clients, title }) => {
+  const isMobile = useIsMobile();
+
   return (
     <div className={styles.clientsSection}>
-      <h1 className={`${styles.title} heading-1 font-bold`}>{title}</h1>
+      <h1 className={`${styles.title} ${isMobile ? "heading-7" : "heading-1"} font-bold`}>{title}</h1>
       <div className={styles.carouselContainer}>
         <Slider {...sliderSettings}>
           {clients.data.map(

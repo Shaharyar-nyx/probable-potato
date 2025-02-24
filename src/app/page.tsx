@@ -13,7 +13,7 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   home_cybersecurity_solutions: Solutions,
   home_scaling_cybersecurity: CrowdSourcing,
   // home_testimonial: Testimonials,
-  industry_leaders_section: Clients,
+  // industry_leaders_section: Clients,
   single_card_section: CTA,
 };
 

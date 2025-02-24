@@ -90,8 +90,8 @@ export const Testimonials: React.FC<any> = ({ testimonials }) => {
                   <div className={styles.testimonialSlide}>
                     <div className={styles.testimonialLeft}>
                       <div>
-                        <h3 className={styles.testimonialAuthor}>{testimonial.name}</h3>
-                        <p className={styles.testimonialPosition}>{testimonial.position}</p>
+                        <h3 className={`${styles.testimonialAuthor} heading-7`}>{testimonial.name}</h3>
+                        <p className={`${styles.testimonialPosition} paragraph-md`}>{testimonial.position}</p>
                       </div>
                       {testimonial?.client?.data?.attributes?.logo?.data && (
                         <img

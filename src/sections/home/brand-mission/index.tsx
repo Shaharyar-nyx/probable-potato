@@ -4,8 +4,10 @@ import React, { useEffect, useRef } from "react";
 
 import styles from "./styles.module.scss";
 import { STRAPI_ASSETS } from "@/lib";
+import { useIsMobile } from "@/hooks";
 
 export const BrandMission: React.FC<any> = ({ highlights, title, content, hunters }) => {
+  const isMobile = useIsMobile()
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef({ current: 0, target: 0 });
   const rafRef = useRef<number>(0);
@@ -76,7 +78,7 @@ export const BrandMission: React.FC<any> = ({ highlights, title, content, hunter
       ))}
 
       <div className={styles.content}>
-        <h1 className={`${styles.title} heading-1`}>{title}</h1>
+        <h1 className={`${styles.title} ${isMobile ? "heading-7" : "heading-1"}`}>{title}</h1>
         <p className={`${styles.description} paragraph-md`}>{content}</p>
       </div>
 
@@ -92,8 +94,8 @@ export const BrandMission: React.FC<any> = ({ highlights, title, content, hunter
               src={`${STRAPI_ASSETS}${member.image?.data?.attributes?.url}`}
             />
             <div className={styles.memberInfo}>
-              <p className="paragraph-sm mb-1 font-semibold">{member.name}</p>
-              <p className="paragraph-xs">{member.job_title}</p>
+              <p className="text-[9px] leading-[10px] lg:paragraph-sm lg:mb-1 font-semibold">{member.name}</p>
+              <p className="text-[6px] leading-[8px] lg:paragraph-xs">{member.job_title}</p>
             </div>
           </div>
         ),

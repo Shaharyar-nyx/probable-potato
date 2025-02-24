@@ -1,13 +1,13 @@
 .clientsSection {
-  @apply py-[120px] bg-white overflow-hidden;
+  @apply overflow-hidden bg-white py-[60px] lg:py-[120px];
 }
 
 .title {
-  @apply text-primary-800 text-center;
+  @apply mb-0 px-6 text-center text-primary-800 lg:mb-8 lg:px-0;
 }
 
 .carouselContainer {
-  @apply relative pt-10;
+  @apply relative pt-6 lg:pt-10;
 }
 
 .div {
@@ -19,43 +19,34 @@
 }
 
 .swiperSlide {
-  @apply w-auto h-auto;
+  @apply h-auto w-auto;
 }
 
 .logoWrapper {
-  @apply flex-[0_0_300px] px-8 flex justify-center items-center h-[120px] border border-primary-500 rounded-lg mx-auto;
+  @apply mx-auto flex h-[80px] flex-[0_0_200px] items-center justify-center rounded-lg border border-primary-500 px-6 lg:h-[120px] lg:flex-[0_0_300px] lg:px-8;
 }
 
 .clientLogo {
-  @apply max-w-[80%] max-h-[60px] h-auto object-contain;
+  @apply h-auto max-h-[40px] max-w-[80%] object-contain lg:max-h-[60px];
   filter: invert(24%) sepia(97%) saturate(1970%) hue-rotate(211deg) brightness(102%) contrast(101%);
 }
 
-// Responsive styles
-@media (max-width: 768px) {
-  .title {
-    @apply text-4xl;
+:global(.slick-dots) {
+  @apply flex justify-center gap-1;
+
+  li {
+    @apply m-0 h-0 w-4;
+
+    button {
+      @apply h-[0.5rem] w-[0.5rem] rounded-full bg-primary-500/30 p-0;
+
+      &::before {
+        @apply hidden;
+      }
+    }
   }
 
-  .logoWrapper {
-    @apply flex-[0_0_250px] h-[100px];
-  }
-}
-
-@media (max-width: 768px) {
-  .clientsSection {
-    @apply py-12;
-  }
-
-  .title {
-    @apply text-3xl mb-8;
-  }
-
-  .logoWrapper {
-    @apply flex-[0_0_200px] px-6 h-[80px];
-  }
-
-  .clientLogo {
-    @apply max-h-[40px];
+  :global(li.slick-active) button {
+    @apply bg-primary-500;
   }
 }
