@@ -3,8 +3,11 @@
 import { useRef, useState } from "react";
 
 import styles from "./styles.module.scss";
+import { useIsMobile } from "@/hooks";
 
 export const Accordion: React.FC<any> = ({ cards }) => {
+  const isMobile = useIsMobile();
+
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const headerRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -25,14 +28,14 @@ export const Accordion: React.FC<any> = ({ cards }) => {
   return (
     <div className={styles.container}>
       {cards.map(({ title, content_md }: any, index: number) => (
-        <div key={index} className={styles.accordionItem}>
+        <div key={`${index}${title}`} className={styles.accordionItem}>
           <button
             ref={(el: any) => (headerRefs.current[index] = el)}
             className={styles.accordionHeader}
             type="button"
             onClick={() => toggleAccordion(index)}
           >
-            <h4 className={`${styles.accordionTitle} heading-4`}>{title}</h4>
+            <h4 className={`${styles.accordionTitle} ${isMobile ? "paragraph-md" : "heading-4"}`}>{title}</h4>
             <svg
               className={`${styles.accordionIcon} ${expandedIndex === index ? styles.expanded : ""}`}
               fill="none"
