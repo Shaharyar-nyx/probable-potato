@@ -1,5 +1,5 @@
 .clientsSection {
-  @apply overflow-hidden bg-white py-[60px] lg:py-[120px];
+  @apply overflow-hidden bg-white pb-[80px] pt-[60px] lg:py-[120px];
 }
 
 .title {
@@ -8,6 +8,26 @@
 
 .carouselContainer {
   @apply relative pt-6 lg:pt-10;
+
+  :global(.slick-dots) {
+    @apply flex justify-center gap-1;
+
+    li {
+      @apply m-0 h-0 w-4;
+
+      button {
+        @apply h-[0.5rem] w-[0.5rem] rounded-full bg-primary-500/30 p-0;
+
+        &::before {
+          @apply hidden;
+        }
+      }
+    }
+
+    :global(li.slick-active) button {
+      @apply bg-primary-500;
+    }
+  }
 }
 
 .div {
@@ -29,24 +49,4 @@
 .clientLogo {
   @apply h-auto max-h-[40px] max-w-[80%] object-contain lg:max-h-[60px];
   filter: invert(24%) sepia(97%) saturate(1970%) hue-rotate(211deg) brightness(102%) contrast(101%);
-}
-
-:global(.slick-dots) {
-  @apply flex justify-center gap-1;
-
-  li {
-    @apply m-0 h-0 w-4;
-
-    button {
-      @apply h-[0.5rem] w-[0.5rem] rounded-full bg-primary-500/30 p-0;
-
-      &::before {
-        @apply hidden;
-      }
-    }
-  }
-
-  :global(li.slick-active) button {
-    @apply bg-primary-500;
-  }
 }
