@@ -1,33 +1,30 @@
 import React from "react";
 
-import { Hero, BrandMission, Solutions, Testimonials, Clients, CTA } from "@/sections";
+import { Hero, Organization, Partner, Objective, Services, ServiceList, Packages, Faq, CTA } from "@/sections/site";
 import { getPageBySlug } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { BlockType } from "@/types";
-import { CrowdSourcing } from "@/sections/home/crowdsourcing";
 
 const blockComponents: Record<string, React.FC<BlockType>> = {
   hero_section: Hero,
-  home_intro: BrandMission,
-  home_cybersecurity_solutions: Solutions,
-  home_scaling_cybersecurity: CrowdSourcing,
-  // home_testimonial: Testimonials,
-  industry_leaders_section: Clients,
-  single_card_section: CTA,
+  organization_section: Organization,
+  partner_section: Partner,
+  objective_section: Objective,
+  //service_section: Services,
+  package_section: Packages,
+  faq_section: Faq,
+  cta_section: CTA,
+  service_v2_section: ServiceList,
 };
 
 const Home: React.FC = async () => {
-  const data = await getPageBySlug(null);
+  const data = await getPageBySlug("home-v2");
 
   if (!data?.blocks) {
     return null;
   }
 
-  return (
-    <main>
-      <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
-    </main>
-  );
+  return <main>{<PageBuilder blockComponents={blockComponents} blocks={data.blocks} />}</main>;
 };
 
 export default Home;

@@ -1,0 +1,138 @@
+.container {
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 py-16 text-primary-800 lg:px-16 lg:py-32 mt-20;
+
+  /* Adjust padding for mobile screens */
+  @media (max-width: 768px) {
+    @apply px-4 py-8; /* Reduce padding on mobile */
+  }
+}
+
+.wrap {
+  @apply mx-auto max-w-full sm:max-w-[1321px] flex justify-between gap-6;
+  
+  /* Make sure items wrap on mobile */
+  @media (max-width: 768px) {
+    @apply flex-col; /* Stack elements vertically on smaller screens */
+  }
+}
+.left {
+  @apply max-w-[45%];
+  @media (max-width: 768px) {
+    @apply w-full ml-0 max-w-full; /* Take full width on mobile */
+  }
+}
+.right {
+  @apply flex justify-center w-full sm:w-auto flex-grow; /* Ensure it takes full width on smaller screens */
+  @media (max-width: 768px) {
+    @apply block ; /* Take full width on mobile */
+  }
+}
+
+.item {
+  @apply w-full sm:w-1/2 p-8 ml-5 bg-[#034AB6] rounded-[20px] text-white;
+
+  /* Adjust item width and margin for mobile */
+  @media (max-width: 768px) {
+    @apply w-full ml-0 my-10; /* Take full width on mobile */
+  }
+}
+
+.sra {
+  @apply font-bold text-center text-[16px];
+
+  @media (max-width: 768px) {
+    @apply text-sm; /* Reduce text size on mobile */
+  }
+}
+
+.name {
+  @apply font-bold text-center text-[16px];
+
+  @media (max-width: 768px) {
+    @apply text-sm; /* Reduce text size on mobile */
+  }
+}
+
+.price {
+  @apply font-bold text-[42px] mt-10;
+
+  @media (max-width: 768px) {
+    @apply text-3xl; /* Adjust price font size for mobile */
+  }
+}
+
+.details {
+  @apply text-[#f3f4f6] font-medium text-[16px];
+
+  @media (max-width: 768px) {
+    @apply text-sm; /* Adjust text size for mobile */
+  }
+}
+
+.features {
+  @apply text-white font-medium text-[16px] mt-10;
+
+  @media (max-width: 768px) {
+    @apply text-sm; /* Adjust text size for mobile */
+  }
+}
+
+.offers {
+  @apply w-fit sm:w-max text-center font-normal text-sm text-[#02255B] bg-[#367DE91A] rounded-xl gap-2 py-1 px-5;
+
+  @media (max-width: 768px) {
+    @apply px-4 py-2; /* Adjust padding for mobile */
+  }
+}
+
+.heading {
+  @apply text-[#02255b] font-bold text-[48px] py-5;
+
+  @media (max-width: 768px) {
+    @apply text-2xl; /* Smaller font size on mobile */
+  }
+}
+
+.addOn {
+  @apply text-[#02255b] font-semibold text-[28px] py-2;
+
+  @media (max-width: 768px) {
+    @apply text-xl; /* Smaller font size on mobile */
+  }
+}
+
+.recomment {
+  @apply flex flex-wrap gap-4;
+
+  @media (max-width: 768px) {
+    @apply flex-col items-start; /* Stack recommendation items vertically on small screens */
+  }
+}
+
+.recommentLeft {
+  @apply w-[40px];
+
+  @media (max-width: 768px) {
+    @apply w-[30px]; /* Adjust icon size on mobile */
+  }
+}
+
+.recommentRight {
+  @apply flex-grow;
+}
+
+.recommentTitle {
+  @apply text-[#02255b] font-semibold text-[22px];
+
+  @media (max-width: 768px) {
+    @apply text-lg; /* Adjust title font size on mobile */
+  }
+}
+
+.recommentContent {
+  @apply text-[#02255b] font-normal text-[16px];
+
+  @media (max-width: 768px) {
+    @apply text-sm; /* Adjust content text size on mobile */
+  }
+}

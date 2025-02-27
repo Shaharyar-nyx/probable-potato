@@ -1,0 +1,84 @@
+.container {
+  @apply relative mx-auto w-full max-w-screen-2xl pt-[120px] pb-[60px];
+
+  @media (max-width: 768px) {
+    @apply pt-[60px] pb-[30px]; /* Reduced padding on mobile */
+  }
+}
+
+.containerWrap {
+  @apply mx-auto max-w-[1321px];
+
+  @media (max-width: 768px) {
+    @apply w-full; /* Ensure the container is full width on smaller screens */
+  }
+}
+
+.offers {
+  @apply w-fit mx-auto text-center font-normal text-sm text-[#02255B] bg-[#367DE91A] rounded-xl gap-2 py-1 px-5;
+
+  @media (max-width: 768px) {
+    @apply w-fit px-4; /* Full width on smaller screens */
+  }
+}
+.partner {
+  @media (max-width: 768px) {
+    @apply flex flex-wrap justify-center; /* Make partner section responsive */
+  }
+}
+
+
+.heading {
+  @apply text-[#02255B] font-bold text-[48px] text-center;
+
+  @media (max-width: 768px) {
+    @apply text-[32px]; /* Adjust heading size for mobile */
+  }
+}
+
+.description {
+  @apply text-[#4B5563] font-normal text-[16px] text-center;
+
+  @media (max-width: 768px) {
+    @apply text-[14px]; /* Slightly smaller font on mobile */
+  }
+}
+
+.detail {
+  @apply mt-14;
+
+  @media (max-width: 768px) {
+    @apply mt-8; /* Reduced margin for mobile */
+  }
+}
+
+.left {
+  @apply flex justify-between flex-wrap gap-[60px] px-6;
+
+  @media (max-width: 768px) {
+    @apply gap-[16px] px-4; /* Reduced gap and padding on mobile */
+  }
+}
+
+
+.item {
+  @apply bg-[#02255B] text-[#f9fafb] max-w-[310px] h-[280px] rounded-[12px] gap-[20px] p-[40px];
+
+  @media (max-width: 768px) {
+    @apply max-w-[100%] w-full h-auto p-4; /* Adjust item width and padding for mobile */
+  }
+}
+
+.content {
+  @media (max-width: 768px) {
+    @apply px-4; /* Add padding for mobile */
+  }
+}
+
+.text {
+  @apply mt-4;
+
+  @media (max-width: 768px) {
+    @apply mt-2; /* Reduced margin for mobile */
+  }
+}
