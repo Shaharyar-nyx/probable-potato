@@ -1,0 +1,69 @@
+.container {
+  @apply relative mx-auto w-full max-w-screen-2xl pt-[120px] pb-[60px];
+
+  /* Responsive Padding for mobile */
+  @media (max-width: 768px) {
+    @apply pt-[60px] pb-[30px]; /* Reduce top and bottom padding on mobile */
+  }
+}
+
+.containerWrap {
+  @apply flex justify-center items-center flex-wrap gap-8 mx-auto max-w-[1096px];
+
+  /* Responsive Layout for smaller screens */
+  @media (max-width: 768px) {
+    @apply gap-4 mx-4; /* Reduce the gap between items */
+    @apply w-full; /* Ensure full width on smaller screens */
+  }
+}
+
+.heading {
+  @apply text-[#02255B] font-bold text-center text-[48px] max-sm:text-[32px] mb-10;
+
+  /* Optional: Further reduce margin for small screens */
+  @media (max-width: 768px) {
+    @apply mb-6; /* Reduced bottom margin for mobile */
+  }
+}
+
+.itemWapper {
+  @apply relative text-white rounded-lg;
+
+  @media (max-width: 768px) {
+    @apply w-full pr-5; /* Full width on mobile screens */
+  }
+}
+
+.itemIcon {
+  @apply absolute top-1/2 -translate-y-1/2 -left-[24px] rounded-[40px];
+
+  @media (max-width: 768px) {
+    @apply -left-[16px]; /* Adjust the left positioning for smaller screens */
+  }
+}
+
+.textWrap {
+  @apply w-[320px] left-6 rounded-3xl border pt-4 pr-4 pl-8 pb-5 gap-2 bg-[#02255B];
+
+  /* Adjust for mobile responsiveness */
+  @media (max-width: 768px) {
+    @apply w-full left-0; /* Full width and adjusted padding for mobile */
+  }
+}
+
+.title {
+  @apply text-sm space-x-0;
+
+  /* Optional: Reduce text size on mobile */
+  @media (max-width: 768px) {
+    @apply text-xs; /* Slightly smaller font on mobile */
+  }
+}
+
+.content {
+  @apply text-xs;
+
+  @media (max-width: 768px) {
+    @apply text-sm; /* Adjust text size for better readability on mobile */
+  }
+}

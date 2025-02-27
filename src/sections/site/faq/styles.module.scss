@@ -1,0 +1,116 @@
+.container {
+  @apply relative w-full my-20;
+}
+
+.content {
+  @apply mx-auto max-w-full sm:max-w-[1321px];
+}
+
+.header {
+  @apply my-4 sm:my-6 text-center;
+}
+.title {
+  @apply text-[#02255b] font-bold;
+}
+
+.offers {
+  @apply w-fit sm:w-max mx-auto text-center font-normal text-sm text-[#02255B] bg-[#367DE91A] rounded-xl gap-2 py-1 px-5;
+}
+
+.section {
+  @apply w-full max-w-[816px] flex flex-row justify-center items-center mx-auto sm:flex-wrap sm:gap-4;
+}
+
+.list {
+  @apply w-full;
+}
+
+.itemWrap {
+  @apply transition-all mb-[16px] sm:mb-[20px] duration-200 bg-[#f4f8ff] border cursor-pointer rounded-2xl gap-2 sm:gap-4;
+  border-image-source: linear-gradient(310.06deg, rgba(66, 126, 218, 0.4) 23.76%, rgba(66, 126, 218, 0.08) 77.93%);
+}
+
+.itemButton {
+  @apply flex items-center justify-between w-full px-4 py-3 sm:p-6 text-[#4B5563] font-semibold;
+}
+
+.itemButtonText {
+  @apply flex text-base sm:text-lg font-semibold text-[#4b5563];
+}
+
+.itemButtonIcon {
+  @apply w-6 h-6 text-gray-400;
+}
+
+.itemContent {
+  @apply px-3 pb-4 sm:px-6 sm:pb-6 text-[#4b5563];
+  
+}
+
+.itemContent ul {
+  @apply list-disc pl-5;
+}
+
+.itemContent li {
+  @apply pl-2;
+}
+
+.line {
+  @apply w-full px-3 mb-4 sm:px-6 sm:mb-6 h-[1px] bg-[#B4CEF7];
+}
+
+/* Mobile-first adjustments */
+@media (max-width: 640px) {
+  .header {
+    @apply my-4 text-lg; /* Adjust header size on small screens */
+  }
+
+  .offers {
+    @apply text-sm py-1 px-4; /* Make offers button smaller */
+  }
+
+  .section {
+    @apply flex-col items-start; /* Stack items in section vertically on mobile */
+  }
+
+  .itemWrap {
+    @apply gap-3; /* Reduce gap in itemWrap for mobile */
+  }
+
+  .itemButton {
+    @apply text-sm; /* Make text smaller in buttons */
+  }
+
+  .line {
+    @apply mb-3; /* Reduce bottom margin on line */
+  }
+  .list {
+    @apply px-5;
+  }
+}
+
+/* Small devices (e.g., sm, md) */
+@media (min-width: 640px) {
+  .header {
+    @apply text-2xl; /* Larger text on small screens */
+  }
+
+  .offers {
+    @apply w-max text-sm; /* Maintain larger width and padding for 'offers' */
+  }
+
+  .section {
+    @apply flex-row; /* Keep items in a row */
+  }
+
+  .itemWrap {
+    @apply gap-4; /* Maintain larger gap between items */
+  }
+
+  .itemButton {
+    @apply text-base; /* Default button text size */
+  }
+}
+.itemButtonTextActive {
+  @apply text-[#034AB6];
+}
