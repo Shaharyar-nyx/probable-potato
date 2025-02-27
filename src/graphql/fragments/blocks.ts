@@ -210,27 +210,27 @@ export const BLOCKS_FRAGMENT = `
               content
           }
       }
-        ... on ComponentBlocksIndustryLeadersSection {
-                    collection
-                    title
-                    clients {
-                        data {
-                            attributes {
-                                company
-                                logo {
-                                    data {
-                                        attributes {
-                                            name
-                                            alternativeText
-                                            mime
-                                            url
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+      ... on ComponentBlocksIndustryLeadersSection {
+          collection
+          title
+          clients {
+              data {
+                  attributes {
+                      company
+                      logo {
+                          data {
+                              attributes {
+                                  name
+                                  alternativeText
+                                  mime
+                                  url
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
       ... on ComponentBlocksPackagesSection {
           collection
           title
