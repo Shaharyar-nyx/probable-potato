@@ -5,14 +5,20 @@ import React from "react";
 
 import styles from "./styles.module.scss";
 import Modal from "@/components/UI/modal";
-import flowIcon from "@/assets/images/icons/flowchart.svg";
 import clsx from "clsx";
 import { STRAPI_ASSETS } from "@/lib";
 
-export const ServiceList: React.FC<any> = ({ headline, title, cta_text, cta_modal, cta_url, background_file }) => {
+export const ServiceList: React.FC<any> = ({
+  headline,
+  title,
+  cta_text,
+  cta_modal_single,
+  cta_url,
+  background_file,
+}) => {
   const cta = {
     label: cta_text,
-    isModal: cta_modal,
+    isModal: cta_modal_single,
     icon: "ArrowUpRightIcon",
     link: cta_url,
   };
