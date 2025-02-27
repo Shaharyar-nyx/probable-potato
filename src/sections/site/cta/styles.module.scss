@@ -23,7 +23,10 @@
 }
 
 .contentLeft {
-  @apply lg:max-w-[60%] space-y-8 rounded-xl bg-primary-800 p-12 text-white;
+  @apply lg:max-w-[60%] space-y-8 rounded-xl bg-primary-800 py-12 pl-12 pr-[8.5em] text-white;
+  @media (max-width: 768px) {
+    @apply pr-12;
+  }
 }
 
 .title {

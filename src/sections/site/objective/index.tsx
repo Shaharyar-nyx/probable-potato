@@ -3,34 +3,14 @@
 import React from "react";
 
 import styles from "./styles.module.scss";
-import lockIcon from "@/assets/images/icons/lock.svg";
-import paperIcon from "@/assets/images/icons/paper.svg";
-import firewallIcon from "@/assets/images/icons/firewall.svg";
 import Image from "next/image";
 import { STRAPI_ASSETS } from "@/lib";
+import { Gardient } from "@/components/Blocks/Gardient";
 
 export const Objective: React.FC<any> = ({ headline, title, cards }) => {
-  const list = [
-    {
-      icon: lockIcon,
-      content: "Protect your network assets.",
-      sort: 1,
-    },
-    {
-      icon: paperIcon,
-      content: "Ensure compliance with Hong Kong’s security standards.",
-      sort: 2,
-    },
-    {
-      icon: firewallIcon,
-      content: "Provide peace of mind with comprehensive risk prevention and detection.",
-      sort: 3,
-    },
-  ];
-
-  const sortedList = list.sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0));
   return (
     <div className={styles.container}>
+      <Gardient styles="absolute -right-[25%] top-[38%] h-[60%]" />
       <div className={styles.containerWrap}>
         <div className={styles.offers}>{headline}</div>
         <div className={styles.partner}>
