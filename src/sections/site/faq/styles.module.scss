@@ -3,7 +3,7 @@
 }
 
 .content {
-  @apply mx-auto max-w-full sm:max-w-[1321px];
+  @apply mx-auto max-w-full sm:max-w-[1321px] relative overflow-hidden;
 }
 
 .header {
