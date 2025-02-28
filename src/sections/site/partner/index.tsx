@@ -5,10 +5,12 @@ import React from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import { STRAPI_ASSETS } from "@/lib";
+import { Gardient } from "@/components/Blocks/Gardient";
 
 export const Partner: React.FC<any> = ({ headline, title, content, background_file, cards }) => {
   return (
     <div className={styles.container}>
+      <Gardient styles="absolute left-0 top-[60%] h-[60%]" />
       <div className={styles.containerWrap}>
         <div className={styles.offers}>{headline}</div>
         <div className={styles.partner}>

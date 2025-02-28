@@ -1,5 +1,5 @@
 .container {
-  @apply relative mx-auto w-full max-w-screen-2xl pt-[120px] pb-[60px];
+  @apply relative mx-auto w-full max-w-screen-2xl pt-[120px] pb-[60px] overflow-hidden;
 
   @media (max-width: 768px) {
     @apply pt-[60px] pb-[30px]; /* Reduced padding on mobile */

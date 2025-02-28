@@ -1,9 +1,9 @@
 .container {
-  @apply relative w-full my-20;
+  @apply relative w-full my-20 overflow-hidden;
 }
 
 .content {
-  @apply mx-auto max-w-full sm:max-w-[1321px];
+  @apply mx-auto max-w-full sm:max-w-[1321px] relative overflow-hidden;
 }
 
 .header {
@@ -26,7 +26,7 @@
 }
 
 .itemWrap {
-  @apply transition-all mb-[16px] sm:mb-[20px] duration-200 bg-[#f4f8ff] border cursor-pointer rounded-2xl gap-2 sm:gap-4;
+  @apply transition-all duration-200 bg-[#f4f8ff] border cursor-pointer rounded-2xl gap-2 sm:gap-4;
   border-image-source: linear-gradient(310.06deg, rgba(66, 126, 218, 0.4) 23.76%, rgba(66, 126, 218, 0.08) 77.93%);
 }
 
