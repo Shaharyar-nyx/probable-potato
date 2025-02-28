@@ -38,7 +38,7 @@ const getConfig = () => {
         layout: "bar inline",
         position: "bottom right",
         equalWeightButtons: true,
-        flipButtons: false,
+        flipButtons: true,
       },
       preferencesModal: {
         layout: "box",
