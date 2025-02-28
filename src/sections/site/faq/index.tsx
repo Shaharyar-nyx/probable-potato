@@ -19,7 +19,6 @@ export const Faq: React.FC<any> = ({ headline, title, cards }) => {
 
   return (
     <div className={styles.container}>
-      <Gardient styles="absolute left-0 top-[20%] h-[40%]" />
       <div className={styles.content}>
         <Gardient styles="absolute left-0 top-[20%] h-[40%]" />
         <div className={styles.offers}>{headline}</div>
