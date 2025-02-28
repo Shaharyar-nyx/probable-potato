@@ -1,17 +1,21 @@
+"use client";
+
 import React from "react";
 
 import "./styles.scss";
 import { STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
+import { useIsMobile } from "@/hooks";
 
 export const KeyBenefits: React.FC<any> = ({ title, content, cards, headline }) => {
+  const isMobile = useIsMobile();
   return (
     <section className="key-benefits-parent-container">
       <div className="key-benefits-background" />
       <div className="key-benefits-container key-benefits-benefits-container">
-        <span className="tagline key-benefits-tagline">{headline}</span>
-        <div className="mb-12">
-          <h2 className="heading-1 key-benefits-title">{title}</h2>
+        <span className={`${isMobile ? "paragraph-md" : "tagline"} key-benefits-tagline`}>{headline}</span>
+        <div className="lg:mb-12">
+          <h2 className={`${isMobile ? "heading-7" : "heading-1"} key-benefits-title`}>{title}</h2>
           <p className="paragraph-md key-benefits-paragraph">{content}</p>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -26,9 +30,9 @@ export const KeyBenefits: React.FC<any> = ({ title, content, cards, headline }) 
                     height={24}
                   />
                 </div>
-                <h3 className="heading-7 font-bold text-neutral-50">{title}</h3>
+                <h3 className={`${isMobile ? "heading-8" : "heading-7"} font-bold text-neutral-50`}>{title}</h3>
               </div>
-              <p className="paragraph-md text-neutral-50">{content}</p>
+              <p className={`${isMobile ? "paragraph-lg" : "paragraph-md"} text-neutral-50`}>{content}</p>
             </div>
           ))}
         </div>

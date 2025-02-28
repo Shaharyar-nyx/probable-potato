@@ -6,7 +6,7 @@
     @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-6 py-[30px] lg:px-16;
   }
   &-bottom-container {
-    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-6 pb-16 pt-16 lg:px-16 lg:pb-[7.5rem];
+    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-6 py-[60px] lg:px-16 lg:pb-[7.5rem];
   }
   &-tagline {
     @apply mb-10 text-neutral-50;
@@ -97,7 +97,7 @@
     }
     &-table {
       &-row {
-        @apply inline-flex w-full items-center justify-around rounded-xl bg-[#045DE31A] p-4 shadow-[8px_8px_40px_0px_rgba(0,0,0,0.12)] lg:py-6;
+        @apply inline-flex w-full items-center justify-around rounded-xl bg-[#045DE31A] px-5 py-[37px] shadow-[8px_8px_40px_0px_rgba(0,0,0,0.12)] lg:p-4 lg:py-6;
       }
       &-cell {
         @apply inline-block text-center text-neutral-50;

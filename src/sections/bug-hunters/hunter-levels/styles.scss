@@ -1,9 +1,9 @@
 .hunter-levels {
   &-parent-container {
-    @apply relative bg-primary-800;
+    @apply relative bg-primary-800 py-[60px] lg:py-0;
   }
   &-container {
-    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center px-6 lg:px-16;
+    @apply relative mx-auto flex max-w-screen-3xl flex-col items-start px-6 lg:items-center lg:px-16;
   }
   &-tagline {
     @apply mb-10 text-neutral-50;
@@ -12,7 +12,7 @@
     @apply mb-5 text-center font-bold text-neutral-50;
   }
   &-description {
-    @apply mb-10 max-w-screen-xl text-neutral-50;
+    @apply mb-6 max-w-screen-xl text-neutral-50 lg:mb-10;
   }
   &-feature {
     &-container {
@@ -29,11 +29,11 @@
     }
     &-text {
       &-container {
-        @apply flex h-full flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-500 bg-primary-800 p-6 lg:p-10;
+        @apply flex h-full flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-500 bg-primary-800 p-7 lg:p-10;
       }
     }
     &-subtitle {
-      @apply mb-5 text-center font-semibold text-neutral-50;
+      @apply mb-6 text-center font-semibold text-neutral-50 lg:mb-5;
     }
     &-description {
       @apply mb-5 rounded-xl border border-[#045DE366] p-5 text-center text-neutral-50;

@@ -5,8 +5,11 @@ import "./styles.scss";
 import clsx from "clsx";
 
 import { formatNumberWithCommas, cyberbayApi, getOrdinalSuffix } from "@/lib";
+import { useIsMobile } from "@/hooks";
 
 export const FeaturedHunters: React.FC<any> = ({ title, content, headline }) => {
+  const isMobile = useIsMobile();
+
   const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
@@ -27,18 +30,18 @@ export const FeaturedHunters: React.FC<any> = ({ title, content, headline }) => 
   return (
     <section className="featured-hunters-parent-container">
       <div className="featured-hunters-bottom-container">
-        <p className="tagline mb-10 text-neutral-50">{headline}</p>
-        <h2 className="heading-1 featured-hunters-title mb-5">{title}</h2>
-        <p className="paragraph-md mb-[60px] text-neutral-50">{content}</p>
+        <p className={`${isMobile ? 'paragraph-md' : 'tagline'} mb-6 lg:mb-10 text-neutral-50`}>{headline}</p>
+        <h2 className={`${isMobile ? 'heading-7' : 'heading-1'} featured-hunters-title mb-4 lg:mb-5`}>{title}</h2>
+        <p className="paragraph-md mb-6 lg:mb-[60px] text-neutral-50 text-center">{content}</p>
         <div className="featured-hunters-hunters-container">
           <div className="w-full">
             <table className="w-full">
               <thead className="inline-block w-full">
-                <tr className="featured-hunters-hunters-table-row mb-3">
+                <tr className="featured-hunters-hunters-table-row px-5 py-4 lg:p-4 mb-4 lg:mb-3">
                   {["Rank", "Bounty Hunter", "Points"].map((header, index) => (
                     <th
                       key={header}
-                      className={clsx("heading-7 inline-block text-neutral-50", {
+                      className={clsx(`${isMobile ? 'paragraph-sm' : 'heading-7'} inline-block text-neutral-50`, {
                         "w-[55px]": index === 0,
                         "w-[230px]": index === 1,
                         "w-[160px]": index === 2,
@@ -49,7 +52,7 @@ export const FeaturedHunters: React.FC<any> = ({ title, content, headline }) => 
                   ))}
                 </tr>
               </thead>
-              <tbody className="inline-flex w-full flex-col gap-3">
+              <tbody className="inline-flex w-full flex-col gap-4 lg:gap-3">
                 {leaderboard?.map((data: { points: string; displayName: string }, index) => (
                   <tr key={index} className="featured-hunters-hunters-table-row">
                     <td className="featured-hunters-hunters-table-cell paragraph-sm w-[55px]">

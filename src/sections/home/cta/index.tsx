@@ -47,7 +47,7 @@ export const CTA: React.FC<any> = ({
                 {cta?.isModal ? (
                   <Modal cta={cta} buttonStyle={`${isMobile ? "!mt-6 w-full paragraph-md" : "w-fit"}`} />
                 ) : (
-                  <Button className="w-fit" href={cta?.link} target="_blank" iconName={cta?.icon}>
+                  <Button className="!mt-6 w-full lg:w-fit" href={cta?.link} target="_blank" iconName={cta?.icon}>
                     {cta?.label}
                   </Button>
                 )}

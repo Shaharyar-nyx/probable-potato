@@ -76,8 +76,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                   {has_children ? (
                     <button
                       ref={buttonRef}
-                      className={`group flex items-center rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${showSolutionsDropdown ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
-                        }`}
+                      className={`group flex items-center rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${pathname.includes(title.toLowerCase()) || showSolutionsDropdown ? "text-primary-500" : "text-primary-800 hover:text-primary-500"}`}
                       onClick={() => setShowSolutionsDropdown(!showSolutionsDropdown)}
                     >
                       {title}
@@ -89,7 +88,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                     </button>
                   ) : (
                     <Link
-                      className={`group rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${pathname === url ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
+                      className={`group rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${pathname.includes(url) ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
                         }`}
                       href={url.startsWith("/") ? url : `/${url}`}
                     >
