@@ -394,6 +394,7 @@ export const BLOCKS_FRAGMENT = `
           content_md
           cta_text
           cta_url
+          cta_modal_single: cta_modal
           cta_page {
               data {
                   attributes {

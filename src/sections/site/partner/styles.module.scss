@@ -1,0 +1,98 @@
+.container {
+  @apply relative mx-auto w-full max-w-screen-2xl pt-[120px] pb-[60px] overflow-hidden;
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    @apply pt-[60px] pb-[30px]; /* Reduced top and bottom padding for mobile */
+  }
+}
+
+.containerWrap {
+  @apply flex justify-center items-center flex-wrap gap-8 mx-auto max-w-[1321px];
+
+  /* Adjust for mobile screens */
+  @media (max-width: 768px) {
+    @apply gap-4; /* Reduce the gap between items on smaller screens */
+    @apply w-full; /* Full width on mobile */
+  }
+}
+
+.offers {
+  @apply w-[175px] mx-auto text-center font-normal text-sm text-[#02255B] bg-[#367DE91A] rounded-xl gap-2 py-1 px-5;
+
+  /* Adjust for smaller screens */
+  @media (max-width: 768px) {
+    @apply w-[140px]; /* Make the offers smaller on mobile */
+    @apply text-xs; /* Reduce text size for better readability on mobile */
+  }
+}
+
+.heading {
+  @apply text-[#02255B] font-bold text-[48px] text-center;
+
+  @media (max-width: 768px) {
+    @apply text-[32px]; /* Adjust heading font size on smaller screens */
+  }
+}
+
+.description {
+  @apply text-[#4B5563] font-normal text-[16px] text-center;
+
+  @media (max-width: 768px) {
+    @apply text-sm; /* Smaller text size on mobile */
+  }
+}
+
+.detail {
+  @apply flex justify-between align-middle mt-14;
+
+  @media (max-width: 768px) {
+    @apply flex-col gap-4; /* Stack the items vertically on smaller screens */
+    @apply mt-6; /* Reduced top margin on mobile */
+  }
+}
+
+.left {
+  @apply flex justify-between flex-wrap align-top gap-y-10 gap-x-8;
+
+  @media (max-width: 768px) {
+    @apply flex-col gap-4 mx-4; /* Stack the items vertically on smaller screens */
+  }
+}
+
+.right {
+  @apply justify-end w-[568px] min-w-[568px];
+
+  @media (max-width: 768px) {
+    @apply w-full; /* Make right section full width on mobile */
+    @apply min-w-0; /* Remove min-width on mobile */
+  }
+}
+
+.leftItem {
+  @apply w-[calc(50%-16px)] flex justify-between gap-[12px];
+
+  @media (max-width: 768px) {
+    @apply w-full; /* Make left items full width on mobile */
+  }
+}
+
+.leftIcon {
+  @apply w-[24px] min-w-[24px];
+
+  img {
+    @apply w-full;
+  }
+
+  @media (max-width: 768px) {
+    @apply w-[20px]; /* Smaller icons on mobile */
+  }
+}
+
+.leftContent {
+  @apply flex-grow;
+
+  @media (max-width: 768px) {
+    @apply w-full; /* Make content full width on mobile */
+  }
+}

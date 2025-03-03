@@ -1,0 +1,4 @@
+.gradient {
+    @apply block transform translate-x-[-50%] translate-y-[-50%] aspect-square  rounded-[100%];
+    background: radial-gradient(rgba(4, 93, 227, 0.2), rgba(4, 93, 227, 0.1), transparent, transparent);
+}
