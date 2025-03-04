@@ -18,7 +18,7 @@
 }
 
 .offers {
-  @apply w-[175px] mx-auto text-center font-normal text-sm text-[#02255B] bg-[#367DE91A] rounded-xl gap-2 py-1 px-5;
+  @apply w-[175px] mx-auto text-center font-normal text-sm text-[#02255B] rounded-xl gap-2 py-1 px-5;
 
   /* Adjust for smaller screens */
   @media (max-width: 768px) {
@@ -28,10 +28,10 @@
 }
 
 .heading {
-  @apply text-[#02255B] font-bold text-[48px] text-center;
+  @apply text-[#02255B] font-bold text-[48px] text-center max-w-[60%] m-auto;
 
   @media (max-width: 768px) {
-    @apply text-[32px]; /* Adjust heading font size on smaller screens */
+    @apply text-[32px] max-w-full; /* Adjust heading font size on smaller screens */
   }
 }
 

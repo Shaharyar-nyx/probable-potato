@@ -1,28 +1,29 @@
 import React from "react";
 import type { Metadata } from "next";
 
-import { Hero, BrandMission, Solutions, Testimonials, Clients, CTA } from "@/sections";
+import { Hero, Organization, Partner, Objective, Services, ServiceList, Packages, Faq, CTA } from "@/sections/site";
 import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { BlockType } from "@/types";
-import { CrowdSourcing } from "@/sections/home/crowdsourcing";
 
 const blockComponents: Record<string, React.FC<BlockType>> = {
   hero_section: Hero,
-  home_intro: BrandMission,
-  home_cybersecurity_solutions: Solutions,
-  home_scaling_cybersecurity: CrowdSourcing,
-  // home_testimonial: Testimonials,
-  industry_leaders_section: Clients,
-  single_card_section: CTA,
+  organization_section: Organization,
+  partner_section: Partner,
+  objective_section: Objective,
+  //service_section: Services,
+  service_v2_section: ServiceList,
+  package_section: Packages,
+  faq_section: Faq,
+  cta_section: CTA,
 };
 
-async function getHomeData() {
-  return getPageBySlug(null);
+async function getSraData() {
+  return getPageBySlug("sra");
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await getHomeData();
+  const data = await getSraData();
   if (!data?.seo) {
     return {
       title: "Cyberbay",
@@ -68,17 +69,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-async function Home() {
-  const data = await getHomeData();
+async function Sra() {
+  const data = await getSraData();
   if (!data?.blocks) {
     return null;
   }
 
-  return (
-    <main>
-      <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
-    </main>
-  );
-};
+  return <main>{<PageBuilder blockComponents={blockComponents} blocks={data.blocks} />}</main>;
+}
 
-export default Home;
+export default Sra;

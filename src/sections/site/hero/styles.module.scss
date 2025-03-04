@@ -48,12 +48,12 @@
   }
 }
 .content {
-  @apply relative mx-auto h-full p-[40px] my-20 shadow-lg rounded-lg text-center;
+  @apply relative mx-auto h-full p-[40px] my-20 shadow-lg rounded-lg text-center max-w-[80%];
   backdrop-filter: blur(20px);
   box-shadow: 0px 0px 20px 0px #EFF0F240 inset;
 
   @media (max-width: 768px) {
-    @apply gap-[16px] px-4 py-12; /* Reduce gap and padding on mobile */
+    @apply gap-[16px] px-4 py-12 max-w-[90%]; /* Reduce gap and padding on mobile */
   }
 }
 
