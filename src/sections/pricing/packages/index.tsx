@@ -110,6 +110,7 @@ const PackageCard = ({
                             <span
                               data-tooltip-content={feature.tooltip}
                               data-tooltip-id={`tooltip-${feature.name}`}
+                              style={{ position: 'relative', top: "-1px", left: '5px' }}
                             >
                               <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
                                 <g id="information-circle">

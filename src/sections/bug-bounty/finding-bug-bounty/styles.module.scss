@@ -1,16 +1,16 @@
 .finding-bug-bounty {
-  @apply relative px-6 py-16 lg:px-16 lg:pb-[120px] lg:pt-20;
+  @apply relative px-6 py-[60px] lg:px-16 lg:pb-[120px] lg:pt-20;
 
   .background {
     @apply absolute inset-0 -z-10 bg-primary-500 bg-[url('/bug-hunters/join-and-benefits-bg.svg')] bg-cover bg-no-repeat;
   }
 
   .content-wrapper {
-    @apply mx-auto mb-10 lg:px-28 text-center text-neutral-50;
+    @apply mx-auto mb-6 text-neutral-50 lg:mb-10 lg:px-28 lg:text-center;
   }
 
   .container {
-    @apply mx-auto h-full max-w-screen-2xl
+    @apply mx-auto h-full max-w-screen-2xl;
   }
 
   .content {
@@ -22,11 +22,11 @@
   }
 
   .feature-row {
-    @apply flex flex-col lg:flex-row gap-6;
+    @apply flex flex-col gap-6 lg:flex-row;
   }
 
   .feature-icon-container {
-    @apply flex lg:w-[30%] flex-col gap-3 rounded-2xl bg-primary-500 p-10;
+    @apply flex flex-col gap-3 rounded-2xl bg-primary-500 p-7 lg:w-[30%] lg:p-10;
   }
 
   .icon-wrapper {
@@ -38,7 +38,7 @@
   }
 
   .feature-text-container {
-    @apply flex h-full items-center rounded-2xl bg-primary-500 p-10;
+    @apply flex h-full items-center rounded-2xl bg-primary-500 p-7 lg:p-10;
   }
 
   .title {
