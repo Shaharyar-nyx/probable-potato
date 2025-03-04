@@ -42,7 +42,7 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <>
       <Button
-        className={buttonStyle}
+        className={`paragraph-md ${buttonStyle}`}
         iconName={cta?.icon}
         size={buttonSize}
         transparent={buttonTransparent}

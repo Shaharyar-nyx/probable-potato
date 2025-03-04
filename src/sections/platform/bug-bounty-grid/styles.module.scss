@@ -1,5 +1,5 @@
 .section {
-  @apply px-6 py-16 lg:px-16 lg:pb-[60px] lg:pt-[120px];
+  @apply px-6 py-[60px] lg:px-16 lg:pb-[60px] lg:pt-[120px];
 }
 
 .container {
@@ -7,7 +7,7 @@
 }
 
 .gridContent {
-  @apply items-center gap-16 lg:grid-cols-2;
+  @apply items-center gap-6 lg:grid-cols-2 lg:gap-16;
 }
 
 .content {
@@ -15,11 +15,11 @@
 }
 
 .cardContainer {
-  @apply flex flex-col lg:flex-row items-stretch gap-4;
+  @apply flex flex-col items-stretch gap-4 lg:flex-row;
 }
 
 .cardColumn {
-  @apply flex lg:w-1/2 flex-col gap-4;
+  @apply flex flex-col gap-4 lg:w-1/2;
 }
 
 .programCard {
@@ -35,19 +35,19 @@
 }
 
 .featureCard {
-  @apply flex flex-col gap-6 rounded-xl bg-primary-800 p-10 text-neutral-50;
+  @apply flex flex-col gap-3 rounded-xl bg-primary-800 p-7 text-neutral-50 lg:gap-6 lg:p-10;
 }
 
 .featureHeader {
-  @apply flex flex-row items-start gap-4;
+  @apply flex flex-row items-center gap-4;
 }
 
 .featureIcon {
-  @apply -mb-4 rounded-lg shadow-lg;
+  @apply -mb-4 shadow-lg;
 }
 
 .missionsCard {
-  @apply flex items-end justify-end overflow-hidden rounded-xl bg-primary-500 pl-16 pt-4;
+  @apply flex items-end justify-end overflow-hidden rounded-xl bg-primary-500 pl-2 pt-4;
 }
 
 .missionImage {

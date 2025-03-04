@@ -42,7 +42,7 @@ export const Header: React.FC<any> = ({
             {cta.isModal ? (
               <Modal cta={cta} />
             ) : (
-              <Button className="w-fit" href={cta.link} iconName={cta.icon}>
+              <Button className="paragraph-md w-fit" href={cta.link} iconName={cta.icon}>
                 {cta.label}
               </Button>
             )}
