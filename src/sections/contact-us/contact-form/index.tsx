@@ -8,8 +8,11 @@ import { Button, Dropdown, Input, Textarea } from "@/components";
 import formData from "@/data/contact-us/form.json";
 import { ContactUsFormType } from "@/types";
 import { useSubmitContactUs } from "@/hooks/useSubmitContactUs";
+import { useIsMobile } from "@/hooks";
 
 export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
+  const isMobile = useIsMobile();
+
   const {
     register,
     handleSubmit,
@@ -29,8 +32,8 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
     <div className={styles.container}>
       <div className={styles.gridContainer}>
         <div className="w-full lg:w-[40%]">
-          <h2 className={`${styles.title} heading-2 font-bold`}>{title}</h2>
-          <p className={styles.description}>
+          <h2 className={`${styles.title} ${isMobile ? "heading-7" : "heading-2"} font-bold`}>{title}</h2>
+          <p className={`${styles.description} paragraph-md`}>
             <span className="font-semibold">{headline}</span>
             <br />
             {content}
@@ -84,7 +87,7 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
             rows={4}
             {...register("message")}
           />
-          <Button className="self-start px-20" disabled={loading} loading={loading} size="large" type="submit">
+          <Button className="mt-3 self-start px-20 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
             Submit
           </Button>
 

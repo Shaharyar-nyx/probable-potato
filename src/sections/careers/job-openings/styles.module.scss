@@ -1,5 +1,5 @@
 .section {
-  @apply bg-primary-800 px-6 py-16 lg:px-16 lg:pb-[60px] lg:pt-[120px];
+  @apply bg-primary-800 px-6 py-[60px] lg:px-16 lg:pb-[60px] lg:pt-[120px];
 }
 
 .container {
@@ -7,7 +7,7 @@
 }
 
 .title {
-  @apply mb-6 font-bold;
+  @apply mb-5 font-bold lg:mb-6;
 }
 
 .description {
@@ -15,7 +15,7 @@
 }
 
 .gridContent {
-  @apply grid items-center gap-x-8 gap-y-2 lg:gap-y-0 lg:grid-cols-[2fr_1fr_1fr_auto];
+  @apply grid items-center gap-x-8 lg:grid-cols-[2fr_1fr_1fr_auto] lg:gap-y-0;
 }
 
 .columnHeader {
@@ -23,13 +23,13 @@
 }
 
 .row {
-  @apply py-1 font-bold lg:py-10;
+  @apply font-bold lg:py-10;
 }
 
 .buttonWrapper {
-  @apply flex items-center justify-start py-1 lg:py-10;
+  @apply flex items-center justify-start lg:py-10;
 }
 
 .divider {
-  @apply col-span-1 mt-4 border-b border-neutral-50 lg:col-span-4 lg:mt-0;
+  @apply col-span-1 my-4 border-b border-neutral-50 lg:col-span-4 lg:mt-0;
 }

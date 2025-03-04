@@ -5,7 +5,7 @@
   &::before {
     content: "";
     @apply absolute right-[-10%] top-[35%] -z-10 h-[426px] w-[426px] -translate-x-1/2 -translate-y-1/2 rounded-[426px];
-    background: rgba(2, 37, 91, 0.10);
+    background: rgba(2, 37, 91, 0.1);
     filter: blur(100px);
   }
 }
@@ -15,7 +15,7 @@
 }
 
 .title {
-  @apply mb-6 font-bold text-primary-800;
+  @apply mb-4 font-bold text-primary-800 lg:mb-6;
 }
 
 .description {
@@ -23,7 +23,7 @@
 }
 
 .memberCard {
-  @apply absolute hidden overflow-hidden rounded-2xl bg-transparent transition-transform duration-300 ease-in-out lg:block;
+  @apply absolute overflow-hidden rounded-2xl bg-transparent transition-transform duration-300 ease-in-out;
   aspect-ratio: 1;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .memberInfo {
-  @apply absolute bottom-0 left-0 right-0 m-2 rounded-lg p-2 text-white;
+  @apply absolute bottom-0 left-0 right-0 m-[4px] rounded-lg p-[4px] text-white lg:m-2 lg:p-2;
   background: rgba(0, 0, 0, 0.25);
   box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.5) inset;
   backdrop-filter: blur(2px);
@@ -40,39 +40,59 @@
 
 /* Position each member card */
 .member1 {
-  @apply left-[10%] top-[13%];
+  @apply left-[6%] top-[-6%] lg:left-[10%] lg:top-[13%];
   width: 198px;
   height: 209px;
+
+  @media (max-width: 768px) {
+    width: 88px;
+    height: 93px;
+  }
 }
 
 .member2 {
-  @apply left-[42%] top-[-5%] -translate-x-1/2 transform;
+  @apply right-[6%] top-[-20%] -translate-x-1/2 transform lg:left-[42%] lg:top-[-5%];
   width: 138px;
   height: 152px;
+
+  @media (max-width: 768px) {
+    width: 87px;
+    height: 99px;
+  }
 }
 
 .member3 {
-  @apply right-[8%] top-[-10%];
+  @apply right-[8%] top-[-10%] hidden lg:block;
   width: 163px;
   height: 186px;
 }
 
 .member4 {
-  @apply bottom-[-8%] left-[35%] -translate-x-1/2 transform;
+  @apply bottom-[0%] left-[6%] -translate-x-1/2 transform lg:bottom-[-8%] lg:left-[35%];
   width: 241px;
   height: 215px;
+
+  @media (max-width: 768px) {
+    width: 84px;
+    height: 85px;
+  }
 }
 
 .member5 {
-  @apply bottom-[28%] right-[10%];
+  @apply bottom-[28%] right-[10%] hidden lg:block;
   width: 128px;
   height: 149px;
 }
 
 .member6 {
-  @apply bottom-[0%] left-[5%];
+  @apply bottom-[-10%] right-[6%] lg:bottom-[0%] lg:left-[5%];
   width: 136px;
   height: 137px;
+
+  @media (max-width: 768px) {
+    width: 78px;
+    height: 85px;
+  }
 }
 
 /* Tags */
@@ -83,16 +103,16 @@
 
 .accessibilityTag {
   composes: tag;
-  @apply left-[12%] top-[-8%];
-  background-color: rgba(2, 37, 91, 0.8); // #02255bcc
+  @apply left-[6%] top-[-18%] !text-[12px] lg:left-[12%] lg:top-[-8%];
+  background-color: rgba(2, 37, 91, 0.8);
 }
 
 .academyTag {
   composes: tag;
-  @apply right-[28%] top-[5%] px-3 py-2 text-xs;
+  @apply right-[9%] top-[10%] px-3 py-2 !text-[12px] lg:right-[28%] lg:top-[5%] lg:text-xs;
 }
 
 .organizationsTag {
   composes: tag;
-  @apply bottom-[5%] right-[15%];
+  @apply bottom-[15%] right-[6%] !text-[14px] lg:bottom-[5%] lg:right-[15%];
 }

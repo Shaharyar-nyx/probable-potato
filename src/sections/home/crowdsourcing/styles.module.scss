@@ -3,11 +3,11 @@
 }
 
 .container {
-  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 pb-16 text-primary-800 lg:px-16 lg:pb-32;
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 pb-[60px] text-primary-800 lg:px-16 lg:pb-32;
 }
 
 .glassBackground {
-  @apply rounded-xl border border-[#eff0f2]/5 bg-[#eff0f2]/10 shadow-[0px_0px_20px_0px_rgba(255,255,255,0.25)_inset] backdrop-blur-lg;
+  @apply rounded-xl border border-[#6b728045] bg-[#eff0f2]/10 shadow-[0px_0px_20px_0px_rgba(255,255,255,0.25)_inset] backdrop-blur-lg lg:border-[#eff0f2]/5;
 }
 
 .sectionBackground {
@@ -21,30 +21,8 @@
   background-blend-mode: normal, color;
 }
 
-.solutionsWrapper {
-  composes: glassBackground;
-  @apply flex flex-col gap-16 px-10 py-16;
-}
-
-// Solution Card Styles
-.solutionCard {
-  @apply flex w-full flex-row items-start gap-8;
-
-  &.even {
-    @apply justify-end;
-  }
-
-  @media (max-width: 768px) {
-    @apply flex-col gap-4;
-
-    &.even {
-      @apply justify-start;
-    }
-  }
-}
-
 .cardContent {
-  @apply flex flex-row items-start gap-8;
+  @apply flex flex-row items-start gap-8 lg:flex-col;
 }
 
 .iconWrapper {
@@ -111,11 +89,7 @@
 // Crowdsourcing Section Styles
 .crowdsourcingContent {
   composes: glassBackground;
-  @apply flex flex-col gap-10 p-10;
-
-  @media (max-width: 768px) {
-    @apply p-6;
-  }
+  @apply flex flex-col gap-6 p-7 lg:gap-10 lg:p-10;
 }
 
 .label {
@@ -123,7 +97,7 @@
 }
 
 .crowdsourcingTitle {
-  @apply mb-6 font-bold text-primary-800;
+  @apply mb-4 font-bold text-primary-800 lg:mb-6;
 }
 
 .crowdsourcingDescription {
@@ -131,11 +105,7 @@
 }
 
 .benefitsGrid {
-  @apply grid grid-cols-2 gap-24;
-
-  @media (max-width: 768px) {
-    @apply grid-cols-1 gap-12;
-  }
+  @apply grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12 lg:gap-24;
 }
 
 .benefitItem {
@@ -143,45 +113,9 @@
 }
 
 .benefitTitle {
-  @apply mb-3 font-bold text-primary-800;
+  @apply mb-4 font-bold text-primary-800 lg:mb-3;
 }
 
 .benefitDescription {
   @apply text-primary-800;
-}
-
-// Responsive Styles
-@media (max-width: 768px) {
-  .benefitsGrid {
-    @apply grid-cols-1 gap-12;
-  }
-
-  .crowdsourcingContent {
-    @apply p-6;
-  }
-
-  .solutionsWrapper {
-    @apply p-8;
-  }
-
-  .cardContent {
-    @apply flex-row lg:flex-col;
-  }
-
-  .textContent {
-    &.even {
-      @apply items-start text-left;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    @apply px-4;
-  }
-
-  .solutionsWrapper,
-  .crowdsourcingContent {
-    @apply p-6;
-  }
 }

@@ -9,6 +9,31 @@ import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
 import { STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
+import { useIsMobile } from "@/hooks";
+
+const getPackageFeatures = (table: any, pricing_cards: any) => {
+  const features = table.data.attributes.columns.data[0].attributes.rows.data.map((row: any) => ({
+    name: row.attributes.value,
+    tooltip: row.attributes.tooltip,
+    has_tooltip: row.attributes.has_tooltip,
+  }));
+
+  const packageValues = table.data.attributes.columns.data.slice(1).map((column: any) =>
+    column.attributes.rows.data.map((row: any) => ({
+      value: row.attributes.value,
+      hasCheckmark: row.attributes.image?.data !== null,
+    })),
+  );
+
+  return features.map((feature: any, rowIndex: number) => {
+    const featurePackages = packageValues.reduce((acc: any, columnValues: any, colIndex: number) => {
+      const value = columnValues[rowIndex].hasCheckmark ? true : columnValues[rowIndex].value;
+      const packageName = pricing_cards[colIndex].title.toLowerCase().replace(/\s+/g, "");
+      return { ...acc, [packageName]: value };
+    }, {});
+    return { ...feature, ...featurePackages };
+  });
+};
 
 const roboto = Roboto({
   weight: ["700"],
@@ -17,7 +42,7 @@ const roboto = Roboto({
 });
 
 const PackageCard = ({
-  data: { title, content, cta_text, cta_modal_pricing, cta_url, duration, icon, price },
+  data: { title, content, cta_text, cta_modal_pricing, cta_url, duration, icon, price }, isMobile, packageFeatures
 }: any) => {
   const cta = {
     label: cta_text,
@@ -43,17 +68,85 @@ const PackageCard = ({
         <div className={styles.packageContentWrapper}>
           <div className={styles.priceContainer}>
             {duration ? (
-              <h1 className={`${styles.price} heading-1 font-bold`}>
+              <h1 className={`${styles.price} ${isMobile ? 'heading-2' : 'heading-1'} font-bold`}>
                 {price}
-                <span className={`${styles.perYear} paragraph-xs font-normal`}>{duration}</span>
+                <span className={`${styles.perYear} ${isMobile ? 'paragraph-md' : 'paragraph-xs'} font-normal`}>{duration}</span>
               </h1>
             ) : (
-              <h3 className={`${styles.price} heading-3 font-bold`}>{price}</h3>
+              <h3 className={`${styles.price} ${isMobile ? 'heading-2' : 'heading-3'} font-bold`}>{price}</h3>
             )}
           </div>
-          <p className={styles.packageDescription}>{content}</p>
+          <p className={`${styles.packageDescription} paragraph-md`}>{content}</p>
         </div>
       </div>
+
+      {isMobile &&
+        <div className="text-neutral-50">
+          <div className="paragraph-lg font-semibold mb-4">Package features</div>
+
+          <div>
+            {packageFeatures.map((feature: any, index: number) => {
+              const handleType = (type: string) => {
+                switch (type) {
+                  case 'Pricing Additional':
+                    return ' (Extra Cost)'
+                  case '1':
+                    return ''
+                  default:
+                    return ` (${feature[title.toLowerCase()]})`
+                }
+              }
+              return (
+                <div key={index} className="flex flex-row gap-[5px]">
+                  {
+                    feature[title.toLowerCase()] !== null &&
+                    <>
+                      <CheckIcon />
+                      <span style={{ display: 'ruby' }}>
+                        {feature.name}
+                        {typeof feature[title.toLowerCase()] === "string" && handleType(feature[title.toLowerCase()])}
+                        {feature.tooltip && (
+                          <>
+                            <span
+                              data-tooltip-content={feature.tooltip}
+                              data-tooltip-id={`tooltip-${feature.name}`}
+                            >
+                              <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                                <g id="information-circle">
+                                  <path
+                                    d="M9.95486 10.3438L9.99117 10.3256C10.4926 10.0749 11.0573 10.5278 10.9213 11.0717L10.3009 13.5533C10.1649 14.0972 10.7296 14.5501 11.2311 14.2994L11.2674 14.2812M18.4861 11C18.4861 15.3492 14.9604 18.875 10.6111 18.875C6.26187 18.875 2.73611 15.3492 2.73611 11C2.73611 6.65076 6.26187 3.125 10.6111 3.125C14.9604 3.125 18.4861 6.65076 18.4861 11ZM10.6111 7.71875H10.6177V7.72531H10.6111V7.71875Z"
+                                    id="Vector"
+                                    stroke="#FFFFFF"
+                                    strokeLinecap="round"
+                                    strokeWidth="1.3125"
+                                  />
+                                </g>
+                              </svg>
+                            </span>
+                            <Tooltip
+                              id={`tooltip-${feature.name}`}
+                              place="top"
+                              style={{
+                                backgroundColor: "#fff",
+                                color: "#02255B",
+                                padding: "12px 16px",
+                                borderRadius: "8px",
+                                fontSize: "14px",
+                                boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.08)",
+                                maxWidth: "280px",
+                                zIndex: 1000,
+                              }}
+                            />
+                          </>
+                        )}
+                      </span>
+                    </>
+                  }
+                </div>
+              )
+            })}
+          </div>
+        </div>}
 
       <div className={styles.packageFooter}>
         {cta_text && (
@@ -204,8 +297,12 @@ const FeatureRow = ({
 };
 
 export const Packages: React.FC<any> = ({ pricing_cards, features, table, content, title, backgroundImage }) => {
+  const isMobile = useIsMobile();
+
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
   const [gridCols, setGridCols] = useState(3);
+
+  const packageFeatures = getPackageFeatures(table, pricing_cards);
 
   useEffect(() => {
     const handleResize = () => {
@@ -224,8 +321,8 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
 
       <div className={styles.content}>
         <div className={styles.header}>
-          <h1 className="heading-1 mb-3 font-bold text-primary-800">{title}</h1>
-          <p className={styles.subtitle}>{content}</p>
+          <h1 className={`${isMobile ? 'heading-7' : 'heading-1'} mb-6 lg:mb-3 font-bold text-primary-800`}>{title}</h1>
+          <p className={`${styles.subtitle} paragraph-md`}>{content}</p>
         </div>
 
         <div
@@ -262,57 +359,35 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
             <div />
           )}
           {pricing_cards.map((pkg: any, index: number) => (
-            <PackageCard key={`card-${index}`} data={pkg} />
+            <PackageCard key={`card-${index}`} data={pkg} isMobile={isMobile} packageFeatures={packageFeatures} />
           ))}
         </div>
 
-        <div className="paragraph-xl relative top-[1px] inline-block text-left font-semibold text-primary-800">
-          <div className="rounded-tl-xl rounded-tr-xl border border-b-[#fff] border-l-neutral-100 border-r-neutral-100 border-t-neutral-100 bg-white px-7 py-2">
-            Package features
-          </div>
-        </div>
-        <div className={styles.featuresTable}>
-          <table className={styles.table}>
-            <tbody>
-              {(() => {
-                const features = table.data.attributes.columns.data[0].attributes.rows.data.map((row: any) => ({
-                  name: row.attributes.value,
-                  tooltip: row.attributes.tooltip,
-                  has_tooltip: row.attributes.has_tooltip,
-                }));
-
-                const packageValues = table.data.attributes.columns.data.slice(1).map((column: any) =>
-                  column.attributes.rows.data.map((row: any) => ({
-                    value: row.attributes.value,
-                    hasCheckmark: row.attributes.image?.data !== null,
-                  })),
-                );
-
-                return features.map((feature: any, rowIndex: number) => {
-                  const featurePackages = packageValues.reduce((acc: any, columnValues: any, colIndex: number) => {
-                    const value = columnValues[rowIndex].hasCheckmark ? true : columnValues[rowIndex].value;
-                    const packageName = pricing_cards[colIndex].title.toLowerCase().replace(/\s+/g, "");
-                    return { ...acc, [packageName]: value };
-                  }, {});
-
-                  return (
+        {!isMobile && (
+          <>
+            <div className="paragraph-xl relative top-[1px] inline-block text-left font-semibold text-primary-800">
+              <div className="rounded-tl-xl rounded-tr-xl border border-b-[#fff] border-l-neutral-100 border-r-neutral-100 border-t-neutral-100 bg-white px-7 py-2">
+                Package features
+              </div>
+            </div>
+            <div className={styles.featuresTable}>
+              <table className={styles.table}>
+                <tbody>
+                  {packageFeatures.map((feature: any, rowIndex: number) => (
                     <FeatureRow
                       key={`FeatureRow-${rowIndex}-${feature.name}`}
-                      feature={{
-                        name: feature.name,
-                        tooltip: feature.tooltip,
-                        ...featurePackages,
-                      }}
+                      feature={feature}
                       packages={pricing_cards}
                       hoveredColumn={hoveredColumn}
                       onColumnHover={setHoveredColumn}
                     />
-                  );
-                });
-              })()}
-            </tbody>
-          </table>
-        </div>
+                  ))
+                  }
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

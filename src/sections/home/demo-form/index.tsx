@@ -5,10 +5,12 @@ import { useForm, Controller } from "react-hook-form";
 import styles from "./styles.module.scss";
 import { Button, Dropdown, IconRenderer, Input, Textarea } from "@/components";
 import formData from "@/data/home/demo-form.json";
+import { useIsMobile } from "@/hooks";
 import { DemoFormType } from "@/types";
 import { useSubmitRequestDemo } from "@/hooks/useSubmitRequestDemo";
 
 export const DemoForm: React.FC = () => {
+  const isMobile = useIsMobile();
   const {
     register,
     handleSubmit,
@@ -28,8 +30,8 @@ export const DemoForm: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.gridContainer}>
         <div className="w-full lg:w-1/2">
-          <h1 className={`${styles.title} heading-1 font-bold`}>Experience our security solution in real time</h1>
-          <div className="flex flex-col gap-10">
+          <h1 className={`${styles.title} ${isMobile ? "heading-7" : "heading-1"} font-bold`}>Experience our security solution in real time</h1>
+          <div className="flex flex-col gap-6 lg:gap-10">
             {[
               {
                 title: "Proactive Defense",
@@ -47,7 +49,7 @@ export const DemoForm: React.FC = () => {
                 icon: "PresentationChartLineIcon",
               },
             ].map((feature, id) => (
-              <div key={id} className="flex flex-row items-start gap-6">
+              <div key={id} className="flex flex-row items-start gap-3 lg:gap-6">
                 <div className="flex items-center gap-3">
                   <div className="rounded-md bg-primary-500 p-1">
                     <IconRenderer className="h-[24px] w-[24px] text-neutral-50" iconName={feature.icon} />
@@ -133,7 +135,7 @@ export const DemoForm: React.FC = () => {
             rows={4}
             {...register("message")}
           />
-          <Button className="self-start px-20" disabled={loading} loading={loading} size="large" type="submit">
+          <Button className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
             Submit
           </Button>
 

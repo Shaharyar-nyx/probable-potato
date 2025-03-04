@@ -3,11 +3,11 @@
 }
 
 .container {
-  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 py-16 text-primary-800 lg:px-16 lg:py-32;
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 py-[60px] text-primary-800 lg:px-16 lg:py-32;
 }
 
 .glassBackground {
-  @apply rounded-xl border border-[#eff0f2]/5 bg-[#eff0f2]/10 shadow-[0px_0px_20px_0px_rgba(255,255,255,0.25)_inset] backdrop-blur-lg;
+  @apply rounded-xl border border-[#6b728045] bg-[#eff0f2]/10 shadow-[0px_0px_20px_0px_rgba(255,255,255,0.25)_inset] backdrop-blur-lg lg:border-[#eff0f2]/5;
 }
 
 .sectionBackground {
@@ -23,28 +23,36 @@
 
 .solutionsWrapper {
   composes: glassBackground;
-  @apply flex flex-col gap-16 px-10 py-16;
+  @apply flex flex-col gap-16 p-7 lg:px-10 lg:py-16;
+
+  :global(.swiper-pagination) {
+    @apply relative mt-6 flex justify-center gap-1;
+
+    :global(.swiper-pagination-bullet) {
+      @apply h-[0.5rem] w-[0.5rem] rounded-full bg-primary-500/30;
+    }
+
+    :global(.swiper-pagination-bullet-active) {
+      @apply bg-primary-500;
+    }
+  }
+
+  :global(.swiper-slide) {
+    @apply h-auto;
+  }
 }
 
 // Solution Card Styles
 .solutionCard {
-  @apply flex w-full flex-row items-start gap-8;
+  @apply flex w-full flex-col items-start gap-4 lg:flex-row lg:gap-8;
 
   &.even {
-    @apply justify-end;
-  }
-
-  @media (max-width: 768px) {
-    @apply flex-col gap-4;
-
-    &.even {
-      @apply justify-start;
-    }
+    @apply justify-start lg:justify-end;
   }
 }
 
 .cardContent {
-  @apply flex flex-row items-start gap-8;
+  @apply flex flex-col items-start gap-6 lg:flex-row lg:gap-8;
 }
 
 .iconWrapper {
@@ -53,6 +61,9 @@
 
 .textContent {
   @apply flex flex-col items-start text-left;
+  &.even {
+    @apply items-start text-left;
+  }
 }
 
 .cardTitle {
@@ -105,83 +116,5 @@
 
   &.large {
     @apply w-fit px-8 py-3;
-  }
-}
-
-// Crowdsourcing Section Styles
-.crowdsourcingContent {
-  composes: glassBackground;
-  @apply flex flex-col gap-10 p-10;
-
-  @media (max-width: 768px) {
-    @apply p-6;
-  }
-}
-
-.label {
-  @apply font-sans text-[14px];
-}
-
-.crowdsourcingTitle {
-  @apply mb-6 font-bold text-primary-800;
-}
-
-.crowdsourcingDescription {
-  @apply text-primary-800;
-}
-
-.benefitsGrid {
-  @apply grid grid-cols-2 gap-24;
-
-  @media (max-width: 768px) {
-    @apply grid-cols-1 gap-12;
-  }
-}
-
-.benefitItem {
-  @apply flex flex-col;
-}
-
-.benefitTitle {
-  @apply mb-3 font-bold text-primary-800;
-}
-
-.benefitDescription {
-  @apply text-primary-800;
-}
-
-// Responsive Styles
-@media (max-width: 768px) {
-  .benefitsGrid {
-    @apply grid-cols-1 gap-12;
-  }
-
-  .crowdsourcingContent {
-    @apply p-6;
-  }
-
-  .solutionsWrapper {
-    @apply p-8;
-  }
-
-  .cardContent {
-    @apply flex-row lg:flex-col;
-  }
-
-  .textContent {
-    &.even {
-      @apply items-start text-left;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    @apply px-4;
-  }
-
-  .solutionsWrapper,
-  .crowdsourcingContent {
-    @apply p-6;
   }
 }

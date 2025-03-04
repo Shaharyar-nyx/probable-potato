@@ -1,9 +1,9 @@
 .section {
-  @apply bg-neutral-50 px-6 py-16 lg:px-16 lg:py-[120px] text-primary-800;
+  @apply bg-neutral-50 px-6 py-[60px] text-primary-800 lg:px-16 lg:py-[120px];
 }
 
 .container {
-  @apply mx-auto max-w-screen-2xl flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-[20%];
+  @apply mx-auto flex max-w-screen-2xl flex-col items-start justify-between gap-10 lg:flex-row lg:gap-[20%];
 }
 
 .chatCard {
@@ -31,15 +31,15 @@
 }
 
 .formTitle {
-  @apply mb-6 font-bold;
+  @apply mb-3 font-bold;
 }
 
 .formSubtitle {
-  @apply mb-3;
+  @apply lg:mb-[-12px];
 }
 
 .form {
-  @apply flex flex-col gap-[26px];
+  @apply flex flex-col gap-3 lg:gap-[26px];
 }
 
 .inputWrapper {
@@ -55,7 +55,7 @@
 }
 
 .uploadLabel {
-  @apply mb-2;
+  @apply lg:mb-[-9px];
 }
 
 .uploadButton {

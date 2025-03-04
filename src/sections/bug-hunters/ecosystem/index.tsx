@@ -3,9 +3,14 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 
+import 'swiper/css';
+import 'swiper/css/pagination';
 import "./styles.scss";
-import { useScreenWidth } from "@/hooks";
+import { useIsMobile, useScreenWidth } from "@/hooks";
 import { STRAPI_ASSETS } from "@/lib";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import Image from "next/image";
 
 interface EcosystemItemProps {
   content: string;
@@ -82,17 +87,17 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon, conte
         animate={
           alwaysHovered || isHovered
             ? {
-                left: currentBoxPadding + leftShift,
-                top: currentBoxPadding,
-                width: "calc(100% - 110px)",
-                color: "#F6F7F8",
-              }
+              left: currentBoxPadding + leftShift,
+              top: currentBoxPadding,
+              width: "calc(100% - 110px)",
+              color: "#F6F7F8",
+            }
             : {
-                left: currentBoxPadding,
-                top: "calc(100% - 60px)",
-                width: "80%",
-                color: "#02255B",
-              }
+              left: currentBoxPadding,
+              top: "calc(100% - 60px)",
+              width: "80%",
+              color: "#02255B",
+            }
         }
         className="ecosystem-feature-title"
         initial={{
@@ -134,17 +139,52 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon, conte
 };
 
 export const Ecosystem: React.FC<any> = ({ title, content, cards }) => {
+  const isMobile = useIsMobile();
   return (
     <section className="ecosystem-parent-container">
       <div className="ecosystem-container">
-        <h2 className="heading-1 ecosystem-title">{title}</h2>
+        <h2 className={`${isMobile ? "heading-7" : "heading-1"} ecosystem-title`}>{title}</h2>
         <p className="paragraph-md ecosystem-description">{content}</p>
-        <div className="ecosystem-feature-container">
-          {cards.map((attributes: any, index: number) => (
-            <EcosystemFeatureItem key={index} {...attributes} />
-          ))}
-        </div>
+        {!isMobile && (
+          <div className="ecosystem-feature-container">
+            {cards.map((attributes: any, index: number) => (
+              <EcosystemFeatureItem key={index} {...attributes} />
+            ))}
+          </div>
+        )}
       </div>
+
+      {isMobile && <Swiper
+        modules={[Pagination, Autoplay]}
+        spaceBetween={28}
+        slidesPerView={1}
+        centeredSlides
+        loop
+        pagination={{ clickable: true }}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        className="swiper-container"
+      >
+        {cards.map(({ content, icon, title }: any, index: number) => (
+          <SwiperSlide key={index}>
+            <div className="flex flex-col gap-[18px] justify-start p-7 bg-primary-500 rounded-xl h-auto">
+              <div className="flex flex-row items-center gap-3">
+                <Image
+                  src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                  alt={icon.data.attributes.name}
+                  width={48}
+                  height={48}
+                  className="brightness-0 invert"
+                />
+                <h3 className="heading-8 font-bold text-neutral-50">{title}</h3>
+              </div>
+              <p className="paragraph-md text-neutral-50">{content}</p>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>}
     </section>
   );
 };

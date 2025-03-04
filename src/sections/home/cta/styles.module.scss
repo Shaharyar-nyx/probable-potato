@@ -19,11 +19,11 @@
 }
 
 .content {
-  @apply relative mx-auto max-w-screen-2xl z-10 flex items-center px-6 py-16 lg:px-16 lg:py-32;
+  @apply relative z-10 mx-auto flex max-w-screen-2xl items-center px-6 py-[60px] lg:px-16 lg:py-32;
 }
 
 .contentLeft {
-  @apply lg:max-w-[60%] space-y-8 rounded-xl bg-primary-800 p-12 text-white;
+  @apply space-y-3 rounded-xl bg-primary-800 p-10 text-white lg:max-w-[60%] lg:space-y-8 lg:p-12;
 }
 
 .title {

@@ -9,6 +9,7 @@ import { ApplyFormType } from "@/types";
 import { useSubmitApplicationForm } from "@/hooks/useSubmitApplicationForm";
 import Image from "next/image";
 import { STRAPI_ASSETS } from "@/lib";
+import { useIsMobile } from "@/hooks";
 
 export const ApplicationForm: React.FC<any> = ({
   title,
@@ -16,6 +17,8 @@ export const ApplicationForm: React.FC<any> = ({
   headline,
   card: { title: cardTitle, content_md, icon },
 }) => {
+  const isMobile = useIsMobile();
+
   const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB in bytes
 
   const {
@@ -72,7 +75,7 @@ export const ApplicationForm: React.FC<any> = ({
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <div className={styles.chatCard}>
+        {!isMobile && <div className={styles.chatCard}>
           <div className={styles.chatHeader}>
             <div className={styles.iconWrapper}>
               <Image
@@ -85,10 +88,27 @@ export const ApplicationForm: React.FC<any> = ({
             <h3 className="heading-7 font-bold">{cardTitle}</h3>
           </div>
           <div className={`paragraph-md ${styles.chatDescription}`} dangerouslySetInnerHTML={{ __html: content_md }} />
-        </div>
+        </div>}
 
         <div className={styles.formContainer}>
-          <h1 className={`heading-1 ${styles.formTitle} lg:w-[90%]`}>{title}</h1>
+          <h1 className={`${isMobile ? 'heading-7' : 'heading-1'} ${styles.formTitle} lg:w-[90%]`}>{title}</h1>
+
+          {isMobile && <div className="mb-6">
+            <div className={`${styles.chatHeader} items-start`}>
+              <div className={styles.iconWrapper}>
+                <Image
+                  alt={icon.data.attributes.name}
+                  height={18}
+                  width={18}
+                  src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                />
+              </div>
+              <div>
+                <h3 className="heading-8 font-bold">{cardTitle}</h3>
+                <div className={`paragraph-md mt-0 ${styles.chatDescription}`} dangerouslySetInnerHTML={{ __html: content_md }} />
+              </div>
+            </div>
+          </div>}
 
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <p className={`paragraph-lg ${styles.formSubtitle}`}>{content}</p>
@@ -138,7 +158,7 @@ export const ApplicationForm: React.FC<any> = ({
               {...register("message")}
             />
 
-            <Button className={styles.submitButton} disabled={loading} loading={loading} type="submit">
+            <Button className={`${styles.submitButton} ${isMobile ? 'w-full' : 'w-fit'}`} disabled={loading} loading={loading} type="submit">
               Submit
             </Button>
 

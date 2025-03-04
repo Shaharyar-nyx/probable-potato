@@ -27,10 +27,10 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
 
   return (
     <footer className="text-white" style={{ backgroundColor: background_color }}>
-      <div className="mx-auto max-w-screen-2xl px-6 py-16 lg:px-16 lg:py-20">
-        <div className="flex flex-col space-y-8">
+      <div className="mx-auto max-w-screen-2xl px-6 py-[60px] lg:px-16 lg:py-20">
+        <div className="flex flex-col space-y-10 lg:space-y-8">
           {/* Main Content */}
-          <div className="flex flex-col justify-between gap-16 lg:flex-row">
+          <div className="flex flex-col justify-between gap-10 lg:gap-16 lg:flex-row">
             {/* Left Side - Logo and Navigation */}
             <div className="flex flex-col gap-[40px] lg:flex-row">
               <div className="flex-shrink-0">
@@ -39,12 +39,12 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-3">
+              <div className="lg:grid grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-3 hidden">
                 {navigations.data[0].attributes.items.data.map(
                   ({ attributes: { title, has_children, children } }: any) => (
                     <div key={title}>
-                      <h3 className="mb-6 text-base font-bold">{title}</h3>
-                      <ul className="space-y-4 text-[14px]">
+                      <h3 className="mb-6 heading-8 font-bold">{title}</h3>
+                      <ul className="space-y-4 paragraph-sm">
                         {has_children &&
                           children?.data.map(({ attributes: { title, url } }: any) => (
                             <li key={url}>
@@ -66,15 +66,15 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
 
             {/* Right Side - Stay Connected */}
             <div className="flex-shrink-0 lg:w-[360px]">
-              <h3 className="mb-4 text-base font-bold">Subscribe to Our Newsletter</h3>
-              <p className="mb-6 text-[14px]">
+              <h3 className="mb-[20px] lg:mb-4 heading-8 font-bold">Subscribe to Our Newsletter</h3>
+              <p className="mb-3 lg:mb-6 paragraph-sm">
                 Get the latest cybersecurity insights and updates. You can unsubscribe at any time.
               </p>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex flex-col gap-3">
                   <Input
                     parentClassName="shadow-none border-none px-0 pt-0 !outline-none"
-                    className="w-full border-b border-primary-500 bg-transparent px-1 py-2 text-[14px] text-white placeholder-[#EFF0F2B2] outline-none focus:!outline-none"
+                    className="w-full border-b border-primary-500 bg-transparent px-1 py-2 paragraph-sm text-white placeholder-[#EFF0F2B2] outline-none focus:!outline-none"
                     disabled={loading}
                     placeholder="Enter your email address"
                     {...register("email", {
@@ -88,7 +88,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                   />
 
                   <Button
-                    className="w-full rounded bg-primary-500 px-8 py-3 text-[14px] text-white transition-colors hover:bg-[#1E90FF]/90"
+                    className="w-full rounded bg-primary-500 px-8 py-3 paragraph-sm text-white transition-colors hover:bg-[#1E90FF]/90"
                     disabled={loading}
                     loading={loading}
                     size="large"
@@ -109,8 +109,8 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
           </div>
 
           <div className="border-t border-neutral-200 pt-8">
-            <div className="grid grid-cols-3 items-center">
-              <div className="flex items-center space-x-6 text-[14px] text-neutral-200">
+            <div className="lg:grid lg:grid-cols-3 flex flex-col items-start gap-3 lg:items-center">
+              <div className="flex items-center space-x-6 paragraph-sm text-neutral-200">
                 {navigations.data[1].attributes.items.data.map(({ attributes: { title, url } }: any) => (
                   <Link
                     key={url}
@@ -121,7 +121,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                   </Link>
                 ))}
               </div>
-              <div className="text-center text-[14px] text-neutral-200">&copy; {moment().year()} Cyberbay.</div>
+              <div className="text-center paragraph-sm text-neutral-200">&copy; {moment().year()} Cyberbay.</div>
               <div className="flex items-center justify-end space-x-4">
                 {company_socials?.data?.map(
                   ({

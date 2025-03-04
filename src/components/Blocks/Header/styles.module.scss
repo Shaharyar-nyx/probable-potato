@@ -1,5 +1,5 @@
 .container {
-  @apply relative flex h-[80vh] items-center justify-center overflow-hidden px-6 py-16 lg:px-16 lg:py-24 text-center text-neutral-50;
+  @apply relative flex h-[80vh] items-center justify-center overflow-hidden px-7 py-[60px] text-center text-neutral-50 lg:px-16 lg:py-24;
 }
 
 .image {
@@ -11,7 +11,7 @@
 }
 
 .content {
-  @apply relative mx-auto flex max-w-screen-2xl flex-col items-center justify-center space-y-5 rounded-lg bg-black/30 p-8 shadow-[0px_0px_20px_0px_rgba(239,240,242,0.25)_inset] backdrop-blur-lg;
+  @apply relative mx-auto flex max-w-screen-2xl flex-col items-center justify-center space-y-6 rounded-lg bg-black/30 p-7 shadow-[0px_0px_20px_0px_rgba(239,240,242,0.25)_inset] backdrop-blur-lg lg:space-y-5 lg:p-8;
 }
 
 .title {
