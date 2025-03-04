@@ -10,15 +10,15 @@
   @apply my-4 sm:my-6 text-center;
 }
 .title {
-  @apply text-[#02255b] font-bold;
+  @apply text-[#02255b] font-bold text-[48px];
 }
 
 .offers {
-  @apply w-fit sm:w-max mx-auto text-center font-normal text-sm text-[#02255B] bg-[#367DE91A] rounded-xl gap-2 py-1 px-5;
+  @apply w-fit sm:w-max mx-auto text-center font-normal text-sm text-[#02255B] rounded-xl gap-2 py-1 px-5;
 }
 
 .section {
-  @apply w-full max-w-[816px] flex flex-row justify-center items-center mx-auto sm:flex-wrap sm:gap-4;
+  @apply w-full max-w-[816px] flex flex-row justify-center items-center mx-auto sm:flex-wrap sm:gap-4 mt-[60px];
 }
 
 .list {
@@ -26,8 +26,8 @@
 }
 
 .itemWrap {
-  @apply transition-all duration-200 bg-[#f4f8ff] border cursor-pointer rounded-2xl gap-2 sm:gap-4;
-  border-image-source: linear-gradient(310.06deg, rgba(66, 126, 218, 0.4) 23.76%, rgba(66, 126, 218, 0.08) 77.93%);
+  @apply transition-all duration-200 bg-[#f4f8ff] border border-[#C1C4CA] rounded-2xl gap-2 sm:gap-4;
+  //border-image-source: linear-gradient(310.06deg, rgba(66, 126, 218, 0.4) 23.76%, rgba(66, 126, 218, 0.08) 77.93%);
 }
 
 .itemButton {

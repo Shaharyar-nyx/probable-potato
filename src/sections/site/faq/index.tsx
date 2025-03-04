@@ -29,8 +29,8 @@ export const Faq: React.FC<any> = ({ headline, title, cards }) => {
           <div className={styles.list}>
             {cards.map((it: any, i: number) => (
               <div key={`faq-${i}`} className="mb-[16px] sm:mb-[20px]">
-                <div className="rounded-[17px] bg-gradient-to-br from-[rgba(66,126,218,0.1)] to-[rgba(66,126,218,0.4)] p-[1px]">
-                  <div className={clsx(styles.itemWrap, "hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]")}>
+                <div className="rounded-[17px]">
+                  <div className={clsx(styles.itemWrap, "")}>
                     <button
                       type="button"
                       className={styles.itemButton}
