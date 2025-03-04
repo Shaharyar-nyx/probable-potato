@@ -3,7 +3,7 @@
 }
 
 .content {
-  @apply mx-auto w-full px-6 py-16 max-w-screen-2xl lg:px-16 lg:py-20;
+  @apply mx-auto w-full max-w-screen-2xl px-6 py-[60px] lg:px-16 lg:py-20;
 }
 
 .header {
@@ -11,11 +11,11 @@
 }
 
 .clientsSection {
-  @apply w-[200px] shrink-0 space-y-8;
+  @apply hidden w-[200px] shrink-0 space-y-8 lg:block;
 }
 
 .title {
-  @apply border-b border-neutral-200 pb-5 font-bold text-neutral-200;
+  @apply border-b border-neutral-200 py-5 font-bold text-neutral-200 lg:pb-5 lg:pt-0;
 }
 
 .sectionTitle {
@@ -43,7 +43,7 @@
 }
 
 .testimonialLeft {
-  @apply flex w-[200px] shrink-0 flex-col justify-between;
+  @apply flex w-full shrink-0 flex-row items-center justify-between lg:w-[200px] lg:flex-col;
 }
 
 .testimonialRight {
@@ -59,11 +59,11 @@
 }
 
 .testimonialAuthor {
-  @apply mb-1 text-[20px] text-white;
+  @apply mb-1 text-white;
 }
 
 .testimonialPosition {
-  @apply text-[16px] text-white opacity-80;
+  @apply text-white opacity-80;
 }
 
 .testimonialLogo {

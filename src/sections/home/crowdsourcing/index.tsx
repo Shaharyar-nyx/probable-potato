@@ -5,6 +5,7 @@ import React from "react";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
+import { useIsMobile } from "@/hooks";
 
 const MotionButton = motion(Button);
 
@@ -43,7 +44,9 @@ const staggerChildren = {
   },
 };
 
-export const CrowdSourcing: React.FC<any> = ({ headline, title, content, cards }) => {
+export const CrowdSourcing: React.FC<any> = ({ headline, title, content, cta_text, cta_url, cards }) => {
+  const isMobile = useIsMobile();
+
   return (
     <div className={styles.solutionsContainer}>
       <div className={styles.sectionBackground} style={{ backgroundImage: `url(/images/bg-image.jpeg)` }}>
@@ -63,10 +66,10 @@ export const CrowdSourcing: React.FC<any> = ({ headline, title, content, cards }
               </motion.span>
 
               <motion.div>
-                <motion.h1 className={`${styles.crowdsourcingTitle} heading-1`} variants={fadeInUp}>
+                <motion.h1 className={`${styles.crowdsourcingTitle} ${isMobile ? "heading-7" : "heading-1"}`} variants={fadeInUp}>
                   {title}
                 </motion.h1>
-                <motion.p className={`${styles.crowdsourcingDescription} paragraph-md`} variants={fadeInUp}>
+                <motion.p className={`${styles.crowdsourcingDescription} ${isMobile ? "paragraph-md" : "paragraph-lg"}`} variants={fadeInUp}>
                   {content}
                 </motion.p>
               </motion.div>
@@ -77,24 +80,23 @@ export const CrowdSourcing: React.FC<any> = ({ headline, title, content, cards }
                     <motion.div key={index} className={styles.benefitItem} variants={fadeInUp}>
                       <h3 className={`${styles.benefitTitle} heading-7`}>{card.title}</h3>
                       <p className={`${styles.benefitDescription} paragraph-md`}>{card.content}</p>
-
-                      {card.cta_text && (
-                        <MotionButton
-                          className="mt-4 self-start"
-                          href={card.cta_url}
-                          initial="hidden"
-                          size="large"
-                          variant="primary"
-                          variants={fadeInUp}
-                          viewport={{ once: true }}
-                          whileInView="visible"
-                        >
-                          {card.cta_text}
-                        </MotionButton>
-                      )}
                     </motion.div>
                   ),
                 )}
+                {/* {cta_text && ( */}
+                <MotionButton
+                  className="mt-4 self-start w-full lg:w-fit"
+                  href={cta_url || "solutions/bug-bounty"}
+                  initial="hidden"
+                  size="large"
+                  variant="primary"
+                  variants={fadeInUp}
+                  viewport={{ once: true }}
+                  whileInView="visible"
+                >
+                  {cta_text || "Learn More"}
+                </MotionButton>
+                {/* )} */}
               </motion.div>
             </motion.div>
           </motion.div>

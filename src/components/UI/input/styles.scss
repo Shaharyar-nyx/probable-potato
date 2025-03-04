@@ -1,6 +1,6 @@
 .input-container {
   @apply flex gap-3;
-  @apply w-full px-[10px] py-[14px];
+  @apply w-full p-[6px] lg:px-[10px] lg:py-[14px];
   @apply rounded-xl border border-primary-800;
   @apply text-[14px] leading-5 placeholder:text-neutral-400;
   @apply disabled:cursor-not-allowed;

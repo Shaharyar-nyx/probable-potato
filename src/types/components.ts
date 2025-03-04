@@ -47,6 +47,7 @@ export interface SolutionCardProps {
   cta_text?: string;
   cta_url?: string;
   title: string;
+  isMobile?: boolean;
 }
 
 export interface SolutionsProps {

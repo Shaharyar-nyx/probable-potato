@@ -6,8 +6,10 @@ import styles from "./styles.module.scss";
 import { Button, IconRenderer, Input, Textarea } from "@/components";
 import { ContactSalesFormType } from "@/types";
 import { useSubmitContactSales } from "@/hooks/useSubmitContactSales";
+import { useIsMobile } from "@/hooks";
 
 export const ContactSalesForm: React.FC = () => {
+  const isMobile = useIsMobile();
   const {
     register,
     handleSubmit,
@@ -26,8 +28,8 @@ export const ContactSalesForm: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.gridContainer}>
         <div className="w-full lg:w-1/2">
-          <h1 className={`${styles.title} heading-1 font-bold`}>Let’s Talk and Find the Right Solution for You</h1>
-          <div className="flex flex-col gap-10">
+          <h1 className={`${styles.title} ${isMobile ? "heading-7" : "heading-1"} font-bold`}>Let’s Talk and Find the Right Solution for You</h1>
+          <div className="flex flex-col gap-6 lg:gap-10">
             {[
               {
                 title: "Tailored Solutions",
@@ -45,7 +47,7 @@ export const ContactSalesForm: React.FC = () => {
                 icon: "UserCircleIcon",
               },
             ].map((feature, id) => (
-              <div key={id} className="flex flex-row items-start gap-6">
+              <div key={id} className="flex flex-row items-start gap-3 lg:gap-6">
                 <div className="flex items-center gap-3">
                   <div className="rounded-md bg-primary-500 p-1">
                     <IconRenderer className="h-[24px] w-[24px] text-neutral-50" iconName={feature.icon} />
@@ -109,7 +111,7 @@ export const ContactSalesForm: React.FC = () => {
             {...register("message")}
           />
 
-          <Button className="self-start px-20" disabled={loading} loading={loading} size="large" type="submit">
+          <Button className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
             Submit
           </Button>
 

@@ -36,7 +36,7 @@ export const Hero: React.FC<any> = ({ background_file, cta_text, cta_modal, cta_
           <div className={styles.textContent}>
             <div className={`${styles.title} display-1 font-bold`}>{title}</div>
             <p className={`${styles.description} paragraph-lg`}>{content}</p>
-            {cta_text && <Modal cta={cta} buttonStyle="mx-auto lg:mx-0" />}
+            {cta_text && <Modal cta={cta} buttonStyle="!mt-6 lg:mt-0 w-full lg:w-fit lg:mx-0 paragraph-sm lg:paragraph-md" />}
           </div>
 
           <ParallaxProvider>

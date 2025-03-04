@@ -14,11 +14,11 @@
 }
 
 .content {
-  @apply relative z-[3] mx-auto max-w-screen-2xl px-6 py-16 text-primary-800 lg:px-16 lg:py-24;
+  @apply relative z-[3] mx-auto max-w-screen-2xl px-6 py-[60px] text-primary-800 lg:px-16 lg:py-24;
 }
 
 .header {
-  @apply relative z-[1] mb-16 text-center;
+  @apply relative z-[1] lg:mb-16 lg:text-center;
 }
 
 .title {
@@ -30,19 +30,19 @@
 }
 
 .packagesGrid {
-  @apply mb-10 grid gap-6 lg:mb-0 lg:gap-8;
+  @apply mb-0 grid gap-6 lg:gap-8;
 }
 
 .package {
-  @apply flex w-full flex-col justify-between gap-6 rounded-2xl bg-primary-500 p-8;
+  @apply flex w-full flex-col justify-between gap-6 rounded-2xl bg-primary-500 p-7 lg:p-8;
 }
 
 .packageHeaderWrapper {
-  @apply mb-5 flex items-center gap-5;
+  @apply mb-3 flex items-center gap-3 lg:mb-5 lg:gap-5;
 }
 
 .packageContentWrapper {
-  @apply flex flex-col gap-8;
+  @apply flex flex-col gap-6 lg:gap-8;
 }
 
 .packageIcon {
@@ -62,7 +62,7 @@
 }
 
 .perYear {
-  @apply w-[10%] text-white/80;
+  @apply text-white/80 lg:w-[10%];
 }
 
 .packageDescription {

@@ -7,12 +7,14 @@ import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
 import { STRAPI_ASSETS } from "@/lib";
+import { useIsMobile } from "@/hooks";
 
 export const CTA: React.FC<any> = ({
   background_file,
   headline,
   card: { cta_text, cta_url, cta_modal, content, title },
 }) => {
+  const isMobile = useIsMobile();
   const cta = {
     label: cta_text,
     isModal: cta_modal,
@@ -38,14 +40,14 @@ export const CTA: React.FC<any> = ({
           {/* Left Content */}
           <div className={styles.contentLeft}>
             {headline !== null && <span className="tagline text-white">{headline}</span>}
-            <h2 className={`heading-2 font-bold`}>{title}</h2>
-            <p className={styles.description}>{content}</p>
+            <h2 className={`${isMobile ? "heading-7" : "heading-2"} font-bold`}>{title}</h2>
+            <p className={`${isMobile ? "paragraph-md" : "paragraph-lg"}`}>{content}</p>
             {cta_text && (
               <>
                 {cta?.isModal ? (
-                  <Modal cta={cta} />
+                  <Modal cta={cta} buttonStyle={`${isMobile ? "!mt-6 w-full paragraph-md" : "w-fit"}`} />
                 ) : (
-                  <Button className="w-fit" href={cta?.link} target="_blank" iconName={cta?.icon}>
+                  <Button className="!mt-6 w-full lg:w-fit" href={cta?.link} target="_blank" iconName={cta?.icon}>
                     {cta?.label}
                   </Button>
                 )}

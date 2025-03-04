@@ -61,7 +61,7 @@ export const InputFile: React.FC<InputFileProps> = ({
     <div>
       <input type="file" ref={inputRef} accept=".pdf" className="hidden" id={id} onChange={handleFileChange} />
       <Button
-        className={clsx("max-w-[250px] border", error ? "border-red-400" : "border-primary-800")}
+        className={clsx("w-full lg:max-w-[250px] border", error ? "border-red-400" : "border-primary-800")}
         disabled={loading}
         type="button"
         variant="neutral"
