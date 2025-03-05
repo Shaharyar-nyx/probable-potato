@@ -72,7 +72,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 async function Sra() {
   const data = await getSraData();
-  console.log(data, 'xx')
   if (!data?.blocks) {
     return null;
   }
