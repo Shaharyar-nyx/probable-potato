@@ -1,16 +1,20 @@
+"use client";
+
 import React from "react";
 
 import "./styles.scss";
 import Modal from "@/components/UI/modal";
 import { STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
+import { useIsMobile } from "@/hooks";
 
 export const HarnessAi: React.FC<any> = ({ title, headline, content, cards, cta_text, cta_modal_multi }) => {
+  const isMobile = useIsMobile();
   return (
     <section className="harness-ai-parent-container">
       <div className="harness-ai-container">
-        <span className="tagline harness-ai-tagline">{headline}</span>
-        <h2 className="heading-1 harness-ai-title">{title}</h2>
+        <span className={`${isMobile ? 'paragraph-md' : 'tagline'} harness-ai-tagline`}>{headline}</span>
+        <h2 className={`${isMobile ? 'heading-7' : 'heading-1'} harness-ai-title`}>{title}</h2>
         <p className="paragraph-md harness-ai-text">{content}</p>
         <div className="harness-ai-feature-container">
           {cards.map(({ title, icon }: any, index: number) => (
@@ -27,7 +31,7 @@ export const HarnessAi: React.FC<any> = ({ title, headline, content, cards, cta_
         </div>
         <Modal
           buttonSize="large"
-          buttonStyle="mx-auto"
+          buttonStyle="mx-auto lg:w-fit w-full"
           buttonTransparent
           cta={{ label: cta_text, icon: "ArrowUpRightIcon", isModal: cta_modal_multi }}
         />

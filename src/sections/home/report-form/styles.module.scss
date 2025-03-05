@@ -1,13 +1,13 @@
 .container {
-  @apply mx-auto max-w-screen-2xl px-6 pb-10 pt-16 lg:px-10;
+  @apply mx-auto max-w-screen-2xl px-0 pb-10 pt-16 lg:px-10;
 }
 
 .gridContainer {
-  @apply flex flex-col gap-10 lg:flex-row lg:gap-6;
+  @apply flex flex-col gap-6 lg:flex-row lg:gap-10;
 }
 
 .title {
-  @apply mb-10 text-primary-800;
+  @apply mb-6 text-primary-800 lg:mb-10 lg:w-[70%];
 }
 
 .description {

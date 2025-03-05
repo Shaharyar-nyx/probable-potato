@@ -5,8 +5,10 @@ import { Button, Input, Textarea } from "@/components";
 import { ReportFormType } from "@/types";
 import { useForm } from "react-hook-form";
 import { useSubmitReport } from "@/hooks/useSubmitReportForm";
+import { useIsMobile } from "@/hooks";
 
 export const ReportForm: React.FC = () => {
+  const isMobile = useIsMobile();
   const {
     register,
     handleSubmit,
@@ -24,8 +26,8 @@ export const ReportForm: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.gridContainer}>
         <div className="w-full lg:w-1/2">
-          <h1 className={`${styles.title} heading-1 font-bold`}>Get Your Free Report</h1>
-          <p className="paragraph-sm text-primary-800">
+          <h1 className={`${styles.title} ${isMobile ? "heading-7" : "heading-1"} font-bold`}>Get Your Free Report</h1>
+          <p className="paragraph-md text-primary-800">
             Schedule a consultation with our team. We’ll verify ownership of your domain and send you a sample version
             of the CyberScan report.
           </p>
@@ -84,7 +86,7 @@ export const ReportForm: React.FC = () => {
             {...register("message")}
           />
 
-          <Button className="self-start px-20" disabled={loading} loading={loading} size="large" type="submit">
+          <Button className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
             Submit
           </Button>
 
