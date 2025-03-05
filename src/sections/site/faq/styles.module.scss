@@ -26,7 +26,7 @@
 }
 
 .itemWrap {
-  @apply transition-all duration-200 bg-[#f4f8ff] border border-[#C1C4CA] rounded-2xl gap-2 sm:gap-4;
+  @apply transition-all duration-200 bg-[#F6F7F8] border border-[#C1C4CA] rounded-2xl gap-2 sm:gap-4;
   //border-image-source: linear-gradient(310.06deg, rgba(66, 126, 218, 0.4) 23.76%, rgba(66, 126, 218, 0.08) 77.93%);
 }
 
@@ -112,5 +112,5 @@
   }
 }
 .itemButtonTextActive {
-  @apply text-[#034AB6];
+  @apply text-[#045DE3];
 }
