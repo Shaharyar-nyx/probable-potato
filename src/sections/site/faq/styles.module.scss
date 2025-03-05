@@ -10,7 +10,7 @@
   @apply my-4 sm:my-6 text-center;
 }
 .title {
-  @apply text-[#02255b] font-bold text-[48px];
+  @apply text-[#02255b] font-bold text-[48px] leading-[48px];
 }
 
 .offers {
