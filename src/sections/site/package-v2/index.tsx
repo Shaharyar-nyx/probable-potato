@@ -4,7 +4,7 @@ import React from "react";
 
 import styles from "./styles.module.scss";
 
-export const Packages: React.FC<any> = ({ headline, title, content, content_md, cards }) => {
+export const PackagesV2: React.FC<any> = ({ headline, title, content, content_md, cards }) => {
   return (
     <div className={styles.container}>
       <div className={styles.wrap}>

@@ -4,7 +4,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Button } from "@/components";
-import { STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks";
 
@@ -21,7 +21,7 @@ export const WhyJoin: React.FC<any> = ({ title, content, cta_text, cta_url, card
         <div className="w-full lg:w-[32%]">
           <h2 className={`heading-1 why-join-title ${isMobile ? 'heading-7' : 'heading-1'}`}>{title}</h2>
           <p className={`paragraph-md why-join-paragraph`}>{content}</p>
-          {!isMobile && <Button className="w-[160px]" externalHref={cta_url} target="_blank" variant="neutral">
+          {!isMobile && <Button id={formatBtnId(`why-${cta_text}`)} className="w-[160px]" externalHref={cta_url} target="_blank" variant="neutral">
             {cta_text}
           </Button>}
         </div>

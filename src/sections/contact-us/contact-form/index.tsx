@@ -9,6 +9,7 @@ import formData from "@/data/contact-us/form.json";
 import { ContactUsFormType } from "@/types";
 import { useSubmitContactUs } from "@/hooks/useSubmitContactUs";
 import { useIsMobile } from "@/hooks";
+import { formatBtnId } from "@/lib";
 
 export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
   const isMobile = useIsMobile();
@@ -40,7 +41,7 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
           </p>
         </div>
 
-        <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
+        <form id={formatBtnId('contact-form')} className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
           <Input
             disabled={loading}
             iconName="UserIcon"
@@ -87,7 +88,7 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
             rows={4}
             {...register("message")}
           />
-          <Button className="mt-3 self-start px-20 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
+          <Button id={formatBtnId('contact-form-submit')} className="mt-3 self-start px-20 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
             Submit
           </Button>
 

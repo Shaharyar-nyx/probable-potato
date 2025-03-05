@@ -7,7 +7,7 @@ import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input } from "../UI";
-import { STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
 
 const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, background_color }) => {
@@ -34,7 +34,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
             {/* Left Side - Logo and Navigation */}
             <div className="flex flex-col gap-[40px] lg:flex-row">
               <div className="flex-shrink-0">
-                <Link className="block w-[140px]" href="/">
+                <Link className="block w-[140px]" href="/" id={formatBtnId("logo")}>
                   <img alt="Cyberbay" src={`${STRAPI_ASSETS}${company_logo?.data?.attributes?.url}`} />
                 </Link>
               </div>
@@ -49,6 +49,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                           children?.data.map(({ attributes: { title, url } }: any) => (
                             <li key={url}>
                               <Link
+                                id={formatBtnId(title)}
                                 className="transition-colors hover:text-gray-300"
                                 href={url?.startsWith("http") ? url : url?.startsWith("/") ? url : `/${url}`}
                                 {...(url?.startsWith("http") && { target: "_blank" })}
@@ -70,7 +71,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
               <p className="mb-3 lg:mb-6 paragraph-sm">
                 Get the latest cybersecurity insights and updates. You can unsubscribe at any time.
               </p>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form id={formatBtnId('subscribe-form')} onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex flex-col gap-3">
                   <Input
                     parentClassName="shadow-none border-none px-0 pt-0 !outline-none"
@@ -88,6 +89,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                   />
 
                   <Button
+                    id={formatBtnId("subscribe")}
                     className="w-full rounded bg-primary-500 px-8 py-3 paragraph-sm text-white transition-colors hover:bg-[#1E90FF]/90"
                     disabled={loading}
                     loading={loading}
@@ -114,6 +116,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                 {navigations.data[1].attributes.items.data.map(({ attributes: { title, url } }: any) => (
                   <Link
                     key={url}
+                    id={formatBtnId(title)}
                     href={url?.startsWith("http") ? url : url?.startsWith("/") ? url : `/${url}`}
                     {...(url?.startsWith("http") && { target: "_blank" })}
                   >
@@ -142,6 +145,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                   }: any) => (
                     <Link
                       key={name}
+                      id={formatBtnId(name)}
                       aria-label={name}
                       className="text-neutral-200 hover:text-white"
                       href={link}

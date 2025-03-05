@@ -8,3 +8,4 @@ export * from "./contact-us";
 export * from "./privacy-policy";
 export * from "./continuous-monitoring";
 export * from "./careers";
+export * from "./site";

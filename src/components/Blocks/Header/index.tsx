@@ -5,7 +5,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
-import { STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 export const Header: React.FC<any> = ({
@@ -40,9 +40,9 @@ export const Header: React.FC<any> = ({
         {cta_text && (
           <>
             {cta.isModal ? (
-              <Modal cta={cta} />
+              <Modal id={`header-${cta_text}`} cta={cta} />
             ) : (
-              <Button className="paragraph-md w-fit" href={cta.link} iconName={cta.icon}>
+              <Button id={formatBtnId(`header-${cta_text}`)} className="paragraph-md w-fit" href={cta.link} iconName={cta.icon}>
                 {cta.label}
               </Button>
             )}

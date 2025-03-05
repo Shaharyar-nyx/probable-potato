@@ -7,7 +7,7 @@ import { Tooltip } from "react-tooltip";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
-import { STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks";
 
@@ -154,6 +154,7 @@ const PackageCard = ({
           <>
             {cta?.isModal ? (
               <Modal
+                id={`${title}-${cta_text}`}
                 cta={cta}
                 buttonStyle="w-full text-center !font-normal text-primary-800"
                 buttonSize="small"
@@ -161,6 +162,7 @@ const PackageCard = ({
               />
             ) : (
               <Button
+                id={formatBtnId(`${title}-${cta_text}`)}
                 className="w-full text-center !font-normal text-primary-800"
                 href={cta?.link}
                 iconName={cta?.icon}

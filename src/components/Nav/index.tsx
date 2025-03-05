@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { Button, IconRenderer } from "@/components";
 
-import { STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 
 export const Nav: React.FC<any> = ({ company_logo, navigations, supported_languages, button_group }) => {
   const pathname = usePathname();
@@ -65,7 +65,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
           }`}
       >
         <div className="flex items-center gap-8">
-          <Link href="/">
+          <Link href="/" id={formatBtnId("logo")}>
             <img alt="Cyberbay" src={STRAPI_ASSETS + company_logo.data.attributes.url} />
           </Link>
 
@@ -75,6 +75,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                 <div key={title}>
                   {has_children ? (
                     <button
+                      id={formatBtnId(title)}
                       ref={buttonRef}
                       className={`group flex items-center rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${pathname.includes(title.toLowerCase()) || showSolutionsDropdown ? "text-primary-500" : "text-primary-800 hover:text-primary-500"}`}
                       onClick={() => setShowSolutionsDropdown(!showSolutionsDropdown)}
@@ -88,6 +89,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                     </button>
                   ) : (
                     <Link
+                      id={formatBtnId(title)}
                       className={`group rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${pathname.includes(url) ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
                         }`}
                       href={url.startsWith("/") ? url : `/${url}`}
@@ -111,6 +113,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                                   {children?.data.map(({ attributes: { title, url, icon, description } }: any) => (
                                     <Link
                                       key={title}
+                                      id={formatBtnId(title)}
                                       className="group block rounded-[8px] p-4 hover:bg-primary-500"
                                       href={url.startsWith("/") ? url : `/${url}`}
                                       onClick={() => setShowSolutionsDropdown(false)}
@@ -187,6 +190,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
           {button_group?.map((data: any, index: number) => (
             <Button
               key={index}
+              id={formatBtnId(data.title)}
               href={data.href || undefined}
               externalHref={data.external_href || undefined}
               variant={data.variant}
@@ -225,6 +229,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                   <div key={title} className="w-full">
                     {has_children ? (
                       <button
+                        id={formatBtnId(title)}
                         className={`w-full border-b border-primary-800 px-0 pt-[15px] pb-2 text-left text-base transition-colors ${pathname === url ? "bg-primary-50 text-primary-500" : "text-primary-800"
                           }`}
                         onClick={() => {
@@ -244,6 +249,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                     ) : (
                       <div className="w-full border-b border-primary-800 px-0 pt-[15px] pb-2 text-left transition-colors">
                         <Link
+                          id={formatBtnId(title)}
                           className={`text-base text-primary-800`}
                           href={url.startsWith("/") ? url : `/${url}`}
                         >
@@ -261,6 +267,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                               {children?.data.map(({ attributes: { title, url, icon, description } }: any) => (
                                 <Link
                                   key={title}
+                                  id={formatBtnId(title)}
                                   className="group flex items-start space-x-3 rounded-lg p-2 transition-colors hover:bg-primary-500 group-hover:text-neutral-50"
                                   href={url.startsWith("/") ? url : `/${url}`}
                                 >
@@ -324,6 +331,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
               {button_group?.map((data: any, index: number) => (
                 <Button
                   key={index}
+                  id={formatBtnId(data.title)}
                   href={data.href || undefined}
                   externalHref={data.external_href || undefined}
                   variant={data.variant}

@@ -7,8 +7,9 @@ import { Button, IconRenderer, Input, Textarea } from "@/components";
 import { ContactSalesFormType } from "@/types";
 import { useSubmitContactSales } from "@/hooks/useSubmitContactSales";
 import { useIsMobile } from "@/hooks";
+import { formatBtnId } from "@/lib";
 
-export const ContactSalesForm: React.FC = () => {
+export const ContactSalesForm: React.FC<{ id: string }> = ({ id }) => {
   const isMobile = useIsMobile();
   const {
     register,
@@ -62,7 +63,7 @@ export const ContactSalesForm: React.FC = () => {
           </div>
         </div>
 
-        <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
+        <form id={formatBtnId(`${id}-form`)} className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
           <Input
             disabled={loading}
             iconName="UserIcon"
@@ -111,7 +112,7 @@ export const ContactSalesForm: React.FC = () => {
             {...register("message")}
           />
 
-          <Button className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
+          <Button id={formatBtnId(`${id}-submit`)} className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
             Submit
           </Button>
 
