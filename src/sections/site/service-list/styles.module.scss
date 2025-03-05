@@ -46,6 +46,6 @@
   background-repeat: no-repeat;
   background-size: contain;
   @media (max-width: 768px) {
-    @apply w-full -mt-[80px]; /* Reduce space between sections for mobile */
+    @apply w-full -mt-[30px]; /* Reduce space between sections for mobile */
   }
 }

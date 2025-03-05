@@ -14,12 +14,14 @@ export const Organization: React.FC<any> = ({ title, cards }) => {
         {cards?.map((organization: any, i: number) => (
           <div className={styles.itemWapper} key={`organization-${i}`}>
             <div className={styles.itemIcon}>
-              <Image
-                src={`${STRAPI_ASSETS}${organization?.icon?.data?.attributes?.url}`}
-                alt=""
-                width={48}
-                height={48}
-              />
+              <div className={styles.itemIconWrap}>
+                <Image
+                  src={`${STRAPI_ASSETS}${organization?.icon?.data?.attributes?.url}`}
+                  alt=""
+                  width={48}
+                  height={48}
+                />
+              </div>
             </div>
             <div className={styles.textWrap}>
               <div className={styles.title}>{organization.title}</div>
