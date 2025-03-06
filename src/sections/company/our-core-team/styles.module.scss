@@ -1,12 +1,32 @@
 .our-core-team {
-  @apply mx-auto max-w-screen-2xl px-6 pb-16 pt-5 lg:px-16 lg:pb-24 lg:pt-7;
+  @apply mx-auto max-w-screen-2xl px-6 py-[60px] lg:px-16 lg:pb-24 lg:pt-7;
+
+  .swiperContent {
+    @apply relative;
+
+    :global(.swiper-pagination) {
+      @apply bottom-0 flex justify-center gap-1;
+    }
+
+    :global(.swiper-wrapper) {
+      @apply h-[300px];
+    }
+
+    :global(.swiper-pagination-bullet) {
+      @apply h-[0.5rem] w-[0.5rem] rounded-full bg-primary-200;
+    }
+
+    :global(.swiper-pagination-bullet-active) {
+      @apply bg-primary-500;
+    }
+  }
 
   .title {
     @apply mb-4 text-center text-primary-800;
   }
 
   .content {
-    @apply mb-16 text-center text-primary-800;
+    @apply mb-6 text-primary-800 lg:mb-16 lg:text-center;
   }
 
   .grid {

@@ -6,8 +6,11 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import { STRAPI_ASSETS } from "@/lib";
+import { useIsMobile } from "@/hooks";
 
 export const ProgramType: React.FC<any> = ({ title, content, cards }) => {
+  const isMobile = useIsMobile();
+
   const [expandedFeature, setExpandedFeature] = useState<number | null>(null);
 
   const handleLearnMore = (id: number | null) => {
@@ -19,7 +22,7 @@ export const ProgramType: React.FC<any> = ({ title, content, cards }) => {
       <div className={styles.background} />
       <div className={styles.container}>
         <div>
-          <h2 className={`${styles.title} heading-2`}>{title}</h2>
+          <h2 className={`${styles.title} ${isMobile ? 'heading-7' : 'heading-2'}`}>{title}</h2>
           <p className={`${styles.paragraph} paragraph-md`}>{content}</p>
         </div>
         <div className="flex flex-col gap-6">
@@ -31,8 +34,8 @@ export const ProgramType: React.FC<any> = ({ title, content, cards }) => {
                 initial={false}
                 layout
               >
-                <div className="flex items-center gap-3">
-                  <div className="rounded-md bg-neutral-50">
+                <div className="flex flex-col lg:flex-row lg:items-center gap-3">
+                  <div className="w-fit rounded-md bg-neutral-50">
                     <div className="flex h-8 w-8 items-center justify-center">
                       <Image
                         alt={icon?.data?.attributes?.name}
@@ -42,7 +45,7 @@ export const ProgramType: React.FC<any> = ({ title, content, cards }) => {
                       />
                     </div>
                   </div>
-                  <h3 className="heading-7 font-bold text-neutral-50">{title}</h3>
+                  <h3 className={`font-bold text-neutral-50 ${isMobile ? 'paragraph-lg' : 'heading-7'}`}>{title}</h3>
                 </div>
 
                 {expandedFeature !== index && expandedFeature !== null ? (
@@ -71,7 +74,7 @@ export const ProgramType: React.FC<any> = ({ title, content, cards }) => {
                   ) : expandedFeature !== index && expandedFeature !== null ? (
                     ""
                   ) : (
-                    <Button className="w-max" variant="primary" onClick={() => handleLearnMore(index)}>
+                    <Button className="paragraph-md w-full lg:w-max" variant="primary" onClick={() => handleLearnMore(index)}>
                       Learn More
                     </Button>
                   )}

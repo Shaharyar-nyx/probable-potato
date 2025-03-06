@@ -42,7 +42,7 @@ export const ServiceList: React.FC<any> = ({
               <div className={styles.offers}>{headline}</div>
               <div className={styles.title}>{title}</div>
 
-              <div className={`mt-5 flex justify-start`}>{<Modal cta={cta} buttonStyle="lg:mx-0" />}</div>
+              <div className={`mt-5 flex justify-start`}>{<Modal id={`service-${cta_text}`} cta={cta} buttonStyle="lg:mx-0" />}</div>
             </div>
             <div className={clsx(styles.list)}>
               <Image

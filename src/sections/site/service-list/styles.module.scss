@@ -23,7 +23,7 @@
 }
 
 .offers {
-  @apply w-fit sm:w-max text-center font-normal mb-3 text-sm text-[#02255B] bg-[#367DE91A] rounded-xl gap-2 py-1 px-5;
+  @apply w-fit sm:w-max text-center font-normal mb-3 text-sm text-[#02255B] rounded-xl gap-2 py-1 px-5;
 }
 
 .containerInner {
@@ -35,7 +35,10 @@
 }
 
 .title{
-  @apply text-[#02255b] font-bold text-[22px] w-[40%] sm:w-full;
+  @apply text-[#02255b] font-bold text-[48px] w-[40%] sm:w-full;
+  @media (max-width: 768px) {
+    @apply w-full; /* Reduce space between sections for mobile */
+  }
 }
 
 .list {
@@ -43,6 +46,6 @@
   background-repeat: no-repeat;
   background-size: contain;
   @media (max-width: 768px) {
-    @apply w-full -mt-[80px]; /* Reduce space between sections for mobile */
+    @apply w-full -mt-[30px]; /* Reduce space between sections for mobile */
   }
 }

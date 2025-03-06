@@ -1,15 +1,20 @@
+"use client";
+
+import { useIsMobile } from "@/hooks";
 import styles from "./styles.module.scss";
 import { STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
 
 export const FindingBugBounty: React.FC<any> = ({ headline, title, content, cards }) => {
+  const isMobile = useIsMobile();
+
   return (
     <section className={styles["finding-bug-bounty"]}>
       <div className={styles.background} />
       <div className={styles.container}>
         <div className={styles["content-wrapper"]}>
-          <div className="tagline mb-10">{headline}</div>
-          <h2 className="heading-2 mb-6 font-bold text-neutral-50">{title}</h2>
+          <div className={`${isMobile ? 'paragraph-md' : 'tagline'} mb-7 lg:mb-10`}>{headline}</div>
+          <h2 className={`${isMobile ? 'heading-7' : 'heading-2'} mb-4 lg:mb-6 font-bold text-neutral-50`}>{title}</h2>
           <p className="paragraph-md text-neutral-50">{content}</p>
         </div>
         <div className={styles.content}>
@@ -28,7 +33,7 @@ export const FindingBugBounty: React.FC<any> = ({ headline, title, content, card
                         />
                       </div>
                     </div>
-                    <h3 className="heading-7 font-bold text-neutral-50">{title}</h3>
+                    <h3 className={`${isMobile ? 'paragraph-md' : 'heading-7'} font-bold text-neutral-50`}>{title}</h3>
                   </div>
                 </div>
 

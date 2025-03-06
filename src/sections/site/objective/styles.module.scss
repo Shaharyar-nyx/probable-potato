@@ -15,7 +15,7 @@
 }
 
 .offers {
-  @apply w-fit mx-auto text-center font-normal text-sm text-[#02255B] bg-[#367DE91A] rounded-xl gap-2 py-1 px-5;
+  @apply w-fit mx-auto text-center font-normal text-sm text-[#02255B] rounded-xl gap-2 py-1 px-5;
 
   @media (max-width: 768px) {
     @apply w-fit px-4; /* Full width on smaller screens */

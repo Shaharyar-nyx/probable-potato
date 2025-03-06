@@ -78,7 +78,7 @@
 }
 
 .offers {
-  @apply w-fit sm:w-max text-center font-normal text-sm text-[#02255B] bg-[#367DE91A] rounded-xl gap-2 py-1 px-5;
+  @apply w-fit sm:w-max text-center font-normal text-sm text-[#02255B] rounded-xl gap-2 py-1 px-5;
 
   @media (max-width: 768px) {
     @apply px-4 py-2; /* Adjust padding for mobile */

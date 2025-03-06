@@ -3,7 +3,27 @@
 }
 
 .container {
-  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 py-16 text-primary-800 lg:px-16 lg:py-[120px];
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 py-[60px] text-primary-800 lg:px-16 lg:py-[120px];
+}
+
+.swiperContent {
+  @apply relative;
+
+  :global(.swiper-pagination) {
+    @apply bottom-0 flex justify-center gap-1;
+  }
+
+  :global(.swiper-wrapper) {
+    @apply pb-10;
+  }
+
+  :global(.swiper-pagination-bullet) {
+    @apply h-[0.5rem] w-[0.5rem] rounded-full bg-primary-200;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    @apply bg-primary-500;
+  }
 }
 
 .glassBackground {

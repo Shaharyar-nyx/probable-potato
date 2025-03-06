@@ -9,7 +9,7 @@ import { Button } from "@/components";
 
 import "./styles.scss";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 const SwiperButtonNext: React.FC<{ disabled: boolean }> = ({ disabled }) => {
@@ -84,7 +84,7 @@ export const Referral: React.FC<any> = ({ headline, title, content, content_md, 
               <p className="paragraph-md lg:mb-5 text-primary-800" dangerouslySetInnerHTML={{ __html: content_md }} />
             </>
           )}
-          {collection === "bh_how_it_works_1" && <Button className="w-full lg:w-fit paragraph-md" onClick={handleOpenReferral}>{cta_text}</Button>}
+          {collection === "bh_how_it_works_1" && <Button id={formatBtnId(cta_text)} className="w-full lg:w-fit paragraph-md" onClick={handleOpenReferral}>{cta_text}</Button>}
         </div>
         {collection !== "bh_how_it_works_1" && (
           <div className="referral-container-item grid grid-cols-1 gap-6 md:grid-cols-2">

@@ -1,5 +1,5 @@
 .importance-bug-testing {
-  @apply px-6 py-16 lg:px-16 lg:py-[120px];
+  @apply px-6 py-[60px] lg:px-16 lg:py-[120px];
   .background {
     @apply bg-neutral-50;
   }
@@ -9,7 +9,7 @@
   }
 
   .title {
-    @apply mb-6 font-bold text-primary-800;
+    @apply mb-4 font-bold text-primary-800 lg:mb-6;
   }
 
   .paragraph {
@@ -17,6 +17,6 @@
   }
 
   .feature-container {
-    @apply flex flex-col gap-3 rounded-2xl bg-white p-10;
+    @apply flex flex-col gap-2 rounded-2xl lg:gap-3 lg:bg-white lg:p-10;
   }
 }
