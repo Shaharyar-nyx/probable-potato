@@ -7,7 +7,7 @@ import 'swiper/css/pagination';
 import styles from "./styles.module.scss";
 
 import { Button } from "@/components";
-import { STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -22,7 +22,7 @@ export const OurCulture: React.FC<any> = ({ title, content, headline, cta_text, 
         <div className="w-full lg:w-1/2">
           <h2 className={`${styles.title} ${isMobile ? 'heading-7' : 'heading-2'}`}>{title}</h2>
           <p className={`${styles.paragraph} paragraph-md`}>{content}</p>
-          <Button variant="neutral" href={cta_url} className="w-fit hidden lg:block">
+          <Button id={formatBtnId(`culture-${cta_text}`)} variant="neutral" href={cta_url} className="w-fit hidden lg:block">
             {cta_text}
           </Button>
         </div>

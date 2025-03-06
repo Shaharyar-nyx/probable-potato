@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -62,6 +62,7 @@ export const OurCoreTeam: React.FC<any> = ({ title, content, member_profiles }) 
                   <div className={styles.social}>
                     {member?.attributes?.social_links?.data?.map((social: any, idx: number) => (
                       <a
+                        id={formatBtnId(`core-team-${social?.attributes?.social?.data?.attributes?.icon?.data?.attributes?.name}-${member?.attributes?.name}`)}
                         key={idx}
                         className={styles.link}
                         href={social?.attributes?.url}
@@ -96,6 +97,7 @@ export const OurCoreTeam: React.FC<any> = ({ title, content, member_profiles }) 
                       {member?.attributes?.social_links?.data?.map((social: any, idx: number) => (
                         <a
                           key={idx}
+                          id={formatBtnId(`core-team-${social?.attributes?.social?.data?.attributes?.icon?.data?.attributes?.name}-${member?.attributes?.name}`)}
                           className={styles.link}
                           href={social?.attributes?.url}
                           rel="noopener noreferrer"

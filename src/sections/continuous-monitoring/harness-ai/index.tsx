@@ -30,6 +30,7 @@ export const HarnessAi: React.FC<any> = ({ title, headline, content, cards, cta_
           ))}
         </div>
         <Modal
+          id={`harness-ai-${cta_text}`}
           buttonSize="large"
           buttonStyle="mx-auto lg:w-fit w-full"
           buttonTransparent

@@ -5,6 +5,7 @@ import React from "react";
 import "./styles.scss";
 import { Button } from "@/components";
 import { useIsMobile } from "@/hooks";
+import { formatBtnId } from "@/lib";
 
 export const HunterLevels: React.FC<any> = ({ title, content, headline, cards }) => {
   const isMobile = useIsMobile()
@@ -28,7 +29,7 @@ export const HunterLevels: React.FC<any> = ({ title, content, headline, cards })
                     <p className="paragraph-sm hunter-levels-feature-description hidden lg:block">{content}</p>
                   </div>
                   {cta_text && (
-                    <Button variant="neutral" externalHref={cta_url}>
+                    <Button id={formatBtnId(`hunter-levels-${cta_text}`)} variant="neutral" externalHref={cta_url}>
                       {cta_text}
                     </Button>
                   )}

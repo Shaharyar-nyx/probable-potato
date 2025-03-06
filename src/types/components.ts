@@ -41,6 +41,7 @@ export interface BrandMissionProps {
 }
 
 export interface SolutionCardProps {
+  index: number;
   content: string;
   icon: any;
   isEven?: boolean;
@@ -400,6 +401,7 @@ export interface ModalProps {
   buttonVariant?: "primary" | "neutral";
   buttonTransparent?: boolean;
   className?: string;
+  id?: string;
   cta?: {
     icon?: string;
     isModal?: "contact_sales_form" | "demo_form" | "free_report_form";

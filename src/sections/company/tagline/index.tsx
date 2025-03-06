@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/UI";
 import { useIsMobile } from "@/hooks";
+import { formatBtnId } from "@/lib";
 
 export const Tagline: React.FC<any> = ({ title, content, cta_text, cta_url }) => {
   const isMobile = useIsMobile();
@@ -12,7 +13,7 @@ export const Tagline: React.FC<any> = ({ title, content, cta_text, cta_url }) =>
 
         <div className="lg:w-[30%]">
           <div className="paragraph-lg mb-4">{content}</div>
-          <Button variant="neutral" href={cta_url} className="paragraph-md w-full lg:w-fit">{cta_text}</Button>
+          <Button id={formatBtnId(`tagline-${cta_text}`)} variant="neutral" href={cta_url} className="paragraph-md w-full lg:w-fit">{cta_text}</Button>
         </div>
       </div>
     </section>

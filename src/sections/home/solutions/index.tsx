@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import { SolutionCardProps } from "@/types/components";
-import { STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 const fadeInUp = {
@@ -50,7 +50,7 @@ const staggerChildren = {
   },
 };
 
-const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, cta_text, cta_url, content, isEven, isMobile }) => {
+const SolutionCard: React.FC<SolutionCardProps> = ({ index, icon, title, cta_text, cta_url, content, isEven, isMobile }) => {
   if (isMobile) {
     return (
       <div className={styles.solutionCard}>
@@ -66,7 +66,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, cta_text, cta_
           <div className={styles.textContent}>
             <h4 className={`${styles.cardTitle} heading-8 font-bold`}>{title}</h4>
             <p className={`${styles.cardDescription} paragraph-md`}>{content}</p>
-            {(cta_url ?? "") && <Button href={cta_url} className="w-full">{cta_text}</Button>}
+            {(cta_url ?? "") && <Button id={formatBtnId(`solution-${cta_text}-${index}`)} href={cta_url} className="w-full">{cta_text}</Button>}
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ icon, title, cta_text, cta_
       <div className={`${styles.textContent} ${isEven ? styles.even : ""}`}>
         <h4 className={`${styles.cardTitle} ${isMobile ? "heading-8" : "heading-4"} font-bold`}>{title}</h4>
         <p className={`${styles.cardDescription} paragraph-md`}>{content}</p>
-        {(cta_url ?? "") && <Button href={cta_url}>{cta_text}</Button>}
+        {(cta_url ?? "") && <Button id={formatBtnId(`solution-${cta_text}-${index}`)} href={cta_url}>{cta_text}</Button>}
       </div>
     </div>
   );
@@ -143,7 +143,7 @@ export const Solutions: React.FC<any> = ({ title, cards }) => {
                 >
                   {cards.map((solution: any, index: number) => (
                     <SwiperSlide key={index}>
-                      <SolutionCard {...solution} isEven={false} isMobile={isMobile} />
+                      <SolutionCard index={index + 1} {...solution} isEven={false} isMobile={isMobile} />
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -167,7 +167,7 @@ export const Solutions: React.FC<any> = ({ title, cards }) => {
                   whileInView="visible"
                 >
                   {cards.map((solution: any, index: number) => (
-                    <SolutionCard key={index} {...solution} isEven={index % 2 === 1} isMobile={isMobile} />
+                    <SolutionCard key={index} index={index + 1} {...solution} isEven={index % 2 === 1} isMobile={isMobile} />
                   ))}
                 </motion.div>
               </>

@@ -8,8 +8,9 @@ import formData from "@/data/home/demo-form.json";
 import { useIsMobile } from "@/hooks";
 import { DemoFormType } from "@/types";
 import { useSubmitRequestDemo } from "@/hooks/useSubmitRequestDemo";
+import { formatBtnId } from "@/lib";
 
-export const DemoForm: React.FC = () => {
+export const DemoForm: React.FC<{ id: string }> = ({ id }) => {
   const isMobile = useIsMobile();
   const {
     register,
@@ -64,7 +65,7 @@ export const DemoForm: React.FC = () => {
           </div>
         </div>
 
-        <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
+        <form id={formatBtnId(`${id}-form`)} className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
           <Input
             disabled={loading}
             iconName="UserIcon"
@@ -135,7 +136,7 @@ export const DemoForm: React.FC = () => {
             rows={4}
             {...register("message")}
           />
-          <Button className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
+          <Button id={formatBtnId(`${id}-submit`)} className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
             Submit
           </Button>
 

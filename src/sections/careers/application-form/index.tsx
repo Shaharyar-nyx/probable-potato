@@ -8,7 +8,7 @@ import { Button, Input, Textarea, InputFile } from "@/components";
 import { ApplyFormType } from "@/types";
 import { useSubmitApplicationForm } from "@/hooks/useSubmitApplicationForm";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 export const ApplicationForm: React.FC<any> = ({
@@ -110,7 +110,7 @@ export const ApplicationForm: React.FC<any> = ({
             </div>
           </div>}
 
-          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <form id={formatBtnId('application-form')} className={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <p className={`paragraph-lg ${styles.formSubtitle}`}>{content}</p>
 
             <Input
@@ -158,7 +158,7 @@ export const ApplicationForm: React.FC<any> = ({
               {...register("message")}
             />
 
-            <Button className={`${styles.submitButton} ${isMobile ? 'w-full' : 'w-fit'}`} disabled={loading} loading={loading} type="submit">
+            <Button id={formatBtnId('application-form-submit')} className={`${styles.submitButton} ${isMobile ? 'w-full' : 'w-fit'}`} disabled={loading} loading={loading} type="submit">
               Submit
             </Button>
 

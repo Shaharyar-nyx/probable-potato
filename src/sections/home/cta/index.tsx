@@ -6,7 +6,7 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
-import { STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 export const CTA: React.FC<any> = ({
@@ -45,9 +45,9 @@ export const CTA: React.FC<any> = ({
             {cta_text && (
               <>
                 {cta?.isModal ? (
-                  <Modal cta={cta} buttonStyle={`${isMobile ? "!mt-6 w-full paragraph-md" : "w-fit"}`} />
+                  <Modal id={`cta-${cta_text}`} cta={cta} buttonStyle={`${isMobile ? "!mt-6 w-full paragraph-md" : "w-fit"}`} />
                 ) : (
-                  <Button className="!mt-6 w-full lg:w-fit" href={cta?.link} target="_blank" iconName={cta?.icon}>
+                  <Button id={formatBtnId(`cta-${cta_text}`)} className="!mt-6 w-full lg:w-fit" href={cta?.link} target="_blank" iconName={cta?.icon}>
                     {cta?.label}
                   </Button>
                 )}
