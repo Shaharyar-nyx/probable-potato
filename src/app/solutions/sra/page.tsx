@@ -1,19 +1,20 @@
 import React from "react";
 import type { Metadata } from "next";
 
-import { Hero, Organization, Partner, Objective, Services, ServiceList, Packages, Faq, CTA } from "@/sections/site";
+import { Organization, Partner, Objective, ServiceList, PackagesV2, Faq, CTA } from "@/sections";
 import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { BlockType } from "@/types";
+import { Header } from "@/components";
 
 const blockComponents: Record<string, React.FC<BlockType>> = {
-  hero_section: Hero,
+  hero_section: Header,
   organization_section: Organization,
   partner_section: Partner,
   objective_section: Objective,
   //service_section: Services,
   service_v2_section: ServiceList,
-  package_section: Packages,
+  package_section: PackagesV2,
   faq_section: Faq,
   cta_section: CTA,
 };

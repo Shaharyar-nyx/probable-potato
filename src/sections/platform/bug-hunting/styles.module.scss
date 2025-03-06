@@ -1,5 +1,25 @@
 .section {
-  @apply px-6 py-16 lg:px-16 lg:py-[60px];
+  @apply px-6 py-[60px] lg:px-16;
+}
+
+.swiperContent {
+  @apply relative;
+
+  :global(.swiper-pagination) {
+    @apply bottom-0 flex justify-center gap-1;
+  }
+
+  :global(.swiper-wrapper) {
+    @apply h-[260px];
+  }
+
+  :global(.swiper-pagination-bullet) {
+    @apply h-[0.5rem] w-[0.5rem] rounded-full bg-primary-200;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    @apply bg-primary-500;
+  }
 }
 
 .container {
@@ -7,7 +27,7 @@
 }
 
 .header {
-  @apply text-center text-primary-800;
+  @apply text-primary-800 lg:text-center;
 }
 
 .title {
@@ -15,7 +35,7 @@
 }
 
 .featuresGrid {
-  @apply mx-auto mt-[60px] grid max-w-6xl gap-16 md:grid-cols-3;
+  @apply mx-auto mt-6 grid max-w-6xl gap-16 md:grid-cols-3 lg:mt-[60px];
 }
 
 .featureCard {
@@ -27,5 +47,5 @@
 }
 
 .featureIcon {
-  @apply text-4xl h-[106px] transition-all duration-300 ease-in-out group-hover:scale-100;
+  @apply h-[106px] text-4xl transition-all duration-300 ease-in-out group-hover:scale-100;
 }

@@ -3,23 +3,23 @@
     @apply relative bg-neutral-50;
   }
   &-container {
-    @apply relative mx-auto flex max-w-screen-3xl flex-col items-center gap-10 px-6 py-8 lg:px-16 lg:py-[60px];
+    @apply relative mx-auto flex max-w-screen-3xl flex-col lg:items-center gap-6 lg:gap-10 px-6 py-[60px] lg:px-16 lg:py-[60px];
   }
   &-tagline {
     @apply text-primary-800;
   }
   &-title {
-    @apply text-center font-bold text-primary-800;
+    @apply lg:text-center font-bold text-primary-800;
   }
   &-text {
-    @apply max-w-screen-xl text-center text-primary-800;
+    @apply max-w-screen-xl lg:text-center text-primary-800;
   }
   &-feature {
     &-container {
       @apply grid w-full grid-cols-1 gap-6 md:grid-cols-3 lg:gap-10;
     }
     &-item {
-      @apply flex items-center gap-5 rounded-xl bg-primary-800 p-6 lg:p-10;
+      @apply flex items-center gap-5 rounded-xl bg-primary-800 p-7 lg:p-10;
     }
     &-image {
       @apply h-12 w-12 object-cover;

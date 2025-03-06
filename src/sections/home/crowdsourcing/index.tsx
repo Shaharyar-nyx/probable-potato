@@ -6,6 +6,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import { useIsMobile } from "@/hooks";
+import { formatBtnId } from "@/lib";
 
 const MotionButton = motion(Button);
 
@@ -20,18 +21,6 @@ const fadeInUp = {
     },
   },
 };
-
-const slideIn = (isEven: boolean | undefined = false) => ({
-  hidden: { opacity: 0, x: isEven ? 100 : -100 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 1,
-      ease: "easeInOut",
-    },
-  },
-});
 
 const staggerChildren = {
   hidden: { opacity: 0 },
@@ -85,6 +74,7 @@ export const CrowdSourcing: React.FC<any> = ({ headline, title, content, cta_tex
                 )}
                 {/* {cta_text && ( */}
                 <MotionButton
+                  id={formatBtnId(`crowdsourcing-${cta_text}`)}
                   className="mt-4 self-start w-full lg:w-fit"
                   href={cta_url || "solutions/bug-bounty"}
                   initial="hidden"

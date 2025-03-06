@@ -7,7 +7,7 @@ import { Tooltip } from "react-tooltip";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
-import { STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks";
 
@@ -110,6 +110,7 @@ const PackageCard = ({
                             <span
                               data-tooltip-content={feature.tooltip}
                               data-tooltip-id={`tooltip-${feature.name}`}
+                              style={{ position: 'relative', top: "-1px", left: '5px' }}
                             >
                               <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
                                 <g id="information-circle">
@@ -153,6 +154,7 @@ const PackageCard = ({
           <>
             {cta?.isModal ? (
               <Modal
+                id={`${title}-${cta_text}`}
                 cta={cta}
                 buttonStyle="w-full text-center !font-normal text-primary-800"
                 buttonSize="small"
@@ -160,6 +162,7 @@ const PackageCard = ({
               />
             ) : (
               <Button
+                id={formatBtnId(`${title}-${cta_text}`)}
                 className="w-full text-center !font-normal text-primary-800"
                 href={cta?.link}
                 iconName={cta?.icon}
@@ -334,10 +337,10 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
           {features ? (
             <div>
               {features.data.map(({ attributes: { title, items } }: any, index: number) => (
-                <div key={`feature-${index}`} className="mb-16">
-                  <h3 className="heading-6 mb-5 font-bold text-primary-800">{title}</h3>
+                <div key={`feature-${index}`} className="mt-10 lg:mb-16">
+                  <h3 className="heading-6 mb-4 lg:mb-5 font-bold text-primary-800">{title}</h3>
                   {items.data.map(({ attributes: { title, description, icon } }: any, index: number) => (
-                    <div key={`item-${index}`} className="mb-5 flex flex-row items-start gap-6">
+                    <div key={`item-${index}`} className="mb-5 flex flex-col lg:flex-row items-start gap-4 lg:gap-6">
                       <div className="rounded-[4px] bg-primary-500 p-1">
                         <Image
                           alt={icon.data.attributes.name}
@@ -347,7 +350,7 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
                         />
                       </div>
                       <div className="w-[90%]">
-                        <p className="paragraph-lg font-bold">{title}</p>
+                        <p className={`${isMobile ? 'paragraph-md mb-2' : 'paragraph-lg'} font-bold`}>{title}</p>
                         <p className="paragraph-sm">{description}</p>
                       </div>
                     </div>

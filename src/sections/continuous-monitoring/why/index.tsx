@@ -1,3 +1,5 @@
+"use client";
+
 import "./styles.scss";
 import clsx from "clsx";
 import React from "react";
@@ -5,14 +7,16 @@ import React from "react";
 import { IconRenderer } from "@/components";
 import Image from "next/image";
 import { STRAPI_ASSETS } from "@/lib";
+import { useIsMobile } from "@/hooks";
 
 export const Why: React.FC<any> = ({ title, headline, content, statistics_cards }) => {
+  const isMobile = useIsMobile();
   return (
     <section className="why-parent-container">
       <div className="why-container">
         <div className="w-full lg:w-[60%]">
-          <span className="tagline why-tagline">{headline}</span>
-          <h2 className="heading-1 why-title">{title}</h2>
+          <span className={`${isMobile ? "paragraph-md" : "tagline"} why-tagline`}>{headline}</span>
+          <h2 className={`why-title ${isMobile ? "heading-7" : "heading-1"}`}>{title}</h2>
           <p className="paragraph-md why-content">{content}</p>
         </div>
         <div className="relative grid h-auto w-full grid-cols-1 gap-6 md:grid-cols-3 lg:block lg:h-[460px] lg:w-[38%] lg:p-10 xl:h-[388px]">
@@ -41,13 +45,13 @@ export const Why: React.FC<any> = ({ title, headline, content, statistics_cards 
                   >
                     <Image
                       alt={icon.data[0].attributes?.name}
-                      height={24}
-                      width={24}
+                      height={isMobile ? 18 : 24}
+                      width={isMobile ? 18 : 24}
                       src={`${STRAPI_ASSETS}${icon.data[0].attributes.url}`}
                     />
                   </div>
                   <h3
-                    className={clsx("heading-8 why-feature-title", {
+                    className={clsx(`${isMobile ? "paragraph-sm" : "heading-7"} why-feature-title`, {
                       "text-neutral-50": index === 0,
                       "text-primary-800": index !== 0,
                     })}

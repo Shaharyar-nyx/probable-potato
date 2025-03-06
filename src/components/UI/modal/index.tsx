@@ -7,8 +7,10 @@ import { Button } from "../button";
 import { ModalProps } from "@/types";
 import { ReportForm } from "@/sections/home/report-form";
 import { ContactSalesForm, DemoForm } from "@/sections";
+import { formatBtnId } from "@/lib";
 
 export const Modal: React.FC<ModalProps> = ({
+  id,
   cta,
   buttonStyle,
   buttonSize,
@@ -29,11 +31,11 @@ export const Modal: React.FC<ModalProps> = ({
   const getModalContent = useMemo(() => {
     switch (cta?.isModal) {
       case "contact_sales_form":
-        return <ContactSalesForm />;
+        return <ContactSalesForm id={id || cta?.label} />;
       case "demo_form":
-        return <DemoForm />;
+        return <DemoForm id={id || cta?.label} />;
       case "free_report_form":
-        return <ReportForm />;
+        return <ReportForm id={id || cta?.label} />;
       default:
         return null;
     }
@@ -42,7 +44,8 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <>
       <Button
-        className={buttonStyle}
+        id={formatBtnId(id || cta?.label || 'modal-trigger')}
+        className={`paragraph-md ${buttonStyle}`}
         iconName={cta?.icon}
         size={buttonSize}
         transparent={buttonTransparent}
