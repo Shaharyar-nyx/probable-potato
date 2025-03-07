@@ -1,14 +1,13 @@
 import React from "react";
 import type { Metadata } from "next";
 
-import { Organization, Partner, Objective, ServiceList, PackagesV2, Faq, CTA } from "@/sections";
+import { Organization, Partner, Objective, ServiceList, PackagesV2, Faq, CTA, HeaderFrame } from "@/sections";
 import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { BlockType } from "@/types";
-import { Header } from "@/components";
 
 const blockComponents: Record<string, React.FC<BlockType>> = {
-  hero_section: Header,
+  hero_section: HeaderFrame,
   organization_section: Organization,
   partner_section: Partner,
   objective_section: Objective,

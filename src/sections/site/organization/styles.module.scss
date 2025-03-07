@@ -1,24 +1,24 @@
 .container {
-  @apply relative mx-auto w-full max-w-screen-2xl pt-[120px] pb-[60px];
+  @apply relative mx-auto w-full max-w-screen-2xl overflow-hidden pb-[60px] pt-[120px];
 
   /* Responsive Padding for mobile */
   @media (max-width: 768px) {
-    @apply pt-[60px] pb-[30px]; /* Reduce top and bottom padding on mobile */
+    @apply pb-[30px] pt-[60px]; /* Reduce top and bottom padding on mobile */
   }
 }
 
 .containerWrap {
-  @apply flex justify-center items-center flex-wrap gap-8 mx-auto max-w-[1096px];
+  @apply mx-auto flex max-w-[1096px] flex-wrap items-center justify-center gap-8;
 
   /* Responsive Layout for smaller screens */
   @media (max-width: 768px) {
-    @apply gap-4 mx-4; /* Reduce the gap between items */
+    @apply mx-4 gap-4; /* Reduce the gap between items */
     @apply w-full; /* Ensure full width on smaller screens */
   }
 }
 
 .heading {
-  @apply text-[#02255B] font-bold text-center text-[48px] max-sm:text-[32px] mb-10;
+  @apply mb-10 text-center text-[48px] font-bold text-[#02255B] max-sm:text-[32px];
 
   /* Optional: Further reduce margin for small screens */
   @media (max-width: 768px) {
@@ -27,7 +27,7 @@
 }
 
 .itemWapper {
-  @apply relative text-white rounded-lg;
+  @apply relative rounded-lg text-white;
 
   @media (max-width: 768px) {
     @apply w-full pr-5; /* Full width on mobile screens */
@@ -35,13 +35,13 @@
 }
 
 .itemIcon {
-  @apply absolute top-1/2 -translate-y-1/2 -left-[24px] rounded-[40px];
+  @apply absolute -left-[24px] top-1/2 -translate-y-1/2 rounded-[40px];
 
   @media (max-width: 768px) {
     @apply -left-[16px]; /* Adjust the left positioning for smaller screens */
   }
 }
- .itemIconWrap {
+.itemIconWrap {
   /* icon */
 
   /* Auto layout */
@@ -66,23 +66,28 @@
   border-radius: 40px;
 
   img {
-    max-height: 50%;
-    max-width: 50%;
-    width: auto;
+    width: 46%;
+    aspect-ratio: 1;
+    object-fit: contain;
   }
 
- }
+  @media (max-width: 768px) {
+    img {
+      width: 55%;
+    }
+  }
+}
 .textWrap {
-  @apply w-[320px] left-6 rounded-3xl border pt-4 pr-4 pl-8 pb-5 gap-2 bg-[#02255B];
+  @apply left-6 w-[320px] gap-2 rounded-3xl border bg-[#02255B] pb-5 pl-8 pr-4 pt-4;
 
   /* Adjust for mobile responsiveness */
   @media (max-width: 768px) {
-    @apply w-full left-0; /* Full width and adjusted padding for mobile */
+    @apply left-0 w-full; /* Full width and adjusted padding for mobile */
   }
 }
 
 .title {
-  @apply text-sm space-x-0;
+  @apply space-x-0 text-sm;
 
   /* Optional: Reduce text size on mobile */
   @media (max-width: 768px) {

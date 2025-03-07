@@ -23,7 +23,7 @@ export const Faq: React.FC<any> = ({ headline, title, cards }) => {
         <Gardient styles="absolute left-0 top-[20%] h-[40%]" />
         <div className={styles.offers}>{headline}</div>
         <div className={styles.header}>
-          <h4 className={`${styles.title} heading-4`}>{title}</h4>
+          <h4 className={`${styles.title}`}>{title}</h4>
         </div>
         <div className={styles.section}>
           <div className={styles.list}>
