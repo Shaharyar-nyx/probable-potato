@@ -1,10 +1,10 @@
 .full {
-  @apply w-full mt-20;
-  background: linear-gradient(180deg, #F6F7F8 0%, rgba(246, 247, 248, 0) 50%, #F6F7F8 100%);
+  @apply mt-20 w-full;
+  background: linear-gradient(180deg, #f6f7f8 0%, rgba(246, 247, 248, 0) 50%, #f6f7f8 100%);
 }
 
 .container {
-  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 pb-6 py-16 text-primary-800 lg:px-16 lg:py-16;
+  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 py-16 pb-6 text-primary-800 lg:px-16 lg:py-16;
 
   /* Adjustments for smaller screens */
   @media (max-width: 768px) {
@@ -14,7 +14,7 @@
 }
 
 .content {
-  @apply mx-auto max-w-full sm:max-w-[1321px] text-[#4b5563] font-normal text-[14px] sm:w-full;
+  @apply mx-auto max-w-full text-[14px] font-normal text-[#4b5563] sm:w-full sm:max-w-[1321px];
   background-repeat: no-repeat;
   background-size: contain;
   @media (max-width: 768px) {
@@ -23,7 +23,7 @@
 }
 
 .offers {
-  @apply w-fit sm:w-max text-center font-normal mb-3 text-sm text-[#02255B] rounded-xl gap-2 py-1 px-5;
+  @apply mb-3 w-fit gap-2 rounded-xl py-1 pl-0 text-center text-sm font-normal text-[#02255B] sm:w-max;
 }
 
 .containerInner {
@@ -31,21 +31,21 @@
 }
 
 .form {
-  @apply max-w-full sm:max-w-[50%] relative z-[23];
+  @apply relative z-[23] max-w-full sm:max-w-[50%];
 }
 
-.title{
-  @apply text-[#02255b] font-bold text-[48px] w-[40%] sm:w-full;
+.title {
+  @apply w-[40%] text-[48px] font-bold text-[#02255b] sm:w-full;
   @media (max-width: 768px) {
     @apply w-full; /* Reduce space between sections for mobile */
   }
 }
 
 .list {
-  @apply w-full -mt-[120px] z-[20] relative;
+  @apply relative z-[20] -mt-[120px] w-full;
   background-repeat: no-repeat;
   background-size: contain;
   @media (max-width: 768px) {
-    @apply w-full -mt-[30px]; /* Reduce space between sections for mobile */
+    @apply -mt-[30px] w-full; /* Reduce space between sections for mobile */
   }
 }

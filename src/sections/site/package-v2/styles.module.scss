@@ -1,5 +1,5 @@
 .container {
-  @apply relative z-[3] mx-auto max-w-screen-2xl space-y-16 px-6 py-16 text-primary-800 lg:px-16 lg:py-32 mt-20;
+  @apply relative z-[3] mx-auto mt-20 max-w-screen-2xl space-y-16 px-6 py-16 text-primary-800 lg:px-16 lg:py-32;
 
   /* Adjust padding for mobile screens */
   @media (max-width: 768px) {
@@ -8,8 +8,8 @@
 }
 
 .wrap {
-  @apply mx-auto max-w-full sm:max-w-[1321px] flex justify-between gap-6;
-  
+  @apply mx-auto flex max-w-full justify-between gap-6 sm:max-w-[1321px];
+
   /* Make sure items wrap on mobile */
   @media (max-width: 768px) {
     @apply flex-col; /* Stack elements vertically on smaller screens */
@@ -18,27 +18,27 @@
 .left {
   @apply max-w-[45%];
   @media (max-width: 768px) {
-    @apply w-full ml-0 max-w-full; /* Take full width on mobile */
+    @apply ml-0 w-full max-w-full; /* Take full width on mobile */
   }
 }
 .right {
-  @apply flex justify-center w-full sm:w-auto flex-grow; /* Ensure it takes full width on smaller screens */
+  @apply flex w-full flex-grow justify-center sm:w-auto; /* Ensure it takes full width on smaller screens */
   @media (max-width: 768px) {
-    @apply block ; /* Take full width on mobile */
+    @apply block; /* Take full width on mobile */
   }
 }
 
 .item {
-  @apply w-full sm:w-1/2 p-8 ml-5 bg-[#034AB6] rounded-[20px] text-white;
+  @apply ml-5 w-full rounded-[20px] bg-[#034AB6] p-8 text-white sm:w-1/2;
 
   /* Adjust item width and margin for mobile */
   @media (max-width: 768px) {
-    @apply w-full ml-0 my-10; /* Take full width on mobile */
+    @apply my-10 ml-0 w-full; /* Take full width on mobile */
   }
 }
 
 .sra {
-  @apply font-bold text-center text-[16px];
+  @apply text-center text-[16px] font-bold;
 
   @media (max-width: 768px) {
     @apply text-sm; /* Reduce text size on mobile */
@@ -46,7 +46,7 @@
 }
 
 .name {
-  @apply font-bold text-center text-[16px];
+  @apply text-center text-[16px] font-bold;
 
   @media (max-width: 768px) {
     @apply text-sm; /* Reduce text size on mobile */
@@ -54,7 +54,7 @@
 }
 
 .price {
-  @apply font-bold text-[42px] mt-10;
+  @apply mt-10 text-[42px] font-bold;
 
   @media (max-width: 768px) {
     @apply text-3xl; /* Adjust price font size for mobile */
@@ -62,7 +62,7 @@
 }
 
 .details {
-  @apply text-[#f3f4f6] font-medium text-[16px];
+  @apply text-[16px] font-medium text-[#f3f4f6];
 
   @media (max-width: 768px) {
     @apply text-sm; /* Adjust text size for mobile */
@@ -70,7 +70,7 @@
 }
 
 .features {
-  @apply text-white font-medium text-[16px] mt-10;
+  @apply mt-10 text-[16px] font-medium text-white;
 
   @media (max-width: 768px) {
     @apply text-sm; /* Adjust text size for mobile */
@@ -78,15 +78,15 @@
 }
 
 .offers {
-  @apply w-fit sm:w-max text-center font-normal text-sm text-[#02255B] rounded-xl gap-2 py-1 px-5;
+  @apply w-fit gap-2 rounded-xl py-1 pl-0 text-center text-sm font-normal text-[#02255B] sm:w-max;
 
   @media (max-width: 768px) {
-    @apply px-4 py-2; /* Adjust padding for mobile */
+    @apply py-2; /* Adjust padding for mobile */
   }
 }
 
 .heading {
-  @apply text-[#02255b] font-bold text-[48px] py-5;
+  @apply py-5 text-[48px] font-bold text-[#02255b];
 
   @media (max-width: 768px) {
     @apply text-2xl; /* Smaller font size on mobile */
@@ -94,7 +94,7 @@
 }
 
 .addOn {
-  @apply text-[#02255b] font-semibold text-[28px] py-2;
+  @apply py-2 text-[28px] font-semibold text-[#02255b];
 
   @media (max-width: 768px) {
     @apply text-xl; /* Smaller font size on mobile */
@@ -122,7 +122,7 @@
 }
 
 .recommentTitle {
-  @apply text-[#02255b] font-semibold text-[22px];
+  @apply text-[22px] font-semibold text-[#02255b];
 
   @media (max-width: 768px) {
     @apply text-lg; /* Adjust title font size on mobile */
@@ -130,7 +130,7 @@
 }
 
 .recommentContent {
-  @apply text-[#02255b] font-normal text-[16px];
+  @apply text-[16px] font-normal text-[#02255b];
 
   @media (max-width: 768px) {
     @apply text-sm; /* Adjust content text size on mobile */
