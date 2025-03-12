@@ -3,6 +3,7 @@ stages:
   # - publish_when_trigger
 
 publish_dev:
+  interruptible: true
   tags:
     - test
   image: 
