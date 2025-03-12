@@ -20,6 +20,7 @@ publish_dev:
     SERVICE_NAME: helios-public-web
     REGISTRY_REPO_NAME: cb-helios-public-web
     DOCKER_REGISTRY: 631377496696.dkr.ecr.ap-southeast-1.amazonaws.com
+    CLOUDFRONT_DISTRIBUTION_ID: E2J3NEL2L4FNRQ
   id_tokens:
     GITLAB_OIDC_TOKEN:
       aud: https://gitlab.com
@@ -50,6 +51,7 @@ publish_dev:
     - docker tag ${DOCKER_REGISTRY}/${REGISTRY_REPO_NAME}:latest ${DOCKER_REGISTRY}/${REGISTRY_REPO_NAME}:${CI_COMMIT_SHORT_SHA}
     - docker push ${DOCKER_REGISTRY}/${REGISTRY_REPO_NAME}:${CI_COMMIT_SHORT_SHA}
     - aws ecs update-service --cluster ${CLUSTER_NAME} --service ${SERVICE_NAME} --force-new-deployment
+    - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
 
 # publish_public_web_dev_when_trigger:
 #   stage: publish_when_trigger
