@@ -1,6 +1,8 @@
 "use client";
 
 import { useForm, Controller } from "react-hook-form";
+import React, { useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import styles from "./styles.module.scss";
 import { Button, Dropdown, IconRenderer, Input, Textarea } from "@/components";
@@ -9,6 +11,8 @@ import { useIsMobile } from "@/hooks";
 import { DemoFormType } from "@/types";
 import { useSubmitRequestDemo } from "@/hooks/useSubmitRequestDemo";
 import { formatBtnId } from "@/lib";
+import { RECAPTCHA_SITE_KEY } from "@/lib/constants";
+import { toast } from "react-toastify";
 
 export const DemoForm: React.FC<{ id: string }> = ({ id }) => {
   const isMobile = useIsMobile();
@@ -22,9 +26,27 @@ export const DemoForm: React.FC<{ id: string }> = ({ id }) => {
 
   const { submit, loading, error, called } = useSubmitRequestDemo(reset);
   const shouldShowSuccessMessage = called && !loading && !error;
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const onSubmit = async (data: DemoFormType) => {
-    submit(data);
+    if (!recaptchaToken) {
+      toast.error("Please complete the reCAPTCHA verification");
+      return;
+    }
+    
+    // Include the recaptcha token with the form data
+    submit({...data, recaptchaToken});
+    
+    // Reset reCAPTCHA after submission
+    if (shouldShowSuccessMessage) {
+      recaptchaRef.current?.reset();
+      setRecaptchaToken(null);
+    }
+  };
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
   };
 
   return (
@@ -136,10 +158,26 @@ export const DemoForm: React.FC<{ id: string }> = ({ id }) => {
             rows={4}
             {...register("message")}
           />
-          <Button id={formatBtnId(`${id}-submit`)} className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
+          
+          {/* Add reCAPTCHA v2 widget */}
+          <div className="mt-4">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={RECAPTCHA_SITE_KEY || "6LcKVOwqAAAAANvEExA84rDPvv74NqVnJeCI3hi8"}
+              onChange={handleRecaptchaChange}
+            />
+          </div>
+          
+          <Button 
+            id={formatBtnId(`${id}-submit`)} 
+            className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" 
+            disabled={loading || !recaptchaToken} 
+            loading={loading} 
+            size="large" 
+            type="submit"
+          >
             Submit
           </Button>
-
 
           {shouldShowSuccessMessage && (
             <p aria-live="polite" className="paragraph-sm text-green-500">
