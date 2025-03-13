@@ -1,0 +1,72 @@
+.pagination {
+  @apply m-0 flex max-w-[100%] list-none items-center gap-3 space-x-2 p-0 font-semibold;
+  :global(.rc-pagination-item) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    color: #00143f;
+    cursor: pointer;
+  }
+
+  :global(.rc-pagination-item-active) {
+    background: #045de3;
+    color: #f6f7f8;
+  }
+
+  :global(.rc-pagination-prev) {
+    background: #fff;
+    color: #00143f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+  }
+  :global(.rc-pagination-next) {
+    background: #fff;
+    color: #00143f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+  }
+
+  :global(.rc-pagination-disabled) {
+    cursor: default;
+    color: #9ca3af;
+    background: #e5e7eb;
+  }
+
+  :global(.rc-pagination-jump-next) {
+    cursor: default;
+    background: #fff;
+    color: #00143f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+  }
+
+  :global(.rc-pagination-jump-prev) {
+    cursor: default;
+    background: #fff;
+    color: #00143f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+  }
+}

@@ -41,12 +41,12 @@ const SearchKeywordIcon: React.FC = () => (
   </svg>
 );
 
-export const NewsSearchForm: React.FC<any> = ({ handleFetch }) => {
+export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, listTimes, handleFetch }) => {
   const [search, setSearch] = useState({
-    country: null,
-    industry: null,
-    time: null,
-    keyword: null,
+    countries: undefined,
+    industries: undefined,
+    times: undefined,
+    keyword: undefined,
   });
 
   const handleChange = (key: string, value: any) => {
@@ -69,12 +69,13 @@ export const NewsSearchForm: React.FC<any> = ({ handleFetch }) => {
             <SelectBox
               disabled={false}
               multiple
-              handleChange={(value) => handleChange("country", value)}
+              handleChange={(value) => handleChange("countries", value)}
               svgIcon={<CountryIcon />}
               label="Incidents by Industry"
-              id="country"
-              options={["United States", "Canada", "France", "Germany"]}
+              id="countries"
+              options={listCountry}
               className={styles.searchSelect}
+              value={search.countries}
             />
           </div>
           <div className={styles.searchIndustry}>
@@ -82,12 +83,13 @@ export const NewsSearchForm: React.FC<any> = ({ handleFetch }) => {
             <SelectBox
               disabled={false}
               multiple
-              id="industry"
-              handleChange={(value) => handleChange("industry", value)}
+              id="industries"
+              handleChange={(value) => handleChange("industries", value)}
               svgIcon={<IndustryIcon />}
               label="Incidents by Industry"
-              options={["United States", "Canada", "France", "Germany"]}
+              options={listIndustry}
               className={styles.searchSelect}
+              value={search.industries}
             />
           </div>
           <div className={styles.searchTime}>
@@ -95,19 +97,26 @@ export const NewsSearchForm: React.FC<any> = ({ handleFetch }) => {
             <SelectBox
               disabled={false}
               multiple
-              id="time"
-              handleChange={(value) => handleChange("time", value)}
+              id="times"
+              handleChange={(value) => handleChange("times", value)}
               svgIcon={<TimeIcon />}
               label="Incidents by Timeframe"
-              options={["United States", "Canada", "France", "Germany"]}
+              options={listTimes}
               className={styles.searchSelect}
+              value={search.times}
             />
           </div>
 
           <div className={styles.searchKeyword}>
             <label className={styles.formLabel}>Search:</label>
             <div className={styles.searchInput}>
-              <Input svgIcon={<SearchKeywordIcon />} placeholder="Enter a keyword ..." />
+              <Input
+                svgIcon={<SearchKeywordIcon />}
+                placeholder="Enter a keyword ..."
+                value={search.keyword}
+                onChange={(event) => handleChange("keyword", event.target.value)}
+                className={styles.searchInputElem}
+              />
             </div>
           </div>
         </div>

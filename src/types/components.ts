@@ -438,19 +438,23 @@ export interface DropdownPropsInput {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
+export interface SelectBoxItemProps {
+  label: string;
+  value: any;
+}
 export interface SelectBoxProps {
   ariaDescribedBy?: string;
   className?: string;
   disabled?: boolean;
   error?: string;
-  handleChange?: (value: string | string[]) => void;
+  handleChange?: (value: SelectBoxItemProps[]) => void;
   iconName?: string;
   svgIcon?: React.ReactNode;
   id?: string;
   label: string;
   multiple?: boolean;
-  options: string[];
-  value?: string | string[];
+  options: SelectBoxItemProps[];
+  value?: SelectBoxItemProps[];
   onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;

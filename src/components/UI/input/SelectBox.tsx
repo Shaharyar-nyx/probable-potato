@@ -3,9 +3,9 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import React, { useEffect, useRef, useState } from "react";
-
+import _ from "lodash";
 import { IconRenderer } from "@/components";
-import { SelectBoxProps } from "@/types";
+import { SelectBoxItemProps, SelectBoxProps } from "@/types";
 
 import "./styles.scss";
 
@@ -44,7 +44,7 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
     if (onBlur) onBlur(event);
   };
 
-  const handleSelect = (selectedOption: string) => {
+  const handleSelect = (selectedOption: any) => {
     if (disabled) return;
     if (handleChange) {
       if (multiple) {
@@ -95,10 +95,16 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
     }
   }, [highlightedIndex]);
 
-  const displayValue = multiple ? (selectedValues.length > 0 ? selectedValues.join(", ") : label) : value || label;
+  const selectedLength = selectedValues.length || 0;
+
+  const displayValue: string = multiple
+    ? selectedLength > 0
+      ? [label, selectedLength > 1 ? `<span style="color:#367de9;">(${selectedValues.length})</span>` : ""].join(" ")
+      : label
+    : label;
 
   return (
-    <div ref={dropdownRef} className={clsx("dropdown-container", className)}>
+    <div ref={dropdownRef} className={clsx("select-container", className)}>
       <button
         aria-controls={isOpen ? `${id}-listbox` : undefined}
         aria-describedby={ariaDescribedBy}
@@ -107,9 +113,9 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
         aria-labelledby={`${id}-label ${id}`}
         className={clsx("selectbox-input-container", {
           "input-error": error !== undefined,
-          "dropdown-disabled": disabled,
-          "dropdown-focused": hasFocus && !disabled && error === undefined,
-          "dropdown-focused-error": hasFocus && !disabled && error !== undefined,
+          "select-disabled": disabled,
+          "select-focused": hasFocus && !disabled && error === undefined,
+          "select-focused-error": hasFocus && !disabled && error !== undefined,
         })}
         disabled={disabled}
         id={id}
@@ -157,12 +163,11 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
                 : error !== undefined
                   ? "text-red-400"
                   : value !== undefined
-                    ? "text-primary-800"
-                    : "text-neutral-300",
-            )} pr-10 text-left`}
-          >
-            {displayValue}
-          </span>
+                    ? "text-[#172937]"
+                    : "text-[#172937]",
+            )} line-clamp-1 pr-10 text-left`}
+            dangerouslySetInnerHTML={{ __html: displayValue }}
+          ></span>
         </div>
         <ChevronDownIcon
           className={clsx(
@@ -180,31 +185,28 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
       </button>
 
       {isOpen && !disabled && (
-        <div className="dropdown-input-options-container" role="presentation">
-          <ul ref={listRef} aria-labelledby={id} id={`${id}-listbox`} role="listbox" tabIndex={-1}>
-            {options.map((option, index) => (
-              <li
-                key={index}
-                aria-selected={selectedValues.includes(option)}
-                className={clsx("dropdown-input-options-item", {
-                  "dropdown-input-options-item-highlighted": highlightedIndex === index,
-                  "dropdown-input-options-item-selected": selectedValues.includes(option),
-                })}
-                id={`${id}-option-${index}`}
-                role="option"
-                tabIndex={-1}
-                onClick={() => handleSelect(option)}
-                onMouseEnter={() => setHighlightedIndex(index)}
-              >
-                {multiple && (
-                  <div className={clsx("checkbox", selectedValues.includes(option) && "checkbox-checked")}>
-                    {selectedValues.includes(option) && <IconRenderer iconName="CheckIcon" className="h-4 w-4" />}
-                  </div>
-                )}
-                {option}
-              </li>
-            ))}
-          </ul>
+        <div className="select-input-options-container mt-1 w-full py-[4px] pr-[4px]" role="presentation">
+          <div className="scroll-container max-h-72 overflow-auto">
+            <ul ref={listRef} aria-labelledby={id} id={`${id}-listbox`} role="listbox" tabIndex={-1}>
+              {options.map((option: SelectBoxItemProps, index: number) => (
+                <li
+                  key={index}
+                  aria-selected={selectedValues.includes(option)}
+                  className={clsx("select-input-options-item", {
+                    "select-input-options-item-highlighted": highlightedIndex === index,
+                    "select-input-options-item-selected": selectedValues.includes(option),
+                  })}
+                  id={`${id}-option-${index}`}
+                  role="option"
+                  tabIndex={-1}
+                  onClick={() => handleSelect(option)}
+                  onMouseEnter={() => setHighlightedIndex(index)}
+                >
+                  {option["label"]}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
 

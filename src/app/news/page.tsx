@@ -20,7 +20,6 @@ async function getNewsPage() {
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getNewsPage();
 
-  console.log(data, ">>>>>>>");
   if (!data?.seo) {
     return {
       title: "Cyberbay",
