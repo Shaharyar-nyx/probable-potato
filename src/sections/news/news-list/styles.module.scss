@@ -1,0 +1,43 @@
+.section {
+  @apply px-2 py-4;
+}
+
+.container {
+  @apply mx-auto max-w-screen-2xl overflow-hidden;
+}
+
+.title {
+  @apply mb-5 text-[48px] font-bold text-[#02255B] lg:mb-6;
+}
+
+.searchForm {
+  @apply w-full py-5;
+}
+
+.showing {
+  @apply mt-2 flex justify-end;
+}
+
+.paginationWrap {
+  @apply mx-auto mt-2 flex justify-center;
+}
+.pagination {
+  @apply m-0 flex list-none items-center gap-3 space-x-2 p-0;
+}
+
+.pagination .rc-pagination-item {
+  @apply flex h-7 w-7 items-center justify-center rounded-md border border-gray-300 text-gray-700 transition hover:border-blue-500 hover:text-blue-500;
+}
+
+.pagination .rc-pagination-item-active {
+  @apply border-blue-500 bg-white font-medium text-blue-500;
+}
+
+.pagination .rc-pagination-item-prev,
+.pagination .rc-pagination-item-next {
+  @apply flex h-7 w-7 items-center justify-center rounded-md border border-gray-300 text-gray-700 transition hover:border-blue-500 hover:text-blue-500;
+}
+
+.pagination .rc-pagination-item-disabled {
+  @apply cursor-not-allowed border-gray-300 text-gray-400;
+}

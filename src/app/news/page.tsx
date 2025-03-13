@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Header } from "@/components";
-import { ContactForm } from "@/sections";
+import { CTA, NewsList } from "@/sections";
 import { BlockType } from "@/types";
 import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
@@ -9,15 +9,18 @@ import { Metadata } from "next";
 
 const blockComponents: Record<string, React.FC<BlockType>> = {
   hero_section: Header,
-  simple_section: ContactForm,
+  news_section: NewsList,
+  cta_section: CTA,
 };
 
-async function getContactUsData() {
-  return getPageBySlug("contact-us");
+async function getNewsPage() {
+  return getPageBySlug("news");
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await getContactUsData();
+  const data = await getNewsPage();
+
+  console.log(data, ">>>>>>>");
   if (!data?.seo) {
     return {
       title: "Cyberbay",
@@ -63,17 +66,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-async function ContactUs() {
-  const data = await getContactUsData();
+async function NewsPage() {
+  const data = await getNewsPage();
   if (!data?.blocks) {
     return null;
   }
-
-  return (
-    <main>
-      <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
-    </main>
-  );
+  return <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />;
 }
 
-export default ContactUs;
+export default NewsPage;

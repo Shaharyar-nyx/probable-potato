@@ -77,6 +77,28 @@
   }
 }
 
+.selectbox-input-container {
+  @apply flex items-center justify-between;
+  @apply w-full px-[10px] py-[14px];
+  @apply rounded-3xl border border-primary-800;
+  @apply text-[14px] leading-5 placeholder:text-neutral-400;
+  @apply cursor-pointer;
+  @apply focus:outline-none;
+  @apply disabled:cursor-not-allowed disabled:border-primary-100 disabled:text-primary-100;
+
+  &.dropdown-focused {
+    @apply shadow-[0px_0px_0px_1px_#02255B_inset];
+  }
+
+  &.dropdown-focused-error {
+    @apply shadow-[0px_0px_0px_1px_#f87171_inset];
+  }
+
+  &.input-error {
+    @apply border-red-500 text-red-400 placeholder:text-red-400;
+  }
+}
+
 .dropdown-input-arrow {
   @apply h-5 w-5 transition-transform duration-300;
 }

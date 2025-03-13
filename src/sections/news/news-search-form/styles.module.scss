@@ -1,0 +1,27 @@
+.section {
+  @apply w-full;
+}
+
+.form {
+  @apply flex w-full justify-between;
+}
+
+.searchForm {
+  @apply flex w-full flex-grow justify-between gap-3;
+}
+
+.formLabel {
+  @apply text-[20px] text-[#1f2937];
+}
+
+.searchKeyword {
+  @apply flex-grow;
+}
+
+.searchSelect {
+  @apply bg-white;
+}
+
+.searchInput {
+  @apply rounded-3xl bg-white;
+}

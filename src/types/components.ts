@@ -411,6 +411,7 @@ export interface ModalProps {
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   iconName?: string;
+  svgIcon?: React.ReactNode;
   parentClassName?: string;
 }
 
@@ -437,6 +438,23 @@ export interface DropdownPropsInput {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
+export interface SelectBoxProps {
+  ariaDescribedBy?: string;
+  className?: string;
+  disabled?: boolean;
+  error?: string;
+  handleChange?: (value: string | string[]) => void;
+  iconName?: string;
+  svgIcon?: React.ReactNode;
+  id?: string;
+  label: string;
+  multiple?: boolean;
+  options: string[];
+  value?: string | string[];
+  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
 export interface BlockType {
   __typename?: string;
   collection: string;

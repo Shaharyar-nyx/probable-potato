@@ -1,6 +1,8 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import React, { useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import styles from "./styles.module.scss";
 import { Button, IconRenderer, Input, Textarea } from "@/components";
@@ -8,6 +10,8 @@ import { ContactSalesFormType } from "@/types";
 import { useSubmitContactSales } from "@/hooks/useSubmitContactSales";
 import { useIsMobile } from "@/hooks";
 import { formatBtnId } from "@/lib";
+import { RECAPTCHA_SITE_KEY } from "@/lib/constants";
+import { toast } from "react-toastify";
 
 export const ContactSalesForm: React.FC<{ id: string }> = ({ id }) => {
   const isMobile = useIsMobile();
@@ -20,16 +24,33 @@ export const ContactSalesForm: React.FC<{ id: string }> = ({ id }) => {
 
   const { submit, loading, error, called } = useSubmitContactSales(reset);
   const shouldShowSuccessMessage = called && !loading && !error;
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const onSubmit = async (data: ContactSalesFormType) => {
-    submit(data);
+    if (!recaptchaToken) {
+      toast.error("Please complete the reCAPTCHA verification");
+      return;
+    }
+    
+    submit({...data, recaptchaToken});
+    
+    // Reset reCAPTCHA after successful submission
+    if (shouldShowSuccessMessage) {
+      recaptchaRef.current?.reset();
+      setRecaptchaToken(null);
+    }
+  };
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.gridContainer}>
         <div className="w-full lg:w-1/2">
-          <h1 className={`${styles.title} ${isMobile ? "heading-7" : "heading-1"} font-bold`}>Let’s Talk and Find the Right Solution for You</h1>
+          <h1 className={`${styles.title} ${isMobile ? "heading-7" : "heading-1"} font-bold`}>Let's Talk and Find the Right Solution for You</h1>
           <div className="flex flex-col gap-6 lg:gap-10">
             {[
               {
@@ -111,11 +132,19 @@ export const ContactSalesForm: React.FC<{ id: string }> = ({ id }) => {
             rows={4}
             {...register("message")}
           />
+          
+          {/* Add reCAPTCHA v2 widget */}
+          <div className="mt-4">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={RECAPTCHA_SITE_KEY || "6LcKVOwqAAAAANvEExA84rDPvv74NqVnJeCI3hi8"}
+              onChange={handleRecaptchaChange}
+            />
+          </div>
 
-          <Button id={formatBtnId(`${id}-submit`)} className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
+          <Button id={formatBtnId(`${id}-submit`)} className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading || !recaptchaToken} loading={loading} size="large" type="submit">
             Submit
           </Button>
-
 
           {shouldShowSuccessMessage && (
             <p aria-live="polite" className="paragraph-sm text-green-500">

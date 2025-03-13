@@ -5,15 +5,16 @@ import clsx from "clsx";
 import React, { useEffect, useRef, useState } from "react";
 
 import { IconRenderer } from "@/components";
-import { DropdownPropsInput } from "@/types";
+import { SelectBoxProps } from "@/types";
 
 import "./styles.scss";
 
-export const Dropdown: React.FC<DropdownPropsInput> = ({
+export const SelectBox: React.FC<SelectBoxProps> = ({
   ariaDescribedBy,
   disabled = false,
   label,
   iconName,
+  svgIcon,
   id,
   options,
   className,
@@ -104,7 +105,7 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
         aria-expanded={isOpen && !disabled}
         aria-haspopup="listbox"
         aria-labelledby={`${id}-label ${id}`}
-        className={clsx("dropdown-input-container", {
+        className={clsx("selectbox-input-container", {
           "input-error": error !== undefined,
           "dropdown-disabled": disabled,
           "dropdown-focused": hasFocus && !disabled && error === undefined,
@@ -133,6 +134,22 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
               iconName={iconName}
             />
           )}
+          {svgIcon !== undefined && (
+            <span
+              className={clsx(
+                "mt-[1px] flex w-6 items-center justify-center",
+                disabled
+                  ? "text-primary-100"
+                  : error !== undefined
+                    ? "text-red-400"
+                    : hasFocus
+                      ? "text-primary-800"
+                      : "text-primary-800",
+              )}
+            >
+              {svgIcon}
+            </span>
+          )}
           <span
             className={`${clsx(
               disabled
@@ -142,7 +159,7 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
                   : value !== undefined
                     ? "text-primary-800"
                     : "text-neutral-300",
-            )}} pr-10 text-left`}
+            )} pr-10 text-left`}
           >
             {displayValue}
           </span>
@@ -157,7 +174,7 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
                 ? "text-red-400"
                 : hasFocus
                   ? "text-primary-800"
-                  : "text-neutral-400",
+                  : "text-primary-400",
           )}
         />
       </button>
@@ -200,4 +217,4 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
   );
 };
 
-Dropdown.displayName = "Dropdown";
+SelectBox.displayName = "SelectBox";
