@@ -48,21 +48,22 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
 
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
 
   return (
-    <nav className="fixed left-0 right-0 lg:top-8 z-[9999] mx-auto h-[60px] w-full max-w-screen-2xl lg:px-4">
+    <nav className="fixed left-0 right-0 z-[9999] mx-auto h-[60px] w-full max-w-screen-2xl lg:top-8 lg:px-4">
       <div
-        className={`relative mx-auto flex h-full items-center justify-between bg-neutral-50 px-[29px] lg:px-4 shadow-lg ${showSolutionsDropdown ? "rounded-t-lg" : "rounded-lg"
-          }`}
+        className={`relative mx-auto flex h-full items-center justify-between bg-neutral-50 px-[29px] shadow-lg lg:px-4 ${
+          showSolutionsDropdown ? "rounded-t-lg" : "rounded-lg"
+        }`}
       >
         <div className="flex items-center gap-8">
           <Link href="/" id={formatBtnId("logo")}>
@@ -90,8 +91,9 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                   ) : (
                     <Link
                       id={formatBtnId(title)}
-                      className={`group rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${pathname.includes(url) ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
-                        }`}
+                      className={`group rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
+                        pathname.includes(url) ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
+                      }`}
                       href={url.startsWith("/") ? url : `/${url}`}
                     >
                       {title}
@@ -195,7 +197,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
               externalHref={data.external_href || undefined}
               variant={data.variant}
               transparent={data.transparent}
-              className="py-2 px-3 min-w-[100px]"
+              className="min-w-[100px] px-3 py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {data.title}
@@ -218,11 +220,12 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
 
         {/* Mobile Menu */}
         <div
-          className={`absolute left-0 right-0 top-[55px] overflow-y-scroll bg-neutral-50 shadow-lg transition-all duration-300 ease-in-out lg:top-[72px] lg:hidden ${isMobileMenuOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
-            }`}
+          className={`absolute left-0 right-0 top-[55px] overflow-y-scroll bg-neutral-50 shadow-lg transition-all duration-300 ease-in-out lg:top-[72px] lg:hidden ${
+            isMobileMenuOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
+          }`}
           style={{ height: "calc(100vh - 55px)" }}
         >
-          <div className="flex flex-col h-full justify-between space-y-2 py-[18px] px-[29px]">
+          <div className="flex h-full flex-col justify-between space-y-2 px-[29px] py-[18px]">
             <div>
               {navigations.data[0].attributes.items.data.map(
                 ({ attributes: { url, has_children, children, title, description } }: any) => (
@@ -230,8 +233,9 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                     {has_children ? (
                       <button
                         id={formatBtnId(title)}
-                        className={`w-full border-b border-primary-800 px-0 pt-[15px] pb-2 text-left text-base transition-colors ${pathname === url ? "bg-primary-50 text-primary-500" : "text-primary-800"
-                          }`}
+                        className={`w-full border-b border-primary-800 px-0 pb-2 pt-[15px] text-left text-base transition-colors ${
+                          pathname === url ? "bg-primary-50 text-primary-500" : "text-primary-800"
+                        }`}
                         onClick={() => {
                           setShowSolutionsDropdown(!showSolutionsDropdown);
                         }}
@@ -240,14 +244,14 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                           <span>{title}</span>
                           {has_children && (
                             <IconRenderer
-                              className={`h-5 w-5 ml-1 transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
+                              className={`ml-1 h-5 w-5 transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
                               iconName="ChevronDownIcon"
                             />
                           )}
                         </div>
                       </button>
                     ) : (
-                      <div className="w-full border-b border-primary-800 px-0 pt-[15px] pb-2 text-left transition-colors">
+                      <div className="w-full border-b border-primary-800 px-0 pb-2 pt-[15px] text-left transition-colors">
                         <Link
                           id={formatBtnId(title)}
                           className={`text-base text-primary-800`}
@@ -279,10 +283,10 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                                     />
                                   </span>
                                   <div>
-                                    <div className="text-sm text-primary-800 group-hover:text-neutral-50">
-                                      {title}
-                                    </div>
-                                    <p className="text-xs text-neutral-600 group-hover:text-neutral-50">{description}</p>
+                                    <div className="text-sm text-primary-800 group-hover:text-neutral-50">{title}</div>
+                                    <p className="text-xs text-neutral-600 group-hover:text-neutral-50">
+                                      {description}
+                                    </p>
                                   </div>
                                 </Link>
                               ))}

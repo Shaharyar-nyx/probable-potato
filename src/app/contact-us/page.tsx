@@ -74,6 +74,6 @@ async function ContactUs() {
       <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
     </main>
   );
-};
+}
 
 export default ContactUs;

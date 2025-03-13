@@ -1,18 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import styles from "./styles.module.scss";
 import { Button, Dropdown, Input, Textarea } from "@/components";
 import formData from "@/data/contact-us/form.json";
 import { ContactUsFormType } from "@/types";
-import { useSubmitContactUs } from "@/hooks/useSubmitContactUs";
 import { useIsMobile } from "@/hooks";
 import { formatBtnId } from "@/lib";
+import { RECAPTCHA_SITE_KEY } from "@/lib/constants";
+import { toast } from "react-toastify";
 
 export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
   const isMobile = useIsMobile();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+  const [success, setSuccess] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const {
     register,
@@ -22,11 +29,48 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
     reset,
   } = useForm<ContactUsFormType>();
 
-  const { submit, loading, error, called } = useSubmitContactUs(reset);
-  const shouldShowSuccessMessage = called && !loading && !error;
-
   const onSubmit = async (data: ContactUsFormType) => {
-    submit(data);
+    if (!recaptchaToken) {
+      toast.error("Please complete the reCAPTCHA verification");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // Submit the form with the reCAPTCHA token
+      const response = await fetch('/api/contact-us', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...data,
+          recaptchaToken
+        }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+      
+      reset();
+      setSuccess(true);
+      setError(null);
+      // Reset reCAPTCHA
+      recaptchaRef.current?.reset();
+      setRecaptchaToken(null);
+      toast.success("Thank you! We will get back to you shortly.");
+    } catch (err) {
+      console.error("Failed to submit contact form:", err);
+      setError(err instanceof Error ? err : new Error("Failed to submit form"));
+      toast.error("Failed to submit form");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
   };
 
   return (
@@ -88,14 +132,36 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
             rows={4}
             {...register("message")}
           />
-          <Button id={formatBtnId('contact-form-submit')} className="mt-3 self-start px-20 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
+          
+          {/* Add reCAPTCHA v2 widget */}
+          <div className="mt-4">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={RECAPTCHA_SITE_KEY || "6LcKVOwqAAAAANvEExA84rDPvv74NqVnJeCI3hi8"}
+              onChange={handleRecaptchaChange}
+            />
+          </div>
+          
+          <Button 
+            id={formatBtnId('contact-form-submit')} 
+            className="mt-3 self-start px-20 paragraph-sm w-full lg:w-fit lg:paragraph-md" 
+            disabled={loading || !recaptchaToken} 
+            loading={loading} 
+            size="large" 
+            type="submit"
+          >
             Submit
           </Button>
 
-
-          {shouldShowSuccessMessage && (
+          {success && (
             <p aria-live="polite" className="paragraph-sm text-green-500">
               Thank you for reaching out! We will get back to you shortly.
+            </p>
+          )}
+          
+          {error && (
+            <p aria-live="polite" className="paragraph-sm text-red-500">
+              {error.message}
             </p>
           )}
         </form>

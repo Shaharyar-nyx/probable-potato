@@ -12,21 +12,23 @@ export type ApplyFormType = {
   file: File | null;
 };
 
-export interface DemoFormType {
-  website_url: string;
+export type DemoFormType = {
   email: string;
-  title: string;
+  message?: string;
   name: string;
-  message: string;
+  title: string;
+  website_url: string;
   request: string[];
-}
+  recaptchaToken?: string | null;
+};
 
 export type ContactSalesFormType = {
   email: string;
-  message: string;
+  message?: string;
   name: string;
   organization_name: string;
   title: string;
+  recaptchaToken?: string | null;
 };
 
 export type ReportFormType = {
