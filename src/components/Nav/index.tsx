@@ -327,7 +327,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
               )}
             </div> */}
 
-            <div className="flex flex-row gap-3 pt-4 pt-[100px] pb-[42px]">
+            <div className="flex flex-row gap-3 !pb-[40%]">
               {button_group?.map((data: any, index: number) => (
                 <Button
                   key={index}
