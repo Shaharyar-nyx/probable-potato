@@ -42,3 +42,28 @@ export type ReportFormType = {
 export type SubscribeType = {
   email: string;
 };
+
+
+export type PaginationProps = {
+  total: number;
+  currentPage: number;
+  perPage: number;
+  setCurrentPage: Function | null
+}
+
+export type NewsItemType = {
+  id: number;
+  corporateName: string;
+  corporateDomain: string;
+  corporateIndustry: string;
+  newsSummary: string;
+  accidentType: string;
+  accidentSource: string;
+  accidentDate: string;
+  country: string;
+  countryFlag: string;
+  industry: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}

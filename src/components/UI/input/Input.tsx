@@ -12,6 +12,7 @@ export const Input = ({
   error,
   id,
   iconName,
+  svgIcon,
   parentClassName,
   disabled = false,
   onFocus,
@@ -56,6 +57,22 @@ export const Input = ({
             })}
             iconName={iconName}
           />
+        )}
+        {svgIcon !== undefined && (
+          <span
+            className={clsx(
+              "mt-[1px] flex w-6 items-center justify-center",
+              disabled
+                ? "text-primary-100"
+                : error !== undefined
+                  ? "text-red-400"
+                  : hasFocus
+                    ? "text-primary-800"
+                    : "text-primary-800",
+            )}
+          >
+            {svgIcon}
+          </span>
         )}
         <input
           ref={ref}

@@ -1,0 +1,58 @@
+.section {
+  @apply w-full;
+}
+
+.form {
+  @apply flex w-full justify-between;
+}
+
+.searchForm {
+  @apply flex w-full flex-grow justify-between gap-3 max-md:flex-col;
+}
+
+.formLabel {
+  @apply text-[20px] text-[#1f2937];
+}
+
+.searchKeyword {
+  @apply flex-grow max-md:w-full max-md:flex-row;
+}
+
+.searchSelect {
+  @apply rounded-3xl bg-white max-md:w-full;
+}
+
+.searchInput {
+  @apply rounded-[100px] bg-white;
+  :global(.input-container) {
+    border-color: transparent;
+    box-shadow: none !important;
+    outline: 1px solid #a3a8b1 !important;
+    border-radius: 100px;
+  }
+
+  ::placeholder {
+    color: #172937;
+    opacity: 1; /* Firefox */
+  }
+
+  ::-ms-input-placeholder {
+    /* Edge 12 -18 */
+    color: #172937;
+  }
+}
+
+.searchInputElem {
+  outline: none !important;
+  @apply min-h-[20px] w-full !shadow-none max-lg:min-h-[35px];
+  :focus-visible,
+  :focus {
+    border-color: transparent;
+  }
+}
+
+.searchCountry,
+.searchIndustry,
+.searchTime {
+  @apply max-w-[25%] max-md:max-w-full;
+}

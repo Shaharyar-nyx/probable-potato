@@ -1,0 +1,26 @@
+.section {
+  @apply px-2 py-5;
+}
+
+.container {
+  @apply mx-auto max-w-screen-2xl overflow-hidden lg:px-4;
+}
+
+.title {
+  @apply mb-5 text-[48px] font-bold text-[#02255B] max-md:text-[32px] lg:mb-6;
+}
+
+.searchForm {
+  @apply w-full py-5;
+}
+
+.showing {
+  @apply mt-2 flex justify-end;
+}
+
+.paginationWrap {
+  @apply mx-auto mt-2 flex max-w-[100%] justify-center;
+}
+.pagination {
+  @apply max-w-[100%];
+}

@@ -77,6 +77,89 @@
   }
 }
 
+.select-container {
+  @apply relative pr-[4px];
+
+  .select-input-options-item {
+    @apply flex cursor-pointer items-center gap-2 px-4 py-2 text-sm text-neutral-400 hover:bg-neutral-50;
+
+    &-highlighted {
+      @apply bg-neutral-50;
+    }
+
+    &-selected {
+      @apply text-primary-800;
+    }
+
+    .checkbox {
+      @apply flex h-5 w-5 items-center justify-center rounded border border-primary-800;
+
+      &-checked {
+        @apply bg-primary-500 text-white;
+      }
+    }
+  }
+}
+
+.selectbox-input-container {
+  @apply flex items-center justify-between;
+  @apply w-full px-[10px] py-[14px];
+  @apply rounded-3xl border border-[#a3a8b1];
+  @apply text-[14px] leading-5 placeholder:text-neutral-400;
+  @apply cursor-pointer;
+  @apply focus:outline-none;
+  @apply disabled:cursor-not-allowed disabled:border-primary-100 disabled:text-primary-100;
+
+  &.dropdown-focused {
+    @apply shadow-[0px_0px_0px_1px_#02255B_inset];
+  }
+
+  &.dropdown-focused-error {
+    @apply shadow-[0px_0px_0px_1px_#f87171_inset];
+  }
+
+  &.input-error {
+    @apply border-red-500 text-red-400 placeholder:text-red-400;
+  }
+}
+
+.select-input-options-container {
+  @apply absolute left-0 top-full z-10;
+  @apply rounded-lg border-[1px] border-[#9CA3AF] bg-neutral-50 shadow-lg;
+
+  .scroll-container {
+    @apply mt-1 max-h-72 w-full overflow-auto;
+
+    &::-webkit-scrollbar {
+      width: 3px;
+      height: 8px;
+      background: transparent;
+      padding: 4px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      border-radius: 6px;
+      background-clip: content-box;
+      background: #b3bfc0;
+    }
+  }
+}
+
+.select-input-options-item {
+  @apply cursor-pointer;
+  @apply px-2 py-2 font-[20px] text-neutral-600 hover:bg-primary-100;
+  @apply text-[14px] leading-5;
+}
+
+.select-input-options-item-highlighted {
+  @apply bg-primary-300 text-primary-600;
+}
+
+.select-input-options-item-selected {
+  @apply bg-primary-50 text-primary-500;
+}
+
 .dropdown-input-arrow {
   @apply h-5 w-5 transition-transform duration-300;
 }
