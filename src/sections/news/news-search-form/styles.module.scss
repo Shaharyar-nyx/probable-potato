@@ -21,7 +21,18 @@
 .searchSelect {
   @apply rounded-3xl bg-white max-md:w-full;
 }
-
+.searchTime {
+  @apply px-2;
+}
+.searchDate {
+  @apply flex max-w-[100%] items-center gap-2 rounded-3xl border border-[#a3a8b1] bg-white px-2 text-[#172937];
+}
+.searchDateIcon {
+  @apply items-center;
+}
+.searchDatePicker {
+  @apply flex-grow;
+}
 .searchInput {
   @apply rounded-[100px] bg-white;
   :global(.input-container) {
@@ -29,6 +40,8 @@
     box-shadow: none !important;
     outline: 1px solid #a3a8b1 !important;
     border-radius: 100px;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   ::placeholder {
@@ -44,7 +57,7 @@
 
 .searchInputElem {
   outline: none !important;
-  @apply min-h-[20px] w-full !shadow-none max-lg:min-h-[35px];
+  @apply min-h-[45px] w-full !shadow-none max-lg:min-h-[45px];
   :focus-visible,
   :focus {
     border-color: transparent;

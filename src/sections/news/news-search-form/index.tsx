@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 
 import styles from "./styles.module.scss";
 import { SelectBox, Input } from "@/components";
+import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
+import { debounce } from "lodash";
 
 const CountryIcon: React.FC = () => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,9 +43,21 @@ const SearchKeywordIcon: React.FC = () => (
   </svg>
 );
 
-export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, listTimes, handleFetch }) => {
-  const [search, setSearch] = useState({
-    countries: undefined,
+interface SelectBoxItemProps {
+  value: string;
+  label: string;
+}
+
+interface SearchState {
+  country?: SelectBoxItemProps | null;
+  industries?: SelectBoxItemProps[];
+  times?: DateValueType;
+  keyword?: string;
+}
+
+export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handleFetch }) => {
+  const [search, setSearch] = useState<SearchState>({
+    country: undefined,
     industries: undefined,
     times: undefined,
     keyword: undefined,
@@ -51,14 +65,17 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, listT
 
   const handleChange = (key: string, value: any) => {
     const current: any = { ...search };
-
+    console.log("current", current);
     current[key] = value;
 
     setSearch(current);
-    if (handleFetch) {
-      handleFetch(search);
-    }
+
+    notifyChange();
   };
+
+  const notifyChange = debounce(() => {
+    if (handleFetch) handleFetch(search);
+  }, 300);
 
   return (
     <section className={styles.section}>
@@ -68,14 +85,13 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, listT
             <label className={styles.formLabel}>Filter: </label>
             <SelectBox
               disabled={false}
-              multiple
-              handleChange={(value) => handleChange("countries", value)}
+              handleChange={(value) => handleChange("country", value)}
               svgIcon={<CountryIcon />}
-              label="Incidents by Industry"
-              id="countries"
-              options={listCountry}
+              label="Incidents by Country"
+              id="country"
+              options={listCountry || []}
               className={styles.searchSelect}
-              value={search.countries}
+              value={search.country}
             />
           </div>
           <div className={styles.searchIndustry}>
@@ -94,17 +110,24 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, listT
           </div>
           <div className={styles.searchTime}>
             <label className={styles.formLabel}>&nbsp;</label>
-            <SelectBox
-              disabled={false}
-              multiple
-              id="times"
-              handleChange={(value) => handleChange("times", value)}
-              svgIcon={<TimeIcon />}
-              label="Incidents by Timeframe"
-              options={listTimes}
-              className={styles.searchSelect}
-              value={search.times}
-            />
+            <div className={styles.searchDate}>
+              <div className={styles.searchDateIcon}>
+                <TimeIcon />
+              </div>
+              <div className={styles.searchDatePicker}>
+                <Datepicker
+                  primaryColor={"cyan"}
+                  toggleIcon={() => null}
+                  useRange={false}
+                  value={search.times || null}
+                  onChange={(newValue) => handleChange("times", newValue)}
+                  placeholder="Incidents by Timeframe"
+                  inputClassName="min-h-[45px] rounded-3xl w-full max-md:w-full outline-none pl-2 line-clamp-1 placeholder:text-[#172937] placeholder:line-clamp-1"
+                  containerClassName="bg-white text-black relative rounded-3xl"
+                  toggleClassName="absolute bg-white-300 rounded-r-lg text-black -right-3 h-full px-3 text-gray-400 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed"
+                />
+              </div>
+            </div>
           </div>
 
           <div className={styles.searchKeyword}>
@@ -113,7 +136,7 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, listT
               <Input
                 svgIcon={<SearchKeywordIcon />}
                 placeholder="Enter a keyword ..."
-                value={search.keyword}
+                value={search.keyword || ""}
                 onChange={(event) => handleChange("keyword", event.target.value)}
                 className={styles.searchInputElem}
               />

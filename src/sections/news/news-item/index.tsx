@@ -48,7 +48,7 @@ export const NewsItem: React.FC<NewsItemType> = ({
               <span className={styles.readMoreLink}>Show Less</span>
             </span>
           </span>
-          <span className={clsx(styles.summaryContent, { hidden: !!readMore || isEqualLength })}>
+          <span className={clsx(styles.summaryContent, { hidden: !!readMore })}>
             {summaryContent}{" "}
             <span
               className={clsx(styles.readMore, { hidden: !!readMore || isEqualLength })}

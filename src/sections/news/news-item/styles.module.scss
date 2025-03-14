@@ -7,11 +7,11 @@
 }
 
 .header {
-  @apply flex bg-primary-800 px-4 py-2 font-medium text-[#f6f7f8];
+  @apply flex bg-primary-800 px-4 py-2 text-[#f6f7f8];
 }
 
 .title {
-  @apply line-clamp-1 max-w-[50%] flex-grow border-r border-[#6b7280] pr-2;
+  @apply line-clamp-1 max-w-[50%] flex-grow border-r border-[#6b7280] pr-2 font-semibold;
 }
 
 .country {
@@ -34,7 +34,7 @@
 }
 
 .summaryContent {
-  @apply py-3 text-[#4b5563];
+  @apply line-clamp-2 py-3 text-[#4b5563];
 }
 
 .readMore {

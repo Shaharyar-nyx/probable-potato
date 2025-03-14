@@ -1,109 +1,111 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import debounce from "lodash/debounce";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { NewsItem } from "../news-item";
 import { NewsSearchForm } from "../news-search-form";
 import { AppPagination } from "@/components/UI/pagination";
 import { NewsItemType } from "@/types";
-
+import { request } from "@/lib/request";
 export const NewsList: React.FC<any> = ({ title }) => {
-  const news = Array<NewsItemType>(10).fill({
-    id: 4,
-    corporateName: "Taylor Regional Hospital in Hawkinsville Hit by Cyber Attack",
-    corporateDomain: "example.com",
-    corporateIndustry: "IT",
-    newsSummary:
-      "Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue.Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue. Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue.Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue. Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue.Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue. Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue.Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue. Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue.Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue. Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue.Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue. Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue.Taylor Regional Hospital was targeted by a ransomware attack, but officials quickly responded and managed to contain the issue. There is no immediate evidence of compromised patient data, but investigations continue.",
-    accidentType: "Ransomware",
-    accidentSource: "Internet",
-    accidentDate: "2025-03-10T17:00:00.000Z",
-    country: "VN",
-    countryFlag: "VN",
-    industry: "IT",
-    createdAt: "2025-03-11T15:53:09.801Z",
-    updatedAt: "2025-03-11T15:53:09.801Z",
-    publishedAt: "2025-03-11T15:47:29.029Z",
-  });
-  const countryList = Array<any>(10).fill({
-    country: "VN",
-    countryName: "Viet Nam",
-    countryFlag: "VN",
-  });
-
-  const industryList = Array<any>(10).fill({
-    id: "VN",
-    name: "Healcare",
-  });
-
-  const [currentPage, setCurrentPage] = useState(0);
-  const [form, setForm] = useState({
-    countries: undefined,
+  const limit = 10;
+  const currentPage = useRef(1);
+  const form = useRef({
+    country: undefined,
     industries: undefined,
     times: undefined,
+    startAccidentDate: undefined,
+    endAccidentDate: undefined,
     keyword: undefined,
   });
   const [industries, setIndustries] = useState<any[]>([]);
   const [countries, setCountries] = useState<any[]>([]);
+  const [news, setNews] = useState<NewsItemType[]>([]);
+  const [total, setTotal] = useState<number>(0);
+  const [offset, setOffset] = useState<number>(0);
 
-  const page = 10;
-  const total = 100;
-  const offset = 10;
-
-  const start = currentPage * offset + offset;
-
-  const handleSearch = (value: any) => {
-    console.log("handleSearch", value);
-    setForm(value);
+  const handleSearch = async (value: any) => {
+    form.current = value;
     handleFetch();
   };
 
-  const handleChangePage = (page: number) => {
-    console.log("handleChangePage", page);
-    setCurrentPage(page);
+  const handleChangePage = async (page: number) => {
+    currentPage.current = page;
     handleFetch();
   };
 
-  const handleFetch = () => {
-    const data = { ...form, page: currentPage };
-    debounce(
-      () => {
-        console.log("handleFetch", data);
-      },
-      1000,
-      {},
+  const parseToSearchParams = (values: any) => {
+    const { country, industries, times, keyword } = values;
+    const countryCode = country?.value || undefined;
+    const industriesCode = industries?.map((industry: any) => industry.value);
+    const { startDate, endDate } = times || { startDate: undefined, endDate: undefined };
+
+    // Format dates to YYYY-MM-DD if they exist
+    const formattedStartDate = startDate ? new Date(startDate).toISOString().split("T")[0] : undefined;
+    const formattedEndDate = endDate ? new Date(endDate).toISOString().split("T")[0] : undefined;
+
+    const params = {
+      country: countryCode,
+      startAccidentDate: formattedStartDate,
+      industry: industriesCode && industriesCode[0] ? industriesCode[0] : undefined,
+      endAccidentDate: formattedEndDate,
+      keyword: keyword && typeof keyword === "string" ? ("" + keyword).trim() || undefined : undefined,
+    };
+
+    // Remove undefined, null, empty array or empty string values
+    return Object.fromEntries(
+      Object.entries(params).filter(([_, value]) => {
+        if (Array.isArray(value)) {
+          return value.length > 0;
+        }
+        return value !== undefined && value !== null && value !== "";
+      }),
     );
   };
 
+  const handleFetch = async () => {
+    const formData = parseToSearchParams(form.current);
+    const data = { ...formData, page: currentPage.current, limit };
+    const response = await request("/api/cyber-accidents", data, "GET");
+    const json = await response.json();
+    const { hits, total } = json;
+    setNews(hits);
+    setTotal(total);
+  };
+
   const fetchCountries = async () => {
-    return Promise.resolve(countryList);
+    return request("/api/cyber-accidents/fields/country", {}, "GET");
   };
 
   const fetchIndustries = async () => {
-    return Promise.resolve(industryList);
+    return request("/api/cyber-accidents/fields/industry", {}, "GET");
   };
 
   const init = async () => {
-    const listCountry = await fetchCountries();
-    const listIndustry = await fetchIndustries();
-    const arrCountry = listCountry.map((it) => {
+    const listCountry = await (await fetchCountries()).json();
+    const listIndustry = await (await fetchIndustries()).json();
+    const arrCountry = listCountry.map((it: string) => {
       return {
-        value: it.country,
-        label: it.countryName,
+        value: it,
+        label: it,
       };
     });
 
-    const arrIndustry = listIndustry.map((it) => {
+    const arrIndustry = listIndustry.map((it: string) => {
       return {
-        value: it.id,
-        label: it.name,
+        value: it,
+        label: it,
       };
     });
 
     setCountries(arrCountry);
     setIndustries(arrIndustry);
   };
+
+  useEffect(() => {
+    const start = (currentPage.current > 0 ? currentPage.current - 1 : 0) * limit + news?.length || 0;
+    setOffset(start);
+  }, [news, currentPage]);
 
   useEffect(() => {
     handleFetch();
@@ -116,25 +118,32 @@ export const NewsList: React.FC<any> = ({ title }) => {
         <div className={styles.title}>{title}</div>
         <div className={styles.searchForm}>
           <NewsSearchForm
-            handleFetch={handleSearch}
+            handleFetch={(form: any) => handleSearch(form)}
             listCountry={countries}
             listIndustry={industries}
             listTimes={industries}
           />
         </div>
         <div className={styles.content}>
-          <div className={styles.showing}>
-            Showing {start} of {total} incidents
+          {total > 0 && (
+            <div className={styles.showing}>
+              Showing {offset} of {total} incidents
+            </div>
+          )}
+          <div className={styles.newsList}>
+            {news?.map((item, i) => <NewsItem key={`news-item-${i}`} {...item} />)}
+            {news?.length === 0 && <div className={styles.noData}>Nothing to show</div>}
           </div>
-          {news?.map((item, i) => <NewsItem key={`news-item-${i}`} {...item} />)}
-          <div className={styles.paginationWrap}>
-            <AppPagination
-              total={total}
-              pageSize={offset}
-              className={styles.pagination}
-              handleChangePage={(page: number) => handleChangePage(page)}
-            />
-          </div>
+          {total > 0 && total > limit && (
+            <div className={styles.paginationWrap}>
+              <AppPagination
+                total={total}
+                pageSize={limit}
+                className={styles.pagination}
+                handleChangePage={(page: number) => handleChangePage(page)}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
