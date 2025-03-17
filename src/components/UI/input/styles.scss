@@ -164,6 +164,10 @@
   @apply h-5 w-5 transition-transform duration-300;
 }
 
+.selectbox-input-arrow {
+  @apply h-3 w-3 transition-transform duration-300;
+}
+
 .dropdown-input-options-container {
   @apply absolute left-0 top-full z-10;
   @apply mt-1 max-h-72 w-full overflow-auto px-3 py-2;

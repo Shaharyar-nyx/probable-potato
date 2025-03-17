@@ -185,7 +185,7 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
         </div>
         <ChevronDownIcon
           className={clsx(
-            "dropdown-input-arrow",
+            "selectbox-input-arrow",
             isOpen ? "rotate-180" : "rotate-0",
             disabled
               ? "text-primary-100"

@@ -122,7 +122,7 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
                   value={search.times || null}
                   onChange={(newValue) => handleChange("times", newValue)}
                   placeholder="Incidents by Timeframe"
-                  inputClassName="min-h-[45px] rounded-3xl w-full max-md:w-full outline-none pl-2 line-clamp-1 placeholder:text-[#172937] placeholder:line-clamp-1"
+                  inputClassName="min-h-[45px] rounded-3xl w-full max-md:w-full outline-none text-[14px] pl-2 line-clamp-1 placeholder:text-[#172937] placeholder:line-clamp-1 placeholder:text-[14px]"
                   containerClassName="bg-white text-black relative rounded-3xl"
                   toggleClassName="absolute bg-white-300 rounded-r-lg text-black -right-3 h-full px-3 text-gray-400 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed"
                 />
