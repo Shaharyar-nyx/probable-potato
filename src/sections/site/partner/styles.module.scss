@@ -1,14 +1,14 @@
 .container {
-  @apply relative mx-auto w-full max-w-screen-2xl pt-[120px] pb-[60px] overflow-hidden;
+  @apply relative mx-auto w-full max-w-screen-2xl pb-[60px] pt-[120px];
 
   /* Mobile responsiveness */
   @media (max-width: 768px) {
-    @apply pt-[60px] pb-[30px]; /* Reduced top and bottom padding for mobile */
+    @apply pb-[30px] pt-[60px]; /* Reduced top and bottom padding for mobile */
   }
 }
 
 .containerWrap {
-  @apply flex justify-center items-center flex-wrap gap-8 mx-auto max-w-[1321px];
+  @apply mx-auto flex max-w-[1321px] flex-wrap items-center justify-center gap-8;
 
   /* Adjust for mobile screens */
   @media (max-width: 768px) {
@@ -18,7 +18,7 @@
 }
 
 .offers {
-  @apply w-[175px] mx-auto text-center font-normal text-sm text-[#02255B] rounded-xl gap-2 py-1 px-5;
+  @apply mx-auto w-[175px] gap-2 rounded-xl px-5 py-1 text-center text-sm font-normal text-[#02255B];
 
   /* Adjust for smaller screens */
   @media (max-width: 768px) {
@@ -28,15 +28,15 @@
 }
 
 .heading {
-  @apply text-[#02255B] font-bold text-[48px] text-center max-w-[60%] m-auto;
+  @apply m-auto max-w-[60%] text-center text-[48px] font-bold text-[#02255B];
 
   @media (max-width: 768px) {
-    @apply text-[32px] max-w-full; /* Adjust heading font size on smaller screens */
+    @apply max-w-full text-[32px]; /* Adjust heading font size on smaller screens */
   }
 }
 
 .description {
-  @apply text-[#4B5563] font-normal text-[16px] text-center;
+  @apply text-center text-[16px] font-normal text-[#4B5563];
 
   @media (max-width: 768px) {
     @apply text-sm; /* Smaller text size on mobile */
@@ -44,7 +44,7 @@
 }
 
 .detail {
-  @apply flex justify-between align-middle mt-14;
+  @apply mt-14 flex justify-between align-middle;
 
   @media (max-width: 768px) {
     @apply flex-col gap-4; /* Stack the items vertically on smaller screens */
@@ -53,15 +53,15 @@
 }
 
 .left {
-  @apply flex justify-between flex-wrap align-top gap-y-10 gap-x-8;
+  @apply flex flex-wrap justify-between gap-x-8 gap-y-10 align-top;
 
   @media (max-width: 768px) {
-    @apply flex-col gap-4 mx-4; /* Stack the items vertically on smaller screens */
+    @apply mx-4 flex-col gap-4; /* Stack the items vertically on smaller screens */
   }
 }
 
 .right {
-  @apply justify-end w-[568px] min-w-[568px];
+  @apply w-[568px] min-w-[568px] justify-end;
 
   @media (max-width: 768px) {
     @apply w-full; /* Make right section full width on mobile */
@@ -70,7 +70,7 @@
 }
 
 .leftItem {
-  @apply w-[calc(50%-16px)] flex justify-between gap-[12px];
+  @apply flex w-[calc(50%-16px)] justify-between gap-[12px];
 
   @media (max-width: 768px) {
     @apply w-full; /* Make left items full width on mobile */

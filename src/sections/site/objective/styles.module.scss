@@ -1,8 +1,8 @@
 .container {
-  @apply relative mx-auto w-full max-w-screen-2xl pt-[120px] pb-[60px] overflow-hidden;
+  @apply relative mx-auto w-full max-w-screen-2xl pb-[60px] pt-[120px];
 
   @media (max-width: 768px) {
-    @apply pt-[60px] pb-[30px]; /* Reduced padding on mobile */
+    @apply pb-[30px] pt-[60px]; /* Reduced padding on mobile */
   }
 }
 
@@ -15,7 +15,7 @@
 }
 
 .offers {
-  @apply w-fit mx-auto text-center font-normal text-sm text-[#02255B] rounded-xl gap-2 py-1 px-5;
+  @apply mx-auto w-fit gap-2 rounded-xl px-5 py-1 text-center text-sm font-normal text-[#02255B];
 
   @media (max-width: 768px) {
     @apply w-fit px-4; /* Full width on smaller screens */
@@ -27,9 +27,8 @@
   }
 }
 
-
 .heading {
-  @apply text-[#02255B] font-bold text-[48px] text-center;
+  @apply text-center text-[48px] font-bold text-[#02255B];
 
   @media (max-width: 768px) {
     @apply text-[32px]; /* Adjust heading size for mobile */
@@ -37,7 +36,7 @@
 }
 
 .description {
-  @apply text-[#4B5563] font-normal text-[16px] text-center;
+  @apply text-center text-[16px] font-normal text-[#4B5563];
 
   @media (max-width: 768px) {
     @apply text-[14px]; /* Slightly smaller font on mobile */
@@ -53,19 +52,18 @@
 }
 
 .left {
-  @apply flex justify-between flex-wrap gap-[60px] px-6;
+  @apply mx-auto flex max-w-[1090px] flex-wrap items-center justify-between gap-[80px];
 
   @media (max-width: 768px) {
     @apply gap-[16px] px-4; /* Reduced gap and padding on mobile */
   }
 }
 
-
 .item {
-  @apply bg-[#02255B] text-[#f9fafb] max-w-[310px] h-[280px] rounded-[12px] gap-[20px] p-[40px];
+  @apply h-[280px] max-w-[310px] rounded-[12px] bg-[#02255B] p-[40px] text-[#f9fafb];
 
   @media (max-width: 768px) {
-    @apply max-w-[100%] w-full h-auto p-4; /* Adjust item width and padding for mobile */
+    @apply h-auto w-full max-w-[100%] p-4; /* Adjust item width and padding for mobile */
   }
 }
 
