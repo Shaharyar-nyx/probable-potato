@@ -454,7 +454,7 @@ export interface SelectBoxProps {
   label: string;
   multiple?: boolean;
   options: SelectBoxItemProps[];
-  value?: SelectBoxItemProps[];
+  value?: null | SelectBoxItemProps | SelectBoxItemProps[];
   onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;

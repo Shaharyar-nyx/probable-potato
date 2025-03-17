@@ -45,18 +45,32 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
   };
 
   const handleSelect = (selectedOption: any) => {
-    if (disabled) return;
-    if (handleChange) {
-      if (multiple) {
-        const newValue = selectedValues.includes(selectedOption)
-          ? selectedValues.filter((v) => v !== selectedOption)
-          : [...selectedValues, selectedOption];
-        handleChange(newValue);
-      } else {
-        handleChange(selectedOption);
-        setIsOpen(false);
-      }
+    if (disabled || !handleChange) {
+      return;
     }
+
+    if (multiple) {
+      handleSelectMultiple(selectedOption);
+      return;
+    }
+
+    handleSelectSingle(selectedOption);
+  };
+
+  const handleSelectMultiple = (selectedOption: any) => {
+    const newValue = selectedValues.includes(selectedOption)
+      ? selectedValues.filter((v) => v !== selectedOption)
+      : [...selectedValues, selectedOption];
+
+    if (handleChange) handleChange(newValue);
+
+    setHighlightedIndex(-1);
+  };
+
+  const handleSelectSingle = (selectedOption: any) => {
+    if (handleChange) handleChange(selectedOption);
+    setIsOpen(false);
+
     setHighlightedIndex(-1);
   };
 
@@ -99,9 +113,9 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
 
   const displayValue: string = multiple
     ? selectedLength > 0
-      ? [label, selectedLength > 1 ? `<span style="color:#367de9;">(${selectedValues.length})</span>` : ""].join(" ")
-      : label
-    : label;
+      ? [label, selectedLength >= 1 ? ` <span style="color:#367de9;">(${selectedValues.length})</span>` : ""].join("")
+      : [label, selectedValues && selectedValues.length > 0 ? ` <span style="color:#367de9;">(1)</span>` : ""].join("")
+    : [label, selectedValues && selectedValues.length > 0 ? ` <span style="color:#367de9;">(1)</span>` : ""].join("");
 
   return (
     <div ref={dropdownRef} className={clsx("select-container", className)}>

@@ -15,12 +15,19 @@
 }
 
 .showing {
-  @apply mt-2 flex justify-end;
+  @apply mb-1 mt-2 flex justify-end;
 }
 
 .paginationWrap {
-  @apply mx-auto mt-2 flex max-w-[100%] justify-center;
+  @apply mx-auto mb-16 mt-4 flex max-w-[100%] justify-center;
 }
 .pagination {
   @apply max-w-[100%];
+}
+.newsList {
+  @apply min-h-[400px];
+}
+
+.noData {
+  @apply mx-auto py-5 text-center;
 }

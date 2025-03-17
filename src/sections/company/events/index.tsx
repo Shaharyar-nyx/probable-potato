@@ -1,6 +1,6 @@
 "use client";
 
-import moment from "moment";
+import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useMemo } from "react";
@@ -105,7 +105,7 @@ export const Events: React.FC<EventsProps> = ({ title, subtitle, content, upcomi
                     </div>
                     <div className={styles.detailItem}>
                       <IconRenderer className={styles.icon} iconName="CalendarIcon" />
-                      <span className={`${styles.text} heading-7`}>{moment(event.date).format("dddd DD")}</span>
+                      <span className={`${styles.text} heading-7`}>{dayjs(event.date).format("dddd DD")}</span>
                     </div>
                   </div>
                   <div className={styles.actionButton}>
