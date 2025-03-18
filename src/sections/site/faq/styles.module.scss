@@ -1,24 +1,24 @@
 .container {
-  @apply relative w-full my-20 overflow-hidden;
+  @apply relative my-20 w-full;
 }
 
 .content {
-  @apply mx-auto max-w-full sm:max-w-[1321px] relative overflow-hidden;
+  @apply relative mx-auto max-w-full sm:max-w-[1321px];
 }
 
 .header {
-  @apply my-4 sm:my-6 text-center;
+  @apply my-4 text-center sm:my-6;
 }
 .title {
-  @apply text-[#02255b] font-bold text-[48px] leading-[48px];
+  @apply text-[48px] font-bold leading-[48px] text-[#02255b];
 }
 
 .offers {
-  @apply w-fit sm:w-max mx-auto text-center font-normal text-sm text-[#02255B] rounded-xl gap-2 py-1 px-5;
+  @apply mx-auto w-fit gap-2 rounded-xl px-5 py-1 text-center text-sm font-normal text-[#02255B] sm:w-max;
 }
 
 .section {
-  @apply w-full max-w-[816px] flex flex-row justify-center items-center mx-auto sm:flex-wrap sm:gap-4 mt-[60px];
+  @apply mx-auto mt-[60px] flex w-full max-w-[816px] flex-row items-center justify-center sm:flex-wrap sm:gap-4;
 }
 
 .list {
@@ -26,25 +26,24 @@
 }
 
 .itemWrap {
-  @apply transition-all duration-200 bg-[#F6F7F8] border border-[#C1C4CA] rounded-2xl gap-2 sm:gap-4;
+  @apply gap-2 rounded-2xl border border-[#C1C4CA] bg-[#F6F7F8] transition-all duration-200 sm:gap-4;
   //border-image-source: linear-gradient(310.06deg, rgba(66, 126, 218, 0.4) 23.76%, rgba(66, 126, 218, 0.08) 77.93%);
 }
 
 .itemButton {
-  @apply flex items-center justify-between w-full px-4 py-3 sm:p-6 text-[#4B5563] font-semibold;
+  @apply flex w-full items-center justify-between px-4 py-3 font-semibold text-[#4B5563] sm:p-6;
 }
 
 .itemButtonText {
-  @apply flex text-base sm:text-lg font-semibold text-[#4b5563];
+  @apply flex text-base font-semibold text-[#4b5563] sm:text-lg;
 }
 
 .itemButtonIcon {
-  @apply w-6 h-6 text-gray-400;
+  @apply h-6 w-6 text-gray-400;
 }
 
 .itemContent {
-  @apply px-3 pb-4 sm:px-6 sm:pb-6 text-[#4b5563];
-  
+  @apply px-3 pb-4 text-[#4b5563] sm:px-6 sm:pb-6;
 }
 
 .itemContent ul {
@@ -56,7 +55,7 @@
 }
 
 .line {
-  @apply w-full px-3 mb-4 sm:px-6 sm:mb-6 h-[1px] bg-[#B4CEF7];
+  @apply mb-4 h-[1px] w-full bg-[#B4CEF7] px-3 sm:mb-6 sm:px-6;
 }
 
 /* Mobile-first adjustments */
@@ -66,7 +65,7 @@
   }
 
   .offers {
-    @apply text-sm py-1 px-4; /* Make offers button smaller */
+    @apply px-4 py-1 text-sm; /* Make offers button smaller */
   }
 
   .section {
