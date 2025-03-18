@@ -7,6 +7,7 @@ import { NewsSearchForm } from "../news-search-form";
 import { AppPagination } from "@/components/UI/pagination";
 import { NewsItemType } from "@/types";
 import { request } from "@/lib/request";
+import { Spinner } from "@/components";
 export const NewsList: React.FC<any> = ({ title }) => {
   const limit = 10;
   const currentPage = useRef(1);
@@ -23,6 +24,7 @@ export const NewsList: React.FC<any> = ({ title }) => {
   const [news, setNews] = useState<NewsItemType[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [offset, setOffset] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSearch = async (value: any) => {
     form.current = value;
@@ -64,13 +66,19 @@ export const NewsList: React.FC<any> = ({ title }) => {
   };
 
   const handleFetch = async () => {
-    const formData = parseToSearchParams(form.current);
-    const data = { ...formData, page: currentPage.current, limit };
-    const response = await request("/api/cyber-accidents", data, "GET");
-    const json = await response.json();
-    const { hits, total } = json;
-    setNews(hits);
-    setTotal(total);
+    setLoading(true);
+    try {
+      const formData = parseToSearchParams(form.current);
+      const data = { ...formData, page: currentPage.current, limit };
+      const response = await request("/api/cyber-accidents", data, "GET");
+      const json = await response.json();
+      const { hits, total } = json;
+      setNews(hits);
+      setTotal(total);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   const fetchCountries = async () => {
@@ -125,6 +133,11 @@ export const NewsList: React.FC<any> = ({ title }) => {
           />
         </div>
         <div className={styles.content}>
+          {loading && (
+            <div className={styles.loading}>
+              <Spinner className={styles.spinner} />
+            </div>
+          )}
           {total > 0 && (
             <div className={styles.showing}>
               Showing {offset} of {total} incidents

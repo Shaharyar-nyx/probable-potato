@@ -31,3 +31,11 @@
 .noData {
   @apply mx-auto py-5 text-center;
 }
+
+.loading {
+  @apply z-[100] flex hidden h-full w-full items-center justify-center;
+}
+
+.spinner {
+  @apply h-10 w-10;
+}
