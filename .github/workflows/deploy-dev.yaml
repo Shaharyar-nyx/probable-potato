@@ -1,8 +1,8 @@
-name: Deploy to Production
+name: Deploy to Development
 
 on:
-  release:
-    types: [released]
+  push:
+    branches: ["staging"]
 
 jobs:
   deploy:
@@ -12,13 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DOCKER_REGISTRY: ${{ vars.PROD_DOCKER_REGISTRY }}
-      ROLE_ARN: ${{ vars.PROD_DEPLOY_ROLE_ARN }}
-      ENV_VARIABLES: ${{ vars.ENV_PROD }}
-      CLOUDFRONT_DISTRIBUTION_ID: E1NK0FXZECIVUI
+      DOCKER_REGISTRY: ${{ vars.DEV_DOCKER_REGISTRY }}
+      ROLE_ARN: ${{ vars.DEV_DEPLOY_ROLE_ARN }}
+      ENV_VARIABLES: ${{ vars.ENV_DEV }}
+      CLOUDFRONT_DISTRIBUTION_ID: E2J3NEL2L4FNRQ
 
       AWS_DEFAULT_REGION: ap-southeast-1
-      ENVIRONMENT: production
+      ENVIRONMENT: development
 
     steps:
       - name: Checkout code
@@ -49,12 +49,14 @@ jobs:
           docker build --platform=linux/amd64 -t public-web-revamp:latest .
 
           # Tag
-          docker tag public-web-revamp:latest ${DOCKER_REGISTRY}/microservice-public-web-revamp:latest
-          docker tag public-web-revamp:latest ${DOCKER_REGISTRY}/microservice-public-web-revamp:${{ steps.get_version.outputs.VERSION }}
+          docker tag public-web-revamp:latest ${DOCKER_REGISTRY}/cb-helios-public-web:latest
           
           # Push both tags
-          docker push ${DOCKER_REGISTRY}/microservice-public-web-revamp:latest
-          docker push ${DOCKER_REGISTRY}/microservice-public-web-revamp:${{ steps.get_version.outputs.VERSION }}
+          docker push ${DOCKER_REGISTRY}/cb-helios-public-web:latest
           
           # Update the ECS service to use the new deployment
-          aws ecs update-service --cluster example-ecs-cluster --service public-web-revamp --force-new-deployment
+          aws ecs update-service --cluster helios-cooperate-ecs-cluster --service helios-public-web --force-new-deployment
+
+      - name: Invalidate CloudFront Distribution
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
