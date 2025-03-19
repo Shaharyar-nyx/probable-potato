@@ -17,7 +17,7 @@ export const NewsList: React.FC<any> = ({ title }) => {
     times: undefined,
     startAccidentDate: undefined,
     endAccidentDate: undefined,
-    keyword: undefined,
+    corporateName: undefined,
   });
   const [industries, setIndustries] = useState<any[]>([]);
   const [countries, setCountries] = useState<any[]>([]);
@@ -37,7 +37,7 @@ export const NewsList: React.FC<any> = ({ title }) => {
   };
 
   const parseToSearchParams = (values: any) => {
-    const { country, industries, times, keyword } = values;
+    const { country, industries, times, corporateName } = values;
     const countryCode = country?.value || undefined;
     const industriesCode = industries?.map((industry: any) => industry.value);
     const { startDate, endDate } = times || { startDate: undefined, endDate: undefined };
@@ -51,7 +51,7 @@ export const NewsList: React.FC<any> = ({ title }) => {
       startAccidentDate: formattedStartDate,
       industry: industriesCode && industriesCode[0] ? industriesCode[0] : undefined,
       endAccidentDate: formattedEndDate,
-      keyword: keyword && typeof keyword === "string" ? ("" + keyword).trim() || undefined : undefined,
+      corporateName: corporateName && typeof corporateName === "string" ? ("" + corporateName).trim() || undefined : undefined,
     };
 
     // Remove undefined, null, empty array or empty string values
