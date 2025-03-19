@@ -3,7 +3,7 @@
 
   /* Mobile responsiveness */
   @media (max-width: 768px) {
-    @apply pb-[30px] pt-[60px]; /* Reduced top and bottom padding for mobile */
+    @apply overflow-hidden pb-[30px] pt-[60px]; /* Reduced top and bottom padding for mobile */
   }
 }
 
@@ -53,10 +53,10 @@
 }
 
 .left {
-  @apply flex flex-wrap justify-between gap-x-8 gap-y-10 align-top;
+  @apply flex flex-wrap justify-start gap-x-14 gap-y-8 pr-8 align-top;
 
   @media (max-width: 768px) {
-    @apply mx-4 flex-col gap-4; /* Stack the items vertically on smaller screens */
+    @apply mx-4 flex-col gap-4 pr-0; /* Stack the items vertically on smaller screens */
   }
 }
 
@@ -70,10 +70,10 @@
 }
 
 .leftItem {
-  @apply flex w-[calc(50%-16px)] justify-between gap-[12px];
+  @apply flex w-[calc(50%-16px)] max-w-[295px] justify-between gap-[12px];
 
   @media (max-width: 768px) {
-    @apply w-full; /* Make left items full width on mobile */
+    @apply w-full max-w-full; /* Make left items full width on mobile */
   }
 }
 
@@ -95,4 +95,12 @@
   @media (max-width: 768px) {
     @apply w-full; /* Make content full width on mobile */
   }
+}
+
+.listLeft {
+  @apply text-sm font-medium leading-[24px] text-neutral-800;
+}
+
+.listRight {
+  @apply mt-2 text-[12px] font-normal leading-[18px] text-neutral-600;
 }

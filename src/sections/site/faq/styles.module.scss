@@ -1,5 +1,9 @@
 .container {
   @apply relative my-20 w-full;
+
+  @media (max-width: 768px) {
+    @apply overflow-hidden; /* Ensure the container is full width on smaller screens */
+  }
 }
 
 .content {
