@@ -22,7 +22,7 @@
   @apply rounded-3xl bg-white pr-0 max-md:w-full;
 }
 .searchTime {
-  @apply px-2;
+  @apply min-w-[20%];
 }
 .searchDate {
   @apply flex max-w-[100%] items-center gap-2 rounded-3xl border border-[#a3a8b1] bg-white px-2 text-[#172937];
@@ -31,7 +31,7 @@
   @apply items-center;
 }
 .searchDatePicker {
-  @apply flex-grow;
+  @apply flex-grow rounded-3xl;
 }
 .searchInput {
   @apply rounded-[100px] bg-white;

@@ -2,7 +2,7 @@
   @apply relative mx-auto w-full max-w-screen-2xl pb-[60px] pt-[120px];
 
   @media (max-width: 768px) {
-    @apply pb-[30px] pt-[60px]; /* Reduced padding on mobile */
+    @apply overflow-hidden pb-[30px] pt-[60px]; /* Reduced padding on mobile */
   }
 }
 
