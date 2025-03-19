@@ -48,34 +48,38 @@ interface SelectBoxItemProps {
   label: string;
 }
 
-interface SearchState {
-  country?: SelectBoxItemProps | null;
-  industries?: SelectBoxItemProps[];
-  times?: DateValueType;
-  keyword?: string;
-}
-
 export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handleFetch }) => {
-  const [search, setSearch] = useState<SearchState>({
-    country: undefined,
-    industries: undefined,
-    times: undefined,
-    keyword: undefined,
-  });
+  const [country, setCountry] = useState<any>(undefined);
+  const [industries, setIndustries] = useState<any>(undefined);
+  const [times, setTimes] = useState<any>(undefined);
+  const [corporateName, setCorporateName] = useState<any>(undefined);
 
   const handleChange = (key: string, value: any) => {
-    const current: any = { ...search };
-    console.log("current", current);
-    current[key] = value;
-
-    setSearch(current);
-
-    notifyChange();
+    const params: any = {country, industries, times, corporateName};
+    params[key] = value;
+    switch(key) {
+      case 'country':
+        setCountry(value);
+        break;
+      case 'industries':
+        setIndustries(value);
+      case 'times':
+        setTimes(value);
+        break;
+      case 'corporateName':
+        setCorporateName(value);
+        break;
+      default:
+        break;
+    }
+    notifyChange(params);
   };
 
-  const notifyChange = debounce(() => {
-    if (handleFetch) handleFetch(search);
-  }, 300);
+  const notifyChange =  useCallback(
+    debounce((params: any) => {
+      if (handleFetch) handleFetch(params);
+    }, 300),
+  []);
 
   return (
     <section className={styles.section}>
@@ -91,7 +95,7 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
               id="country"
               options={listCountry || []}
               className={styles.searchSelect}
-              value={search.country}
+              value={country}
             />
           </div>
           <div className={styles.searchIndustry}>
@@ -105,7 +109,7 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
               label="Incidents by Industry"
               options={listIndustry}
               className={styles.searchSelect}
-              value={search.industries}
+              value={industries}
             />
           </div>
           <div className={styles.searchTime}>
@@ -119,7 +123,7 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
                   primaryColor={"cyan"}
                   toggleIcon={() => null}
                   useRange={false}
-                  value={search.times || null}
+                  value={times || null}
                   onChange={(newValue) => handleChange("times", newValue)}
                   placeholder="Incidents by Timeframe"
                   inputClassName="min-h-[45px] rounded-3xl w-full max-md:w-full outline-none text-[14px] pl-2 line-clamp-1 placeholder:text-[#172937] placeholder:line-clamp-1 placeholder:text-[14px]"
@@ -136,8 +140,8 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
               <Input
                 svgIcon={<SearchKeywordIcon />}
                 placeholder="Enter a keyword ..."
-                value={search.keyword || ""}
-                onChange={(event) => handleChange("keyword", event.target.value)}
+                value={corporateName || ""}
+                onChange={(event) => handleChange("corporateName", event.target.value)}
                 className={styles.searchInputElem}
               />
             </div>
