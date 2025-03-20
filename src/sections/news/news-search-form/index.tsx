@@ -49,17 +49,17 @@ interface SelectBoxItemProps {
 }
 
 export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handleFetch }) => {
-  const [country, setCountry] = useState<any>(undefined);
+  const [countries, setCountries] = useState<any>(undefined);
   const [industries, setIndustries] = useState<any>(undefined);
   const [times, setTimes] = useState<any>(undefined);
   const [corporateName, setCorporateName] = useState<any>(undefined);
 
   const handleChange = (key: string, value: any) => {
-    const params: any = {country, industries, times, corporateName};
+    const params: any = {countries, industries, times, corporateName};
     params[key] = value;
     switch(key) {
-      case 'country':
-        setCountry(value);
+      case 'countries':
+        setCountries(value);
         break;
       case 'industries':
         setIndustries(value);
@@ -88,14 +88,15 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
           <div className={styles.searchCountry}>
             <label className={styles.formLabel}>Filter: </label>
             <SelectBox
+              multiple
               disabled={false}
-              handleChange={(value) => handleChange("country", value)}
+              handleChange={(value) => handleChange("countries", value)}
               svgIcon={<CountryIcon />}
               label="Incidents by Country"
-              id="country"
+              id="countries"
               options={listCountry || []}
               className={styles.searchSelect}
-              value={country}
+              value={countries}
             />
           </div>
           <div className={styles.searchIndustry}>

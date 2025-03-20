@@ -78,7 +78,7 @@
 }
 
 .select-container {
-  @apply relative pr-[4px];
+  @apply relative;
 
   .select-input-options-item {
     @apply flex cursor-pointer items-center gap-2 px-4 py-2 text-sm text-neutral-400 hover:bg-neutral-50;
