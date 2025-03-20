@@ -1,15 +1,15 @@
-function buildParams(data) {
-  const params = new URLSearchParams()
+const buildQuery = (data: any): string => {
+  const params = new URLSearchParams();
 
   Object.entries(data).forEach(([key, value]) => {
       if (Array.isArray(value)) {
-          value.forEach(value => params.append(key, value.toString()))
+        value.forEach(value => params.append(key, (value ?? '').toString()));
       } else {
-          params.append(key, value.toString())
+        params.append(key, (value ?? '').toString());
       }
   });
 
-  return params.toString()
+  return params.toString();
 }
 
 export const request = async (uri: string, data: any, method: string = "GET") => {
@@ -23,7 +23,7 @@ export const request = async (uri: string, data: any, method: string = "GET") =>
     },
   };
   if (method === "GET") {
-    const params = buildParams(data ?? {});
+    const params = buildQuery(data ?? {});
     return fetch(`${url}?${params}`, options);
   }
 
