@@ -11,22 +11,22 @@
 }
 
 .title {
-  @apply line-clamp-1 max-w-[50%] flex-grow border-r border-[#6b7280] pr-2 font-semibold;
+  @apply line-clamp-1 max-w-[50%] flex-grow border-r border-[#6b7280] pr-2 text-[18px] font-semibold leading-7;
 }
 
 .country {
-  @apply line-clamp-1 flex w-[15%] items-center justify-start border-r border-[#6b7280] px-2;
+  @apply line-clamp-1 flex w-[15%] items-center justify-start border-r border-[#6b7280] px-2 text-[18px] font-normal leading-7;
 }
 
 .flag {
   @apply mr-2 h-4 w-4 rounded-full object-cover;
 }
 .industry {
-  @apply line-clamp-1 w-[15%] border-r border-[#6b7280] px-2;
+  @apply line-clamp-1 w-[15%] border-r border-[#6b7280] px-2 text-[18px] font-normal leading-7;
 }
 
 .date {
-  @apply line-clamp-1 w-[20%] px-2;
+  @apply line-clamp-1 w-[20%] px-2 text-[18px] font-normal leading-7;
 }
 
 .content {
