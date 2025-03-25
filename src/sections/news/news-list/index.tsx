@@ -12,12 +12,12 @@ export const NewsList: React.FC<any> = ({ title }) => {
   const limit = 10;
   const currentPage = useRef(1);
   const form = useRef({
-    country: undefined,
+    countries: undefined,
     industries: undefined,
     times: undefined,
     startAccidentDate: undefined,
     endAccidentDate: undefined,
-    keyword: undefined,
+    corporateName: undefined,
   });
   const [industries, setIndustries] = useState<any[]>([]);
   const [countries, setCountries] = useState<any[]>([]);
@@ -37,8 +37,8 @@ export const NewsList: React.FC<any> = ({ title }) => {
   };
 
   const parseToSearchParams = (values: any) => {
-    const { country, industries, times, keyword } = values;
-    const countryCode = country?.value || undefined;
+    const { countries, industries, times, corporateName } = values;
+    const countriesCode = countries?.map((country: any) => country.value);
     const industriesCode = industries?.map((industry: any) => industry.value);
     const { startDate, endDate } = times || { startDate: undefined, endDate: undefined };
 
@@ -47,11 +47,11 @@ export const NewsList: React.FC<any> = ({ title }) => {
     const formattedEndDate = endDate ? new Date(endDate).toISOString().split("T")[0] : undefined;
 
     const params = {
-      country: countryCode,
+      country: countriesCode ?? undefined,
       startAccidentDate: formattedStartDate,
-      industry: industriesCode && industriesCode[0] ? industriesCode[0] : undefined,
+      industry: industriesCode ?? undefined,
       endAccidentDate: formattedEndDate,
-      keyword: keyword && typeof keyword === "string" ? ("" + keyword).trim() || undefined : undefined,
+      corporateName: corporateName && typeof corporateName === "string" ? ("" + corporateName).trim() || undefined : undefined,
     };
 
     // Remove undefined, null, empty array or empty string values
@@ -92,14 +92,14 @@ export const NewsList: React.FC<any> = ({ title }) => {
   const init = async () => {
     const listCountry = await (await fetchCountries()).json();
     const listIndustry = await (await fetchIndustries()).json();
-    const arrCountry = listCountry.map((it: string) => {
+    const arrCountry = listCountry?.filter( (it: string) => it ).map((it: string) => {
       return {
         value: it,
         label: it,
       };
     });
 
-    const arrIndustry = listIndustry.map((it: string) => {
+    const arrIndustry = listIndustry?.filter( (it: string) => it ).map((it: string) => {
       return {
         value: it,
         label: it,
