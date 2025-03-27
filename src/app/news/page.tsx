@@ -1,14 +1,13 @@
 import React from "react";
 
-import { Header } from "@/components";
-import { CTA, NewsList } from "@/sections";
+import { CTA, NewsList, NewsHero } from "@/sections";
 import { BlockType } from "@/types";
 import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { Metadata } from "next";
 
 const blockComponents: Record<string, React.FC<BlockType>> = {
-  hero_section: Header,
+  hero_section: NewsHero,
   news_section: NewsList,
   cta_section: CTA,
 };
