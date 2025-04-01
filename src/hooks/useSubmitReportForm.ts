@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import useCaptcha, { CaptchaAction } from "./useCaptcha";
 import { ReportFormType } from "@/types";
 import { cyberbayClient } from "@/lib/forms";
 import { UseFormReset } from "react-hook-form";
@@ -46,27 +45,16 @@ export function useSubmitReport(reset: UseFormReset<ReportFormType>) {
   const [error, setError] = useState<Error | null>(null);
   const [data, setData] = useState<{ message: string } | null>(null);
   const [called, setCalled] = useState(false);
-  const executeRecaptcha = useCaptcha();
 
   function submit(payload: ReportFormType) {
     setLoading(true);
 
-    executeRecaptcha(CaptchaAction.FREE_REPORT_FORM_SUBMIT)
-      .then(() => {
-        console.log("Captcha verified");
-        submitReport(payload, reset, (err, data) => {
-          setLoading(false);
-          setCalled(true);
-          setError(err);
-          setData(data);
-        });
-      })
-      .catch((err) => {
-        console.log("Captcha verification failed");
-        setLoading(false);
-        setCalled(true);
-        setError(err instanceof Error ? err : new Error("Captcha verification failed"));
-      });
+    submitReport(payload, reset, (err, data) => {
+      setLoading(false);
+      setCalled(true);
+      setError(err);
+      setData(data);
+    });
   }
   return { loading, error, data, submit, called };
 }
