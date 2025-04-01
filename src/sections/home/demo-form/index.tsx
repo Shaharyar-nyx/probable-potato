@@ -14,7 +14,7 @@ import { formatBtnId } from "@/lib";
 import { RECAPTCHA_SITE_KEY } from "@/lib/constants";
 import { toast } from "react-toastify";
 
-export const DemoForm: React.FC<{ id: string }> = ({ id }) => {
+export const DemoForm: React.FC<{ id: string; onSuccess?: () => void }> = ({ id, onSuccess }) => {
   const isMobile = useIsMobile();
   const {
     register,
@@ -44,6 +44,18 @@ export const DemoForm: React.FC<{ id: string }> = ({ id }) => {
       setRecaptchaToken(null);
     }
   };
+
+  // Call onSuccess callback if submission was successful and onSuccess is provided
+  React.useEffect(() => {
+    if (shouldShowSuccessMessage && onSuccess) {
+      // Add a small delay to allow the user to see the success message
+      const timer = setTimeout(() => {
+        onSuccess();
+      }, 1500);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [shouldShowSuccessMessage, onSuccess]);
 
   const handleRecaptchaChange = (token: string | null) => {
     setRecaptchaToken(token);

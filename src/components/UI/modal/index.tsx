@@ -31,15 +31,15 @@ export const Modal: React.FC<ModalProps> = ({
   const getModalContent = useMemo(() => {
     switch (cta?.isModal) {
       case "contact_sales_form":
-        return <ContactSalesForm id={id || cta?.label} />;
+        return <ContactSalesForm id={id || cta?.label} onSuccess={closeModal} />;
       case "demo_form":
-        return <DemoForm id={id || cta?.label} />;
+        return <DemoForm id={id || cta?.label} onSuccess={closeModal} />;
       case "free_report_form":
-        return <ReportForm id={id || cta?.label} />;
+        return <ReportForm id={id || cta?.label} onSuccess={closeModal} />;
       default:
         return null;
     }
-  }, [cta]);
+  }, [cta, id, closeModal]);
 
   return (
     <>

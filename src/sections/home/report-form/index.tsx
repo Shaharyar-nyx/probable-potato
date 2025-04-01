@@ -7,8 +7,9 @@ import { useForm } from "react-hook-form";
 import { useSubmitReport } from "@/hooks/useSubmitReportForm";
 import { useIsMobile } from "@/hooks";
 import { formatBtnId } from "@/lib";
+import React from "react";
 
-export const ReportForm: React.FC<{ id: string }> = ({ id }) => {
+export const ReportForm: React.FC<{ id: string; onSuccess?: () => void }> = ({ id, onSuccess }) => {
   const isMobile = useIsMobile();
   const {
     register,
@@ -23,13 +24,26 @@ export const ReportForm: React.FC<{ id: string }> = ({ id }) => {
   const onSubmit = async (data: ReportFormType) => {
     submit(data);
   };
+
+  // Call onSuccess callback if submission was successful and onSuccess is provided
+  React.useEffect(() => {
+    if (shouldShowSuccessMessage && onSuccess) {
+      // Add a small delay to allow the user to see the success message
+      const timer = setTimeout(() => {
+        onSuccess();
+      }, 1500);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [shouldShowSuccessMessage, onSuccess]);
+
   return (
     <div className={styles.container}>
       <div className={styles.gridContainer}>
         <div className="w-full lg:w-1/2">
           <h1 className={`${styles.title} ${isMobile ? "heading-7" : "heading-1"} font-bold`}>Get Your Free Report</h1>
           <p className="paragraph-md text-primary-800">
-            Schedule a consultation with our team. We’ll verify ownership of your domain and send you a sample version
+            Schedule a consultation with our team. We'll verify ownership of your domain and send you a sample version
             of the CyberScan report.
           </p>
         </div>
@@ -90,7 +104,6 @@ export const ReportForm: React.FC<{ id: string }> = ({ id }) => {
           <Button id={formatBtnId(`${id}-submit`)} className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" disabled={loading} loading={loading} size="large" type="submit">
             Submit
           </Button>
-
 
           {shouldShowSuccessMessage && (
             <p aria-live="polite" className="paragraph-sm text-green-500">
