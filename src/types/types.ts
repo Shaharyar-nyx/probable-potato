@@ -11,6 +11,7 @@ export type ApplyFormType = {
   message: string;
   name: string;
   file: File | null;
+  recaptchaToken?: string | null;
 };
 
 export type DemoFormType = {
@@ -38,6 +39,7 @@ export type ReportFormType = {
   name: string;
   website_url: string;
   title: string;
+  recaptchaToken?: string | null;
 };
 
 export type SubscribeType = {

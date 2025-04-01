@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import styles from "./styles.module.scss";
 import { Button, Input, Textarea, InputFile } from "@/components";
@@ -10,6 +11,8 @@ import { useSubmitApplicationForm } from "@/hooks/useSubmitApplicationForm";
 import Image from "next/image";
 import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import { useIsMobile } from "@/hooks";
+import { RECAPTCHA_SITE_KEY } from "@/lib/constants";
+import { toast } from "react-toastify";
 
 export const ApplicationForm: React.FC<any> = ({
   title,
@@ -33,8 +36,19 @@ export const ApplicationForm: React.FC<any> = ({
 
   const { submit, loading, error, called } = useSubmitApplicationForm(reset);
   const shouldShowSuccessMessage = called && !loading && !error;
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
+  };
 
   const onSubmit = async (data: ApplyFormType) => {
+    if (!recaptchaToken) {
+      toast.error("Please complete the reCAPTCHA verification");
+      return;
+    }
+
     let fd = new FormData();
 
     const channel = "Careers Form";
@@ -43,6 +57,7 @@ export const ApplicationForm: React.FC<any> = ({
       message: data.message,
       name: data.name,
       file: data.file,
+      recaptchaToken: recaptchaToken,
     };
 
     fd.append(
@@ -70,6 +85,12 @@ export const ApplicationForm: React.FC<any> = ({
     fd.append("files.file", file, file.name);
 
     submit(fd);
+    
+    // Reset reCAPTCHA after submission
+    if (shouldShowSuccessMessage) {
+      recaptchaRef.current?.reset();
+      setRecaptchaToken(null);
+    }
   };
 
   return (
@@ -153,12 +174,27 @@ export const ApplicationForm: React.FC<any> = ({
             <Textarea
               disabled={loading}
               iconName="ChatBubbleOvalLeftEllipsisIcon"
-              placeholder="Tell us what’s excited about the future of cybersecurity..."
+              placeholder="Tell us what's excited about the future of cybersecurity..."
               rows={4}
               {...register("message")}
             />
+            
+            {/* Add reCAPTCHA v2 widget */}
+            <div className="mt-4">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={RECAPTCHA_SITE_KEY || "6LcKVOwqAAAAANvEExA84rDPvv74NqVnJeCI3hi8"}
+                onChange={handleRecaptchaChange}
+              />
+            </div>
 
-            <Button id={formatBtnId('application-form-submit')} className={`${styles.submitButton} ${isMobile ? 'w-full' : 'w-fit'}`} disabled={loading} loading={loading} type="submit">
+            <Button 
+              id={formatBtnId('application-form-submit')} 
+              className={`${styles.submitButton} ${isMobile ? 'w-full' : 'w-fit'}`} 
+              disabled={loading || !recaptchaToken} 
+              loading={loading} 
+              type="submit"
+            >
               Submit
             </Button>
 
