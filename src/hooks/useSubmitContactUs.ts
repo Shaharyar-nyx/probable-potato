@@ -21,7 +21,7 @@ export async function submitContactUs(
     data: {
       body: {
         ...payload,
-        isSaveApollo: isCompanyEmail,
+        isSaveApollo: true,
         request: [payload.request],
         channel,
       },

@@ -14,11 +14,10 @@ import { RECAPTCHA_SITE_KEY } from "@/lib/constants";
 import { toast } from "react-toastify";
 
 import { CYBERBAY_CMS_URL } from "@/lib/constants";
+import { useSubmitContactUs } from "@/hooks/useSubmitContactUs";
 
 export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
   const isMobile = useIsMobile();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
   const [success, setSuccess] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
@@ -31,50 +30,22 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
     reset,
   } = useForm<ContactUsFormType>();
 
+  const { submit, loading, error, called } = useSubmitContactUs(reset);
+  const shouldShowSuccessMessage = called && !loading && !error;  
+
   const onSubmit = async (data: ContactUsFormType) => {
     if (!recaptchaToken) {
       toast.error("Please complete the reCAPTCHA verification");
       return;
     }
 
-    setLoading(true);
-    try {
-      // Submit the form with the reCAPTCHA token
-      const response = await fetch(`${CYBERBAY_CMS_URL}/api/forms`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          data: {
-            body: {
-              ...data,
-              isSaveApollo: true,
-              recaptchaToken,
-            },
-            name: "Contact Us Form",
-            key: "contact_us_form"
-          }
-        }),
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
-      }
-      
-      reset();
-      setSuccess(true);
-      setError(null);
-      // Reset reCAPTCHA
+    // Include the recaptcha token with the form data
+    submit({...data, recaptchaToken});
+    
+    // Reset reCAPTCHA after submission
+    if (shouldShowSuccessMessage) {
       recaptchaRef.current?.reset();
       setRecaptchaToken(null);
-      toast.success("Thank you! We will get back to you shortly.");
-    } catch (err) {
-      console.error("Failed to submit contact form:", err);
-      setError(err instanceof Error ? err : new Error("Failed to submit form"));
-      toast.error("Failed to submit form");
-    } finally {
-      setLoading(false);
     }
   };
 

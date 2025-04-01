@@ -3,6 +3,7 @@ export type ContactUsFormType = {
   message: string;
   name: string;
   request: string;
+  recaptchaToken?: string | null;
 };
 
 export type ApplyFormType = {
