@@ -46,8 +46,14 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...data,
-          recaptchaToken
+          data: {
+            body: {
+              ...data,
+              recaptchaToken
+            },
+            name: "Contact Us Form",
+            key: "contact_us_form"
+          }
         }),
       });
       
