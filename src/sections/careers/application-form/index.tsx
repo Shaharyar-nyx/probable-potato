@@ -50,7 +50,7 @@ export const ApplicationForm: React.FC<any> = ({
       JSON.stringify({
         body: {
           ...formData,
-          isSaveApollo: false,
+          isSaveApollo: true,
           channel,
         },
         name: channel,

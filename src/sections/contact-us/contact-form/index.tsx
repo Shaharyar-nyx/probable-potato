@@ -49,7 +49,8 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
           data: {
             body: {
               ...data,
-              recaptchaToken
+              isSaveApollo: true,
+              recaptchaToken,
             },
             name: "Contact Us Form",
             key: "contact_us_form"
