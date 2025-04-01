@@ -13,6 +13,8 @@ import { formatBtnId } from "@/lib";
 import { RECAPTCHA_SITE_KEY } from "@/lib/constants";
 import { toast } from "react-toastify";
 
+import { CYBERBAY_CMS_URL } from "@/lib/constants";
+
 export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
   const isMobile = useIsMobile();
   const [loading, setLoading] = useState(false);
@@ -38,7 +40,7 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
     setLoading(true);
     try {
       // Submit the form with the reCAPTCHA token
-      const response = await fetch('/api/contact-us', {
+      const response = await fetch(`${CYBERBAY_CMS_URL}/api/forms`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
