@@ -75,14 +75,14 @@ export const ApplicationForm: React.FC<any> = ({
 
     const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
 
-    /* if (!fileInput || !fileInput.files?.length) {
+    if (!fileInput || !fileInput.files?.length) {
       console.error("No file input found or no file selected");
       return;
     }
 
     const file = fileInput.files[0];
 
-    fd.append("files.file", file, file.name); */
+    fd.append("files.file", file, file.name);
 
     submit(fd);
     
@@ -158,7 +158,7 @@ export const ApplicationForm: React.FC<any> = ({
             />
             <p className={`paragraph-lg ${styles.uploadLabel}`}>{headline}</p>
             {/* File Input */}
-            {/* <InputFile
+            <InputFile
               clearErrors={clearErrors}
               error={errors.file?.message}
               loading={loading}
@@ -168,7 +168,7 @@ export const ApplicationForm: React.FC<any> = ({
               register={register}
               setError={setError}
               setValue={setValue}
-            /> */}
+            />
 
             {/* Message Textarea */}
             <Textarea
