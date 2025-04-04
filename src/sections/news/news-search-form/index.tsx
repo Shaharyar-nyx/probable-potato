@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import styles from "./styles.module.scss";
 import { SelectBox, Input } from "@/components";
-import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
+import Datepicker from "react-tailwindcss-datepicker";
 import { debounce } from "lodash";
 
 const CountryIcon: React.FC = () => (
@@ -42,11 +42,6 @@ const SearchKeywordIcon: React.FC = () => (
     />
   </svg>
 );
-
-interface SelectBoxItemProps {
-  value: string;
-  label: string;
-}
 
 export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handleFetch }) => {
   const [countries, setCountries] = useState<any>(undefined);
