@@ -8,6 +8,8 @@ import { AppPagination } from "@/components/UI/pagination";
 import { NewsItemType } from "@/types";
 import { request } from "@/lib/request";
 import { Spinner } from "@/components";
+import dayjs from "dayjs";
+
 export const NewsList: React.FC<any> = ({ title }) => {
   const limit = 10;
   const currentPage = useRef(1);
@@ -28,6 +30,7 @@ export const NewsList: React.FC<any> = ({ title }) => {
 
   const handleSearch = async (value: any) => {
     form.current = value;
+    currentPage.current = 1;
     handleFetch();
   };
 
@@ -43,8 +46,8 @@ export const NewsList: React.FC<any> = ({ title }) => {
     const { startDate, endDate } = times || { startDate: undefined, endDate: undefined };
 
     // Format dates to YYYY-MM-DD if they exist
-    const formattedStartDate = startDate ? new Date(startDate).toISOString().split("T")[0] : undefined;
-    const formattedEndDate = endDate ? new Date(endDate).toISOString().split("T")[0] : undefined;
+    const formattedStartDate = startDate ? dayjs(startDate).format('YYYY-MM-DD') : undefined;
+    const formattedEndDate = endDate ? dayjs(endDate).format('YYYY-MM-DD') : undefined;
 
     const params = {
       country: countriesCode ?? undefined,
