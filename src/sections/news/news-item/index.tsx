@@ -12,9 +12,10 @@ export const NewsItem: React.FC<NewsItemType> = ({
   corporateName,
   country,
   countryFlag,
-  industry,
+  corporateIndustry,
   accidentDate,
   newsSummary,
+  newsUrl,
 }) => {
   const [readMore, setReadMore] = useState(false);
   const summaryContent = newsSummary?.substring(0, 200);
@@ -34,19 +35,21 @@ export const NewsItem: React.FC<NewsItemType> = ({
           <div className={styles.title} title={corporateName}>
             {corporateName}
           </div>
-          <div className={styles.country}>
+          <div className={styles.country} title={country}>
             {flag && flag.length && <Image src={flag} alt={country} width={15} height={15} className={styles.flag} />}
             {country}
           </div>
-          <div className={styles.industry}>{industry}</div>
+          <div className={styles.industry} title={corporateIndustry}>
+            {corporateIndustry}
+          </div>
           <div className={styles.date}>{dateFormat}</div>
         </div>
         <div className={styles.content}>
           <span className={clsx(styles.summaryContent, { hidden: !readMore })}>
             {newsSummary}{" "}
-            <span className={clsx(styles.readMore, { hidden: !readMore })} onClick={() => setReadMore(!readMore)}>
-              <span className={styles.readMoreLink}>Show Less</span>
-            </span>
+            <a className={clsx(styles.readMore, { hidden: !readMore })} href={newsUrl ?? "#"} target="_blank">
+              <span className={styles.readMoreLink}>Source</span>
+            </a>
           </span>
           <span className={clsx(styles.summaryContent, { hidden: !!readMore })}>
             {summaryContent}{" "}
