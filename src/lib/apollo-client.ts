@@ -15,6 +15,7 @@ const httpLink = new HttpLink({
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: ApolloLink.from([httpLink]),
+  connectToDevTools: false,
   defaultOptions: {
     query: {
       fetchPolicy: "cache-first",
