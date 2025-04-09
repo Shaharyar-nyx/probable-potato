@@ -50,18 +50,18 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
   const [corporateName, setCorporateName] = useState<any>(undefined);
 
   const handleChange = (key: string, value: any) => {
-    const params: any = {countries, industries, times, corporateName};
+    const params: any = { countries, industries, times, corporateName };
     params[key] = value;
-    switch(key) {
-      case 'countries':
+    switch (key) {
+      case "countries":
         setCountries(value);
         break;
-      case 'industries':
+      case "industries":
         setIndustries(value);
-      case 'times':
+      case "times":
         setTimes(value);
         break;
-      case 'corporateName':
+      case "corporateName":
         setCorporateName(value);
         break;
       default:
@@ -70,11 +70,12 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
     notifyChange(params);
   };
 
-  const notifyChange =  useCallback(
+  const notifyChange = useCallback(
     debounce((params: any) => {
       if (handleFetch) handleFetch(params);
     }, 300),
-  []);
+    [],
+  );
 
   return (
     <section className={styles.section}>
@@ -123,7 +124,7 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
                   onChange={(newValue) => handleChange("times", newValue)}
                   placeholder="Incidents by Timeframe"
                   inputClassName="min-h-[45px] rounded-3xl w-full max-md:w-full outline-none text-[14px] pl-2 line-clamp-1 placeholder:text-[#172937] placeholder:line-clamp-1 placeholder:text-[14px]"
-                  containerClassName="bg-transparent text-black relative rounded-3xl]"
+                  containerClassName="bg-transparent text-black relative rounded-3xl"
                   toggleClassName="absolute bg-white-300 rounded-r-lg text-black -right-3 h-full px-3 text-gray-400 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed"
                 />
               </div>
@@ -137,7 +138,13 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
                 svgIcon={<SearchKeywordIcon />}
                 placeholder="Enter a keyword ..."
                 value={corporateName || ""}
-                onChange={(event) => handleChange("corporateName", event.target.value)}
+                onChange={(event) => setCorporateName(event.target.value)}
+                // onBlur={(event) => handleChange("corporateName", event.target.value)}
+                onKeyUp={(event) => {
+                  if (event.key == "Enter") {
+                    handleChange("corporateName", corporateName);
+                  }
+                }}
                 className={styles.searchInputElem}
               />
             </div>

@@ -9,6 +9,8 @@ import { NewsItemType } from "@/types";
 import { request } from "@/lib/request";
 import { Spinner } from "@/components";
 import dayjs from "dayjs";
+import { getAllCountryName } from "@/lib/countries";
+import { corporateIndistries } from "@/lib/corporate-industries";
 
 export const NewsList: React.FC<any> = ({ title }) => {
   const limit = 10;
@@ -46,15 +48,16 @@ export const NewsList: React.FC<any> = ({ title }) => {
     const { startDate, endDate } = times || { startDate: undefined, endDate: undefined };
 
     // Format dates to YYYY-MM-DD if they exist
-    const formattedStartDate = startDate ? dayjs(startDate).format('YYYY-MM-DD') : undefined;
-    const formattedEndDate = endDate ? dayjs(endDate).format('YYYY-MM-DD') : undefined;
+    const formattedStartDate = startDate ? dayjs(startDate).format("YYYY-MM-DD") : undefined;
+    const formattedEndDate = endDate ? dayjs(endDate).format("YYYY-MM-DD") : undefined;
 
     const params = {
       country: countriesCode ?? undefined,
       startAccidentDate: formattedStartDate,
-      industry: industriesCode ?? undefined,
+      corporateIndustry: industriesCode ?? undefined,
       endAccidentDate: formattedEndDate,
-      corporateName: corporateName && typeof corporateName === "string" ? ("" + corporateName).trim() || undefined : undefined,
+      corporateName:
+        corporateName && typeof corporateName === "string" ? ("" + corporateName).trim() || undefined : undefined,
     };
 
     // Remove undefined, null, empty array or empty string values
@@ -84,30 +87,36 @@ export const NewsList: React.FC<any> = ({ title }) => {
     }
   };
 
-  const fetchCountries = async () => {
-    return request("/api/cyber-accidents/fields/country", {}, "GET");
-  };
+  // const fetchCountries = async () => {
+  //   return request("/api/cyber-accidents/fields/country", {}, "GET");
+  // };
 
-  const fetchIndustries = async () => {
-    return request("/api/cyber-accidents/fields/industry", {}, "GET");
-  };
+  // const fetchIndustries = async () => {
+  //   return request("/api/cyber-accidents/fields/corporateIndustry", {}, "GET");
+  // };
 
   const init = async () => {
-    const listCountry = await (await fetchCountries()).json();
-    const listIndustry = await (await fetchIndustries()).json();
-    const arrCountry = listCountry?.filter( (it: string) => it ).map((it: string) => {
-      return {
-        value: it,
-        label: it,
-      };
-    });
+    //const listCountry = await (await fetchCountries()).json();
+    //const listIndustry = await (await fetchIndustries()).json();
+    const listCountry = getAllCountryName();
+    const listIndustry = corporateIndistries;
+    const arrCountry = listCountry
+      ?.filter((it: string) => it)
+      .map((it: string) => {
+        return {
+          value: it,
+          label: it,
+        };
+      });
 
-    const arrIndustry = listIndustry?.filter( (it: string) => it ).map((it: string) => {
-      return {
-        value: it,
-        label: it,
-      };
-    });
+    const arrIndustry = listIndustry
+      ?.filter((it: string) => it)
+      .map((it: string) => {
+        return {
+          value: it,
+          label: it,
+        };
+      });
 
     setCountries(arrCountry);
     setIndustries(arrIndustry);
@@ -156,6 +165,7 @@ export const NewsList: React.FC<any> = ({ title }) => {
                 total={total}
                 pageSize={limit}
                 className={styles.pagination}
+                currentPage={currentPage.current}
                 handleChangePage={(page: number) => handleChangePage(page)}
               />
             </div>

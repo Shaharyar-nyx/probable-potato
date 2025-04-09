@@ -69,4 +69,5 @@ export type NewsItemType = {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
+  newsUrl: string;
 }

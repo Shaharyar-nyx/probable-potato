@@ -28,13 +28,14 @@ const ThreeDot: React.FC = () => (
   </svg>
 );
 
-export const AppPagination: React.FC<any> = ({ total, offset, handleChangePage }) => {
+export const AppPagination: React.FC<any> = ({ total, offset, currentPage, handleChangePage }) => {
   return (
     <>
       <Pagination
         total={total}
         pageSize={offset}
         className={styles.pagination}
+        current={currentPage}
         onChange={(page) => handleChangePage(page)}
         prevIcon={<PrevIcon />}
         nextIcon={<NextIcon />}

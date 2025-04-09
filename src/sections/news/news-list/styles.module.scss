@@ -1,9 +1,9 @@
 .section {
-  @apply px-2 py-5;
+  @apply relative z-[21] px-2 py-5;
 }
 
 .container {
-  @apply mx-auto max-w-screen-2xl overflow-hidden lg:px-4;
+  @apply mx-auto max-w-screen-2xl lg:px-4;
 }
 
 .title {
@@ -33,7 +33,7 @@
 }
 
 .loading {
-  @apply z-[100] flex hidden h-full w-full items-center justify-center;
+  @apply z-[100] flex h-full w-full items-center justify-center;
 }
 
 .spinner {
