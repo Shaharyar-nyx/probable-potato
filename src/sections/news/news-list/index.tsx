@@ -9,6 +9,8 @@ import { NewsItemType } from "@/types";
 import { request } from "@/lib/request";
 import { Spinner } from "@/components";
 import dayjs from "dayjs";
+import { getAllCountryName } from "@/lib/countries";
+import { corporateIndistries } from "@/lib/corporate-industries";
 
 export const NewsList: React.FC<any> = ({ title }) => {
   const limit = 10;
@@ -85,17 +87,19 @@ export const NewsList: React.FC<any> = ({ title }) => {
     }
   };
 
-  const fetchCountries = async () => {
-    return request("/api/cyber-accidents/fields/country", {}, "GET");
-  };
+  // const fetchCountries = async () => {
+  //   return request("/api/cyber-accidents/fields/country", {}, "GET");
+  // };
 
-  const fetchIndustries = async () => {
-    return request("/api/cyber-accidents/fields/corporateIndustry", {}, "GET");
-  };
+  // const fetchIndustries = async () => {
+  //   return request("/api/cyber-accidents/fields/corporateIndustry", {}, "GET");
+  // };
 
   const init = async () => {
-    const listCountry = await (await fetchCountries()).json();
-    const listIndustry = await (await fetchIndustries()).json();
+    //const listCountry = await (await fetchCountries()).json();
+    //const listIndustry = await (await fetchIndustries()).json();
+    const listCountry = getAllCountryName();
+    const listIndustry = corporateIndistries;
     const arrCountry = listCountry
       ?.filter((it: string) => it)
       .map((it: string) => {

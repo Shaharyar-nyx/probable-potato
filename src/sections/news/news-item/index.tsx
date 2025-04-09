@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
 import { NewsItemType } from "@/types";
-import { findFlagUrlByIso2Code } from "country-flags-svg";
+import { findFlagUrlByIso2Code } from "@/lib/flag";
 import Image from "next/image";
 
 export const NewsItem: React.FC<NewsItemType> = ({
@@ -47,9 +47,11 @@ export const NewsItem: React.FC<NewsItemType> = ({
         <div className={styles.content}>
           <span className={clsx(styles.summaryContent, { hidden: !readMore })}>
             {newsSummary}{" "}
-            <a className={clsx(styles.readMore, { hidden: !readMore })} href={newsUrl ?? "#"} target="_blank">
-              <span className={styles.readMoreLink}>Source</span>
-            </a>
+            {newsUrl && newsUrl.length && (
+              <a className={clsx(styles.readMore, { hidden: !readMore })} href={newsUrl ?? "#"} target="_blank">
+                <span className={styles.readMoreLink}>Source</span>
+              </a>
+            )}
           </span>
           <span className={clsx(styles.summaryContent, { hidden: !!readMore })}>
             {summaryContent}{" "}

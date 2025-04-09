@@ -26,7 +26,6 @@ const client = new ApolloClient({
       errorPolicy: "all",
     },
   },
-  connectToDevTools: process.env.NODE_ENV !== 'production'
 });
 
 export default client;
