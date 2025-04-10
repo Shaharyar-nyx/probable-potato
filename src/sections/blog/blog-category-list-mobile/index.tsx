@@ -11,6 +11,7 @@ export const BlogCategoryListMobile: React.FC<{ list: BlogCategoryType[]; onSele
   list,
   onSelect,
 }) => {
+  const [currentCategory, setCurrentCategory] = React.useState<string>("");
   const arr = list.map((item) => item.name);
   const handleSelect = (name: string | string[]) => {
     if (Array.isArray(name)) {
@@ -23,13 +24,17 @@ export const BlogCategoryListMobile: React.FC<{ list: BlogCategoryType[]; onSele
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.content}>
+          <div className={clsx(styles.listFirst, styles.mobile)}>Categories</div>
           <Dropdown
             multiple={false}
-            iconName="BarsArrowUpIcon"
-            id="request"
-            label="Categories"
+            id="select-category"
+            label="Select category"
             options={arr}
-            handleChange={(value: string | string[]) => handleSelect(value)}
+            value={currentCategory}
+            handleChange={(value: string | string[]) => {
+              setCurrentCategory(value as string);
+              handleSelect(value);
+            }}
           />
         </div>
       </div>

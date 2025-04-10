@@ -112,26 +112,28 @@ export const BlogList: React.FC<any> = () => {
               <Spinner className={styles.spinner} />
             </div>
           )}
-          <div className={styles.title}>
-            The Digital Shield Blog:
-            <br /> Your Online Protection Source
-          </div>
 
           {/* start pc */}
           {!isMobile && (
-            <div className={styles.twoCol}>
-              <div className={styles.listCategory}>
-                {categories.length > 0 && (
-                  <BlogCategoryList list={categories} onSelect={(name) => handleChangeCategory(name)} />
-                )}
+            <>
+              <div className={styles.title}>
+                The Digital Shield Blog:
+                <br /> Your Online Protection Source
               </div>
-              <div className={styles.newsList}>
-                <div className={styles.newsListWrap}>
-                  {news?.map((item, i) => <BlogSummary key={`news-item-${i}`} {...item} />)}
+              <div className={styles.twoCol}>
+                <div className={styles.listCategory}>
+                  {categories.length > 0 && (
+                    <BlogCategoryList list={categories} onSelect={(name) => handleChangeCategory(name)} />
+                  )}
                 </div>
-                {(!news || news.length <= 0) && <div className={styles.noData}>Nothing to show</div>}
+                <div className={styles.newsList}>
+                  <div className={styles.newsListWrap}>
+                    {news?.map((item, i) => <BlogSummary key={`news-item-${i}`} {...item} />)}
+                  </div>
+                  {(!news || news.length <= 0) && <div className={styles.noData}>Nothing to show</div>}
+                </div>
               </div>
-            </div>
+            </>
           )}
           {/* end pc */}
 
@@ -143,7 +145,10 @@ export const BlogList: React.FC<any> = () => {
                   <BlogCategoryListMobile list={categories} onSelect={(name) => handleChangeCategory(name)} />
                 )}
               </div>
-
+              <div className={styles.title}>
+                The Digital Shield Blog:
+                <br /> Your Online Protection Source
+              </div>
               <div className={styles.newsList}>
                 <div className={styles.newsListWrap}>
                   <Swiper

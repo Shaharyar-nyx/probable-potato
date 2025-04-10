@@ -142,7 +142,7 @@ export const Dropdown: React.FC<DropdownPropsInput> = ({
                   : value !== undefined
                     ? "text-primary-800"
                     : "text-neutral-300",
-            )}} pr-10 text-left`}
+            )} pr-10 text-left`}
           >
             {displayValue}
           </span>

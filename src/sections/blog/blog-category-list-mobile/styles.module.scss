@@ -3,7 +3,17 @@
 }
 
 .container {
-  @apply mx-auto max-w-screen-2xl overflow-hidden rounded-xl border border-[#c1c4c3] text-neutral-50;
+  @apply mx-auto max-w-screen-2xl rounded-xl text-neutral-50;
+}
+
+.content {
+  @apply relative;
+  :global(.dropdown-input-container) {
+    @apply rounded-none border-none py-10;
+    border-bottom: 1px solid #abc;
+    outline: none;
+    box-shadow: none;
+  }
 }
 
 .list {
@@ -11,7 +21,7 @@
 }
 
 .listFirst {
-  @apply pointer-events-none text-[18px] font-semibold leading-7;
+  @apply pointer-events-none mb-10 text-[18px] font-semibold leading-7 text-[#02255B];
 }
 
 .listItem {

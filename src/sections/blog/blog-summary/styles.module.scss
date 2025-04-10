@@ -1,5 +1,5 @@
 .section {
-  @apply flex w-[342px] gap-[24px] rounded-xl pb-6;
+  @apply flex w-full gap-[24px] rounded-xl pb-6 lg:w-[342px];
 }
 
 .container {
@@ -11,7 +11,7 @@
 }
 
 .thumbnail {
-  @apply h-[342px] w-[342px] rounded-lg object-cover;
+  @apply h-[342px] w-full rounded-lg object-cover lg:w-[342px];
 }
 
 .title {
@@ -23,11 +23,11 @@
 }
 
 .thumbnailContainer {
-  @apply relative flex h-[342px] w-[342px] items-center justify-center rounded-lg bg-[#f6f7f8] object-cover;
+  @apply relative flex h-[342px] w-full items-center justify-center rounded-lg bg-[#f6f7f8] object-cover lg:w-[342px];
 }
 
 .infoContainer {
-  @apply absolute left-[20px] top-[20px] z-[1] flex items-start justify-center gap-[10px];
+  @apply absolute left-[20px] top-[20px] flex items-start justify-center gap-[10px];
 }
 
 .category {
@@ -39,7 +39,7 @@
 }
 
 .readMore {
-  @apply mt-[24px] flex items-start;
+  @apply mt-[24px] flex w-full items-start lg:w-fit;
 }
 
 .link {
@@ -47,5 +47,5 @@
 }
 
 .button {
-  @apply flex min-w-[120px] items-center justify-center gap-[8px] rounded-[8px] bg-[#045DE3] px-[16px] py-[12px] text-[#F6F7F8];
+  @apply flex w-full min-w-[120px] items-center justify-center gap-[8px] rounded-[8px] bg-[#045DE3] px-[16px] py-[12px] text-[#F6F7F8] lg:w-fit;
 }

@@ -15,7 +15,7 @@
 }
 
 .title {
-  @apply mx-auto my-[60px] flex items-center justify-center text-center text-[48px] font-bold text-[#02255B] max-md:text-[32px] lg:mb-6;
+  @apply mx-auto my-[20px] flex items-center justify-center text-center text-[48px] font-bold text-[#02255B] max-md:text-[32px] lg:my-[60px] lg:mb-6;
 }
 
 .showing {
@@ -35,7 +35,7 @@
 }
 
 .newsListWrap {
-  @apply grid grid-cols-2 gap-4;
+  @apply block gap-4 lg:grid lg:grid-cols-2;
 }
 
 .noData {
@@ -56,4 +56,24 @@
 
 .listCategory {
   @apply block gap-4 lg:flex lg:items-center lg:justify-between;
+}
+
+.swiperContent {
+  @apply relative;
+
+  :global(.swiper-pagination) {
+    @apply bottom-0 flex justify-center gap-1;
+  }
+
+  :global(.swiper-wrapper) {
+    @apply pb-10;
+  }
+
+  :global(.swiper-pagination-bullet) {
+    @apply h-[0.5rem] w-[0.5rem] rounded-full bg-primary-200;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    @apply bg-primary-500;
+  }
 }
