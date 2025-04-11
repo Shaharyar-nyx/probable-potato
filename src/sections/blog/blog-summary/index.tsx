@@ -6,10 +6,15 @@ import styles from "./styles.module.scss";
 import clsx from "clsx";
 import { BlogItemType } from "@/types";
 import Image from "next/image";
-import { getBlogImageUrl, getBlogReadTime, getBlogDetailLink, stripHtmlTags } from "@/lib";
+import { getBlogImageUrl, getBlogReadTime, getBlogDetailLink, stripHtmlTags, markdownToText } from "@/lib";
 
 export const BlogSummary: React.FC<BlogItemType> = ({ id, title, content, thumbnail, category }) => {
-  const summaryContent = stripHtmlTags(content);
+  const summaryContent = stripHtmlTags(
+    markdownToText(content, {
+      stripListLeaders: true,
+      gfm: true,
+    }),
+  );
 
   const thumbnailUrl = getBlogImageUrl(thumbnail?.url);
 
