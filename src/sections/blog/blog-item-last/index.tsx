@@ -6,11 +6,16 @@ import styles from "./styles.module.scss";
 import clsx from "clsx";
 import { BlogItemType } from "@/types";
 import Image from "next/image";
-import { getBlogDetailLink, getBlogImageUrl, getBlogReadTime, stripHtmlTags } from "@/lib/blog";
+import { getBlogDetailLink, getBlogImageUrl, getBlogReadTime, stripHtmlTags, markdownToText } from "@/lib/blog";
 import dayjs from "dayjs";
 
 export const BlogItemLast: React.FC<BlogItemType> = ({ id, title, content, thumbnail, publishedAt, category }) => {
-  const summaryContent = stripHtmlTags(content);
+  const summaryContent = stripHtmlTags(
+    markdownToText(content, {
+      stripListLeaders: true,
+      gfm: true,
+    }),
+  );
   const dateFormat = dayjs(publishedAt).format("DD/MM/YYYY");
 
   const thumbnailUrl = getBlogImageUrl(thumbnail?.url);
