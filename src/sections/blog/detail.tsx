@@ -2,11 +2,12 @@
 import { getReadTime, formatDateToLongFormat } from "@/lib/utils";
 import React, { useMemo, useRef } from "react";
 import styles from "./styles.module.scss";
-import DOMPurify from "isomorphic-dompurify";
 import { BlogItemType } from "@/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { BlogSummary } from "./blog-summary";
+import ReactMarkdown from "react-markdown";
+
 export interface BlogDetailProps {
   author: string;
   createdAt: string;
@@ -27,20 +28,19 @@ export const BlogDetail: React.FC<any> = ({ author, createdAt, banner, content, 
         <div className={styles.banner}>
           <img src={banner} alt="Blog Banner" className={styles.bannerImage} />
         </div>
-        <div className={styles.info}>
-          <div className={styles.author}>{author}</div>
-          <div className={styles.divider}></div>
-          <div className={styles.date}>{formattedDate}</div>
-          <div className={styles.divider}></div>
-          <div className={styles.readTime}>{readTime} min read</div>
-        </div>
         <div className={styles.contentWrapper}>
-          <div
-            className={styles.content}
-            dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(content || ""),
-            }}
-          ></div>
+          <div className={styles.content}>
+            <div className={styles.info}>
+              <div className={styles.author}>{author}</div>
+              <div className={styles.divider}></div>
+              <div className={styles.date}>{formattedDate}</div>
+              <div className={styles.divider}></div>
+              <div className={styles.readTime}>{readTime} min read</div>
+            </div>
+            <div>
+              <ReactMarkdown>{content}</ReactMarkdown>
+            </div>
+          </div>
         </div>
         <div className={styles.news}>
           <div className={styles.newsTitle}>
@@ -54,7 +54,21 @@ export const BlogDetail: React.FC<any> = ({ author, createdAt, banner, content, 
                 className={styles.swiperContent}
                 modules={[Pagination, Autoplay]}
                 spaceBetween={28}
-                slidesPerView={3}
+                slidesPerView={1}
+                breakpoints={{
+                  380: {
+                    slidesPerView: 1,
+                  },
+                  768: {
+                    slidesPerView: 2,
+                  },
+                  1280: {
+                    slidesPerView: 3,
+                  },
+                  1440: {
+                    slidesPerView: 4,
+                  },
+                }}
                 centeredSlides
                 loop
                 pagination={{ clickable: true }}
