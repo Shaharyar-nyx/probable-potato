@@ -14,6 +14,11 @@
     outline: none;
     box-shadow: none;
   }
+  :global(.dropdown-input-options-container) {
+    border-color: #f6f7f8;
+    border-width: 1px;
+    border-style: solid;
+  }
 }
 
 .list {

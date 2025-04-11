@@ -128,7 +128,7 @@ export const BlogList: React.FC<any> = () => {
                 </div>
                 <div className={styles.newsList}>
                   <div className={styles.newsListWrap}>
-                    {news?.map((item, i) => <BlogSummary key={`news-item-${i}`} {...item} />)}
+                    {news?.map((item) => <BlogSummary key={`news-item-${item.id}`} {...item} />)}
                   </div>
                   {(!news || news.length <= 0) && <div className={styles.noData}>Nothing to show</div>}
                 </div>
@@ -163,9 +163,10 @@ export const BlogList: React.FC<any> = () => {
                       delay: 3000,
                       disableOnInteraction: false,
                     }}
+                    key={`swiper-${currentPage.current}-${form.current}-${news?.length}`}
                   >
-                    {news?.map((item: BlogItemType, index: number) => (
-                      <SwiperSlide key={`news-item-${index}`}>
+                    {news?.map((item: BlogItemType) => (
+                      <SwiperSlide key={`news-item-${item.id}`}>
                         <BlogSummary {...item} />
                       </SwiperSlide>
                     ))}
@@ -182,7 +183,7 @@ export const BlogList: React.FC<any> = () => {
             <div className={styles.paginationWrap}>
               <AppPagination
                 total={total}
-                pageSize={limit}
+                offset={limit}
                 className={styles.pagination}
                 currentPage={currentPage.current}
                 handleChangePage={(page: number) => handleChangePage(page)}
