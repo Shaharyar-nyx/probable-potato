@@ -10,6 +10,7 @@ import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 
 export const NewsHero: React.FC<any> = ({
   background_file,
+  overide_background_file,
   card: { cta_modal, cta_text, cta_url, content, content_md, headline, title },
 }) => {
   const cta = {
@@ -23,7 +24,7 @@ export const NewsHero: React.FC<any> = ({
     <header className={styles.header}>
       <div className={styles.backgroundWrapper}>
         <Image
-          src={`${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`}
+          src={overide_background_file ?? `${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`}
           alt=""
           width={1440}
           height={600}

@@ -28,3 +28,22 @@ export const removeLastTrailingSlash = (url: string) => {
 export const formatBtnId = (title: string) => {
   return `btn-${title.toLowerCase().replace(/ /g, "-")}`;
 };
+
+// a function with args as string. Return the read time
+// the smallest is 1 minute. The output should a number of minutes
+export const getReadTime = (text: string): number => {
+  const wordsPerMinute = 200; // Average reading speed
+  const words = text.split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return Math.max(minutes, 1); // Ensure at least 1 minute
+};
+
+export const formatDateToLongFormat = (date: string | Date): string => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const dateObj = typeof date === "string" ? new Date(date) : date;
+  return dateObj.toLocaleDateString("en-US", options);
+};
