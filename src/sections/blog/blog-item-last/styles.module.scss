@@ -1,0 +1,64 @@
+.section {
+  @apply w-full gap-[24px] px-[24px] py-[60px] lg:px-[64px] lg:pb-[120px] lg:pt-[80px];
+  background: url("/images/blogs/blog-lastest-bg.png") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: #f6f7f8;
+}
+
+.container {
+  @apply flex flex-row items-start justify-center p-0 lg:flex-col lg:px-[64px] lg:pb-[120px] lg:pt-[80px];
+}
+
+.content {
+  @apply mx-auto flex flex-col-reverse items-start justify-center lg:flex-row lg:gap-[141px];
+}
+
+.left {
+  @apply mt-5 flex max-w-full flex-col items-start justify-center gap-[16px] self-stretch lg:mt-0 lg:max-w-[459px];
+}
+
+.right {
+  @apply relative flex w-full flex-col items-start justify-center gap-[24px] lg:w-[492px];
+}
+
+.infoContainer {
+  @apply absolute left-[20px] top-[20px] flex items-start justify-center gap-[10px];
+}
+
+.category {
+  @apply flex min-h-[26px] items-center justify-center rounded-[12px] bg-[#045DE3] px-[16px] py-1 text-[14px] font-normal leading-[18px] tracking-[-0.02em] text-[#f6f7f8];
+}
+
+.readTime {
+  @apply flex h-[26px] items-center justify-center rounded-[12px] px-[16px] text-[14px] font-normal leading-[18px] tracking-[-0.02em] text-[#f6f7f8];
+}
+
+.date {
+  @apply text-[14px] font-normal leading-[18px] tracking-[-0.02em] text-[#f6f7f8];
+}
+
+.title {
+  @apply mt-[16px] line-clamp-2 text-[24px] font-bold leading-[28px] tracking-[-0.02em] text-[#f6f7f8];
+}
+
+.description {
+  @apply mt-[20px] line-clamp-3 text-[16px] font-normal leading-[24px] tracking-[-0.02em] text-[#f6f7f8];
+}
+
+.readMore {
+  @apply mt-[30px] flex w-full items-start lg:w-fit;
+}
+
+.link {
+  @apply no-underline;
+}
+
+.button {
+  @apply flex w-full min-w-[120px] items-center justify-center gap-[8px] rounded-[8px] bg-[#045DE3] px-[16px] py-[12px] text-[#F6F7F8] lg:w-fit;
+}
+
+.image {
+  @apply min-h-[342px] max-w-full gap-[10px] rounded-[20px] object-cover lg:max-w-[492px];
+}

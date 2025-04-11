@@ -1,0 +1,28 @@
+.section {
+  @apply rounded-xl pb-4;
+}
+
+.container {
+  @apply mx-auto max-w-screen-2xl overflow-hidden rounded-xl border border-[#c1c4c3] text-neutral-50;
+}
+
+.list {
+  @apply inline-flex list-none flex-col items-start justify-center rounded-xl bg-[#045de3] text-[16px] font-normal leading-6 text-[#F6F7F8];
+}
+
+.listFirst {
+  @apply pointer-events-none text-[18px] font-semibold leading-7;
+}
+
+.listItem {
+  @apply flex h-[50px] w-full cursor-pointer flex-col items-start justify-between px-[40px] py-[12px];
+  border-bottom: 1px solid var(--Primary-400, #367de9);
+}
+
+.listItem:hover {
+  @apply bg-[#367de9];
+}
+
+.listSelected {
+  @apply bg-[#367de9] text-[#F6F7F8];
+}

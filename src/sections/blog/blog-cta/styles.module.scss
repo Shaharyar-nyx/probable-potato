@@ -1,0 +1,43 @@
+.container {
+  @apply relative overflow-hidden bg-[#045DE3] px-[24px] py-[60px] lg:px-[64px] lg:py-[120px];
+}
+
+.backgroundWrapper {
+  @apply absolute left-0 top-0 z-0 h-full w-full overflow-hidden;
+}
+
+.parallaxWrapper {
+  @apply absolute top-[-10%] h-[120%] w-full;
+}
+
+.banner {
+  @apply h-full w-full object-cover;
+}
+
+.overlay {
+  @apply absolute left-0 top-0 h-full w-full bg-gradient-to-t from-black/30 to-black/30;
+}
+
+.content {
+  @apply relative mx-auto lg:flex lg:items-center;
+}
+
+.contentLeft {
+  @apply mt-5 block w-full gap-[16px] space-y-3 text-white lg:mt-0 lg:flex lg:w-[54%] lg:flex-col;
+}
+
+.title {
+  @apply flex-grow text-[40px] font-bold leading-[48px] text-[#F6F7F8];
+}
+
+.buttonGroup {
+  @apply flex gap-4;
+}
+
+.contentText {
+  @apply text-[18px] font-normal leading-[27px] text-[#FFF];
+}
+
+.button {
+  @apply mt-4 flex w-full min-w-[160px] items-center justify-center gap-[8px] bg-[#f6f7f8] px-[16px] py-[12px] text-[#02255b] lg:mt-2 lg:w-fit;
+}

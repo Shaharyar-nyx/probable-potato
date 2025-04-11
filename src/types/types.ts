@@ -46,13 +46,12 @@ export type SubscribeType = {
   email: string;
 };
 
-
 export type PaginationProps = {
   total: number;
   currentPage: number;
   perPage: number;
-  setCurrentPage: Function | null
-}
+  setCurrentPage: Function | null;
+};
 
 export type NewsItemType = {
   id: number;
@@ -70,4 +69,31 @@ export type NewsItemType = {
   updatedAt: string;
   publishedAt: string;
   newsUrl: string;
-}
+};
+
+export type BlogItemType = {
+  id: number;
+  title: string;
+  author: string;
+  locale: string;
+  blogFileName: string;
+  cvssScore: string;
+  cvssLevel: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  thumbnail: BlogThumbnailType;
+  category: string;
+};
+
+export type BlogCategoryType = {
+  id: string;
+  name: string;
+};
+
+export type BlogThumbnailType = {
+  id: string;
+  name: string;
+  url: string;
+};

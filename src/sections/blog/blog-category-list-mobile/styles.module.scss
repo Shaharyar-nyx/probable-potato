@@ -1,0 +1,43 @@
+.section {
+  @apply rounded-xl pb-4;
+}
+
+.container {
+  @apply mx-auto max-w-screen-2xl rounded-xl text-neutral-50;
+}
+
+.content {
+  @apply relative;
+  :global(.dropdown-input-container) {
+    @apply rounded-none border-none py-10;
+    border-bottom: 1px solid #abc;
+    outline: none;
+    box-shadow: none;
+  }
+  :global(.dropdown-input-options-container) {
+    border-color: #f6f7f8;
+    border-width: 1px;
+    border-style: solid;
+  }
+}
+
+.list {
+  @apply inline-flex list-none flex-col items-start justify-center rounded-xl bg-[#045de3] text-[16px] font-normal leading-6 text-[#F6F7F8];
+}
+
+.listFirst {
+  @apply pointer-events-none mb-10 text-[18px] font-semibold leading-7 text-[#02255B];
+}
+
+.listItem {
+  @apply flex h-[50px] w-full cursor-pointer flex-col items-start justify-between px-[40px] py-[12px];
+  border-bottom: 1px solid var(--Primary-400, #367de9);
+}
+
+.listItem:hover {
+  @apply bg-[#367de9];
+}
+
+.listSelected {
+  @apply bg-[#367de9] text-[#F6F7F8];
+}

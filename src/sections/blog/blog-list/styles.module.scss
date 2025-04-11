@@ -1,0 +1,79 @@
+.section {
+  @apply relative m-0 w-full p-0;
+}
+
+.container {
+  @apply w-full;
+}
+
+.content {
+  @apply mx-auto max-w-screen-2xl;
+}
+
+.lastItem {
+  @apply w-full;
+}
+
+.title {
+  @apply mx-auto my-[20px] flex items-center justify-center text-center text-[48px] font-bold text-[#02255B] max-md:text-[32px] lg:my-[60px] lg:mb-6;
+}
+
+.showing {
+  @apply mb-1 mt-2 flex justify-end;
+}
+
+.paginationWrap {
+  @apply mx-auto mb-16 mt-4 flex max-w-[100%] justify-end px-[134px];
+}
+
+.pagination {
+  @apply max-w-[100%];
+}
+
+.newsList {
+  @apply min-h-[400px] flex-grow;
+}
+
+.newsListWrap {
+  @apply block gap-4 lg:grid lg:grid-cols-2;
+}
+
+.noData {
+  @apply mx-auto w-full py-5 text-center;
+}
+
+.loading {
+  @apply z-[100] flex h-full w-full items-center justify-center;
+}
+
+.spinner {
+  @apply h-10 w-10;
+}
+
+.twoCol {
+  @apply block gap-0 p-3 lg:flex lg:content-stretch lg:items-start lg:justify-between lg:gap-x-[70px] lg:gap-y-[62px] lg:px-[134px] lg:pt-[62px];
+}
+
+.listCategory {
+  @apply block gap-4 lg:flex lg:items-center lg:justify-between;
+}
+
+.swiperContent {
+  @apply relative;
+
+  :global(.swiper-pagination) {
+    @apply bottom-0 flex justify-center gap-1;
+  }
+
+  :global(.swiper-wrapper) {
+    @apply pb-10;
+  }
+
+  :global(.swiper-pagination-bullet) {
+    @apply h-[0.5rem] w-[0.5rem] rounded-full bg-primary-200;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    @apply bg-primary-500;
+  }
+}
