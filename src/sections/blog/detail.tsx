@@ -21,7 +21,6 @@ export const BlogDetail: React.FC<any> = ({ author, createdAt, banner, content, 
   const form = useRef({
     categories: "",
   });
-  console.log("news", news);
   return (
     <div className={styles.blogWrapper}>
       <div className={styles.blogContainer}>
