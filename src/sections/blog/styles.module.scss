@@ -100,3 +100,253 @@
 .newsListWrap {
   width: 100%;
 }
+
+.markdownBody {
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    margin-top: 24px;
+  }
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 36px;
+    margin-top: 24px;
+  }
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    margin-top: 24px;
+  }
+  h4 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-top: 24px;
+  }
+  h5 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-top: 24px;
+  }
+  h6 {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    margin-top: 24px;
+  }
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-top: 24px;
+  }
+  ul {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-top: 24px;
+    margin-left: 20px;
+    list-style-type: disc;
+    li {
+      margin-top: 12px;
+    }
+  }
+  ol {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-top: 24px;
+    margin-left: 20px;
+    list-style-type: decimal;
+    li {
+      margin-top: 12px;
+    }
+  }
+  blockquote {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-top: 24px;
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 4px solid #02255b;
+  }
+  code {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+  pre {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    background-color: #f5f5f5;
+    padding: 16px;
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 24px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    th,
+    td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  }
+  hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 24px 0;
+  }
+  a {
+    color: #007bff;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  strong {
+    font-weight: 700;
+  }
+  em {
+    font-style: italic;
+  }
+  mark {
+    background-color: #ff0;
+  }
+  small {
+    font-size: 12px;
+    color: #999;
+  }
+  sub {
+    font-size: 12px;
+    vertical-align: sub;
+  }
+  sup {
+    font-size: 12px;
+    vertical-align: super;
+  }
+  b {
+    font-weight: 700;
+  }
+  i {
+    font-style: italic;
+  }
+  u {
+    text-decoration: underline;
+  }
+  s {
+    text-decoration: line-through;
+  }
+  del {
+    text-decoration: line-through;
+  }
+  ins {
+    text-decoration: underline;
+  }
+  kbd {
+    font-family: monospace;
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+  abbr {
+    text-decoration: underline dotted;
+  }
+  time {
+    font-style: italic;
+  }
+  bdi {
+    unicode-bidi: isolate;
+  }
+  bdo {
+    unicode-bidi: plaintext;
+  }
+  span {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+  div {
+    margin-top: 24px;
+  }
+  section {
+    margin-top: 24px;
+  }
+  article {
+    margin-top: 24px;
+  }
+  aside {
+    margin-top: 24px;
+  }
+  footer {
+    margin-top: 24px;
+  }
+  header {
+    margin-top: 24px;
+  }
+  main {
+    margin-top: 24px;
+  }
+  nav {
+    margin-top: 24px;
+  }
+  address {
+    font-style: normal;
+    margin-top: 24px;
+  }
+  figure {
+    margin-top: 24px;
+    figcaption {
+      font-size: 14px;
+      font-style: italic;
+      text-align: center;
+      margin-top: 8px;
+    }
+  }
+  details {
+    summary {
+      font-weight: 700;
+      cursor: pointer;
+    }
+    p {
+      margin-top: 12px;
+    }
+  }
+  summary {
+    font-weight: 700;
+    cursor: pointer;
+  }
+  dialog {
+    margin-top: 24px;
+  }
+  caption {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 8px;
+  }
+  legend {
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 8px;
+  }
+}
