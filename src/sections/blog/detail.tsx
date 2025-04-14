@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { BlogSummary } from "./blog-summary";
 import ReactMarkdown from "react-markdown";
+import "./github-markdown.css";
 
 export interface BlogDetailProps {
   author: string;
@@ -37,7 +38,7 @@ export const BlogDetail: React.FC<any> = ({ author, createdAt, banner, content, 
               <div className={styles.divider}></div>
               <div className={styles.readTime}>{readTime} min read</div>
             </div>
-            <div>
+            <div className="markdown-body">
               <ReactMarkdown>{content}</ReactMarkdown>
             </div>
           </div>
