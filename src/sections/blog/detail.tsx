@@ -38,8 +38,7 @@ export const BlogDetail: React.FC<any> = ({ author, createdAt, banner, content, 
               <div className={styles.divider}></div>
               <div className={styles.readTime}>{readTime} min read</div>
             </div>
-            <div className="markdown-body" dangerouslySetInnerHTML={{ __html: md.render(content) }} />
-            {/* <ReactMarkdown>{content}</ReactMarkdown> */}
+            <div className={styles.markdownBody} dangerouslySetInnerHTML={{ __html: md.render(content) }} />
           </div>
         </div>
         <div className={styles.news}>
