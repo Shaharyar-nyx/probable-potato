@@ -56,6 +56,9 @@ export const BlogDetail: React.FC<any> = ({ author, createdAt, banner, content, 
                 spaceBetween={28}
                 slidesPerView={3}
                 breakpoints={{
+                  0: {
+                    slidesPerView: 1,
+                  },
                   768: {
                     slidesPerView: 1,
                   },
