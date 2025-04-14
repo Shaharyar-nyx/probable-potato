@@ -3,6 +3,10 @@ name: Deploy to Development
 on:
   push:
     branches: ["staging"]
+  workflow_dispatch:
+  repository_dispatch:
+      types:
+        - 'development'
 
 jobs:
   deploy:
