@@ -54,18 +54,21 @@ export const BlogDetail: React.FC<any> = ({ author, createdAt, banner, content, 
                 className={styles.swiperContent}
                 modules={[Pagination, Autoplay]}
                 spaceBetween={28}
-                slidesPerView={1}
+                slidesPerView={3}
                 breakpoints={{
-                  380: {
+                  0: {
                     slidesPerView: 1,
                   },
                   768: {
-                    slidesPerView: 2,
+                    slidesPerView: 1,
                   },
                   1280: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
                   },
                   1440: {
+                    slidesPerView: 3,
+                  },
+                  2560: {
                     slidesPerView: 4,
                   },
                 }}
