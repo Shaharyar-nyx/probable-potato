@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import styles from "./styles.module.scss";
 import { SelectBox, Input } from "@/components";
 import Datepicker from "react-tailwindcss-datepicker";
 import { debounce } from "lodash";
+import clsx from "clsx";
 
 const CountryIcon: React.FC = () => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,6 +35,15 @@ const TimeIcon: React.FC = () => (
   </svg>
 );
 
+const ResetIcon: React.FC = () => (
+  <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M15.8333 3.66671L12.4999 7.00004H14.9999C14.9999 8.32612 14.4731 9.59789 13.5355 10.5356C12.5978 11.4733 11.326 12 9.99992 12C9.16659 12 8.35825 11.7917 7.66659 11.4167L6.44992 12.6334C7.51083 13.3086 8.74237 13.6671 9.99992 13.6667C11.768 13.6667 13.4637 12.9643 14.714 11.7141C15.9642 10.4638 16.6666 8.76815 16.6666 7.00004H19.1666M4.99992 7.00004C4.99992 5.67396 5.5267 4.40219 6.46439 3.46451C7.40207 2.52683 8.67384 2.00004 9.99992 2.00004C10.8333 2.00004 11.6416 2.20837 12.3333 2.58337L13.5499 1.36671C12.489 0.691501 11.2575 0.333024 9.99992 0.333374C8.23181 0.333374 6.53612 1.03575 5.28587 2.286C4.03563 3.53624 3.33325 5.23193 3.33325 7.00004H0.833252L4.16659 10.3334L7.49992 7.00004"
+      fill="#045DE3"
+    />
+  </svg>
+);
+
 const SearchKeywordIcon: React.FC = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
@@ -48,6 +58,7 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
   const [industries, setIndustries] = useState<any>(undefined);
   const [times, setTimes] = useState<any>(undefined);
   const [corporateName, setCorporateName] = useState<any>(undefined);
+  const [searchKeyword, setSearchKeyword] = useState<boolean>(false);
 
   const handleChange = (key: string, value: any) => {
     const params: any = { countries, industries, times, corporateName };
@@ -70,6 +81,15 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
     notifyChange(params);
   };
 
+  const resetSearch = () => {
+    setCountries(undefined);
+    setIndustries(undefined);
+    setTimes(undefined);
+    setCorporateName(undefined);
+    const params: any = { countries: undefined, industries: undefined, times: undefined, corporateName: undefined };
+    notifyChange(params);
+  };
+
   const notifyChange = useCallback(
     debounce((params: any) => {
       if (handleFetch) handleFetch(params);
@@ -77,6 +97,32 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
     [],
   );
 
+  useEffect(() => {
+    const have = corporateName && corporateName.length > 0;
+    setSearchKeyword(have);
+  }, [corporateName]);
+
+  useEffect(() => {
+    // banana
+    // fix bug of datepicker
+    // when click on the datepicker, the input value is empty
+    // but the event is not triggered
+    // so we need to add a listener to the input element
+    const inputTimeElement = document.getElementById("news-by-timeframe");
+    if (inputTimeElement) {
+      inputTimeElement.addEventListener("input", (event) => {
+        const inputValue = (event.target as HTMLInputElement)?.value || "";
+        if (!inputValue || inputValue.length <= 0) {
+          handleChange("times", undefined);
+        }
+      });
+    }
+    return () => {
+      if (inputTimeElement) {
+        inputTimeElement.removeEventListener("input", () => {});
+      }
+    };
+  }, [times]);
   return (
     <section className={styles.section}>
       <form className={styles.form}>
@@ -115,17 +161,20 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
               <div className={styles.searchDateIcon}>
                 <TimeIcon />
               </div>
+
               <div className={styles.searchDatePicker}>
                 <Datepicker
                   primaryColor={"cyan"}
                   toggleIcon={() => null}
                   useRange={false}
                   value={times || null}
+                  inputId="news-by-timeframe"
                   onChange={(newValue) => handleChange("times", newValue)}
-                  placeholder="Incidents by Timeframe"
+                  placeholder="News by Timeframe"
                   inputClassName="min-h-[45px] rounded-3xl w-full max-md:w-full outline-none text-[14px] pl-2 line-clamp-1 placeholder:text-[#172937] placeholder:line-clamp-1 placeholder:text-[14px]"
                   containerClassName="bg-transparent text-black relative rounded-3xl"
                   toggleClassName="absolute bg-white-300 rounded-r-lg text-black -right-3 h-full px-3 text-gray-400 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed"
+                  key={times ? `datepicker-${times.startDate}-${times.endDate}` : "datepicker"}
                 />
               </div>
             </div>
@@ -139,7 +188,6 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
                 placeholder="Enter a keyword ..."
                 value={corporateName || ""}
                 onChange={(event) => setCorporateName(event.target.value)}
-                // onBlur={(event) => handleChange("corporateName", event.target.value)}
                 onKeyUp={(event) => {
                   if (event.key == "Enter") {
                     handleChange("corporateName", corporateName);
@@ -147,10 +195,22 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
                 }}
                 className={styles.searchInputElem}
               />
+              <span
+                onClick={() => handleChange("corporateName", corporateName)}
+                className={clsx(styles.searchButtonKeyword, searchKeyword ? "cursor-pointer text-[#045DE3]" : "")}
+              >
+                Search
+              </span>
             </div>
           </div>
         </div>
       </form>
+      <div className={styles.resetSearch}>
+        <span>Reset Filters</span>
+        <span className={styles.resetIconSearch} onClick={() => resetSearch()}>
+          <ResetIcon />
+        </span>
+      </div>
     </section>
   );
 };

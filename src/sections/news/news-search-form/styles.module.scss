@@ -34,7 +34,7 @@
   @apply flex-grow rounded-3xl;
 }
 .searchInput {
-  @apply rounded-[100px] bg-white;
+  @apply relative rounded-[100px] bg-white;
   :global(.input-container) {
     border-color: transparent;
     box-shadow: none !important;
@@ -68,4 +68,25 @@
 .searchIndustry,
 .searchTime {
   @apply max-w-[25%] max-md:max-w-full;
+}
+
+.resetSearch {
+  @apply mt-2 flex items-center justify-end text-[14px] font-medium text-[#045DE3];
+}
+
+.resetIconSearch {
+  @apply ml-2 text-[#045DE3];
+  @apply cursor-pointer;
+}
+
+.resetIconSearch:hover {
+  @apply text-[#0056b3];
+}
+
+.searchButtonKeyword {
+  @apply absolute right-2 top-[15px] text-[12px] font-medium leading-[18px] text-[#9CA3AF];
+}
+
+.searchButtonKeywordActive {
+  @apply cursor-pointer text-[#045DE3];
 }
