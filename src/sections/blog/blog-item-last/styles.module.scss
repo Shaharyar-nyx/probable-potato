@@ -12,7 +12,7 @@
 }
 
 .content {
-  @apply mx-auto flex flex-col-reverse items-start justify-center lg:flex-row lg:gap-[141px];
+  @apply mx-auto flex max-w-full flex-col-reverse items-start justify-center lg:flex-row lg:gap-[141px];
 }
 
 .left {
@@ -24,7 +24,7 @@
 }
 
 .infoContainer {
-  @apply absolute left-[20px] top-[20px] z-[1] flex items-start justify-center gap-[10px];
+  @apply absolute left-[20px] top-[20px] z-[1] flex items-center justify-center gap-[10px];
 }
 
 .category {
@@ -44,7 +44,7 @@
 }
 
 .description {
-  @apply mt-[20px] line-clamp-3 text-[16px] font-normal leading-[24px] tracking-[-0.02em] text-[#f6f7f8];
+  @apply mt-[20px] line-clamp-3 max-w-full text-[16px] font-normal leading-[24px] tracking-[-0.02em] text-[#f6f7f8];
 }
 
 .readMore {
