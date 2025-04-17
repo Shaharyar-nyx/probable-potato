@@ -28,6 +28,8 @@ export const NewsItem: React.FC<NewsItemType> = ({
 
   const flag: string = findFlagUrlByIso2Code(countryFlag.toLocaleUpperCase());
 
+  const hasUri: boolean = newsUrl && newsUrl.length > 0 ? true : false;
+
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -45,21 +47,21 @@ export const NewsItem: React.FC<NewsItemType> = ({
           <div className={styles.date}>{dateFormat}</div>
         </div>
         <div className={styles.content}>
-          <span className={clsx(styles.summaryContent, { hidden: !readMore })}>
-            {newsSummary}{" "}
-            {newsUrl && newsUrl.length && (
-              <a className={clsx(styles.readMore, { hidden: !readMore })} href={newsUrl ?? "#"} target="_blank">
-                <span className={styles.readMoreLink}>Source</span>
-              </a>
-            )}
-          </span>
+          <span className={clsx(styles.summaryContent, { hidden: !readMore })}>{newsSummary} </span>
           <span className={clsx(styles.summaryContent, { hidden: !!readMore })}>
             {summaryContent}{" "}
-            <span
-              className={clsx(styles.readMore, { hidden: !!readMore || isEqualLength })}
-              onClick={() => setReadMore(!readMore)}
-            >
-              <span className={styles.readMoreLink}>Read More</span>
+            <span className={clsx(styles.readMore, { hidden: !!readMore || isEqualLength })}>
+              {hasUri && (
+                <a className={clsx(styles.readMore)} href={newsUrl} target="_blank">
+                  <span className={styles.readMoreLink}>Read More</span>
+                </a>
+              )}
+
+              {!hasUri && (
+                <span onClick={() => setReadMore(!readMore)} className={styles.readMoreLink}>
+                  Read More
+                </span>
+              )}
             </span>
           </span>
         </div>
