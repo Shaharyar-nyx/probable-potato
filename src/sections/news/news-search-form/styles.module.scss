@@ -72,11 +72,11 @@
 
 .resetSearch {
   @apply mt-2 flex items-center justify-end text-[14px] font-medium text-[#045DE3];
+  @apply cursor-pointer;
 }
 
 .resetIconSearch {
   @apply ml-2 text-[#045DE3];
-  @apply cursor-pointer;
 }
 
 .resetIconSearch:hover {

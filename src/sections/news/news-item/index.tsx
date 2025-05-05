@@ -18,7 +18,13 @@ export const NewsItem: React.FC<NewsItemType> = ({
   newsUrl,
 }) => {
   const [readMore, setReadMore] = useState(false);
-  const summaryContent = newsSummary?.substring(0, 200);
+  const indexOfOneDot = newsSummary?.indexOf(".", 1);
+  let summaryContent = newsSummary?.substring(0, 200);
+  if (indexOfOneDot > 0) {
+    const indexOfTwoDot = newsSummary?.indexOf(".", indexOfOneDot + 1);
+    summaryContent = newsSummary?.substring(0, indexOfTwoDot > 0 ? indexOfTwoDot + 1 : indexOfOneDot + 1);
+  }
+
   const isEqualLength = newsSummary?.length === summaryContent?.length;
   const dateFormat = new Date(accidentDate).toLocaleDateString("en-US", {
     year: "numeric",
@@ -39,7 +45,7 @@ export const NewsItem: React.FC<NewsItemType> = ({
           </div>
           <div className={styles.country} title={country}>
             {flag && flag.length && <Image src={flag} alt={country} width={15} height={15} className={styles.flag} />}
-            {country}
+            <span className="line-clamp-1">{country}</span>
           </div>
           <div className={styles.industry} title={corporateIndustry}>
             {corporateIndustry}
