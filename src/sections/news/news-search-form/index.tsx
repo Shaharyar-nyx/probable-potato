@@ -205,9 +205,9 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
           </div>
         </div>
       </form>
-      <div className={styles.resetSearch}>
+      <div className={styles.resetSearch} onClick={() => resetSearch()}>
         <span>Reset Filters</span>
-        <span className={styles.resetIconSearch} onClick={() => resetSearch()}>
+        <span className={styles.resetIconSearch}>
           <ResetIcon />
         </span>
       </div>
