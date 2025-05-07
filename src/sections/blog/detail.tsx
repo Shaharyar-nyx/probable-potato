@@ -7,7 +7,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { BlogSummary } from "./blog-summary";
 import markdownit from "markdown-it";
-const md = markdownit();
+const md = markdownit({
+  html: true,
+});
 
 export interface BlogDetailProps {
   author: string;
@@ -23,6 +25,7 @@ export const BlogDetail: React.FC<any> = ({ author, createdAt, banner, content, 
   const form = useRef({
     categories: "",
   });
+
   return (
     <div className={styles.blogWrapper}>
       <div className={styles.blogContainer}>
