@@ -72,7 +72,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
 
   const dataPosts = request("/api/blog-posts", { page: 1, limit: 5 }, "GET");
   const jsonPosts = await dataPosts.then((res) => res.json());
-  const { title, content, thumbnail } = jsonPost;
+
+  const { author, title, content, thumbnail, createdAt, publishedAt } = jsonPost;
   return (
     <PageBuilder
       blockComponents={{ hero_section: NewsHero, blog: BlogDetail }}
@@ -89,8 +90,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
         } as any,
         {
           collection: "blog",
-          author: "John Doe",
-          createdAt: "2023-10-01",
+          author: author,
+          createdAt: publishedAt || createdAt || "2023-10-01",
           banner: `${STRAPI_ASSETS}${thumbnail?.formats?.medium?.url}`,
           content,
           news: jsonPosts.hits,
