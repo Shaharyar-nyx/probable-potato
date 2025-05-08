@@ -4,6 +4,7 @@ import { PageBuilder } from "@/components/PageBuilder";
 import { Metadata } from "next";
 import { request } from "@/lib/request";
 import { BlogDetail } from "@/sections/blog/detail";
+import dayjs from "dayjs";
 
 async function getNewsPage() {
   return getPageBySlug("blogs");
@@ -73,7 +74,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
   const dataPosts = request("/api/blog-posts", { page: 1, limit: 5 }, "GET");
   const jsonPosts = await dataPosts.then((res) => res.json());
 
-  const { author, title, content, thumbnail, createdAt, publishedAt } = jsonPost;
+  const { author, title, content, thumbnail, published_at } = jsonPost;
   return (
     <PageBuilder
       blockComponents={{ hero_section: NewsHero, blog: BlogDetail }}
@@ -91,7 +92,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
         {
           collection: "blog",
           author: author,
-          createdAt: publishedAt || createdAt || "2023-10-01",
+          createdAt: dayjs(published_at || "2023-10-01").format("YYYY-mm-dd"), //"2023-10-01",
           banner: `${STRAPI_ASSETS}${thumbnail?.formats?.medium?.url}`,
           content,
           news: jsonPosts.hits,
