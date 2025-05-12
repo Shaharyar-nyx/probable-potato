@@ -98,7 +98,7 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
   );
 
   useEffect(() => {
-    const have = corporateName && corporateName.length > 0;
+    const have = corporateName && corporateName.length >= 2;
     setSearchKeyword(have);
   }, [corporateName]);
 
@@ -189,14 +189,16 @@ export const NewsSearchForm: React.FC<any> = ({ listCountry, listIndustry, handl
                 value={corporateName || ""}
                 onChange={(event) => setCorporateName(event.target.value)}
                 onKeyUp={(event) => {
-                  if (event.key == "Enter") {
+                  if (event.key == "Enter" && searchKeyword) {
                     handleChange("corporateName", corporateName);
                   }
                 }}
                 className={styles.searchInputElem}
               />
               <span
-                onClick={() => handleChange("corporateName", corporateName)}
+                onClick={() => {
+                  if (searchKeyword) handleChange("corporateName", corporateName);
+                }}
                 className={clsx(styles.searchButtonKeyword, searchKeyword ? "cursor-pointer text-[#045DE3]" : "")}
               >
                 Search
