@@ -130,7 +130,7 @@ export const BlogList: React.FC<any> = () => {
                   <div className={styles.newsListWrap}>
                     {news?.map((item) => <BlogSummary key={`news-item-${item.id}`} {...item} />)}
                   </div>
-                  {(!news || news.length <= 0) && <div className={styles.noData}>Nothing to show</div>}
+                  {(!news || news.length <= 0) && <div className={styles.noData}>No posts available under this category. Check back soon for updates on the latest in cybersecurity.</div>}
                 </div>
               </div>
             </>
@@ -172,7 +172,7 @@ export const BlogList: React.FC<any> = () => {
                     ))}
                   </Swiper>
                 </div>
-                {(!news || news.length <= 0) && <div className={styles.noData}>Nothing to show</div>}
+                {(!news || news.length <= 0) && <div className={styles.noData}>No posts available under this category. Check back soon for updates on the latest in cybersecurity.</div>}
               </div>
             </div>
           )}
