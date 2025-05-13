@@ -130,8 +130,10 @@ export const BlogList: React.FC<any> = () => {
                   <div className={styles.newsListWrap}>
                     {news?.map((item) => <BlogSummary key={`news-item-${item.id}`} {...item} />)}
                   </div>
-                  {(!news || news.length <= 0) && <div className={styles.noData}>Fresh blog content is on the way across all fronts of cybersecurity. From securing your tech stack to monitoring your evolving attack surface and strengthening enterprise governance—we’re preparing expert insights to help you move from reactive to resilient.
-                  At Cyberbay, we’re not just tracking threats—we’re helping you get ahead of them. Whether you’re building in Web3, scaling your startup, or maturing your security posture, check back soon for actionable strategies, industry trends, cyber news, and bold perspectives designed to secure your next move.</div>}
+                  {(!news || news.length <= 0) && <div className={styles.noData}>
+                    <p>Fresh blog content is on the way across all fronts of cybersecurity. From securing your tech stack to monitoring your evolving attack surface and strengthening enterprise governance—we're preparing expert insights to help you move from reactive to resilient.</p>
+                    <p>At Cyberbay, we're not just tracking threats—we're helping you get ahead of them. Whether you're building in Web3, scaling your startup, or maturing your security posture, check back soon for actionable strategies, industry trends, cyber news, and bold perspectives designed to secure your next move.</p>
+                  </div>}
                 </div>
               </div>
             </>
@@ -173,8 +175,10 @@ export const BlogList: React.FC<any> = () => {
                     ))}
                   </Swiper>
                 </div>
-                {(!news || news.length <= 0) && <div className={styles.noData}>Fresh blog content is on the way across all fronts of cybersecurity. From securing your tech stack to monitoring your evolving attack surface and strengthening enterprise governance—we’re preparing expert insights to help you move from reactive to resilient.
-                  At Cyberbay, we’re not just tracking threats—we’re helping you get ahead of them. Whether you’re building in Web3, scaling your startup, or maturing your security posture, check back soon for actionable strategies, industry trends, cyber news, and bold perspectives designed to secure your next move.</div>}
+                {(!news || news.length <= 0) && <div className={styles.noData}>
+                    <p>Fresh blog content is on the way across all fronts of cybersecurity. From securing your tech stack to monitoring your evolving attack surface and strengthening enterprise governance—we're preparing expert insights to help you move from reactive to resilient.</p>
+                    <p>At Cyberbay, we're not just tracking threats—we're helping you get ahead of them. Whether you're building in Web3, scaling your startup, or maturing your security posture, check back soon for actionable strategies, industry trends, cyber news, and bold perspectives designed to secure your next move.</p>
+                  </div>}
               </div>
             </div>
           )}
