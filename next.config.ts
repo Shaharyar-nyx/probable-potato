@@ -65,11 +65,11 @@ const securityHeadersConfig = (phase: string) => {
       base-uri 'none';
       form-action 'none';
       frame-ancestors 'none';
-      img-src 'self' data: blob: https://www.google.com https://*.cyberbay.tech;
+      img-src 'self' data: blob: https://www.google.com https://*.cyberbay.tech https://*.linkedin.com;
       frame-src 'self' https://www.google.com;
       font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com;
       style-src 'self' 'unsafe-inline';
-      connect-src 'self' https://*.cyberbay.tech;
+      connect-src 'self' https://*.cyberbay.tech https://*.linkedin.com https://www.google-analytics.com;
       ${upgradeInsecure}
     `;
 
