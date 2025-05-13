@@ -55,7 +55,7 @@
 }
 
 .listCategory {
-  @apply block gap-4 lg:flex lg:items-center lg:justify-between;
+  @apply block min-w-[314px] gap-4 lg:flex lg:items-center lg:justify-between;
 }
 
 .swiperContent {

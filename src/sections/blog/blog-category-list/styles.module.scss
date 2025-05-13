@@ -7,7 +7,7 @@
 }
 
 .list {
-  @apply inline-flex list-none flex-col items-start justify-center rounded-xl bg-[#045de3] text-[16px] font-normal leading-6 text-[#F6F7F8];
+  @apply inline-flex min-w-[314px] list-none flex-col items-start justify-center rounded-xl bg-[#045de3] text-[16px] font-normal leading-6 text-[#F6F7F8];
 }
 
 .listFirst {
