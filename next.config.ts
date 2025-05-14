@@ -74,7 +74,7 @@ const securityHeadersConfig = (phase: string) => {
     `;
 
     const scriptSrc = `
-      https://www.google.com  https://www.gstatic.com https://*.cyberbay.tech
+      'https://www.googletagmanager.com https://snap.licdn.com https://api.retargetly.com https://www.google.com  https://www.gstatic.com https://*.cyberbay.tech
     `;
     // for production environment allowing vitals.vercel-insights.com
     // based on: https://vercel.com/docs/speed-insights#content-security-policy
