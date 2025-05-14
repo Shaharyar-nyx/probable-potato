@@ -50,7 +50,7 @@ export const BlogItemLast: React.FC<BlogItemType> = ({ id, title, content, thumb
               <Image
                 src={thumbnailUrl}
                 alt="blog"
-                objectFit="cover"
+                style={{ objectFit: "cover" }}
                 fill
                 className="left-0 top-0 h-full w-full max-w-full rounded-2xl object-cover"
               />

@@ -72,12 +72,11 @@ async function PlatformPage() {
   if (!data?.blocks) {
     return null;
   }
-
   return (
     <main>
       <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
     </main>
   );
-};
+}
 
 export default PlatformPage;
