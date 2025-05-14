@@ -8,7 +8,15 @@ import styles from "./styles.module.scss";
 import Modal from "@/components/UI/modal";
 import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 
-export const Hero: React.FC<any> = ({ background_file, cta_text, cta_modal, cta_url, content, featured_image, title }) => {
+export const Hero: React.FC<any> = ({
+  background_file,
+  cta_text,
+  cta_modal,
+  cta_url,
+  content,
+  featured_image,
+  title,
+}) => {
   const cta = {
     label: cta_text,
     isModal: cta_modal,
@@ -36,18 +44,25 @@ export const Hero: React.FC<any> = ({ background_file, cta_text, cta_modal, cta_
           <div className={styles.textContent}>
             <div className={`${styles.title} display-1 font-bold`}>{title}</div>
             <p className={`${styles.description} paragraph-lg`}>{content}</p>
-            {cta_text && <Modal id="hero-demo-form" cta={cta} buttonStyle="!mt-6 lg:mt-0 w-full lg:w-fit lg:mx-0 paragraph-sm lg:paragraph-md" />}
+            {cta_text && (
+              <Modal
+                id="hero-demo-form"
+                cta={cta}
+                buttonStyle="!mt-6 lg:mt-0 w-full lg:w-fit lg:mx-0 paragraph-sm lg:paragraph-md"
+              />
+            )}
           </div>
 
           <ParallaxProvider>
             <div className={styles.imageContainer}>
               <div className={styles.imageWrapper}>
-                <Parallax className="h-full" translateY={[-20, 20]}>
+                <Parallax className="relative h-full" translateY={[-20, 20]}>
                   <Image
                     alt={featured_image?.data?.attributes?.name}
                     className="rounded-2xl"
-                    layout="fill"
-                    objectFit="cover"
+                    style={{ objectFit: "cover" }}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     src={`${STRAPI_ASSETS}${featured_image?.data?.attributes?.url}`}
                   />
                 </Parallax>

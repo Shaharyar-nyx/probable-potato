@@ -3,8 +3,8 @@
 import Image from "next/image";
 import React from "react";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 import styles from "./styles.module.scss";
 
 import { STRAPI_ASSETS } from "@/lib";
@@ -31,12 +31,12 @@ export const LaunchProgram: React.FC<any> = ({ headline, title, content, cards }
       <div className={styles.container}>
         <div className={`${styles.gridContent} grid`}>
           <div className={styles.content}>
-            <div className={`${isMobile ? 'paragraph-md' : 'tagline'} mb-6 lg:mb-10`}>{headline}</div>
-            <h2 className={`${isMobile ? 'heading-7' : 'heading-2'} mb-4 lg:mb-6 font-bold`}>{title}</h2>
+            <div className={`${isMobile ? "paragraph-md" : "tagline"} mb-6 lg:mb-10`}>{headline}</div>
+            <h2 className={`${isMobile ? "heading-7" : "heading-2"} mb-4 font-bold lg:mb-6`}>{title}</h2>
             <p className="paragraph-md">{content}</p>
           </div>
 
-          {!isMobile &&
+          {!isMobile && (
             <div className={styles.sliderContainer}>
               <div className={styles.navigationButtons}>
                 <button
@@ -88,8 +88,8 @@ export const LaunchProgram: React.FC<any> = ({ headline, title, content, cards }
                           <Image
                             alt="Step Image"
                             className={styles.stepImage}
-                            layout="fill"
-                            objectFit="contain"
+                            style={{ objectFit: "contain" }}
+                            fill
                             src={`${STRAPI_ASSETS}${image?.data?.attributes?.url}`}
                           />
                         </div>
@@ -99,12 +99,11 @@ export const LaunchProgram: React.FC<any> = ({ headline, title, content, cards }
                 })}
               </div>
             </div>
-          }
-
+          )}
         </div>
       </div>
 
-      {isMobile &&
+      {isMobile && (
         <Swiper
           className={styles.swiperContent}
           modules={[Pagination, Autoplay]}
@@ -131,8 +130,8 @@ export const LaunchProgram: React.FC<any> = ({ headline, title, content, cards }
                     <Image
                       alt="Step Image"
                       className={styles.stepImage}
-                      layout="fill"
-                      objectFit="contain"
+                      style={{ objectFit: "contain" }}
+                      fill
                       src={`${STRAPI_ASSETS}${image?.data?.attributes?.url}`}
                     />
                   </div>
@@ -140,7 +139,8 @@ export const LaunchProgram: React.FC<any> = ({ headline, title, content, cards }
               </div>
             </SwiperSlide>
           ))}
-        </Swiper>}
+        </Swiper>
+      )}
     </section>
   );
 };

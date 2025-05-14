@@ -42,7 +42,9 @@ const roboto = Roboto({
 });
 
 const PackageCard = ({
-  data: { title, content, cta_text, cta_modal_pricing, cta_url, duration, icon, price }, isMobile, packageFeatures
+  data: { title, content, cta_text, cta_modal_pricing, cta_url, duration, icon, price },
+  isMobile,
+  packageFeatures,
 }: any) => {
   const cta = {
     label: cta_text,
@@ -68,41 +70,42 @@ const PackageCard = ({
         <div className={styles.packageContentWrapper}>
           <div className={styles.priceContainer}>
             {duration ? (
-              <h1 className={`${styles.price} ${isMobile ? 'heading-2' : 'heading-1'} font-bold`}>
+              <h1 className={`${styles.price} ${isMobile ? "heading-2" : "heading-1"} font-bold`}>
                 {price}
-                <span className={`${styles.perYear} ${isMobile ? 'paragraph-md' : 'paragraph-xs'} font-normal`}>{duration}</span>
+                <span className={`${styles.perYear} ${isMobile ? "paragraph-md" : "paragraph-xs"} font-normal`}>
+                  {duration}
+                </span>
               </h1>
             ) : (
-              <h3 className={`${styles.price} ${isMobile ? 'heading-2' : 'heading-3'} font-bold`}>{price}</h3>
+              <h3 className={`${styles.price} ${isMobile ? "heading-2" : "heading-3"} font-bold`}>{price}</h3>
             )}
           </div>
           <p className={`${styles.packageDescription} paragraph-md`}>{content}</p>
         </div>
       </div>
 
-      {isMobile &&
+      {isMobile && (
         <div className="text-neutral-50">
-          <div className="paragraph-lg font-semibold mb-4">Package features</div>
+          <div className="paragraph-lg mb-4 font-semibold">Package features</div>
 
           <div>
             {packageFeatures.map((feature: any, index: number) => {
               const handleType = (type: string) => {
                 switch (type) {
-                  case 'Pricing Additional':
-                    return ' (Extra Cost)'
-                  case '1':
-                    return ''
+                  case "Pricing Additional":
+                    return " (Extra Cost)";
+                  case "1":
+                    return "";
                   default:
-                    return ` (${feature[title.toLowerCase()]})`
+                    return ` (${feature[title.toLowerCase()]})`;
                 }
-              }
+              };
               return (
                 <div key={index} className="flex flex-row gap-[5px]">
-                  {
-                    feature[title.toLowerCase()] !== null &&
+                  {feature[title.toLowerCase()] !== null && (
                     <>
                       <CheckIcon />
-                      <span style={{ display: 'ruby' }}>
+                      <span style={{ display: "ruby" }}>
                         {feature.name}
                         {typeof feature[title.toLowerCase()] === "string" && handleType(feature[title.toLowerCase()])}
                         {feature.tooltip && (
@@ -110,9 +113,15 @@ const PackageCard = ({
                             <span
                               data-tooltip-content={feature.tooltip}
                               data-tooltip-id={`tooltip-${feature.name}`}
-                              style={{ position: 'relative', top: "-1px", left: '5px' }}
+                              style={{ position: "relative", top: "-1px", left: "5px" }}
                             >
-                              <svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
+                              <svg
+                                fill="none"
+                                height="22"
+                                viewBox="0 0 22 22"
+                                width="22"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
                                 <g id="information-circle">
                                   <path
                                     d="M9.95486 10.3438L9.99117 10.3256C10.4926 10.0749 11.0573 10.5278 10.9213 11.0717L10.3009 13.5533C10.1649 14.0972 10.7296 14.5501 11.2311 14.2994L11.2674 14.2812M18.4861 11C18.4861 15.3492 14.9604 18.875 10.6111 18.875C6.26187 18.875 2.73611 15.3492 2.73611 11C2.73611 6.65076 6.26187 3.125 10.6111 3.125C14.9604 3.125 18.4861 6.65076 18.4861 11ZM10.6111 7.71875H10.6177V7.72531H10.6111V7.71875Z"
@@ -142,12 +151,13 @@ const PackageCard = ({
                         )}
                       </span>
                     </>
-                  }
+                  )}
                 </div>
-              )
+              );
             })}
           </div>
-        </div>}
+        </div>
+      )}
 
       <div className={styles.packageFooter}>
         {cta_text && (
@@ -299,9 +309,8 @@ const FeatureRow = ({
   );
 };
 
-export const Packages: React.FC<any> = ({ pricing_cards, features, table, content, title, backgroundImage }) => {
+export const Packages: React.FC<any> = ({ pricing_cards, features, table, content, title }) => {
   const isMobile = useIsMobile();
-
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
   const [gridCols, setGridCols] = useState(3);
 
@@ -319,12 +328,12 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
 
   return (
     <div className={styles.container}>
-      <div className={styles.background} style={{ backgroundImage: `url(${backgroundImage})` }} />
+      <div className={styles.background} />
       <div className={styles.overlay} />
 
       <div className={styles.content}>
         <div className={styles.header}>
-          <h1 className={`${isMobile ? 'heading-7' : 'heading-1'} mb-6 lg:mb-3 font-bold text-primary-800`}>{title}</h1>
+          <h1 className={`${isMobile ? "heading-7" : "heading-1"} mb-6 font-bold text-primary-800 lg:mb-3`}>{title}</h1>
           <p className={`${styles.subtitle} paragraph-md`}>{content}</p>
         </div>
 
@@ -338,9 +347,9 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
             <div>
               {features.data.map(({ attributes: { title, items } }: any, index: number) => (
                 <div key={`feature-${index}`} className="mt-10 lg:mb-16">
-                  <h3 className="heading-6 mb-4 lg:mb-5 font-bold text-primary-800">{title}</h3>
+                  <h3 className="heading-6 mb-4 font-bold text-primary-800 lg:mb-5">{title}</h3>
                   {items.data.map(({ attributes: { title, description, icon } }: any, index: number) => (
-                    <div key={`item-${index}`} className="mb-5 flex flex-col lg:flex-row items-start gap-4 lg:gap-6">
+                    <div key={`item-${index}`} className="mb-5 flex flex-col items-start gap-4 lg:flex-row lg:gap-6">
                       <div className="rounded-[4px] bg-primary-500 p-1">
                         <Image
                           alt={icon.data.attributes.name}
@@ -350,7 +359,7 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
                         />
                       </div>
                       <div className="w-[90%]">
-                        <p className={`${isMobile ? 'paragraph-md mb-2' : 'paragraph-lg'} font-bold`}>{title}</p>
+                        <p className={`${isMobile ? "paragraph-md mb-2" : "paragraph-lg"} font-bold`}>{title}</p>
                         <p className="paragraph-sm">{description}</p>
                       </div>
                     </div>
@@ -384,8 +393,7 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
                       hoveredColumn={hoveredColumn}
                       onColumnHover={setHoveredColumn}
                     />
-                  ))
-                  }
+                  ))}
                 </tbody>
               </table>
             </div>
