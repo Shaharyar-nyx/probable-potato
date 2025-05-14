@@ -75,6 +75,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
   const jsonPosts = await dataPosts.then((res) => res.json());
 
   const { author, title, content, thumbnail, published_at } = jsonPost;
+  const banner = thumbnail?.formats?.medium?.url || thumbnail?.url;
 
   return (
     <PageBuilder
@@ -94,7 +95,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
           collection: "blog",
           author: author,
           createdAt: dayjs(published_at || "2023-10-01").format("YYYY-MM-DD"), //"2023-10-01",
-          banner: `${STRAPI_ASSETS}${thumbnail?.formats?.medium?.url}`,
+          banner: banner ? `${STRAPI_ASSETS}${banner}` : undefined,
           content,
           news: jsonPosts.hits,
         },

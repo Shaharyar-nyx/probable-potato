@@ -29,9 +29,11 @@ export const BlogDetail: React.FC<any> = ({ author, createdAt, banner, content, 
   return (
     <div className={styles.blogWrapper}>
       <div className={styles.blogContainer}>
-        <div className={styles.banner}>
-          <img src={banner} alt="Blog Banner" className={styles.bannerImage} />
-        </div>
+        {banner && (
+          <div className={styles.banner}>
+            <img src={banner} alt="Blog Banner" className={styles.bannerImage} />
+          </div>
+        )}
         <div className={styles.contentWrapper}>
           <div className={styles.content}>
             <div className={styles.info}>
