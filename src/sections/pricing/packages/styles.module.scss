@@ -1,5 +1,19 @@
 .container {
-  @apply relative overflow-hidden bg-gradient-to-br from-white to-[#f8f9fa];
+  @apply relative hidden overflow-hidden bg-gradient-to-br from-white to-[#f8f9fa];
+}
+
+.emea.packages_section {
+  display: none !important;
+}
+.emea.packages_emea_section {
+  display: block !important;
+}
+
+.apac.packages_section {
+  display: block !important;
+}
+.apac.packages_emea_section {
+  display: none !important;
 }
 
 .background {

@@ -10,6 +10,7 @@ import { Metadata } from "next";
 const blockComponents: Record<string, React.FC<BlockType>> = {
   hero_section: Header,
   packages_section: Packages,
+  packages_emea_section: Packages,
   single_card_section: CTA,
 };
 
@@ -69,7 +70,8 @@ async function Pricing() {
   if (!data?.blocks) {
     return null;
   }
+
   return <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />;
-};
+}
 
 export default Pricing;
