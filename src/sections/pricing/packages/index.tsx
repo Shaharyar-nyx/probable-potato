@@ -10,6 +10,7 @@ import Modal from "@/components/UI/modal";
 import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks";
+import useIsAPAC from "@/hooks/useIsAPAC";
 
 const getPackageFeatures = (table: any, pricing_cards: any) => {
   const features = table.data.attributes.columns.data[0].attributes.rows.data.map((row: any) => ({
@@ -45,6 +46,8 @@ const PackageCard = ({
   data: { title, content, cta_text, cta_modal_pricing, cta_url, duration, icon, price },
   isMobile,
   packageFeatures,
+  isAPAC,
+  index,
 }: any) => {
   const cta = {
     label: cta_text,
@@ -52,6 +55,9 @@ const PackageCard = ({
     icon: "ArrowUpRightIcon",
     link: cta_url,
   };
+  // index start from 0
+  const freePackage = index === 2 ? 15 : 10;
+  const headline = `First ${freePackage} bugs free`;
 
   return (
     <div className={styles.package}>
@@ -69,6 +75,7 @@ const PackageCard = ({
         </div>
         <div className={styles.packageContentWrapper}>
           <div className={styles.priceContainer}>
+            {!isAPAC && <div className="text-sm text-white opacity-80">{headline}</div>}
             {duration ? (
               <h1 className={`${styles.price} ${isMobile ? "heading-2" : "heading-1"} font-bold`}>
                 {price}
@@ -309,7 +316,8 @@ const FeatureRow = ({
   );
 };
 
-export const Packages: React.FC<any> = ({ pricing_cards, features, table, content, title }) => {
+export const Packages: React.FC<any> = ({ collection, pricing_cards, features, table, content, title }) => {
+  const { isAPAC } = useIsAPAC();
   const isMobile = useIsMobile();
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
   const [gridCols, setGridCols] = useState(3);
@@ -327,7 +335,7 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isAPAC ? styles.apac : styles.emea} ${styles[collection]}`}>
       <div className={styles.background} />
       <div className={styles.overlay} />
 
@@ -371,7 +379,14 @@ export const Packages: React.FC<any> = ({ pricing_cards, features, table, conten
             <div />
           )}
           {pricing_cards.map((pkg: any, index: number) => (
-            <PackageCard key={`card-${index}`} data={pkg} isMobile={isMobile} packageFeatures={packageFeatures} />
+            <PackageCard
+              key={`card-${index}`}
+              data={pkg}
+              isMobile={isMobile}
+              packageFeatures={packageFeatures}
+              isAPAC={isAPAC}
+              index={index}
+            />
           ))}
         </div>
 
