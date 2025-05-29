@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
@@ -30,18 +32,22 @@ const apacCountries = [
 ];
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
+const detectCountryUri = process.env.LOCATION_CHECK_URL ?? "/country-check";
 export default function useIsAPAC() {
-  const [isAPAC, setIsAPAC] = useState<boolean | null>(null); // null = unknown
+  const [isAPAC, setIsAPAC] = useState<boolean>(true);
+  const [country, setCountry] = useState<string | null>("");
 
-  const { data, error, isLoading } = useSWR("https://ipapi.co/json/", fetcher, {
+  const { data, isLoading, error } = useSWR(`${detectCountryUri}`, fetcher, {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
   });
 
   useEffect(() => {
     if (data && data.country) {
-      const isApac = apacCountries.includes(data.country);
+      const { country } = data;
+      const code = (country ?? "").toUpperCase();
+      const isApac = apacCountries.includes(code);
+      setCountry(code);
       setIsAPAC(isApac);
     }
   }, [data, error]);
@@ -50,6 +56,6 @@ export default function useIsAPAC() {
     isAPAC,
     isLoading,
     error,
-    country: data?.country,
+    country,
   };
 }
