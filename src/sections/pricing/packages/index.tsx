@@ -9,8 +9,7 @@ import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
 import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
-import { useIsMobile } from "@/hooks";
-import useIsAPAC from "@/hooks/useIsAPAC";
+import { useIsMobile, useIsAPAC } from "@/hooks";
 
 const getPackageFeatures = (table: any, pricing_cards: any) => {
   const features = table.data.attributes.columns.data[0].attributes.rows.data.map((row: any) => ({

@@ -33,7 +33,8 @@ const apacCountries = [
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const detectCountryUri = process.env.LOCATION_CHECK_URL ?? "/country-check";
-export default function useIsAPAC() {
+
+export function useIsAPAC() {
   const [isAPAC, setIsAPAC] = useState<boolean>(true);
   const [country, setCountry] = useState<string | null>("");
 
