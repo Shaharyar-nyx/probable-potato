@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 
-import { Hero, BrandMission, Solutions, Testimonials, Clients, CTA } from "@/sections";
+import { Hero, BrandMission, Solutions, Testimonials, Clients, CTA, EventUpcoming2025 } from "@/sections";
 import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { BlockType } from "@/types";
@@ -15,6 +15,7 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   // home_testimonial: Testimonials,
   industry_leaders_section: Clients,
   single_card_section: CTA,
+  event_upcoming_section: EventUpcoming2025,
 };
 
 async function getHomeData() {
@@ -79,6 +80,6 @@ async function Home() {
       <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
     </main>
   );
-};
+}
 
 export default Home;

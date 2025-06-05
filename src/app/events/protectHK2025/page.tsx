@@ -1,23 +1,28 @@
 import React from "react";
 
-import { Header } from "@/components";
-import { Introduction, Accordion } from "@/sections";
+import { EventIntro, CampaignTimeline, EventWork, CTA, EventPartner } from "@/sections";
 import { PageBuilder } from "@/components/PageBuilder";
 import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { Metadata } from "next";
+import { Header } from "@/components";
 
 const blockComponents: Record<string, React.FC<any>> = {
   hero_section: Header,
-  simple_section: Introduction,
-  multi_card_section: Accordion,
+  intro_section: EventIntro,
+  work_section: EventWork,
+  timeline_section: CampaignTimeline,
+  //co_organizers_section: EventUpcoming2025,
+  partner_section: EventPartner,
+  cta_section: CTA,
 };
 
 async function getPageData() {
-  return getPageBySlug("privacy-policy");
+  return getPageBySlug("protectHK2025");
 }
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPageData();
+  console.log("Event 2025 page data:", data);
   if (!data?.seo) {
     return {
       title: "Cyberbay",
@@ -69,9 +74,7 @@ async function Event2025Page() {
     return null;
   }
 
-  return (
-    <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
-  );
-};
+  return <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />;
+}
 
 export default Event2025Page;
