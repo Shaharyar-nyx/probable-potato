@@ -24,8 +24,8 @@ export const EventPartner = ({ title, cards }: { title: string; cards: any }) =>
                   src={`/images/events/2025_Bug_Hunting_Logo_${index + 1}.png`}
                   alt={title}
                   width={280}
-                  height={80}
-                  className="h-auto w-full"
+                  height={140}
+                  className="h-[140px] w-full object-contain"
                 />
               </div>
             ))}
