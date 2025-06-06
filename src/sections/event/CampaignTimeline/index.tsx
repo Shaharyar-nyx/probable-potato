@@ -72,7 +72,7 @@ export const CampaignTimeline = ({
             </div>
 
             {/* Events */}
-            <div className="relative mt-36 space-y-20">
+            <div className="relative mt-36 space-y-10">
               {cards.map((item: any, index: number) => (
                 <div
                   style={{ marginLeft: `${calculateMargin(index)}%` }}
