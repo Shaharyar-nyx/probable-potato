@@ -34,7 +34,7 @@ export const EventIntro = ({
             {/* Badge Section */}
             <div className="flex flex-col gap-6 md:gap-8">
               <div className="flex flex-col items-center gap-4 md:flex-row md:items-center md:gap-6">
-                <div className="relative h-20 w-20 md:h-24 md:w-24">
+                <div className="relative h-20 w-20 md:h-[120px] md:w-[120px]">
                   <Image
                     src={
                       background_file?.data?.attributes?.url
@@ -42,8 +42,8 @@ export const EventIntro = ({
                         : "/images/events/bughunting-badge-2025.png"
                     }
                     alt="BugHunting Campaign 2025 Badge"
-                    width={96}
-                    height={96}
+                    width={120}
+                    height={120}
                     className="rounded-lg"
                   />
                 </div>
