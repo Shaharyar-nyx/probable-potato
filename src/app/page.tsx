@@ -15,7 +15,7 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   // home_testimonial: Testimonials,
   industry_leaders_section: Clients,
   single_card_section: CTA,
-  event_upcoming_section: EventUpcoming2025,
+  events_section: EventUpcoming2025,
 };
 
 async function getHomeData() {

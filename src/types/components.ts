@@ -484,3 +484,52 @@ export interface SeoType {
     };
   };
 }
+
+export interface EventDetail {
+  title: string;
+  details: string;
+  image: {
+    data: {
+      attributes: {
+        url: string;
+        alternativeText?: string;
+      };
+    };
+  };
+  location: string;
+  start_date?: string;
+  end_date?: string;
+  start_time?: string;
+  end_time?: string;
+  details_url?: string;
+  type: "Virtual" | "In-Person" | "Hybrid";
+}
+
+export interface EventGroup {
+  title: string;
+  description?: string;
+  image: {
+    data: {
+      attributes: {
+        url: string;
+        alternativeText?: string;
+      };
+    };
+  };
+  events: EventDetail[];
+}
+
+export interface EventsSection {
+  title: string;
+  description?: string;
+  image: {
+    data: {
+      attributes: {
+        url: string;
+        alternativeText?: string;
+      };
+    };
+  };
+  event_groups: EventGroup[];
+  collection: string;
+}
