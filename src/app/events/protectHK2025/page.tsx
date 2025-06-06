@@ -1,29 +1,28 @@
 import React from "react";
-import type { Metadata } from "next";
 
-import { Hero, BrandMission, Solutions, Testimonials, Clients, CTA, EventUpcoming2025 } from "@/sections";
-import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
+import { EventIntro, CampaignTimeline, EventWork, CTA, EventPartner } from "@/sections";
 import { PageBuilder } from "@/components/PageBuilder";
-import { BlockType } from "@/types";
-import { CrowdSourcing } from "@/sections/home/crowdsourcing";
+import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
+import { Metadata } from "next";
+import { Header } from "@/components";
 
-const blockComponents: Record<string, React.FC<BlockType>> = {
-  hero_section: Hero,
-  home_intro: BrandMission,
-  home_cybersecurity_solutions: Solutions,
-  home_scaling_cybersecurity: CrowdSourcing,
-  // home_testimonial: Testimonials,
-  industry_leaders_section: Clients,
-  single_card_section: CTA,
-  event_upcoming_section: EventUpcoming2025,
+const blockComponents: Record<string, React.FC<any>> = {
+  hero_section: Header,
+  intro_section: EventIntro,
+  work_section: EventWork,
+  timeline_section: CampaignTimeline,
+  //co_organizers_section: EventUpcoming2025,
+  partner_section: EventPartner,
+  cta_section: CTA,
 };
 
-async function getHomeData() {
-  return getPageBySlug(null);
+async function getPageData() {
+  return getPageBySlug("protectHK2025");
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await getHomeData();
+  const data = await getPageData();
+  console.log("Event 2025 page data:", data);
   if (!data?.seo) {
     return {
       title: "Cyberbay",
@@ -69,17 +68,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-async function Home() {
-  const data = await getHomeData();
+async function Event2025Page() {
+  const data = await getPageData();
   if (!data?.blocks) {
     return null;
   }
 
-  return (
-    <main>
-      <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
-    </main>
-  );
+  return <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />;
 }
 
-export default Home;
+export default Event2025Page;
