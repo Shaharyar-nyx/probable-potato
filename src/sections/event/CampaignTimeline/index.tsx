@@ -1,8 +1,8 @@
 "use client";
 
-//import { STRAPI_ASSETS } from "@/lib";
+import { STRAPI_ASSETS } from "@/lib";
 import React from "react";
-//import Image from "next/image";
+import Image from "next/image";
 
 export const CampaignTimeline = ({
   background_file,
@@ -29,10 +29,10 @@ export const CampaignTimeline = ({
 
   return (
     <div className="bg-[#F6F7F8]">
-      <div className="mx-auto max-w-screen-2xl">
-        <div className="min-h-screen gap-20 px-8 py-12 text-[#32363D]">
-          <h2 className="mb-12 text-center text-3xl font-bold text-[#02255B]">{title}</h2>
-          {/* <div className="pl-[40px]">
+      <div className="mx-auto max-w-screen-2xl overflow-hidden md:overflow-visible">
+        <div className="gap-20 px-2 py-2 text-[#32363D] md:min-h-screen md:px-8 md:py-12">
+          <h2 className="mb-0 text-center text-3xl font-bold text-[#02255B] md:mb-12">{title}</h2>
+          <div className="block md:hidden">
             <Image
               src={`${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`}
               alt={title}
@@ -40,10 +40,9 @@ export const CampaignTimeline = ({
               height={1000}
               className="h-full w-full object-cover"
             />
-          </div> */}
-
+          </div>
           {/* Timeline Grid */}
-          <div className="relative">
+          <div className="relative hidden md:block">
             {/* Month Labels */}
             <div className="relative mb-6 h-8">
               {cards.map((item: any, index: number) => (
