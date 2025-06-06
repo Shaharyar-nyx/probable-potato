@@ -67,8 +67,8 @@ export const CampaignTimeline = ({
             </div>
 
             {/* Campaign Period Bar */}
-            <div className="absolute left-[41%] top-[4rem] flex h-12 w-[47.2%] items-center justify-center rounded-xl bg-[#045DE3] font-semibold text-white shadow-lg">
-              {content}
+            <div className="absolute left-[41%] top-[4rem] flex h-12 w-[47.2%] items-center justify-start rounded-xl bg-[#045DE3] pl-6 text-left text-[16px] font-semibold text-[#F6F7F8] shadow-lg">
+              <span>{content}</span>
             </div>
 
             {/* Events */}

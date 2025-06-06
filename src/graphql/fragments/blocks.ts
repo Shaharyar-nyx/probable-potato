@@ -512,6 +512,56 @@ export const BLOCKS_FRAGMENT = `
           }
       }
     }
+      ... on ComponentBlocksEventsSection {
+      collection
+      title
+      description
+      image {
+        data {
+            attributes {
+                name
+                alternativeText
+                mime
+                url
+            }
+        }
+      }
+      event_groups {
+        title
+        description
+        image {
+            data {
+                attributes {
+                    name
+                    alternativeText
+                    mime
+                    url
+                }
+            }
+        }
+        events {
+          title
+          details
+          image {
+            data {
+                attributes {
+                    name
+                    alternativeText
+                    mime
+                    url
+                }
+            }
+          }
+          location
+          start_date
+          end_date
+          start_time
+          end_time
+          details_url
+          type
+        }
+      }
+    }
     ... on ComponentBlocksBhLevels {
       collection
       title

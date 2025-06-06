@@ -47,7 +47,7 @@ export const EventIntro = ({
                     className="rounded-lg"
                   />
                 </div>
-                <div className="flex items-center gap-2 md:gap-4">
+                <div className="flex items-center gap-2 md:gap-[20px]">
                   <span className="text-2xl font-bold text-[#02255B] md:text-4xl">-</span>
                   <h1 className="text-center text-2xl font-bold text-[#02255B] md:text-left md:text-4xl">{title}</h1>
                 </div>
@@ -75,7 +75,7 @@ export const EventIntro = ({
 
                     {/* Requirement Box */}
                     <div className="rounded-2xl border border-gray-200 p-4 text-[#02255B] md:p-6">
-                      <p className="text-sm font-bold leading-tight md:text-base">{requirement.title || ""}</p>
+                      <p className="pl-2 text-sm font-bold leading-tight md:text-base">{requirement.title || ""}</p>
                     </div>
                   </div>
                 ))}

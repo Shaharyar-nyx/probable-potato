@@ -12,7 +12,7 @@ export const EventWork = ({
   cards: any;
   background_file: any;
 }) => (
-  <div className="bg-[url('/images/events/pattern-bg.png')] bg-cover bg-no-repeat">
+  <div className="bg-[url('/images/events/how-to-work-bg.png')] bg-cover bg-no-repeat">
     <div className="mx-auto max-w-screen-2xl overflow-hidden">
       <section className="relative w-full overflow-hidden px-4 py-12 md:px-6 md:py-16 lg:px-8 lg:py-24">
         {/* Background Pattern */}
