@@ -24,14 +24,12 @@ export const EventWork = ({
         <div className="relative mx-auto max-w-7xl">
           <div className="flex flex-col items-center">
             {/* Title */}
-            <h2 className="mb-12 text-center text-3xl font-bold text-[#02255B] md:mb-16 md:text-4xl lg:mb-24 lg:text-5xl">
-              {title}
-            </h2>
+            <h2 className="mb-12 text-center text-[48px] font-bold text-[#02255B] md:mb-16 lg:mb-24">{title}</h2>
 
             {/* Steps Container */}
             <div className="relative flex w-full flex-col items-stretch justify-between gap-8 px-4 md:flex-row md:gap-12 lg:gap-16 lg:px-16">
               {/* Connecting Lines */}
-              <div className="absolute left-[20%] right-[20%] top-6 hidden h-0.5 bg-[#0066FF] md:block" />
+              <div className="absolute left-[20%] right-[20%] top-6 hidden h-0.5 bg-[#034AB6] md:block" />
 
               {cards.map((step: any, index: number) => (
                 <div key={`event-work-${index}`} className="relative flex flex-1 flex-col items-center">
