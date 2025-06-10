@@ -6,7 +6,7 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import styles from "./styles.module.scss";
 import Modal from "@/components/UI/modal";
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { STRAPI_ASSETS } from "@/lib";
 
 export const Hero: React.FC<any> = ({
   background_file,
@@ -35,7 +35,7 @@ export const Hero: React.FC<any> = ({
           muted
           autoPlay
           aria-hidden="true"
-          className="z-20"
+          className="z-20x"
         />
       </div>
       <div className={styles.overlay} />
