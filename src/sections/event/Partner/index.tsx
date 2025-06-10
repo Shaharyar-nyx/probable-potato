@@ -21,7 +21,7 @@ export const EventPartner = ({ title, cards }: { title: string; cards: any }) =>
           </h2>
           <div className="flex flex-col items-center justify-center gap-8 md:flex-row md:gap-12 lg:gap-20">
             {[...Array(3)].map((item: any, index: number) => (
-              <div key={index} className="w-full md:w-[200px] lg:w-[280px]">
+              <div key={index} className={`w-full ${index === 2 ? "md:w-[150px]" : "md:w-[200px] lg:w-[280px]"}`}>
                 <Image
                   src={`/images/events/2025_Bug_Hunting_Logo_${index + 1}.png`}
                   alt={title}
