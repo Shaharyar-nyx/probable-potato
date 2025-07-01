@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useSearchParams } from "next/navigation";
 
 import styles from "./styles.module.scss";
 import { Button, Dropdown, Input, Textarea } from "@/components";
@@ -13,14 +14,26 @@ import { formatBtnId } from "@/lib";
 import { RECAPTCHA_SITE_KEY } from "@/lib/constants";
 import { toast } from "react-toastify";
 
-import { CYBERBAY_CMS_URL } from "@/lib/constants";
 import { useSubmitContactUs } from "@/hooks/useSubmitContactUs";
+
+// Valid sources and their corresponding labels
+const sourceLabels: Record<string, string> = {
+  'high-critical-bugs': 'High Risk Bugs Found',
+  'uncovered-domains': 'Assets Outside Scope',
+  'leaked-credentials': 'Leaked Credentials Found',
+  'shadow-it': 'Shadow IT Detected',
+};
 
 export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
   const isMobile = useIsMobile();
   const [success, setSuccess] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const searchParams = useSearchParams();
+  const sourceParam = searchParams.get('source');
+  
+  // Only allow valid sources from modalDetails
+  const source = sourceParam && sourceLabels[sourceParam] ? sourceParam : null;
 
   const {
     register,
@@ -28,7 +41,11 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
     control,
     formState: { errors },
     reset,
-  } = useForm<ContactUsFormType>();
+  } = useForm<ContactUsFormType>({
+    defaultValues: {
+      request: source ? "Other" : ""
+    }
+  });
 
   const { submit, loading, error, called } = useSubmitContactUs(reset);
   const shouldShowSuccessMessage = called && !loading && !error;  
@@ -39,8 +56,15 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
       return;
     }
 
-    // Include the recaptcha token with the form data
-    submit({...data, recaptchaToken});
+    // Transform source key to label before sending to API
+    const sourceLabel = source ? sourceLabels[source] : null;
+
+    // Include the recaptcha token and source label with the form data
+    submit({
+      ...data, 
+      recaptchaToken,
+      ...(sourceLabel && { source: sourceLabel })
+    });
     
     // Reset reCAPTCHA after submission
     if (shouldShowSuccessMessage) {
@@ -92,7 +116,7 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
             name="request"
             render={({ field }) => (
               <Dropdown
-                disabled={loading}
+                disabled={loading || !!source}
                 error={errors.request?.message}
                 handleChange={field.onChange}
                 iconName="BarsArrowUpIcon"
