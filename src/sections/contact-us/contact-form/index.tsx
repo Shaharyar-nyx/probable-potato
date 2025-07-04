@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, Suspense } from "react";
 import { useForm, Controller } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useSearchParams } from "next/navigation";
@@ -106,7 +106,8 @@ const sourceContent: Record<
   },
 };
 
-export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
+// Extract the form logic that uses useSearchParams into a child component
+const ContactFormInner: React.FC<any> = ({ title, headline, content }) => {
   const isMobile = useIsMobile();
   const [success, setSuccess] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
@@ -322,5 +323,13 @@ export const ContactForm: React.FC<any> = ({ title, headline, content }) => {
         </form>
       </div>
     </div>
+  );
+};
+
+export const ContactForm: React.FC<any> = (props) => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ContactFormInner {...props} />
+    </Suspense>
   );
 };
