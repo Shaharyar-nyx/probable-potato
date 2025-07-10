@@ -88,7 +88,7 @@ const sourceContent: Record<
     ],
   },
   "shadow-it": {
-    title: "Book Your Shadow Asset Review With You Dedicated Account Manager",
+    title: "Book Your Shadow Asset Review With Your Dedicated Account Manager",
     lines: [
       {
         title: "Untracked = Unprotected",
