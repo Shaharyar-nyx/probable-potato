@@ -33,9 +33,26 @@ export const EventPartner = ({ title, cards }: { title: string; cards: any }) =>
             ))}
           </div>
         </div>
-        <div className="relative mx-auto mt-12 max-w-7xl px-4 md:mt-16 lg:mt-20">
+        <div className="relative mx-auto mt-12 max-w-7xl px-4 md:mt-8">
+          {/* Event Partners Section */}
+          <h2 className="mb-8 text-center text-xl font-bold text-[#1F025B] md:mb-12 md:text-2xl lg:mb-4 lg:text-[32px]">
+            Event Partners:
+          </h2>
+          <div className="flex flex-col flex-wrap justify-center gap-8 md:flex-row md:gap-12 lg:gap-16">
+            <div className="w-full md:w-[300px] lg:w-[400px]">
+              <Image
+                src={`/images/events/2025-event-partner-recoh.png`}
+                alt={title}
+                width={400}
+                height={120}
+                className="h-auto w-full object-contain"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="relative mx-auto mt-12 max-w-7xl px-4 md:mt-8">
           {/* Strategic Partner Section */}
-          <h2 className="mb-8 text-center text-xl font-bold text-[#1F025B] md:mb-12 md:text-2xl lg:mb-16 lg:text-[40px]">
+          <h2 className="mb-8 text-center text-xl font-bold text-[#1F025B] md:mb-12 md:text-2xl lg:mb-4 lg:text-[32px]">
             {title}
           </h2>
           <div className="flex flex-col flex-wrap justify-center gap-8 md:flex-row md:gap-12 lg:gap-16">
