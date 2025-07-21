@@ -34,23 +34,6 @@ export const EventPartner = ({ title, cards }: { title: string; cards: any }) =>
           </div>
         </div>
         <div className="relative mx-auto mt-12 max-w-7xl px-4 md:mt-8">
-          {/* Event Partners Section */}
-          <h2 className="mb-8 text-center text-xl font-bold text-[#1F025B] md:mb-12 md:text-2xl lg:mb-4 lg:text-[32px]">
-            Event Partners:
-          </h2>
-          <div className="flex flex-col flex-wrap justify-center gap-8 md:flex-row md:gap-12 lg:gap-16">
-            <div className="w-full md:w-[300px] lg:w-[400px]">
-              <Image
-                src={`/images/events/2025-event-partner-recoh.png`}
-                alt={title}
-                width={400}
-                height={120}
-                className="h-auto w-full object-contain"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="relative mx-auto mt-12 max-w-7xl px-4 md:mt-8">
           {/* Strategic Partner Section */}
           <h2 className="mb-8 text-center text-xl font-bold text-[#1F025B] md:mb-12 md:text-2xl lg:mb-4 lg:text-[32px]">
             {title}
@@ -69,7 +52,95 @@ export const EventPartner = ({ title, cards }: { title: string; cards: any }) =>
             ))}
           </div>
         </div>
+        <div className="relative mx-auto mt-12 max-w-7xl px-4 md:mt-8">
+          {/* Event Partners Section */}
+          <h2 className="mb-8 text-center text-xl font-bold text-[#1F025B] md:mb-12 md:text-2xl lg:mb-4 lg:text-[32px]">
+            Event Partners:
+          </h2>
+          <div className="align-center flex w-full flex-col items-center justify-center gap-5 md:flex-row md:gap-10">
+            <div className="w-[120px] md:w-[65px] lg:w-[129px]">
+              <Image
+                src={`/images/events/2025-event-igs.png`}
+                alt={title}
+                width={129}
+                height={80}
+                className="h-auto w-full object-contain"
+              />
+            </div>
+            <Divider />
+            <div className="w-full md:w-[376px] lg:w-[753px]">
+              <Image
+                src={`/images/events/2025-event-ric-blac.png`}
+                alt={title}
+                width={753}
+                height={80}
+                className="h-auto w-full object-contain"
+              />
+            </div>
+          </div>
+          <div className="align-center mt-5 flex w-full flex-col items-center justify-center gap-5 md:mt-10 md:flex-row md:gap-10">
+            <div className="w-full md:w-[302px] lg:w-[605px]">
+              <Image
+                src={`/images/events/2025-event-san-edv.png`}
+                alt={title}
+                width={605}
+                height={80}
+                className="h-auto w-full object-contain"
+              />
+            </div>
+            <Divider />
+            <div className="w-full md:w-[128px] lg:w-[257px]">
+              <Image
+                src={`/images/events/2025-event-hkt.png`}
+                alt={title}
+                width={257}
+                height={60}
+                className="h-auto w-full object-contain"
+              />
+            </div>
+          </div>
+          <div className="align-center mt-5 flex w-full flex-col items-center justify-center gap-5 md:mt-10 md:flex-row md:gap-10">
+            <div className="w-full md:w-[92px] lg:w-[185px]">
+              <Image
+                src={`/images/events/2025-event-cyberport.png`}
+                alt={title}
+                width={185}
+                height={80}
+                className="h-auto w-full object-contain"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="relative mx-auto mt-12 max-w-7xl px-4 md:mt-8">
+          <h2 className="mb-8 text-center text-xl font-bold text-[#1F025B] md:mb-12 md:text-2xl lg:mb-4 lg:text-[32px]">
+            Supported By:
+          </h2>
+          <div className="align-center mt-5 flex w-full flex-col items-center justify-center gap-5 md:mt-10 md:flex-row md:gap-10">
+            <div className="w-[71px]">
+              <Image
+                src={`/images/events/2025-event-oh-360.png`}
+                alt={title}
+                width={71}
+                height={80}
+                className="h-auto w-full object-contain"
+              />
+            </div>
+            <div className="w-[276px]">
+              <Image
+                src={`/images/events/2025-event-dct-it.png`}
+                alt={title}
+                width={276}
+                height={80}
+                className="h-auto w-full"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
+
+function Divider() {
+  return <div className="hidden h-[60px] w-[3px] bg-[#C1C4CA] md:block" />;
+}
