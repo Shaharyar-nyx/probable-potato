@@ -4,11 +4,12 @@ import { Bounce, ToastContainer } from "react-toastify";
 
 export const PageBuilder: React.FC<{
   blockComponents: Record<string, React.FC<BlockType>>;
-  blocks: Array<{ collection: string; sort?: number } & Partial<BlockType>>;
+  blocks: Array<{ collection?: string; __typename?: string; sort?: number } & Partial<BlockType>>;
 }> = ({ blockComponents, blocks }) => {
   const sortedBlocks = blocks
     .filter((block): block is BlockType => {
-      return typeof block.collection === "string" && block.collection in blockComponents;
+      const key = block.collection || block.__typename;
+      return typeof key === "string" && key in blockComponents;
     })
     .sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0));
 
@@ -27,9 +28,17 @@ export const PageBuilder: React.FC<{
         theme="light"
         transition={Bounce}
       />
-      {sortedBlocks.map((block) => {
-        const BlockComponent = blockComponents[block.collection];
-        return <BlockComponent key={block.collection} {...block} />;
+      {sortedBlocks.map((block, i) => {
+        const key = block.collection || block.__typename; // 👈 fallback to __typename
+        const BlockComponent = blockComponents[key!];
+        if (!BlockComponent) {
+          return (
+            <div key={i} style={{ color: "red" }}>
+              ⚠️ Missing component for: {key}
+            </div>
+          );
+        }
+        return <BlockComponent key={i} {...block} />;
       })}
     </>
   );

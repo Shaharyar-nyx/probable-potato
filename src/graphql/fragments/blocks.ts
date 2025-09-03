@@ -231,6 +231,36 @@ export const BLOCKS_FRAGMENT = `
               }
           }
       }
+      ... on ComponentBlocksMediaHighlight {
+                    headline
+                    title
+                    author_name
+                    publish_date
+                    description
+                    cta_text
+                    cta_url
+                    background_file {
+                        data {
+                        attributes {
+                            name
+                            alternativeText
+                            mime
+                            url
+                        }
+                        }
+                    }
+                    featured_image {
+                        data {
+                        attributes {
+                            name
+                            alternativeText
+                            mime
+                            url
+                        }
+                        }
+                    }
+                    }
+
       ... on ComponentBlocksPackagesSection {
           collection
           title

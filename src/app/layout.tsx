@@ -18,18 +18,18 @@ const poppins = Poppins({
 });
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const { mainNav } = await getMainMenusStrapi();
-  const { footerNav } = await getFooterMenusStrapi();
+  // const { mainNav } = await getMainMenusStrapi();
+  // const { footerNav } = await getFooterMenusStrapi();
 
   return (
     <html className={poppins.className} lang="en">
       <body>
         <ReCaptchaProvider>
-          <Nav {...mainNav} />
-          <SiteContextProvider footerNav={footerNav} mainNav={mainNav}>
+          {/* <Nav {...mainNav} /> */}
+          {/* <SiteContextProvider footerNav={footerNav} mainNav={mainNav}> */}
             {children}
-          </SiteContextProvider>
-          <Footer {...footerNav} />
+          {/* </SiteContextProvider> */}
+          {/* <Footer {...footerNav} /> */}
           
           <CookieConsent />
         </ReCaptchaProvider>
