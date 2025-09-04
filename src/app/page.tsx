@@ -19,7 +19,7 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
 };
 
 async function getHomeData() {
-  return getPageBySlug("/");
+  return getPageBySlug(null);
 }
 
 export async function generateMetadata(): Promise<Metadata> {
