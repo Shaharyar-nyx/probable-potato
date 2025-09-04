@@ -13,8 +13,8 @@ import { GlobalPressCoverage } from "@/components";
 const blockComponents: Record<string, React.FC<BlockType>> = {
   hero_section: Header,
   ComponentBlocksMediaHighlight: MediaHighlight,
-  ComponentBlocksPodcastInterview: PodcastInterviews,
-  ComponentBlocksGlobalPressCoverage: GlobalPressCoverage,
+  ComponentBlocksPodcastInterview: PodcastInterviews as unknown as React.FC<BlockType>,
+  ComponentBlocksGlobalPressCoverage: GlobalPressCoverage as unknown as React.FC<BlockType>,
 };
 
 
