@@ -259,8 +259,57 @@ export const BLOCKS_FRAGMENT = `
                         }
                         }
                     }
+                         featured_background {
+                        data {
+                        attributes {
+                            name
+                            alternativeText
+                            mime
+                            url
+                        }
+                        }
                     }
-
+                    }
+        ... on ComponentBlocksPodcastInterview {
+            collection_podcast: collection
+            title
+            headline
+            content
+            content_md
+            background_file { data { attributes { url name alternativeText mime } } }
+            featured_image  { data { attributes { url name alternativeText mime } } }
+            episodes {
+              title
+              guest_name
+              host_name
+              platform
+              publish_date
+              duration
+              url
+              thumbnail { data { attributes { url name alternativeText mime } } }
+              logo      { data { attributes { url name alternativeText mime } } }
+            }
+          }
+        ... on ComponentBlocksGlobalPressCoverage {
+            collection_coverage: collection
+            title
+            headline
+            content
+            content_md
+            background_file { data { attributes { url name alternativeText mime } } }
+            featured_image  { data { attributes { url name alternativeText mime } } }
+            coverage {
+              title
+              guest_name
+              host_name
+              platform
+              publish_date
+              duration
+              url
+              thumbnail { data { attributes { url name alternativeText mime } } }
+              logo      { data { attributes { url name alternativeText mime } } }
+            }
+          }
       ... on ComponentBlocksPackagesSection {
           collection
           title

@@ -5,12 +5,16 @@ import { BlockType } from "@/types";
 import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { MediaHighlight } from "@/components";
+import { PodcastInterviews } from "@/components";
+import { GlobalPressCoverage } from "@/components";
 
 
 
 const blockComponents: Record<string, React.FC<BlockType>> = {
   hero_section: Header,
-  ComponentBlocksMediaHighlight: MediaHighlight, // 👈 exact match for __typename
+  ComponentBlocksMediaHighlight: MediaHighlight,
+  ComponentBlocksPodcastInterview: PodcastInterviews,
+  ComponentBlocksGlobalPressCoverage: GlobalPressCoverage,
 };
 
 
