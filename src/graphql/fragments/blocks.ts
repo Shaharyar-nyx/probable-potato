@@ -290,6 +290,8 @@ export const BLOCKS_FRAGMENT = `
               logo      { data { attributes { url name alternativeText mime } } }
             }
           }
+           
+
         ... on ComponentBlocksGlobalPressCoverage {
             collection_coverage: collection
             title
