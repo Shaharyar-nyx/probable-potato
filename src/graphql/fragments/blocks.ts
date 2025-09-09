@@ -232,6 +232,7 @@ export const BLOCKS_FRAGMENT = `
           }
       }
       ... on ComponentBlocksMediaHighlight {
+                    collection_media: collection
                     headline
                     title
                     author_name
@@ -269,7 +270,7 @@ export const BLOCKS_FRAGMENT = `
                         }
                         }
                     }
-                    }
+                }
         ... on ComponentBlocksPodcastInterview {
             collection_podcast: collection
             title

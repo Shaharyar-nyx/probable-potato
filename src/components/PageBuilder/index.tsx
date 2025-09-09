@@ -6,7 +6,7 @@ export const PageBuilder: React.FC<{
   blockComponents: Record<string, React.FC<BlockType>>;
   blocks: Array<{ collection?: string; __typename?: string; sort?: number } & Partial<BlockType>>;
 }> = ({ blockComponents, blocks }) => {
-  const sortedBlocks = blocks
+ const sortedBlocks = blocks
     .filter((block): block is BlockType => {
       const key = block.collection || block.__typename;
       return typeof key === "string" && key in blockComponents;
@@ -28,13 +28,13 @@ export const PageBuilder: React.FC<{
         theme="light"
         transition={Bounce}
       />
-      {sortedBlocks.map((block, i) => {
-        const key = block.collection || block.__typename; // 👈 fallback to __typename
+       {sortedBlocks.map((block, i) => {
+        const key = block.collection || block.__typename;
         const BlockComponent = blockComponents[key!];
         if (!BlockComponent) {
           return (
             <div key={i} style={{ color: "red" }}>
-              ⚠️ Missing component for: {key}
+              Missing component for: {key}
             </div>
           );
         }
