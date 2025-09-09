@@ -84,10 +84,9 @@ export const PodcastInterviews: React.FC<{
                     <div className={styles.metaRow}>
 
                       <span>
-                        {ep.platform && ep.publish_date ? " • " : ""}
-                        {ep.publish_date}
-                        {ep.publish_date && ep.duration ? " • " : ""}
                         {ep.duration}
+                        {'\u00A0\u00A0|\u00A0\u00A0'}
+                        {ep.publish_date}
                       </span>
                     </div>
 
