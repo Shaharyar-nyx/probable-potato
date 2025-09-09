@@ -18,39 +18,20 @@ export const MediaHighlight: React.FC<any> = ({
   cta_url,
 }) => {
   return (
-    <section className={styles.container} style={{ position: "relative", overflow: "hidden" }}>
-      {/* Background Layer */}
-      {background_file?.data?.attributes?.url && (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `linear-gradient(
-            180deg,
-            #F6F7F8 0%,
-            rgba(246, 247, 248, 0.00) 50%,
-            #F6F7F8 100%
-            
-          ),
-          linear-gradient(
-            0deg,
-            #F6F7F8 0%,
-            rgba(246, 247, 248, 0.00) 50%,
-            #F6F7F8 100%
-          ),
-           url(${STRAPI_ASSETS}${background_file.data.attributes.url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            filter: "blur(2px)",
-            transform: "scale(1.05)",
-            zIndex: -1,
-          }}
-        />
-      )}
+    <section
+      className={styles.container}
+      style={
+        background_file?.data?.attributes?.url
+          ? ({
+              // TS: cast so CSS var key is allowed
+              ['--bg-url' as any]: `url(${STRAPI_ASSETS}${background_file.data.attributes.url})`,
+              position: 'relative',
+              overflow: 'hidden',
+            } as React.CSSProperties)
+          : { position: 'relative', overflow: 'hidden' }
+      }
+    >
       {/* Content goes here */}
-
-
       <div className={styles.overlay} />
       <div className={styles.inner}>
         {featured_image?.data?.attributes?.url && (
@@ -60,8 +41,8 @@ export const MediaHighlight: React.FC<any> = ({
   <Image
     src={`${STRAPI_ASSETS}${featured_image.data.attributes.url}`}
     alt="Featured"
-    width={800}   // apni requirement ke hisaab se set karo
-    height={400}  // apni requirement ke hisaab se set karo
+    width={800}  
+    height={400} 
     className={styles.featureImg}
   />
 )}
