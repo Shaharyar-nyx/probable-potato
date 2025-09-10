@@ -6,11 +6,54 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px 64px 120px;
+  padding: 0 64px 120px;
   gap: 60px;
 
   /* Flow > absolute; stays responsive */
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    /* make this match your site-wide mobile section padding */
+    padding: 0 16px 64px;   /* was larger; align with other sections */
+    gap: 24px;              /* reduce from 60px */
+  }
+
+  .header {
+    margin-bottom: 16px;    /* was bigger; match other sections */
+  }
+
+  .grid {
+    gap: 16px;              /* was 2rem; reduce */
+    row-gap: 16px;
+    margin: 0;              /* remove extra bottom spacing */
+  }
+
+  /* Image moves above text, but don't add extra padding around it */
+  .thumb {
+    order: -1;
+    width: 100%;
+    height: auto;
+    padding: 0;             /* important: no inner padding on mobile */
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+  }
+
+  /* Keep text tight under the image */
+  .cardBody {
+    padding: 24px 0;        /* trim vertical padding */
+    gap: 8px;               /* reduce spacing between text blocks */
+  }
+
+  /* Button spacing */
+  .listenBtn {
+    margin-top: 8px;        /* smaller than desktop */
+  }
+
 }
 
 .overlay { position: absolute; inset: 0; z-index: 0; }
@@ -55,10 +98,14 @@
   min-height: 320px; /* Figma height */
   border-radius: 0;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: stretch;
   }
+}
+
+@media (max-width: 768px) {
+  .thumb { order: -1; }         /* move image block to top */
 }
 
 /* Left column (text) — 692 x 320 in Figma */
