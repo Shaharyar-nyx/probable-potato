@@ -62,8 +62,8 @@ export const GlobalPressCoverage: React.FC<{
                   )}
 
                   {it.url && (
-                    <Button href={it.url} className={styles.listenBtn}>
-                      Read Article ↗
+                    <Button href={it.url} className={styles.listenBtn} iconName="ArrowUpRightIcon">
+                      Read Article
                     </Button>
                   )}
                 </div>
