@@ -126,29 +126,7 @@
 
 /* CTA (144 × 44, underline) */
 .listenBtn{
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-  width: 144px;
-  min-width: 120px;
-  height: 44px;
-  padding: 12px 16px;
-
-  background: #045DE3;
-  border-radius: 8px;
-
-  color: #F6F7F8;
-  font-family: Poppins;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 18px; /* 129% */
   text-decoration-line: underline;
-
-  /* keep left aligned inside the content column */
-  margin: 0;
-  align-self: flex-start;
 }
 
 /* --------- Responsive guards --------- */

@@ -24,11 +24,11 @@ export const MediaHighlight: React.FC<any> = ({
         background_file?.data?.attributes?.url
           ? ({
               // TS: cast so CSS var key is allowed
-              ['--bg-url' as any]: `url(${STRAPI_ASSETS}${background_file.data.attributes.url})`,
-              position: 'relative',
-              overflow: 'hidden',
+              ["--bg-url" as any]: `url(${STRAPI_ASSETS}${background_file.data.attributes.url})`,
+              position: "relative",
+              overflow: "hidden",
             } as React.CSSProperties)
-          : { position: 'relative', overflow: 'hidden' }
+          : { position: "relative", overflow: "hidden" }
       }
     >
       {/* Content goes here */}
@@ -37,27 +37,23 @@ export const MediaHighlight: React.FC<any> = ({
         {featured_image?.data?.attributes?.url && (
           <div className={styles.imageWrapper}>
             {/* Background behind featured image */}
-          {featured_image?.data?.attributes?.url && (
-  <Image
-    src={`${STRAPI_ASSETS}${featured_image.data.attributes.url}`}
-    alt="Featured"
-    width={800}  
-    height={400} 
-    className={styles.featureImg}
-  />
-)}
-
+            {featured_image?.data?.attributes?.url && (
+              <Image
+                src={`${STRAPI_ASSETS}${featured_image.data.attributes.url}`}
+                alt="Featured"
+                width={800}
+                height={400}
+                className={styles.featureImg}
+              />
+            )}
 
             {/* Foreground Featured Image */}
-
           </div>
         )}
 
         <div className={styles.content}>
-          {headline && (
-            <p className={styles.feature}>{headline}</p>
-          )}
-          {title && <h2 className="text-2xl font-bold mt-2">{title}</h2>}
+          {headline && <h5 className={styles.feature}>{headline}</h5>}
+          {title && <h2 className="mt-2 text-2xl font-bold">{title}</h2>}
 
           {(author_name || publish_date) && (
             <p className={styles.date_auth}>
@@ -67,19 +63,25 @@ export const MediaHighlight: React.FC<any> = ({
             </p>
           )}
 
-          {description && <p style={{
-            overflow: "hidden",
-            color: "var(--Primary-800, #02255B)",
-            textOverflow: "ellipsis",
-            fontFamily: "var(--Font-Family-Description, Poppins)",
-            fontSize: "var(--Font-size-Size--M, 16px)",
-            fontStyle: "normal",
-            fontWeight: 400,
-            lineHeight: "var(--Font-Height-Height-X, 24px)",
-          }}>{description}</p>}
+          {description && (
+            <p
+              style={{
+                overflow: "hidden",
+                color: "var(--Primary-800, #02255B)",
+                textOverflow: "ellipsis",
+                fontFamily: "var(--Font-Family-Description, Poppins)",
+                fontSize: "var(--Font-size-Size--M, 16px)",
+                fontStyle: "normal",
+                fontWeight: 400,
+                lineHeight: "var(--Font-Height-Height-X, 24px)",
+              }}
+            >
+              {description}
+            </p>
+          )}
 
           {cta_text && (
-            <Button href={cta_url || "#"} className={styles.listenBtn}>
+            <Button href={cta_url || "#"} className={styles.listenBtn} iconName="ArrowUpRightIcon">
               {cta_text}
             </Button>
           )}

@@ -103,8 +103,8 @@ export const PodcastInterviews: React.FC<{
                     )}
 
                     {ep.url && (
-                      <Button href={ep.url} className={styles.listenBtn}>
-                        Listen to Episode ↗
+                      <Button href={ep.url} className={styles.listenBtn}  iconName="ArrowUpRightIcon">
+                        Listen to Episode
                       </Button>
                     )}
                   </div>
