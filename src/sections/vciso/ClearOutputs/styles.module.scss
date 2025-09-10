@@ -1,0 +1,122 @@
+.section {
+  background: #02255b;
+  padding-top: 60px;
+  padding-bottom: 120px;
+}
+
+.container {
+  @apply mx-auto;
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.headline {
+  color: var(--Neutral-50, #f6f7f8);
+  font-family: var(--Font-Family-Description, Poppins);
+  font-size: var(--Font-size-Size-S, 14px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--Font-size-Size-L, 18px);
+  margin-bottom: 40px;
+}
+
+.title {
+  color: var(--Neutral-50, #f6f7f8);
+  font-family: Poppins;
+  font-size: var(--Font-size-Size-Heading-1, 48px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: var(--Font-Height-Height-Heading-1, 48px);
+  margin-bottom: 20px;
+}
+
+.description {
+  color: var(--Neutral-50, #f6f7f8);
+  font-family: var(--Font-Family-Description, Poppins);
+  font-size: var(--Font-size-Size--M, 16px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--Font-Height-Height-X, 24px);
+}
+
+.cardsGrid {
+  @apply grid gap-6;
+  border-radius: 12px;
+  border: 1px solid var(--Primary-500-Alpha-400, rgba(4, 93, 227, 0.4));
+  box-shadow: 0 0 20px 0 rgba(2, 37, 91, 0.25) inset;
+  backdrop-filter: blur(10px);
+  background: var(--Primary-500-Alpha-100, rgba(4, 93, 227, 0.1));
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+
+  /* Last card (Operational Controls) spans full width */
+  .card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .card:first-child {
+    background: var(--Primary-500-Alpha-950, rgba(4, 93, 227, 0.95));
+  }
+}
+
+.card {
+  background: rgba(78, 134, 255, 0.2);
+  border: 1px solid rgba(78, 134, 255, 0.3);
+  border-radius: 12px;
+  padding: 40px;
+  backdrop-filter: blur(10px);
+}
+
+.cardHeader {
+  @apply mb-3 flex items-center gap-3;
+}
+
+.iconContainer {
+  @apply flex h-8 w-8 items-center justify-center rounded bg-white;
+}
+
+.icon {
+  @apply h-5 w-5;
+}
+
+.cardTitle {
+  color: var(--Neutral-50, #f6f7f8);
+  font-family: var(--Font-Family-Title, Poppins);
+  font-size: var(--Font-size-Size-XL, 20px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: var(--Font-Height-Height-XXL, 26px);
+}
+
+.cardDescription {
+  color: var(--Neutral-50, #f6f7f8);
+  font-family: var(--Font-Family-Description, Poppins);
+  font-size: var(--Font-size-Size--M, 16px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--Font-Height-Height-X, 24px);
+}
+
+@media (max-width: 768px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+
+    .card:last-child {
+      grid-column: 1;
+    }
+  }
+
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+}

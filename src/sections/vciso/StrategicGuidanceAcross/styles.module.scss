@@ -1,0 +1,79 @@
+.section {
+  @apply bg-white;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.container {
+  @apply mx-auto;
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+.header {
+  @apply text-center;
+  margin-bottom: 120px;
+}
+
+.headline {
+  @apply text-center uppercase tracking-wider;
+  margin-bottom: 32px;
+  color: #02255B;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.title {
+  @apply text-center;
+  color: #02255B;
+  font-family: Poppins;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 60px;
+}
+
+.cardsGrid {
+  @apply mx-auto grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+  gap: 40px;
+}
+
+.card {
+  @apply flex min-h-[312px] flex-col items-center rounded-lg text-center transition-shadow duration-300;
+}
+
+.iconContainer {
+  @apply flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-md;
+  margin-bottom: 20px;
+}
+
+.icon {
+  @apply h-10 w-10;
+}
+
+.cardTitle {
+  @apply text-center;
+  margin-bottom: 32px;
+  color: #1F2937;
+  font-family: Poppins;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.cardDescription {
+  @apply text-center;
+  color: #4B5563;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}

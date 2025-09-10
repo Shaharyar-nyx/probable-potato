@@ -34,6 +34,9 @@ export const NewsHero: React.FC<any> = ({
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={`${styles.title} display-3 font-bold`}>{title}</div>
+          {
+            headline && <div className={styles.headline}>{headline}</div>
+          }
           <p className={`${styles.description} mt-5`}>{content}</p>
           <div className={`mt-5 flex justify-center`}>
             {cta_text && (

@@ -116,3 +116,16 @@
     @apply h-[100vh]; /* Full height for mobile */
   }
 }
+
+.headline {
+  margin-top: 20px;
+  color: var(--Neutral-50, #f6f7f8);
+  text-align: center;
+
+  /* Heading 7/Bold */
+  font-family: var(--Font-Family-Title, Poppins);
+  font-size: var(--Font-size-Size-XL, 20px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: var(--Font-Height-Height-XL, 22px); /* 110% */
+}
