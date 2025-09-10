@@ -299,7 +299,7 @@ export const BLOCKS_FRAGMENT = `
             content_md
             background_file { data { attributes { url name alternativeText mime } } }
             featured_image  { data { attributes { url name alternativeText mime } } }
-            coverage {
+            coverage (pagination: { page: 1, pageSize: 50 }) {
               title
               guest_name
               host_name
