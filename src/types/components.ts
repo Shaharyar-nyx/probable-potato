@@ -519,6 +519,25 @@ export interface EventGroup {
   events: EventDetail[];
 }
 
+export interface ImageData {
+  __typename: string;
+  data: {
+    __typename: string;
+    attributes: {
+      __typename: string;
+      name: string;
+      alternativeText: string | null;
+      mime: string;
+      url: string;
+    };
+  } | null;
+}
+
+export interface PageEntityResponse {
+  __typename: string;
+  data: any;
+}
+
 export interface EventsSection {
   title: string;
   description?: string;
@@ -532,4 +551,35 @@ export interface EventsSection {
   };
   event_groups: EventGroup[];
   collection: string;
+}
+
+export interface SingleCardSection {
+  __typename: string;
+  title: string;
+  headline: string;
+  icon: ImageData;
+  content: string | null;
+  content_md: string | null;
+  image: ImageData;
+  cta_text: string | null;
+  cta_url: string | null;
+  cta_page: PageEntityResponse;
+  background_image: ImageData;
+  background_color: string | null;
+}
+
+export interface MultiCardSection {
+  __typename: string;
+  collection: string;
+  title: string;
+  headline: string;
+  content: string | null;
+  content_md: string | null;
+  cta_text: string | null;
+  cta_url: string | null;
+  cta_modal_multi: string;
+  cta_page: PageEntityResponse;
+  cards: SingleCardSection[];
+  background_file: ImageData;
+  background_color: string | null;
 }
