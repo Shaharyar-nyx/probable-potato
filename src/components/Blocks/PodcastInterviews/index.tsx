@@ -61,7 +61,7 @@ export const PodcastInterviews: React.FC<{
         <div className={styles.overlay} />
         <div className={styles.inner}>
           <header className={styles.header}>
-            {headline && <p className={styles.tagline}>{headline}</p>}
+            {headline && <div className={styles.tagline}>{headline}</div>}
             {title && <h2 className={styles.mainTitle}>{title}</h2>}
             {content && <p className={styles.intro}>{content}</p>}
 
