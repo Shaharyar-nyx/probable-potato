@@ -30,7 +30,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             {children}
           </SiteContextProvider>
           <Footer {...footerNav} />
-          
+
           <CookieConsent />
         </ReCaptchaProvider>
       </body>

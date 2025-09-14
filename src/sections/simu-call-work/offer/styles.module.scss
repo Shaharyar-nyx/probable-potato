@@ -1,0 +1,239 @@
+.featuredSection {
+  display: inline-flex;
+  padding: 60px 64px;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.subHeading {
+  color: var(--Primary-800, #02255B);
+  font-family: var(--Font-Family-Description, Poppins);
+  font-size: var(--Font-size-Size-S, 14px);
+  font-weight: 400;
+  line-height: var(--Font-size-Size-L, 18px);
+}
+
+.mainHeading {
+  color: var(--Primary-800, #02255B);
+  text-align: center;
+  font-family: Poppins;
+  font-size: var(--Font-size-Size-Heading-1, 48px);
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.description {
+  color: var(--Neutral-600, #4B5563);
+  text-align: center;
+  font-family: var(--Font-Family-Description, Poppins);
+  font-size: var(--Font-size-Size--M, 16px);
+  font-weight: 400;
+  line-height: var(--Font-Height-Height-X, 24px);
+  letter-spacing: 0;
+  max-width: 800px;
+}
+
+/* Cards + Image Wrapper */
+.cardsImageWrapper {
+  display: flex;
+  align-items: flex-start;
+  height: 320px;
+  width: 1000px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    height: 100%;
+  }
+}
+
+/* LEFT: Cards */
+.cardsGrid {
+  flex: 1;
+  display: grid;
+  margin-top: 60px;
+  grid-template-columns: 1fr;
+  /* mobile default */
+  gap: 30px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cardHeader {
+  display: flex;
+  width: 295px;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.iconWrapper {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 8px 4px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid var(--Brand-Primary-500, #045DE3);
+}
+
+.iconImg {
+  width: 12px;
+  height: 9px;
+  flex-shrink: 0;
+  stroke-width: 2px;
+  stroke: var(--Brand-Primary-500, #045DE3);
+}
+
+.cardHeading {
+  color: var(--Neutral-800, #1F2937);
+  font-family: var(--font-family-body, Poppins);
+  font-size: var(--font-size-xs, 16px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--font-line-height-sm, 24px);
+  /* 150% */
+  letter-spacing: var(--font-letter-spacing-none, 0);
+}
+
+.cardDescription {
+  color: var(--Neutral-600, #4B5563);
+  font-family: var(--font-family-paragraph, Poppins);
+  font-size: var(--font-size-3xs, 12px);
+  font-style: normal;
+  padding-left: 32px;
+  font-weight: 400;
+  line-height: var(--font-line-height-2xs, 18px);
+  /* 150% */
+  letter-spacing: var(--font-letter-spacing-none, 0);
+}
+
+/* 📱 Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+  .featuredSection {
+    padding: 32px 16px;
+    gap: 24px;
+  }
+
+  .mainHeading {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 20px;
+    max-width: 100%;
+  }
+
+  .cardsImageWrapper {
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .content {
+    gap: 32px;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .cardHeader {
+    width: 100%;
+  }
+
+  .sideImageWrapper {
+    justify-content: center;
+  }
+
+  .rightImage,
+  .featureImg {
+    width: 90%;
+    height: auto;
+    max-width: 300px;
+  }
+}
+
+/* 📲 Tablet (576px – 992px) */
+@media (min-width: 576px) and (max-width: 992px) {
+  .featuredSection {
+    padding: 40px 32px;
+    gap: 60px;
+  }
+
+  .mainHeading {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .description {
+    font-size: 15px;
+    line-height: 22px;
+    max-width: 600px;
+  }
+
+  .cardsImageWrapper {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+  }
+
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 cards ek row me */
+    gap: 25px;
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .cardHeader {
+    width: 100%;
+  }
+
+  .sideImageWrapper {
+    justify-content: center;
+  }
+
+  .rightImage,
+  .featureImg {
+    width: 80%;
+    height: auto;
+    max-width: 400px;
+  }
+}

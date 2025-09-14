@@ -4,7 +4,7 @@ import { Bounce, ToastContainer } from "react-toastify";
 
 export const PageBuilder: React.FC<{
   blockComponents: Record<string, React.FC<BlockType>>;
-  blocks: Array<{ collection: string; sort?: number } & Partial<BlockType>>;
+  blocks: Array<{ collection?: string; __typename?: string; sort?: number } & Partial<BlockType>>;
 }> = ({ blockComponents, blocks }) => {
  const sortedBlocks = blocks
     .filter((block): block is BlockType => {
