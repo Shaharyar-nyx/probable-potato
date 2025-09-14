@@ -29,6 +29,7 @@ export const PodcastInterviews: React.FC<{
   headline?: string;
   content?: string;
   content_md?: string;
+  host_name?: string;
   background_file?: { data?: { attributes?: { url?: string } } };
   featured_image?: { data?: { attributes?: { url?: string } } };
   episodes?: Episode[];
@@ -60,7 +61,7 @@ export const PodcastInterviews: React.FC<{
         <div className={styles.overlay} />
         <div className={styles.inner}>
           <header className={styles.header}>
-            {headline && <div className={styles.tagline}>{headline}</div>}
+            {headline && <p className={styles.tagline}>{headline}</p>}
             {title && <h2 className={styles.mainTitle}>{title}</h2>}
             {content && <p className={styles.intro}>{content}</p>}
 
@@ -84,9 +85,9 @@ export const PodcastInterviews: React.FC<{
                     <div className={styles.metaRow}>
 
                       <span>
-                        {ep.platform && ep.publish_date ? " • " : ""}
+                        {ep.publish_date ? " • " : ""}
                         {ep.publish_date}
-                        {ep.publish_date && ep.duration ? " • " : ""}
+                        {ep.duration && ep.publish_date ? " • " : ""}
                         {ep.duration}
                       </span>
                     </div>

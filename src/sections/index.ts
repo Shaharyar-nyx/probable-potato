@@ -12,3 +12,4 @@ export * from "./site";
 export * from "./news";
 export * from "./blog";
 export * from "./event";
+export * from "./simu-call-work";

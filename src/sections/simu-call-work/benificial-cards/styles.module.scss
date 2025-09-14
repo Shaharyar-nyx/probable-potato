@@ -1,0 +1,155 @@
+.section {
+  display: flex;
+width: 100%;
+padding: 60px 64px 120px 64px;
+flex-direction: column;
+align-items: center;
+gap: 80px;
+  @media (max-width: 768px) {
+    padding: 32px 16px;
+  }
+}
+
+.background {
+  @apply absolute inset-0 -z-10 bg-primary-500 bg-[url('/bug-hunters/join-and-benefits-bg.svg')] bg-cover bg-no-repeat;
+}
+
+.container {
+  display: flex;
+flex-direction: column;
+align-items: center;
+gap: 24px;
+align-self: stretch;
+}
+
+.content {
+
+align-self: stretch;
+  color: var(--Neutral-600, #4B5563);
+text-align: center;
+font-family: var(--Font-Family-Description, Poppins);
+font-size: var(--Font-size-Size--M, 16px);
+font-style: normal;
+font-weight: 400;
+line-height: var(--Font-Height-Height-X, 24px); /* 150% */
+letter-spacing: var(--font-letter-spacing-none, 0);
+}
+.title {
+color: var(--Primary-800, #02255B);
+text-align: center;
+font-family: Poppins;
+font-size: var(--Font-size-Size-Heading-1, 48px);
+font-style: normal;
+font-weight: 700;
+line-height: 60px; /* 125% */
+}
+
+.gridContent {
+  @apply mx-[-24px] mt-6 pb-6 lg:mx-[10%] lg:mt-10;
+  
+  /* Mobile default: 1 card per row */
+  @apply grid grid-cols-1 gap-6;
+
+  @screen md {
+    @apply grid-cols-2 gap-12; /* Tablet: 2 cards per row */
+  }
+
+  @screen lg {
+    @apply grid-cols-3 gap-12; /* Desktop: 3 cards per row */
+  }
+
+  /* Swiper pagination styling */
+  :global(.swiper-pagination) {
+    @apply bottom-0 flex justify-center gap-1;
+  }
+
+  :global(.swiper-pagination-bullet) {
+    @apply h-[0.5rem] w-[0.5rem] rounded-full bg-primary-200;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    @apply bg-primary-500;
+  }
+
+  /* Slick slider dots styling (agar use kar rahe ho) */
+  :global(.slick-dots) {
+    @apply flex justify-center gap-1;
+
+    li {
+      @apply m-0 h-0 w-4;
+
+      button {
+        @apply h-[0.5rem] w-[0.5rem] rounded-full bg-primary-500/30 p-0;
+
+        &::before {
+          @apply hidden;
+        }
+      }
+    }
+
+    :global(li.slick-active) button {
+      @apply bg-primary-500;
+    }
+  }
+}
+
+
+.card {
+  display: flex;
+  padding: 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  border-radius: 12px;
+  background: var(--Primary-600, #034AB6);
+
+  /* Mobile first — take full width inside Swiper */
+  width: 100%;
+  height: auto;
+
+  @media (max-width: 768px) {
+    /* optional small padding / height */
+    padding: 24px;
+  }
+
+  /* Desktop — fixed size in grid view */
+  @media (min-width: 1024px) {
+    width: 310px;
+    height: 302px;
+  }
+}
+
+
+
+.cardTitle {
+color: var(--Neutral-50, #F9FAFB);
+
+/* Heading 4/Bold */
+font-family: Poppins;
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+line-height: 36px; /* 112.5% */
+}
+.cardContent_md{
+color: var(--Neutral-50, #F9FAFB);
+align-items: stretch;
+/* Body Large */
+font-family: var(--font-family-body, Poppins);
+font-size: var(--font-size-sm, 18px);
+font-style: normal;
+font-weight: 500;
+line-height: var(--font-line-height-md, 26px); /* 144.444% */
+letter-spacing: var(--font-letter-spacing-none, 0);
+}
+.gridContent {
+  @apply grid grid-cols-1 gap-6;
+
+  @screen md {
+    @apply grid-cols-2 gap-12;
+  }
+
+  @screen lg {
+    @apply grid-cols-3 gap-12;
+  }
+}

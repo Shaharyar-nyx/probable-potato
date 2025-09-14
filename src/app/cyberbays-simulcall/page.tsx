@@ -2,15 +2,20 @@ import React from "react";
 import { Header } from "@/components";
 import { getPageBySlug } from "@/lib/pages";
 import { PageBuilder } from "@/components/PageBuilder";
-import { EventUpcoming2025 } from "@/sections";
+import { FeaturedMedia , Offer , Benefit_Cards} from "@/sections/simu-call-work";
+import {CTA } from "@/sections";
+
 
 const blockComponents: Record<string, React.FC<any>> = {
   hero_section: Header,
-  events_section: EventUpcoming2025,
+  ComponentBlocksSimuFeaturedMedia: FeaturedMedia,
+  ComponentBlocksOffer: Offer,
+  ComponentBlocksBenefitCards: Benefit_Cards,
+  single_card_section: CTA,
 };
 
 async function CyberbaysSimuCall() {
-  const data = await getPageBySlug("cyberbays-simu-call");
+  const data = await getPageBySlug("simu-call");
   console.log("Page data:", data);
 
   if (!data?.blocks) return null;
