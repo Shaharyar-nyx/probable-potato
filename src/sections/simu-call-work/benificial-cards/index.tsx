@@ -8,7 +8,19 @@ import { useIsMobile } from "@/hooks";
 import "swiper/css";
 import "swiper/css/pagination";
 
-export const Benefit_Cards: React.FC<any> = ({ title, content, benefit_sub_cards }) => {
+// ✅ Props ka interface
+interface BenefitSubCard {
+  title?: string;
+  content_md?: string;
+}
+
+interface BenefitCardsProps {
+  title?: string;
+  content?: string;
+  benefit_sub_cards?: BenefitSubCard[];
+}
+
+export const Benefit_Cards: React.FC<BenefitCardsProps> = ({ title, content, benefit_sub_cards }) => {
   const isMobile = useIsMobile();
 
   return (
@@ -33,34 +45,49 @@ export const Benefit_Cards: React.FC<any> = ({ title, content, benefit_sub_cards
               disableOnInteraction: false,
             }}
           >
-            {benefit_sub_cards?.map(({ title, content_md }: any, index: number) => (
-              <SwiperSlide key={index}>
-                <div className={styles.card}>
-                  {title && <h3 className={`heading-7 ${styles.cardTitle}`}>{title}</h3>}
-                  {content_md && (
-                    <ul className={styles.cardContent_md}>
-                      {content_md.split("\n").map((line, idx) => (
-                        line.trim() !== "" && <li key={idx} className="paragraph-sm">{line}</li>
-                      ))}
-                    </ul>
-                  )}                </div>
-              </SwiperSlide>
-            ))}
+            {benefit_sub_cards?.map(({ title, content_md }, index) => {
+              const lines = (content_md ?? "")
+                .split("\n")
+                .map((l) => l.trim())
+                .filter(Boolean);
+
+              return (
+                <SwiperSlide key={index}>
+                  <div className={styles.card}>
+                    {title && <h3 className={`heading-7 ${styles.cardTitle}`}>{title}</h3>}
+                    {lines.length > 0 && (
+                      <ul className={styles.cardContent_md}>
+                        {lines.map((line, idx) => (
+                          <li key={idx} className="paragraph-sm">{line}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         ) : (
           <div className={styles.gridContent}>
-            {benefit_sub_cards?.map(({ title, content_md }: any, index: number) => (
-              <div key={index} className={styles.card}>
-                {title && <h3 className={`heading-7 ${styles.cardTitle}`}>{title}</h3>}
-                {content_md && (
-                  <ul className={styles.cardContent_md}>
-                    {content_md.split("\n").map((line, idx) => (
-                      line.trim() !== "" && <li key={idx} className="paragraph-sm">{line}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
+            {benefit_sub_cards?.map(({ title, content_md }, index) => {
+              const lines = (content_md ?? "")
+                .split("\n")
+                .map((l) => l.trim())
+                .filter(Boolean);
+
+              return (
+                <div key={index} className={styles.card}>
+                  {title && <h3 className={`heading-7 ${styles.cardTitle}`}>{title}</h3>}
+                  {lines.length > 0 && (
+                    <ul className={styles.cardContent_md}>
+                      {lines.map((line, idx) => (
+                        <li key={idx} className="paragraph-sm">{line}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
