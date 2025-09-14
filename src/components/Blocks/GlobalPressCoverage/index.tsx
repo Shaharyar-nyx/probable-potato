@@ -62,8 +62,8 @@ export const GlobalPressCoverage: React.FC<{
                   )}
 
                   {it.url && (
-                    <Button href={it.url} className={styles.listenBtn}>
-                      Read Article ↗
+                    <Button href={it.url} className={styles.listenBtn} iconName="ArrowUpRightIcon">
+                      Read Article
                     </Button>
                   )}
                 </div>
@@ -88,8 +88,7 @@ export const GlobalPressCoverage: React.FC<{
               <button
                 key={i}
                 onClick={() => setCurrentPage(i + 1)}
-                className={`${styles.paginationButton} ${currentPage === i + 1 ? styles.pageNumber : ""
-                  }`}
+                className={currentPage === i + 1 ? styles.activePage : ""}
               >
                 {i + 1}
               </button>

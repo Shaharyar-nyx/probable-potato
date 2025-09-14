@@ -85,10 +85,9 @@ export const PodcastInterviews: React.FC<{
                     <div className={styles.metaRow}>
 
                       <span>
-                        {ep.publish_date ? " • " : ""}
-                        {ep.publish_date}
-                        {ep.duration && ep.publish_date ? " • " : ""}
                         {ep.duration}
+                        {'\u00A0\u00A0|\u00A0\u00A0'}
+                        {ep.publish_date}
                       </span>
                     </div>
 
@@ -105,8 +104,8 @@ export const PodcastInterviews: React.FC<{
                     )}
 
                     {ep.url && (
-                      <Button href={ep.url} className={styles.listenBtn}>
-                        Listen to Episode ↗
+                      <Button href={ep.url} className={styles.listenBtn}  iconName="ArrowUpRightIcon">
+                        Listen to Episode
                       </Button>
                     )}
                   </div>
