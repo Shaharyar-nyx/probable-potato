@@ -184,7 +184,14 @@ export const BLOCKS_FRAGMENT = `
             }
             background_color
         }
-          
+              ... on ComponentBlocksBenefitCards {
+            title
+            content
+            benefit_sub_cards {
+              title
+              content_md
+            }
+          }
 
       ... on ComponentBlocksHomeTestimonial {
           collection
@@ -293,7 +300,86 @@ export const BLOCKS_FRAGMENT = `
               logo      { data { attributes { url name alternativeText mime } } }
             }
           }
-          
+    ... on ComponentBlocksSimuFeaturedMedia {
+            sub_heading
+            heading
+            page_description
+            background_file {
+              data {
+                attributes {
+                  url
+                  name
+                  alternativeText
+                  mime
+                }
+              }
+            }
+            works {
+              icon {
+              data {
+                attributes {
+                  url
+                  name
+                  alternativeText
+                  mime
+                }
+              }
+            }
+              heading
+              description
+            }
+          }
+           ... on ComponentBlocksOffer {
+            sub_heading
+            heading
+            page_description
+            background_file {
+              data {
+                attributes {
+                  url
+                  name
+                  alternativeText
+                  mime
+                }
+              }
+            }
+             featureImage {
+              data {
+                attributes {
+                  url
+                  name
+                  alternativeText
+                  mime
+                }
+              }
+            }
+            bgUrlMob {
+              data {
+                attributes {
+                  url
+                  name
+                  alternativeText
+                  mime
+                }
+              }
+            }
+            offering {
+              icon {
+              data {
+                attributes {
+                  url
+                  name
+                  alternativeText
+                  mime
+                }
+              }
+            }
+              heading
+              description
+            }
+          }
+
+
         ... on ComponentBlocksGlobalPressCoverage {
             collection_coverage: collection
             title
