@@ -15,7 +15,7 @@ const blockComponents: Record<string, React.FC<any>> = {
 };
 
 async function CyberbaysSimuCall() {
-  const data = await getPageBySlug("simu-call");
+  const data = await getPageBySlug("cyberbays-simucall");
   console.log("Page data:", data);
 
   if (!data?.blocks) return null;
