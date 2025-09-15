@@ -5,13 +5,13 @@
 }
 
 .container {
-  @apply mx-auto;
+  @apply mx-auto max-w-screen-2xl;
   padding-left: 64px;
   padding-right: 64px;
 }
 
 .header {
-  margin-bottom: 24px;
+  margin-bottom: 48px;
 }
 
 .headline {
@@ -48,7 +48,6 @@
   border-radius: 12px;
   border: 1px solid var(--Primary-500-Alpha-400, rgba(4, 93, 227, 0.4));
   box-shadow: 0 0 20px 0 rgba(2, 37, 91, 0.25) inset;
-  backdrop-filter: blur(10px);
   background: var(--Primary-500-Alpha-100, rgba(4, 93, 227, 0.1));
 
   grid-template-columns: 1fr 1fr;
@@ -59,8 +58,9 @@
     grid-column: 1 / -1;
   }
 
-  .card:first-child {
+  .card:hover {
     background: var(--Primary-500-Alpha-950, rgba(4, 93, 227, 0.95));
+    cursor: pointer;
   }
 }
 
