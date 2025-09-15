@@ -44,7 +44,17 @@ export default function FeaturedMedia({
       : "";
 
   return (
-    <section className={styles.featuredSection}>
+   <section
+    className={styles.featuredSection}
+    style={{
+    backgroundImage: bgUrl
+      ? `linear-gradient(180deg, #F6F7F8 0%, rgba(246,247,248,0) 50%, #F6F7F8 100%), url(${STRAPI_ASSETS}${bgUrl})`
+      : "linear-gradient(180deg, #F6F7F8 0%, rgba(246,247,248,0) 50%, #F6F7F8 100%)",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+  >
       <div className={styles.overlay}></div>
 
       <div className={styles.content}>
