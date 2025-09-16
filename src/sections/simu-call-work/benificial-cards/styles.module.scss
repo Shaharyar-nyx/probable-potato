@@ -5,15 +5,11 @@ padding: 60px 64px 120px 64px;
 flex-direction: column;
 align-items: center;
 gap: 80px;
+// background-color: #ffffff;
   @media (max-width: 768px) {
     padding: 32px 16px;
   }
 }
-
-.background {
-  @apply absolute inset-0 -z-10 bg-primary-500 bg-[url('/bug-hunters/join-and-benefits-bg.svg')] bg-cover bg-no-repeat;
-}
-
 .container {
   display: flex;
 flex-direction: column;
@@ -131,17 +127,20 @@ font-style: normal;
 font-weight: 700;
 line-height: 36px; /* 112.5% */
 }
-.cardContent_md{
-color: var(--Neutral-50, #F9FAFB);
-align-items: stretch;
-/* Body Large */
-font-family: var(--font-family-body, Poppins);
-font-size: var(--font-size-sm, 18px);
-font-style: normal;
-font-weight: 500;
-line-height: var(--font-line-height-md, 26px); /* 144.444% */
-letter-spacing: var(--font-letter-spacing-none, 0);
+.cardContent_md {
+  color: var(--Neutral-50, #F9FAFB);
+  align-items: stretch;
+  font-family: var(--font-family-body, Poppins);
+  font-size: var(--font-size-sm, 18px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--font-line-height-md, 26px); 
+  letter-spacing: var(--font-letter-spacing-none, 0);
+  list-style-type: disc;
+  padding-left: 1.5rem; 
+  margin: 0; 
 }
+
 .gridContent {
   @apply grid grid-cols-1 gap-6;
 
