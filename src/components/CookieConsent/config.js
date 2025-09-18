@@ -19,7 +19,7 @@ const getConfig = () => {
         });
       } else if (changedCategories.analytics === "rejected") {
         // Disable GTM when user rejects analytics cookies
-        window["ga-disable-GTM-PHF2CW42"] = true; // Disable all tags and scripts in GTM
+        window["ga-disable-GTM-WM4FZ8G3"] = true; // Disable all tags and scripts in GTM
         window.dataLayer.push({
           event: "consentDenied",
           analyticsConsent: "rejected",
@@ -84,7 +84,7 @@ const getConfig = () => {
               });
             },
             onReject: () => {
-              window["ga-disable-GTM-PHF2CW42"] = true;
+              window["ga-disable-GTM-WM4FZ8G3"] = true;
               window.dataLayer.push({
                 event: "consentDenied",
                 analyticsConsent: "rejected",
@@ -180,13 +180,13 @@ const loadGTM = () => {
 
   // Dynamically load the GTM script
   const script = document.createElement("script");
-  script.src = `https://www.googletagmanager.com/gtm.js?id=GTM-PHF2CW42`; // Replace with your GTM container ID
+  script.src = `https://www.googletagmanager.com/gtm.js?id=GTM-WM4FZ8G3`; // Replace with your GTM container ID
   script.async = true;
   script.onload = () => {
     // After GTM is loaded, push initial events to the dataLayer
     window.dataLayer.push({
       event: "gtm.loaded",
-      gtmContainerId: "GTM-PHF2CW42", // Replace with your container ID
+      gtmContainerId: "GTM-WM4FZ8G3", // Replace with your container ID
     });
   };
   document.head.appendChild(script);
@@ -198,7 +198,7 @@ const loadGTM = () => {
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PHF2CW42');
+    })(window,document,'script','dataLayer','GTM-WM4FZ8G3');
   `;
   document.head.appendChild(inlineScript);
 };
