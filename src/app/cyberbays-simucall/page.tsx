@@ -3,11 +3,11 @@ import { Header } from "@/components";
 import { getPageBySlug } from "@/lib/pages";
 import { PageBuilder } from "@/components/PageBuilder";
 import { FeaturedMedia , Offer , Benefit_Cards} from "@/sections/simu-call-work";
-import {CTA } from "@/sections";
+import {CTA , NewsList, NewsHero} from "@/sections";
 
 
 const blockComponents: Record<string, React.FC<any>> = {
-  hero_section: Header,
+  hero_section: NewsHero,
   ComponentBlocksSimuFeaturedMedia: FeaturedMedia,
   ComponentBlocksOffer: Offer,
   ComponentBlocksBenefitCards: Benefit_Cards,
