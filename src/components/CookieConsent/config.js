@@ -1,34 +1,3 @@
-// Push a dataLayer event for ANY <form> submit (native or SPA)
-const installFormSubmitListener = () => {
-  if (typeof window === "undefined") return;     // SSR guard
-  if (window.__formListenerInstalled) return;    // idempotent
-  window.__formListenerInstalled = true;
-
-  document.addEventListener(
-    "submit",
-    function (e) {
-      try {
-        var f = e && e.target && e.target.tagName &&
-                e.target.tagName.toLowerCase() === "form"
-                ? e.target
-                : null;
-        if (!f) return;
-
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "form_submit",                 // GTM trigger listens for this
-          form_id: f.id || "",
-          form_name: f.getAttribute("name") || "",
-          form_target: f.getAttribute("action") || "",
-          form_class: f.getAttribute("class") || "",
-          page_location: window.location.href
-        });
-      } catch (_) {}
-    },
-    true // capture phase so we catch submits even if preventDefault is used
-  );
-};
-
 const getConfig = () => {
   const config = {
     /**
@@ -50,7 +19,7 @@ const getConfig = () => {
         });
       } else if (changedCategories.analytics === "rejected") {
         // Disable GTM when user rejects analytics cookies
-        window["ga-disable-GTM-WM4FZ8G3"] = true; // Disable all tags and scripts in GTM
+        window["ga-disable-GTM-PHF2CW42"] = true; // Disable all tags and scripts in GTM
         window.dataLayer.push({
           event: "consentDenied",
           analyticsConsent: "rejected",
@@ -115,7 +84,7 @@ const getConfig = () => {
               });
             },
             onReject: () => {
-              window["ga-disable-GTM-WM4FZ8G3"] = true;
+              window["ga-disable-GTM-PHF2CW42"] = true;
               window.dataLayer.push({
                 event: "consentDenied",
                 analyticsConsent: "rejected",
@@ -200,37 +169,38 @@ const getConfig = () => {
 };
 
 // Function to load Google Tag Manager (GTM)
-const GTM_ID = "GTM-WM4FZ8G3";
-
 const loadGTM = () => {
-  if (typeof window === "undefined") return;
-
-  // Always have a queue ready
-  window.dataLayer = window.dataLayer || [];
-
-  // Install the global form listener (once)
-  installFormSubmitListener();
-
-  // If GTM is already loaded, do nothing
-  if (
-    window.__gtmLoaded ||
-    (window.google_tag_manager && window.google_tag_manager[GTM_ID])
-  ) {
+  // Check if GTM is already loaded
+  if (window.dataLayer) {
     return;
   }
-  window.__gtmLoaded = true;
 
-  // Standard GTM bootstrap (loads gtm.js once)
-  (function (w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-    var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s),
-      dl = l != "dataLayer" ? "&l=" + l : "";
-    j.async = true;
-    j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-    f.parentNode.insertBefore(j, f);
-  })(window, document, "script", "dataLayer", GTM_ID);
+  // Create a new dataLayer if it doesn't exist
+  window.dataLayer = window.dataLayer || [];
+
+  // Dynamically load the GTM script
+  const script = document.createElement("script");
+  script.src = `https://www.googletagmanager.com/gtm.js?id=GTM-PHF2CW42`; // Replace with your GTM container ID
+  script.async = true;
+  script.onload = () => {
+    // After GTM is loaded, push initial events to the dataLayer
+    window.dataLayer.push({
+      event: "gtm.loaded",
+      gtmContainerId: "GTM-PHF2CW42", // Replace with your container ID
+    });
+  };
+  document.head.appendChild(script);
+
+  // Inline Google Tag Manager script
+  const inlineScript = document.createElement("script");
+  inlineScript.innerHTML = `
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PHF2CW42');
+  `;
+  document.head.appendChild(inlineScript);
 };
 
 export default getConfig;
