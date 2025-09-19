@@ -1,3 +1,34 @@
+// Push a dataLayer event for ANY <form> submit (native or SPA)
+const installFormSubmitListener = () => {
+  if (typeof window === "undefined") return;     // SSR guard
+  if (window.__formListenerInstalled) return;    // idempotent
+  window.__formListenerInstalled = true;
+
+  document.addEventListener(
+    "submit",
+    function (e) {
+      try {
+        var f = e && e.target && e.target.tagName &&
+                e.target.tagName.toLowerCase() === "form"
+                ? e.target
+                : null;
+        if (!f) return;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "form_submit",                 // GTM trigger listens for this
+          form_id: f.id || "",
+          form_name: f.getAttribute("name") || "",
+          form_target: f.getAttribute("action") || "",
+          form_class: f.getAttribute("class") || "",
+          page_location: window.location.href
+        });
+      } catch (_) {}
+    },
+    true // capture phase so we catch submits even if preventDefault is used
+  );
+};
+
 const getConfig = () => {
   const config = {
     /**
@@ -177,6 +208,9 @@ const loadGTM = () => {
 
   // Create a new dataLayer if it doesn't exist
   window.dataLayer = window.dataLayer || [];
+  
+  // catch form submit
+  installFormSubmitListener();
 
   // Dynamically load the GTM script
   const script = document.createElement("script");
