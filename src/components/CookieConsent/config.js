@@ -200,41 +200,37 @@ const getConfig = () => {
 };
 
 // Function to load Google Tag Manager (GTM)
-const loadGTM = () => {
-  // Check if GTM is already loaded
-  if (window.dataLayer) {
-    return;
-  }
+const GTM_ID = "GTM-WM4FZ8G3";
 
-  // Create a new dataLayer if it doesn't exist
+const loadGTM = () => {
+  if (typeof window === "undefined") return;
+
+  // Always have a queue ready
   window.dataLayer = window.dataLayer || [];
-  
-  // catch form submit
+
+  // Install the global form listener (once)
   installFormSubmitListener();
 
-  // Dynamically load the GTM script
-  const script = document.createElement("script");
-  script.src = `https://www.googletagmanager.com/gtm.js?id=GTM-WM4FZ8G3`; // Replace with your GTM container ID
-  script.async = true;
-  script.onload = () => {
-    // After GTM is loaded, push initial events to the dataLayer
-    window.dataLayer.push({
-      event: "gtm.loaded",
-      gtmContainerId: "GTM-WM4FZ8G3", // Replace with your container ID
-    });
-  };
-  document.head.appendChild(script);
+  // If GTM is already loaded, do nothing
+  if (
+    window.__gtmLoaded ||
+    (window.google_tag_manager && window.google_tag_manager[GTM_ID])
+  ) {
+    return;
+  }
+  window.__gtmLoaded = true;
 
-  // Inline Google Tag Manager script
-  const inlineScript = document.createElement("script");
-  inlineScript.innerHTML = `
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WM4FZ8G3');
-  `;
-  document.head.appendChild(inlineScript);
+  // Standard GTM bootstrap (loads gtm.js once)
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != "dataLayer" ? "&l=" + l : "";
+    j.async = true;
+    j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, "script", "dataLayer", GTM_ID);
 };
 
 export default getConfig;
