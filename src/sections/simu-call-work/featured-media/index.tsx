@@ -29,6 +29,7 @@ type SimuCallWorksProps = {
     };
   };
   works: WorkItem[];
+  videoFileName?: string; 
 };
 
 export default function FeaturedMedia({
@@ -37,6 +38,7 @@ export default function FeaturedMedia({
   page_description,
   background_file,
   works,
+  videoFileName = "22.57.26_ab8f9523.mp4", 
 }: SimuCallWorksProps) {
   const bgUrl =
     background_file?.data?.attributes?.url
@@ -44,61 +46,82 @@ export default function FeaturedMedia({
       : "";
 
   return (
-   <section
-    className={styles.featuredSection}
-    style={{
-    backgroundImage: bgUrl
-      ? `linear-gradient(180deg, #F6F7F8 0%, rgba(246,247,248,0) 50%, #F6F7F8 100%), url(${STRAPI_ASSETS}${bgUrl})`
-      : "linear-gradient(180deg, #F6F7F8 0%, rgba(246,247,248,0) 50%, #F6F7F8 100%)",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  }}
-  >
-      <div className={styles.overlay}></div>
+    <>
+      <section className={styles.videoSection}>
+  {/* Text Section */}
+  <div className={styles.videoIntro}>
+    <p>Where innovation meets performance.</p>
+  </div>
 
-      <div className={styles.content}>
-        {/* Sub heading */}
-        <p className={styles.subHeading}>{sub_heading}</p>
+  {/* Video Section */}
+  <div className={styles.videoContainer}>
+    <video
+  className={styles.videoBackground}
+  src={`/video/${videoFileName}`}
+  controls
+  playsInline
+></video>
 
-        {/* Main heading */}
-        <h2 className={styles.mainHeading}>{heading}</h2>
+  </div>
+</section>
 
-        {/* Description */}
-        <p className={styles.description}>{page_description}</p>
 
-        {/* Cards */}
-        <div className={styles.cardsGrid}>
-          {works?.map((item, idx) => {
-            const iconUrl = item.icon?.data?.attributes?.url || "";
-            const altText = item.icon?.data?.attributes?.alternativeText || "";
 
-            return (
-              <div key={idx} className={styles.card}>
-                <div className={styles.cardHeader}>
-                  <div className={styles.iconWrapper}>
-                    {iconUrl && (
-                      <Image
-                        src={`${STRAPI_ASSETS}${iconUrl}`}
-                        alt={altText || item.heading}
-                        width={24}
-                        height={24}
-                        className={styles.iconImg}
-                      />
-                    )}
+      {/* 🔹 Featured Section */}
+      <section
+        className={styles.featuredSection}
+        style={{
+          backgroundImage: bgUrl
+            ? `linear-gradient(180deg, #F6F7F8 0%, rgba(246,247,248,0) 50%, #F6F7F8 100%), url(${STRAPI_ASSETS}${bgUrl})`
+            : "linear-gradient(180deg, #F6F7F8 0%, rgba(246,247,248,0) 50%, #F6F7F8 100%)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className={styles.overlay}></div>
+
+        <div className={styles.content}>
+          {/* Sub heading */}
+          <p className={styles.subHeading}>{sub_heading}</p>
+
+          {/* Main heading */}
+          <h2 className={styles.mainHeading}>{heading}</h2>
+
+          {/* Description */}
+          <p className={styles.description}>{page_description}</p>
+
+          {/* Cards */}
+          <div className={styles.cardsGrid}>
+            {works?.map((item, idx) => {
+              const iconUrl = item.icon?.data?.attributes?.url || "";
+              const altText =
+                item.icon?.data?.attributes?.alternativeText || "";
+
+              return (
+                <div key={idx} className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <div className={styles.iconWrapper}>
+                      {iconUrl && (
+                        <Image
+                          src={`${STRAPI_ASSETS}${iconUrl}`}
+                          alt={altText || item.heading}
+                          width={24}
+                          height={24}
+                          className={styles.iconImg}
+                        />
+                      )}
+                    </div>
+                    <h3 className={styles.cardHeading}>{item.heading}</h3>
                   </div>
-                  <h3 className={styles.cardHeading}>{item.heading}</h3>
+                  <p className={styles.cardDescription}>{item.description}</p>
                 </div>
-
-                <p className={styles.cardDescription}>{item.description}</p>
-              </div>
-
-
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 
