@@ -50,7 +50,7 @@ export default function FeaturedMedia({
       <section className={styles.videoSection}>
   {/* Text Section */}
   <div className={styles.videoIntro}>
-    <p>SimuCall explained in just 2 minutes</p>
+    <p>Discover SimuCall — fast, clear, and under a minute</p>
   </div>
 
   {/* Video Section */}

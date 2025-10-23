@@ -58,7 +58,7 @@ export const Benefit_Cards: React.FC<BenefitCardsProps> = ({ title, content, ben
                     {lines.length > 0 && (
                       <ul className={styles.cardContent_md}>
                         {lines.map((line, idx) => (
-                          <li key={idx} className="paragraph-sm">{line}</li>
+                          <li key={idx} className="paragraph-sm pt-2">{line}</li>
                         ))}
                       </ul>
                     )}
