@@ -38,7 +38,7 @@ export default function FeaturedMedia({
   page_description,
   background_file,
   works,
-  videoFileName = "22.57.26_ab8f9523.mp4", 
+  videoFileName = "intro.mp4", 
 }: SimuCallWorksProps) {
   const bgUrl =
     background_file?.data?.attributes?.url
@@ -50,7 +50,7 @@ export default function FeaturedMedia({
       <section className={styles.videoSection}>
   {/* Text Section */}
   <div className={styles.videoIntro}>
-    <p>Where innovation meets performance.</p>
+    <p>SimuCall explained in just 2 minutes</p>
   </div>
 
   {/* Video Section */}
