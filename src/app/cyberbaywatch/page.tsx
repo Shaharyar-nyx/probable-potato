@@ -11,10 +11,10 @@ import { WhyCyberWatch , WhatCyberWatch , KeyOutcomes,CyberWatchDeliver} from "@
 
 const blockComponents: Record<string, React.FC<any>> = {
   hero_section: Header,
-  ComponentBlocksWhyCyberWatch: WhyCyberWatch,
-  ComponentBlocksWhatCyberWatch: WhatCyberWatch,
-  ComponentBlocksKeyOutcomes: KeyOutcomes,
-  ComponentBlocksCyberWatchDeliver:CyberWatchDeliver,
+  // ComponentBlocksWhyCyberWatch: WhyCyberWatch,
+  // ComponentBlocksWhatCyberWatch: WhatCyberWatch,
+  // ComponentBlocksKeyOutcomes: KeyOutcomes,
+  // ComponentBlocksCyberWatchDeliver:CyberWatchDeliver,
   single_card_section: CTA,
 };
 
