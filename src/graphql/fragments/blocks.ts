@@ -240,7 +240,37 @@ export const BLOCKS_FRAGMENT = `
               }
           }
       }
-      ... on ComponentBlocksMediaHighlight {
+
+... on ComponentBlocksWhyCyberWatch {
+  heading
+  description
+  content
+  side_image {
+    data {
+      attributes {
+        name
+        alternativeText
+        mime
+        url
+      }
+    }
+  }
+}
+
+
+ ... on ComponentBlocksWhatCyberWatch {
+            subHeading
+            heading
+            description
+            content_md
+            stats {
+              value
+              label
+              description
+            }
+          }
+
+      ... on ComponentBlocksMediaHighlight{
                     collection_media: collection
                     headline
                     title
@@ -300,6 +330,39 @@ export const BLOCKS_FRAGMENT = `
               logo      { data { attributes { url name alternativeText mime } } }
             }
           }
+            ... on ComponentBlocksKeyOutcomes {
+  side_heading
+  background_file {
+    data {
+      attributes {
+        url
+        alternativeText
+      }
+    }
+  }
+
+  outcome {
+    title
+    description
+    icon {
+    data {
+      attributes {
+        url
+        alternativeText
+      }
+    }
+  }
+  }
+}
+... on ComponentBlocksCyberWatchDeliver {
+  subHeading
+  heading
+  miniHeading
+  CyberWatchpProvide {
+    description
+  }
+}
+
     ... on ComponentBlocksSimuFeaturedMedia {
             sub_heading
             heading

@@ -1,0 +1,140 @@
+.cyberSection {
+  width: 100%;
+  display: flex;
+padding: 60px 64px 120px 64px;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 60px;
+
+  .container {
+    max-width: 1200px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+      justify-content: center; 
+
+  }
+
+  /* 🔹 Text Block */
+  .textBlock {
+    display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 32px;
+align-self: stretch;
+
+    .subHeading {
+     color: var(--Primary-800, #02255B);
+
+/* Paragraph S/Regular */
+font-family: var(--Font-Family-Description, Poppins);
+font-size: var(--Font-size-Size-S, 14px);
+font-style: normal;
+font-weight: 400;
+line-height: var(--Font-size-Size-L, 18px); /* 128.571% */
+    }
+
+    .heading {
+        align-self: stretch;
+      color: var(--Primary-800, #02255B);
+text-align: center;
+font-family: Poppins;
+font-size: var(--Font-size-Size-Heading-1, 48px);
+font-style: normal;
+font-weight: 700;
+line-height: 60px; /* 125% */
+    }
+
+    .miniHeading {
+                align-self: stretch;
+      color: var(--Neutral-600, #4B5563);
+text-align: center;
+font-family: var(--Font-Family-Description, Poppins);
+font-size: var(--Font-size-Size--M, 16px);
+font-style: normal;
+font-weight: 400;
+line-height: var(--Font-Height-Height-X, 24px); /* 150% */
+letter-spacing: var(--font-letter-spacing-none, 0);
+    }
+
+    .description {
+      font-size: 16px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+  }
+.cardsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.cardsGrid {
+  display: flex; /* ✅ Switch from grid to flex */
+  flex-wrap: wrap; /* ✅ Allows wrapping to next line */
+  justify-content: center; /* ✅ Centers even incomplete rows */
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+
+  @media (max-width: 1024px) {
+    gap: 24px;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.card {
+  flex: 0 1 330px; /* ✅ Cards will keep 330px width */
+  height: 210px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--Primary-800, #02255b);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+
+  .cardTitle {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .cardDesc {
+    color: var(--Neutral-50, #F9FAFB);
+    align-self: stretch;
+    font-family: var(--font-family-body, Poppins);
+    font-size: var(--font-size-sm, 18px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--font-line-height-md, 26px);
+    letter-spacing: var(--font-letter-spacing-none, 0);
+  }
+}
+
+
+  @media (max-width: 768px) {
+    padding: 60px 20px;
+
+    .heading {
+      font-size: 26px;
+    }
+
+    .cardsGrid {
+      gap: 16px;
+    }
+  }
+}

@@ -1,0 +1,149 @@
+/* ✅ Base Desktop (unchanged) */
+.whySection {
+  width: 100%;
+  padding: 120px 100px 60px 100px;
+  align-items: flex-start;
+  gap: 24px;
+  background: #f6f7f8;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 120px;
+}
+
+.textBox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 600px;
+  gap: 18px;
+}
+
+.title {
+  align-self: stretch;
+  color: var(--Primary-800, #02255B);
+  font-family: Poppins;
+  font-size: var(--Font-size-Size-Heading-1, 48px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 60px; /* 125% */
+}
+
+.content {
+  color: var(--Neutral-600, #4B5563);
+  align-self: stretch;
+  font-family: var(--Font-Family-Description, Poppins);
+  font-size: var(--Font-size-Size--M, 16px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--Font-Height-Height-X, 24px); /* 150% */
+}
+
+.image {
+  width: 367px;
+  height: 334.957px;
+  aspect-ratio: 367 / 334.96;
+  object-fit: contain;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* ✅ Tablet Screens */
+@media (max-width: 1024px) {
+  .whySection {
+    padding: 100px 60px 60px 60px;
+  }
+
+  .container {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 60px;
+  }
+
+  .textBox {
+    align-items: center;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  .content {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .image {
+    width: 300px;
+    height: auto;
+  }
+}
+
+/* ✅ Large Mobile Screens */
+@media (max-width: 768px) {
+  .whySection {
+    padding: 80px 40px 50px 40px;
+  }
+
+  .container {
+    gap: 40px;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 42px;
+  }
+
+  .content {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .image {
+    width: 250px;
+  }
+}
+
+/* ✅ Small Mobile Screens */
+@media (max-width: 480px) {
+  .whySection {
+    padding: 60px 20px 40px 20px;
+  }
+
+  .container {
+    gap: 30px;
+  }
+
+  .textBox {
+    gap: 14px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 36px;
+  }
+
+  .content {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .image {
+    width: 220px;
+  }
+}
