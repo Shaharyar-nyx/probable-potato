@@ -240,6 +240,74 @@ export const BLOCKS_FRAGMENT = `
               }
           }
       }
+   ... on ComponentBlocksKeyOutcomes {
+  side_heading
+  background_file {
+    data {
+      attributes {
+        url
+        alternativeText
+      }
+    }
+  }
+
+  outcome {
+    title
+    description
+    icon {
+    data {
+      attributes {
+        url
+        alternativeText
+      }
+    }
+  }
+  }
+}
+
+
+
+... on ComponentBlocksCyberWatchDeliver {
+  subHeading
+  heading
+  miniHeading
+  CyberWatchpProvide {
+    description
+  }
+}
+
+
+
+... on ComponentBlocksWhyCyberWatch {
+  heading
+  description
+  content
+  side_image {
+    data {
+      attributes {
+        name
+        alternativeText
+        mime
+        url
+      }
+    }
+  }
+}
+
+
+ ... on ComponentBlocksWhatCyberWatch {
+            subHeading
+            heading
+            description
+            content_md
+            stats {
+              value
+              label
+              description
+            }
+          }
+
+
 
 
 
