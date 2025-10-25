@@ -46,9 +46,7 @@
 .cardsGrid {
   @apply grid gap-6;
   border-radius: 12px;
-  border: 1px solid var(--Primary-500-Alpha-400, rgba(4, 93, 227, 0.4));
   box-shadow: 0 0 20px 0 rgba(2, 37, 91, 0.25) inset;
-  background: var(--Primary-500-Alpha-100, rgba(4, 93, 227, 0.1));
 
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto auto;

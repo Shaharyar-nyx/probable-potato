@@ -2,6 +2,7 @@ import React from "react";
 
 import { CTA, NewsList, NewsHero } from "@/sections";
 import { BlockType } from "@/types";
+import { Header } from "@/components";
 import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { Metadata } from "next";
@@ -10,7 +11,7 @@ import { ClearOutputs } from "@/sections/vciso/ClearOutputs";
 import { CyberLeadership } from "@/sections/vciso/CyberLeadership";
 
 const blockComponents: Record<string, React.FC<any>> = {
-  hero_section: NewsHero,
+  hero_section: Header,
   strategic_guidance_across: StrategicGuidanceAcross,
   clear_outputs: ClearOutputs,
   cyber_leadership: CyberLeadership

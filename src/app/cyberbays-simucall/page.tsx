@@ -7,7 +7,7 @@ import {CTA , NewsList, NewsHero} from "@/sections";
 
 
 const blockComponents: Record<string, React.FC<any>> = {
-  hero_section: NewsHero,
+  hero_section: Header,
   ComponentBlocksSimuFeaturedMedia: FeaturedMedia,
   ComponentBlocksOffer: Offer,
   ComponentBlocksBenefitCards: Benefit_Cards,
