@@ -45,7 +45,7 @@ const getImageUrl = (path: string | undefined) => {
 
   // If it’s a Strapi relative upload (like /uploads/xyz.png)
   if (path.startsWith("/uploads")) {
-    return `${process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"}${path}`;
+    return `${process.env.NEXT_PUBLIC_STRAPI_URL || "https://www.cyberbay.tech/"}${path}`;
   }
 
   // Otherwise assume it's inside /public/
