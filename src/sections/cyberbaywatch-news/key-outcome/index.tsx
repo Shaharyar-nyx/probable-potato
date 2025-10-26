@@ -41,7 +41,7 @@ const getImageUrl = (path: string | undefined) => {
   if (!path) return "";
 
   // If path is already an absolute URL (Strapi returns full URL)
-  if (path.startsWith("http")) return path;
+  if (path.startsWith("https")) return path;
 
   // If it’s a Strapi relative upload (like /uploads/xyz.png)
   if (path.startsWith("/uploads")) {

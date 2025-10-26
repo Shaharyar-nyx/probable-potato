@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 
 type Stat = {
@@ -25,25 +25,49 @@ export default function WhatCyberWatch({
   stats = [],
 }: WhatCyberWatchProps) {
   const [counts, setCounts] = useState<number[]>([]);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (stats.length === 0) return;
+    if (!sectionRef.current || stats.length === 0) return;
 
-    const duration = 1500; // animation duration in ms
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasAnimated) {
+          startCounting();
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.3 } // section 30% visible hone par trigger
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, [stats, hasAnimated]);
+
+  const startCounting = () => {
+    const duration = 3000; // ⏱️ slow & smooth (3 seconds)
     const startTime = performance.now();
 
-    // numeric values extract kar rahe hain
     const parsedValues = stats.map((item) => {
       const num = parseInt(item.value.replace(/\D/g, ""), 10);
       return isNaN(num) ? 0 : num;
     });
 
+    // 🔹 Smooth easing function (ease-out cubic)
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
     function update() {
       const now = performance.now();
       const progress = Math.min((now - startTime) / duration, 1);
+      const easedProgress = easeOutCubic(progress);
 
       const newCounts = parsedValues.map((val) =>
-        Math.floor(val * progress)
+        Math.floor(val * easedProgress)
       );
       setCounts(newCounts);
 
@@ -51,10 +75,10 @@ export default function WhatCyberWatch({
     }
 
     requestAnimationFrame(update);
-  }, [stats]);
+  };
 
   return (
-    <section className={styles.whatSection}>
+    <section ref={sectionRef} className={styles.whatSection}>
       <div className={styles.container}>
         {/* Text Section */}
         <div className={styles.textContent}>
@@ -75,10 +99,7 @@ export default function WhatCyberWatch({
         {stats.length > 0 && (
           <div className={styles.statsGrid}>
             {stats.map((item, i) => {
-              const displayValue =
-                counts[i] !== undefined ? counts[i] : 0;
-
-              // "+" ya "s" ka logic wapas
+              const displayValue = counts[i] ?? 0;
               const suffix = i === stats.length - 1 ? "s" : "+";
 
               return (
