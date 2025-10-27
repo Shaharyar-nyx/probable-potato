@@ -15,7 +15,7 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
 };
 
 async function getPricingData() {
-  return getPageBySlug("pricing");
+  return getPageBySlug("packages");
 }
 
 export async function generateMetadata(): Promise<Metadata> {

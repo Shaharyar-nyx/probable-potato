@@ -24,7 +24,7 @@ type KeyOutcomesProps = {
   outcome?: Outcome[];
 };
 
-// 🔹 Helper to safely extract text
+// 🔹 Extract text helper
 const getText = (value: any): string => {
   if (!value) return "";
   if (typeof value === "string") return value;
@@ -36,21 +36,24 @@ const getText = (value: any): string => {
   return "";
 };
 
-// 🔹 Helper for image paths (works for both Strapi + public folder)
-const getImageUrl = (path: string | undefined) => {
+const getImageUrl = (path?: string) => {
   if (!path) return "";
 
-  // If path is already an absolute URL (Strapi returns full URL)
-  if (path.startsWith("https")) return path;
+  // Remove trailing slash from env URL
+  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_ASSETS?.replace(/\/$/, "") || "";
 
-  // If it’s a Strapi relative upload (like /uploads/xyz.png)
+  // If full http(s) URL — just return as is
+  if (/^https?:\/\//i.test(path)) return path;
+
+  // If Strapi relative path — prepend base URL
   if (path.startsWith("/uploads")) {
-    return `${process.env.NEXT_PUBLIC_STRAPI_URL || "https://www.cyberbay.tech/"}${path}`;
+    return `${baseUrl}${path}`;
   }
 
-  // Otherwise assume it's inside /public/
+  // If local /public image — return as is
   return path.startsWith("/") ? path : `/${path}`;
 };
+
 
 
 export default function KeyOutcomes({
@@ -58,8 +61,7 @@ export default function KeyOutcomes({
   background_file,
   outcome = [],
 }: KeyOutcomesProps) {
-  // Static image from /public/images/back.jpg
-  const bgImageUrl = getImageUrl("images/back.jpg");
+  const bgImageUrl = getImageUrl(background_file?.data?.attributes?.url || "images/back.jpg");
 
   return (
     <section
@@ -69,14 +71,10 @@ export default function KeyOutcomes({
       }}
     >
       <div className={styles.container}>
-        {/* Left Section */}
         <div className={styles.left}>
-          {side_heading && (
-            <h2 className={styles.heading}>{getText(side_heading)}</h2>
-          )}
+          {side_heading && <h2 className={styles.heading}>{getText(side_heading)}</h2>}
         </div>
 
-        {/* Right Section */}
         <div className={styles.right}>
           <div className={styles.grid}>
             {outcome.map((item, i) => (
@@ -86,19 +84,15 @@ export default function KeyOutcomes({
                     {item.icon?.data?.attributes?.url && (
                       <Image
                         src={getImageUrl(item.icon.data.attributes.url)}
-                        alt={
-                          item.icon.data.attributes.alternativeText || "icon"
-                        }
-                        width={24}
-                        height={24}
+                        alt={item.icon.data.attributes.alternativeText || "icon"}
+                        width={48}
+                        height={48}
                       />
                     )}
                   </div>
                   <h3 className={styles.title}>{getText(item.title)}</h3>
                 </div>
-                <p className={styles.description}>
-                  {getText(item.description)}
-                </p>
+                <p className={styles.description}>{getText(item.description)}</p>
               </div>
             ))}
           </div>

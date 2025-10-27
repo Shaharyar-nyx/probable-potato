@@ -24,7 +24,7 @@ export default function WhatCyberWatch({
   content_md,
   stats = [],
 }: WhatCyberWatchProps) {
-  const [counts, setCounts] = useState<number[]>([]);
+  const [counts, setCounts] = useState<number[] | string[]>([]);
   const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
@@ -66,9 +66,9 @@ export default function WhatCyberWatch({
       const progress = Math.min((now - startTime) / duration, 1);
       const easedProgress = easeOutCubic(progress);
 
-      const newCounts = parsedValues.map((val) =>
-        Math.floor(val * easedProgress)
-      );
+    const newCounts = parsedValues.map((val) =>
+      Math.floor(val * easedProgress).toLocaleString("en-US")
+    );
       setCounts(newCounts);
 
       if (progress < 1) requestAnimationFrame(update);

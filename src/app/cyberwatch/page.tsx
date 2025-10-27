@@ -19,7 +19,7 @@ const blockComponents: Record<string, React.FC<any>> = {
 };
 
 async function CyberbayWatchNews() {
-  const data = await getPageBySlug("cyberbay-watch");
+  const data = await getPageBySlug("cyber-watch");
   console.log("Page data:", data);
 
   if (!data?.blocks) return null;
