@@ -99,19 +99,26 @@
       }
 
       .iconBox {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 35px;
-        height: 35px;
-        border-radius: 6px;
-        background: #045de3;
-        padding: 2px;
-        img {
-          width: 28px;
-          height: 25px;
-        }
-      }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background: #045de3;
+  overflow: hidden; // ensures image never spills out
+  flex-shrink: 0; // prevents boxes from resizing in flex/grid
+  position: relative; // required if you use next/image with fill
+
+  img {
+    width: 70%; // adjust as needed (60–80% looks clean)
+    height: 70%;
+    object-fit: contain;
+    display: block;
+  }
+}
+
+
 
       .title {
         font-family: "Poppins", sans-serif;
