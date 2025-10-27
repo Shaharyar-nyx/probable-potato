@@ -480,7 +480,7 @@ export const BLOCKS_FRAGMENT = `
           title
           headline
           content
-          features {
+          features { 
               data {
                   attributes {
                       title
@@ -543,7 +543,7 @@ export const BLOCKS_FRAGMENT = `
                           data {
                               attributes {
                                   header
-                                  rows {
+            rows(pagination: { page: 1, pageSize: 100 }) {
                                       data {
                                           attributes {
                                               value
