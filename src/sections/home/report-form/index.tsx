@@ -31,10 +31,10 @@ export const ReportForm: React.FC<{ id: string; onSuccess?: () => void }> = ({ i
       toast.error("Please complete the reCAPTCHA verification");
       return;
     }
-    
+
     // Include the recaptcha token with the form data
-    submit({...data, recaptchaToken});
-    
+    submit({ ...data, recaptchaToken });
+
     // Reset reCAPTCHA after submission
     if (shouldShowSuccessMessage) {
       recaptchaRef.current?.reset();
@@ -53,7 +53,7 @@ export const ReportForm: React.FC<{ id: string; onSuccess?: () => void }> = ({ i
       const timer = setTimeout(() => {
         onSuccess();
       }, 1500);
-      
+
       return () => clearTimeout(timer);
     }
   }, [shouldShowSuccessMessage, onSuccess]);
@@ -62,10 +62,9 @@ export const ReportForm: React.FC<{ id: string; onSuccess?: () => void }> = ({ i
     <div className={styles.container}>
       <div className={styles.gridContainer}>
         <div className="w-full lg:w-1/2">
-          <h1 className={`${styles.title} ${isMobile ? "heading-7" : "heading-1"} font-bold`}>Get Your Free Report</h1>
+          <h1 className={`${styles.title} ${isMobile ? "heading-7" : "heading-1"} font-bold`}>Get Your Free Cyber Scan Report Now</h1>
           <p className="paragraph-md text-primary-800">
-            Schedule a consultation with our team. We'll verify ownership of your domain and send you a sample version
-            of the CyberScan report.
+            Instantly uncover vulnerabilities, leaked credentials, and open risks — in just one scan.
           </p>
         </div>
 
@@ -121,7 +120,7 @@ export const ReportForm: React.FC<{ id: string; onSuccess?: () => void }> = ({ i
             rows={4}
             {...register("message")}
           />
-          
+
           {/* Add reCAPTCHA v2 widget */}
           <div className="mt-4">
             <ReCAPTCHA
@@ -131,12 +130,12 @@ export const ReportForm: React.FC<{ id: string; onSuccess?: () => void }> = ({ i
             />
           </div>
 
-          <Button 
-            id={formatBtnId(`${id}-submit`)} 
-            className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md" 
-            disabled={loading || !recaptchaToken} 
-            loading={loading} 
-            size="large" 
+          <Button
+            id={formatBtnId(`${id}-submit`)}
+            className="self-start px-20 !mt-6 paragraph-sm w-full lg:w-fit lg:paragraph-md"
+            disabled={loading || !recaptchaToken}
+            loading={loading}
+            size="large"
             type="submit"
           >
             Submit
@@ -144,7 +143,7 @@ export const ReportForm: React.FC<{ id: string; onSuccess?: () => void }> = ({ i
 
           {shouldShowSuccessMessage && (
             <p aria-live="polite" className="paragraph-sm text-green-500">
-              Thank you for reaching out! We will get back to you shortly.
+              Thank you for requesting the free sample report. Your scan has been initiated, and you will receive a summarized sample report within 24 hours via email.
             </p>
           )}
         </form>
