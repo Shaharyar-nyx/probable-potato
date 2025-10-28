@@ -65,12 +65,12 @@ export const EventUpcoming2025: React.FC<any> = ({ title, description, event_gro
 
         {/* Event Cards */}
         {activeEvents.map((event) => (
-          <div className="mt-6 space-y-8">
+          <div className="mt-6 space-y-8 ">
             <div className="overflow-hidden rounded-2xl bg-white p-4 shadow-lg md:p-8">
               <div className="flex flex-col items-center justify-center gap-4 md:flex-row md:gap-8">
                 {/* Event Image */}
                 {event.image.data.attributes.url && (
-                  <div className="h-[120px] w-[120px] flex-shrink-0 md:h-[160px] md:w-[160px]">
+                  <div className="relative h-[120px] w-[120px] flex-shrink-0 md:h-[160px] md:w-[160px] mb-8">
                     <Image
                       src={`${STRAPI_ASSETS}${event.image.data.attributes.url}`}
                       alt={event.title}
@@ -78,13 +78,28 @@ export const EventUpcoming2025: React.FC<any> = ({ title, description, event_gro
                       height={160}
                       className="h-full w-full rounded-lg object-cover"
                     />
+                    <span className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs md:text-sm font-medium min-w-[120px] text-center px-2 py-[2px] rounded-full shadow-md">
+                      {event.type}
+                    </span>
+
                   </div>
+
                 )}
-                {/* Event Content */}
-                <div className="flex-grow text-center md:text-left">
-                  <h3 className="mb-2 text-[20px] font-bold text-[#02255B] md:mb-4 md:text-[24px]">{event.title}</h3>
-                  <p className="mb-4 text-[14px] font-normal text-[#02255B] md:mb-6 md:text-[16px]">{event.details}</p>
-                </div>
+               {/* Event Content */}
+<div className="flex-grow text-center md:text-left w-full md:w-[10000px] mb-6 md:mb-8">
+  <h3 className="mb-1 text-[18px] sm:text-[20px] md:text-[24px] font-bold text-[#02255B] leading-snug">
+    {event.title}
+  </h3>
+  <p
+    className="text-[13px] sm:text-[14px] md:text-[16px] font-normal text-[#02255B] mt-1 sm:mt-2"
+    style={{ marginBottom: "8px" }}
+  >
+    {event.details}
+  </p>
+</div>
+
+
+
                 <div className="w-full md:min-w-[200px]">
                   <div className="flex flex-col items-center gap-4 md:items-start md:gap-8">
                     {event.location && (
