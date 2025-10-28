@@ -85,23 +85,23 @@ export const EventUpcoming2025: React.FC<any> = ({ title, description, event_gro
                   </div>
 
                 )}
-               {/* Event Content */}
-<div className="flex-grow text-center md:text-left w-full md:w-[10000px] mb-6 md:mb-8">
-  <h3 className="mb-1 text-[18px] sm:text-[20px] md:text-[24px] font-bold text-[#02255B] leading-snug">
-    {event.title}
-  </h3>
-  <p
-    className="text-[13px] sm:text-[14px] md:text-[16px] font-normal text-[#02255B] mt-1 sm:mt-2"
-    style={{ marginBottom: "8px" }}
-  >
-    {event.details}
-  </p>
-</div>
+                {/* Event Content */}
+                <div className="flex-grow text-center md:text-left w-full md:w-[10000px] mb-6 md:mb-8">
+                  <h3 className="mb-1 text-[18px] sm:text-[20px] md:text-[24px] font-bold text-[#02255B] leading-snug">
+                    {event.title}
+                  </h3>
+                  <p
+                    className="text-[13px] sm:text-[14px] md:text-[16px] font-normal text-[#02255B] mt-1 sm:mt-2"
+                    style={{ marginBottom: "8px" }}
+                  >
+                    {event.details}
+                  </p>
+                </div>
 
 
 
                 <div className="w-full md:min-w-[200px]">
-                  <div className="flex flex-col items-center gap-4 md:items-start md:gap-8">
+                  <div className=" flex-col items-center gap-1 md:items-start md:gap-8">
                     {event.location && (
                       <div className="flex items-center gap-2">
                         <svg
@@ -158,7 +158,7 @@ export const EventUpcoming2025: React.FC<any> = ({ title, description, event_gro
                 <div className="mt-4 flex w-full justify-center md:mt-0 md:min-w-[170px] md:justify-end">
                   <a
                     href={event.details_url || "#"}
-                    className="w-full rounded-lg bg-[#045DE3] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#0345A9] md:w-auto"
+                    className="w-full rounded-lg bg-[#045DE4] px-6 py-3 text-center text-white font-normal underline transition hover:bg-[#0345A9] md:w-auto"
                   >
                     View Details
                   </a>
