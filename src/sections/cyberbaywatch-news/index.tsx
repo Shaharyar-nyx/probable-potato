@@ -1,4 +1,4 @@
-export * from "./why-Nyxlab-watch";
+export * from "./why-cyberbay-watch";
 export * from "./what-cyber-watch";
 export * from "./key-outcome";
-export * from "./Nyxlab-watch-delivery";
+export * from "./cyberbay-watch-delivery";
