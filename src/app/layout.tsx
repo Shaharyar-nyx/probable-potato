@@ -27,8 +27,11 @@ const inter = Inter({
 const GTM_ID = "GTM-MWRGJ3KN";
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const { mainNav } = await getMainMenusStrapi();
-  const { footerNav } = await getFooterMenusStrapi();
+  // Temporarily commented out for local build without Strapi
+  // const { mainNav } = await getMainMenusStrapi();
+  // const { footerNav } = await getFooterMenusStrapi();
+  const mainNav = null;
+  const footerNav = null;
 
   return (
     <html className={`${poppins.variable} ${inter.variable}`} lang="en">
@@ -57,11 +60,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </Script>
 
         <ReCaptchaProvider>
-          <Nav {...mainNav} />
+          <Nav {...(mainNav || {})} />
           <SiteContextProvider footerNav={footerNav} mainNav={mainNav}>
             {children}
           </SiteContextProvider>
-          <Footer {...footerNav} />
+          <Footer {...(footerNav || {})} />
 
           <CookieConsent />
         </ReCaptchaProvider>
