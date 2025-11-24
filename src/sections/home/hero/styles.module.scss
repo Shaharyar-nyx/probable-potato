@@ -142,19 +142,6 @@
     justify-content: flex-start;
   }
 
-  /* ✅ Fix for Next.js build error (video global selector) */
-  :global(video) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    opacity: 0.35;
-    z-index: 1;
-  }
-
   .backgroundWrapper,
   .backgroundImage {
     position: absolute;
