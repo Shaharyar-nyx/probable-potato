@@ -25,6 +25,7 @@ interface OfferingsDarkProps {
   title?: string;
   description?: string;
   OfferingCard?: OfferingCardItem[];
+  [key: string]: any; // Allow additional props from BlockType
 }
 
 export const OfferingsDark: React.FC<OfferingsDarkProps> = ({
