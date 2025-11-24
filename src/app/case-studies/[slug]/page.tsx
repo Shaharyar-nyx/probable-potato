@@ -11,8 +11,9 @@ async function getCaseStudy(slug: string) {
   return data[0];
 }
 
-export default async function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const caseStudy = await getCaseStudy(params.slug);
+export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const caseStudy = await getCaseStudy(slug);
 
   if (!caseStudy) {
     return <p className="text-center text-gray-400 py-20 text-lg">Case Study not found.</p>;
