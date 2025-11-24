@@ -23,7 +23,7 @@ interface Award {
 interface AwardsSectionProps {
   Label: string;
   Heading: string;
-  Awards: AwardCard[];
+  Awards: Award[];
   [key: string]: any;
 }
 
