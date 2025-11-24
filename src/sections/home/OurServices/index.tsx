@@ -19,7 +19,7 @@ interface SubService {
 
 interface OurServicesProps {
   heading: string;
-  subheading: string;
+  subheading?: string;
   description: string;
   subServices: SubService[];
   [key: string]: any; // Allow additional props from BlockType
@@ -58,7 +58,7 @@ export const OurServices: React.FC<OurServicesProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {heading} <br /> {subheading}
+          {heading} {subheading && <><br /> {subheading}</>}
         </motion.h2>
 
         <motion.p

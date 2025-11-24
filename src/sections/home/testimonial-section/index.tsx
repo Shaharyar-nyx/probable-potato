@@ -142,8 +142,8 @@ export const TestimonialDarksSection: React.FC<TestimonialDarksSectionProps> = (
               {trusted_logos.data.map((logo, i) => (
                 <motion.img
                   key={i}
-                  src={`${STRAPI_ASSETS}${logo.attributes.url}`}
-                  alt={logo.attributes.alternativeText || "trusted logo"}
+                  src={`${STRAPI_ASSETS}${logo.attributes?.url}`}
+                  alt={logo.attributes?.alternativeText || "trusted logo"}
                   className={styles.trustedLogo}
                   whileHover={{ scale: 1.15, rotate: 2 }}
                   transition={{ type: "spring", stiffness: 200, damping: 15 }}
