@@ -83,7 +83,12 @@ export const ContactSalesForm: React.FC<{ id: string; onSuccess?: () => void }> 
     watch,
   } = useForm<ContactFormData>();
 
-  const { submit, loading, error, called } = useSubmitContactSales(reset);
+  // Create a wrapper reset function that matches the expected type
+  const resetWrapper = () => {
+    reset();
+  };
+  
+  const { submit, loading, error, called } = useSubmitContactSales(resetWrapper as any);
   const shouldShowSuccessMessage = called && !loading && !error;
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
@@ -94,7 +99,17 @@ export const ContactSalesForm: React.FC<{ id: string; onSuccess?: () => void }> 
       return;
     }
     
-    submit({...data, recaptchaToken});
+    // Map ContactFormData to ContactSalesFormType
+    const salesData: ContactSalesFormType = {
+      email: data.businessEmail,
+      name: `${data.firstName} ${data.lastName}`,
+      organization_name: data.companyName,
+      title: data.jobTitle,
+      message: data.message,
+      recaptchaToken
+    };
+    
+    submit(salesData);
     
     // Reset reCAPTCHA after successful submission
     if (shouldShowSuccessMessage) {
