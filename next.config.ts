@@ -67,10 +67,18 @@ const nextConfig = (phase: string) => {
     },
 
     async rewrites() {
+      const cmsUrl = process.env.NEXT_PUBLIC_Nyxlab_CMS_URL;
+
+      // FIX: Only apply the rewrite rule if the environment variable is defined.
+      // If cmsUrl is undefined (during the build phase on DO), return an empty array.
+      if (!cmsUrl) {
+        return []; 
+      }
+
       return [
         {
           source: "/api/:path*",
-          destination: `${process.env.NEXT_PUBLIC_Nyxlab_CMS_URL}/api/:path*`,
+          destination: `${cmsUrl}/api/:path*`,
         },
       ];
     },
