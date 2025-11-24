@@ -80,7 +80,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
               <div>
                 <h3 className="text-sm font-semibold mb-4 text-white">Services</h3>
                 <ul className="space-y-3">
-                  {navigations.data[0].attributes.items.data[0].attributes.children.data.map(
+                  {navigations?.data?.[0]?.attributes?.items?.data?.[0]?.attributes?.children?.data?.map(
                     ({ attributes: { title, url } }: any) => (
                       <li key={url}>
                         <Link
@@ -93,7 +93,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                         </Link>
                       </li>
                     )
-                  )}
+                  ) || <li className="text-sm text-gray-500">No services available</li>}
                 </ul>
               </div>
 
@@ -101,7 +101,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
               <div>
                 <h3 className="text-sm font-semibold mb-4 text-white">Company</h3>
                 <ul className="space-y-3">
-                  {navigations.data[0].attributes.items.data[1].attributes.children.data.map(
+                  {navigations?.data?.[0]?.attributes?.items?.data?.[1]?.attributes?.children?.data?.map(
                     ({ attributes: { title, url } }: any) => (
                       <li key={url}>
                         <Link
@@ -114,7 +114,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                         </Link>
                       </li>
                     )
-                  )}
+                  ) || <li className="text-sm text-gray-500">No links available</li>}
                 </ul>
               </div>
 
@@ -172,7 +172,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
               </div>
               
               <div className="flex items-center space-x-6 text-sm text-gray-400">
-                {navigations.data[1].attributes.items.data.map(({ attributes: { title, url } }: any) => (
+                {navigations?.data?.[1]?.attributes?.items?.data?.map(({ attributes: { title, url } }: any) => (
                   <Link
                     key={url}
                     id={formatBtnId(title)}
@@ -182,7 +182,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                   >
                     {title}
                   </Link>
-                ))}
+                )) || <span className="text-gray-500">No links available</span>}
               </div>
             </div>
           </div>

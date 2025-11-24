@@ -12,6 +12,9 @@ import "@/styles/globals.scss";
 
 import CookieConsent from "components/CookieConsent";
 
+// Force dynamic rendering for all pages
+export const dynamic = 'force-dynamic';
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -27,11 +30,8 @@ const inter = Inter({
 const GTM_ID = "GTM-MWRGJ3KN";
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  // Temporarily commented out for local build without Strapi
-  // const { mainNav } = await getMainMenusStrapi();
-  // const { footerNav } = await getFooterMenusStrapi();
-  const mainNav = null;
-  const footerNav = null;
+  const { mainNav } = await getMainMenusStrapi();
+  const { footerNav } = await getFooterMenusStrapi();
 
   return (
     <html className={`${poppins.variable} ${inter.variable}`} lang="en">
@@ -60,11 +60,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </Script>
 
         <ReCaptchaProvider>
-          <Nav {...(mainNav || {})} />
+          <Nav {...mainNav} />
           <SiteContextProvider footerNav={footerNav} mainNav={mainNav}>
             {children}
           </SiteContextProvider>
-          <Footer {...(footerNav || {})} />
+          <Footer {...footerNav} />
 
           <CookieConsent />
         </ReCaptchaProvider>

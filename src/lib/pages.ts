@@ -30,7 +30,12 @@ export async function getPageBySlug(slug: string | null) {
 
     return items;
   } catch (error) {
-    console.error("Error fetching page data:", error);
+    console.error("Error fetching page data for slug:", slug);
+    console.error("Error details:", JSON.stringify(error, null, 2));
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);
+      console.error("Error stack:", error.stack);
+    }
     return null;
   }
 }

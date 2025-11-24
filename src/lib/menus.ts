@@ -16,7 +16,11 @@ export async function getMainMenusStrapi() {
     const mainNav = response.data.header?.data?.attributes;
     return { mainNav };
   } catch (error) {
-    console.error("Error fetching main nav data:", error);
+    console.error("Error fetching main nav data:");
+    console.error("Error details:", JSON.stringify(error, null, 2));
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);
+    }
     return { mainNav: null };
   }
 }
@@ -36,7 +40,11 @@ export async function getFooterMenusStrapi() {
     const footerNav = response.data.footer?.data?.attributes;
     return { footerNav };
   } catch (error) {
-    console.error("Error fetching footer nav data:", error);
+    console.error("Error fetching footer nav data:");
+    console.error("Error details:", JSON.stringify(error, null, 2));
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);
+    }
     return { footerNav: null };
   }
 }

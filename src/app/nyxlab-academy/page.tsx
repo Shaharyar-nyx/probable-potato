@@ -14,6 +14,8 @@ import {
 } from "@/sections";
 import { ThreatAlertBar } from "@/sections/home/threat";
 
+export const dynamic = 'force-dynamic';
+
 // ✅ Components map
 const blockComponents: Record<string, React.FC<BlockType>> = {
   hero_section: (props) => (

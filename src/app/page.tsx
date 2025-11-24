@@ -76,8 +76,16 @@ export async function generateMetadata(): Promise<Metadata> {
 
 async function Home() {
   const data = await getHomeData();
+  
   if (!data?.blocks) {
-    return null;
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-black text-white">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mb-4">No Content Available</h1>
+          <p className="text-gray-400">Please add content in Strapi CMS to see the page.</p>
+        </div>
+      </main>
+    );
   }
 
   return (
