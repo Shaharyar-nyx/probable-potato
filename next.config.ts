@@ -3,6 +3,7 @@ import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
 const nextConfig = (phase: string) => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+  const isProduction = process.env.NODE_ENV === "production";
 
   const nextConfigOptions: NextConfig = {
     eslint: { ignoreDuringBuilds: true },
@@ -21,20 +22,33 @@ const nextConfig = (phase: string) => {
       contentDispositionType: "attachment",
       formats: ["image/avif", "image/webp"],
       remotePatterns: [
-        // ✅ Allow localhost for development
-        {
-          protocol: "http",
+        // Development: Allow localhost
+        ...(!isProduction ? [{
+          protocol: "http" as const,
           hostname: "localhost",
           port: "1337",
-        },
-        // ✅ Allow production domains
+        }] : []),
+        // Production: Nyxlab domains
         {
-          protocol: "https",
+          protocol: "https" as const,
           hostname: "*.Nyxlab.tech",
         },
         {
-          protocol: "https",
-          hostname: "**",
+          protocol: "https" as const,
+          hostname: "cms-public-web.Nyxlab.tech",
+        },
+        {
+          protocol: "https" as const,
+          hostname: "helios-cms.dev.Nyxlab.tech",
+        },
+        // External services (only what you actually need)
+        {
+          protocol: "https" as const,
+          hostname: "www.google.com",
+        },
+        {
+          protocol: "https" as const,
+          hostname: "*.linkedin.com",
         },
       ],
     },
@@ -67,11 +81,17 @@ const nextConfig = (phase: string) => {
 
 // ⚙️ Security headers configuration
 const securityHeadersConfig = (phase: string) => {
-  const cspReportOnly = true;
+  const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+  const isProduction = process.env.NODE_ENV === "production";
+  
+  // Set to false in production to enforce CSP
+  const cspReportOnly = !isProduction;
 
   const cspHeader = () => {
-    const upgradeInsecure =
-      phase !== PHASE_DEVELOPMENT_SERVER && !cspReportOnly ? "upgrade-insecure-requests;" : "";
+    const upgradeInsecure = isProduction && !cspReportOnly ? "upgrade-insecure-requests;" : "";
+    
+    // Dynamic localhost inclusion based on environment
+    const localhostSources = !isProduction ? "http://localhost:1337" : "";
 
     const defaultCSPDirectives = `
       default-src 'none';
@@ -80,14 +100,14 @@ const securityHeadersConfig = (phase: string) => {
       worker-src 'self' blob:;
       child-src 'self' blob:;
       manifest-src 'self';
-      base-uri 'none';
-      form-action 'none';
+      base-uri 'self';
+      form-action 'self';
       frame-ancestors 'none';
-      img-src 'self' data: blob: https://www.google.com https://*.Nyxlab.tech https://*.linkedin.com http://localhost:1337;
-      frame-src 'self' https://www.google.com;
+      img-src 'self' data: blob: https://www.google.com https://*.Nyxlab.tech https://*.linkedin.com ${localhostSources};
+      frame-src 'self' https://www.google.com https://www.gstatic.com;
       font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com;
-      style-src 'self' 'unsafe-inline';
-      connect-src 'self' https://*.Nyxlab.tech https://*.linkedin.com https://www.google-analytics.com http://localhost:1337;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      connect-src 'self' https://*.Nyxlab.tech https://*.linkedin.com https://www.google-analytics.com ${localhostSources};
       ${upgradeInsecure}
     `;
 
@@ -95,14 +115,14 @@ const securityHeadersConfig = (phase: string) => {
       https://www.googletagmanager.com https://snap.licdn.com https://api.retargetly.com https://www.google.com https://www.gstatic.com https://*.Nyxlab.tech
     `;
 
-    if (process.env.NODE_ENV === "production") {
+    if (isProduction) {
       return `
         ${defaultCSPDirectives}
         script-src 'self' 'unsafe-inline' ${scriptSrc};
       `;
     }
 
-    // Development environment allows unsafe-eval for hot reload
+    // Development: Allow unsafe-eval for hot reload
     return `
       ${defaultCSPDirectives}
       script-src 'self' 'unsafe-inline' 'unsafe-eval' ${scriptSrc};
@@ -115,6 +135,34 @@ const securityHeadersConfig = (phase: string) => {
         ? "Content-Security-Policy-Report-Only"
         : "Content-Security-Policy",
       value: cspHeader().replace(/\n/g, ""),
+    },
+    {
+      key: "X-DNS-Prefetch-Control",
+      value: "on",
+    },
+    {
+      key: "Strict-Transport-Security",
+      value: "max-age=63072000; includeSubDomains; preload",
+    },
+    {
+      key: "X-Frame-Options",
+      value: "DENY",
+    },
+    {
+      key: "X-Content-Type-Options",
+      value: "nosniff",
+    },
+    {
+      key: "X-XSS-Protection",
+      value: "1; mode=block",
+    },
+    {
+      key: "Referrer-Policy",
+      value: "strict-origin-when-cross-origin",
+    },
+    {
+      key: "Permissions-Policy",
+      value: "camera=(), microphone=(), geolocation=()",
     },
   ];
 
