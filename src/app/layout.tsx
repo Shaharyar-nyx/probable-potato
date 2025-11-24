@@ -1,4 +1,4 @@
-import { Poppins } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import Script from "next/script";
 
 import Footer from "@/components/Footer";
@@ -18,6 +18,12 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+});
+
 const GTM_ID = "GTM-MWRGJ3KN";
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
@@ -25,7 +31,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const { footerNav } = await getFooterMenusStrapi();
 
   return (
-    <html className={poppins.className} lang="en">
+    <html className={`${poppins.variable} ${inter.variable}`} lang="en">
       
       <body>
         

@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-inter), "Inter", sans-serif;
   background: radial-gradient(circle at 20% 20%, #0a0014, #000);
   position: relative;
   overflow: hidden;
