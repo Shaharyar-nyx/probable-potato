@@ -18,10 +18,10 @@ interface SubService {
 }
 
 interface OurServicesProps {
-  heading: string;
+  heading?: string;
   subheading?: string;
-  description: string;
-  subServices: SubService[];
+  description?: string;
+  subServices?: SubService[];
   [key: string]: any; // Allow additional props from BlockType
 }
 
@@ -29,11 +29,12 @@ export const OurServices: React.FC<OurServicesProps> = ({
   heading,
   subheading,
   description,
-  subServices,
+  subServices = [],
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
+    if (subServices.length === 0) return;
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % subServices.length);
     }, 5000);
@@ -71,10 +72,11 @@ export const OurServices: React.FC<OurServicesProps> = ({
       </div>
 
       {/* === Content Section === */}
-      <div className={styles.contentArea}>
-        {/* Left Side Menu */}
-        <div className={styles.leftPanel}>
-          {subServices.map((item, index) => (
+      {subServices.length > 0 && (
+        <div className={styles.contentArea}>
+          {/* Left Side Menu */}
+          <div className={styles.leftPanel}>
+            {subServices.map((item, index) => (
             <motion.div
               key={index}
               onClick={() => setActiveIndex(index)}
@@ -124,6 +126,7 @@ export const OurServices: React.FC<OurServicesProps> = ({
           </div>
         </motion.div>
       </div>
+      )}
     </section>
   );
 };

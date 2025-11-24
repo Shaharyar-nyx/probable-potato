@@ -6,9 +6,9 @@ import { STRAPI_ASSETS } from "@/lib/constants";
 import styles from "./styles.module.scss";
 
 interface HowWorksProps {
-  heading: string;
-  text: string;
-  result_text: string;
+  heading?: string;
+  text?: string;
+  result_text?: string;
   image?: {
     data?: {
       attributes?: {
@@ -18,9 +18,10 @@ interface HowWorksProps {
     };
   };
   image_text?: string;
+  [key: string]: any;
 }
 
-const HowItWorks: React.FC<HowWorksProps> = ({ heading, text, result_text, image , image_text }) => {
+const HowItWorks: React.FC<HowWorksProps> = ({ heading = '', text = '', result_text = '', image , image_text }) => {
   const points = text.split("\n").filter((p) => p.trim() !== "");
 
   return (
