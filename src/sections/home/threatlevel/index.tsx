@@ -18,6 +18,7 @@ interface ThreatLevelProps {
   button_url?: string;
   progress_value: number;
   criticalAlerts: CriticalAlert[];
+  [key: string]: any;
 }
 
 export const ThreatLevel: React.FC<ThreatLevelProps> = ({

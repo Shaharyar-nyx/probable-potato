@@ -23,7 +23,8 @@ interface Award {
 interface AwardsSectionProps {
   Label: string;
   Heading: string;
-  Awards: Award[];
+  Awards: AwardCard[];
+  [key: string]: any;
 }
 
 const AwardsSection: React.FC<AwardsSectionProps> = ({ Label, Heading, Awards }) => {

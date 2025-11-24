@@ -22,6 +22,7 @@ interface OurServicesProps {
   subheading: string;
   description: string;
   subServices: SubService[];
+  [key: string]: any; // Allow additional props from BlockType
 }
 
 export const OurServices: React.FC<OurServicesProps> = ({

@@ -28,6 +28,7 @@ interface homeCtaContent {
 interface CallToActionSectionProps {
   background_file?: BackgroundFile;
   homeCta?: homeCtaContent | { data?: { attributes?: homeCtaContent } };
+  [key: string]: any;
 }
 
 export const CallToAction: React.FC<CallToActionSectionProps> = ({

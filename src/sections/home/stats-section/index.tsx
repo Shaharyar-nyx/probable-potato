@@ -12,6 +12,7 @@ interface StatItem {
 interface StatsSectionProps {
   heading?: string;
   achivementCounter: StatItem[];
+  [key: string]: any;
 }
 
 export const StatsSection: React.FC<StatsSectionProps> = ({ heading, achivementCounter }) => {

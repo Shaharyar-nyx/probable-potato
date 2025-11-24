@@ -18,6 +18,7 @@ interface BenefitCardsProps {
   title?: string;
   content?: string;
   benefit_sub_cards?: BenefitSubCard[];
+  [key: string]: any;
 }
 
 export const Benefit_Cards: React.FC<BenefitCardsProps> = ({ title, content, benefit_sub_cards }) => {

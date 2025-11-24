@@ -29,6 +29,7 @@ interface CaseStudiesProps {
   description?: string;
   caseStudies?: Study[];
   study?: Study[];
+  [key: string]: any;
 }
 
 export const CaseStudies: React.FC<CaseStudiesProps> = ({

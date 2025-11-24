@@ -31,6 +31,7 @@ interface TestimonialDarksSectionProps {
       };
     }[];
   };
+  [key: string]: any;
 }
 
 export const TestimonialDarksSection: React.FC<TestimonialDarksSectionProps> = ({
