@@ -21,13 +21,13 @@ interface Award {
 }
 
 interface AwardsSectionProps {
-  Label: string;
-  Heading: string;
-  Awards: Award[];
+  Label?: string;
+  Heading?: string;
+  Awards?: Award[];
   [key: string]: any;
 }
 
-const AwardsSection: React.FC<AwardsSectionProps> = ({ Label, Heading, Awards }) => {
+const AwardsSection: React.FC<AwardsSectionProps> = ({ Label = '', Heading = '', Awards = [] }) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {

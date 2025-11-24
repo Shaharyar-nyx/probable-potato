@@ -25,7 +25,7 @@ interface Study {
 }
 
 interface CaseStudiesProps {
-  title: string;
+  title?: string;
   description?: string;
   caseStudies?: Study[];
   study?: Study[];
@@ -33,7 +33,7 @@ interface CaseStudiesProps {
 }
 
 export const CaseStudies: React.FC<CaseStudiesProps> = ({
-  title,
+  title = '',
   description,
   caseStudies,
   study,

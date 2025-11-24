@@ -21,11 +21,12 @@ interface DarkTab {
 }
 
 interface DarkBrandProps {
-  heading: string;
-  darktab: DarkTab[];
+  heading?: string;
+  darktab?: DarkTab[];
+  [key: string]: any;
 }
 
-const DarkBrand: React.FC<DarkBrandProps> = ({ heading, darktab }) => {
+const DarkBrand: React.FC<DarkBrandProps> = ({ heading = '', darktab = [] }) => {
   return (
     <section className={styles.darkBrandSection}>
       <div className={styles.overlay}></div>

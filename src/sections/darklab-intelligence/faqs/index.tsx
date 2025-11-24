@@ -12,20 +12,21 @@ interface FAQItem {
 }
 
 interface FaqSectionProps {
-  heading: string;
-  description: string;
-  faqs: FAQItem[];
+  heading?: string;
+  description?: string;
+  faqs?: FAQItem[];
   background?: {
     data?: {
       attributes?: { url: string };
     };
   };
+  [key: string]: any;
 }
 
 const FaqSection: React.FC<FaqSectionProps> = ({
-  heading,
-  description,
-  faqs,
+  heading = '',
+  description = '',
+  faqs = [],
   background,
 }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);

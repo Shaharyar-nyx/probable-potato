@@ -12,6 +12,7 @@ interface ResearchImpactProps {
   title?: string;
   description?: string;
   stats?: Stats[];
+  [key: string]: any;
 }
 
 const ResearchImpact: React.FC<ResearchImpactProps> = ({

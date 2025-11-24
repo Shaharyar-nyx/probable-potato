@@ -21,18 +21,19 @@ interface Member {
 }
 
 interface LeadershipProps {
-  Title: string;
+  Title?: string;
   Description?: string;
-  team_member: Member[];
+  team_member?: Member[];
+  [key: string]: any;
 }
 
 // Updated: Removed localhost fallback
 const STRAPI_ASSETS = process.env.NEXT_PUBLIC_STRAPI_ASSETS;
 
 const LeadershipSection: React.FC<LeadershipProps> = ({
-  Title,
+  Title = '',
   Description,
-  team_member,
+  team_member = [],
 }) => {
   if (!team_member || team_member.length === 0) return null;
 
