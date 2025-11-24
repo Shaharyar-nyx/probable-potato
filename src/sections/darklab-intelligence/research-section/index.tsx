@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import styles from "./styles.module.scss";
 
 interface ResearchProps {
-  heading: string;
-  text: string;
+  heading?: string;
+  text?: string;
+  [key: string]: any;
 }
 
-const ResearchSection: React.FC<ResearchProps> = ({ heading, text }) => {
+const ResearchSection: React.FC<ResearchProps> = ({ heading = '', text = '' }) => {
   // Split text into multiple lines based on line breaks
   const lines = text.split(/\r?\n/).filter(Boolean);
 
