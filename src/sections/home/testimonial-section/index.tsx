@@ -20,9 +20,9 @@ interface TestimonialDark {
 }
 
 interface TestimonialDarksSectionProps {
-  title: string;
-  subtitle: string;
-  TestimonialsDark: TestimonialDark[];
+  title?: string;
+  subtitle?: string;
+  TestimonialsDark?: TestimonialDark[];
   trusted_logos?: {
     data?: {
       attributes?: {
@@ -35,9 +35,9 @@ interface TestimonialDarksSectionProps {
 }
 
 export const TestimonialDarksSection: React.FC<TestimonialDarksSectionProps> = ({
-  title,
-  subtitle,
-  TestimonialsDark,
+  title = '',
+  subtitle = '',
+  TestimonialsDark = [],
   trusted_logos,
 }) => {
   const [items, setItems] = useState<TestimonialDark[]>([]);
