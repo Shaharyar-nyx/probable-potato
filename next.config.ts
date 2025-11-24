@@ -54,7 +54,7 @@ const nextConfig = (phase: string) => {
     },
 
     sassOptions: {
-      silenceDeprecations: ["legacy-js-api", "import"],
+      silenceDeprecations: ["legacy-js-api", "import", "mixed-decls"],
     },
 
     async headers() {
