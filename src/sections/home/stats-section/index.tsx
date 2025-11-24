@@ -11,11 +11,11 @@ interface StatItem {
 
 interface StatsSectionProps {
   heading?: string;
-  achivementCounter: StatItem[];
+  achivementCounter?: StatItem[];
   [key: string]: any;
 }
 
-export const StatsSection: React.FC<StatsSectionProps> = ({ heading, achivementCounter }) => {
+export const StatsSection: React.FC<StatsSectionProps> = ({ heading, achivementCounter = [] }) => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [displayValues, setDisplayValues] = useState<string[]>([]);
