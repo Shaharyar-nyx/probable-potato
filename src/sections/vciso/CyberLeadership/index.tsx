@@ -8,7 +8,7 @@ export function CyberLeadership(data: MultiCardSection) {
   const title = data?.title || "Ready to Strengthen Your Cyber Leadership?";
   const content =
     data?.content ||
-    "Cyberbay's vCISO Advisory Service gives you strategic guidance, governance, and independent assurance — without the cost of a full-time CISO.";
+    "Nyxlab's vCISO Advisory Service gives you strategic guidance, governance, and independent assurance — without the cost of a full-time CISO.";
   const ctaText = data?.cta_text || "Reach Out to Learn More";
 
   return (

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import clsx from "clsx";
 
-import { formatNumberWithCommas, cyberbayApi, getOrdinalSuffix } from "@/lib";
+import { formatNumberWithCommas, NyxlabApi, getOrdinalSuffix } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 export const FeaturedHunters: React.FC<any> = ({ title, content, headline }) => {
@@ -15,7 +15,7 @@ export const FeaturedHunters: React.FC<any> = ({ title, content, headline }) => 
   useEffect(() => {
     const controller = new AbortController();
 
-    cyberbayApi
+    NyxlabApi
       .getLeaderboard()
       .then((res) => setLeaderboard(res.rankers))
       .catch((err) => {

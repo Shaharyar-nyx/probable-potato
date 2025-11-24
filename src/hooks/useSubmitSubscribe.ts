@@ -3,7 +3,7 @@
 import { useState } from "react";
 import useCaptcha, { CaptchaAction } from "./useCaptcha";
 import { SubscribeType } from "@/types";
-import { cyberbayClient } from "@/lib/forms";
+import { NyxlabClient } from "@/lib/forms";
 import { UseFormReset } from "react-hook-form";
 import { toast } from "react-toastify";
 
@@ -26,7 +26,7 @@ export async function submitSubscribe(
   };
 
   try {
-    await cyberbayClient.createContact(JSON.stringify(payloadData));
+    await NyxlabClient.createContact(JSON.stringify(payloadData));
     reset();
     onDone(null, { message: "Thank you for reaching out! We will get back to you shortly." });
      toast.success("Thank you! We will get back to you shortly.");

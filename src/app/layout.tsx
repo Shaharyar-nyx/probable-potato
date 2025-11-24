@@ -26,7 +26,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html className={poppins.className} lang="en">
+      
       <body>
+        
         {/* --- GTM noscript (place immediately after <body>) --- */}
         <noscript>
           <iframe

@@ -1,0 +1,200 @@
+.statsSection {
+  position: relative;
+  padding: 6rem 2rem;
+  background: radial-gradient(ellipse at center, #0b0c10 0%, #000000 100%);
+  overflow: hidden;
+  color: white;
+}
+
+/* === Background Cyber Glow Effect === */
+.statsSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 0, 255, 0.04) 0px,
+    rgba(255, 0, 255, 0.04) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  z-index: 0;
+  animation: gridFlow 12s linear infinite;
+}
+
+@keyframes gridFlow {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 200px 200px;
+  }
+}
+
+/* === Overlay Glow === */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.1) 0%, transparent 70%);
+  filter: blur(60px);
+  z-index: 0;
+}
+
+/* === Heading === */
+.headingWrapper {
+  text-align: center;
+  margin-bottom: 4rem;
+  z-index: 2;
+  position: relative;
+}
+
+.title {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  margin-bottom: 3.5rem;
+  text-shadow: 0 0 25px rgba(128, 0, 255, 0.6);
+  display: inline-block;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    margin: 0.8rem auto 0;
+    background: linear-gradient(90deg, transparent, #a855f7, transparent);
+    border-radius: 4px;
+    animation: glowLine 2s infinite linear;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@keyframes glowLine {
+  0% {
+    opacity: 0.4;
+    transform: scaleX(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scaleX(0.6);
+  }
+}
+
+/* === Cards Grid === */
+.statsGrid {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* === Card === */
+.statCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 0, 255, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.1);
+  transition: all 0.4s ease;
+  cursor: default;
+  width: 320px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 0 40px rgba(255, 0, 255, 0.3);
+  }
+
+  /* Subtle cyber shine animation inside card */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 0, 255, 0.1) 50%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+    animation: shine 1.5s linear;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* === Text Styling === */
+.topHeading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.glowLine {
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, #b400ff, #ff00c8);
+  border-radius: 2px;
+  margin: 0.6rem 0 1.5rem;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.statNumber {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #c951ff;
+  text-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  color: #d1c2e0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}

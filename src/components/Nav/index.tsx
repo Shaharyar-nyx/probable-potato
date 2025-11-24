@@ -11,26 +11,41 @@ import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 export const Nav: React.FC<any> = ({ company_logo, navigations, supported_languages, button_group }) => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showSolutionsDropdown, setShowSolutionsDropdown] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState({
     code: "en",
     name: "EN",
   });
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const dropdownRefs = useRef<{[key: string]: HTMLDivElement | null}>({});
+  const buttonRefs = useRef<{[key: string]: HTMLButtonElement | null}>({});
+
+  // Fix hydration error
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Only handle click outside in desktop view (>= 1024px)
       if (window.innerWidth >= 1024) {
-        if (
-          dropdownRef.current &&
-          !dropdownRef.current.contains(event.target as Node) &&
-          buttonRef.current &&
-          !buttonRef.current.contains(event.target as Node)
-        ) {
-          setShowSolutionsDropdown(false);
+        let shouldClose = true;
+        
+        Object.values(dropdownRefs.current).forEach(ref => {
+          if (ref && ref.contains(event.target as Node)) {
+            shouldClose = false;
+          }
+        });
+        
+        Object.values(buttonRefs.current).forEach(ref => {
+          if (ref && ref.contains(event.target as Node)) {
+            shouldClose = false;
+          }
+        });
+
+        if (shouldClose) {
+          setActiveDropdown(null);
         }
       }
     };
@@ -43,7 +58,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
-    setShowSolutionsDropdown(false);
+    setActiveDropdown(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -58,101 +73,192 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
     };
   }, [isMobileMenuOpen]);
 
+  const handleDropdownToggle = (title: string) => {
+    setActiveDropdown(activeDropdown === title ? null : title);
+  };
+
+  // Safe data access with fallbacks
+  const mainNavItems = navigations?.data?.[0]?.attributes?.items?.data?.slice(0, 4) || [];
+  const logoUrl = company_logo?.data?.attributes?.url;
+
+  // Don't render until mounted to avoid hydration mismatch
+  if (!isMounted) {
+    return (
+      <nav className="fixed left-0 right-0 z-[9999] mx-auto h-[60px] w-full max-w-screen-2xl lg:top-4 lg:px-4">
+        <div className="relative mx-auto flex h-full items-center justify-between bg-white/10 backdrop-blur-md border border-white/30 rounded-lg px-[29px] lg:px-4">
+          <div className="flex items-center gap-8">
+            <Link href="/" id={formatBtnId("logo")} className="flex items-center">
+              {logoUrl && (
+                <img 
+                  alt="Cyberbay" 
+                  src={STRAPI_ASSETS + logoUrl} 
+                  className="h-8 w-auto"
+                />
+              )}
+            </Link>
+          </div>
+          {/* Mobile Menu Button */}
+          <button
+            aria-label="Open menu"
+            className="flex items-center justify-center rounded-lg p-2 text-white hover:bg-white/10 transition-colors lg:hidden"
+          >
+            <IconRenderer className="h-5 w-5 filter brightness-0 invert" iconName="Bars3Icon" />
+          </button>
+        </div>
+      </nav>
+    );
+  }
+
   return (
-    <nav className="fixed left-0 right-0 z-[9999] mx-auto h-[60px] w-full max-w-screen-2xl lg:top-8 lg:px-4">
-      <div
-        className={`relative mx-auto flex h-full items-center justify-between bg-neutral-50 px-[29px] shadow-lg lg:px-4 ${
-          showSolutionsDropdown ? "rounded-t-lg" : "rounded-lg"
-        }`}
-      >
+    <nav className="fixed left-0 right-0 z-[9999] mx-auto h-[60px] w-full max-w-screen-2xl lg:top-4 lg:px-4">
+      <div className="relative mx-auto flex h-full items-center justify-between bg-white/10 backdrop-blur-md border border-white/30 rounded-lg px-[29px] lg:px-4">
         <div className="flex items-center gap-8">
-          <Link href="/" id={formatBtnId("logo")}>
-            <img alt="Cyberbay" src={STRAPI_ASSETS + company_logo.data.attributes.url} />
+          <Link href="/" id={formatBtnId("logo")} className="flex items-center">
+            {logoUrl && (
+              <img 
+                alt="Cyberbay" 
+                src={STRAPI_ASSETS + logoUrl} 
+                className="h-8 w-auto"
+              />
+            )}
           </Link>
 
-          <div className="hidden items-center gap-3 lg:flex">
-            {navigations.data[0].attributes.items.data.map(
+          {/* Desktop Navigation - Only 4 items in one line */}
+          <div className="hidden items-center gap-1 lg:flex">
+            {mainNavItems.map(
               ({ attributes: { title, url, has_children, children } }: any) => (
-                <div key={title}>
+                <div key={title} className="relative">
                   {has_children ? (
                     <button
                       id={formatBtnId(title)}
-                      ref={buttonRef}
-                      className={`group flex items-center rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${pathname.includes(title.toLowerCase()) || showSolutionsDropdown ? "text-primary-500" : "text-primary-800 hover:text-primary-500"}`}
-                      onClick={() => setShowSolutionsDropdown(!showSolutionsDropdown)}
+                      ref={(el) => {
+                        if (el && title) {
+                          buttonRefs.current[title] = el;
+                        }
+                      }}
+                      className={`group flex items-center rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 hover:bg-white/15 ${
+                        (pathname && title && pathname.includes(title.toLowerCase())) || activeDropdown === title 
+                          ? "text-white bg-white/10" 
+                          : "text-white hover:text-white"
+                      }`}
+                      onMouseEnter={() => setActiveDropdown(title)}
+                      onMouseLeave={() => {}}
                     >
                       {title}
                       <span
-                        className={`ml-1 inline-block transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
+                        className={`ml-2 inline-block transition-transform duration-200 ${
+                          activeDropdown === title ? "rotate-180" : ""
+                        }`}
                       >
-                        <img alt="Chevron Down" src="/images/chevron-down.svg" />
+                        <img 
+                          alt="Chevron Down" 
+                          src="/images/chevron-down.svg" 
+                          className="h-3 w-3 filter brightness-0 invert" 
+                          onError={(e) => {
+                            // Fallback if image fails to load
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                          }}
+                        />
                       </span>
                     </button>
                   ) : (
                     <Link
                       id={formatBtnId(title)}
-                      className={`group rounded-lg px-3 py-2 text-base transition-colors hover:bg-[#EFF0F2CC] ${
-                        pathname.includes(url) ? "text-primary-500" : "text-primary-800 hover:text-primary-500"
+                      className={`group rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 hover:bg-white/15 ${
+                        pathname && url && pathname.includes(url) 
+                          ? "text-white bg-white/10" 
+                          : "text-white hover:text-white"
                       }`}
                       href={
-                            url
-                              ? url.startsWith("/") 
-                                ? url 
-                                : `/${url}`
-                              : "/"
-                          }
+                        url
+                          ? url.startsWith("/") 
+                            ? url 
+                            : `/${url}`
+                          : "/"
+                      }
                     >
                       {title}
                     </Link>
                   )}
 
-                  {has_children && showSolutionsDropdown && (
+                  {has_children && activeDropdown === title && children?.data && (
                     <div
-                      ref={dropdownRef}
-                      className="absolute left-0 top-[60px] w-full rounded-b-xl bg-neutral-50 shadow-lg"
+                      ref={(el) => {
+                        if (el && title) {
+                          dropdownRefs.current[title] = el;
+                        }
+                      }}
+                      className="absolute left-0 top-full mt-2 w-96 rounded-xl bg-gray-900/95 backdrop-blur-sm border border-white/20 shadow-2xl"
+                      onMouseEnter={() => setActiveDropdown(title)}
+                      onMouseLeave={() => setActiveDropdown(null)}
                     >
-                      <div className="px-10 pb-10 pt-5">
-                        <div className="grid grid-cols-3 gap-[44px]">
-                          {children?.data.map(({ attributes: { title, children } }: any) => {
+                      <div className="p-6">
+                        <div className="space-y-6">
+                          {children.data.map(({ attributes: { title: categoryTitle, children: categoryChildren } }: any) => {
+                            if (!categoryChildren?.data) return null;
+                            
                             return (
-                              <div key={title} className="w-full">
-                                <h3 className="paragraph-md mb-5 font-semibold text-primary-800">{title}</h3>
-                                <div className="space-y-6">
-                                  {children?.data.map(({ attributes: { title, url, icon, description } }: any) => (
+                              <div key={categoryTitle} className="w-full">
+                                <h3 className="mb-4 font-bold text-white uppercase tracking-wider text-xs border-b border-white/20 pb-2">
+                                  {categoryTitle}
+                                </h3>
+                                <div className="grid grid-cols-1 gap-2">
+                                  {categoryChildren.data.map(({ attributes: { title: itemTitle, url: itemUrl, description } }: any) => (
                                     <Link
-                                      key={title}
-                                      id={formatBtnId(title)}
-                                      className="group block rounded-[8px] p-4 hover:bg-primary-500"
+                                      key={itemTitle}
+                                      id={formatBtnId(itemTitle)}
+                                      className="group relative rounded-xl p-4 transition-all duration-200 hover:bg-white/10 border border-transparent hover:border-white/30 hover:shadow-lg overflow-hidden"
                                       href={
-                                            url
-                                              ? url.startsWith("/") 
-                                                ? url 
-                                                : `/${url}`
-                                              : "/"
-                                          }
-                                      onClick={() => setShowSolutionsDropdown(false)}
+                                        itemUrl
+                                          ? itemUrl.startsWith("/") 
+                                            ? itemUrl 
+                                            : `/${itemUrl}`
+                                          : "/"
+                                      }
+                                      onClick={() => setActiveDropdown(null)}
+                                      onMouseEnter={() => setHoveredItem(itemTitle)}
+                                      onMouseLeave={() => setHoveredItem(null)}
                                     >
-                                      <div className="flex items-start gap-2">
-                                        <span className="rounded-[4px] p-1 text-2xl group-hover:bg-neutral-50">
-                                          {icon?.data?.attributes?.url ? (
-                                            <img
-                                              alt={title}
-                                              className="text-primary-80 h-[20px] w-[20px]"
-                                              src={STRAPI_ASSETS + icon?.data?.attributes?.url}
-                                            />
-                                          ) : (
-                                            <div className="h-[20px] w-[20px] bg-neutral-300" />
-                                          )}
-                                        </span>
-                                        <div className="w-full">
-                                          <div className="paragraph-md mb-1 text-primary-800 group-hover:text-neutral-50">
-                                            {title}
+                                      {/* Main Content */}
+                                      <div className="flex items-start justify-between gap-3">
+                                        <div className="flex-1 min-w-0">
+                                          <h4 className="text-sm font-semibold text-white group-hover:text-white leading-tight mb-1">
+                                            {itemTitle}
+                                          </h4>
+                                          
+                                          {/* Description - Shows on hover */}
+                                          <div className="overflow-hidden">
+                                            <p className={`text-xs text-gray-300 leading-relaxed transition-all duration-300 transform ${
+                                              hoveredItem === itemTitle 
+                                                ? "opacity-100 translate-y-0 max-h-20" 
+                                                : "opacity-0 translate-y-2 max-h-0"
+                                            }`}>
+                                              {description || ''}
+                                            </p>
                                           </div>
-                                          <p className="paragraph-sm text-neutral-800 group-hover:text-neutral-50">
-                                            {description}
-                                          </p>
+                                        </div>
+                                        
+                                        {/* Arrow Indicator */}
+                                        <div className="flex-shrink-0 transition-all duration-200 group-hover:translate-x-1">
+                                          <svg 
+                                            className="h-4 w-4 text-white filter brightness-0 invert" 
+                                            fill="none" 
+                                            viewBox="0 0 24 24" 
+                                            stroke="currentColor"
+                                          >
+                                            <path 
+                                              strokeLinecap="round" 
+                                              strokeLinejoin="round" 
+                                              strokeWidth={2} 
+                                              d="M9 5l7 7-7 7" 
+                                            />
+                                          </svg>
                                         </div>
                                       </div>
+
+                                      {/* Hover Effect Line */}
+                                      <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
                                     </Link>
                                   ))}
                                 </div>
@@ -169,38 +275,8 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
           </div>
         </div>
 
+        {/* CTA Buttons */}
         <div className="hidden items-center gap-3 lg:flex">
-          {/* <div className="relative">
-            <button
-              className="flex items-center gap-2 rounded-lg px-3 py-2 transition-colors hover:bg-[#EFF0F2CC]"
-              onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-            >
-              <span className="text-primary-800">{selectedLanguage.name}</span>
-              <span
-                className={`transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}
-              >
-                <img alt="Chevron Down" src="/images/chevron-down.svg" />
-              </span>
-            </button>
-
-            {showLanguageDropdown && (
-              <div className="absolute right-0 top-full mt-2 w-full min-w-[120px] rounded-lg bg-neutral-50 py-2 shadow-lg">
-                {supported_languages.data.map(({ attributes: lang }: any) => (
-                  <button
-                    key={lang.code}
-                    className="flex w-full items-center gap-2 px-4 py-2 transition-colors hover:bg-[#EFF0F2CC]"
-                    onClick={() => {
-                      setSelectedLanguage(lang);
-                      setShowLanguageDropdown(false);
-                    }}
-                  >
-                    <span className="text-primary-800">{lang.name}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div> */}
-
           {button_group?.map((data: any, index: number) => (
             <Button
               key={index}
@@ -209,7 +285,11 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
               externalHref={data.external_href || undefined}
               variant={data.variant}
               transparent={data.transparent}
-              className="min-w-[100px] px-3 py-2"
+              className={`min-w-[120px] px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
+                data.variant === "primary" 
+                  ? "bg-white text-black hover:bg-gray-100 hover:shadow-lg border border-white rounded-lg" 
+                  : "bg-transparent border border-white text-white hover:bg-white/10 hover:border-white/70 rounded-lg"
+              }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {data.title}
@@ -220,98 +300,103 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
         {/* Mobile Menu Button */}
         <button
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-          className="flex items-center justify-center rounded-lg p-0 text-primary-800 lg:hidden"
+          className="flex items-center justify-center rounded-lg p-2 text-white hover:bg-white/10 transition-colors lg:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
-            <IconRenderer className="h-6 w-6" iconName="XMarkIcon" />
+            <IconRenderer className="h-5 w-5 filter brightness-0 invert" iconName="XMarkIcon" />
           ) : (
-            <IconRenderer className="h-6 w-6" iconName="Bars3Icon" />
+            <IconRenderer className="h-5 w-5 filter brightness-0 invert" iconName="Bars3Icon" />
           )}
         </button>
 
         {/* Mobile Menu */}
         <div
-          className={`absolute left-0 right-0 top-[55px] overflow-y-scroll bg-neutral-50 shadow-lg transition-all duration-300 ease-in-out lg:top-[72px] lg:hidden ${
+          className={`absolute left-0 right-0 top-[55px] overflow-y-auto bg-black/95 backdrop-blur-md border-t border-white/30 shadow-lg transition-all duration-300 ease-in-out lg:top-[72px] lg:hidden ${
             isMobileMenuOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
           }`}
           style={{ height: "calc(100vh - 55px)" }}
         >
           <div className="flex h-full flex-col justify-between space-y-2 px-[29px] py-[18px]">
             <div>
-              {navigations.data[0].attributes.items.data.map(
+              {mainNavItems.map(
                 ({ attributes: { url, has_children, children, title, description } }: any) => (
                   <div key={title} className="w-full">
                     {has_children ? (
                       <button
                         id={formatBtnId(title)}
-                        className={`w-full border-b border-primary-800 px-0 pb-2 pt-[15px] text-left text-base transition-colors ${
-                          pathname === url ? "bg-primary-50 text-primary-500" : "text-primary-800"
+                        className={`w-full border-b border-white/20 px-0 pb-3 pt-4 text-left text-sm transition-colors hover:bg-white/10 rounded-lg px-3 ${
+                          pathname === url ? "text-white bg-white/10" : "text-white"
                         }`}
                         onClick={() => {
-                          setShowSolutionsDropdown(!showSolutionsDropdown);
+                          handleDropdownToggle(title);
                         }}
                       >
                         <div className="flex items-center justify-between">
-                          <span>{title}</span>
+                          <span className="font-medium">{title}</span>
                           {has_children && (
                             <IconRenderer
-                              className={`ml-1 h-5 w-5 transition-transform duration-200 ${showSolutionsDropdown ? "rotate-180" : ""}`}
+                              className={`ml-1 h-4 w-4 transition-transform duration-200 filter brightness-0 invert ${
+                                activeDropdown === title ? "rotate-180" : ""
+                              }`}
                               iconName="ChevronDownIcon"
                             />
                           )}
                         </div>
                       </button>
                     ) : (
-                      <div className="w-full border-b border-primary-800 px-0 pb-2 pt-[15px] text-left transition-colors">
+                      <div className="w-full border-b border-white/20 px-0 pb-3 pt-4 text-left transition-colors hover:bg-white/10 rounded-lg px-3">
                         <Link
                           id={formatBtnId(title)}
-                          className={`text-base text-primary-800`}
+                          className={`text-sm font-medium text-white`}
                           href={
-                                url
-                                  ? url.startsWith("/") 
-                                    ? url 
-                                    : `/${url}`
-                                  : "/"
-                              }
+                            url
+                              ? url.startsWith("/") 
+                                ? url 
+                                : `/${url}`
+                              : "/"
+                          }
                         >
                           {title}
                         </Link>
                       </div>
                     )}
 
-                    {has_children && showSolutionsDropdown && (
+                    {has_children && activeDropdown === title && children?.data && (
                       <div className="mt-2 space-y-2">
-                        {children?.data.map(({ attributes: { title, children } }: any) => (
-                          <div key={title} className="py-4">
-                            <div className="mb-3 text-sm font-semibold text-primary-800">{title}</div>
-                            <div className="space-y-3">
-                              {children?.data.map(({ attributes: { title, url, icon, description } }: any) => (
+                        {children.data.map(({ attributes: { title: categoryTitle, children: categoryChildren } }: any) => (
+                          <div key={categoryTitle} className="py-3">
+                            <div className="mb-3 text-xs font-semibold text-white/80 uppercase tracking-wide px-3">
+                              {categoryTitle}
+                            </div>
+                            <div className="space-y-2">
+                              {categoryChildren?.data?.map(({ attributes: { title: itemTitle, url: itemUrl, description } }: any) => (
                                 <Link
-                                  key={title}
-                                  id={formatBtnId(title)}
-                                  className="group flex items-start space-x-3 rounded-lg p-2 transition-colors hover:bg-primary-500 group-hover:text-neutral-50"
+                                  key={itemTitle}
+                                  id={formatBtnId(itemTitle)}
+                                  className="group relative rounded-lg p-4 transition-colors hover:bg-white/10 border border-transparent hover:border-white/20 mx-2 overflow-hidden"
                                   href={
-                                        url
-                                          ? url.startsWith("/") 
-                                            ? url 
-                                            : `/${url}`
-                                          : "/"
-                                      }
+                                    itemUrl
+                                      ? itemUrl.startsWith("/") 
+                                        ? itemUrl 
+                                        : `/${itemUrl}`
+                                      : "/"
+                                  }
+                                  onClick={() => {
+                                    setActiveDropdown(null);
+                                    setIsMobileMenuOpen(false);
+                                  }}
                                 >
-                                  <span className="flex-shrink-0 rounded-md p-1">
-                                    <img
-                                      alt={title}
-                                      className="h-5 w-5 text-primary-500"
-                                      src={STRAPI_ASSETS + icon?.data?.attributes?.url}
-                                    />
-                                  </span>
-                                  <div>
-                                    <div className="text-sm text-primary-800 group-hover:text-neutral-50">{title}</div>
-                                    <p className="text-xs text-neutral-600 group-hover:text-neutral-50">
-                                      {description}
-                                    </p>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="text-sm font-medium text-white mb-1">{itemTitle}</div>
+                                    <div className="overflow-hidden">
+                                      <p className="text-xs text-gray-300 transition-all duration-300 transform group-hover:translate-y-0 group-hover:opacity-100 -translate-y-2 opacity-0">
+                                        {description || ''}
+                                      </p>
+                                    </div>
                                   </div>
+                                  {/* Mobile Hover Line */}
+                                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
                                 </Link>
                               ))}
                             </div>
@@ -324,38 +409,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
               )}
             </div>
 
-            {/* 
-            <div className="relative">
-              <button
-                className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-[#EFF0F2CC]"
-                onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-              >
-                <span className="text-primary-800">{selectedLanguage.name}</span>
-                <IconRenderer
-                  iconName="ChevronDownIcon"
-                  className={`h-5 w-5 transition-transform duration-200 ${showLanguageDropdown ? "rotate-180" : ""}`}
-                />
-              </button>
-
-              {showLanguageDropdown && (
-                <div className="absolute right-0 top-full mt-2 w-full rounded-lg bg-neutral-50 py-2 shadow-lg">
-                  {supported_languages.data.map(({ attributes: lang }: any) => (
-                    <button
-                      key={lang.code}
-                      className="flex w-full items-center px-4 py-2 text-base transition-colors hover:bg-[#EFF0F2CC]"
-                      onClick={() => {
-                        setSelectedLanguage(lang);
-                        setShowLanguageDropdown(false);
-                      }}
-                    >
-                      <span className="text-primary-800">{lang.name}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div> */}
-
-            <div className="flex flex-row gap-3 !pb-[40%]">
+            <div className="flex flex-col gap-3 !pb-[40%]">
               {button_group?.map((data: any, index: number) => (
                 <Button
                   key={index}
@@ -364,6 +418,11 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
                   externalHref={data.external_href || undefined}
                   variant={data.variant}
                   transparent={data.transparent}
+                  className={`w-full text-sm font-medium py-3 ${
+                    data.variant === "primary" 
+                      ? "bg-white text-black hover:bg-gray-100 border border-white" 
+                      : "bg-transparent border border-white text-white hover:bg-white/10"
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {data.title}

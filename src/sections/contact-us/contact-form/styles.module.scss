@@ -1,67 +1,254 @@
-.container {
-  @apply mx-auto max-w-screen-2xl px-6 py-[60px] lg:px-16 lg:py-28;
+// ContactPage.module.scss
+.contactPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b0b0b 0%, #1a1a1a 100%);
+  padding: 80px 0 60px;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+
+    .title {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #8b3dff 0%, #6a11cb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+
+    @media (max-width: 968px) {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  .contactInfo {
+    .infoCard {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px;
+      height: fit-content;
+
+      h2 {
+        font-size: 1.8rem;
+        color: #ffffff;
+        margin-bottom: 30px;
+        font-weight: 600;
+      }
+    }
+
+    .contactItem {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 30px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #8b3dff 0%, #6a11cb 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: white;
+      }
+
+      h3 {
+        font-size: 1.1rem;
+        color: #ffffff;
+        margin-bottom: 4px;
+        font-weight: 600;
+      }
+
+      p {
+        color: #a0a0a0;
+        line-height: 1.5;
+        margin: 0;
+      }
+    }
+  }
+
+  .contactForm {
+    .formCard {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px;
+
+      h2 {
+        font-size: 1.8rem;
+        color: #ffffff;
+        margin-bottom: 30px;
+        font-weight: 600;
+      }
+    }
+
+    .form {
+      .formGroup {
+        margin-bottom: 24px;
+
+        label {
+          display: block;
+          color: #ffffff;
+          margin-bottom: 8px;
+          font-weight: 500;
+          font-size: 0.95rem;
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          padding: 12px 16px;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 12px;
+          color: #ffffff;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+
+          &::placeholder {
+            color: #a0a0a0;
+          }
+
+          &:focus {
+            outline: none;
+            border-color: #8b3dff;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(139, 61, 255, 0.1);
+          }
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 120px;
+          font-family: inherit;
+        }
+      }
+    }
+
+    .submitButton {
+      width: 100%;
+      background: linear-gradient(135deg, #8b3dff 0%, #6a11cb 100%);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(139, 61, 255, 0.3);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
+      }
+
+      &:hover::before {
+        left: 100%;
+      }
+    }
+  }
 }
 
-.gridContainer {
-  @apply flex flex-col gap-6 lg:flex-row lg:gap-20;
+// Responsive Design
+@media (max-width: 768px) {
+  .contactPage {
+    padding: 60px 0 40px;
+
+    .header {
+      margin-bottom: 40px;
+
+      .title {
+        font-size: 2.2rem;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+        padding: 0 20px;
+      }
+    }
+
+    .content {
+      gap: 30px;
+    }
+
+    .contactInfo .infoCard,
+    .contactForm .formCard {
+      padding: 30px 25px;
+    }
+
+    .contactItem {
+      flex-direction: column;
+      text-align: center;
+
+      .icon {
+        align-self: center;
+      }
+    }
+  }
 }
 
-.title {
-  @apply mb-4 text-primary-800 lg:mb-5;
+// Animation classes
+.fadeIn {
+  animation: fadeIn 0.8s ease-out;
 }
 
-.description {
-  @apply text-primary-800;
-}
-
-.formContainer {
-  @apply flex w-full flex-col gap-3 lg:w-[60%] lg:gap-6;
-}
-
-.inputGrid {
-  @apply flex flex-row gap-5;
-}
-
-.inputWrapper {
-  @apply relative w-full;
-}
-
-.input {
-  @apply w-full rounded-lg border border-primary-800 bg-transparent px-12 py-4 text-primary-800 outline-none placeholder:text-[#02255B80];
-}
-
-.select {
-  @apply w-full rounded-lg border border-primary-800 px-12 py-4 text-left text-primary-800 outline-none;
-}
-
-.selectOption {
-  @apply cursor-pointer px-4 py-3 text-sm text-[#02255B80] hover:bg-neutral-50;
-}
-
-.selectDropdown {
-  @apply absolute left-0 right-0 top-full z-10 mt-1 overflow-hidden rounded-lg border border-primary-800 bg-white shadow-lg;
-}
-
-.textarea {
-  @apply h-40 w-full rounded-lg border border-primary-800 bg-transparent px-12 py-4 text-neutral-800 outline-none placeholder:text-neutral-400;
-}
-
-.iconWrapper {
-  @apply pointer-events-none absolute left-4 top-1/2 -translate-y-1/2;
-}
-
-.textareaIconWrapper {
-  @apply pointer-events-none absolute left-4 top-4;
-}
-
-.selectIconWrapper {
-  @apply pointer-events-none absolute right-4 top-1/2 -translate-y-1/2;
-}
-
-.icon {
-  @apply h-5 w-5 text-primary-800;
-}
-
-.submitButton {
-  @apply w-fit rounded-lg bg-primary-500 px-8 py-4 text-sm text-white transition-colors hover:bg-primary-600;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

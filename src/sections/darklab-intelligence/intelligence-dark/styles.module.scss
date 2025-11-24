@@ -1,0 +1,148 @@
+.intelligenceSection {
+  position: relative;
+  background: radial-gradient(circle at top left, #0a0a0a 0%, #000 100%);
+  color: #fff;
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+.gradientOrb1,
+.gradientOrb2 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.gradientOrb1 {
+  width: 400px;
+  height: 400px;
+  background: #b200ff33;
+  top: -100px;
+  left: -100px;
+}
+
+.gradientOrb2 {
+  width: 450px;
+  height: 450px;
+  background: #ff009933;
+  bottom: -120px;
+  right: -120px;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 60px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Left Content */
+.left {
+  .title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #b200ff, #ff0099);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ccc;
+    max-width: 650px;
+  }
+}
+
+/* Right Card */
+.rightCard {
+  position: relative;
+  border: 1px solid rgba(190, 0, 255, 0.4);
+  border-radius: 20px;
+  padding: 40px 36px;
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 25px rgba(190, 0, 255, 0.15);
+  overflow: hidden;
+  transition: all 0.4s ease;
+
+  &:hover {
+    box-shadow: 0 0 45px rgba(190, 0, 255, 0.35);
+    transform: translateY(-5px);
+  }
+}
+
+/* Glowing animated background inside card */
+.cardGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, #ff00ff22, transparent 60%);
+  z-index: 0;
+}
+
+.cardHeader {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 24px;
+
+  .cardIcon {
+    filter: brightness(1.6) drop-shadow(0 0 10px #b200ff99);
+  }
+
+  .cardTitle {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+  }
+}
+
+/* Bullet list */
+.pointsList {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #ddd;
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #fff;
+    }
+
+    .bullet {
+      flex-shrink: 0;
+      width: 9px;
+      height: 9px;
+      margin-top: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #b200ff, #ff0099);
+      box-shadow: 0 0 10px #ff00cc88;
+    }
+  }
+}

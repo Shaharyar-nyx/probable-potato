@@ -192,6 +192,22 @@ export const BLOCKS_FRAGMENT = `
               content_md
             }
           }
+            ... on ComponentBlocksIntelligenceDark {
+  title
+  description
+  box_title
+  box_icon {
+    data {
+      attributes {
+        url
+        alternativeText
+      }
+    }
+  }
+  box_points {
+    text
+  }
+}
 
       ... on ComponentBlocksHomeTestimonial {
           collection
@@ -306,11 +322,211 @@ export const BLOCKS_FRAGMENT = `
               description
             }
           }
+            ... on ComponentBlocksIntelligenceLayersDark {
+  title
+  highlighted_word
+  subtitle
+  layer_cards {
+    title
+    description
+    icon {
+      data {
+        attributes {
+          url
+          alternativeText
+        }
+      }
+    }
+      text
+  }
+}
+            ... on ComponentBlocksHowWorks{
+                image{
+                 data {
+        attributes {
+          url
+          name
+          alternativeText
+          mime
+        }
+      }
+         }
+        heading
+        text
+        result_text
+        image_text
+            }
+
+             ... on ComponentBlocksAwardsSection {
+  Label
+  Heading
+  Awards {
+    Title
+    Description
+    Logo {
+      data {
+        attributes {
+          url
+          name
+          alternativeText
+          mime
+        }
+      }
+    }
+  }
+}
+        ... on ComponentBlocksResearchExists{
+            heading
+            text
+        }
 
 
 
+              ... on ComponentBlocksResearchImpact {
+            title
+            description
+            stats {
+              value
+              label
+            }
+          }
+            ... on ComponentBlocksOurServices{
+            heading
+            description
+            subServices{
+                 icon {
+              data {
+                attributes {
+                  url
+                  name
+                  alternativeText
+                  mime
+                }
+              }
+            }
+              heading
+              description
+              cta_text
+              cta_url
+              subheading
+              odd_des
+            }
+            }
 
+        ... on ComponentBlocksGlobalThreat {
+        title
+        status_label
+        status_level
+        description
+        button_text
+        button_url
+        progress_value
+        criticalAlerts {
+          date
+          title
+          description
+        }
+      }
+    ... on ComponentBlocksCaseStudies {
+        title
+        description
+        study{
+        title
+        category
+        description
+        metric_value
+        metric_label
+        cta_text
+        cta_url
+        image {
+          data {
+            attributes {
+              url
+              alternativeText
+            }
+          }
+        }
+      }
+}
+    ... on ComponentBlocksTestimonialsSection{
+        title
+        subtitle
+        TestimonialsDark{
+            quote
+            author_name
+            author_designation
+            author_avatar {
+             data {
+                 attributes {
+                   name
+                  alternativeText
+                  mime
+                 url
+             }
+         }
+    }
+        }
+        trusted_logos{
+             data {
+                 attributes {
+                   name
+                  alternativeText
+                  mime
+                 url
+             }
+         }
+    }
+    }
+    ... on ComponentBlocksCallToActionSection
 
+ {
+          background_file {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          homeCta {
+            title
+            description
+            cta_one
+            cta_one_url
+            cta_two
+            cta_two_url
+          }
+        }
+      
+   
+
+    ... on ComponentBlocksOfferingsDark {
+  title
+  description
+  OfferingCard {
+    icon {
+      data {
+                        attributes {
+                            name
+                            alternativeText
+                            mime
+                            url
+                        }
+                        }
+                    }
+    heading
+    description
+  }
+}
+
+    ... on ComponentBlocksAchivement{
+        heading
+        achivementCounter{
+            number
+            label
+            top_heading
+        }
+    }
 
 
       ... on ComponentBlocksMediaHighlight{
@@ -590,6 +806,78 @@ export const BLOCKS_FRAGMENT = `
               }
           }
       }
+         ... on ComponentBlocksBlocksFaq{
+            heading
+            description
+            background{
+                      data {
+                      attributes {
+                          name
+                          alternativeText
+                          mime
+                          url
+                      }
+                  }
+            }
+            faqs{
+                question
+                answer
+            }
+         }
+            ... on ComponentBlocksContentSection{
+                title
+                headline
+                content
+                image{
+                    data {
+                      attributes {
+                          name
+                          alternativeText
+                          mime
+                          url
+                      }
+                  }
+                }
+            }
+                 ... on ComponentBlocksLeadershipSection {
+        Title
+        Description
+        team_member {
+          Name
+          Position
+          Location
+          LinkedInURL
+          Description
+          HierarchyLevel
+          Image {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+        }
+      }
+    
+    ... on ComponentBlocksDarkBrand{
+        heading
+            darktab{
+            title
+            headline
+            content
+            image{
+                     data {
+                      attributes {
+                          name
+                          alternativeText
+                          mime
+                          url
+                      }
+                  }
+            }
+            }
+    }
       ... on ComponentBlocksCompanyCoreTeam {
           collection
           title

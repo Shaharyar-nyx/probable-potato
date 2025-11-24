@@ -22,18 +22,18 @@ export async function generateMetadata(): Promise<Metadata> {
   const data = await getBugBountyData();
   if (!data?.seo) {
     return {
-      title: "Cyberbay",
+      title: "Nyxlab",
       description: "",
       openGraph: {
-        title: "Cyberbay",
+        title: "Nyxlab",
         description: "",
         type: "website",
-        siteName: "Cyberbay",
+        siteName: "Nyxlab",
         locale: "en_US",
       },
       twitter: {
         card: "summary_large_image",
-        title: "Cyberbay",
+        title: "Nyxlab",
         description: "",
       },
     };
@@ -53,7 +53,7 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [{ url: STRAPI_ASSETS + data.seo.og_image?.data?.attributes?.url || "/favicon.ico" }],
       url: data.seo.canonical_url,
       type: "website",
-      siteName: "Cyberbay",
+      siteName: "Nyxlab",
       locale: "en_US",
     },
     twitter: {

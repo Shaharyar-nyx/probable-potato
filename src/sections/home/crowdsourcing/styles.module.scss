@@ -7,7 +7,11 @@
 }
 
 .glassBackground {
-  @apply rounded-xl border border-[#6b728045] bg-[#eff0f2]/10 shadow-[0px_0px_20px_0px_rgba(255,255,255,0.25)_inset] backdrop-blur-lg lg:border-[#eff0f2]/5;
+  @apply rounded-xl border backdrop-blur-lg bg-white/15 relative transition-all duration-300 ease-in-out;
+  border-color: rgba(180, 180, 180, 0.35); /* subtle gray border */
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),         /* soft outer shadow for depth */
+    inset 0 1px 1px rgba(255, 255, 255, 0.25); /* inner highlight for 3D glass */
 }
 
 .sectionBackground {

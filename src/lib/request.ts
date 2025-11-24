@@ -13,7 +13,7 @@ const buildQuery = (data: any): string => {
 };
 
 export const request = async (uri: string, data: any, method: string = "GET") => {
-  const baseUrl = process.env.NEXT_PUBLIC_CYBERBAY_CMS_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_Nyxlab_CMS_URL;
 
   const url = [baseUrl?.replace(/\/+$/, ""), uri.replace(/^\/+/, "")].join("/");
   const options = {

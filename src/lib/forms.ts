@@ -1,4 +1,4 @@
-import { CYBERBAY_CMS_URL } from "./constants";
+import { Nyxlab_CMS_URL } from "./constants";
 
 interface ContactResponse {
   contact: {
@@ -7,9 +7,9 @@ interface ContactResponse {
   };
 }
 
-export const cyberbayClient = {
+export const NyxlabClient = {
   async createContact(data: any): Promise<ContactResponse> {
-    const response = await fetch(`${CYBERBAY_CMS_URL}/api/forms`, {
+    const response = await fetch(`${Nyxlab_CMS_URL}/api/forms`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,7 +18,7 @@ export const cyberbayClient = {
     });
 
     if (!response.ok) {
-      throw new Error(`Cyberbay API error: ${response.statusText}`);
+      throw new Error(`Nyxlab API error: ${response.statusText}`);
     }
 
     return response.json();

@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "cyberbay-website-nextjs",
+      name: "Nyxlab-website-nextjs",
       exec_mode: "cluster", // Enable clustering
       instances: "1",
       script: "yarn",

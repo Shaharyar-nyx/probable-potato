@@ -87,7 +87,7 @@ export const ProgramType: React.FC<any> = ({ title, content, cards }) => {
               <h3 className="heading-7 font-bold text-neutral-50">Want to become a Bug Bounty Hunter?</h3>
               <p className="paragraph-md text-neutral-50">
                 <span className="font-bold">Need help determining what types of programs are right for you?</span>{" "}
-                <br /> Our Cyberbay consultants are here to provide personalized advice and pricing tailored to your
+                <br /> Our Nyxlab consultants are here to provide personalized advice and pricing tailored to your
                 needs.
               </p>
             </div>

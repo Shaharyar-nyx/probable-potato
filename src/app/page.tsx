@@ -1,22 +1,27 @@
 import React from "react";
 import type { Metadata } from "next";
 
-import { Hero, BrandMission, Solutions, Testimonials, Clients, CTA, EventUpcoming2025 } from "@/sections";
+import { Hero, Testimonials, TestimonialDarksSection, StatsSection, CaseStudies, OurServices, ThreatLevel, CallToAction } from "@/sections";
 import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { BlockType } from "@/types";
-import { CrowdSourcing } from "@/sections/home/crowdsourcing";
+import AwardsSection from "@/sections/home/awards-section";
+import { ThreatAlertBar } from "@/sections/home/threat";
+
 
 const blockComponents: Record<string, React.FC<BlockType>> = {
-  hero_section: Hero,
-  home_intro: BrandMission,
-  home_cybersecurity_solutions: Solutions,
-  home_scaling_cybersecurity: CrowdSourcing,
-  // home_testimonial: Testimonials,
-  industry_leaders_section: Clients,
-  single_card_section: CTA,
-  events_section: EventUpcoming2025,
+  hero_section: (props) => (
+    <>
+      <Hero {...props} />
+      <ThreatAlertBar />
+    </>
+  ),
+  ComponentBlocksOurServices: OurServices,
+  ComponentBlocksTestimonialsSection: TestimonialDarksSection,
+  ComponentBlocksAwardsSection: AwardsSection,
+  ComponentBlocksCallToActionSection: CallToAction,
 };
+
 
 async function getHomeData() {
   return getPageBySlug(null);
@@ -26,18 +31,18 @@ export async function generateMetadata(): Promise<Metadata> {
   const data = await getHomeData();
   if (!data?.seo) {
     return {
-      title: "Cyberbay",
+      title: "Nyxlab",
       description: "",
       openGraph: {
-        title: "Cyberbay",
+        title: "Nyxlab",
         description: "",
         type: "website",
-        siteName: "Cyberbay",
+        siteName: "Nyxlab",
         locale: "en_US",
       },
       twitter: {
         card: "summary_large_image",
-        title: "Cyberbay",
+        title: "Nyxlab",
         description: "",
       },
     };
@@ -57,7 +62,7 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [{ url: STRAPI_ASSETS + data.seo.og_image?.data?.attributes?.url || "/favicon.ico" }],
       url: data.seo.canonical_url,
       type: "website",
-      siteName: "Cyberbay",
+      siteName: "Nyxlab",
       locale: "en_US",
     },
     twitter: {

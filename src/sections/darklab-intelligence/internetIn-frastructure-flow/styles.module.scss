@@ -1,0 +1,289 @@
+.infrastructureSection {
+  background: #0b0b0b;
+  color: #fff;
+  padding: 80px 20px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  margin-bottom: 28px;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.highlight {
+  background: linear-gradient(90deg, #b245ff, #ff55ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+.subtitle {
+  color: #bdbdbd;
+  max-width: 900px;
+  margin: 0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 520px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* LEFT stacked boxes */
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* 🔥 Gradient border box effect */
+.gradientBox {
+  position: relative;
+  border-radius: 12px;
+  padding: 22px;
+  background: #0f0f10;
+  overflow: hidden;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(135deg, #b245ff, #ff55ff);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  &:hover::before {
+    background: linear-gradient(135deg, #c34dff, #ff77ff);
+  }
+}
+
+.boxHeading {
+  font-size: 0.85rem;
+  color: #cfc7ff;
+  margin: 0 0 10px 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.points {
+  margin: 0;
+  padding-left: 18px;
+  list-style: none;
+  color: #d0d0d0;
+  line-height: 1.6;
+
+  li::before {
+    content: "•";
+    color: #ff55ff;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+}
+
+/* Decision row */
+.decisionRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.decisionCard {
+  flex: 1;
+  background: #131313;
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    padding: 1px;
+    background: linear-gradient(135deg, #b245ff, #ff55ff);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+.decisionLabel {
+  color: #cfc7ff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.decisionValue {
+  color: #d0d0d0;
+  font-size: 0.9rem;
+}
+
+/* RIGHT column */
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* sectors */
+.rightTop {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rightHeading {
+  font-size: 0.95rem;
+  color: #d0d0d0;
+  margin: 0 0 8px 0;
+}
+
+.iconGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* 🔥 Gradient border icon cards */
+.iconCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px;
+  background: #0f0f10;
+  border-radius: 10px;
+  min-height: 90px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    padding: 1px;
+    background: linear-gradient(135deg, #b245ff, #ff55ff);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+
+  &:hover::before {
+    background: linear-gradient(135deg, #c34dff, #ff77ff);
+  }
+}
+
+.iconWrap {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(178,69,255,0.1), rgba(255,85,255,0.05));
+  border: 1px solid rgba(178,69,255,0.15);
+}
+
+.iconTitle {
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+/* outcomes */
+.outcomeBox {
+  position: relative;
+  background: #121212;
+  border-radius: 10px;
+  padding: 16px;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    padding: 1px;
+    background: linear-gradient(135deg, #b245ff, #ff55ff);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+.outcomeHeading {
+  color: #cfc7ff;
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+}
+
+/* footer note */
+.footerNote {
+  margin-top: 18px;
+  color: #6f6f6f;
+  font-size: 0.86rem;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .iconGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.6rem;
+  }
+  .iconGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .decisionRow {
+    flex-direction: column;
+  }
+}

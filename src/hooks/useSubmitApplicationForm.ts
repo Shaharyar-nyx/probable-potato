@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ApplyFormType } from "@/types";
-import { CYBERBAY_CMS_URL } from "@/lib";
+import { Nyxlab_CMS_URL } from "@/lib";
 import { UseFormReset } from "react-hook-form";
 import { toast } from "react-toastify";
 
@@ -12,7 +12,7 @@ export async function submitApplicationForm(
   onDone: (error: Error | null, data: { message: string } | null) => void,
 ) {
   try {
-    await fetch(`${CYBERBAY_CMS_URL}/api/forms`, {
+    await fetch(`${Nyxlab_CMS_URL}/api/forms`, {
       method: "POST",
       body: payload,
     });

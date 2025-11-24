@@ -1,10 +1,10 @@
-import { CYBERBAY_URL } from "lib";
+import { Nyxlab_URL } from "lib";
 
-export const cyberbayApi = {
+export const NyxlabApi = {
   async getLeaderboard() {
-    const response = await fetch(`${CYBERBAY_URL}/rewardservice/point/leaderboard-hunter`);
+    const response = await fetch(`${Nyxlab_URL}/rewardservice/point/leaderboard-hunter`);
     if (!response.ok) {
-      throw new Error(`Cyberbay API error: ${response.statusText}`);
+      throw new Error(`Nyxlab API error: ${response.statusText}`);
     }
     return response.json();
   },
