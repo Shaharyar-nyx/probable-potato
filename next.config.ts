@@ -6,6 +6,7 @@ const nextConfig = (phase: string) => {
   const isProduction = process.env.NODE_ENV === "production";
 
   const nextConfigOptions: NextConfig = {
+    basePath: '/app',
     eslint: { ignoreDuringBuilds: true },
 
     env: {
