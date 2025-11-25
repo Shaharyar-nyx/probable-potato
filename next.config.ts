@@ -6,9 +6,9 @@ const nextConfig = (phase: string) => {
   const isProduction = process.env.NODE_ENV === "production";
 
   const nextConfigOptions: NextConfig = {
-    // 🔥 REQUIRED FOR SERVING NEXT.JS UNDER /probable-potato
-    basePath: "/probable-potato",
-    assetPrefix: "/probable-potato/",
+    // DigitalOcean HTTP Routes strips the prefix, so no basePath needed
+    // But assetPrefix ensures static files load from correct path
+    assetPrefix: "/probable-potato",
     trailingSlash: true,
 
     eslint: { ignoreDuringBuilds: true },
