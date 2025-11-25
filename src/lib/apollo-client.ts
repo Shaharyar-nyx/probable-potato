@@ -1,7 +1,11 @@
 import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from "@apollo/client";
 
+const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL || "https://shark-app-tmqz4.ondigitalocean.app/graphql";
+
+console.log("Apollo Client using URL:", strapiUrl);
+
 const httpLink = new HttpLink({
-  uri: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL,
+  uri: strapiUrl,
   fetch: (uri, options) => {
     return fetch(uri, {
       ...options,
