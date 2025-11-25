@@ -9,6 +9,7 @@ const nextConfig = (phase: string) => {
     // 🔥 REQUIRED FOR SERVING NEXT.JS UNDER /probable-potato
     basePath: "/probable-potato",
     assetPrefix: "/probable-potato/",
+    trailingSlash: true,
 
     eslint: { ignoreDuringBuilds: true },
 
