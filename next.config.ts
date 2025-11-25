@@ -4,11 +4,8 @@ import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 const nextConfig = (phase: string) => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
   const isProduction = process.env.NODE_ENV === "production";
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   const nextConfigOptions: NextConfig = {
-    ...(basePath && { basePath }),
-    ...(basePath && { assetPrefix: basePath }),
     trailingSlash: true,
 
     eslint: { ignoreDuringBuilds: true },
