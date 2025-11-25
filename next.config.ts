@@ -53,6 +53,10 @@ const nextConfig = (phase: string) => {
           protocol: "https" as const,
           hostname: "helios-cms.dev.Nyxlab.tech",
         },
+        {
+          protocol: "https" as const,
+          hostname: "shark-app-tmqz4.ondigitalocean.app",
+        },
 
         // External sources
         {
@@ -117,7 +121,7 @@ const securityHeadersConfig = (phase: string) => {
 
     const defaultCSP = `
       default-src 'none';
-      media-src 'self' https://*.Nyxlab.tech ${strapiBaseUrl};
+      media-src 'self' https://*.Nyxlab.tech https://*.ondigitalocean.app ${strapiBaseUrl};
       object-src 'none';
       worker-src 'self' blob:;
       child-src 'self' blob:;
@@ -125,11 +129,11 @@ const securityHeadersConfig = (phase: string) => {
       base-uri 'self';
       form-action 'self';
       frame-ancestors 'none';
-      img-src 'self' data: blob: https://www.google.com https://*.Nyxlab.tech https://*.linkedin.com ${strapiBaseUrl} ${localhostSources};
+      img-src 'self' data: blob: https://www.google.com https://*.Nyxlab.tech https://*.linkedin.com https://*.ondigitalocean.app ${strapiBaseUrl} ${localhostSources};
       frame-src 'self' https://www.google.com https://www.gstatic.com;
       font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com;
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-      connect-src 'self' https://*.Nyxlab.tech https://*.linkedin.com https://www.google-analytics.com ${strapiBaseUrl} ${localhostSources};
+      connect-src 'self' https://*.Nyxlab.tech https://*.linkedin.com https://www.google-analytics.com https://*.ondigitalocean.app ${strapiBaseUrl} ${localhostSources};
       ${upgradeInsecure}
     `;
 
