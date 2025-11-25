@@ -1,6 +1,7 @@
 import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from "@apollo/client";
 
-const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL || "https://shark-app-tmqz4.ondigitalocean.app/graphql";
+// Remove trailing slash from Strapi URL to avoid double slashes
+const strapiUrl = (process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL || "https://shark-app-tmqz4.ondigitalocean.app/graphql").replace(/\/$/, '');
 
 console.log("Apollo Client using URL:", strapiUrl);
 
