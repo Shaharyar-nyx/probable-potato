@@ -6,7 +6,10 @@ const nextConfig = (phase: string) => {
   const isProduction = process.env.NODE_ENV === "production";
 
   const nextConfigOptions: NextConfig = {
-    basePath: '/app',
+    // 🔥 REQUIRED FOR SERVING NEXT.JS UNDER /probable-potato
+    basePath: "/probable-potato",
+    assetPrefix: "/probable-potato/",
+
     eslint: { ignoreDuringBuilds: true },
 
     env: {
@@ -23,13 +26,23 @@ const nextConfig = (phase: string) => {
       contentDispositionType: "attachment",
       formats: ["image/avif", "image/webp"],
       remotePatterns: [
-        // Development: Allow localhost
-        ...(!isProduction ? [{
-          protocol: "http" as const,
-          hostname: "localhost",
-          port: "1337",
-        }] : []),
-        // Production: Nyxlab domains
+        // Development
+        ...(!isProduction
+          ? [
+              {
+                protocol: "http" as const,
+                hostname: "localhost",
+                port: "1337",
+              },
+              {
+                protocol: "http" as const,
+                hostname: "127.0.0.1",
+                port: "1337",
+              },
+            ]
+          : []),
+
+        // Your production hosts
         {
           protocol: "https" as const,
           hostname: "*.Nyxlab.tech",
@@ -42,7 +55,8 @@ const nextConfig = (phase: string) => {
           protocol: "https" as const,
           hostname: "helios-cms.dev.Nyxlab.tech",
         },
-        // External services (only what you actually need)
+
+        // External sources
         {
           protocol: "https" as const,
           hostname: "www.google.com",
@@ -70,11 +84,8 @@ const nextConfig = (phase: string) => {
     async rewrites() {
       const cmsUrl = process.env.NEXT_PUBLIC_Nyxlab_CMS_URL;
 
-      // FIX: Only apply the rewrite rule if the environment variable is defined.
-      // If cmsUrl is undefined (during the build phase on DO), return an empty array.
-      if (!cmsUrl) {
-        return []; 
-      }
+      // SAFE: Avoid build errors
+      if (!cmsUrl) return [];
 
       return [
         {
@@ -88,21 +99,23 @@ const nextConfig = (phase: string) => {
   return nextConfigOptions;
 };
 
-// ⚙️ Security headers configuration
+// -------------------------------------------
+// Security headers
+// -------------------------------------------
+
 const securityHeadersConfig = (phase: string) => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
   const isProduction = process.env.NODE_ENV === "production";
-  
-  // Set to false in production to enforce CSP
+
   const cspReportOnly = !isProduction;
 
   const cspHeader = () => {
-    const upgradeInsecure = isProduction && !cspReportOnly ? "upgrade-insecure-requests;" : "";
-    
-    // Dynamic localhost inclusion based on environment
-    const localhostSources = !isProduction ? "http://localhost:1337" : "";
+    const upgradeInsecure =
+      isProduction && !cspReportOnly ? "upgrade-insecure-requests;" : "";
 
-    const defaultCSPDirectives = `
+    const localhostSources = !isProduction ? "http://localhost:1337 http://127.0.0.1:1337" : "";
+
+    const defaultCSP = `
       default-src 'none';
       media-src 'self' https://*.Nyxlab.tech;
       object-src 'none';
@@ -126,56 +139,32 @@ const securityHeadersConfig = (phase: string) => {
 
     if (isProduction) {
       return `
-        ${defaultCSPDirectives}
+        ${defaultCSP}
         script-src 'self' 'unsafe-inline' ${scriptSrc};
       `;
     }
 
-    // Development: Allow unsafe-eval for hot reload
     return `
-      ${defaultCSPDirectives}
+      ${defaultCSP}
       script-src 'self' 'unsafe-inline' 'unsafe-eval' ${scriptSrc};
     `;
   };
 
-  const headers = [
+  return [
     {
       key: cspReportOnly
         ? "Content-Security-Policy-Report-Only"
         : "Content-Security-Policy",
       value: cspHeader().replace(/\n/g, ""),
     },
-    {
-      key: "X-DNS-Prefetch-Control",
-      value: "on",
-    },
-    {
-      key: "Strict-Transport-Security",
-      value: "max-age=63072000; includeSubDomains; preload",
-    },
-    {
-      key: "X-Frame-Options",
-      value: "DENY",
-    },
-    {
-      key: "X-Content-Type-Options",
-      value: "nosniff",
-    },
-    {
-      key: "X-XSS-Protection",
-      value: "1; mode=block",
-    },
-    {
-      key: "Referrer-Policy",
-      value: "strict-origin-when-cross-origin",
-    },
-    {
-      key: "Permissions-Policy",
-      value: "camera=(), microphone=(), geolocation=()",
-    },
+    { key: "X-DNS-Prefetch-Control", value: "on" },
+    { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+    { key: "X-Frame-Options", value: "DENY" },
+    { key: "X-Content-Type-Options", value: "nosniff" },
+    { key: "X-XSS-Protection", value: "1; mode=block" },
+    { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+    { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
   ];
-
-  return headers;
 };
 
 export default nextConfig;
