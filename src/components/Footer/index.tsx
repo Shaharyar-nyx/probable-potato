@@ -168,7 +168,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
           <div className="border-t border-[#1a1a1a] pt-6">
             <div className="flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
               <div className="text-sm text-gray-400">
-                © {dayjs().year()} DarkLab. All rights reserved.
+                © {dayjs().year()} Nyxlab. All rights reserved.
               </div>
               
               <div className="flex items-center space-x-6 text-sm text-gray-400">
