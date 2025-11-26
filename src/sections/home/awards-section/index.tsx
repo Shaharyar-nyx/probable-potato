@@ -21,21 +21,20 @@ interface Award {
 }
 
 interface AwardsSectionProps {
-  Label?: string;
-  Heading?: string;
-  Awards?: Award[];
-  [key: string]: any;
+  Label: string;
+  Heading: string;
+  Awards: Award[];
 }
 
-const AwardsSection: React.FC<AwardsSectionProps> = ({ Label = '', Heading = '', Awards = [] }) => {
-  const [index, setIndex] = useState(0);
+const AwardsSection: React.FC<AwardsSectionProps> = ({ Label, Heading, Awards }) => {
+  // const [index, setIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % Awards.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [Awards.length]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setIndex((prev) => (prev + 1) % Awards.length);
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, [Awards.length]);
 
   const IconComp = (name: string, size = 18, color = "#fff") => {
     const LucideIcon = (LucideIcons as any)[name];
@@ -83,23 +82,23 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({ Label = '', Heading = '',
         {/* Carousel-like floating awards */}
         <div className={style.cardContainer}>
           {Awards.map((award, i) => {
-            const diff = (i - index + Awards.length) % Awards.length;
-            const position = diff === 0 ? 0 : diff <= half ? diff : diff - Awards.length;
+            // const diff = (i - index + Awards.length) % Awards.length;
+            // const position = diff === 0 ? 0 : diff <= half ? diff : diff - Awards.length;
 
-            const x = position * 320;
-            const scale = position === 0 ? 1 : 0.8;
-            const opacity = position === 0 ? 1 : 0.4;
-            const zIndex = position === 0 ? 10 : 1;
-            const rotateY = position * 8;
+            // const x = position * 320;
+            // const scale = position === 0 ? 1 : 0.8;
+            // const opacity = position === 0 ? 1 : 0.4;
+            // const zIndex = position === 0 ? 10 : 1;
+            // const rotateY = position * 8;
 
             return (
               <motion.div
                 key={i}
                 className={style.card}
                 initial={false}
-                animate={{ x, scale, opacity, rotateY }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-                style={{ zIndex }}
+                // animate={{ x, scale, opacity, rotateY }}
+                // transition={{ duration: 0.8, ease: "easeInOut" }}
+                // style={{ zIndex }}
               >
                 <div className={style.tag}>
                   <div className={style.iconWrap}>

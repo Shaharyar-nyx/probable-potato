@@ -145,14 +145,26 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                   </div>
 
                   <Button
-                    id={formatBtnId("subscribe")}
-                    className="w-full bg-[#8b3dff] hover:bg-[#7a2de0] text-white py-2 px-4 rounded text-sm font-medium transition-colors"
-                    disabled={loading}
-                    loading={loading}
-                    type="submit"
-                  >
-                    Subscribe
-                  </Button>
+  id={formatBtnId("subscribe")}
+  className="
+    w-full 
+    inline-flex items-center justify-center gap-2
+    py-[14px] px-[28px]
+    rounded-[8px]
+    font-semibold text-[0.95rem]
+    cursor-pointer
+    transition-all duration-300
+    bg-gradient-to-r from-[#e20074] to-[#b600ff]
+    text-white 
+    shadow-[0_0_20px_rgba(226,0,116,0.4)]
+    hover:opacity-90 hover:-translate-y-[2px]
+  "
+  disabled={loading}
+  loading={loading}
+  type="submit"
+>
+  Subscribe
+</Button>
 
                   {shouldShowSuccessMessage && (
                     <p aria-live="polite" className="text-sm text-green-400">

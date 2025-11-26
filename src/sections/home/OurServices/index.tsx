@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { STRAPI_ASSETS } from "@/lib";
 import styles from "./styles.module.scss";
@@ -18,28 +18,19 @@ interface SubService {
 }
 
 interface OurServicesProps {
-  heading?: string;
-  subheading?: string;
-  description?: string;
-  subServices?: SubService[];
-  [key: string]: any; // Allow additional props from BlockType
+  heading: string;
+  subheading: string;
+  description: string;
+  subServices: SubService[];
 }
 
 export const OurServices: React.FC<OurServicesProps> = ({
   heading,
   subheading,
   description,
-  subServices = [],
+  subServices,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    if (subServices.length === 0) return;
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % subServices.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [subServices.length]);
 
   return (
     <section className={styles.solutionSection}>
@@ -52,7 +43,7 @@ export const OurServices: React.FC<OurServicesProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {heading} {subheading && <><br /> {subheading}</>}
+          {heading} <br /> {subheading}
         </motion.h2>
 
         <motion.p
@@ -65,11 +56,10 @@ export const OurServices: React.FC<OurServicesProps> = ({
       </div>
 
       {/* === Content Section === */}
-      {subServices.length > 0 && (
-        <div className={styles.contentArea}>
-          {/* Left Side Menu */}
-          <div className={styles.leftPanel}>
-            {subServices.map((item, index) => (
+      <div className={styles.contentArea}>
+        {/* Left Side Menu */}
+        <div className={styles.leftPanel}>
+          {subServices.map((item, index) => (
             <motion.div
               key={index}
               onClick={() => setActiveIndex(index)}
@@ -119,7 +109,6 @@ export const OurServices: React.FC<OurServicesProps> = ({
           </div>
         </motion.div>
       </div>
-      )}
     </section>
   );
 };
