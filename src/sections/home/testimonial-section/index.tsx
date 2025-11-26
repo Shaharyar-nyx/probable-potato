@@ -63,9 +63,12 @@ export const TestimonialDarksSection: React.FC<TestimonialDarksSectionProps> = (
         viewport={{ once: true }}
       >
         <h2 className={styles.heading}>
-          {title?.split(" ")[0]}{" "}
-          <span className={styles.gradientText}>{title?.split(" ")[1]}</span>
-        </h2>
+  {title?.split(" ")[0]}{" "}
+  <span className={styles.gradientText}>
+    {title?.split(" ").slice(1).join(" ")}
+  </span>
+</h2>
+
         <p className={styles.subtitle}>{subtitle}</p>
       </motion.div>
 
