@@ -45,14 +45,7 @@ export const OurServices: React.FC<OurServicesProps> = ({
     <section className={styles.solutionSection}>
       {/* === Title Section === */}
       <div className={styles.topText}>
-        <motion.span
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className={styles.tag}
-        >
-          The Solution
-        </motion.span>
+        
 
         <motion.h2
           initial={{ opacity: 0, y: -20 }}

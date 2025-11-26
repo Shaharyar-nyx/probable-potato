@@ -113,21 +113,7 @@ export const Hero: React.FC<any> = ({
               {cta.label || "Get Started"}
             </motion.a>
 
-            <motion.a
-              href={secondary_cta_url || "#"}
-              className={styles.secondaryBtn}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 0 15px rgba(255,255,255,0.25)",
-              }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <PlayCircle className="w-5 h-5 inline mr-2" />
-              {secondary_cta_text || "Watch Demo"}
-            </motion.a>
-          </motion.div>
+                     </motion.div>
         </motion.div>
       </div>
     </header>
