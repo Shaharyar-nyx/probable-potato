@@ -6,14 +6,13 @@ import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { BlockType } from "@/types";
 import AwardsSection from "@/sections/home/awards-section";
-import { ThreatAlertBar } from "@/sections/home/threat";
 
 
 const blockComponents: Record<string, React.FC<BlockType>> = {
   hero_section: (props) => (
     <>
       <Hero {...props} />
-      <ThreatAlertBar />
+     
     </>
   ),
   ComponentBlocksOurServices: OurServices,
