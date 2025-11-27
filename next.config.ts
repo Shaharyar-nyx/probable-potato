@@ -6,9 +6,6 @@ const nextConfig = (phase: string) => {
   const isProduction = process.env.NODE_ENV === "production";
 
   const nextConfigOptions: NextConfig = {
-    // DigitalOcean HTTP Routes strips the prefix, so no basePath needed
-    // But assetPrefix ensures static files load from correct path
-    assetPrefix: "/probable-potato",
     trailingSlash: true,
 
     eslint: { ignoreDuringBuilds: true },
@@ -51,6 +48,10 @@ const nextConfig = (phase: string) => {
         {
           protocol: "https" as const,
           hostname: "cms-public-web.Nyxlab.tech",
+        },
+        {
+          protocol: "https" as const,
+          hostname: "shark-app-tmqz4.ondigitalocean.app",
         },
         {
           protocol: "https" as const,
@@ -115,10 +116,12 @@ const securityHeadersConfig = (phase: string) => {
       isProduction && !cspReportOnly ? "upgrade-insecure-requests;" : "";
 
     const localhostSources = !isProduction ? "http://localhost:1337 http://127.0.0.1:1337" : "";
+    // Get Strapi URL from env, remove /graphql suffix and trailing slash
+    const strapiBaseUrl = process.env.NEXT_PUBLIC_STRAPI_GRAPHQL_URL?.replace(/\/graphql$/, '').replace(/\/$/, '') || '';
 
     const defaultCSP = `
       default-src 'none';
-      media-src 'self' https://*.Nyxlab.tech;
+      media-src 'self' https://*.Nyxlab.tech https://*.ondigitalocean.app ${strapiBaseUrl};
       object-src 'none';
       worker-src 'self' blob:;
       child-src 'self' blob:;
@@ -126,11 +129,11 @@ const securityHeadersConfig = (phase: string) => {
       base-uri 'self';
       form-action 'self';
       frame-ancestors 'none';
-      img-src 'self' data: blob: https://www.google.com https://*.Nyxlab.tech https://*.linkedin.com ${localhostSources};
+      img-src 'self' data: blob: https://www.google.com https://*.Nyxlab.tech https://*.linkedin.com https://*.ondigitalocean.app ${strapiBaseUrl} ${localhostSources};
       frame-src 'self' https://www.google.com https://www.gstatic.com;
       font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com;
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-      connect-src 'self' https://*.Nyxlab.tech https://*.linkedin.com https://www.google-analytics.com ${localhostSources};
+      connect-src 'self' https://*.Nyxlab.tech https://*.linkedin.com https://www.google-analytics.com https://*.ondigitalocean.app ${strapiBaseUrl} ${localhostSources};
       ${upgradeInsecure}
     `;
 
