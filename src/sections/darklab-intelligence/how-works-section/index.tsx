@@ -59,7 +59,7 @@ const HowItWorks: React.FC<HowWorksProps> = ({ heading = '', text = '', result_t
             viewport={{ once: true }}
             className={styles.resultText}
           >
-        {"Result :" + " " + result_text}
+        {result_text}
           </motion.p>
         </motion.div>
 
@@ -75,6 +75,10 @@ const HowItWorks: React.FC<HowWorksProps> = ({ heading = '', text = '', result_t
 
   {image?.data?.attributes?.url && (
     <div className={styles.imageWrapper}>
+       {/* 🟣 Image Caption */}
+      {image_text && (
+        <p className={styles.imageText}>{image_text}</p>
+      )}
       <Image
         src={`${STRAPI_ASSETS}${image.data.attributes.url}`}
         alt={image.data.attributes.alternativeText || "Cyber Image"}
@@ -83,10 +87,7 @@ const HowItWorks: React.FC<HowWorksProps> = ({ heading = '', text = '', result_t
         className="relative z-10 rounded-2xl object-contain"
       />
 
-      {/* 🟣 Image Caption */}
-      {image_text && (
-        <p className={styles.imageText}>{image_text}</p>
-      )}
+     
     </div>
   )}
 </motion.div>
