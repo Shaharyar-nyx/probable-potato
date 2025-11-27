@@ -5,6 +5,8 @@ import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { Metadata } from "next";
 import { HeroDark, OfferingsDark, IntelligenceDark, OurServices, CallToAction } from "@/sections";
+import IntelligenceLayersDark from "@/sections/darklab-intelligence/intelligence-layers-dark";
+import ResearchSection from "@/sections/darklab-intelligence/research-section";
 import { ThreatAlertBar } from "@/sections/home/threat";
 import HowWorksSection from "@/sections/darklab-intelligence/how-works-section";
 
@@ -20,7 +22,8 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   ComponentBlocksIntelligenceDark: IntelligenceDark,
   ComponentBlocksHowWorks: HowWorksSection,
   ComponentBlocksCallToActionSection: CallToAction,
-
+  ComponentBlocksIntelligenceLayersDark: IntelligenceLayersDark,  
+  ComponentBlocksResearchExists:ResearchSection,
 
 };
 
