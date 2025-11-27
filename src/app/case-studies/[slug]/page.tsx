@@ -1,19 +1,18 @@
 import Image from "next/image";
 
 // Use your production Strapi URL from environment variable
-const STRAPI_URL = "https://shark-app-tmqz4.ondigitalocean.app";
+const STRAPI_URL = process.env.NEXT_PUBLIC_Nyxlab_URL;
 
 async function getCaseStudy(slug: string) {
-  const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/case-studies?filters[slug][$eq]=${slug}&populate=*`, {
+  const res = await fetch(`${STRAPI_URL}/api/case-studies?filters[slug][$eq]=${slug}&populate=*`, {
     cache: "no-store",
   });
   const data = await res.json();
   return data[0];
 }
 
-export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const caseStudy = await getCaseStudy(slug);
+export default async function CaseStudyPage({ params }: { params: { slug: string } }) {
+  const caseStudy = await getCaseStudy(params.slug);
 
   if (!caseStudy) {
     return <p className="text-center text-gray-400 py-20 text-lg">Case Study not found.</p>;
@@ -77,31 +76,47 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           {caseStudy.short_description}
         </p>
 
-        {/* === MAIN BODY === */}
-       {/* === MAIN BODY === */}
-<div
-  className="
-    prose
-    prose-invert
-    max-w-none
-    leading-relaxed
-    text-gray-300
+        {/* === MAIN BODY - UPDATED FOR BETTER LIST STYLING === */}
+        <div
+          className="
+            max-w-none
+            leading-relaxed
+            text-gray-300
+            space-y-6
 
-    [&>h1]:text-purple-400 [&>h1]:font-extrabold [&>h1]:text-4xl [&>h1]:mt-12 [&>h1]:mb-6
-    [&>h2]:text-purple-300 [&>h2]:font-semibold [&>h2]:text-2xl [&>h2]:mt-10 [&>h2]:mb-4
-    [&>h3]:text-purple-200 [&>h3]:font-medium [&>h3]:text-xl [&>h3]:mt-8 [&>h3]:mb-3
+            /* Headings */
+            [&>h1]:text-purple-400 [&>h1]:font-extrabold [&>h1]:text-4xl [&>h1]:mt-12 [&>h1]:mb-6
+            [&>h2]:text-purple-300 [&>h2]:font-semibold [&>h2]:text-2xl [&>h2]:mt-10 [&>h2]:mb-4
+            [&>h3]:text-purple-200 [&>h3]:font-medium [&>h3]:text-xl [&>h3]:mt-8 [&>h3]:mb-3
 
-    [&>p]:text-gray-400 [&>p]:leading-relaxed
-    [&>ul>li]:text-gray-400 [&>ol>li]:text-gray-400
-    [&>strong]:text-pink-400
-    [&>a]:text-pink-400 hover:[&>a]:text-pink-300
-    [&>hr]:border-purple-800/40
-    [&>blockquote]:text-gray-300 [&>blockquote]:border-l-4 [&>blockquote]:border-purple-500 [&>blockquote]:pl-4
-  "
-  dangerouslySetInnerHTML={{ __html: caseStudy.content }}
-/>
+            /* Paragraphs */
+            [&>p]:text-gray-400 [&>p]:leading-relaxed [&>p]:text-lg
 
+            /* Lists - FIXED */
+            [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>ul]:my-6
+            [&>ul>li]:text-gray-400 [&>ul>li]:leading-relaxed [&>ul>li]:marker:text-purple-400
+            [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-2 [&>ol]:my-6
+            [&>ol>li]:text-gray-400 [&>ol>li]:leading-relaxed [&>ol>li]:marker:text-purple-400
 
+            /* Nested Lists */
+            [&>ul>li>ul]:list-circle [&>ul>li>ul]:pl-6 [&>ul>li>ul]:mt-2 [&>ul>li>ul]:space-y-1
+            [&>ol>li>ol]:list-decimal [&>ol>li>ol]:pl-6 [&>ol>li>ol]:mt-2 [&>ol>li>ol]:space-y-1
+
+            /* Strong and Links */
+            [&>strong]:text-pink-400 [&>strong]:font-semibold
+            [&>a]:text-pink-400 hover:[&>a]:text-pink-300 [&>a]:underline
+
+            /* Horizontal Rule */
+            [&>hr]:border-purple-800/40 [&>hr]:my-8
+
+            /* Blockquotes */
+            [&>blockquote]:text-gray-300 [&>blockquote]:border-l-4 [&>blockquote]:border-purple-500 [&>blockquote]:pl-4 [&>blockquote]:py-2 [&>blockquote]:my-6 [&>blockquote]:italic
+
+            /* Code */
+            [&>code]:bg-gray-800 [&>code]:text-pink-300 [&>code]:px-2 [&>code]:py-1 [&>code]:rounded [&>code]:text-sm
+          "
+          dangerouslySetInnerHTML={{ __html: caseStudy.content }}
+        />
       </div>
     </section>
   );
