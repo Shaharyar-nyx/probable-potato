@@ -41,7 +41,8 @@ export const HeroDark: React.FC<any> = ({
           <h5 className={styles.headline}>{headline}</h5>
           <p className={styles.subtitle}>{content}</p>
 
-         <div className={styles.buttons}>
+      {/* hero section button */}
+         {/* <div className={styles.buttons}>
   <a
     href={cta_url || "#"}
     className={styles.primaryBtn}
@@ -58,7 +59,7 @@ export const HeroDark: React.FC<any> = ({
     <Brain  className="w-5 h-5 inline mr-2" />
     {secondary_cta_text || "See How It Works"}
   </a>
-</div>
+</div> */}
 
         </div>
 

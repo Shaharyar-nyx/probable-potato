@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 // Use your production Strapi URL from environment variable
-const STRAPI_URL = process.env.NEXT_PUBLIC_Nyxlab_URL;
+const STRAPI_URL = "https://shark-app-tmqz4.ondigitalocean.app";
 
 async function getCaseStudy(slug: string) {
   const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/case-studies?filters[slug][$eq]=${slug}&populate=*`, {

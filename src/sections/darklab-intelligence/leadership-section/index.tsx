@@ -28,7 +28,7 @@ interface LeadershipProps {
 }
 
 // Updated: Removed localhost fallback
-const STRAPI_ASSETS = process.env.NEXT_PUBLIC_STRAPI_ASSETS;
+const STRAPI_ASSETS = "https://shark-app-tmqz4.ondigitalocean.app";
 
 const LeadershipSection: React.FC<LeadershipProps> = ({
   Title = '',

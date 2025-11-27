@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function AboutSection({ title, headline, content, image }: any) {
- const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_ASSETS;
+ const STRAPI_URL = "https://shark-app-tmqz4.ondigitalocean.app";
 
 const imgUrl = image?.data?.attributes?.url
   ? `${STRAPI_URL}${image.data.attributes.url}`
@@ -23,7 +23,7 @@ const imgUrl = image?.data?.attributes?.url
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="uppercase text-sm tracking-[6px] text-pink-500 mb-4"
+          className=" tracking-[6px] text-pink-500 mb-4" style={{fontWeight:"700", fontSize:"2.7rem"}}
         >
           {title}
         </motion.h4>
