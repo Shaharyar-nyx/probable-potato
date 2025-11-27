@@ -126,15 +126,14 @@ export default function CaseStudiesList() {
   className="font-bold text-white leading-snug mb-2
              text-lg sm:text-2xl md:text-3xl lg:text-4xl"
 >
-  Visibility Into The <br className="hidden sm:block" /> Unknown
+  All Things Cybersecurity, <br className="hidden sm:block" /> in One Place
 </h1>
 
 <p
   className="text-gray-300 leading-relaxed
              text-sm sm:text-base md:text-lg max-w-md sm:max-w-lg mx-auto md:mx-0"
 >
-  Our case studies uncover how we transformed raw data into strategic insights —
-  empowering clients to stay ahead of evolving digital threats.
+ Welcome to NyxLab’s central blog — your hub for insights on cybersecurity, emerging threats, and expert guidance. Stay informed with practical, research-driven content to help you navigate and secure the digital world.
 </p>
 
   </div>
@@ -143,7 +142,7 @@ export default function CaseStudiesList() {
       {/* GRID */}
       <div className="py-20 px-6 md:px-20">
         <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">
-          Featured Case Studies
+          Featured Blogs
         </h2>
 
         {loading ? (

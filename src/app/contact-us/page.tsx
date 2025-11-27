@@ -161,45 +161,11 @@ const ContactFormSection = () => {
                 </div>
               </div>
 
-              {/* HeadTitle & Owner Option Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="headTitle" className="block text-sm font-medium text-purple-300 mb-2 drop-shadow-[0_0_5px_rgba(168,85,247,0.3)]">
-                    HeadTitle by *
-                  </label>
-                  <select
-                    id="headTitle"
-                    className="w-full px-4 py-3 bg-gray-800 border border-purple-500/50 rounded-lg text-white focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/30 transition-all shadow-[0_0_10px_rgba(168,85,247,0.1)] focus:shadow-[0_0_15px_rgba(236,72,153,0.3),0_0_30px_rgba(168,85,247,0.2)]"
-                    required
-                  >
-                    <option value="" className="text-purple-300/60">Select HeadTitle</option>
-                    <option value="headteacher" className="text-white bg-gray-800">Headteacher</option>
-                    <option value="counsel" className="text-white bg-gray-800">Counsel</option>
-                    <option value="director" className="text-white bg-gray-800">Director</option>
-                    <option value="manager" className="text-white bg-gray-800">Manager</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="ownerOption" className="block text-sm font-medium text-purple-300 mb-2 drop-shadow-[0_0_5px_rgba(168,85,247,0.3)]">
-                    Owner option *
-                  </label>
-                  <select
-                    id="ownerOption"
-                    className="w-full px-4 py-3 bg-gray-800 border border-purple-500/50 rounded-lg text-white focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/30 transition-all shadow-[0_0_10px_rgba(168,85,247,0.1)] focus:shadow-[0_0_15px_rgba(236,72,153,0.3),0_0_30px_rgba(168,85,247,0.2)]"
-                    required
-                  >
-                    <option value="" className="text-purple-300/60">Select Option</option>
-                    <option value="owner" className="text-white bg-gray-800">Owner</option>
-                    <option value="co-owner" className="text-white bg-gray-800">Co-Owner</option>
-                    <option value="not-owner" className="text-white bg-gray-800">Not Owner</option>
-                  </select>
-                </div>
-              </div>
-
+            
               {/* Message */}
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-purple-300 mb-2 drop-shadow-[0_0_5px_rgba(168,85,247,0.3)]">
-                  Please share any experience or information *
+                  Tell us about your security needs
                 </label>
                 <textarea
                   id="message"
@@ -219,7 +185,7 @@ const ContactFormSection = () => {
                   required
                 />
                 <label htmlFor="consent" className="text-sm text-purple-200 drop-shadow-[0_0_5px_rgba(168,85,247,0.3)]">
-                  I confirm that Digital Policy may communicate with me about this form, position, wireless content, industry insights, and related resources.
+                  I consent to Nyxlab contacting me about my request and sharing relevant service information as needed.
                 </label>
               </div>
 

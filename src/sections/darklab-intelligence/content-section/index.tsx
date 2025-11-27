@@ -48,7 +48,7 @@ const imgUrl = image?.data?.attributes?.url
           <div className="absolute -top-20 -right-20 w-[300px] h-[300px] md:w-[400px] md:h-[400px] opacity-60 rotate-3">
             <Image
               src={imgUrl}
-              alt={image?.data?.attributes?.alternativeText || "About Image"}
+              alt={image?.data?.attributes?.alternativeText}
               fill
               className="object-cover rounded-3xl mix-blend-screen"
             />
