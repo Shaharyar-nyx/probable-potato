@@ -3,9 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { STRAPI_URL } from "@/lib";
 
-// const STRAPI_URL = process.env.NEXT_PUBLIC_Nyxlab_URL;
+const STRAPI_URL = "https://shark-app-tmqz4.ondigitalocean.app";
 
 type CaseItem = {
   id: string | number;
