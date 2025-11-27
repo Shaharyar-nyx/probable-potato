@@ -20,11 +20,12 @@ interface FaqSectionProps {
       attributes?: { url: string };
     };
   };
+  [key: string]: any;
 }
 
 const FaqSection: React.FC<FaqSectionProps> = ({
-  heading = "",
-  description = "",
+  heading = '',
+  description = '',
   faqs = [],
   background,
 }) => {
@@ -34,6 +35,7 @@ const FaqSection: React.FC<FaqSectionProps> = ({
 
   return (
     <section className={styles.faqSection}>
+      {/* Background */}
       {background?.data?.attributes?.url && (
         <Image
           src={`${STRAPI_ASSETS}${background.data.attributes.url}`}
@@ -42,62 +44,67 @@ const FaqSection: React.FC<FaqSectionProps> = ({
           className={styles.bgImage}
         />
       )}
-
       <div className={styles.overlay}></div>
 
       <div className={styles.container}>
+        {/* Left Side */}
         <motion.div
-          className={styles.header}
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          className={styles.left}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
-          <span className={styles.tag}>FAQ</span>
+          <span className={styles.smallLabel}>FAQ</span>
           <h2>{heading}</h2>
           <p>{description}</p>
+          
+          
         </motion.div>
 
-        <div className={styles.faqList}>
-          {faqs.map((faq, index) => {
-            const isActive = activeIndex === index;
-
-            return (
-              <div
-                key={index}
-                className={`${styles.faqItem} ${isActive ? styles.active : ""}`}
-              >
-                <button
-                  className={styles.question}
-                  onClick={() => toggleFAQ(index)}
+        {/* Right Side Accordion */}
+        <motion.div
+          className={styles.right}
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          {faqs.map((faq, i) => (
+            <div
+              key={i}
+              className={`${styles.faqItem} ${
+                activeIndex === i ? styles.active : ""
+              }`}
+            >
+              <button className={styles.question} onClick={() => toggleFAQ(i)}>
+                <span className={styles.questionNumber}>{i + 1}.</span>
+                <span className={styles.questionText}>{faq.question}</span>
+                <motion.span
+                  className={styles.arrow}
+                  animate={{ rotate: activeIndex === i ? 180 : 0 }}
+                  transition={{ duration: 0.25 }}
                 >
-                  <span className={styles.text}>{faq.question}</span>
+                  ▼
+                </motion.span>
+              </button>
 
-                  <motion.span
-                    className={styles.icon}
-                    animate={{ rotate: isActive ? 180 : 0 }}
-                    transition={{ duration: 0.25 }}
+              <AnimatePresence>
+                {activeIndex === i && (
+                  <motion.div
+                    className={styles.answer}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    {isActive ? "−" : "+"}
-                  </motion.span>
-                </button>
-
-                <AnimatePresence>
-                  {isActive && (
-                    <motion.div
-                      className={styles.answer}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <p>{faq.answer}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
+                    <p>{faq.answer}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
