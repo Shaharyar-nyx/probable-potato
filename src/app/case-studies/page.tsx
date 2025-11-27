@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { STRAPI_URL } from "@/lib";
 
-const STRAPI_URL = process.env.NEXT_PUBLIC_Nyxlab_URL;
+// const STRAPI_URL = process.env.NEXT_PUBLIC_Nyxlab_URL;
 
 type CaseItem = {
   id: string | number;
