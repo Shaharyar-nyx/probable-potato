@@ -24,6 +24,7 @@ interface AwardsSectionProps {
   Label?: string;
   Heading?: string;
   Awards?: Award[];
+  [key: string]: any;
 }
 
 const AwardsSection: React.FC<AwardsSectionProps> = ({
@@ -33,9 +34,7 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
 }) => {
   const IconComp = (name: string, size = 18, color = "#fff") => {
     const LucideIcon = (LucideIcons as any)[name];
-    return LucideIcon ? (
-      <LucideIcon size={size} color={color} strokeWidth={2.5} />
-    ) : null;
+    return LucideIcon ? <LucideIcon size={size} color={color} strokeWidth={2.5} /> : null;
   };
 
   const BgIconComp = (name: string) => {
@@ -45,12 +44,12 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
         size={120}
         color="#ff4fd8"
         strokeWidth={1}
-        className={style.bgIcon}
+        className={`${style.bgIcon}`}
       />
     ) : null;
   };
 
-  // Duplicate list for infinite loop
+  // Duplicate list for seamless infinite scroll
   const loopList = [...Awards, ...Awards];
 
   return (
@@ -61,7 +60,7 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
         <h2 className={style.heading}>{Label}</h2>
         <p className={style.para}>{Heading}</p>
 
-        {/* LEFT AUTO SLIDER */}
+        {/* Auto-scrolling slider */}
         <div className={style.sliderWrapper}>
           <motion.div
             className={style.sliderTrack}
@@ -95,9 +94,7 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
                   </div>
                 )}
 
-                {award.Icon && (
-                  <div className={style.bgIconWrap}>{BgIconComp(award.Icon)}</div>
-                )}
+                {award.Icon && <div className={style.bgIconWrap}>{BgIconComp(award.Icon)}</div>}
               </div>
             ))}
           </motion.div>
