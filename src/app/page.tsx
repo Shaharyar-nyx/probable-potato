@@ -16,13 +16,14 @@ import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import AwardsSection from "@/sections/home/awards-section";
 
-const blockComponents = {
+const blockComponents: Record<string, React.FC<any>> = {
   hero_section: Hero,
   ComponentBlocksOurServices: OurServices,
   ComponentBlocksTestimonialsSection: TestimonialDarksSection,
   ComponentBlocksAwardsSection: AwardsSection,
   ComponentBlocksCallToActionSection: CallToAction,
-} as Record<string, React.FC<any>>;
+};
+
 
 
 async function getHomeData() {
