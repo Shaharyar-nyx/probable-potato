@@ -18,17 +18,18 @@ interface SubService {
 }
 
 interface OurServicesProps {
-  heading: string;
-  subheading: string;
-  description: string;
-  subServices: SubService[];
+  heading?: string;
+  subheading?: string;
+  description?: string;
+  subServices?: SubService[];
+  [key: string]: any;
 }
 
 export const OurServices: React.FC<OurServicesProps> = ({
-  heading,
-  subheading,
-  description,
-  subServices,
+  heading = "",
+  subheading = "",
+  description = "",
+  subServices = [],
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
