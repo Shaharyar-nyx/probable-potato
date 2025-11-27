@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 
 interface TestimonialDark {
@@ -98,7 +98,7 @@ export const TestimonialDarksSection: React.FC<TestimonialDarksSectionProps> = (
               <div className={styles.authorInfo}>
                 {t.author_avatar?.data?.attributes?.url && (
                   <motion.img
-                    src={`${STRAPI_ASSETS}${t.author_avatar.data.attributes.url}`}
+                    src={getStrapiAssetUrl(t.author_avatar.data.attributes.url)}
                     alt={
                       t.author_avatar.data.attributes.alternativeText ||
                       t.author_name
@@ -145,7 +145,7 @@ export const TestimonialDarksSection: React.FC<TestimonialDarksSectionProps> = (
               {trusted_logos.data.map((logo, i) => (
                 <motion.img
                   key={i}
-                  src={`${STRAPI_ASSETS}${logo.attributes?.url}`}
+                  src={getStrapiAssetUrl(logo.attributes?.url)}
                   alt={logo.attributes?.alternativeText || "trusted logo"}
                   className={styles.trustedLogo}
                   whileHover={{ scale: 1.15, rotate: 2 }}
