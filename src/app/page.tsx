@@ -1,22 +1,14 @@
 import React from "react";
 import type { Metadata } from "next";
 
-import {
-  Hero,
-  Testimonials,
-  TestimonialDarksSection,
-  StatsSection,
-  CaseStudies,
-  OurServices,
-  ThreatLevel,
-  CallToAction,
-} from "@/sections";
-
+import { Hero, Testimonials, TestimonialDarksSection, StatsSection, CaseStudies, OurServices, ThreatLevel, CallToAction } from "@/sections";
 import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
+import { BlockType } from "@/types";
 import AwardsSection from "@/sections/home/awards-section";
 
-const blockComponents: Record<string, React.FC<any>> = {
+
+const blockComponents = {
   hero_section: Hero,
   ComponentBlocksOurServices: OurServices,
   ComponentBlocksTestimonialsSection: TestimonialDarksSection,
@@ -62,13 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: data.seo.title,
       description: data.seo.meta_description,
-      images: [
-        {
-          url:
-            STRAPI_ASSETS + data.seo.og_image?.data?.attributes?.url ||
-            "/favicon.ico",
-        },
-      ],
+      images: [{ url: STRAPI_ASSETS + data.seo.og_image?.data?.attributes?.url || "/favicon.ico" }],
       url: data.seo.canonical_url,
       type: "website",
       siteName: "Nyxlab",
@@ -78,25 +64,20 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: data.seo.title,
       description: data.seo.meta_description,
-      images: [
-        STRAPI_ASSETS + data.seo.og_image?.data?.attributes?.url ||
-          "/favicon.ico",
-      ],
+      images: [STRAPI_ASSETS + data.seo.og_image?.data?.attributes?.url || "/favicon.ico"],
     },
   };
 }
 
 async function Home() {
   const data = await getHomeData();
-
+  
   if (!data?.blocks) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-black text-white">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">No Content Available</h1>
-          <p className="text-gray-400">
-            Please add content in Strapi CMS to see the page.
-          </p>
+          <p className="text-gray-400">Please add content in Strapi CMS to see the page.</p>
         </div>
       </main>
     );
