@@ -56,17 +56,23 @@
 }
 
 .heading {
-  font-size: 2.8rem;
+   font-size: 2.8rem;
     font-weight: 700;
     line-height: 1.3;
-  letter-spacing: 0.5px;
-  margin-bottom: 1rem;
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, #ff00cc, #7928ca);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .gradientText {
-  background: linear-gradient(90deg, #ff00cc, #7928ca);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, #ff00cc, #7928ca);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
@@ -152,12 +158,13 @@
 }
 
 .trustedTitle {
-  font-size: 2.8rem;
-    font-weight: 600;
+   font-size: 2.3rem;
+    font-weight: 700;
     line-height: 1.3;
-  color: #fff;
-  margin-bottom: 2rem;
-  letter-spacing: 1px;
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, #ff00cc, #7928ca);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .logoSliderWrapper {
