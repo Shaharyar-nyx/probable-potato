@@ -51,7 +51,7 @@ const nextConfig = (phase: string) => {
         },
         {
           protocol: "https" as const,
-          hostname: "helios-cms.dev.Nyxlab.tech",
+          hostname: "shark-app-tmqz4.ondigitalocean.app",
         },
         {
           protocol: "https" as const,
