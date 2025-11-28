@@ -97,7 +97,7 @@ Research Driven Security Improvement
   </div>
 
   <div className={`${styles.column} ${styles.columnFour}`}>
-    <h3 className={styles.columnTitle}>Nyxlab <span>DNS</span></h3>
+    <h3 className={styles.columnTitle}>Nyxlab DNS</h3>
     <ul className={styles.columnList}>
       <li className={styles.columnListItem}>Phishing domain monitoring and take down</li>
       <li className={styles.columnListItem}>Brand monitoring</li>
@@ -107,7 +107,7 @@ Research Driven Security Improvement
   </div>
 
   <div className={`${styles.column} ${styles.columnFour}`}>
-    <h3 className={styles.columnTitle}>Nyxlab <span>Research</span></h3>
+    <h3 className={styles.columnTitle}>Nyxlab Research</h3>
     <ul className={styles.columnList}>
       <li className={styles.columnListItem}>CVE identification</li>
       <li className={styles.columnListItem}>Exploitation Development</li>
