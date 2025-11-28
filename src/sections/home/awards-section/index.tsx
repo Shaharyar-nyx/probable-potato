@@ -34,7 +34,9 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
 }) => {
   const IconComp = (name: string, size = 18, color = "#fff") => {
     const LucideIcon = (LucideIcons as any)[name];
-    return LucideIcon ? <LucideIcon size={size} color={color} strokeWidth={2.5} /> : null;
+    return LucideIcon
+      ? <LucideIcon size={size} color={color} strokeWidth={2.5} />
+      : null;
   };
 
   const BgIconComp = (name: string) => {
@@ -44,7 +46,7 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
         size={120}
         color="#ff4fd8"
         strokeWidth={1}
-        className={`${style.bgIcon}`}
+        className={style.bgIcon}
       />
     ) : null;
   };
@@ -54,11 +56,11 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
 
   return (
     <section className={style.awardsSection}>
-      <div className={style.glowBg}></div>
+      <div className={style.glowBg} />
 
       <div className="max-w-6xl mx-auto text-center relative z-10 px-4">
-        <h2 className={style.heading}>{Label}</h2>
-        <p className={style.para}>{Heading}</p>
+        {Label && <h2 className={style.heading}>{Label}</h2>}
+        {Heading && <p className={style.para}>{Heading}</p>}
 
         {/* Auto-scrolling slider */}
         <div className={style.sliderWrapper}>
@@ -72,29 +74,45 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
             }}
           >
             {loopList.map((award, i) => (
-              <div className={style.card} key={i}>
-                <div className={style.tag}>
-                  <div className={style.iconWrap}>
-                    {award.Icon && IconComp(award.Icon)}
+              <div className={style.card} key={`${award.Title}-${i}`}>
+                {/* Tag row */}
+                {award.Title && (
+                  <div className={style.tag}>
+                    <div className={style.iconWrap}>
+                      {award.Icon && IconComp(award.Icon)}
+                    </div>
+                    <span>{award.Title}</span>
                   </div>
-                  <span>{award.Title}</span>
-                </div>
+                )}
 
-                <p className={style.desc}>{award.Description}</p>
+                {/* Description (optional – you can remove if you want pure image cards) */}
+                {award.Description && (
+                  <p className={style.desc}>{award.Description}</p>
+                )}
 
+                {/* 600 x 600 image */}
                 {award.Logo?.data?.attributes?.url && (
-                  <div className="mt-6">
+                  <div className={style.logoWrap}>
                     <Image
                       src={`${STRAPI_ASSETS}${award.Logo.data.attributes.url}`}
-                      alt={award.Logo.data.attributes.alternativeText || award.Title}
-                      width={100}
-                      height={40}
+                      alt={
+                        award.Logo.data.attributes.alternativeText ||
+                        award.Title ||
+                        "award"
+                      }
+                      width={600}
+                      height={600}
                       className={style.logo}
                     />
                   </div>
                 )}
 
-                {award.Icon && <div className={style.bgIconWrap}>{BgIconComp(award.Icon)}</div>}
+                {/* Background Lucide icon */}
+                {award.Icon && (
+                  <div className={style.bgIconWrap}>
+                    {BgIconComp(award.Icon)}
+                  </div>
+                )}
               </div>
             ))}
           </motion.div>

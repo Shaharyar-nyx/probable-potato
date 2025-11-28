@@ -79,17 +79,16 @@
   .card {
     position: relative;
     width: 320px;
+    border: none;
     min-height: 260px;
-    background: radial-gradient(circle at top left, #18181b, #050508);
-    border-radius: 1.5rem;
-    padding: 1.75rem 1.6rem;
-    box-shadow:
-      0 0 0 1px rgba(148, 27, 204, 0.22),
-      0 18px 40px rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(18px);
+    // background: radial-gradient(circle at top left, #18181b, #050508);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     overflow: hidden;
-
+    /* Make content flow nicely with large images */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.75rem;
     &:hover {
       transform: translateY(-8px) translateZ(0);
       box-shadow:
@@ -98,51 +97,25 @@
     }
   }
 
-  .tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: linear-gradient(120deg, #a855f7 0%, #ff4fd8 40%, #fb923c 100%);
-    color: #fff;
-    border-radius: 999px;
-    padding: 0.4rem 1.1rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    box-shadow: 0 0 20px rgba(255, 79, 216, 0.4);
-    white-space: nowrap;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 
-  .iconWrap {
-    background: rgba(255, 255, 255, 0.18);
-    border-radius: 999px;
-    width: 22px;
-    height: 22px;
+  /* Wrapper for 600x600 images */
+  .logoWrap {
+    margin-top: 1rem;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .desc {
-    font-size: 0.9rem;
-    color: #e5e5e5;
-    line-height: 1.7;
-    position: relative;
-    z-index: 10;
-    text-align: left;
-    margin-top: 0.2rem;
   }
 
   .logo {
-    max-width: 140px;
-    max-height: 40px;
+    /* 600x600 safe container */
+    width: 100%;
+    max-width: 260px;       /* desktop */
+    aspect-ratio: 1 / 1;
     object-fit: contain;
+    border-radius: 0.75rem;
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.75));
-    opacity: 0.9;
+    opacity: 0.95;
   }
 
   .bgIconWrap {
@@ -200,6 +173,10 @@
       width: 290px;
       padding: 1.6rem 1.5rem;
     }
+
+    .logo {
+      max-width: 230px;
+    }
   }
 }
 
@@ -223,6 +200,7 @@
 
     .sliderWrapper {
       padding: 1.75rem 0;
+
       /* remove edge fades on mobile for cleaner look */
       &::before,
       &::after {
@@ -232,7 +210,6 @@
 
     .sliderTrack {
       gap: 1rem;
-      /* helps keep cards visually centered as they scroll */
       align-items: stretch;
     }
 
@@ -244,6 +221,14 @@
       text-align: left;
       margin-inline: auto; // center card visually
       border-radius: 1.2rem;
+    }
+
+    .logoWrap {
+      margin-top: 0.75rem;
+    }
+
+    .logo {
+      max-width: 220px;
     }
 
     .tag {
@@ -291,6 +276,10 @@
       max-width: 100%;
       padding: 1.35rem 1.2rem;
       border-radius: 1.05rem;
+    }
+
+    .logo {
+      max-width: 200px;
     }
 
     .tag {
