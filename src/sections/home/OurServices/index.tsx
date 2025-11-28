@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { STRAPI_ASSETS } from "@/lib";
 import styles from "./styles.module.scss";
 
@@ -33,12 +33,12 @@ export const OurServices: React.FC<OurServicesProps> = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const activeItem = subServices[activeIndex];
+
   return (
     <section className={styles.solutionSection}>
       {/* === Title Section === */}
       <div className={styles.topText}>
-        
-
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,59 +56,89 @@ export const OurServices: React.FC<OurServicesProps> = ({
         </motion.p>
       </div>
 
-      {/* === Content Section === */}
+      {/* === Desktop / Tablet Layout === */}
       <div className={styles.contentArea}>
-        {/* Left Side Menu */}
+        {/* Left Side List */}
         <div className={styles.leftPanel}>
           {subServices.map((item, index) => (
-            <motion.div
+            <motion.button
+              type="button"
               key={index}
               onClick={() => setActiveIndex(index)}
               className={`${styles.sideItem} ${
                 activeIndex === index ? styles.active : ""
               }`}
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.3 }}
+              whileHover={{ scale: 1.01 }}
+              transition={{ duration: 0.2 }}
             >
-              <span>{item.heading}</span>
-              <AnimatePresence>
-                {activeIndex === index && (
-                  <motion.p
-                    className={styles.subDesc}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    {item.description}
-                  </motion.p>
+              <div className={styles.sideItemHeader}>
+                {item.icon?.data?.attributes?.url && (
+                  <div className={styles.sideIcon}>
+                    <img
+                      src={`${STRAPI_ASSETS}${item.icon.data.attributes.url}`}
+                      alt={item.heading}
+                    />
+                  </div>
                 )}
-              </AnimatePresence>
-            </motion.div>
+                <span>{item.heading}</span>
+              </div>
+              <p className={styles.subDesc}>{item.description}</p>
+            </motion.button>
           ))}
         </div>
 
-        {/* Right Image + CTA */}
-        <motion.div
-          key={activeIndex}
-          className={styles.imageWrapper}
-          whileHover={{ scale: 1.03 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          onClick={() =>
-            window.open(subServices[activeIndex]?.cta_url, "_blank")
-          }
-        >
-          <motion.img
-            src={`${STRAPI_ASSETS}${subServices[activeIndex]?.icon?.data?.attributes?.url}`}
-            alt={subServices[activeIndex]?.heading}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7 }}
-          />
-          <div className={styles.overlay}>
-            <span>Explore →</span>
-          </div>
-        </motion.div>
+        {/* Right Image + CTA (Desktop / Tablet) */}
+        {activeItem && (
+          <motion.div
+            key={activeIndex}
+            className={styles.imageWrapper}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            onClick={() => activeItem.cta_url && window.open(activeItem.cta_url, "_blank")}
+          >
+            {activeItem.icon?.data?.attributes?.url && (
+              <motion.img
+                src={`${STRAPI_ASSETS}${activeItem.icon.data.attributes.url}`}
+                alt={activeItem.heading}
+                initial={{ opacity: 0, scale: 1.03 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              />
+            )}
+            <div className={styles.overlay}>
+              <span>Explore →</span>
+            </div>
+          </motion.div>
+        )}
+      </div>
+
+      {/* === Mobile Cards === */}
+      <div className={styles.mobileCards}>
+        {subServices.map((item, index) => (
+          <motion.div
+            key={`mobile-${index}`}
+            className={styles.mobileCard}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            onClick={() => item.cta_url && window.open(item.cta_url, "_blank")}
+          >
+            {item.icon?.data?.attributes?.url && (
+              <div className={styles.mobileImageWrapper}>
+                <img
+                  src={`${STRAPI_ASSETS}${item.icon.data.attributes.url}`}
+                  alt={item.heading}
+                />
+              </div>
+            )}
+            <div className={styles.mobileCardBody}>
+              <h3>{item.heading}</h3>
+              <p>{item.description}</p>
+              {item.cta_url && <span className={styles.mobileCta}>Explore →</span>}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
