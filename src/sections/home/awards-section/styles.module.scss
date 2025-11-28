@@ -1,95 +1,100 @@
 .awardsSection {
   position: relative;
-  background: #000; // remove harsh gradient edge
+  background: radial-gradient(circle at top, #111 0, #000 55%, #050505 100%);
   color: #fff;
-  padding: 7rem 0;
+  padding: 6rem 0;
   overflow: hidden;
   font-family: "Poppins", sans-serif;
 
-  /* SOFT AMBIENT BG GLOW — safe */
   .glowBg {
     position: absolute;
-    inset: 0;
-    // background: radial-gradient(circle at 50% 50%, #b855ff20 0%, transparent 70%),
-    //             linear-gradient(90deg, rgba(255, 79, 216, 0.05), rgba(178, 69, 255, 0.05));
-    // filter: blur(120px);
-    animation: pulseGlow 6s ease-in-out infinite;
+    inset: -20%;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(255, 0, 204, 0.16), transparent 60%),
+      radial-gradient(circle at 80% 0%, rgba(121, 40, 202, 0.18), transparent 65%);
+    filter: blur(60px);
+    opacity: 0.7;
+    animation: pulseGlow 8s ease-in-out infinite;
     z-index: 1;
   }
 
   .heading {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 3vw, 2.6rem);
     font-weight: 700;
     line-height: 1.3;
-    margin-bottom: 18px;
-    background: linear-gradient(90deg, #ff00cc, #7928ca);
+    margin-bottom: 0.75rem;
+    background: linear-gradient(90deg, #ff00cc, #ff4fd8, #7928ca);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    letter-spacing: 0.02em;
   }
 
   .para {
-    font-size: 1rem;
-    color: whitesmoke;
-    margin: 0 auto 3rem;
-    max-width: 700px;
-    line-height: 1.3;
+    font-size: 0.95rem;
+    color: #d4d4d4;
+    margin: 0 auto 2.5rem;
+    max-width: 640px;
+    line-height: 1.6;
   }
 
   .sliderWrapper {
-  width: 100%;
-  padding: 50px;
-  position: relative;
-  overflow: hidden;
+    width: 100%;
+    padding: 2.75rem 0;
+    position: relative;
+    overflow: hidden;
 
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 160px;
-    z-index: 20;
-    pointer-events: none;
-  }
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 120px;
+      z-index: 20;
+      pointer-events: none;
+    }
 
-  /* LEFT FADE MATCHING CONTAINER */
-  &::before {
-    left: 0;
-    background: linear-gradient(to right, rgba(8,8,8,1), rgba(0, 0, 0, 0));
-  }
+    &::before {
+      left: 0;
+      background: linear-gradient(to right, #000 0%, rgba(0, 0, 0, 0));
+    }
 
-  /* RIGHT FADE MATCHING CONTAINER */
-  &::after {
-    right: 0;
-    background: linear-gradient(to left, rgba(8,8,8,1), rgba(8,8,8,0));
+    &::after {
+      right: 0;
+      background: linear-gradient(to left, #000 0%, rgba(0, 0, 0, 0));
+    }
   }
-}
 
   .sliderTrack {
     display: flex;
-    gap: 2rem;
+    gap: 1.75rem;
     width: max-content;
+    align-items: stretch;
   }
 
   .sliderTrack .card {
     flex-shrink: 0;
   }
 
-  /* CARD STYLES */
   .card {
-    width: 300px;
-    height: 400px;
-    background: #111;
-    border: none; // remove the glow rim
+    position: relative;
+    width: 320px;
+    min-height: 260px;
+    background: radial-gradient(circle at top left, #18181b, #050508);
     border-radius: 1.5rem;
-    padding: 2rem;
-    box-shadow: 0 0 40px rgba(255, 79, 216, 0.1);
-    backdrop-filter: blur(8px);
-    transition: all 0.4s ease;
+    padding: 1.75rem 1.6rem;
+    box-shadow:
+      0 0 0 1px rgba(148, 27, 204, 0.22),
+      0 18px 40px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(18px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
 
     &:hover {
-      box-shadow: 0 0 40px rgba(255, 79, 216, 0.5);
-      transform: translateY(-8px);
+      transform: translateY(-8px) translateZ(0);
+      box-shadow:
+        0 0 0 1px rgba(255, 79, 216, 0.4),
+        0 22px 60px rgba(0, 0, 0, 0.95);
     }
   }
 
@@ -97,102 +102,204 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: linear-gradient(90deg, #a855f7 0%, #ff4fd8 100%);
+    background: linear-gradient(120deg, #a855f7 0%, #ff4fd8 40%, #fb923c 100%);
     color: #fff;
     border-radius: 999px;
-    padding: 0.4rem 1rem;
-    font-size: 0.8rem;
+    padding: 0.4rem 1.1rem;
+    font-size: 0.78rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    box-shadow: 0 0 10px rgba(255, 79, 216, 0.5);
+    box-shadow: 0 0 20px rgba(255, 79, 216, 0.4);
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .iconWrap {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
     width: 22px;
     height: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
   }
 
   .desc {
     font-size: 0.9rem;
-    color: #ccc;
-    line-height: 1.6;
+    color: #e5e5e5;
+    line-height: 1.7;
     position: relative;
     z-index: 10;
+    text-align: left;
+    margin-top: 0.2rem;
+  }
+
+  .logo {
+    max-width: 140px;
+    max-height: 40px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.75));
+    opacity: 0.9;
   }
 
   .bgIconWrap {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: -10px;
+    right: -4px;
     opacity: 0.08;
     transform: rotate(15deg);
+    pointer-events: none;
+    z-index: 0;
   }
 
   .bgIcon {
-    width: 110px;
-    height: 110px;
+    width: 120px;
+    height: 120px;
   }
 
   @keyframes pulseGlow {
-    0%, 100% { opacity: 0.4; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.05); }
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.04);
+    }
   }
 }
 
+/* ====== RESPONSIVE ====== */
 
-/* RESPONSIVE (kept same except fixed edges) */
-
+/* Laptops / small desktops */
 @media (max-width: 1024px) {
   .awardsSection {
-    padding: 5rem 1.5rem;
+    padding: 5rem 0;
 
     .heading {
-      font-size: 2.4rem;
+      font-size: clamp(1.9rem, 3vw, 2.3rem);
       text-align: center;
     }
 
     .para {
       font-size: 0.95rem;
-      max-width: 600px;
+      max-width: 580px;
       text-align: center;
+      margin-bottom: 2.2rem;
+    }
+
+    .sliderWrapper {
+      padding: 2.25rem 0;
     }
 
     .card {
-      width: 280px;
-      height: auto;
+      width: 290px;
+      padding: 1.6rem 1.5rem;
     }
   }
 }
 
+/* Tablets & large phones (portrait) */
 @media (max-width: 768px) {
   .awardsSection {
-    padding: 4rem 1rem;
+    padding: 3.5rem 0;
 
-    .card {
-      width: 90%;
-      height: auto;
-      padding: 1.5rem;
+    .heading {
+      font-size: 1.9rem;
       text-align: center;
+      margin-bottom: 0.6rem;
     }
 
-    .bgIconWrap { display: none; }
-    .glowBg { filter: blur(80px); }
+    .para {
+      font-size: 0.9rem;
+      max-width: 520px;
+      text-align: center;
+      margin: 0 auto 2rem;
+    }
+
+    .sliderWrapper {
+      padding: 1.75rem 0;
+      /* remove edge fades on mobile for cleaner look */
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+
+    .sliderTrack {
+      gap: 1rem;
+      /* helps keep cards visually centered as they scroll */
+      align-items: stretch;
+    }
+
+    .card {
+      width: 90vw;
+      max-width: 380px;
+      min-height: auto;
+      padding: 1.5rem 1.4rem;
+      text-align: left;
+      margin-inline: auto; // center card visually
+      border-radius: 1.2rem;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+    }
+
+    .desc {
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .bgIconWrap {
+      display: none;
+    }
+
+    .glowBg {
+      filter: blur(70px);
+      opacity: 0.6;
+    }
   }
 }
 
+/* Small phones */
 @media (max-width: 480px) {
   .awardsSection {
-    padding: 3rem 1rem;
+    padding: 3rem 0;
+
+    .heading {
+      font-size: 1.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .para {
+      font-size: 0.88rem;
+      padding: 0 0.4rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .sliderWrapper {
+      padding: 1.5rem 0;
+    }
 
     .card {
-      width: 100%;
-      padding: 1.2rem;
-      border-radius: 1rem;
+      width: 92vw;
+      max-width: 100%;
+      padding: 1.35rem 1.2rem;
+      border-radius: 1.05rem;
+    }
+
+    .tag {
+      max-width: 100%;
+      font-size: 0.76rem;
+    }
+
+    .desc {
+      font-size: 0.88rem;
     }
   }
 }
