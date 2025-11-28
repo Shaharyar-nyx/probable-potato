@@ -78,7 +78,7 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-3">
               {/* Services Section */}
               <div>
-                <h3 className="text-sm font-semibold mb-4 text-white">Services</h3>
+                <h3 className="text-sm font-semibold mb-4 text-white">Solution</h3>
                 <ul className="space-y-3">
                   {navigations?.data?.[0]?.attributes?.items?.data?.[0]?.attributes?.children?.data?.map(
                     ({ attributes: { title, url } }: any) => (
