@@ -171,7 +171,7 @@ const ContactFormSection = () => {
                   id="message"
                   rows={4}
                   className="w-full px-4 py-3 bg-gray-800 border border-purple-500/50 rounded-lg text-white placeholder-purple-300/60 focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/30 transition-all shadow-[0_0_10px_rgba(168,85,247,0.1)] focus:shadow-[0_0_15px_rgba(236,72,153,0.3),0_0_30px_rgba(168,85,247,0.2)] resize-none"
-                  placeholder="Please share any experience or information"
+                  placeholder="Tell us about your security needs"
                   required
                 />
               </div>
