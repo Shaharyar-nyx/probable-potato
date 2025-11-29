@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -17,14 +18,13 @@ interface AboutSectionProps {
   };
 }
 
+// You can keep this hard-coded URL or swap to NEXT_PUBLIC_STRAPI_ASSETS if you prefer
 const STRAPI_URL = "https://shark-app-tmqz4.ondigitalocean.app";
 
-export default function AboutSection({
-  title,
-  headline,
-  content,
-  image,
-}: AboutSectionProps) {
+const AboutSection: React.FC<any> = (props) => {
+  // Cast whatever the CMS/block system passes into our local shape
+  const { title, headline, content, image } = props as AboutSectionProps;
+
   const imgUrl = image?.data?.attributes?.url
     ? `${STRAPI_URL}${image.data.attributes.url}`
     : "/images/placeholder.jpg";
@@ -44,23 +44,27 @@ export default function AboutSection({
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 md:px-8 lg:px-12">
         {/* 🧠 Title + Headline */}
-        <motion.h4
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.35em] text-pink-500 md:text-sm"
-        >
-          {title}
-        </motion.h4>
+        {title && (
+          <motion.h4
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.35em] text-pink-500 md:text-sm"
+          >
+            {title}
+          </motion.h4>
+        )}
 
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="mb-10 text-center text-3xl font-extrabold leading-tight text-transparent bg-gradient-to-r from-pink-400 to-purple-500 bg-clip-text md:mb-12 md:text-5xl lg:text-6xl"
-        >
-          {headline}
-        </motion.h2>
+        {headline && (
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="mb-10 text-center text-3xl font-extrabold leading-tight text-transparent bg-gradient-to-r from-pink-400 to-purple-500 bg-clip-text md:mb-12 md:text-5xl lg:text-6xl"
+          >
+            {headline}
+          </motion.h2>
+        )}
 
         {/* ✨ Card: Text + Image */}
         <motion.div
@@ -72,19 +76,16 @@ export default function AboutSection({
           <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12">
             {/* Text */}
             <div>
-              <p className="whitespace-pre-line text-base leading-relaxed text-gray-300 md:text-lg">
-                {content}
-              </p>
+              {content && (
+                <p className="whitespace-pre-line text-base leading-relaxed text-gray-300 md:text-lg">
+                  {content}
+                </p>
+              )}
             </div>
 
             {/* Image */}
             <div className="relative h-64 w-full overflow-hidden rounded-3xl border border-pink-500/15 bg-white/5 md:h-80 lg:h-96">
-              <Image
-                src={imgUrl}
-                alt={imgAlt}
-                fill
-                className="object-cover"
-              />
+              <Image src={imgUrl} alt={imgAlt} fill className="object-cover" />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
           </div>
@@ -95,4 +96,6 @@ export default function AboutSection({
       </div>
     </section>
   );
-}
+};
+
+export default AboutSection;
