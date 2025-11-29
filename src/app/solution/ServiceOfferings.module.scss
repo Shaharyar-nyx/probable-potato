@@ -3,11 +3,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  background: radial-gradient(circle at 20% 0%, #12021f, #050008 55%, #020009 100%);
-  color: #f9fafb;
+  font-family: Poppins;
   padding: 6rem 1.5rem 5rem;
-  font-family: var(--font-inter), "Inter", system-ui, -apple-system, "Segoe UI",
-    sans-serif;
   position: relative;
   overflow: hidden;
 }
@@ -106,10 +103,14 @@
 }
 
 .journeyHeader h3 {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #e5e7eb;
-  text-align: left;
+   font-size: clamp(2.2rem, 3vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 0.6rem;
+  margin-bottom: 0.35rem;
+  background: linear-gradient(90deg, #ff00cc, #ff4fd8, #7928ca);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .journeyHeader p {
@@ -187,10 +188,14 @@
 }
 
 .columnsTitle {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #e5e7eb;
-  margin-bottom: 0.3rem;
+   font-size: clamp(2.2rem, 3vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 0.6rem;
+  margin-bottom: 0.35rem;
+  background: linear-gradient(90deg, #ff00cc, #ff4fd8, #7928ca);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .columnsSubtitle {
