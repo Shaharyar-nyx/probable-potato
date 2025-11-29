@@ -10,7 +10,12 @@ import { Button, Input } from "../UI";
 import { formatBtnId, STRAPI_ASSETS } from "@/lib";
 import Image from "next/image";
 
-const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, background_color }) => {
+const Footer: React.FC<any> = ({
+  company_logo,
+  navigations,
+  company_socials,
+  background_color,
+}) => {
   const {
     register,
     handleSubmit,
@@ -25,22 +30,59 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
     submit(data);
   };
 
+  // --- Safe helpers ---
+  const primaryNav = navigations?.data?.[0];
+  const legalNav = navigations?.data?.[1];
+
+  const servicesItems =
+    primaryNav?.attributes?.items?.data?.[0]?.attributes?.children?.data || [];
+
+  const companyItemsRaw =
+    primaryNav?.attributes?.items?.data?.[1]?.attributes?.children?.data || [];
+
+  // Explicitly keep only About Nyxlab + Leadership
+  const allowedCompanyTitles = ["about nyxlab", "leadership"];
+  const companyItems = companyItemsRaw
+    .filter(
+      ({ attributes: { title } }: any) =>
+        title && allowedCompanyTitles.includes(title.toLowerCase())
+    )
+    .slice(0, 2);
+
+  const infoItems = legalNav?.attributes?.items?.data || [];
+
+  const getHref = (url?: string) => {
+    if (!url) return "/";
+    if (url.startsWith("http")) return url;
+    if (url.startsWith("/")) return url;
+    return `/${url}`;
+  };
+
   return (
-    <footer className="bg-[#0b0b0b] text-white">
+    <footer className="bg-[#050509] text-white">
       <div className="mx-auto max-w-screen-2xl px-6 py-12 lg:px-16 lg:py-16">
-        <div className="flex flex-col space-y-8">
-          {/* Main Content */}
-          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:gap-16">
-            {/* Left Side - Logo and Description */}
+        <div className="flex flex-col space-y-10">
+          {/* ================= MAIN CONTENT ================= */}
+          <div className="flex flex-col justify-between gap-10 lg:flex-row lg:gap-16">
+            {/* Left: Logo + blurb + socials */}
             <div className="lg:max-w-md">
-              <Link className="block w-[120px] mb-6" href="/" id={formatBtnId("logo")}>
-                <img alt="DarkLab" src={`${STRAPI_ASSETS}${company_logo?.data?.attributes?.url}`} />
+              <Link
+                className="block w-[130px] mb-6"
+                href="/"
+                id={formatBtnId("logo")}
+              >
+                <img
+                  alt="Nyxlab"
+                  src={`${STRAPI_ASSETS}${company_logo?.data?.attributes?.url}`}
+                  className="h-auto w-full"
+                />
               </Link>
-              <p className="text-sm text-gray-400 mb-6">
-                Advanced cybersecurity solutions protecting organizations from evolving digital threats.
+
+              <p className="text-[13px] text-gray-400 mb-6 leading-relaxed">
+                Advanced cybersecurity solutions protecting organizations from
+                evolving digital threats.
               </p>
-              
-              {/* Social Links */}
+
               <div className="flex items-center space-x-4">
                 {company_socials?.data?.map(
                   ({
@@ -67,134 +109,238 @@ const Footer: React.FC<any> = ({ company_logo, navigations, company_socials, bac
                       href={link}
                       target="_blank"
                     >
-                      <Image src={`${STRAPI_ASSETS}${url}`} alt={name} width={20} height={20} />
+                      <Image
+                        src={`${STRAPI_ASSETS}${url}`}
+                        alt={name}
+                        width={20}
+                        height={20}
+                      />
                     </Link>
-                  ),
+                  )
                 )}
               </div>
             </div>
 
-            {/* Navigation Sections - Using your existing navigation data */}
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-3">
-              {/* Services Section */}
-              <div>
-                <h3 className="text-sm font-semibold mb-4 text-white">Solutions</h3>
-                <ul className="space-y-3">
-                  {navigations?.data?.[0]?.attributes?.items?.data?.[0]?.attributes?.children?.data?.map(
-                    ({ attributes: { title, url } }: any) => (
-                      <li key={url}>
-                        <Link
-                          id={formatBtnId(title)}
-                          className="text-sm text-gray-400 hover:text-white transition-colors"
-                          href={url?.startsWith("http") ? url : url?.startsWith("/") ? url : `/${url}`}
-                          {...(url?.startsWith("http") && { target: "_blank" })}
-                        >
-                          {title}
-                        </Link>
-                      </li>
-                    )
-                  ) || <li className="text-sm text-gray-500">No services available</li>}
-                </ul>
-              </div>
+            {/* Right: Columns + Subscribe */}
+            <div className="w-full">
+              {/* Grid:
+                  - 2 cols on mobile
+                  - 3 on md
+                  - 6 on lg+ with custom widths
+                    Services & Subscribe wider, Blog/Contact narrower
+               */}
+              <div
+                className="
+                  grid grid-cols-2 gap-8 
+                  md:grid-cols-3 
+                  lg:grid-cols-6 
+                  lg:[grid-template-columns:1.6fr_1.1fr_1.1fr_0.8fr_0.8fr_1.6fr]
+                "
+              >
+                {/* Services (wider) */}
+                <div>
+                  <h3 className="text-xs md:text-sm font-semibold mb-3 text-white">
+                    Services
+                  </h3>
+                  <ul className="space-y-2.5">
+                    {servicesItems.map(
+                      ({ attributes: { title, url } }: any) => (
+                        <li key={title}>
+                          <Link
+                            id={formatBtnId(title)}
+                            className="text-[13px] text-gray-400 hover:text-white transition-colors whitespace-nowrap"
+                            href={getHref(url)}
+                            {...(url?.startsWith("http") && {
+                              target: "_blank",
+                            })}
+                          >
+                            {title}
+                          </Link>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
 
-              {/* Company Section */}
-              <div>
-                <h3 className="text-sm font-semibold mb-4 text-white">Company</h3>
-                <ul className="space-y-3">
-                  {navigations?.data?.[0]?.attributes?.items?.data?.[1]?.attributes?.children?.data?.map(
-                    ({ attributes: { title, url } }: any) => (
-                      <li key={url}>
-                        <Link
-                          id={formatBtnId(title)}
-                          className="text-sm text-gray-400 hover:text-white transition-colors"
-                          href={url?.startsWith("http") ? url : url?.startsWith("/") ? url : `/${url}`}
-                          {...(url?.startsWith("http") && { target: "_blank" })}
-                        >
-                          {title}
-                        </Link>
-                      </li>
-                    )
-                  ) || <li className="text-sm text-gray-500">No links available</li>}
-                </ul>
-              </div>
+                {/* Company */}
+                <div>
+                  <h3 className="text-xs md:text-sm font-semibold mb-3 text-white">
+                    Company
+                  </h3>
+                  <ul className="space-y-2.5">
+                    {companyItems.map(
+                      ({ attributes: { title, url } }: any) => (
+                        <li key={title}>
+                          <Link
+                            id={formatBtnId(title)}
+                            className="text-[13px] text-gray-400 hover:text-white transition-colors whitespace-nowrap"
+                            href={getHref(url)}
+                            {...(url?.startsWith("http") && {
+                              target: "_blank",
+                            })}
+                          >
+                            {title}
+                          </Link>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
 
-              {/* Subscribe Section */}
-              <div className="lg:max-w-xs">
-                <h3 className="text-sm font-semibold mb-4 text-white">Subscribe</h3>
-                <p className="text-sm text-gray-400 mb-4">
-                  Stay updated with the latest cybersecurity insights and threat intelligence.
-                </p>
-                
-                <form id={formatBtnId("subscribe-form")} onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                  <div>
-                    <Input
-                      parentClassName="shadow-none border-none px-0 pt-0 !outline-none"
-                      className="text-sm w-full border-b border-gray-600 bg-transparent px-1 py-2 text-white placeholder-gray-500 outline-none focus:!outline-none focus:border-[#8b3dff] transition-colors"
+                {/* Information – Terms + Privacy */}
+                <div>
+                  <h3 className="text-xs md:text-sm font-semibold mb-3 text-white">
+                    Information
+                  </h3>
+                  <ul className="space-y-2.5">
+                    {infoItems.map(
+                      ({ attributes: { title, url } }: any) => (
+                        <li key={title}>
+                          <Link
+                            id={formatBtnId(title)}
+                            className="text-[13px] text-gray-400 hover:text-white transition-colors whitespace-nowrap"
+                            href={getHref(url)}
+                            {...(url?.startsWith("http") && {
+                              target: "_blank",
+                            })}
+                          >
+                            {title}
+                          </Link>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+
+                {/* Blog (narrow) */}
+                <div>
+                  <h3 className="text-xs md:text-sm font-semibold mb-3 text-white">
+                    Blog
+                  </h3>
+                  <ul className="space-y-2.5">
+                    <li>
+                      <Link
+                        id={formatBtnId("Blog")}
+                        className="text-[13px] text-gray-400 hover:text-white transition-colors whitespace-nowrap"
+                        href="/blog"
+                      >
+                        Blog
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Contact (narrow) */}
+                <div>
+                  <h3 className="text-xs md:text-sm font-semibold mb-3 text-white">
+                    Contact
+                  </h3>
+                  <ul className="space-y-2.5">
+                    <li>
+                      <Link
+                        id={formatBtnId("Contact us")}
+                        className="text-[13px] text-gray-400 hover:text-white transition-colors whitespace-nowrap"
+                        href="/contact"
+                      >
+                        Contact us
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Subscribe – wider again */}
+                <div className="col-span-2 md:col-span-3 lg:col-span-1 lg:max-w-xs">
+                  <h3 className="text-xs md:text-sm font-semibold mb-3 text-white">
+                    Subscribe
+                  </h3>
+                  <p className="text-[13px] text-gray-400 mb-3 leading-relaxed">
+                    Stay updated with the latest cybersecurity insights and
+                    threat intelligence.
+                  </p>
+
+                  <form
+                    id={formatBtnId("subscribe-form")}
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="space-y-3.5"
+                  >
+                    <div>
+                      <Input
+                        parentClassName="shadow-none border-none px-0 pt-0 !outline-none"
+                        className="text-[13px] w-full border-b border-gray-600 bg-transparent px-1 py-2 text-white placeholder-gray-500 outline-none focus:!outline-none focus:border-[#8b3dff] transition-colors"
+                        disabled={loading}
+                        placeholder="Your email"
+                        {...register("email", {
+                          required: "Email is required",
+                          pattern: {
+                            value:
+                              /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                            message: "Please enter a valid email address",
+                          },
+                        })}
+                        error={errors.email?.message}
+                      />
+                      <p className="text-[11px] text-gray-500 mt-2">
+                        Your data is secure with us
+                      </p>
+                    </div>
+
+                    <Button
+                      id={formatBtnId("subscribe")}
+                      className="
+                        w-full 
+                        inline-flex items-center justify-center gap-2
+                        py-[11px] px-[20px]
+                        rounded-[8px]
+                        font-semibold text-[0.9rem]
+                        cursor-pointer
+                        transition-all duration-300
+                        bg-gradient-to-r from-[#e20074] to-[#b600ff]
+                        text-white 
+                        shadow-[0_0_18px_rgba(226,0,116,0.4)]
+                        hover:opacity-90 hover:-translate-y-[2px]
+                      "
                       disabled={loading}
-                      placeholder="Your email"
-                      {...register("email", {
-                        required: "Email is required",
-                        pattern: {
-                          value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                          message: "Please enter a valid email address",
-                        },
-                      })}
-                      error={errors.email?.message}
-                    />
-                    <p className="text-xs text-gray-500 mt-2">Your data is secure with us</p>
-                  </div>
+                      loading={loading}
+                      type="submit"
+                    >
+                      Subscribe
+                    </Button>
 
-                  <Button
-  id={formatBtnId("subscribe")}
-  className="
-    w-full 
-    inline-flex items-center justify-center gap-2
-    py-[14px] px-[28px]
-    rounded-[8px]
-    font-semibold text-[0.95rem]
-    cursor-pointer
-    transition-all duration-300
-    bg-gradient-to-r from-[#e20074] to-[#b600ff]
-    text-white 
-    shadow-[0_0_20px_rgba(226,0,116,0.4)]
-    hover:opacity-90 hover:-translate-y-[2px]
-  "
-  disabled={loading}
-  loading={loading}
-  type="submit"
->
-  Subscribe
-</Button>
-
-                  {shouldShowSuccessMessage && (
-                    <p aria-live="polite" className="text-sm text-green-400">
-                      Thank you for subscribing!
-                    </p>
-                  )}
-                </form>
+                    {shouldShowSuccessMessage && (
+                      <p
+                        aria-live="polite"
+                        className="text-[13px] text-green-400 mt-1"
+                      >
+                        Thank you for subscribing!
+                      </p>
+                    )}
+                  </form>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Bottom Section */}
+          {/* ================= BOTTOM STRIP ================= */}
           <div className="border-t border-[#1a1a1a] pt-6">
             <div className="flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
-              <div className="text-sm text-gray-400">
-                © {dayjs().year()} Nyxlab. All rights reserved.
+              <div className="text-[13px] text-gray-400">
+                © {dayjs().year()} DarkLab. All rights reserved.
               </div>
-              
-              <div className="flex items-center space-x-6 text-sm text-gray-400">
-                {navigations?.data?.[1]?.attributes?.items?.data?.map(({ attributes: { title, url } }: any) => (
-                  <Link
-                    key={url}
-                    id={formatBtnId(title)}
-                    className="hover:text-white transition-colors"
-                    href={url?.startsWith("http") ? url : url?.startsWith("/") ? url : `/${url}`}
-                    {...(url?.startsWith("http") && { target: "_blank" })}
-                  >
-                    {title}
-                  </Link>
-                )) || <span className="text-gray-500">No links available</span>}
+
+              <div className="flex flex-wrap items-center justify-center gap-4 text-[13px] text-gray-400">
+                {infoItems.map(
+                  ({ attributes: { title, url } }: any) => (
+                    <Link
+                      key={title}
+                      id={formatBtnId(`bottom-${title}`)}
+                      className="hover:text-white transition-colors whitespace-nowrap"
+                      href={getHref(url)}
+                      {...(url?.startsWith("http") && { target: "_blank" })}
+                    >
+                      {title}
+                    </Link>
+                  )
+                )}
               </div>
             </div>
           </div>

@@ -1,39 +1,46 @@
+/* ===========================
+   SOLUTION SECTION WRAPPER
+=========================== */
 .solutionSection {
+  width: 100%;
+  padding: 6rem 0;
+  background: radial-gradient(circle at 20% 20%, #0a0014, #000);
+  position: relative;
   color: #fff;
-  padding: 110px 8%;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: var(--font-inter), "Inter", sans-serif;
-  background: radial-gradient(circle at 20% 20%, #0a0014, #000);
-  position: relative;
   overflow: hidden;
 
   &::before {
     content: "";
     position: absolute;
-    top: -25%;
-    left: -15%;
+    top: -20%;
+    left: -10%;
     width: 80vw;
     height: 80vw;
-    background: radial-gradient(circle, rgba(255, 0, 204, 0.12), transparent);
-    filter: blur(70px);
+    background: radial-gradient(circle, rgba(255, 0, 204, 0.08), transparent);
+    filter: blur(60px);
     z-index: 0;
   }
 }
 
+/* ===========================
+   TOP TEXT (HEADINGS)
+=========================== */
 .topText {
   text-align: center;
-  margin-bottom: 70px;
+  margin-bottom: 80px;
   max-width: 720px;
   position: relative;
   z-index: 5;
 
   h2 {
-    font-size: 2.7rem;
+    font-size: 2.8rem;
     font-weight: 700;
     line-height: 1.3;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     background: linear-gradient(90deg, #ff00cc, #7928ca);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -46,66 +53,68 @@
   }
 }
 
-/* ===== Desktop / Laptop / Tablet layout (>= 769px) ===== */
+/* ===========================
+   DESKTOP / TABLET LAYOUT
+=========================== */
 .contentArea {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 80px;
   width: 100%;
-  max-width: 1200px;
-  position: relative;
+  max-width: 1300px;
+  flex-wrap: wrap;
   z-index: 5;
 }
 
-/* Left column list */
+/* LEFT PANEL (DESKTOP LIST) */
 .leftPanel {
+  flex: 0 0 42%;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  max-height: 460px;
-  padding-right: 4px;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 
+/* Individual side items */
 .sideItem {
-  width: 100%;
-  text-align: left;
-  padding: 18px 20px 16px 26px;
+  padding: 24px 22px 16px 30px;
   cursor: pointer;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(12, 10, 24, 0.96);
+  border-left: 3px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
   position: relative;
-  transition: all 0.25s ease;
-  outline: none;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  transition: all 0.4s ease;
+  text-align: left;
 
-  /* subtle left glow bar – closer to your original theme */
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
   &::before {
     content: "";
     position: absolute;
+    top: 0;
     left: 0;
-    top: 8px;
-    bottom: 8px;
-    width: 3px;
-    border-radius: 999px;
+    width: 5px;
+    height: 100%;
     background: linear-gradient(180deg, #ff00cc, #7928ca);
     opacity: 0;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.4s;
+    border-radius: 10px;
   }
 
-  &:hover {
-    background: rgba(24, 16, 52, 0.98);
-    border-color: rgba(255, 0, 204, 0.28);
-    transform: translateY(-1px);
+  span {
+    font-size: 22px;
+    font-weight: 600;
+    color: #cfcfcf;
+  }
+
+  .subDesc {
+    margin-top: 8px;
+    font-size: 1rem;
+    color: #bb7cff;
+    line-height: 1.6;
   }
 }
 
@@ -113,236 +122,235 @@
   display: flex;
   align-items: center;
   gap: 12px;
-
-  span {
-    font-size: 1.02rem;
-    font-weight: 600;
-    color: #e3e3e3;
-  }
 }
 
-.sideIcon {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: radial-gradient(circle at 30% 20%, #ff00cc33, #12051f);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+.sideIcon img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
 }
 
-.subDesc {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #b8a7ff;
-  line-height: 1.6;
-}
-
-/* Active state */
-.active {
-  background: radial-gradient(circle at top left, rgba(255, 0, 204, 0.18), #130822);
-  border-color: rgba(255, 0, 204, 0.45);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.78);
-  transform: translateY(-1px);
+.sideItem.active {
+  background: rgba(255, 0, 204, 0.08);
+  transform: scale(1.02);
 
   &::before {
     opacity: 1;
   }
 
-  .sideItemHeader span {
-    color: #ffffff;
+  span {
+    color: #fff;
   }
 }
 
-/* Right column image preview */
+/* RIGHT IMAGE WRAPPER (DESKTOP) */
 .imageWrapper {
-  border-radius: 22px;
+  flex: 0 0 45%;
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
   height: 420px;
-  transition: all 0.35s ease;
-  box-shadow:
-    0 0 30px rgba(255, 0, 204, 0.16),
-    0 0 60px rgba(121, 40, 202, 0.15);
-  cursor: pointer;
-  background: radial-gradient(circle at top, #1a1029, #050007);
-}
-
-.imageWrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 22px;
-  transition: all 0.45s ease;
-}
-
-.imageWrapper .overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: 18px 22px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-  border-radius: 22px;
-  pointer-events: none;
-
-  span {
-    font-size: 1rem;
-    font-weight: 600;
-    background: linear-gradient(90deg, #ff00cc, #7928ca);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-}
-
-.imageWrapper:hover img {
-  filter: brightness(0.8);
-  transform: scale(1.03);
-}
-
-/* ===== Mobile cards (this part you said is good, kept as-is) ===== */
-.mobileCards {
-  display: none; /* hidden on desktop/tablet */
-  width: 100%;
-  max-width: 1200px;
-  margin-top: 24px;
-  z-index: 5;
-}
-
-.mobileCard {
-  border-radius: 18px;
-  overflow: hidden;
-  background: radial-gradient(circle at top left, #140821, #05020b);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
-  margin-bottom: 18px;
-  cursor: pointer;
-}
-
-.mobileImageWrapper {
-  width: 100%;
-  height: 190px;
-  overflow: hidden;
+  transition: all 0.5s ease;
+  box-shadow: 0 0 30px rgba(255, 0, 204, 0.15),
+    0 0 60px rgba(121, 40, 202, 0.1);
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 20px;
+    transition: all 0.6s ease;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(0, 0, 0, 0.65)
+    );
+    border-radius: 20px;
+
+    span {
+      font-size: 1.05rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #ff00cc, #7928ca);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  &:hover img {
+    filter: brightness(0.7) blur(1px);
     transform: scale(1.03);
-    transition: transform 0.5s ease;
+  }
+
+  &:hover .overlay span {
+    transform: translateX(3px);
   }
 }
 
-.mobileCardBody {
-  padding: 16px 18px 18px;
-}
-
-.mobileCardBody h3 {
-  font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.mobileCardBody p {
-  font-size: 0.9rem;
-  color: #c4c4c4;
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-
-.mobileCta {
-  font-size: 0.9rem;
-  font-weight: 600;
-  background: linear-gradient(90deg, #ff00cc, #7928ca);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.mobileCard:hover .mobileImageWrapper img {
-  transform: scale(1.06);
-}
-
-/* ====== RESPONSIVE ====== */
-
-@media (max-width: 1200px) {
-  .solutionSection {
-    padding: 90px 6%;
-  }
-
+/* ===========================
+   DESKTOP: SCROLLABLE LEFT PANEL
+=========================== */
+@media (min-width: 901px) {
   .contentArea {
-    gap: 40px;
+    align-items: stretch;
   }
 
-  .topText h2 {
-    font-size: 2.4rem;
-  }
+  .leftPanel {
+    max-height: 420px;
+    overflow-y: auto;
+    padding-right: 8px;
 
-  .imageWrapper {
-    height: 380px;
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #a855f7 #111;
+
+    /* Chrome / Safari */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #111;
+      border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #a855f7, #ff4fd8);
+      border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #c084fc, #ff76df);
+    }
   }
 }
 
-@media (max-width: 900px) and (min-width: 769px) {
-  .contentArea {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
-    gap: 32px;
-  }
-
-  .imageWrapper {
-    height: 340px;
-  }
+/* ===========================
+   MOBILE CARDS (INTACT VIEW)
+=========================== */
+.mobileCards {
+  display: none;
 }
 
-/* Tablet & down: switch to mobile cards */
-@media (max-width: 768px) {
+/* ===========================
+      RESPONSIVE
+=========================== */
+
+/* Tablets & down: switch to cards, hide desktop layout */
+@media (max-width: 900px) {
   .solutionSection {
-    padding: 80px 5%;
+    padding: 4rem 1.5rem;
   }
 
   .topText {
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
 
     h2 {
-      font-size: 2rem;
+      font-size: 2.1rem;
     }
 
     p {
-      font-size: 0.95rem;
+      font-size: 0.96rem;
     }
   }
 
   .contentArea {
-    display: none; /* hide 2-column layout on mobile */
+    display: none; /* hide desktop layout on mobile/tablet */
   }
 
   .mobileCards {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    z-index: 5;
   }
-}
 
-@media (max-width: 480px) {
-  .solutionSection {
-    padding: 70px 5% 60px;
-  }
+  .mobileCard {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
 
-  .topText h2 {
-    font-size: 1.8rem;
+    &:hover {
+      border-color: rgba(255, 79, 216, 0.7);
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-3px);
+    }
   }
 
   .mobileImageWrapper {
-    height: 170px;
+    width: 100%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
   }
 
   .mobileCardBody {
-    padding: 14px 14px 16px;
+    padding: 1.2rem 1.3rem 1.3rem;
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #c9c9c9;
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+
+    .mobileCta {
+      display: inline-block;
+      margin-top: 0.25rem;
+      color: #ff4fd8;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .solutionSection {
+    padding: 3.5rem 1.25rem;
+  }
+
+  .topText h2 {
+    font-size: 1.9rem;
+  }
+
+  .mobileCardBody {
+    padding: 1.1rem 1.1rem 1.2rem;
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    p {
+      font-size: 0.86rem;
+    }
+
+    .mobileCta {
+      font-size: 0.9rem;
+    }
   }
 }
