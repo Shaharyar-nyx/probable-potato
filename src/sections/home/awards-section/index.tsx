@@ -1,28 +1,27 @@
 "use client";
+
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { STRAPI_ASSETS } from "@/lib/constants";
-import * as LucideIcons from "lucide-react";
 import style from "./styles.module.scss";
 
 interface Award {
   Title: string;
-  Description: string;
-  Icon?: string;
+  Description?: string; // not used in UI but kept for type compatibility
+  Icon?: string;        // not used here
   Logo?: {
     data?: {
       attributes?: {
-        url: string;
-        alternativeText: string;
+        url?: string;
+        alternativeText?: string;
       };
     };
   };
 }
 
 interface AwardsSectionProps {
-  Label?: string;
-  Heading?: string;
+  Label?: string;     // e.g. "Our Certifications"
+  Heading?: string;   // short subheading
   Awards?: Award[];
   [key: string]: any;
 }
@@ -32,90 +31,52 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
   Heading = "",
   Awards = [],
 }) => {
-  const IconComp = (name: string, size = 18, color = "#fff") => {
-    const LucideIcon = (LucideIcons as any)[name];
-    return LucideIcon
-      ? <LucideIcon size={size} color={color} strokeWidth={2.5} />
-      : null;
-  };
-
-  const BgIconComp = (name: string) => {
-    const LucideIcon = (LucideIcons as any)[name];
-    return LucideIcon ? (
-      <LucideIcon
-        size={120}
-        color="#ff4fd8"
-        strokeWidth={1}
-        className={style.bgIcon}
-      />
-    ) : null;
-  };
-
-  // Duplicate list for seamless infinite scroll
-  const loopList = [...Awards, ...Awards];
+  if (!Label && !Heading && (!Awards || Awards.length === 0)) return null;
 
   return (
     <section className={style.awardsSection}>
-      <div className={style.glowBg} />
+      <div className={style.bgLayer} />
 
-      <div className="max-w-6xl mx-auto text-center relative z-10 px-4">
-        {Label && <h2 className={style.heading}>{Label}</h2>}
-        {Heading && <p className={style.para}>{Heading}</p>}
+      <div className={style.inner}>
+        {(Label || Heading) && (
+          <header className={style.header}>
+            {Label && <h2 className={style.heading}>{Label}</h2>}
+            {Heading && <p className={style.subheading}>{Heading}</p>}
+          </header>
+        )}
 
-        {/* Auto-scrolling slider */}
-        <div className={style.sliderWrapper}>
-          <motion.div
-            className={style.sliderTrack}
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              duration: 18,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-          >
-            {loopList.map((award, i) => (
-              <div className={style.card} key={`${award.Title}-${i}`}>
-                {/* Tag row */}
-                {award.Title && (
-                  <div className={style.tag}>
-                    <div className={style.iconWrap}>
-                      {award.Icon && IconComp(award.Icon)}
-                    </div>
-                    <span>{award.Title}</span>
-                  </div>
-                )}
+        <div className={style.grid}>
+          {Awards?.map((award, index) => {
+            const logoUrl = award.Logo?.data?.attributes?.url
+              ? `${STRAPI_ASSETS}${award.Logo.data.attributes.url}`
+              : null;
+            const logoAlt =
+              award.Logo?.data?.attributes?.alternativeText || award.Title;
 
-                {/* Description (optional – you can remove if you want pure image cards) */}
-                {award.Description && (
-                  <p className={style.desc}>{award.Description}</p>
-                )}
-
-                {/* 600 x 600 image */}
-                {award.Logo?.data?.attributes?.url && (
+            return (
+              <article
+                key={`${award.Title}-${index}`}
+                className={style.card}
+              >
+                {logoUrl && (
                   <div className={style.logoWrap}>
                     <Image
-                      src={`${STRAPI_ASSETS}${award.Logo.data.attributes.url}`}
-                      alt={
-                        award.Logo.data.attributes.alternativeText ||
-                        award.Title ||
-                        "award"
-                      }
-                      width={600}
-                      height={600}
+                      src={logoUrl}
+                      alt={logoAlt}
+                      width={80}
+                      height={80}
                       className={style.logo}
                     />
                   </div>
                 )}
 
-                {/* Background Lucide icon */}
-                {award.Icon && (
-                  <div className={style.bgIconWrap}>
-                    {BgIconComp(award.Icon)}
-                  </div>
+                {/* Optional short label under the logo */}
+                {award.Title && (
+                  <p className={style.certTitle}>{award.Title}</p>
                 )}
-              </div>
-            ))}
-          </motion.div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

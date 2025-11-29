@@ -8,7 +8,7 @@ import { Metadata } from "next";
 // Import any blocks you want to use here
 import { HeroDark } from "@/sections";
 import { CallToAction } from "@/sections";
-import PrivacyPolicyBlock from "@/sections/terms-services/privacy";
+import TermsTextBlock from "@/sections/terms-services/terms";
 
 // OPTIONAL: If Terms page needs these later
 // import OfferingsDark from "@/sections/...";
@@ -22,7 +22,7 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
   hero_section: (props) => (
     <>
       <HeroDark {...props} />
-            <PrivacyPolicyBlock />
+            <TermsTextBlock />
 
     </>
   ),
@@ -37,29 +37,23 @@ const blockComponents: Record<string, React.FC<BlockType>> = {
 /* ---------------------------
      FETCH STRAPI PAGE
 ---------------------------- */
-async function getPrivacyPolicyData() {
-  return getPageBySlug("privacy-policy");
+async function getTermsOfServiceData() {
+  return getPageBySlug("terms-of-service");
 }
 
 
 /* ---------------------------
      MAIN PAGE COMPONENT
 ---------------------------- */
-export default async function PrivacyPolicy() {
-  const data = await getPrivacyPolicyData();
+export default async function TermsOfServicePage() {
+  const data = await getTermsOfServiceData();
   console.log("Terms of Service Data:", data);
 
   if (!data?.blocks) return null;
 
   return (
-    <main>
-  {/* 🔥 STATIC CONTENT - Always visible */}
-
-      {/* 🎯 STRAPI BLOCKS */}
-      {data?.blocks && (
-        <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
-      )}    </main>
+   <main>
+               <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
+           </main>
   );
 }
-
-
