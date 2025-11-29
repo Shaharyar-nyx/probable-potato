@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,11 +29,10 @@ interface LeadershipProps {
 
 const STRAPI_ASSETS = "https://shark-app-tmqz4.ondigitalocean.app";
 
-const LeadershipSection: React.FC<LeadershipProps> = ({
-  Title,
-  Description,
-  team_member,
-}) => {
+const LeadershipSection: React.FC<any> = (props) => {
+  // Cast incoming props from CMS/block into our shape
+  const { Title, Description, team_member } = props as LeadershipProps;
+
   if (!team_member || team_member.length === 0) return null;
 
   // Top leader first, then others – but visually same card layout
@@ -66,11 +66,7 @@ const LeadershipSection: React.FC<LeadershipProps> = ({
                 className="relative flex flex-col items-center text-center bg-gradient-to-b from-[#0a0a0a] to-[#111] border border-gray-800 rounded-2xl p-7 shadow-[0_0_30px_rgba(0,0,0,0.55)] hover:border-[#ff4fd8] transition"
               >
                 {/* Small badge for the top leader (optional, can remove) */}
-                {isTop && (
-                  <span className="absolute -top-3 px-3 py-0.5 text-[10px] font-semibold tracking-wide uppercase rounded-full bg-[#ff4fd8] text-black">
-                    Lead
-                  </span>
-                )}
+                
 
                 {/* Avatar */}
                 {member.Image?.data?.attributes?.url && STRAPI_ASSETS && (
@@ -118,7 +114,7 @@ const LeadershipSection: React.FC<LeadershipProps> = ({
 
                 {/* Bio */}
                 {member.Description && (
-                  <p className="text-gray-400 text-[11px] md:text-xs mt-4 leading-relaxed">
+                  <p className="text-gray-400 text-[11px] md:text-xs mt-4 leading-relaxed text-left">
                     {member.Description}
                   </p>
                 )}
