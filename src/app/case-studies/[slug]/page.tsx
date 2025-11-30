@@ -34,19 +34,23 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
 
         <div className="relative z-10 max-w-2xl space-y-6">
-       <h1
+        <h1
   className="font-bold text-white leading-snug mb-2
              text-lg sm:text-2xl md:text-3xl lg:text-4xl"
 >
- Cyber Insights Loading…    <br className="hidden sm:block" /> 
+ Cyber Insights Coming Soon   <br className="hidden sm:block" /> 
 </h1>
 
 <p
   className="text-gray-300 leading-relaxed
              text-sm sm:text-base md:text-lg max-w-md sm:max-w-lg mx-auto md:mx-0"
 >
-We’re preparing expert-backed blogs on cybersecurity, threat intelligence, and real-world case studies.<br/>
-Stay tuned — something powerful is on its way.
+We’re preparing expert-backed blogs on cybersecurity, threat intelligence, and real-world case studies.
+</p>
+<p
+  className="text-sm sm:text-base font-bold leading-[1.3] mb-[18px] bg-gradient-to-r from-[#ff00cc] to-[#7928ca] bg-clip-text text-transparent max-w-md sm:max-w-lg mx-auto md:mx-0"
+>
+  Stay tuned — something powerful is on its way.
 </p>
         </div>
       </section>
