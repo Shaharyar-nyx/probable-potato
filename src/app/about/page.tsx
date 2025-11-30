@@ -1,34 +1,26 @@
 import React from "react";
 import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
-import {
-  HeroDark,
-  OfferingsDark,
-  IntelligenceDark,
-  OurServices,
-  CallToAction,
-} from "@/sections";
-import HowWorksSection from "@/sections/darklab-intelligence/how-works-section";
+import { HeroDark } from "@/sections";
 import { ThreatAlertBar } from "@/sections/home/threat";
-import IntelligenceLayersDark from "@/sections/darklab-intelligence/intelligence-layers-dark";
-import InternetInfrastructureFlow from "@/sections/darklab-intelligence/internetIn-frastructure-flow";
+import AboutSection from "@/sections/darklab-intelligence/content-section";
 import { Metadata } from "next";
 
-// 🔹 Fetch DNS page data
-async function getDnsPageData() {
-  return getPageBySlug("dns");
+// 🔹 Fetch data function
+async function getAboutPageData() {
+  return getPageBySlug("about-us");
 }
 
-// 🔥 SEO Metadata just like Contact Us & About Us pages
+// 🔥 Add Metadata like Contact Us page
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await getDnsPageData();
+  const data = await getAboutPageData();
 
   if (!data?.seo) {
     return {
-      title: "Nyxlab – DNS Intelligence",
+      title: "Nyxlab – About Us",
       description: "",
       openGraph: {
-        title: "Nyxlab – DNS Intelligence",
+        title: "Nyxlab – About Us",
         description: "",
         type: "website",
         siteName: "Nyxlab",
@@ -36,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
       },
       twitter: {
         card: "summary_large_image",
-        title: "Nyxlab – DNS Intelligence",
+        title: "Nyxlab – About Us",
         description: "",
       },
     };
@@ -77,10 +69,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// 🔹 DNS PAGE
-export default async function DnsPage() {
-  const data = await getDnsPageData();
-  console.log("data", data);
+// 🔹 MAIN ABOUT PAGE
+export default async function AboutPage() {
+  const data = await getAboutPageData();
+  console.log("about page data", data);
 
   return (
     <main>
@@ -93,12 +85,7 @@ export default async function DnsPage() {
                 <ThreatAlertBar />
               </>
             ),
-            ComponentBlocksOfferingsDark: OfferingsDark,
-            ComponentBlocksIntelligenceDark: IntelligenceDark,
-            ComponentBlocksOurServices: OurServices,
-            ComponentBlocksIntelligenceLayersDark: IntelligenceLayersDark,
-            ComponentBlocksHowWorks: HowWorksSection,
-            ComponentBlocksCallToActionSection: CallToAction,
+            ComponentBlocksContentSection: AboutSection,
           }}
           blocks={data.blocks}
         />

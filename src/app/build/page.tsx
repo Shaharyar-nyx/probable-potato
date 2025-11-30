@@ -1,49 +1,36 @@
 import React from "react";
-
 import { BlockType } from "@/types";
-import { getPageBySlug , STRAPI_ASSETS } from "@/lib";
+import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { Metadata } from "next";
+import { HeroDark, CallToAction } from "@/sections";
+import { ThreatAlertBar } from "@/sections/home/threat";
+import ResearchSection from "@/sections/darklab-intelligence/research-section";
+import HowWorksSection from "@/sections/darklab-intelligence/how-works-section";
+import DarkBrand from "@/sections/darklab-intelligence/dark-brand";
 
-// Import any blocks you want to use here
-import { HeroDark } from "@/sections";
-import { CallToAction } from "@/sections";
-import PrivacyPolicyBlock from "@/sections/terms-services/privacy";
-
-// OPTIONAL: If Terms page needs these later
-// import OfferingsDark from "@/sections/...";
-// import IntelligenceDark from "@/sections/...";
-
-
-/* ---------------------------
-   BLOCK REGISTRY FOR THIS PAGE
----------------------------- */
+// 🔹 Block components mapping
 const blockComponents: Record<string, React.FC<BlockType>> = {
   hero_section: (props) => (
     <>
       <HeroDark {...props} />
-            <PrivacyPolicyBlock />
-
+      <ThreatAlertBar />
     </>
   ),
+  ComponentBlocksResearchExists: ResearchSection,
+  ComponentBlocksDarkBrand: DarkBrand,
+  ComponentBlocksHowWorks: HowWorksSection,
   ComponentBlocksCallToActionSection: CallToAction,
-
-  // You can add more if needed
-  // ComponentBlocksOfferingsDark: OfferingsDark,
-  // ComponentBlocksIntelligenceDark: IntelligenceDark,
 };
 
-
-/* ---------------------------
-     FETCH STRAPI PAGE
----------------------------- */
-async function getPrivacyPolicyData() {
-  return getPageBySlug("privacy-policy");
+// 🔹 Fetch page data
+async function getNyxlabBuildPageData() {
+  return getPageBySlug("nyxlab-build");
 }
 
 // 🔹 SEO Metadata
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await getPrivacyPolicyData();
+  const data = await getNyxlabBuildPageData();
 
   if (!data?.seo) {
     return {
@@ -99,24 +86,18 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-/* ---------------------------
-     MAIN PAGE COMPONENT
----------------------------- */
-export default async function PrivacyPolicy() {
-  const data = await getPrivacyPolicyData();
-  console.log("Terms of Service Data:", data);
+// 🔹 Page Component
+async function NyxlabBuildPage() {
+  const data = await getNyxlabBuildPageData();
+  console.log("nyxlab-build data", data);
 
   if (!data?.blocks) return null;
 
   return (
     <main>
-  {/* 🔥 STATIC CONTENT - Always visible */}
-
-      {/* 🎯 STRAPI BLOCKS */}
-      {data?.blocks && (
-        <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
-      )}    </main>
+      <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
+    </main>
   );
 }
 
-
+export default NyxlabBuildPage;
