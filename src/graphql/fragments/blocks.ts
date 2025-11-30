@@ -360,7 +360,7 @@ export const BLOCKS_FRAGMENT = `
              ... on ComponentBlocksAwardsSection {
   Label
   Heading
-  Awards {
+  Awards (pagination: { limit: 100 }){
     Title
     Description
     Logo {
