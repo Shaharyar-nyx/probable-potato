@@ -131,7 +131,6 @@ export const TestimonialDarksSection: React.FC<TestimonialDarksSectionProps> = (
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h3 className={styles.trustedTitle}>Trusted by leading brands</h3>
 
           <div className={styles.logoSliderWrapper}>
             <div className={styles.fadeLeft}></div>
