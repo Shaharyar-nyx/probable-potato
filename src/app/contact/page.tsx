@@ -1,37 +1,27 @@
 import React from "react";
+import { HeroDark } from "@/sections";
 import { BlockType } from "@/types";
-import { getPageBySlug , STRAPI_ASSETS } from "@/lib";
+import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { Metadata } from "next";
-
-import { HeroDark } from "@/sections";
-import { ThreatAlertBar } from "@/sections/home/threat";
-import CaseStudiesList from "../blog/page"; // ✅ correct import path
+import ContactFormSection from "@/components/contact-form/contactus-form";
 
 const blockComponents: Record<string, React.FC<BlockType>> = {
-  hero_section: (props) => (
-    <>
-      <HeroDark {...props} />
-      <ThreatAlertBar />
-    </>
-  ),
-  case_study_list: () => <CaseStudiesList />, // ✅ will show CaseStudiesList here
+  hero_section: HeroDark,
 };
 
-// 🗂️ Fetch page content from Strapi by slug
-async function getOurWorkPageData() {
-  return getPageBySlug("our-work");
+async function getContactUsData() {
+  return getPageBySlug("contact-us");
 }
-// 🔹 SEO Metadata
-export async function generateMetadata(): Promise<Metadata> {
-  const data = await getOurWorkPageData();
 
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getContactUsData();
   if (!data?.seo) {
     return {
-      title: "Nyxlab Build",
+      title: "Nyxlab",
       description: "",
       openGraph: {
-        title: "Nyxlab Build",
+        title: "Nyxlab",
         description: "",
         type: "website",
         siteName: "Nyxlab",
@@ -39,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
       },
       twitter: {
         card: "summary_large_image",
-        title: "Nyxlab Build",
+        title: "Nyxlab",
         description: "",
       },
     };
@@ -80,17 +70,18 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-async function OurWorkPage() {
-  const data = await getOurWorkPageData();
-  console.log("Our Work Page Data:", data);
-
-  if (!data?.blocks) return null;
+async function ContactUs() {
+  const data = await getContactUsData();
+  if (!data?.blocks) {
+    return null;
+  }
 
   return (
-    <main>
+    <main className="min-h-screen bg-black">
       <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
+      <ContactFormSection />
     </main>
   );
 }
 
-export default OurWorkPage;
+export default ContactUs;

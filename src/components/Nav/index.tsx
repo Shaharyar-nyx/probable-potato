@@ -90,7 +90,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
             <Link href="/" id={formatBtnId("logo")} className="flex items-center">
               {logoUrl && (
                 <img 
-                  alt="Cyberbay" 
+                  alt="nyxlab" 
                   src={STRAPI_ASSETS + logoUrl} 
                   className="h-19 w-100"
                 />
@@ -116,7 +116,7 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
           <Link href="/" id={formatBtnId("logo")} className="flex items-center">
             {logoUrl && (
               <img 
-                alt="Cyberbay" 
+                alt="nyxlab" 
                 src={STRAPI_ASSETS + logoUrl} 
                 className="h-8 w-auto"
               />

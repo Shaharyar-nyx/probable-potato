@@ -1,5 +1,5 @@
 import React from "react";
-import { getPageBySlug } from "@/lib";
+import { getPageBySlug , STRAPI_ASSETS} from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { Metadata } from "next";
 

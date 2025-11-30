@@ -223,7 +223,7 @@ const Footer: React.FC<any> = ({
                       <Link
                         id={formatBtnId("Blog")}
                         className="text-[13px] text-gray-400 hover:text-white transition-colors whitespace-nowrap"
-                        href="/case-studies"
+                        href="/blog"
                       >
                         Blog
                       </Link>
@@ -241,7 +241,7 @@ const Footer: React.FC<any> = ({
                       <Link
                         id={formatBtnId("Contact us")}
                         className="text-[13px] text-gray-400 hover:text-white transition-colors whitespace-nowrap"
-                        href="/contact-us"
+                        href="/contact"
                       >
                         Contact us
                       </Link>

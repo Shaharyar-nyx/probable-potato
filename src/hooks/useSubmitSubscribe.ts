@@ -1,68 +1,52 @@
+// src/hooks/useSubmitSubscribe.ts
 "use client";
 
 import { useState } from "react";
-import useCaptcha, { CaptchaAction } from "./useCaptcha";
-import { SubscribeType } from "@/types";
-import { NyxlabClient } from "@/lib/forms";
-import { UseFormReset } from "react-hook-form";
-import { toast } from "react-toastify";
+import type { SubscribeType } from "@/types"; // <-- if this path fails, use "../types" or correct alias
 
-export async function submitSubscribe(
-  payload: SubscribeType,
-  reset: UseFormReset<SubscribeType>,
-  onDone: (error: Error | null, data: { message: string } | null) => void,
-) {
-  const channel = "Subscribe";
+type HookReturn = {
+  submit: (data: SubscribeType) => Promise<void>;
+  loading: boolean;
+  error: string | null;
+  called: boolean;
+};
 
-  const payloadData = {
-    data: {
-      body: {
-        ...payload,
-        channel,
-      },
-      name: channel,
-      key: channel?.toLowerCase()?.replace(/\s+/g, "_"),
-    },
+export function useSubmitSubscribe(reset: () => void): HookReturn {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [called, setCalled] = useState(false);
+
+  const submit = async (data: SubscribeType) => {
+    setLoading(true);
+    setError(null);
+    setCalled(false);
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // 👇 ONLY send email, nothing else – no captcha token
+        body: JSON.stringify({ email: data.email }),
+      });
+
+      const json = await res.json();
+
+      if (!res.ok) {
+        throw new Error(json.error || "Failed to subscribe");
+      }
+
+      // success – trigger thank-you message on the footer
+      setCalled(true);
+      reset();
+    } catch (e: any) {
+      console.error("Subscribe error:", e);
+      setError(e.message || "Failed to subscribe");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  try {
-    await NyxlabClient.createContact(JSON.stringify(payloadData));
-    reset();
-    onDone(null, { message: "Thank you for reaching out! We will get back to you shortly." });
-     toast.success("Thank you! We will get back to you shortly.");
-  } catch (error) {
-    console.error("Failed to create contact:", error);
-    onDone(error instanceof Error ? error : new Error("Failed to submit form"), null);
-    toast.error("Failed to submit form");
-  }
-}
-
-export function useSubmitSubscribe(reset: UseFormReset<SubscribeType>) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
-  const [data, setData] = useState<{ message: string } | null>(null);
-  const [called, setCalled] = useState(false);
-  const executeRecaptcha = useCaptcha();
-
-  function submit(payload: SubscribeType) {
-    setLoading(true);
-
-    executeRecaptcha(CaptchaAction.CONTACT_SALES_FORM_SUBMIT)
-      .then(() => {
-        console.log("Captcha verified");
-        submitSubscribe(payload, reset, (err, data) => {
-          setLoading(false);
-          setCalled(true);
-          setError(err);
-          setData(data);
-        });
-      })
-      .catch((err) => {
-        console.log("Captcha verification failed");
-        setLoading(false);
-        setCalled(true);
-        setError(err instanceof Error ? err : new Error("Captcha verification failed"));
-      });
-  }
-  return { loading, error, data, submit, called };
+  return { submit, loading, error, called };
 }
