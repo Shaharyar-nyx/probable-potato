@@ -49,7 +49,7 @@ const AboutSection: React.FC<any> = (props) => {
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-4 text-center text-lg font-semibold uppercase tracking-[0.35em] text-pink-500 md:text-sm"
+className="mb-4 text-center text-2xl font-semibold uppercase tracking-[0.35em] text-pink-500"
           >
             {title}
           </motion.h4>
