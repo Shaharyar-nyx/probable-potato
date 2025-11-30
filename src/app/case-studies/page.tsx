@@ -136,9 +136,9 @@ export default function CaseStudiesList() {
 We’re preparing expert-backed blogs on cybersecurity, threat intelligence, and real-world case studies.
 </p>
 <p
-  className="text-[2.8rem] font-bold leading-[1.3] mb-[18px] bg-gradient-to-r from-[#ff00cc] to-[#7928ca] bg-clip-text text-transparent max-w-md sm:max-w-lg mx-auto md:mx-0"
+  className="text-sm sm:text-base font-bold leading-[1.3] mb-[18px] bg-gradient-to-r from-[#ff00cc] to-[#7928ca] bg-clip-text text-transparent max-w-md sm:max-w-lg mx-auto md:mx-0"
 >
-  Your Text Here
+  Stay tuned — something powerful is on its way.
 </p>
 
   </div>
