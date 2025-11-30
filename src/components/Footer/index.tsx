@@ -49,6 +49,7 @@ const Footer: React.FC<any> = ({
     )
     .slice(0, 2);
 
+  // Legal items for "Information" column ONLY
   const infoItems = legalNav?.attributes?.items?.data || [];
 
   const getHref = (url?: string) => {
@@ -222,7 +223,7 @@ const Footer: React.FC<any> = ({
                       <Link
                         id={formatBtnId("Blog")}
                         className="text-[13px] text-gray-400 hover:text-white transition-colors whitespace-nowrap"
-                        href="/blog"
+                        href="/case-studies"
                       >
                         Blog
                       </Link>
@@ -240,7 +241,7 @@ const Footer: React.FC<any> = ({
                       <Link
                         id={formatBtnId("Contact us")}
                         className="text-[13px] text-gray-400 hover:text-white transition-colors whitespace-nowrap"
-                        href="/contact"
+                        href="/contact-us"
                       >
                         Contact us
                       </Link>
@@ -324,24 +325,10 @@ const Footer: React.FC<any> = ({
           <div className="border-t border-[#1a1a1a] pt-6">
             <div className="flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
               <div className="text-[13px] text-gray-400">
-                © {dayjs().year()} DarkLab. All rights reserved.
+                ©️ {dayjs().year()} Nyxlab. All rights reserved.
               </div>
 
-              <div className="flex flex-wrap items-center justify-center gap-4 text-[13px] text-gray-400">
-                {infoItems.map(
-                  ({ attributes: { title, url } }: any) => (
-                    <Link
-                      key={title}
-                      id={formatBtnId(`bottom-${title}`)}
-                      className="hover:text-white transition-colors whitespace-nowrap"
-                      href={getHref(url)}
-                      {...(url?.startsWith("http") && { target: "_blank" })}
-                    >
-                      {title}
-                    </Link>
-                  )
-                )}
-              </div>
+              {/* No duplicated legal links here anymore */}
             </div>
           </div>
         </div>

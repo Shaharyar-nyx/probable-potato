@@ -35,14 +35,13 @@
 }
 
 .heading {
-  font-size: clamp(1.9rem, 3vw, 2.4rem);
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  line-height: 1.25;
-  margin-bottom: 0.4rem;
-  background: linear-gradient(90deg, #f97316, #fb7185, #a855f7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, #ff00cc, #7928ca);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .subheading {
