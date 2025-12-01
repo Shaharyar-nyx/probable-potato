@@ -54,7 +54,7 @@ const ContactFormSection: React.FC = () => {
     setSubmitting(true);
 
     try {
-      const res = await fetch("api/subscribe/contact", {
+      const res = await fetch("/api/subscribe/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
