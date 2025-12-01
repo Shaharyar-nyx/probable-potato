@@ -11,7 +11,7 @@ const ServiceOfferings = () => {
           <h2 className={styles.sectionTitle}>Solutions</h2>
           <div className={styles.accentBar}></div>
           <p className={styles.intro}>
-            NyxLab delivers comprehensive security solutions across offense, defense,
+            Nyxlab delivers comprehensive security solutions across offense, defense,
             response, and intelligence domains. Our integrated approach combines
             proactive threat simulation with 24/7 monitoring, rapid incident response
             capabilities, and cutting-edge research to protect enterprises from
@@ -24,7 +24,7 @@ const ServiceOfferings = () => {
   <div className={styles.journeyHeader}>
     <h3>End-to-end security lifecycle</h3>
     <p>
-      From adversary simulation to continuous improvement, NyxLab helps you
+      From adversary simulation to continuous improvement, Nyxlab helps you
       assess, defend, respond, and evolve your security posture.
     </p>
   </div>
@@ -72,7 +72,7 @@ const ServiceOfferings = () => {
 </section>
         {/* Solution Columns */}
         <section className={styles.columnsSection}>
-          <h3 className={styles.columnsTitle}>NyxLab solution pillars</h3>
+          <h3 className={styles.columnsTitle}>Nyxlab solution pillars</h3>
           <p className={styles.columnsSubtitle}>
             Modular capabilities that can be consumed individually or as part of an
             integrated security program.
@@ -81,7 +81,7 @@ const ServiceOfferings = () => {
           <div className={styles.columns}>
             <div className={`${styles.column} ${styles.columnAccent}`}>
               <h4 className={styles.columnTitle}>
-                NyxLab <span>Offense</span>
+                Nyxlab <span>Offense</span>
               </h4>
               <ul className={styles.columnList}>
                 <li className={styles.columnListItem}>
@@ -98,7 +98,7 @@ const ServiceOfferings = () => {
                 <li className={styles.columnListItem}>AI fuzzing</li>
               </ul>
               <a
-                href="https://hammerhead-app-abb6t.ondigitalocean.app/offense/"
+                href="/offense"
                 className={styles.learnMoreLink}
               >
                 Learn more →
@@ -107,7 +107,7 @@ const ServiceOfferings = () => {
 
             <div className={`${styles.column} ${styles.columnAccentSoft}`}>
               <h4 className={styles.columnTitle}>
-                NyxLab <span>Defense</span>
+                Nyxlab <span>Defense</span>
               </h4>
               <ul className={styles.columnList}>
                 <li className={styles.columnListItem}>24/7 security monitoring</li>
@@ -119,7 +119,7 @@ const ServiceOfferings = () => {
                 <li className={styles.columnListItem}>SIEM and EDR optimization</li>
               </ul>
               <a
-                href="https://hammerhead-app-abb6t.ondigitalocean.app/defense/"
+                href="/defense"
                 className={styles.learnMoreLink}
               >
                 Learn more →
@@ -128,7 +128,7 @@ const ServiceOfferings = () => {
 
             <div className={styles.column}>
               <h4 className={styles.columnTitle}>
-                NyxLab <span>Response</span>
+                Nyxlab <span>Response</span>
               </h4>
               <ul className={styles.columnList}>
                 <li className={styles.columnListItem}>Incident response</li>
@@ -136,7 +136,7 @@ const ServiceOfferings = () => {
                 <li className={styles.columnListItem}>Crisis coordination</li>
               </ul>
               <a
-                href="https://hammerhead-app-abb6t.ondigitalocean.app/response/"
+                href="/response"
                 className={styles.learnMoreLink}
               >
                 Learn more →
@@ -145,7 +145,7 @@ const ServiceOfferings = () => {
 
             <div className={styles.column}>
               <h4 className={styles.columnTitle}>
-                NyxLab <span>DNS</span>
+                Nyxlab <span>DNS</span>
               </h4>
               <ul className={styles.columnList}>
                 <li className={styles.columnListItem}>
@@ -155,7 +155,7 @@ const ServiceOfferings = () => {
                 <li className={styles.columnListItem}>Abuse verification</li>
               </ul>
               <a
-                href="https://hammerhead-app-abb6t.ondigitalocean.app/dns/"
+                href="/dns"
                 className={styles.learnMoreLink}
               >
                 Learn more →
@@ -164,7 +164,7 @@ const ServiceOfferings = () => {
 
             <div className={styles.column}>
               <h4 className={styles.columnTitle}>
-                NyxLab <span>Research</span>
+                Nyxlab <span>Research</span>
               </h4>
               <ul className={styles.columnList}>
                 <li className={styles.columnListItem}>CVE identification</li>
@@ -172,7 +172,7 @@ const ServiceOfferings = () => {
                 <li className={styles.columnListItem}>Security R&amp;D</li>
               </ul>
               <a
-                href="https://hammerhead-app-abb6t.ondigitalocean.app/research/"
+                href="/research"
                 className={styles.learnMoreLink}
               >
                 Learn more →
@@ -181,20 +181,20 @@ const ServiceOfferings = () => {
 
             <div className={styles.column}>
               <h4 className={styles.columnTitle}>
-                NyxLab <span>Build</span>
+                Nyxlab <span>Build</span>
               </h4>
               <ul className={styles.columnList}>
                 <li className={styles.columnListItem}>AI automation</li>
                 <li className={styles.columnListItem}>Cloud landing zone</li>
               </ul>
-              <a href="https://hammerhead-app-abb6t.ondigitalocean.app/build/" className={styles.learnMoreLink}>
+              <a href="/build" className={styles.learnMoreLink}>
                 Learn more →
               </a>
             </div>
 
             <div className={styles.column}>
               <h4 className={styles.columnTitle}>
-                NyxLab <span>Intelligence</span>
+                Nyxlab <span>Intelligence</span>
               </h4>
               <ul className={styles.columnList}>
                 <li className={styles.columnListItem}>Threat intelligence feeds</li>
@@ -204,7 +204,7 @@ const ServiceOfferings = () => {
                 </li>
               </ul>
               <a
-                href="https://hammerhead-app-abb6t.ondigitalocean.app/intelligence/"
+                href="/intelligence"
                 className={styles.learnMoreLink}
               >
                 Learn more →

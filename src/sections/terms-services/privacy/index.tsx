@@ -11,7 +11,7 @@ const PrivacyPolicyBlock: React.FC = () => {
         <header className={styles.header}>
           <h1 className={styles.mainTitle}>Privacy Policy</h1>
           <p className={styles.lead}>
-            NyxLab Limited (“we,” “our,” “us”) respects your privacy and is committed to protecting the personal information you share with us. Please read this Privacy Policy carefully.
+            Nyxlab Limited (“we,” “our,” “us”) respects your privacy and is committed to protecting the personal information you share with us. Please read this Privacy Policy carefully.
           </p>
         </header>
 
@@ -71,7 +71,7 @@ const PrivacyPolicyBlock: React.FC = () => {
             <li>Request deletion of your personal information, subject to legal obligations.</li>
             <li>Withdraw consent for processing where applicable.</li>
           </ul>
-          <p>To exercise these rights, please contact us at info@nyxlab.com.</p>
+          <p>To exercise these rights, please contact us at info@Nyxlab.com.</p>
         </div>
 
         <div className={styles.section}>
@@ -91,14 +91,14 @@ const PrivacyPolicyBlock: React.FC = () => {
         <div className={styles.section}>
           <h2>10. Changes to This Policy</h2>
           <p>
-            NyxLab Limited reserves the right to update or modify this Privacy Policy at any time. Updates will be posted on this page with a revised effective date.
+            Nyxlab Limited reserves the right to update or modify this Privacy Policy at any time. Updates will be posted on this page with a revised effective date.
           </p>
         </div>
 
         <div className={styles.section}>
           <h2>11. Contact Us</h2>
           <p className={styles.contactBlock}>
-            <strong>Email:</strong> info@nyxlab.com
+            <strong>Email:</strong> info@Nyxlab.com
             <br />
             <strong>Jurisdiction:</strong> Hong Kong
           </p>
