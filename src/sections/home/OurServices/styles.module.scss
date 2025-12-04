@@ -206,29 +206,30 @@
   .leftPanel {
     max-height: 420px;
     overflow-y: auto;
-    padding-right: 8px;
+    padding-right: 10px;
 
     /* Firefox */
     scrollbar-width: thin;
-    scrollbar-color: #a855f7 #111;
+    scrollbar-color: #d946ef #1a1a1a;
 
-    /* Chrome / Safari */
+    /* Chrome / Safari / Edge */
     &::-webkit-scrollbar {
-      width: 6px;
+      width: 10px; /* more visible */
     }
 
     &::-webkit-scrollbar-track {
-      background: #111;
-      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
     }
 
     &::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, #a855f7, #ff4fd8);
-      border-radius: 999px;
+      background: linear-gradient(180deg, #ff00cc, #7928ca);
+      border-radius: 12px;
+      border: 2px solid rgba(0, 0, 0, 0.4); /* makes it pop on dark bg */
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(180deg, #c084fc, #ff76df);
+      background: linear-gradient(180deg, #ff4fd8, #c084fc);
     }
   }
 }
