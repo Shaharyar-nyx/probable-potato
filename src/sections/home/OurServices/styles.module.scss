@@ -27,7 +27,7 @@
 }
 
 /* ===========================
-   TOP TEXT (HEADINGS)
+   TOP TEXT
 =========================== */
 .topText {
   text-align: center;
@@ -54,7 +54,7 @@
 }
 
 /* ===========================
-   DESKTOP / TABLET LAYOUT
+   DESKTOP + TABLET LAYOUT
 =========================== */
 .contentArea {
   display: flex;
@@ -67,15 +67,53 @@
   z-index: 5;
 }
 
-/* LEFT PANEL (DESKTOP LIST) */
+/* ===========================
+   LEFT PANEL (SCROLLABLE LIST)
+=========================== */
+
 .leftPanel {
   flex: 0 0 42%;
   display: flex;
   flex-direction: column;
   gap: 14px;
+
+  /* FORCE SCROLLBAR ALWAYS VISIBLE (macOS FIX) */
+  max-height: 420px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+  padding-right: 8px;
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #a855f7 #111;
+
+  /* Chrome/Safari/Edge */
+  &::-webkit-scrollbar {
+    width: 10px !important;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #a855f7, #ff4fd8);
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #c084fc, #ff76df);
+  }
 }
 
-/* Individual side items */
+/* ===========================
+   LEFT PANEL ITEMS
+=========================== */
 .sideItem {
   padding: 24px 22px 16px 30px;
   cursor: pointer;
@@ -143,7 +181,9 @@
   }
 }
 
-/* RIGHT IMAGE WRAPPER (DESKTOP) */
+/* ===========================
+   RIGHT IMAGE WRAPPER
+=========================== */
 .imageWrapper {
   flex: 0 0 45%;
   border-radius: 20px;
@@ -196,56 +236,15 @@
 }
 
 /* ===========================
-   DESKTOP: SCROLLABLE LEFT PANEL
-=========================== */
-@media (min-width: 901px) {
-  .contentArea {
-    align-items: stretch;
-  }
-
-  .leftPanel {
-    max-height: 420px;
-    overflow-y: auto;
-    padding-right: 10px;
-
-    /* Firefox */
-    scrollbar-width: thin;
-    scrollbar-color: #d946ef #1a1a1a;
-
-    /* Chrome / Safari / Edge */
-    &::-webkit-scrollbar {
-      width: 10px; /* more visible */
-    }
-
-    &::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, #ff00cc, #7928ca);
-      border-radius: 12px;
-      border: 2px solid rgba(0, 0, 0, 0.4); /* makes it pop on dark bg */
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(180deg, #ff4fd8, #c084fc);
-    }
-  }
-}
-
-/* ===========================
-   MOBILE CARDS (INTACT VIEW)
+   MOBILE CARDS
 =========================== */
 .mobileCards {
   display: none;
 }
 
 /* ===========================
-      RESPONSIVE
+   RESPONSIVE (TABLETS)
 =========================== */
-
-/* Tablets & down: switch to cards, hide desktop layout */
 @media (max-width: 900px) {
   .solutionSection {
     padding: 4rem 1.5rem;
@@ -264,7 +263,7 @@
   }
 
   .contentArea {
-    display: none; /* hide desktop layout on mobile/tablet */
+    display: none;
   }
 
   .mobileCards {
@@ -292,15 +291,10 @@
     }
   }
 
-  .mobileImageWrapper {
+  .mobileImageWrapper img {
     width: 100%;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-    }
+    display: block;
+    object-fit: cover;
   }
 
   .mobileCardBody {
@@ -329,7 +323,9 @@
   }
 }
 
-/* Small phones */
+/* ===========================
+   SMALL PHONES
+=========================== */
 @media (max-width: 480px) {
   .solutionSection {
     padding: 3.5rem 1.25rem;
