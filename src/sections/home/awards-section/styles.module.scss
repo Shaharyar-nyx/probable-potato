@@ -1,10 +1,18 @@
+/* ====== SECTION WRAPPER ====== */
+
 .awardsSection {
   position: relative;
   width: 100%;
   padding: 4.5rem 0 4rem;
-  background: radial-gradient(ellipse at top, #1a1030 0, #020617 55%, #020314 100%);
+  background: radial-gradient(
+    ellipse at top,
+    #1a1030 0,
+    #020617 55%,
+    #020314 100%
+  );
   color: #f9fafb;
-  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
   overflow: hidden;
 }
 
@@ -14,8 +22,16 @@
   pointer-events: none;
   opacity: 0.55;
   background:
-    radial-gradient(circle at 15% 0%, rgba(248, 113, 113, 0.28) 0, transparent 55%),
-    radial-gradient(circle at 85% 0%, rgba(59, 130, 246, 0.25) 10%, transparent 60%);
+    radial-gradient(
+      circle at 15% 0%,
+      rgba(248, 113, 113, 0.28) 0,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 85% 0%,
+      rgba(59, 130, 246, 0.25) 10%,
+      transparent 60%
+    );
   mix-blend-mode: screen;
 }
 
@@ -27,21 +43,22 @@
   padding: 0 1.5rem;
 }
 
-/* ===== Header ===== */
+/* ====== HEADER ====== */
 
 .header {
   text-align: center;
-  margin-bottom: 2.4rem;
+  margin-bottom: 2.6rem;
 }
 
 .heading {
-  font-size: 2.8rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 18px;
-    background: linear-gradient(90deg, #ff00cc, #7928ca);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-size: clamp(1.9rem, 3vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #f97316, #fb7185, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .subheading {
@@ -52,89 +69,132 @@
   line-height: 1.6;
 }
 
-/* ===== Grid ===== */
+/* ====== MARQUEE LAYOUT ====== */
 
-/* Desktop: 3–4 cards per row depending on width */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 1.4rem;
-}
-
-/* ===== Card ===== */
-
-.card {
-  background: rgba(2, 6, 23, 0.95);
-  border-radius: 0.9rem;
-  border: 1px solid rgba(148, 163, 184, 0.5);
-  padding: 1.1rem 1rem;
+/* outer container for both rows */
+.marqueeContainer {
   display: flex;
   flex-direction: column;
+  gap: 1.6rem;
+  margin-top: 1.4rem;
+}
+
+/* each row: we hide overflow so the scrolling feels like Asana */
+.marqueeRow {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* inner scrolling content – we duplicate items in TSX,
+   so width is effectively > 100% and we can loop cleanly */
+.marqueeContent {
+  display: flex;
+  align-items: stretch;
+  gap: 1.25rem;
+}
+
+/* ====== KEYFRAMES (continuous scroll, like Asana) ====== */
+
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* top row scrolls in one direction… */
+.topRow .marqueeContent {
+  animation: marqueeLeft 35s linear infinite;
+}
+
+/* …bottom row scrolls in the opposite direction */
+.bottomRow .marqueeContent {
+  animation: marqueeRight 35s linear infinite;
+}
+
+/* ====== CARD STYLING (Asana-style tiles) ====== */
+
+.card {
+  flex: 0 0 auto; /* important: no shrinking, acts like a tile */
+  width: clamp(220px, 24vw, 260px);
+  min-height: 140px;
+
+  border-radius: 1.4rem;
+  // background: rgba(2, 6, 23, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+
+  display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 110px;
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.85);
-  transition: border-color 0.18s ease, transform 0.18s ease,
-    box-shadow 0.18s ease, background-color 0.18s ease;
-}
 
-.card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(249, 115, 22, 0.9);
-  background-color: #030712;
-  box-shadow:
-    0 18px 40px rgba(15, 23, 42, 0.95),
-    0 0 0 1px rgba(249, 115, 22, 0.18);
+  /* IMPORTANT: no hover transform here – movement is from marquee only */
+  cursor: default;
 }
-
-/* Logo centered */
 
 .logoWrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.card .logoWrap:last-child {
+  margin-bottom: 0; /* if no title, no extra gap */
 }
 
 .logo {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   max-width: 100%;
-  max-height: 64px;
+  max-height: 80px;
   object-fit: contain;
   filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.65));
   opacity: 0.97;
 }
 
-/* Caption under logo (small, subtle) */
-
 .certTitle {
   margin: 0;
-  margin-top: 0.1rem;
-  font-size: 0.78rem;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: #e5e7eb;
   text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-/* ===== Responsive ===== */
+/* ====== RESPONSIVE ====== */
 
 @media (max-width: 1024px) {
   .awardsSection {
     padding: 4rem 0 3.5rem;
   }
 
-  .grid {
-    gap: 1.2rem;
+  .card {
+    width: clamp(200px, 40vw, 240px);
+    min-height: 120px;
+    border-radius: 1.2rem;
   }
 
-  .card {
-    min-height: 100px;
-    padding: 1rem;
+  .logo {
+    width: 72px;
+    height: 72px;
   }
 }
 
-/* Tablets & most phones: 2 cards per row */
 @media (max-width: 768px) {
   .inner {
     padding: 0 1.25rem;
@@ -152,30 +212,26 @@
     font-size: 0.9rem;
   }
 
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
+  .marqueeContainer {
+    gap: 1.2rem;
   }
 
   .card {
-    border-radius: 0.8rem;
-    padding: 0.9rem;
-    min-height: 90px;
-    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.8);
+    width: clamp(190px, 70vw, 230px);
+    min-height: 110px;
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.85);
   }
 
   .logo {
-    width: 52px;
-    height: 52px;
-    max-height: 52px;
+    width: 64px;
+    height: 64px;
   }
 
   .certTitle {
-    font-size: 0.75rem;
+    font-size: 0.76rem;
   }
 }
 
-/* Very small phones: still 2 columns but slightly tighter */
 @media (max-width: 480px) {
   .inner {
     padding: 0 1rem;
@@ -185,21 +241,17 @@
     font-size: 1.7rem;
   }
 
-  .grid {
-    gap: 0.9rem;
-  }
-
   .card {
-    padding: 0.85rem 0.75rem;
+    width: clamp(170px, 80vw, 220px);
+    min-height: 100px;
   }
 
   .logo {
-    width: 48px;
-    height: 48px;
-    max-height: 48px;
+    width: 56px;
+    height: 56px;
   }
 
   .certTitle {
-    font-size: 0.72rem;
+    font-size: 0.74rem;
   }
 }
