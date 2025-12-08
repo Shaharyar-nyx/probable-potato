@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
 type ContactFormState = {
   firstName: string;
@@ -29,6 +30,8 @@ const ContactFormSection: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileInstance>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -51,6 +54,11 @@ const ContactFormSection: React.FC = () => {
       return;
     }
 
+    if (!captchaToken) {
+      setErrorMsg("Please complete the captcha verification.");
+      return;
+    }
+
     setSubmitting(true);
 
     try {
@@ -67,6 +75,7 @@ const ContactFormSection: React.FC = () => {
           companyName: form.companyName,
           businessEmail: form.businessEmail,
           message: form.message,
+          captchaToken,
         }),
       });
 
@@ -88,6 +97,8 @@ const ContactFormSection: React.FC = () => {
         "Thank you for contacting us. Our team will get back to you shortly."
       );
       setForm(initialForm);
+      setCaptchaToken(null);
+      turnstileRef.current?.reset();
     } catch (err: any) {
       console.error("Contact form error:", err);
       setErrorMsg(
@@ -261,6 +272,20 @@ const ContactFormSection: React.FC = () => {
                   I consent to Nyxlab contacting me about my request and sharing
                   relevant service information as needed.
                 </label>
+              </div>
+
+              {/* Cloudflare Turnstile Captcha */}
+              <div className="flex justify-center">
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                  onSuccess={(token) => setCaptchaToken(token)}
+                  onError={() => setCaptchaToken(null)}
+                  onExpire={() => setCaptchaToken(null)}
+                  options={{
+                    theme: "dark",
+                  }}
+                />
               </div>
 
               {/* Error / Success */}

@@ -9,7 +9,31 @@ type ContactBody = {
   companyName?: string;
   businessEmail?: string;
   message?: string;
+  captchaToken?: string;
 };
+
+async function verifyTurnstileToken(token: string): Promise<boolean> {
+  const secretKey = process.env.TURNSTILE_SECRET_KEY;
+  if (!secretKey) {
+    console.error("Missing TURNSTILE_SECRET_KEY environment variable");
+    return false;
+  }
+
+  const res = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret: secretKey,
+        response: token,
+      }),
+    }
+  );
+
+  const data = (await res.json()) as { success: boolean };
+  return data.success;
+}
 
 // Optional: make sure this runs on the server every time
 export const dynamic = "force-dynamic";
@@ -65,7 +89,23 @@ export async function POST(req: NextRequest) {
       companyName,
       businessEmail,
       message,
+      captchaToken,
     } = body;
+
+    if (!captchaToken) {
+      return NextResponse.json(
+        { error: "Captcha verification is required." },
+        { status: 400 }
+      );
+    }
+
+    const isCaptchaValid = await verifyTurnstileToken(captchaToken);
+    if (!isCaptchaValid) {
+      return NextResponse.json(
+        { error: "Captcha verification failed. Please try again." },
+        { status: 400 }
+      );
+    }
 
     // Basic validation
     if (

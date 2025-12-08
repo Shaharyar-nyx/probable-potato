@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { STRAPI_ASSETS } from "@/lib/constants";
 import style from "./styles.module.scss";
@@ -31,31 +31,13 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
   Heading = "",
   Awards = [],
 }) => {
-  const [animationKey, setAnimationKey] = useState(0);
-
-  // Re-start marquee animation on resize
-  useEffect(() => {
-    const handleResize = () => {
-      setAnimationKey((prev) => prev + 1);
-    };
-
-    // extra safety in case this ever gets rendered in a non-browser env
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }
-
-    return undefined;
-  }, []);
-
   if (!Label && !Heading && (!Awards || Awards.length === 0)) return null;
 
   const midIndex = Math.ceil(Awards.length / 2);
   const topRowAwards = Awards.slice(0, midIndex);
   const bottomRowAwards = Awards.slice(midIndex);
 
-  // small helper so we don’t repeat the same logic twice
-  const renderAwardCard = (award: Award, index: number, prefix: "top" | "bottom") => {
+  const renderAwardCard = (award: Award, index: number, prefix: string) => {
     const logoPath = award.Logo?.data?.attributes?.url;
     const logoUrl = logoPath ? `${STRAPI_ASSETS}${logoPath}` : null;
     const logoAlt =
@@ -63,7 +45,7 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
 
     return (
       <article
-        key={`${prefix}-${award.Title || "cert"}-${index}`}
+        key={`${prefix}-${index}`}
         className={style.card}
       >
         {logoUrl && (
@@ -85,6 +67,13 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
     );
   };
 
+  // Render a track (one complete set of cards)
+  const renderTrack = (awards: Award[], prefix: string) => (
+    <div className={style.track}>
+      {awards.map((award, index) => renderAwardCard(award, index, prefix))}
+    </div>
+  );
+
   return (
     <section className={style.awardsSection}>
       <div className={style.bgLayer} />
@@ -98,22 +87,20 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
         )}
 
         {/* Marquee Container */}
-        <div className={style.marqueeContainer} key={animationKey}>
-          {/* Top Row */}
-          <div className={`${style.marqueeRow} ${style.topRow}`}>
-            <div className={style.marqueeContent}>
-              {[...topRowAwards, ...topRowAwards].map((award, index) =>
-                renderAwardCard(award, index, "top")
-              )}
+        <div className={style.marqueeContainer}>
+          {/* Top Row - scrolls left */}
+          <div className={style.marqueeRow}>
+            <div className={`${style.marqueeContent} ${style.scrollLeft}`}>
+              {renderTrack(topRowAwards, "top-1")}
+              {renderTrack(topRowAwards, "top-2")}
             </div>
           </div>
 
-          {/* Bottom Row */}
-          <div className={`${style.marqueeRow} ${style.bottomRow}`}>
-            <div className={style.marqueeContent}>
-              {[...bottomRowAwards, ...bottomRowAwards].map((award, index) =>
-                renderAwardCard(award, index, "bottom")
-              )}
+          {/* Bottom Row - scrolls right */}
+          <div className={style.marqueeRow}>
+            <div className={`${style.marqueeContent} ${style.scrollRight}`}>
+              {renderTrack(bottomRowAwards, "bottom-1")}
+              {renderTrack(bottomRowAwards, "bottom-2")}
             </div>
           </div>
         </div>
