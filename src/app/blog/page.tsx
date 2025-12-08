@@ -21,7 +21,7 @@ export default function CaseStudiesList() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/case-studies?populate=*`);
+        const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/blog?populate=*`);
         const json = await res.json();
         console.log("📦 raw case-studies response:", json);
 

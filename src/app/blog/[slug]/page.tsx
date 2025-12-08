@@ -4,7 +4,7 @@ import Image from "next/image";
 const STRAPI_URL = "https://shark-app-tmqz4.ondigitalocean.app";
 
 async function getCaseStudy(slug: string) {
-  const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/case-studies?filters[slug][$eq]=${slug}&populate=*`, {
+  const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/blog?filters[slug][$eq]=${slug}&populate=*`, {
     cache: "no-store",
   });
   const data = await res.json();
