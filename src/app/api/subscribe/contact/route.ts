@@ -13,7 +13,7 @@ type ContactBody = {
 };
 
 async function verifyTurnstileToken(token: string): Promise<boolean> {
-  const secretKey = process.env.TURNSTILE_SECRET_KEY;
+  const secretKey = process.env.TURNSTILE_SECRET_KEY || "0x4AAAAAACDzQTqm-gWUTDUCECTNTQW362o";
   if (!secretKey) {
     console.error("Missing TURNSTILE_SECRET_KEY environment variable");
     return false;
