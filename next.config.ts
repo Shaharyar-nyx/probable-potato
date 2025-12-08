@@ -130,15 +130,15 @@ const securityHeadersConfig = (phase: string) => {
       form-action 'self';
       frame-ancestors 'none';
       img-src 'self' data: blob: https://www.google.com https://*.Nyxlab.tech https://*.linkedin.com https://*.ondigitalocean.app ${strapiBaseUrl} ${localhostSources};
-      frame-src 'self' https://www.google.com https://www.gstatic.com;
+      frame-src 'self' https://www.google.com https://www.gstatic.com https://challenges.cloudflare.com;
       font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com;
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-      connect-src 'self' https://*.Nyxlab.tech https://*.linkedin.com https://www.google-analytics.com https://*.ondigitalocean.app ${strapiBaseUrl} ${localhostSources};
+      connect-src 'self' https://*.Nyxlab.tech https://*.linkedin.com https://www.google-analytics.com https://*.ondigitalocean.app ${strapiBaseUrl} ${localhostSources} https://challenges.cloudflare.com;
       ${upgradeInsecure}
     `;
 
     const scriptSrc = `
-      https://www.googletagmanager.com https://snap.licdn.com https://api.retargetly.com https://www.google.com https://www.gstatic.com https://*.Nyxlab.tech
+      https://www.googletagmanager.com https://snap.licdn.com https://api.retargetly.com https://www.google.com https://www.gstatic.com https://*.Nyxlab.tech https://challenges.cloudflare.com
     `;
 
     if (isProduction) {
