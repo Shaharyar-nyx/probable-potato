@@ -21,7 +21,7 @@ export default function CaseStudiesList() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/blog?populate=*`);
+        const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/case-studies?populate=*`);
         const json = await res.json();
         console.log("📦 raw case-studies response:", json);
 
@@ -185,7 +185,7 @@ We’re preparing expert-backed blogs on cybersecurity, threat intelligence, and
                   </p>
 
                   <Link
-                    href={item.slug ? `/case-studies/${item.slug}` : "#"}
+                    href={item.slug ? `/blog/${item.slug}` : "#"}
                     className="inline-block bg-gradient-to-r from-pink-600 to-purple-600 text-white px-4 py-2 rounded-md font-medium"
                   >
                     Learn More →
