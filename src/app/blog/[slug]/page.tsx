@@ -4,7 +4,7 @@ import Image from "next/image";
 const STRAPI_URL = "https://shark-app-tmqz4.ondigitalocean.app";
 
 async function getCaseStudy(slug: string) {
-  const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/blog?filters[slug][$eq]=${slug}&populate=*`, {
+  const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/case-studies?filters[slug][$eq]=${slug}&populate=*`, {
     cache: "no-store",
   });
   const data = await res.json();
@@ -121,7 +121,7 @@ We’re preparing expert-backed blogs on cybersecurity, threat intelligence, and
 
             /* Blockquotes */
             [&>blockquote]:text-gray-300 [&>blockquote]:border-l-4 [&>blockquote]:border-purple-500 [&>blockquote]:pl-4 [&>blockquote]:py-2 [&>blockquote]:my-6 [&>blockquote]:italic
-
+            
             /* Code */
             [&>code]:bg-gray-800 [&>code]:text-pink-300 [&>code]:px-2 [&>code]:py-1 [&>code]:rounded [&>code]:text-sm
           "
