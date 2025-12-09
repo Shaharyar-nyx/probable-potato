@@ -46,7 +46,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         </div>
 
         {/* === TITLE === */}
-        <h1 className="text-4xl md:text-xl font-extrabold mb-6 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent leading-tight">
+        <h1 className="text-xl md:text-xl font-extrabold mb-6 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent leading-tight">
           {caseStudy.title}
         </h1>
 
