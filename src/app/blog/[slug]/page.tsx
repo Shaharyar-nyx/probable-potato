@@ -22,39 +22,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const img = caseStudy.image?.[0];
 
   return (
-    <section className="bg-black text-white">
-      {/* === HERO SECTION === */}
-      <section
-        className="relative h-[90vh] w-full flex items-center justify-start bg-cover bg-center px-10 md:px-20"
-        style={{
-          backgroundImage:
-            "url('/images/pngtree-a-hacker-in-a-hoodie-sitting-at-a-laptop-with-hologram-image_16394239.jpg')",
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
-
-        <div className="relative z-10 max-w-2xl space-y-6">
-        <h1
-  className="font-bold text-white leading-snug mb-2
-             text-lg sm:text-2xl md:text-3xl lg:text-4xl"
->
- Cyber Insights Coming Soon   <br className="hidden sm:block" /> 
-</h1>
-
-<p
-  className="text-gray-300 leading-relaxed
-             text-sm sm:text-base md:text-lg max-w-md sm:max-w-lg mx-auto md:mx-0"
->
-We’re preparing expert-backed blogs on cybersecurity, threat intelligence, and real-world case studies.
-</p>
-<p
-  className="text-sm sm:text-base font-bold leading-[1.3] mb-[18px] bg-gradient-to-r from-[#ff00cc] to-[#7928ca] bg-clip-text text-transparent max-w-md sm:max-w-lg mx-auto md:mx-0"
->
-  Stay tuned — something powerful is on its way.
-</p>
-        </div>
-      </section>
-
+    <section className="bg-black text-white pt-5">
+     
       {/* === MAIN CONTENT === */}
       <div className="max-w-5xl mx-auto px-6 md:px-10 py-20">
         {/* === IMAGE === */}
@@ -77,7 +46,7 @@ We’re preparing expert-backed blogs on cybersecurity, threat intelligence, and
         </div>
 
         {/* === TITLE === */}
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent leading-tight">
+        <h1 className="text-4xl md:text-xl font-extrabold mb-6 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent leading-tight">
           {caseStudy.title}
         </h1>
 
@@ -95,8 +64,8 @@ We’re preparing expert-backed blogs on cybersecurity, threat intelligence, and
             space-y-6
 
             /* Headings */
-            [&>h1]:text-purple-400 [&>h1]:font-extrabold [&>h1]:text-4xl [&>h1]:mt-12 [&>h1]:mb-6
-            [&>h2]:text-purple-300 [&>h2]:font-semibold [&>h2]:text-2xl [&>h2]:mt-10 [&>h2]:mb-4
+            [&>h1]:text-purple-400 [&>h1]:font-extrabold [&>h1]:text-xl [&>h1]:mt-12 [&>h1]:mb-6
+            [&>h2]:text-purple-300 [&>h2]:font-semibold [&>h2]:text-xl [&>h2]:mt-10 [&>h2]:mb-4
             [&>h3]:text-purple-200 [&>h3]:font-medium [&>h3]:text-xl [&>h3]:mt-8 [&>h3]:mb-3
 
             /* Paragraphs */
