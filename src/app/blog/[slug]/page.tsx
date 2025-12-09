@@ -41,7 +41,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
         {/* === META === */}
         <div className="text-sm text-gray-400 mb-4">
-          <span className="font-semibold text-purple-400">NyxLab</span> •{" "}
+          <span className="font-semibold text-purple-400">NyxLab Research</span> •{" "}
           <span>{caseStudy.published}</span> • <span>3 min read</span>
         </div>
 
