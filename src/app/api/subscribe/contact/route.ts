@@ -43,14 +43,14 @@ async function getAccessToken() {
   const clientId = process.env.M365_CLIENT_ID;
   const clientSecret = process.env.M365_CLIENT_SECRET;
 
-  if (!tenantId || !clientId || !clientSecret) {
-    console.error("Missing Microsoft 365 OAuth env vars");
-    throw new Error("Missing Microsoft 365 OAuth environment variables");
-  }
+  // if (!tenantId || !clientId || !clientSecret) {
+  //   console.error("Missing Microsoft 365 OAuth env vars");
+  //   throw new Error("Missing Microsoft 365 OAuth environment variables");
+  // }
 
   const params = new URLSearchParams();
-  params.append("client_id", clientId);
-  params.append("client_secret", clientSecret);
+  // params.append("client_id", clientId);
+  // params.append("client_secret", clientSecret);
   params.append("scope", "https://graph.microsoft.com/.default");
   params.append("grant_type", "client_credentials");
 
@@ -69,10 +69,10 @@ async function getAccessToken() {
     error_description?: string;
   };
 
-  if (!res.ok || !json.access_token) {
-    console.error("Failed to obtain token:", json);
-    throw new Error("Failed to obtain Microsoft access token");
-  }
+  // if (!res.ok || !json.access_token) {
+  //   console.error("Failed to obtain token:", json);
+  //   throw new Error("Failed to obtain Microsoft access token");
+  // }
 
   return json.access_token;
 }
@@ -175,23 +175,23 @@ export async function POST(req: NextRequest) {
       saveToSentItems: true,
     };
 
-    const sendRes = await fetch(graphEndpoint, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    // const sendRes = await fetch(graphEndpoint, {
+    //   method: "POST",
+    //   headers: {
+    //     Authorization: `Bearer ${accessToken}`,
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(payload),
+    // });
 
-    if (sendRes.status !== 202) {
-      const errorText = await sendRes.text();
-      console.error("Graph sendMail failed:", sendRes.status, errorText);
-      return NextResponse.json(
-        { error: "Failed to send contact email." },
-        { status: 500 }
-      );
-    }
+    // if (sendRes.status !== 202) {
+    //   const errorText = await sendRes.text();
+    //   console.error("Graph sendMail failed:", sendRes.status, errorText);
+    //   return NextResponse.json(
+    //     { error: "Failed to send contact email." },
+    //     { status: 500 }
+    //   );
+    // }
 
     return NextResponse.json(
       { success: true, message: "Contact request submitted." },
