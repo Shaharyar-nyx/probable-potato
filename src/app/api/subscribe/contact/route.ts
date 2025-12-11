@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
     }
 
     // ================== SAVE TO STRAPI BACKEND ==================
-    const strapiUrl = process.env.NEXT_PUBLIC_Nyxlab_CMS_URL;
+    const strapiUrl = "http://shark-app-tmqz4.ondigitalocean.app";
 
     const strapiPayload = {
       data: {
