@@ -31,7 +31,7 @@ const ContactFormSection: React.FC = () => {
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
-  // const turnstileRef = useRef<TurnstileInstance>(null);
+  const turnstileRef = useRef<TurnstileInstance>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -98,7 +98,7 @@ const ContactFormSection: React.FC = () => {
       );
       setForm(initialForm);
       setCaptchaToken(null);
-      // turnstileRef.current?.reset();
+      turnstileRef.current?.reset();
     } catch (err: any) {
       console.error("Contact form error:", err);
       setErrorMsg(
@@ -274,6 +274,19 @@ const ContactFormSection: React.FC = () => {
                 </label>
               </div>
 
+              {/* Cloudflare Turnstile Captcha */}
+              <div className="flex justify-center">
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "0x4AAAAAACDzQajwUaSjDvWe"}
+                  onSuccess={(token) => setCaptchaToken(token)}
+                  onError={() => setCaptchaToken(null)}
+                  onExpire={() => setCaptchaToken(null)}
+                  options={{
+                    theme: "dark",
+                  }}
+                />
+              </div>
 
               {/* Error / Success */}
               {errorMsg && (
