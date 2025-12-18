@@ -54,6 +54,10 @@ const nextConfig = (phase: string) => {
           hostname: "shark-app-tmqz4.ondigitalocean.app",
         },
         {
+          protocol: 'https',
+          hostname: 'nyxlab-public-web.s3.ap-southeast-1.amazonaws.com',
+        },  
+        {
           protocol: "https" as const,
           hostname: "shark-app-tmqz4.ondigitalocean.app",
         },
