@@ -2,8 +2,12 @@
   @apply relative flex h-[80vh] items-center justify-center overflow-hidden px-7 py-[60px] text-center text-neutral-50 lg:px-16 lg:py-24;
 }
 
+.imageWrapper {
+  @apply absolute inset-0 -z-[2] h-full w-full;
+}
+
 .image {
-  @apply absolute inset-0 -z-[2] h-full w-full object-cover;
+  @apply h-full w-full object-cover;
 }
 
 .overlay {

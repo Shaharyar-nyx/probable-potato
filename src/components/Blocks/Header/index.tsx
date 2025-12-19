@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
@@ -21,13 +22,25 @@ export const Header: React.FC<any> = ({
     link: cta_url,
   };
 
+  const backgroundImageUrl = background_file?.data?.attributes?.url
+    ? getStrapiAssetUrl(background_file.data.attributes.url)
+    : null;
+
   return (
     <section className={styles.container}>
-      <img
-        alt="header background"
-        className={styles.image}
-        src={getStrapiAssetUrl(background_file?.data?.attributes?.url)}
-      />
+      {backgroundImageUrl && (
+        <div className={styles.imageWrapper}>
+          <Image
+            alt={background_file?.data?.attributes?.alternativeText || "header background"}
+            src={backgroundImageUrl}
+            fill
+            className={styles.image}
+            style={{ objectFit: "cover" }}
+            priority
+            sizes="100vw"
+          />
+        </div>
+      )}
       <div className={styles.overlay} />
       <div className={styles.content}>
         {headline && <div className="tagline">{headline}</div>}

@@ -67,17 +67,22 @@ const Footer: React.FC<any> = ({
           <div className="flex flex-col justify-between gap-10 lg:flex-row lg:gap-16">
             {/* Left: Logo + blurb + socials */}
             <div className="lg:max-w-md">
-              <Link
-                className="block w-[130px] mb-6"
-                href="/"
-                id={formatBtnId("logo")}
-              >
-                <img
-                  alt="Nyxlab"
-                  src={getStrapiAssetUrl(company_logo?.data?.attributes?.url)}
-                  className="h-auto w-full"
-                />
-              </Link>
+              {company_logo?.data?.attributes?.url && (
+                <Link
+                  className="block w-[130px] mb-6"
+                  href="/"
+                  id={formatBtnId("logo")}
+                >
+                  <Image
+                    alt={company_logo?.data?.attributes?.alternativeText || "Nyxlab"}
+                    src={getStrapiAssetUrl(company_logo.data.attributes.url)}
+                    width={130}
+                    height={40}
+                    className="h-auto w-full"
+                    priority
+                  />
+                </Link>
+              )}
 
               <p className="text-[13px] text-gray-400 mb-6 leading-relaxed">
                 Advanced cybersecurity solutions protecting organizations from
@@ -101,23 +106,29 @@ const Footer: React.FC<any> = ({
                         },
                       },
                     },
-                  }: any) => (
-                    <Link
-                      key={name}
-                      id={formatBtnId(name)}
-                      aria-label={name}
-                      className="text-gray-400 hover:text-white transition-colors"
-                      href={link}
-                      target="_blank"
-                    >
-                      <Image
-                        src={getStrapiAssetUrl(url)}
-                        alt={name}
-                        width={20}
-                        height={20}
-                      />
-                    </Link>
-                  )
+                  }: any) => {
+                    const iconUrl = url ? getStrapiAssetUrl(url) : null;
+                    if (!iconUrl) return null;
+                    
+                    return (
+                      <Link
+                        key={name}
+                        id={formatBtnId(name)}
+                        aria-label={name}
+                        className="text-gray-400 hover:text-white transition-colors"
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          src={iconUrl}
+                          alt={name || "Social icon"}
+                          width={20}
+                          height={20}
+                        />
+                      </Link>
+                    );
+                  }
                 )}
               </div>
             </div>

@@ -6,7 +6,8 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { Button, IconRenderer } from "@/components";
 
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, getStrapiAssetUrl } from "@/lib";
+import Image from "next/image";
 
 export const Nav: React.FC<any> = ({ company_logo, navigations, supported_languages, button_group }) => {
   const pathname = usePathname();
@@ -89,10 +90,13 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
           <div className="flex items-center gap-8">
             <Link href="/" id={formatBtnId("logo")} className="flex items-center">
               {logoUrl && (
-                <img 
-                  alt="nyxlab" 
-                  src={STRAPI_ASSETS + logoUrl} 
-                  className="h-19 w-100"
+                <Image 
+                  alt={company_logo?.data?.attributes?.alternativeText || "nyxlab"} 
+                  src={getStrapiAssetUrl(logoUrl)} 
+                  width={130}
+                  height={40}
+                  className="h-auto w-auto max-h-[40px]"
+                  priority
                 />
               )}
             </Link>
@@ -115,10 +119,13 @@ export const Nav: React.FC<any> = ({ company_logo, navigations, supported_langua
         <div className="flex items-center gap-8">
           <Link href="/" id={formatBtnId("logo")} className="flex items-center">
             {logoUrl && (
-              <img 
-                alt="nyxlab" 
-                src={STRAPI_ASSETS + logoUrl} 
+              <Image 
+                alt={company_logo?.data?.attributes?.alternativeText || "nyxlab"} 
+                src={getStrapiAssetUrl(logoUrl)} 
+                width={130}
+                height={40}
                 className="h-8 w-auto"
+                priority
               />
             )}
           </Link>
