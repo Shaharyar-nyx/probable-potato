@@ -4,17 +4,19 @@ import { useSubmitSubscribe } from "@/hooks/useSubmitSubscribe";
 import { SubscribeType } from "@/types";
 import dayjs from "dayjs";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input } from "../UI";
 import { formatBtnId, getStrapiAssetUrl } from "@/lib";
 import Image from "next/image";
+import { toast, ToastContainer, Bounce } from "react-toastify";
 
 const Footer: React.FC<any> = ({
   company_logo,
   navigations,
   company_socials,
   background_color,
+  headerLogo,
 }) => {
   const {
     register,
@@ -26,8 +28,37 @@ const Footer: React.FC<any> = ({
   const { submit, loading, error, called } = useSubmitSubscribe(reset);
   const shouldShowSuccessMessage = called && !loading && !error;
 
+  // Show toast popup on successful subscription
+  useEffect(() => {
+    if (shouldShowSuccessMessage) {
+      toast.success("Thank you for subscribing! We'll keep you updated with the latest cybersecurity insights.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  }, [shouldShowSuccessMessage]);
+
+  // Show error toast if submission fails
+  useEffect(() => {
+    if (error) {
+      toast.error(error || "Failed to subscribe. Please try again.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  }, [error]);
+
   const onSubmit = async (data: SubscribeType) => {
-    submit(data);
+    await submit(data);
+    // Form will be cleared automatically by reset() in the hook
   };
 
   // --- Safe helpers ---
@@ -52,8 +83,9 @@ const Footer: React.FC<any> = ({
   // Legal items for "Information" column ONLY
   const infoItems = legalNav?.attributes?.items?.data || [];
 
-  // Safe data access with fallbacks - same pattern as Nav component
-  const logoUrl = company_logo?.data?.attributes?.url;
+  // Use header logo (same as Nav component) - fallback to footer logo if header logo not available
+  const logoUrl = headerLogo?.data?.attributes?.url || company_logo?.data?.attributes?.url;
+  const logoAlt = headerLogo?.data?.attributes?.alternativeText || company_logo?.data?.attributes?.alternativeText || "Nyxlab";
 
   const getHref = (url?: string) => {
     if (!url) return "/";
@@ -75,16 +107,16 @@ const Footer: React.FC<any> = ({
                 href="/"
                 id={formatBtnId("logo")}
               >
-                {logoUrl && (
+                {logoUrl ? (
                   <Image
-                    alt={company_logo?.data?.attributes?.alternativeText || "Nyxlab"}
+                    alt={logoAlt}
                     src={getStrapiAssetUrl(logoUrl)}
                     width={130}
                     height={40}
                     className="h-auto w-auto max-h-[40px]"
                     priority
                   />
-                )}
+                ) : null}
               </Link>
 
               <p className="text-[13px] text-gray-400 mb-6 leading-relaxed">
@@ -320,15 +352,6 @@ const Footer: React.FC<any> = ({
                     >
                       Subscribe
                     </Button>
-
-                    {shouldShowSuccessMessage && (
-                      <p
-                        aria-live="polite"
-                        className="text-[13px] text-green-400 mt-1"
-                      >
-                        Thank you for subscribing!
-                      </p>
-                    )}
                   </form>
                 </div>
               </div>
@@ -347,6 +370,19 @@ const Footer: React.FC<any> = ({
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Bounce}
+      />
     </footer>
   );
 };

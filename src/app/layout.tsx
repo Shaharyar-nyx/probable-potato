@@ -8,6 +8,7 @@ import { SiteContextProvider } from "@/context";
 import { getFooterMenusStrapi, getMainMenusStrapi } from "@/lib/menus";
 
 import "vanilla-cookieconsent/dist/cookieconsent.css";
+import "react-toastify/dist/ReactToastify.css";
 import "@/styles/globals.scss";
 
 import CookieConsent from "components/CookieConsent";
@@ -64,7 +65,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <SiteContextProvider footerNav={footerNav} mainNav={mainNav}>
             {children}
           </SiteContextProvider>
-          <Footer {...footerNav} />
+          <Footer {...footerNav} headerLogo={mainNav?.company_logo} />
 
           <CookieConsent />
         </ReCaptchaProvider>
