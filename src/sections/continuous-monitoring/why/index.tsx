@@ -6,7 +6,7 @@ import React from "react";
 
 import { IconRenderer } from "@/components";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 export const Why: React.FC<any> = ({ title, headline, content, statistics_cards }) => {
@@ -47,7 +47,7 @@ export const Why: React.FC<any> = ({ title, headline, content, statistics_cards 
                       alt={icon.data[0].attributes?.name}
                       height={isMobile ? 18 : 24}
                       width={isMobile ? 18 : 24}
-                      src={`${STRAPI_ASSETS}${icon.data[0].attributes.url}`}
+                      src={getStrapiAssetUrl(icon.data[0].attributes.url)}
                     />
                   </div>
                   <h3

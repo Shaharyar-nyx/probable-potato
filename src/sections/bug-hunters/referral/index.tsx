@@ -9,7 +9,7 @@ import { Button } from "@/components";
 
 import "./styles.scss";
 import Image from "next/image";
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 const SwiperButtonNext: React.FC<{ disabled: boolean }> = ({ disabled }) => {
@@ -96,7 +96,7 @@ export const Referral: React.FC<any> = ({ headline, title, content, content_md, 
                       alt={icon.data.attributes.name}
                       height={24}
                       width={24}
-                      src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                      src={getStrapiAssetUrl(icon.data.attributes.url)}
                     />
                   </div>
                   <h3 className={`${isMobile ? "heading-8" : "heading-7"} font-bold text-primary-800`} dangerouslySetInnerHTML={{ __html: content_md }} />
@@ -154,7 +154,7 @@ export const Referral: React.FC<any> = ({ headline, title, content, content_md, 
                                 <div className="mb-3 flex items-center gap-3">
                                   <div className="flex h-[32px] w-[32px] items-center justify-center rounded bg-primary-500 p-2">
                                     <Image
-                                      src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                                      src={getStrapiAssetUrl(icon.data.attributes.url)}
                                       alt={icon.data.attributes.name}
                                       height={24}
                                       width={24}
@@ -196,7 +196,7 @@ export const Referral: React.FC<any> = ({ headline, title, content, content_md, 
                                       <div className="mb-3 flex items-start gap-3">
                                         <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-500 p-2">
                                           <Image
-                                            src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                                            src={getStrapiAssetUrl(icon.data.attributes.url)}
                                             alt={icon.data.attributes.name}
                                             height={24}
                                             width={24}

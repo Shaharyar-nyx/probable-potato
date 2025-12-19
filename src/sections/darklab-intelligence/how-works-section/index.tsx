@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib/constants";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 
 interface HowWorksProps {
@@ -80,7 +80,7 @@ const HowItWorks: React.FC<HowWorksProps> = ({ heading = '', text = '', result_t
         <p className={styles.imageText}>{image_text}</p>
       )}
       <Image
-        src={`${STRAPI_ASSETS}${image.data.attributes.url}`}
+        src={getStrapiAssetUrl(image.data.attributes.url)}
         alt={image.data.attributes.alternativeText || "Cyber Image"}
         width={500}
         height={500}

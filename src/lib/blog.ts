@@ -1,5 +1,6 @@
 import { BlogCategoryType } from "@/types";
 import { getReadTime } from "./utils";
+import { getStrapiAssetUrl } from "./constants";
 
 export const BlogCategories = [
   {
@@ -33,7 +34,7 @@ export const BlogCategories = [
 ] as Array<BlogCategoryType>;
 
 export const getBlogImageUrl = (url?: string) => {
-  return url && url.length ? process.env.NEXT_PUBLIC_Nyxlab_CMS_URL + url : "/images/blogs/default.png";
+  return url && url.length ? getStrapiAssetUrl(url) : "/images/blogs/default.png";
 };
 
 export const getBlogDetailLink = (id: number) => {

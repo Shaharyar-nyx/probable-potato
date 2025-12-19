@@ -3,8 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
-const STRAPI_URL = "https://shark-app-tmqz4.ondigitalocean.app";
+import { getStrapiAssetUrl } from "@/lib";
 
 type CaseItem = {
   id: string | number;
@@ -68,15 +67,15 @@ export default function CaseStudiesList() {
           let imageUrl: string | null = null;
           try {
             if (attrs.image?.data?.attributes?.url) {
-              imageUrl = `${STRAPI_URL}${attrs.image.data.attributes.url}`;
+              imageUrl = getStrapiAssetUrl(attrs.image.data.attributes.url);
             } else if (Array.isArray(attrs.image) && attrs.image[0]?.url) {
-              imageUrl = `${STRAPI_URL}${attrs.image[0].url}`;
+              imageUrl = getStrapiAssetUrl(attrs.image[0].url);
             } else if (attrs.image?.attributes?.url) {
-              imageUrl = `${STRAPI_URL}${attrs.image.attributes.url}`;
+              imageUrl = getStrapiAssetUrl(attrs.image.attributes.url);
             } else if (attrs.image?.url) {
-              imageUrl = `${STRAPI_URL}${attrs.image.url}`;
+              imageUrl = getStrapiAssetUrl(attrs.image.url);
             } else if (attrs.image?.data && Array.isArray(attrs.image.data) && attrs.image.data[0]?.attributes?.url) {
-              imageUrl = `${STRAPI_URL}${attrs.image.data[0].attributes.url}`;
+              imageUrl = getStrapiAssetUrl(attrs.image.data[0].attributes.url);
             } else {
               imageUrl = null;
             }

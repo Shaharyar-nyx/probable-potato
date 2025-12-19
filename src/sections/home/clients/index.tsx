@@ -6,7 +6,7 @@ import React from "react";
 import Slider from "react-slick";
 
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 const sliderSettings = {
@@ -73,7 +73,7 @@ export const Clients: React.FC<any> = ({ clients, title }) => {
                   <img
                     alt={`${client.name} logo`}
                     className={styles.clientLogo}
-                    src={`${STRAPI_ASSETS}${client.attributes.logo.data.attributes.url}`}
+                    src={getStrapiAssetUrl(client.attributes.logo.data.attributes.url)}
                   />
                 </div>
               </div>

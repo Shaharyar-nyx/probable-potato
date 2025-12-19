@@ -3,7 +3,7 @@
 import React from "react";
 
 import "./styles.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks";
 
@@ -24,7 +24,7 @@ export const KeyBenefits: React.FC<any> = ({ title, content, cards, headline }) 
               <div className="flex items-center gap-3">
                 <div className="rounded-md bg-neutral-50 p-1">
                   <Image
-                    src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                    src={getStrapiAssetUrl(icon.data.attributes.url)}
                     alt={icon.data.attributes.name}
                     width={24}
                     height={24}

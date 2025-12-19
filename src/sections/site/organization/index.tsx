@@ -4,7 +4,7 @@ import React from "react";
 
 import Image from "next/image";
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 
 export const Organization: React.FC<any> = ({ title, cards }) => {
   return (
@@ -16,7 +16,7 @@ export const Organization: React.FC<any> = ({ title, cards }) => {
             <div className={styles.itemIcon}>
               <div className={styles.itemIconWrap}>
                 <Image
-                  src={`${STRAPI_ASSETS}${organization?.icon?.data?.attributes?.url}`}
+                  src={getStrapiAssetUrl(organization?.icon?.data?.attributes?.url)}
                   alt=""
                   width={48}
                   height={48}

@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 
 export const IntelligenceDark: React.FC<any> = ({
@@ -42,7 +42,7 @@ export const IntelligenceDark: React.FC<any> = ({
           <div className={styles.cardHeader}>
             {box_icon?.data?.attributes?.url && (
               <Image
-                src={`${STRAPI_ASSETS}${box_icon.data.attributes.url}`}
+                src={getStrapiAssetUrl(box_icon.data.attributes.url)}
                 alt={box_icon?.data?.attributes?.alternativeText || "icon"}
                 width={40}
                 height={40}

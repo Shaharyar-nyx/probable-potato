@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import styles from "./styles.module.scss";
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -72,7 +72,7 @@ export const OurCoreTeam: React.FC<any> = ({ title, content, member_profiles }) 
                         <Image
                           alt={social?.attributes?.social?.data?.attributes?.icon?.data?.attributes?.name}
                           height={10}
-                          src={`${STRAPI_ASSETS}${social?.attributes?.social?.data?.attributes?.icon?.data?.attributes?.url}`}
+                          src={getStrapiAssetUrl(social?.attributes?.social?.data?.attributes?.icon?.data?.attributes?.url)}
                           width={10}
                         />
                       </a>
@@ -106,7 +106,7 @@ export const OurCoreTeam: React.FC<any> = ({ title, content, member_profiles }) 
                           <Image
                             alt={social?.attributes?.social?.data?.attributes?.icon?.data?.attributes?.name}
                             height={10}
-                            src={`${STRAPI_ASSETS}${social?.attributes?.social?.data?.attributes?.icon?.data?.attributes?.url}`}
+                            src={getStrapiAssetUrl(social?.attributes?.social?.data?.attributes?.icon?.data?.attributes?.url)}
                             width={10}
                           />
                         </a>

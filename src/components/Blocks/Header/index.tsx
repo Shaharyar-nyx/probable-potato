@@ -5,7 +5,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 export const Header: React.FC<any> = ({
@@ -26,7 +26,7 @@ export const Header: React.FC<any> = ({
       <img
         alt="header background"
         className={styles.image}
-        src={`${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`}
+        src={getStrapiAssetUrl(background_file?.data?.attributes?.url)}
       />
       <div className={styles.overlay} />
       <div className={styles.content}>

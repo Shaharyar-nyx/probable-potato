@@ -7,7 +7,7 @@ import 'swiper/css/pagination';
 import styles from "./styles.module.scss";
 
 import { Button } from "@/components";
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -39,7 +39,7 @@ export const OurCulture: React.FC<any> = ({ title, content, headline, cta_text, 
                           alt={icon.data.attributes.name}
                           height={24}
                           width={24}
-                          src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                          src={getStrapiAssetUrl(icon.data.attributes.url)}
                         />
                       </div>
                     </div>
@@ -74,7 +74,7 @@ export const OurCulture: React.FC<any> = ({ title, content, headline, cta_text, 
                 <div className="flex flex-col gap-[18px] justify-start p-7 bg-primary-500 rounded-xl h-auto">
                   <div className="flex flex-col items-start gap-3">
                     <Image
-                      src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                      src={getStrapiAssetUrl(icon.data.attributes.url)}
                       alt={icon.data.attributes.name}
                       width={45}
                       height={45}

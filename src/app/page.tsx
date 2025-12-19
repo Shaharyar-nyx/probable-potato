@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 
 import { Hero, Testimonials, TestimonialDarksSection, StatsSection, CaseStudies, OurServices, ThreatLevel, CallToAction } from "@/sections";
-import { getPageBySlug, STRAPI_ASSETS } from "@/lib";
+import { getPageBySlug, getStrapiAssetUrl } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { BlockType } from "@/types";
 import AwardsSection from "@/sections/home/awards-section";
@@ -54,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: data.seo.title,
       description: data.seo.meta_description,
-      images: [{ url: STRAPI_ASSETS + data.seo.og_image?.data?.attributes?.url || "/favicon.ico" }],
+      images: [{ url: getStrapiAssetUrl(data.seo.og_image?.data?.attributes?.url) || "/favicon.ico" }],
       url: data.seo.canonical_url,
       type: "website",
       siteName: "Nyxlab",
@@ -64,7 +64,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: data.seo.title,
       description: data.seo.meta_description,
-      images: [STRAPI_ASSETS + data.seo.og_image?.data?.attributes?.url || "/favicon.ico"],
+      images: [getStrapiAssetUrl(data.seo.og_image?.data?.attributes?.url) || "/favicon.ico"],
     },
   };
 }

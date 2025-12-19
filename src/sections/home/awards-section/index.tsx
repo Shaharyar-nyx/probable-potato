@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib/constants";
+import { getStrapiAssetUrl } from "@/lib";
 import style from "./styles.module.scss";
 
 interface Award {
@@ -39,7 +39,7 @@ const AwardsSection: React.FC<AwardsSectionProps> = ({
 
   const renderAwardCard = (award: Award, index: number, prefix: string) => {
     const logoPath = award.Logo?.data?.attributes?.url;
-    const logoUrl = logoPath ? `${STRAPI_ASSETS}${logoPath}` : null;
+    const logoUrl = logoPath ? getStrapiAssetUrl(logoPath) : null;
     const logoAlt =
       award.Logo?.data?.attributes?.alternativeText || award.Title || "Certification";
 

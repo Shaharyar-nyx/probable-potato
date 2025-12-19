@@ -4,7 +4,7 @@ import React from "react";
 
 import "./styles.scss";
 import { SemiCircle } from "@/components";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks";
 
@@ -26,7 +26,7 @@ export const SecurityPosture: React.FC<any> = ({ title, headline, content, cards
                 alt={icon.data.attributes.name}
                 height={24}
                 width={24}
-                src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                src={getStrapiAssetUrl(icon.data.attributes.url)}
                 className="brightness-0 invert"
               />
               <div>

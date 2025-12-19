@@ -6,7 +6,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, getStrapiAssetUrl } from "@/lib";
 
 export const BlogHero: React.FC<any> = ({
   background_file,
@@ -23,7 +23,7 @@ export const BlogHero: React.FC<any> = ({
     <header className={styles.header}>
       <div className={styles.backgroundWrapper}>
         <Image
-          src={`${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`}
+          src={getStrapiAssetUrl(background_file?.data?.attributes?.url)}
           alt=""
           width={1440}
           height={600}

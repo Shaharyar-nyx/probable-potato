@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 import { motion } from "framer-motion";
 
@@ -33,7 +33,7 @@ export const Hero: React.FC<any> = ({
       <div className={styles.backgroundWrapper}>
         {background_file?.data?.attributes?.url && (
           <motion.video
-            src={`${STRAPI_ASSETS}${background_file.data.attributes.url}`}
+            src={getStrapiAssetUrl(background_file.data.attributes.url)}
             playsInline
             preload="true"
             loop

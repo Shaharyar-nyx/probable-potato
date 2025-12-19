@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 
 interface IconType {
@@ -51,7 +51,7 @@ export const OfferingsDark: React.FC<OfferingsDarkProps> = ({
       <div className={styles.iconWrapper}>
         <div className={styles.iconBackground}>
           <img
-            src={`${STRAPI_ASSETS}${item.icon.data.attributes.url}`}
+            src={getStrapiAssetUrl(item.icon.data.attributes.url)}
             alt={item.icon.data.attributes.alternativeText || item.heading || "icon"}
             className={styles.icon}
           />

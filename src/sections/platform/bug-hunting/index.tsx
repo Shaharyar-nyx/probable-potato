@@ -6,7 +6,7 @@ import React from "react";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -43,7 +43,7 @@ export const ContinuousBugHunting: React.FC<any> = ({ headline, content, title, 
                 <div className="flex flex-col gap-[18px] justify-start p-7 bg-primary-500 rounded-xl h-auto">
                   <div className="flex flex-col items-start gap-3">
                     <Image
-                      src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                      src={getStrapiAssetUrl(icon.data.attributes.url)}
                       alt={icon.data.attributes.name}
                       width={45}
                       height={45}
@@ -65,7 +65,7 @@ export const ContinuousBugHunting: React.FC<any> = ({ headline, content, title, 
                       alt={icon.data.attributes.name}
                       className={styles.featureIcon}
                       height={105}
-                      src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                      src={getStrapiAssetUrl(icon.data.attributes.url)}
                       width={105}
                     />
                     <h3

@@ -1,6 +1,6 @@
 "use client";
 
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import React from "react";
 import Image from "next/image";
 
@@ -34,7 +34,7 @@ export const CampaignTimeline = ({
           <h2 className="mb-0 text-center text-3xl font-bold text-[#02255B] md:mb-12">{title}</h2>
           <div className="block md:hidden">
             <Image
-              src={`${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`}
+              src={getStrapiAssetUrl(background_file?.data?.attributes?.url)}
               alt={title}
               width={1000}
               height={1000}

@@ -4,7 +4,7 @@ import * as d3 from "d3";
 import React, { useEffect, useRef, useState } from "react";
 
 import { SemiCircleProps } from "@/types";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 
 interface DataType {
   customContent: string;
@@ -22,7 +22,7 @@ export const SemiCircle: React.FC<SemiCircleProps> = ({ text, data }) => {
       customContent: `
         <g style="text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center">
             <img
-                src="${STRAPI_ASSETS}${item.icon.data.attributes.url}"
+                src="${getStrapiAssetUrl(item.icon.data.attributes.url)}"
                 alt="${item.icon.data.attributes.name}"
                 style="width: 15px; height: 15px; margin-bottom: 2px;"
             />

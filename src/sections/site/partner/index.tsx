@@ -4,7 +4,7 @@ import React from "react";
 
 import styles from "./styles.module.scss";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { Gardient } from "@/components/Blocks/Gardient";
 
 export const Partner: React.FC<any> = ({ headline, title, content, background_file, cards }) => {
@@ -22,7 +22,7 @@ export const Partner: React.FC<any> = ({ headline, title, content, background_fi
             {cards?.map((it: any, i: number) => (
               <div className={styles.leftItem} key={`partner-${i}`}>
                 <div className={styles.leftIcon}>
-                  <Image src={`${STRAPI_ASSETS}${it?.icon?.data?.attributes?.url}`} width={24} height={24} alt="" />
+                  <Image src={getStrapiAssetUrl(it?.icon?.data?.attributes?.url)} width={24} height={24} alt="" />
                 </div>
                 <div className={styles.leftContent}>
                   <div className={styles.listLeft}>{it.title}</div>
@@ -32,7 +32,7 @@ export const Partner: React.FC<any> = ({ headline, title, content, background_fi
             ))}
           </div>
           <div className={styles.right}>
-            <Image src={`${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`} width={568} height={428} alt="" />
+            <Image src={getStrapiAssetUrl(background_file?.data?.attributes?.url)} width={568} height={428} alt="" />
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 const MissionsCard = ({ card }: { card: any }) => (
@@ -13,7 +13,7 @@ const MissionsCard = ({ card }: { card: any }) => (
       alt={card.image?.data?.attributes?.name}
       className={styles.missionImage}
       height={400}
-      src={`${STRAPI_ASSETS}${card.image?.data?.attributes?.url}`}
+      src={getStrapiAssetUrl(card.image?.data?.attributes?.url)}
       width={600}
     />
   </div>
@@ -26,7 +26,7 @@ const FeatureCard = ({ card, isMobile }: { card: any; isMobile: boolean }) => (
         alt={card.icon?.data?.attributes?.name}
         className={styles.featureIcon}
         height={isMobile ? 40 : 60}
-        src={`${STRAPI_ASSETS}${card.icon?.data?.attributes?.url}`}
+        src={getStrapiAssetUrl(card.icon?.data?.attributes?.url)}
         width={isMobile ? 40 : 60}
       />
       <h3 className={`${isMobile ? 'heading-8' : 'heading-7'} font-bold`}>{card.title}</h3>
@@ -45,7 +45,7 @@ const ProgramCard = ({ card }: { card: any }) => (
       alt={card.image?.data?.attributes?.name}
       className={styles.programImage}
       height={400}
-      src={`${STRAPI_ASSETS}${card.image?.data?.attributes?.url}`}
+      src={getStrapiAssetUrl(card.image?.data?.attributes?.url)}
       width={600}
     />
   </div>

@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { getStrapiAssetUrl } from "@/lib";
 
 interface AboutSectionProps {
   title?: string;
@@ -18,15 +19,12 @@ interface AboutSectionProps {
   };
 }
 
-// You can keep this hard-coded URL or swap to NEXT_PUBLIC_STRAPI_ASSETS if you prefer
-const STRAPI_URL = "https://shark-app-tmqz4.ondigitalocean.app";
-
 const AboutSection: React.FC<any> = (props) => {
   // Cast whatever the CMS/block system passes into our local shape
   const { title, headline, content, image } = props as AboutSectionProps;
 
   const imgUrl = image?.data?.attributes?.url
-    ? `${STRAPI_URL}${image.data.attributes.url}`
+    ? getStrapiAssetUrl(image.data.attributes.url)
     : "/images/placeholder.jpg";
 
   const imgAlt =

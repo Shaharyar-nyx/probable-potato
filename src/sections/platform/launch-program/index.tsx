@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import styles from "./styles.module.scss";
 
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -90,7 +90,7 @@ export const LaunchProgram: React.FC<any> = ({ headline, title, content, cards }
                             className={styles.stepImage}
                             style={{ objectFit: "contain" }}
                             fill
-                            src={`${STRAPI_ASSETS}${image?.data?.attributes?.url}`}
+                            src={getStrapiAssetUrl(image?.data?.attributes?.url)}
                           />
                         </div>
                       </div>
@@ -132,7 +132,7 @@ export const LaunchProgram: React.FC<any> = ({ headline, title, content, cards }
                       className={styles.stepImage}
                       style={{ objectFit: "contain" }}
                       fill
-                      src={`${STRAPI_ASSETS}${image?.data?.attributes?.url}`}
+                      src={getStrapiAssetUrl(image?.data?.attributes?.url)}
                     />
                   </div>
                 </div>

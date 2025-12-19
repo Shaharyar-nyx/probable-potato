@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 
 export const EventPartner = ({ title, cards }: { title: string; cards: any }) => {
   return (
@@ -42,7 +42,7 @@ export const EventPartner = ({ title, cards }: { title: string; cards: any }) =>
             {cards.map((item: any, index: number) => (
               <div key={index} className="w-full md:w-[300px] lg:w-[400px]">
                 <Image
-                  src={`${STRAPI_ASSETS}${item.background_image?.data?.attributes?.url}`}
+                  src={getStrapiAssetUrl(item.background_image?.data?.attributes?.url)}
                   alt={title}
                   width={400}
                   height={120}

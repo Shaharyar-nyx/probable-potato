@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 
 export const MediaHighlight: React.FC<any> = ({
   background_file,
@@ -24,7 +24,7 @@ export const MediaHighlight: React.FC<any> = ({
         background_file?.data?.attributes?.url
           ? ({
               // TS: cast so CSS var key is allowed
-              ["--bg-url" as any]: `url(${STRAPI_ASSETS}${background_file.data.attributes.url})`,
+              ["--bg-url" as any]: `url(${getStrapiAssetUrl(background_file.data.attributes.url)})`,
               position: "relative",
               overflow: "hidden",
             } as React.CSSProperties)
@@ -39,7 +39,7 @@ export const MediaHighlight: React.FC<any> = ({
             {/* Background behind featured image */}
             {featured_image?.data?.attributes?.url && (
               <Image
-                src={`${STRAPI_ASSETS}${featured_image.data.attributes.url}`}
+                src={getStrapiAssetUrl(featured_image.data.attributes.url)}
                 alt="Featured"
                 width={800}
                 height={400}

@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 export const ProgramType: React.FC<any> = ({ title, content, cards }) => {
@@ -41,7 +41,7 @@ export const ProgramType: React.FC<any> = ({ title, content, cards }) => {
                         alt={icon?.data?.attributes?.name}
                         height={24}
                         width={24}
-                        src={`${STRAPI_ASSETS}${icon?.data?.attributes?.url}`}
+                        src={getStrapiAssetUrl(icon?.data?.attributes?.url)}
                       />
                     </div>
                   </div>

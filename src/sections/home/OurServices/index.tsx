@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 
 /*  
@@ -60,7 +60,7 @@ export const OurServices = ({
                 {item?.icon?.data?.attributes?.url && (
                   <div className={styles.sideIcon}>
                     <img
-                      src={`${STRAPI_ASSETS}${item.icon.data.attributes.url}`}
+                      src={getStrapiAssetUrl(item.icon.data.attributes.url)}
                       alt={item.heading}
                     />
                   </div>
@@ -85,7 +85,7 @@ export const OurServices = ({
           >
             {activeItem?.icon?.data?.attributes?.url && (
               <motion.img
-                src={`${STRAPI_ASSETS}${activeItem.icon.data.attributes.url}`}
+                src={getStrapiAssetUrl(activeItem.icon.data.attributes.url)}
                 alt={activeItem.heading}
                 initial={{ opacity: 0, scale: 1.03 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -115,7 +115,7 @@ export const OurServices = ({
             {item?.icon?.data?.attributes?.url && (
               <div className={styles.mobileImageWrapper}>
                 <img
-                  src={`${STRAPI_ASSETS}${item.icon.data.attributes.url}`}
+                  src={getStrapiAssetUrl(item.icon.data.attributes.url)}
                   alt={item.heading}
                 />
               </div>

@@ -1,7 +1,7 @@
 import { Button } from "@/components";
 import { MultiCardSection } from "@/types";
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 
 export function CyberLeadership(data: MultiCardSection) {
   // Use the actual data from CMS, but keep the hardcoded content as fallback
@@ -16,7 +16,7 @@ export function CyberLeadership(data: MultiCardSection) {
       {/* Background with cyber network graphics */}
       <div
         className={styles.backgroundWrapper}
-        style={{ backgroundImage: `url(${STRAPI_ASSETS}${data?.background_file.data?.attributes?.url})` }}
+        style={{ backgroundImage: `url(getStrapiAssetUrl(data?.background_file.data?.attributes?.url))` }}
       ></div>
 
       {/* Content */}

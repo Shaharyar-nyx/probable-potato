@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { ArrowRight } from "lucide-react";
 
 interface Study {
@@ -105,7 +105,7 @@ export const CaseStudies: React.FC<CaseStudiesProps> = ({
               <motion.div
                 className={styles.cardImage}
                 style={{
-                  backgroundImage: `url(${STRAPI_ASSETS}${item.image.data.attributes.url})`,
+                  backgroundImage: `url(${getStrapiAssetUrl(item.image.data.attributes.url)})`,
                 }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.6 }}

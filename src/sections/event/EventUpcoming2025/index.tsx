@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { EventDetail, EventGroup } from "@/types/components";
-import { STRAPI_ASSETS } from "@/lib/constants";
+import { getStrapiAssetUrl } from "@/lib";
 import dayjs from "dayjs";
 export const EventUpcoming2025: React.FC<any> = ({ title, description, event_groups }) => {
   const [activeGroup, setActiveGroup] = useState<number>(0);
@@ -72,7 +72,7 @@ export const EventUpcoming2025: React.FC<any> = ({ title, description, event_gro
                 {event.image.data.attributes.url && (
                   <div className="relative h-[120px] w-[120px] flex-shrink-0 md:h-[160px] md:w-[160px] mb-8">
                     <Image
-                      src={`${STRAPI_ASSETS}${event.image.data.attributes.url}`}
+                      src={getStrapiAssetUrl(event.image.data.attributes.url)}
                       alt={event.title}
                       width={160}
                       height={160}

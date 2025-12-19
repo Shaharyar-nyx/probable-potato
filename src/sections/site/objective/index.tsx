@@ -4,7 +4,7 @@ import React from "react";
 
 import styles from "./styles.module.scss";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { Gardient } from "@/components/Blocks/Gardient";
 
 export const Objective: React.FC<any> = ({ headline, title, cards }) => {
@@ -22,7 +22,7 @@ export const Objective: React.FC<any> = ({ headline, title, cards }) => {
               <div className={styles.item} key={`objective-${i}`}>
                 <div className={styles.content}>
                   <div className={styles.icon}>
-                    <Image src={`${STRAPI_ASSETS}${it?.icon?.data?.attributes?.url}`} width={90} height={90} alt="" />
+                    <Image src={getStrapiAssetUrl(it?.icon?.data?.attributes?.url)} width={90} height={90} alt="" />
                   </div>
                   <div className={styles.text}>{it.content}</div>
                 </div>

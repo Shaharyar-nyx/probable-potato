@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 
 const AnimatedBulletPoints: React.FC<{ text: string }> = ({ text }) => {
@@ -93,7 +93,7 @@ export const IntelligenceLayersDark: React.FC<any> = ({
               {item.icon?.data?.attributes?.url && (
                 <div className={styles.iconWrapper}>
                   <Image
-                    src={`${STRAPI_ASSETS}${item.icon.data.attributes.url}`}
+                    src={getStrapiAssetUrl(item.icon.data.attributes.url)}
                     alt={item.icon.data.attributes.alternativeText || "icon"}
                     width={50}
                     height={50}

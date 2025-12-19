@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 
 type WhyCyberWatchProps = {
@@ -25,7 +25,7 @@ export default function WhyCyberWatch({
 }: WhyCyberWatchProps) {
   const imageUrl =
     side_image?.data?.attributes?.url
-      ? `${STRAPI_ASSETS}${side_image.data.attributes.url}`
+      ? getStrapiAssetUrl(side_image.data.attributes.url)
       : null;
 
   return (

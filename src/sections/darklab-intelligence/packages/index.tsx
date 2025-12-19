@@ -7,7 +7,7 @@ import { Tooltip } from "react-tooltip";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, getStrapiAssetUrl } from "@/lib";
 import Image from "next/image";
 import { useIsMobile, useIsAPAC } from "@/hooks";
 
@@ -66,7 +66,7 @@ const PackageCard = ({
             <Image
               alt={icon.data.attributes.name}
               height={24}
-              src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+              src={getStrapiAssetUrl(icon.data.attributes.url)}
               width={24}
             />
           </div>
@@ -362,7 +362,7 @@ export const Packages: React.FC<any> = ({ collection, pricing_cards, features, t
                           alt={icon.data.attributes.name}
                           height={24}
                           width={24}
-                          src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                          src={getStrapiAssetUrl(icon.data.attributes.url)}
                         />
                       </div>
                       <div className="w-[90%]">

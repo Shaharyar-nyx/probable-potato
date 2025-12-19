@@ -6,7 +6,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import Modal from "@/components/UI/modal";
 import clsx from "clsx";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 
 export const ServiceList: React.FC<any> = ({
   headline,
@@ -46,7 +46,7 @@ export const ServiceList: React.FC<any> = ({
             </div>
             <div className={clsx(styles.list)}>
               <Image
-                src={`${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`}
+                src={getStrapiAssetUrl(background_file?.data?.attributes?.url)}
                 width={1273}
                 height={546}
                 alt="image"

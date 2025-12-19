@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 
 type PressItem = {
   source_name?: string;
@@ -33,7 +33,7 @@ export const GlobalPressCoverage: React.FC<{
         <ul className={styles.grid}>
           {currentItems.map((it, i) => {
             const iUrl = it.thumbnail?.data?.attributes?.url
-              ? `${STRAPI_ASSETS}${it.thumbnail.data.attributes.url}`
+              ? getStrapiAssetUrl(it.thumbnail.data.attributes.url)
               : undefined;
 
             return (

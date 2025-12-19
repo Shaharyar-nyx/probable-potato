@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Phone } from "lucide-react"; // Icon for contact button
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 
 interface BackgroundFile {
   data?: {
@@ -39,7 +39,7 @@ export const CallToAction: React.FC<CallToActionSectionProps> = ({
     (homeCta as any)?.data?.attributes || (homeCta as homeCtaContent) || {};
 
   const bgImage = background_file?.data?.attributes?.url
-    ? `${STRAPI_ASSETS}${background_file.data.attributes.url}`
+    ? getStrapiAssetUrl(background_file.data.attributes.url)
     : "/images/default-bg.jpg";
 
   return (

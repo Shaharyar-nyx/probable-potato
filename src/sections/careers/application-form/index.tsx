@@ -9,7 +9,7 @@ import { Button, Input, Textarea, InputFile } from "@/components";
 import { ApplyFormType } from "@/types";
 import { useSubmitApplicationForm } from "@/hooks/useSubmitApplicationForm";
 import Image from "next/image";
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 import { RECAPTCHA_SITE_KEY } from "@/lib/constants";
 import { toast } from "react-toastify";
@@ -103,7 +103,7 @@ export const ApplicationForm: React.FC<any> = ({
                 alt={icon.data.attributes.name}
                 height={24}
                 width={24}
-                src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                src={getStrapiAssetUrl(icon.data.attributes.url)}
               />
             </div>
             <h3 className="heading-7 font-bold">{cardTitle}</h3>
@@ -121,7 +121,7 @@ export const ApplicationForm: React.FC<any> = ({
                   alt={icon.data.attributes.name}
                   height={18}
                   width={18}
-                  src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                  src={getStrapiAssetUrl(icon.data.attributes.url)}
                 />
               </div>
               <div>

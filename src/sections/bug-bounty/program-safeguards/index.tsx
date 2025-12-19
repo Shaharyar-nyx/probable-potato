@@ -10,7 +10,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 const fadeInUp = {
@@ -67,7 +67,7 @@ const SafeguardCard: React.FC<any> = ({ icon, title, content, isEven }) => {
           <Image
             alt={icon?.data?.attributes?.name}
             height={100}
-            src={`${STRAPI_ASSETS}${icon?.data?.attributes?.url}`}
+            src={getStrapiAssetUrl(icon?.data?.attributes?.url)}
             width={100}
           />
         </div>

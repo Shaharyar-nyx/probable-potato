@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -81,7 +81,7 @@ export const BugBountyPrograms: React.FC<any> = ({ title, headline, content, tab
                     alt={image?.data?.attributes?.name}
                     className={styles.image}
                     height={400}
-                    src={`${STRAPI_ASSETS}${image?.data?.attributes?.url}`}
+                    src={getStrapiAssetUrl(image?.data?.attributes?.url)}
                     width={500}
                   />
                 )}
@@ -141,7 +141,7 @@ export const BugBountyPrograms: React.FC<any> = ({ title, headline, content, tab
                             alt={image?.data?.attributes?.name}
                             className={styles.image}
                             height={400}
-                            src={`${STRAPI_ASSETS}${image?.data?.attributes?.url}`}
+                            src={getStrapiAssetUrl(image?.data?.attributes?.url)}
                             width={500}
                           />
                         </motion.div>

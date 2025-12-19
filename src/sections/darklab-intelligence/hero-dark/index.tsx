@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./dark.module.scss";
 import { Brain  } from "lucide-react";
 
@@ -24,7 +24,7 @@ export const HeroDark: React.FC<any> = ({
       {background_file?.data?.attributes?.url && (
   <img
     className={styles.backgroundImage}
-    src={`${STRAPI_ASSETS}${background_file.data.attributes.url}`}
+    src={getStrapiAssetUrl(background_file.data.attributes.url)}
     alt={background_file.data.attributes.alternativeText || "background"}
     aria-hidden="true"
   />
@@ -67,7 +67,7 @@ export const HeroDark: React.FC<any> = ({
           {featured_image?.data?.attributes?.url && (
             <div className={styles.imageWrapper}>
               <Image
-                src={`${STRAPI_ASSETS}${featured_image.data.attributes.url}`}
+                src={getStrapiAssetUrl(featured_image.data.attributes.url)}
                 alt={
                   featured_image?.data?.attributes?.alternativeText || "Hero image"
                 }

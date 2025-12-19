@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
 
@@ -84,7 +84,7 @@ export default function Offer({
     <section
       className={styles.featuredSection}
       style={{
-        backgroundImage: `url(${STRAPI_ASSETS}${background})`,
+        backgroundImage: `url(${getStrapiAssetUrl(background)})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -115,7 +115,7 @@ export default function Offer({
                     <div className={styles.iconWrapper}>
                       {iconUrl && (
                         <Image
-                          src={`${STRAPI_ASSETS}${iconUrl}`}
+                          src={getStrapiAssetUrl(iconUrl)}
                           alt={altText || item.heading}
                           width={24}
                           height={24}
@@ -138,7 +138,7 @@ export default function Offer({
             {featureImgUrl && (
               <div className={styles.rightImage}>
                 <Image
-                  src={`${STRAPI_ASSETS}${featureImgUrl}`}
+                  src={getStrapiAssetUrl(featureImgUrl)}
                   alt={featureAlt}
                   width={500}
                   height={500}

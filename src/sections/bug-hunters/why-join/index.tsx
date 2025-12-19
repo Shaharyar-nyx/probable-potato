@@ -4,7 +4,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Button } from "@/components";
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, getStrapiAssetUrl } from "@/lib";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks";
 
@@ -46,7 +46,7 @@ export const WhyJoin: React.FC<any> = ({ title, content, cta_text, cta_url, card
                     <div className="flex flex-col items-start gap-3">
                       <div className="rounded-md bg-primary-500 p-1">
                         <Image
-                          src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                          src={getStrapiAssetUrl(icon.data.attributes.url)}
                           alt={icon.data.attributes.name}
                           width={24}
                           height={24}
@@ -65,7 +65,7 @@ export const WhyJoin: React.FC<any> = ({ title, content, cta_text, cta_url, card
                 <div className="flex items-center gap-3">
                   <div className="rounded-md bg-primary-500 p-1">
                     <Image
-                      src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                      src={getStrapiAssetUrl(icon.data.attributes.url)}
                       alt={icon.data.attributes.name}
                       width={24}
                       height={24}

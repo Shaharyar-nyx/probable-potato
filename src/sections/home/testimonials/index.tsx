@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 
 export const Testimonials: React.FC<any> = ({ testimonials }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -97,7 +97,7 @@ export const Testimonials: React.FC<any> = ({ testimonials }) => {
                         <img
                           alt={`${testimonial.client?.data?.attributes?.name} Logo`}
                           className={styles.testimonialLogo}
-                          src={`${STRAPI_ASSETS}${testimonial?.client?.data?.attributes?.logo?.data?.attributes?.url}`}
+                          src={getStrapiAssetUrl(testimonial?.client?.data?.attributes?.logo?.data?.attributes?.url)}
                         />
                       )}
                     </div>

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 
 type WorkItem = {
@@ -72,7 +72,7 @@ export default function FeaturedMedia({
         className={styles.featuredSection}
         style={{
           backgroundImage: bgUrl
-            ? `linear-gradient(180deg, #F6F7F8 0%, rgba(246,247,248,0) 50%, #F6F7F8 100%), url(${STRAPI_ASSETS}${bgUrl})`
+            ? `linear-gradient(180deg, #F6F7F8 0%, rgba(246,247,248,0) 50%, #F6F7F8 100%), url(${getStrapiAssetUrl(bgUrl)})`
             : "linear-gradient(180deg, #F6F7F8 0%, rgba(246,247,248,0) 50%, #F6F7F8 100%)",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -104,7 +104,7 @@ export default function FeaturedMedia({
                     <div className={styles.iconWrapper}>
                       {iconUrl && (
                         <Image
-                          src={`${STRAPI_ASSETS}${iconUrl}`}
+                          src={getStrapiAssetUrl(iconUrl)}
                           alt={altText || item.heading}
                           width={24}
                           height={24}

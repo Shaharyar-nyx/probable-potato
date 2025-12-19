@@ -1,7 +1,5 @@
 import Image from "next/image";
-
-// Use your production Strapi URL from environment variable
-const STRAPI_URL = "https://shark-app-tmqz4.ondigitalocean.app";
+import { getStrapiAssetUrl } from "@/lib";
 
 async function getCaseStudy(slug: string) {
   const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/case-studies?filters[slug][$eq]=${slug}&populate=*`, {
@@ -30,7 +28,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         {img?.url && (
           <div className="overflow-hidden rounded-2xl shadow-lg mb-10 border border-purple-800/40">
             <Image
-              src={`${STRAPI_URL}${img.url}`}
+              src={getStrapiAssetUrl(img.url)}
               alt={img.alternativeText || caseStudy.title}
               width={900}
               height={500}

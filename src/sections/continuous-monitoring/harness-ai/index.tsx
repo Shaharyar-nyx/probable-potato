@@ -4,7 +4,7 @@ import React from "react";
 
 import "./styles.scss";
 import Modal from "@/components/UI/modal";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks";
 
@@ -23,7 +23,7 @@ export const HarnessAi: React.FC<any> = ({ title, headline, content, cards, cta_
                 alt={icon.data.attributes.name}
                 height={45}
                 width={45}
-                src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                src={getStrapiAssetUrl(icon.data.attributes.url)}
               />
               <p className="paragraph-md harness-ai-feature-text">{title}</p>
             </div>

@@ -7,7 +7,7 @@ import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input } from "../UI";
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, getStrapiAssetUrl } from "@/lib";
 import Image from "next/image";
 
 const Footer: React.FC<any> = ({
@@ -74,7 +74,7 @@ const Footer: React.FC<any> = ({
               >
                 <img
                   alt="Nyxlab"
-                  src={`${STRAPI_ASSETS}${company_logo?.data?.attributes?.url}`}
+                  src={getStrapiAssetUrl(company_logo?.data?.attributes?.url)}
                   className="h-auto w-full"
                 />
               </Link>
@@ -111,7 +111,7 @@ const Footer: React.FC<any> = ({
                       target="_blank"
                     >
                       <Image
-                        src={`${STRAPI_ASSETS}${url}`}
+                        src={getStrapiAssetUrl(url)}
                         alt={name}
                         width={20}
                         height={20}

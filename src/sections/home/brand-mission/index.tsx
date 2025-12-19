@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 export const BrandMission: React.FC<any> = ({ highlights, title, content, hunters }) => {
@@ -91,7 +91,7 @@ export const BrandMission: React.FC<any> = ({ highlights, title, content, hunter
             <img
               alt={member.image?.data?.attributes?.name}
               className={styles.memberImage}
-              src={`${STRAPI_ASSETS}${member.image?.data?.attributes?.url}`}
+              src={getStrapiAssetUrl(member.image?.data?.attributes?.url)}
             />
             <div className={styles.memberInfo}>
               <p className="text-[9px] leading-[10px] lg:paragraph-sm lg:mb-1 font-semibold">{member.name}</p>

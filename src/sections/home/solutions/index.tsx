@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import { SolutionCardProps } from "@/types/components";
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 const fadeInUp = {
@@ -59,7 +59,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ index, icon, title, cta_tex
             <Image
               alt={icon?.data?.attributes?.name}
               height={65}
-              src={`${STRAPI_ASSETS}${icon?.data?.attributes?.url}`}
+              src={getStrapiAssetUrl(icon?.data?.attributes?.url)}
               width={65}
             />
           </div>
@@ -79,7 +79,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ index, icon, title, cta_tex
         <Image
           alt={icon?.data?.attributes?.name}
           height={isMobile ? 65 : 100}
-          src={`${STRAPI_ASSETS}${icon?.data?.attributes?.url}`}
+          src={getStrapiAssetUrl(icon?.data?.attributes?.url)}
           width={isMobile ? 65 : 100}
         />
       </div>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 
 export const EventIntro = ({
   background_file,
@@ -38,7 +38,7 @@ export const EventIntro = ({
                   <Image
                     src={
                       background_file?.data?.attributes?.url
-                        ? `${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`
+                        ? getStrapiAssetUrl(background_file?.data?.attributes?.url)
                         : "/images/events/bughunting-badge-2025.png"
                     }
                     alt="BugHunting Campaign 2025 Badge"

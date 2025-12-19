@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { getStrapiAssetUrl } from "@/lib";
 
 interface Member {
   Name: string;
@@ -26,8 +27,6 @@ interface LeadershipProps {
   Description?: string;
   team_member: Member[];
 }
-
-const STRAPI_ASSETS = "https://shark-app-tmqz4.ondigitalocean.app";
 
 const LeadershipSection: React.FC<any> = (props) => {
   // Cast incoming props from CMS/block into our shape
@@ -69,10 +68,10 @@ const LeadershipSection: React.FC<any> = (props) => {
                 
 
                 {/* Avatar */}
-                {member.Image?.data?.attributes?.url && STRAPI_ASSETS && (
+                {member.Image?.data?.attributes?.url && (
                   <div className="w-24 h-24 md:w-28 md:h-28 mx-auto mb-4 rounded-xl overflow-hidden border border-gray-700 shadow-[0_0_22px_rgba(255,79,216,0.25)]">
                     <Image
-                      src={`${STRAPI_ASSETS}${member.Image.data.attributes.url}`}
+                      src={getStrapiAssetUrl(member.Image.data.attributes.url)}
                       alt={
                         member.Image.data.attributes.alternativeText ||
                         member.Name

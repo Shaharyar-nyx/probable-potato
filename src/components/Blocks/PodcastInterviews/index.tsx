@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 
 type Episode = {
   title?: string;
@@ -43,7 +43,7 @@ export const PodcastInterviews: React.FC<{
   episodes = [],
 }) => {
     const bg = background_file?.data?.attributes?.url
-      ? `${STRAPI_ASSETS}${background_file.data.attributes.url}`
+      ? getStrapiAssetUrl(background_file.data.attributes.url)
       : undefined;
 
     const [page, setPage] = useState(1);
@@ -73,10 +73,10 @@ export const PodcastInterviews: React.FC<{
           <ul className={styles.grid}>
             {paginatedEpisodes.map((ep, i) => {
               const tUrl = ep.thumbnail?.data?.attributes?.url
-                ? `${STRAPI_ASSETS}${ep.thumbnail.data.attributes.url}`
+                ? getStrapiAssetUrl(ep.thumbnail.data.attributes.url)
                 : undefined;
               const lUrl = ep.logo?.data?.attributes?.url
-                ? `${STRAPI_ASSETS}${ep.logo.data.attributes.url}`
+                ? getStrapiAssetUrl(ep.logo.data.attributes.url)
                 : undefined;
 
               return (

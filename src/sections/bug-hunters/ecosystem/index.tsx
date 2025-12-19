@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import "./styles.scss";
 import { useIsMobile, useScreenWidth } from "@/hooks";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import Image from "next/image";
@@ -62,7 +62,7 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon, conte
           }
           className="ecosystem-feature-icon"
           initial={{ width: ICON_SIZE_BIG, height: ICON_SIZE_BIG, opacity: 1 }}
-          src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+          src={getStrapiAssetUrl(icon.data.attributes.url)}
           style={{ position: "absolute", top: 0, left: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         />
@@ -77,7 +77,7 @@ const EcosystemFeatureItem: React.FC<EcosystemItemProps> = ({ title, icon, conte
           }
           className="ecosystem-feature-icon"
           initial={{ width: ICON_SIZE_BIG, height: ICON_SIZE_BIG, opacity: 0 }}
-          src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+          src={getStrapiAssetUrl(icon.data.attributes.url)}
           style={{ position: "absolute", top: 0, left: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         />
@@ -172,7 +172,7 @@ export const Ecosystem: React.FC<any> = ({ title, content, cards }) => {
             <div className="flex flex-col gap-[18px] justify-start p-7 bg-primary-500 rounded-xl h-auto">
               <div className="flex flex-row items-center gap-3">
                 <Image
-                  src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                  src={getStrapiAssetUrl(icon.data.attributes.url)}
                   alt={icon.data.attributes.name}
                   width={48}
                   height={48}

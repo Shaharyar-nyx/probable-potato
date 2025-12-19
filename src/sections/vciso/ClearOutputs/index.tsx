@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { MultiCardSection } from "@/types/components";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 
 export function ClearOutputs(data: MultiCardSection) {
@@ -30,7 +30,7 @@ export function ClearOutputs(data: MultiCardSection) {
                 <div className={styles.iconContainer}>
                   {card.icon.data && (
                     <Image
-                      src={`${STRAPI_ASSETS}${card.icon.data.attributes.url}`}
+                      src={getStrapiAssetUrl(card.icon.data.attributes.url)}
                       alt={card.icon.data.attributes.alternativeText || card.title}
                       width={20}
                       height={20}

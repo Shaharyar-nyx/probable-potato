@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib/constants";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 
 interface DarkTab {
@@ -56,7 +56,7 @@ const DarkBrand: React.FC<DarkBrandProps> = ({ heading = '', darktab = [] }) => 
             <div className={styles.iconBox}>
               {tab.image?.data?.attributes?.url && (
                 <Image
-                  src={`${STRAPI_ASSETS}${tab.image.data.attributes.url}`}
+                  src={getStrapiAssetUrl(tab.image.data.attributes.url)}
                   alt={tab.image.data.attributes.alternativeText || tab.title}
                   width={50}
                   height={50}

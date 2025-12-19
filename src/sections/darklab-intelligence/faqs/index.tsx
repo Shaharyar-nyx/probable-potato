@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { STRAPI_ASSETS } from "@/lib/constants";
+import { getStrapiAssetUrl } from "@/lib";
 import styles from "./styles.module.scss";
 
 interface FAQItem {
@@ -38,7 +38,7 @@ const FaqSection: React.FC<FaqSectionProps> = ({
       {/* Background */}
       {background?.data?.attributes?.url && (
         <Image
-          src={`${STRAPI_ASSETS}${background.data.attributes.url}`}
+          src={getStrapiAssetUrl(background.data.attributes.url)}
           alt="Background"
           fill
           className={styles.bgImage}

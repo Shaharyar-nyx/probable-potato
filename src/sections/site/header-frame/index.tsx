@@ -5,7 +5,7 @@ import React from "react";
 
 import styles from "./styles.module.scss";
 import Modal from "@/components/UI/modal";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 
 export const HeaderFrame: React.FC<any> = ({ background_file, cta_text, cta_modal, cta_url, content, title }) => {
   const cta = {
@@ -19,7 +19,7 @@ export const HeaderFrame: React.FC<any> = ({ background_file, cta_text, cta_moda
     <header className={styles.header}>
       <div className={styles.backgroundWrapper}>
         <Image
-          src={`${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`}
+          src={getStrapiAssetUrl(background_file?.data?.attributes?.url)}
           alt=""
           width={1440}
           height={600}

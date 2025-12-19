@@ -2,7 +2,7 @@
 
 import { useIsMobile } from "@/hooks";
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import Image from "next/image";
 
 export const FindingBugBounty: React.FC<any> = ({ headline, title, content, cards }) => {
@@ -29,7 +29,7 @@ export const FindingBugBounty: React.FC<any> = ({ headline, title, content, card
                           alt={icon.data.attributes.name}
                           height={24}
                           width={24}
-                          src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                          src={getStrapiAssetUrl(icon.data.attributes.url)}
                         />
                       </div>
                     </div>

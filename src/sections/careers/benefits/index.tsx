@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./styles.module.scss";
-import { STRAPI_ASSETS } from "@/lib";
+import { getStrapiAssetUrl } from "@/lib";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
@@ -45,7 +45,7 @@ export const Benefits: React.FC<any> = ({ title, content, headline, cards }) => 
                         alt={icon.data.attributes.name}
                         height={24}
                         width={24}
-                        src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                        src={getStrapiAssetUrl(icon.data.attributes.url)}
                       />
                     </div>
                   </div>
@@ -64,7 +64,7 @@ export const Benefits: React.FC<any> = ({ title, content, headline, cards }) => 
                       alt={icon.data.attributes.name}
                       height={24}
                       width={24}
-                      src={`${STRAPI_ASSETS}${icon.data.attributes.url}`}
+                      src={getStrapiAssetUrl(icon.data.attributes.url)}
                     />
                   </div>
                 </div>

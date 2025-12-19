@@ -6,7 +6,7 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import styles from "./styles.module.scss";
 import { Button } from "@/components";
 import Modal from "@/components/UI/modal";
-import { formatBtnId, STRAPI_ASSETS } from "@/lib";
+import { formatBtnId, getStrapiAssetUrl } from "@/lib";
 import { useIsMobile } from "@/hooks";
 
 export const CTA: React.FC<any> = ({
@@ -30,7 +30,7 @@ export const CTA: React.FC<any> = ({
             <img
               alt={background_file?.data?.attributes?.name}
               className={styles.banner}
-              src={`${STRAPI_ASSETS}${background_file?.data?.attributes?.url}`}
+              src={getStrapiAssetUrl(background_file?.data?.attributes?.url)}
             />
           </Parallax>
           <div className={styles.overlay} />
