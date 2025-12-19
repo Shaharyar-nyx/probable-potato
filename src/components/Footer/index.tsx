@@ -52,6 +52,9 @@ const Footer: React.FC<any> = ({
   // Legal items for "Information" column ONLY
   const infoItems = legalNav?.attributes?.items?.data || [];
 
+  // Safe data access with fallbacks - same pattern as Nav component
+  const logoUrl = company_logo?.data?.attributes?.url;
+
   const getHref = (url?: string) => {
     if (!url) return "/";
     if (url.startsWith("http")) return url;
@@ -67,22 +70,22 @@ const Footer: React.FC<any> = ({
           <div className="flex flex-col justify-between gap-10 lg:flex-row lg:gap-16">
             {/* Left: Logo + blurb + socials */}
             <div className="lg:max-w-md">
-              {company_logo?.data?.attributes?.url && (
-                <Link
-                  className="block w-[130px] mb-6"
-                  href="/"
-                  id={formatBtnId("logo")}
-                >
+              <Link
+                className="block w-[130px] mb-6"
+                href="/"
+                id={formatBtnId("logo")}
+              >
+                {logoUrl && (
                   <Image
                     alt={company_logo?.data?.attributes?.alternativeText || "Nyxlab"}
-                    src={getStrapiAssetUrl(company_logo.data.attributes.url)}
+                    src={getStrapiAssetUrl(logoUrl)}
                     width={130}
                     height={40}
-                    className="h-auto w-full"
+                    className="h-auto w-auto max-h-[40px]"
                     priority
                   />
-                </Link>
-              )}
+                )}
+              </Link>
 
               <p className="text-[13px] text-gray-400 mb-6 leading-relaxed">
                 Advanced cybersecurity solutions protecting organizations from

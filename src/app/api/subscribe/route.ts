@@ -1,39 +1,9 @@
-// app/api/contact/route.ts
+// app/api/subscribe/route.ts
 import { NextRequest, NextResponse } from "next/server";
 
-type ContactBody = {
-  firstName?: string;
-  lastName?: string;
-  phone?: string;
-  jobTitle?: string;
-  companyName?: string;
-  businessEmail?: string;
-  message?: string;
-  captchaToken?: string;
+type SubscribeBody = {
+  email: string;
 };
-
-async function verifyTurnstileToken(token: string): Promise<boolean> {
-  const secretKey = process.env.TURNSTILE_SECRET_KEY || "0x4AAAAAACDzQTqm-gWUTDUCECTNTQW362o";
-  if (!secretKey) {
-    console.error("Missing TURNSTILE_SECRET_KEY environment variable");
-    return false;
-  }
-
-  const res = await fetch(
-    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({
-        secret: secretKey,
-        response: token,
-      }),
-    }
-  );
-
-  const data = (await res.json()) as { success: boolean };
-  return data.success;
-}
 
 // Optional: make sure this runs on the server every time
 export const dynamic = "force-dynamic";
@@ -42,8 +12,6 @@ async function getAccessToken() {
   const tenantId = process.env.M365_TENANT_ID;
   const clientId = process.env.M365_CLIENT_ID;
   const clientSecret = process.env.M365_CLIENT_SECRET;
-
-
 
   if (!tenantId || !clientId || !clientSecret) {
     console.error("Missing Microsoft 365 OAuth env vars");
@@ -81,53 +49,21 @@ async function getAccessToken() {
 
 export async function POST(req: NextRequest) {
   try {
-    const body = (await req.json()) as ContactBody;
+    const body = (await req.json()) as SubscribeBody;
 
-    const {
-      firstName,
-      lastName,
-      phone,
-      jobTitle,
-      companyName,
-      businessEmail,
-      message,
-      captchaToken,
-    } = body;
-
-    if (!captchaToken) {
-      return NextResponse.json(
-        { error: "Captcha verification is required." },
-        { status: 400 }
-      );
-    }
-
-    const isCaptchaValid = await verifyTurnstileToken(captchaToken);
-    if (!isCaptchaValid) {
-      return NextResponse.json(
-        { error: "Captcha verification failed. Please try again." },
-        { status: 400 }
-      );
-    }
+    const { email } = body;
 
     // Basic validation
-    if (
-      !firstName ||
-      !lastName ||
-      !phone ||
-      !jobTitle ||
-      !companyName ||
-      !businessEmail ||
-      !message
-    ) {
+    if (!email) {
       return NextResponse.json(
-        { error: "All required fields must be filled." },
+        { error: "Email is required." },
         { status: 400 }
       );
     }
 
     const emailRegex =
       /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    if (!emailRegex.test(businessEmail)) {
+    if (!emailRegex.test(email)) {
       return NextResponse.json(
         { error: "Invalid email format." },
         { status: 400 }
@@ -145,22 +81,17 @@ export async function POST(req: NextRequest) {
     )}/sendMail`;
 
     const htmlBody = `
-      <p>You received a new contact request from the Nyxlab website:</p>
+      <p>You received a new newsletter subscription from the Nyxlab website:</p>
       <ul>
-        <li><strong>First Name:</strong> ${firstName}</li>
-        <li><strong>Last Name:</strong> ${lastName}</li>
-        <li><strong>Phone:</strong> ${phone}</li>
-        <li><strong>Job Title:</strong> ${jobTitle}</li>
-        <li><strong>Company Name:</strong> ${companyName}</li>
-        <li><strong>Business Email:</strong> ${businessEmail}</li>
+        <li><strong>Email:</strong> ${email}</li>
+        <li><strong>Subscription Date:</strong> ${new Date().toLocaleString()}</li>
       </ul>
-      <p><strong>Message:</strong></p>
-      <p>${message.replace(/\n/g, "<br/>")}</p>
+      <p>This user has subscribed to receive the latest cybersecurity insights and threat intelligence updates.</p>
     `;
 
     const payload = {
       message: {
-        subject: "New contact form submission - Nyxlab website",
+        subject: "New newsletter subscription - Nyxlab website",
         body: {
           contentType: "HTML",
           content: htmlBody,
@@ -189,19 +120,19 @@ export async function POST(req: NextRequest) {
       const errorText = await sendRes.text();
       console.error("Graph sendMail failed:", sendRes.status, errorText);
       return NextResponse.json(
-        { error: "Failed to send contact email." },
+        { error: "Failed to send subscription notification." },
         { status: 500 }
       );
     }
 
     return NextResponse.json(
-      { success: true, message: "Contact request submitted." },
+      { success: true, message: "Successfully subscribed!" },
       { status: 200 }
     );
   } catch (err: any) {
-    console.error("Contact API error:", err);
+    console.error("Subscribe API error:", err);
     return NextResponse.json(
-      { error: "Failed to submit contact form.", err },
+      { error: "Failed to process subscription.", err },
       { status: 500 }
     );
   }
