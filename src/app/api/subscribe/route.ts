@@ -41,7 +41,8 @@ async function getAccessToken() {
 
   if (!res.ok || !json.access_token) {
     console.error("Failed to obtain token:", json);
-    throw new Error("Failed to obtain Microsoft access token");
+    const errorMsg = json.error_description || json.error || "Failed to authenticate email service";
+    throw new Error(`Email service authentication failed: ${errorMsg}`);
   }
 
   return json.access_token;
@@ -117,10 +118,27 @@ export async function POST(req: NextRequest) {
     });
 
     if (sendRes.status !== 202) {
-      const errorText = await sendRes.text();
+      let errorText = "";
+      try {
+        errorText = await sendRes.text();
+      } catch (e) {
+        errorText = "Unknown error";
+      }
       console.error("Graph sendMail failed:", sendRes.status, errorText);
+      
+      // Try to parse error for more details
+      let errorMessage = "Failed to send subscription notification. Please try again later.";
+      try {
+        const errorJson = JSON.parse(errorText);
+        if (errorJson.error?.message) {
+          errorMessage = `Email service error: ${errorJson.error.message}`;
+        }
+      } catch (e) {
+        // If parsing fails, use default message
+      }
+      
       return NextResponse.json(
-        { error: "Failed to send subscription notification." },
+        { error: errorMessage },
         { status: 500 }
       );
     }
@@ -131,8 +149,9 @@ export async function POST(req: NextRequest) {
     );
   } catch (err: any) {
     console.error("Subscribe API error:", err);
+    const errorMessage = err?.message || "Failed to process subscription. Please try again later.";
     return NextResponse.json(
-      { error: "Failed to process subscription.", err },
+      { error: errorMessage },
       { status: 500 }
     );
   }
