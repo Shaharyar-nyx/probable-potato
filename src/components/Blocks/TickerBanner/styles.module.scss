@@ -1,0 +1,78 @@
+.container {
+  @apply fixed left-0 right-0 w-full bg-gradient-to-r from-red-600 to-red-700 text-white;
+  @apply border-b border-red-800;
+  @apply top-[60px] lg:top-[76px]; // Below nav (60px height + 16px top on desktop)
+  z-index: 9998; // Below nav (9999) but above content
+}
+
+.wrapper {
+  @apply mx-auto flex max-w-screen-2xl items-center justify-between gap-4 px-4 py-3;
+  @apply lg:px-8;
+}
+
+.tickerLink {
+  @apply flex-1 transition-opacity hover:opacity-90;
+  text-decoration: none;
+}
+
+.tickerContent {
+  @apply flex flex-col gap-1;
+  @apply lg:flex-row lg:items-center lg:gap-3;
+}
+
+.tickerInfo {
+  @apply flex items-center gap-2 font-semibold;
+  @apply text-sm lg:text-base;
+}
+
+.cveId {
+  @apply font-mono font-bold uppercase tracking-wider;
+  @apply bg-white/20 px-2 py-0.5 rounded;
+}
+
+.separator {
+  @apply text-white/70;
+}
+
+.title {
+  @apply font-semibold;
+}
+
+.description {
+  @apply text-xs lg:text-sm text-white/90 line-clamp-1;
+  @apply lg:line-clamp-none;
+}
+
+.navButton {
+  @apply flex items-center justify-center;
+  @apply h-8 w-8 rounded-full;
+  @apply bg-white/20 hover:bg-white/30;
+  @apply transition-colors duration-200;
+  @apply text-white;
+  flex-shrink: 0;
+  
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}
+
+.indicators {
+  @apply flex items-center gap-1.5;
+  @apply lg:absolute lg:right-8;
+  flex-shrink: 0;
+}
+
+.indicator {
+  @apply h-1.5 w-1.5 rounded-full;
+  @apply bg-white/40 hover:bg-white/60;
+  @apply transition-all duration-200;
+  
+  &.active {
+    @apply bg-white w-4;
+  }
+}
+
+.spacer {
+  @apply h-14; // ~56px to match banner height (py-3 + text content)
+}
+

@@ -7,3 +7,4 @@ export * from "./apollo-client";
 export * from "./constants";
 export * from "./leaderboard";
 export * from "./blog";
+export * from "./tickers";

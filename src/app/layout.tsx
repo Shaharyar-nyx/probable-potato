@@ -6,6 +6,8 @@ import Nav from "@/components/Nav";
 import ReCaptchaProvider from "@/components/ReCaptchaProvider";
 import { SiteContextProvider } from "@/context";
 import { getFooterMenusStrapi, getMainMenusStrapi } from "@/lib/menus";
+import { getTickers } from "@/lib/tickers";
+import { TickerBanner } from "@/components/Blocks";
 
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -33,6 +35,7 @@ const GTM_ID = "GTM-MWRGJ3KN";
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { mainNav } = await getMainMenusStrapi();
   const { footerNav } = await getFooterMenusStrapi();
+  const tickers = await getTickers();
 
   return (
     <html className={`${poppins.variable} ${inter.variable}`} lang="en">
@@ -62,6 +65,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
         <ReCaptchaProvider>
           <Nav {...mainNav} />
+          <TickerBanner tickers={tickers} />
           <SiteContextProvider footerNav={footerNav} mainNav={mainNav}>
             {children}
           </SiteContextProvider>
