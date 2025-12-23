@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import styles from "./styles.module.scss";
 import { Ticker } from "@/lib/tickers";
@@ -10,7 +10,7 @@ interface TickerBannerProps {
 }
 
 export const TickerBanner: React.FC<TickerBannerProps> = ({ tickers }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const tickerListRef = useRef<HTMLDivElement>(null);
 
   // Filter out tickers without publishedAt
   const publishedTickers = tickers.filter(ticker => ticker.publishedAt);
@@ -20,28 +20,73 @@ export const TickerBanner: React.FC<TickerBannerProps> = ({ tickers }) => {
     return null;
   }
 
-  const currentTicker = publishedTickers[currentIndex];
+  // Create array with duplicate first item for smooth looping
+  const displayTickers = publishedTickers.length > 1 
+    ? [...publishedTickers, publishedTickers[0]]
+    : publishedTickers;
 
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? publishedTickers.length - 1 : prevIndex - 1
-    );
-  };
+  // Slot machine animation - matching the original HTML implementation exactly
+  useEffect(() => {
+    if (publishedTickers.length <= 1 || !tickerListRef.current) return;
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % publishedTickers.length);
-  };
+    let index = 0;
+    const itemHeight = 20;
+    const totalItems = displayTickers.length; // includes duplicate first item
+
+    // Set initial transition (matching original: "transform 0.6s cubic-bezier(.25,.8,.25,1)")
+    if (tickerListRef.current) {
+      tickerListRef.current.style.transition = 'transform 0.6s cubic-bezier(.25,.8,.25,1)';
+    }
+
+    const interval = setInterval(() => {
+      index++;
+      
+      if (tickerListRef.current) {
+        tickerListRef.current.style.transform = `translateY(-${index * itemHeight}px)`;
+      }
+
+      // Loop reset - matching original: if (index === items.length - 1)
+      // When we reach the duplicate item (last item in the array)
+      if (index === totalItems - 1) {
+        setTimeout(() => {
+          if (tickerListRef.current) {
+            tickerListRef.current.style.transition = 'none';
+            tickerListRef.current.style.transform = 'translateY(0px)';
+            index = 0;
+
+            setTimeout(() => {
+              if (tickerListRef.current) {
+                tickerListRef.current.style.transition = 'transform 0.6s cubic-bezier(.25,.8,.25,1)';
+              }
+            }, 20);
+          }
+        }, 600);
+      }
+    }, 2000); // every 2 seconds (matching original)
+
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [publishedTickers.length]); // Only depend on publishedTickers.length, displayTickers is derived
 
   const content = (
-    <div className={styles.tickerContent}>
-      <div className={styles.tickerInfo}>
-        <span className={styles.cveId}>{currentTicker.cve_id}</span>
-        <span className={styles.separator}>•</span>
-        <span className={styles.title}>{currentTicker.title}</span>
+    <div className={styles.tickerWindow}>
+      <div ref={tickerListRef} className={styles.tickerList}>
+        {displayTickers.map((ticker, index) => (
+          <div key={`${ticker.id}-${index}`} className={styles.tickerItem}>
+            {ticker.link ? (
+              <Link href={ticker.link} className={styles.tickerLink} target="_blank" rel="noopener noreferrer">
+                <span className={styles.cve}>{ticker.cve_id}</span>
+                {ticker.title || ticker.description}
+              </Link>
+            ) : (
+              <>
+                <span className={styles.cve}>{ticker.cve_id}</span>
+                {ticker.title || ticker.description}
+              </>
+            )}
+          </div>
+        ))}
       </div>
-      {currentTicker.description && (
-        <p className={styles.description}>{currentTicker.description}</p>
-      )}
     </div>
   );
 
@@ -49,49 +94,8 @@ export const TickerBanner: React.FC<TickerBannerProps> = ({ tickers }) => {
     <>
       <div className={styles.container}>
         <div className={styles.wrapper}>
-        {publishedTickers.length > 1 && (
-          <button 
-            className={styles.navButton}
-            onClick={handlePrev}
-            aria-label="Previous ticker"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        )}
-        
-        {currentTicker.link ? (
-          <Link href={currentTicker.link} className={styles.tickerLink} target="_blank" rel="noopener noreferrer">
-            {content}
-          </Link>
-        ) : (
-          content
-        )}
-
-        {publishedTickers.length > 1 && (
-          <>
-            <button 
-              className={styles.navButton}
-              onClick={handleNext}
-              aria-label="Next ticker"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <div className={styles.indicators}>
-              {publishedTickers.map((_, index) => (
-                <button
-                  key={index}
-                  className={`${styles.indicator} ${index === currentIndex ? styles.active : ''}`}
-                  onClick={() => setCurrentIndex(index)}
-                  aria-label={`Go to ticker ${index + 1}`}
-                />
-              ))}
-            </div>
-          </>
-        )}
+          <div className={styles.tickerLabel}>NYXLAB NEWLY DISCOVERED CVES</div>
+          {content}
         </div>
       </div>
       {/* Spacer to push content below fixed banner */}

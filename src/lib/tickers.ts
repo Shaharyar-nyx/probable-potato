@@ -12,7 +12,7 @@ export interface Ticker {
   publishedAt?: string | null;
 }
 
-export interface TickerResponse {
+export type TickerResponse = Ticker[] | {
   data: Array<{
     id: number;
     attributes: {
@@ -27,7 +27,7 @@ export interface TickerResponse {
     };
   }>;
   meta?: any;
-}
+};
 
 export async function getTickers(): Promise<Ticker[]> {
   try {
@@ -46,28 +46,48 @@ export async function getTickers(): Promise<Ticker[]> {
       return [];
     }
 
-    const json: TickerResponse = await response.json();
+    const json = await response.json();
 
-    if (!json.data || !Array.isArray(json.data)) {
+    let tickers: Ticker[] = [];
+
+    // Handle direct array response (flat structure)
+    if (Array.isArray(json)) {
+      tickers = json
+        .filter((item: any) => item.publishedAt) // Only include published tickers
+        .map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          cve_id: item.cve_id,
+          description: item.description,
+          link: item.link || null,
+          order: item.order || 0,
+          createdAt: item.createdAt,
+          updatedAt: item.updatedAt,
+          publishedAt: item.publishedAt || null,
+        }))
+        .sort((a: Ticker, b: Ticker) => a.order - b.order); // Sort by order
+    } 
+    // Handle Strapi nested structure (data.attributes)
+    else if (json.data && Array.isArray(json.data)) {
+      tickers = json.data
+        .filter((item: any) => item.attributes?.publishedAt) // Only include published tickers
+        .map((item: any) => ({
+          id: item.id,
+          title: item.attributes.title,
+          cve_id: item.attributes.cve_id,
+          description: item.attributes.description,
+          link: item.attributes.link || null,
+          order: item.attributes.order || 0,
+          createdAt: item.attributes.createdAt,
+          updatedAt: item.attributes.updatedAt,
+          publishedAt: item.attributes.publishedAt || null,
+        }))
+        .sort((a: Ticker, b: Ticker) => a.order - b.order); // Sort by order
+    } 
+    else {
       console.error('Invalid ticker response structure:', json);
       return [];
     }
-
-    // Transform Strapi response to our Ticker interface
-    const tickers: Ticker[] = json.data
-      .filter(item => item.attributes.publishedAt) // Only include published tickers
-      .map(item => ({
-        id: item.id,
-        title: item.attributes.title,
-        cve_id: item.attributes.cve_id,
-        description: item.attributes.description,
-        link: item.attributes.link || null,
-        order: item.attributes.order,
-        createdAt: item.attributes.createdAt,
-        updatedAt: item.attributes.updatedAt,
-        publishedAt: item.attributes.publishedAt || null,
-      }))
-      .sort((a, b) => a.order - b.order); // Sort by order
 
     return tickers;
   } catch (error) {
