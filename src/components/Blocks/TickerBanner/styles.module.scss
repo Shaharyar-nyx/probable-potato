@@ -2,13 +2,15 @@
   @apply fixed left-0 right-0;
   @apply top-[84px] lg:top-[100px]; // More spacing below nav (60px height + 16px top on desktop + 24px spacing)
   z-index: 9998; // Below nav (9999) but above content
-  padding: 0 16px;
+  padding: 0 12px;
+  @apply lg:px-4;
 }
 
 .wrapper {
-  @apply flex items-center gap-4;
+  @apply flex items-center gap-2 lg:gap-4;
   @apply mx-auto max-w-screen-2xl;
-  padding: 10px 20px;
+  padding: 8px 12px;
+  @apply lg:px-5 lg:py-2.5;
   background: rgba(10, 6, 22, 0.96);
   border-radius: 999px;
   border: 1px solid rgba(180, 120, 255, 0.22);
@@ -17,11 +19,12 @@
 
 .tickerLabel {
   flex-shrink: 0;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: #ffce6a;
+  @apply hidden sm:block; // Hide on mobile, show on small screens and up
 }
 
 .tickerWindow {
@@ -43,9 +46,12 @@
   white-space: nowrap;
   display: flex;
   align-items: center;
-  font-size: 13px;
+  font-size: 11px;
   opacity: 0.95;
   color: #fff;
+  @apply lg:text-[13px];
+  min-width: 0; // Allow flex item to shrink
+  overflow: hidden;
 }
 
 .tickerLink {
@@ -54,16 +60,21 @@
   text-decoration: none;
   color: inherit;
   width: 100%;
+  min-width: 0; // Allow flex item to shrink
+  overflow: hidden;
 }
 
 .cve {
   font-weight: 700;
-  margin-right: 8px;
+  margin-right: 6px;
+  @apply lg:mr-2;
+  flex-shrink: 0; // Prevent CVE from shrinking
   /* gradient CVE color */
   background: linear-gradient(90deg, #df11b2, #fc11fc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-size: inherit; // Match parent font size
 }
 
 .spacer {

@@ -6,6 +6,8 @@ import { getPageBySlug, getStrapiAssetUrl } from "@/lib";
 import { PageBuilder } from "@/components/PageBuilder";
 import { BlockType } from "@/types";
 import AwardsSection from "@/sections/home/awards-section";
+import { TickerBanner } from "@/components/Blocks";
+import { getTickers } from "@/lib/tickers";
 
 
 const blockComponents = {
@@ -71,6 +73,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 async function Home() {
   const data = await getHomeData();
+  const tickers = await getTickers();
   
   if (!data?.blocks) {
     return (
@@ -85,6 +88,7 @@ async function Home() {
 
   return (
     <main>
+      <TickerBanner tickers={tickers} />
       <PageBuilder blockComponents={blockComponents} blocks={data.blocks} />
     </main>
   );
