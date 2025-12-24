@@ -30,18 +30,35 @@ export const TickerBanner: React.FC<TickerBannerProps> = ({ tickers }) => {
     if (publishedTickers.length <= 1 || !tickerListRef.current) return;
 
     let index = 0;
-    const itemHeight = 20;
     const totalItems = displayTickers.length; // includes duplicate first item
+
+    // Function to get item height based on screen size
+    const getItemHeight = () => {
+      if (typeof window !== 'undefined') {
+        return window.innerWidth >= 1024 ? 20 : 40;
+      }
+      return 40; // Default to mobile height for SSR
+    };
+
+    let itemHeight = getItemHeight();
 
     // Set initial transition (matching original: "transform 0.6s cubic-bezier(.25,.8,.25,1)")
     if (tickerListRef.current) {
       tickerListRef.current.style.transition = 'transform 0.6s cubic-bezier(.25,.8,.25,1)';
     }
 
+    // Handle window resize to update item height
+    const handleResize = () => {
+      itemHeight = getItemHeight();
+    };
+
+    window.addEventListener('resize', handleResize);
+
     const interval = setInterval(() => {
       index++;
       
       if (tickerListRef.current) {
+        itemHeight = getItemHeight(); // Update height on each interval
         tickerListRef.current.style.transform = `translateY(-${index * itemHeight}px)`;
       }
 
@@ -64,7 +81,10 @@ export const TickerBanner: React.FC<TickerBannerProps> = ({ tickers }) => {
       }
     }, 2000); // every 2 seconds (matching original)
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('resize', handleResize);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [publishedTickers.length]); // Only depend on publishedTickers.length, displayTickers is derived
 

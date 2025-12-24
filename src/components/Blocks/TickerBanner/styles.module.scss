@@ -28,7 +28,8 @@
 }
 
 .tickerWindow {
-  height: 20px; /* display only ONE item */
+  height: 40px; /* display only ONE item (2 lines on mobile) */
+  @apply lg:h-5; // 20px on desktop
   overflow: hidden;
   flex: 1;
   position: relative;
@@ -42,26 +43,36 @@
 }
 
 .tickerItem {
-  height: 20px;
-  white-space: nowrap;
+  height: 40px; // 2 lines on mobile
+  @apply lg:h-5; // 20px on desktop, single line
+  white-space: normal; // Allow wrapping on mobile
+  @apply lg:whitespace-nowrap; // Single line on desktop
   display: flex;
-  align-items: center;
+  align-items: flex-start; // Top align on mobile for wrapping
+  @apply lg:items-center; // Center on desktop
   font-size: 11px;
   opacity: 0.95;
   color: #fff;
   @apply lg:text-[13px];
   min-width: 0; // Allow flex item to shrink
   overflow: hidden;
+  line-height: 1.2; // Tighter line height for 2 lines
+  @apply lg:leading-normal;
+  flex-wrap: wrap; // Allow wrapping on mobile
+  @apply lg:flex-nowrap; // Single line on desktop
 }
 
 .tickerLink {
   display: flex;
-  align-items: center;
+  align-items: flex-start; // Allow wrapping on mobile
+  @apply lg:items-center; // Center on desktop
   text-decoration: none;
   color: inherit;
   width: 100%;
   min-width: 0; // Allow flex item to shrink
   overflow: hidden;
+  flex-wrap: wrap; // Allow wrapping on mobile
+  @apply lg:flex-nowrap; // Single line on desktop
 }
 
 .cve {
@@ -78,5 +89,6 @@
 }
 
 .spacer {
-  @apply h-14; // ~56px to match banner height
+  @apply h-16; // ~64px to match banner height on mobile (2 lines)
+  @apply lg:h-14; // ~56px on desktop
 }
