@@ -1,12 +1,101 @@
 import Image from "next/image";
-import { getStrapiAssetUrl } from "@/lib";
+import { Metadata } from "next";
+import { getStrapiAssetUrl, STRAPI_ASSETS } from "@/lib";
+import { cache } from "react";
 
-async function getCaseStudy(slug: string) {
-  const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/case-studies?filters[slug][$eq]=${slug}&populate=*`, {
-    cache: "no-store",
-  });
-  const data = await res.json();
-  return data[0];
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://nyxlab.com";
+const API_URL = "https://shark-app-tmqz4.ondigitalocean.app";
+
+// Cache the fetch to dedupe between generateMetadata and page component
+const getCaseStudy = cache(async (slug: string) => {
+  try {
+    const res = await fetch(
+      `${API_URL}/api/case-studies?filters[slug][$eq]=${slug}&populate=*`,
+      { next: { revalidate: 60 } }
+    );
+    const data = await res.json();
+
+    // Handle different Strapi response formats
+    if (Array.isArray(data)) {
+      return data[0] || null;
+    }
+    if (data?.data && Array.isArray(data.data)) {
+      const item = data.data[0];
+      return item?.attributes ? { id: item.id, ...item.attributes } : item || null;
+    }
+    return data[0] || null;
+  } catch (error) {
+    console.error("Error fetching case study:", error);
+    return null;
+  }
+});
+
+// Generate SEO metadata
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const caseStudy = await getCaseStudy(slug);
+
+  if (!caseStudy) {
+    return {
+      title: "Case Study Not Found | NyxLab",
+      description: "The requested case study could not be found.",
+    };
+  }
+
+  // Use SEO component data if available, otherwise fallback to main fields
+  const seo = caseStudy.seo;
+  const title = seo?.title || caseStudy.title || "Case Study";
+  const description = seo?.meta_description || caseStudy.short_description || "";
+  const keywords = seo?.keywords || [];
+  const canonicalUrl = seo?.canonical_url || `${SITE_URL}/blog/${slug}`;
+  const noIndex = seo?.no_index || false;
+  const noFollow = seo?.no_follow || false;
+
+  // Get OG image
+  let ogImage = "/favicon.ico";
+  if (seo?.og_image?.data?.attributes?.url) {
+    ogImage = getStrapiAssetUrl(seo.og_image.data.attributes.url);
+  } else if (caseStudy.image?.[0]?.url) {
+    ogImage = getStrapiAssetUrl(caseStudy.image[0].url);
+  } else if (caseStudy.image?.data?.[0]?.attributes?.url) {
+    ogImage = getStrapiAssetUrl(caseStudy.image.data[0].attributes.url);
+  }
+
+  return {
+    title: `${title} | NyxLab`,
+    description,
+    keywords: Array.isArray(keywords) ? keywords.join(", ") : keywords,
+    robots: {
+      index: !noIndex,
+      follow: !noFollow,
+    },
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: "NyxLab",
+      type: "article",
+      locale: "en_US",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      publishedTime: caseStudy.published || caseStudy.createdAt,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
 }
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -19,8 +108,84 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
   const img = caseStudy.image?.[0];
 
+  // Get image URL for structured data
+  let imageUrl = "";
+  if (img?.url) {
+    imageUrl = getStrapiAssetUrl(img.url);
+  } else if (caseStudy.image?.data?.[0]?.attributes?.url) {
+    imageUrl = getStrapiAssetUrl(caseStudy.image.data[0].attributes.url);
+  }
+
+  // JSON-LD Structured Data for Article
+  const articleStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: caseStudy.title,
+    description: caseStudy.short_description || "",
+    image: imageUrl ? [imageUrl] : [],
+    datePublished: caseStudy.published || caseStudy.createdAt,
+    dateModified: caseStudy.updatedAt || caseStudy.published || caseStudy.createdAt,
+    author: {
+      "@type": "Organization",
+      name: "NyxLab Research",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "NyxLab",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/favicon.ico`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/blog/${slug}`,
+    },
+  };
+
+  // Breadcrumb Structured Data
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Case Studies",
+        item: `${SITE_URL}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: caseStudy.title,
+        item: `${SITE_URL}/blog/${slug}`,
+      },
+    ],
+  };
+
   return (
     <section className="bg-black text-white pt-5">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
      
       {/* === MAIN CONTENT === */}
       <div className="max-w-5xl mx-auto px-6 md:px-10 py-20">
