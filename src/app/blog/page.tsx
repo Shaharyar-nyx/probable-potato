@@ -11,6 +11,8 @@ type CaseItem = {
   slug?: string;
   short_description?: string;
   imageUrl?: string | null;
+  blogs_read_time?: number;
+  published?: string;
 };
 
 export default function CaseStudiesList() {
@@ -83,12 +85,17 @@ export default function CaseStudiesList() {
             imageUrl = null;
           }
 
+          const blogs_read_time = attrs.blogs_read_time ?? attrs.attributes?.blogs_read_time ?? undefined;
+          const published = attrs.published ?? attrs.attributes?.published ?? undefined;
+
           return {
             id,
             title,
             slug,
             short_description,
             imageUrl,
+            blogs_read_time,
+            published,
           };
         });
 
@@ -185,6 +192,24 @@ Learn something new with every read.</p>
                   >
                     Learn More →
                   </Link>
+
+                  {/* Published date and Read time */}
+                  {(item.blogs_read_time || item.published) && (
+                    <div className="mt-4 flex items-center gap-4 text-xs text-gray-500">
+                      {item.published && (
+                        <span>
+                          {new Date(item.published).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                          })}
+                        </span>
+                      )}
+                      {item.blogs_read_time && (
+                        <span>{item.blogs_read_time} min read</span>
+                      )}
+                    </div>
+                  )}
                 </div>
               </article>
             ))}
