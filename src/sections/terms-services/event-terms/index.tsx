@@ -94,6 +94,73 @@ const EventTermsBlock: React.FC = () => {
               Attempt to gain unauthorized access to systems or materials.
             </li>
           </ul>
+          <p>
+            The Organizer may remove any participant for misconduct without
+            refund or notice.
+          </p>
+        </div>
+
+        <div className={styles.section}>
+          <h2>6. Technical Requirements</h2>
+          <ul>
+            <li>
+              Participants are responsible for ensuring they have suitable
+              internet connectivity and compatible devices.
+            </li>
+            <li>
+              The Organizer is not liable for technical issues experienced by
+              participants.
+            </li>
+          </ul>
+        </div>
+
+        <div className={styles.section}>
+          <h2>7. Changes, Cancellation & Refunds</h2>
+          <ul>
+            <li>
+              The Organizer may reschedule, modify, or cancel the Event at any
+              time.
+            </li>
+            <li>
+              If cancelled, the Organizer may offer an alternative session or a
+              refund (if applicable).
+            </li>
+            <li>
+              Refunds are only provided if explicitly stated in the registration
+              terms.
+            </li>
+          </ul>
+        </div>
+
+        <div className={styles.section}>
+          <h2>8. Disclaimer & Liability</h2>
+          <ul>
+            <li>
+              The Event is provided &quot;as is&quot; without warranties of any kind.
+            </li>
+            <li>
+              The Organizer is not responsible for errors, omissions, or actions
+              taken based on the Event content.
+            </li>
+            <li>
+              To the fullest extent permitted by law, the Organizer is not liable
+              for any loss or damage arising from participation.
+            </li>
+          </ul>
+        </div>
+
+        <div className={styles.section}>
+          <h2>9. Governing Law</h2>
+          <p>
+            These Terms shall be governed by and interpreted in accordance with
+            the laws of Hong Kong SAR.
+          </p>
+        </div>
+
+        <div className={styles.section}>
+          <h2>10. Contact</h2>
+          <p>For questions regarding these Terms, contact:</p>
+          <p className={styles.contactBlock}>info@nyxlab.com</p>
         </div>
       </div>
     </section>
