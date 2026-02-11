@@ -256,6 +256,15 @@ const Footer: React.FC<any> = ({
                         </li>
                       )
                     )}
+                    <li>
+                      <Link
+                        id={formatBtnId("Event Terms")}
+                        className="text-[13px] text-gray-400 hover:text-white transition-colors whitespace-nowrap"
+                        href="/event-terms"
+                      >
+                        Event Terms
+                      </Link>
+                    </li>
                   </ul>
                 </div>
 
