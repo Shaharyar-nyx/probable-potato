@@ -225,7 +225,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             leading-relaxed
             text-gray-300
             space-y-6
-            text-justify
+            md:text-justify
 
             /* Headings */
             [&>h1]:text-purple-400 [&>h1]:font-extrabold [&>h1]:text-xl [&>h1]:mt-12 [&>h1]:mb-6

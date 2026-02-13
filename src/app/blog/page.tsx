@@ -100,6 +100,12 @@ export default function CaseStudiesList() {
         });
 
         console.log("✅ normalized cases:", normalized);
+        // Sort by published date — newest first
+        normalized.sort((a, b) => {
+          if (!a.published) return 1;
+          if (!b.published) return -1;
+          return new Date(b.published).getTime() - new Date(a.published).getTime();
+        });
         setCases(normalized);
       } catch (err) {
         console.error("❌ fetch case-studies error:", err);
