@@ -117,7 +117,7 @@ export default function CaseStudiesList() {
      {/* HERO */}
 <section
   className="relative flex items-center justify-start bg-cover bg-center
-             px-6 md:px-20 h-[32vh] sm:h-[60vh] lg:h-[80vh] overflow-hidden"
+             px-6 md:px-20 h-[40vh] sm:h-[60vh] lg:h-[80vh] overflow-hidden"
   style={{
     backgroundImage:
       "url('/images/3d-abstract-network-communications-background-with-plexus-design_1048-16800.jpg')",
