@@ -188,7 +188,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       />
      
       {/* === MAIN CONTENT === */}
-      <div className="max-w-5xl mx-auto px-6 md:px-10 py-20">
+      <div className="max-w-5xl mx-auto px-5 md:px-10 py-20">
         {/* === IMAGE === */}
         {img?.url && (
           <div className="overflow-hidden rounded-2xl shadow-lg mb-10 border border-purple-800/40">
@@ -225,15 +225,15 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             leading-relaxed
             text-gray-300
             space-y-6
-            md:text-justify
+            text-left md:text-justify
 
             /* Headings */
-            [&>h1]:text-purple-400 [&>h1]:font-extrabold [&>h1]:text-xl [&>h1]:mt-12 [&>h1]:mb-6
-            [&>h2]:text-purple-300 [&>h2]:font-semibold [&>h2]:text-xl [&>h2]:mt-10 [&>h2]:mb-4
-            [&>h3]:text-purple-200 [&>h3]:font-medium [&>h3]:text-xl [&>h3]:mt-8 [&>h3]:mb-3
+            [&>h1]:text-purple-400 [&>h1]:font-extrabold [&>h1]:text-xl [&>h1]:mt-12 [&>h1]:mb-6 [&>h1]:text-left
+            [&>h2]:text-purple-300 [&>h2]:font-semibold [&>h2]:text-xl [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-left
+            [&>h3]:text-purple-200 [&>h3]:font-medium [&>h3]:text-xl [&>h3]:mt-8 [&>h3]:mb-3 [&>h3]:text-left
 
             /* Paragraphs */
-            [&>p]:text-gray-400 [&>p]:leading-relaxed [&>p]:text-lg
+            [&>p]:text-gray-400 [&>p]:leading-relaxed [&>p]:text-base [&>p]:md:text-lg
 
             /* Lists - FIXED */
             [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>ul]:my-6
@@ -258,7 +258,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             /* Code */
             [&>code]:bg-gray-800 [&>code]:text-pink-300 [&>code]:px-2 [&>code]:py-1 [&>code]:rounded [&>code]:text-sm
           "
-          dangerouslySetInnerHTML={{ __html: caseStudy.content }}
+          dangerouslySetInnerHTML={{
+            __html: (caseStudy.content || "")
+              .replace(/&nbsp;/g, " ")
+              .replace(/ {2,}/g, " ")
+          }}
         />
       </div>
     </section>
