@@ -1,4 +1,5 @@
 import { Inter, Poppins } from "next/font/google";
+import { headers } from "next/headers";
 import Script from "next/script";
 
 import Footer from "@/components/Footer";
@@ -31,14 +32,27 @@ const inter = Inter({
 const GTM_ID = "GTM-MWRGJ3KN";
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") || "";
+  const isMaintenancePage = pathname === "/maintenance";
+
+  // Skip fetching nav data for maintenance page
+  if (isMaintenancePage) {
+    return (
+      <html className={`${poppins.variable} ${inter.variable}`} lang="en">
+        <body>{children}</body>
+      </html>
+    );
+  }
+
   const { mainNav } = await getMainMenusStrapi();
   const { footerNav } = await getFooterMenusStrapi();
 
   return (
     <html className={`${poppins.variable} ${inter.variable}`} lang="en">
-      
+
       <body>
-        
+
         {/* --- GTM noscript (place immediately after <body>) --- */}
         <noscript>
           <iframe
