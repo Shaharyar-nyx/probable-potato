@@ -11,7 +11,7 @@ export default function MaintenancePage() {
       <div className={styles.content}>
         <div className={styles.logoWrapper}>
           <img
-            src="/images/nyxlab-logo.svg"
+            src="/images/nyxlab-logo.png"
             alt="Nyxlab"
             className={styles.logo}
           />
