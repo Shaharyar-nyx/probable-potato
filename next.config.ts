@@ -6,6 +6,7 @@ const nextConfig = (phase: string) => {
   const isProduction = process.env.NODE_ENV === "production";
 
   const nextConfigOptions: NextConfig = {
+    poweredByHeader: false,
     trailingSlash: true,
 
     eslint: { ignoreDuringBuilds: true },
@@ -145,13 +146,13 @@ const securityHeadersConfig = (phase: string) => {
     if (isProduction) {
       return `
         ${defaultCSP}
-        script-src 'self' 'unsafe-inline' ${scriptSrc};
+        script-src 'self' 'strict-dynamic' ${scriptSrc};
       `;
     }
 
     return `
       ${defaultCSP}
-      script-src 'self' 'unsafe-inline' 'unsafe-eval' ${scriptSrc};
+      script-src 'self' 'unsafe-eval' ${scriptSrc};
     `;
   };
 
