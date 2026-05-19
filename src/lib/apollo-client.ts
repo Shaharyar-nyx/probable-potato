@@ -10,6 +10,7 @@ const httpLink = new HttpLink({
       ...options,
       headers: {
         ...options?.headers,
+        'x-api-key': process.env.NEXT_PUBLIC_GRAPHQL_API_KEY || '',
       },
     });
   },

@@ -38,6 +38,7 @@ export async function getTickers(): Promise<Ticker[]> {
       cache: 'no-store', // Ensure fresh data on each request
       headers: {
         'Content-Type': 'application/json',
+        'x-api-key': process.env.NEXT_PUBLIC_GRAPHQL_API_KEY || '',
       },
     });
 
