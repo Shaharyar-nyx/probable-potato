@@ -22,7 +22,12 @@ export default function CaseStudiesList() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/case-studies?populate=*`);
+        const res = await fetch(`https://shark-app-tmqz4.ondigitalocean.app/api/case-studies?populate=*`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': process.env.NEXT_PUBLIC_GRAPHQL_API_KEY || '',
+          },
+        });
         const json = await res.json();
         console.log("📦 raw case-studies response:", json);
 

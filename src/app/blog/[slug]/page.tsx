@@ -11,7 +11,13 @@ const getCaseStudy = cache(async (slug: string) => {
   try {
     const res = await fetch(
       `${API_URL}/api/case-studies?filters[slug][$eq]=${slug}&populate=*`,
-      { next: { revalidate: 60 } }
+      {
+        next: { revalidate: 60 },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': process.env.NEXT_PUBLIC_GRAPHQL_API_KEY || '',
+        },
+      }
     );
     const data = await res.json();
 

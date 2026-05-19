@@ -14,6 +14,9 @@ export async function submitApplicationForm(
   try {
     await fetch(`${Nyxlab_CMS_URL}/api/forms`, {
       method: "POST",
+      headers: {
+        'x-api-key': process.env.NEXT_PUBLIC_GRAPHQL_API_KEY || '',
+      },
       body: payload,
     });
     reset();

@@ -20,6 +20,7 @@ export const request = async (uri: string, data: any, method: string = "GET") =>
     method: method,
     headers: {
       "Content-Type": "application/json",
+      "x-api-key": process.env.NEXT_PUBLIC_GRAPHQL_API_KEY || '',
     },
   };
 
