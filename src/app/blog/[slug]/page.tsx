@@ -234,40 +234,55 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             text-left md:text-justify
 
             /* Headings */
-            [&>h1]:text-purple-400 [&>h1]:font-extrabold [&>h1]:text-xl [&>h1]:mt-12 [&>h1]:mb-6 [&>h1]:text-left
-            [&>h2]:text-purple-300 [&>h2]:font-semibold [&>h2]:text-xl [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-left
-            [&>h3]:text-purple-200 [&>h3]:font-medium [&>h3]:text-xl [&>h3]:mt-8 [&>h3]:mb-3 [&>h3]:text-left
+            [&_h1]:text-purple-400 [&_h1]:font-extrabold [&_h1]:text-xl [&_h1]:mt-12 [&_h1]:mb-6 [&_h1]:text-left
+            [&_h2]:text-purple-300 [&_h2]:font-semibold [&_h2]:text-xl [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:text-left
+            [&_h3]:text-purple-200 [&_h3]:font-medium [&_h3]:text-xl [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-left
 
             /* Paragraphs */
-            [&>p]:text-gray-400 [&>p]:leading-relaxed [&>p]:text-base [&>p]:md:text-lg
+            [&_p]:text-gray-400 [&_p]:leading-relaxed [&_p]:text-base [&_p]:md:text-lg
 
-            /* Lists - FIXED */
-            [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>ul]:my-6
-            [&>ul>li]:text-gray-400 [&>ul>li]:leading-relaxed [&>ul>li]:marker:text-purple-400
-            [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-2 [&>ol]:my-6
-            [&>ol>li]:text-gray-400 [&>ol>li]:leading-relaxed [&>ol>li]:marker:text-purple-400
+            /* Lists */
+            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ul]:my-6
+            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_ol]:my-6
+            [&_li]:text-gray-400 [&_li]:leading-relaxed [&_li]:marker:text-purple-400
 
             /* Nested Lists */
-            [&>ul>li>ul]:list-circle [&>ul>li>ul]:pl-6 [&>ul>li>ul]:mt-2 [&>ul>li>ul]:space-y-1
-            [&>ol>li>ol]:list-decimal [&>ol>li>ol]:pl-6 [&>ol>li>ol]:mt-2 [&>ol>li>ol]:space-y-1
+            [&_li_ul]:list-[circle] [&_li_ul]:my-2 [&_li_ul]:space-y-1
+            [&_li_ol]:my-2 [&_li_ol]:space-y-1
+
+            /* Tables */
+            [&_table]:w-full [&_table]:my-8 [&_table]:border-collapse [&_table]:text-left [&_table]:text-sm
+            [&_table]:block [&_table]:overflow-x-auto md:[&_table]:table
+            [&_thead]:bg-purple-900/30
+            [&_th]:border [&_th]:border-purple-800/40 [&_th]:px-4 [&_th]:py-3
+            [&_th]:text-purple-200 [&_th]:font-semibold [&_th]:align-top [&_th]:text-left
+            [&_td]:border [&_td]:border-purple-800/40 [&_td]:px-4 [&_td]:py-3
+            [&_td]:text-gray-400 [&_td]:align-top [&_td]:text-left
+            [&_tbody_tr:nth-child(even)]:bg-purple-950/20
 
             /* Strong and Links */
-            [&>strong]:text-pink-400 [&>strong]:font-semibold
-            [&>a]:text-pink-400 hover:[&>a]:text-pink-300 [&>a]:underline
+            [&_strong]:text-pink-400 [&_strong]:font-semibold
+            [&_b]:text-pink-400 [&_b]:font-semibold
+            [&_a]:text-pink-400 hover:[&_a]:text-pink-300 [&_a]:underline [&_a]:break-words
+
+            /* Images */
+            [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg [&_img]:my-8
 
             /* Horizontal Rule */
-            [&>hr]:border-purple-800/40 [&>hr]:my-8
+            [&_hr]:border-purple-800/40 [&_hr]:my-8
 
             /* Blockquotes */
-            [&>blockquote]:text-gray-300 [&>blockquote]:border-l-4 [&>blockquote]:border-purple-500 [&>blockquote]:pl-4 [&>blockquote]:py-2 [&>blockquote]:my-6 [&>blockquote]:italic
-            
+            [&_blockquote]:text-gray-300 [&_blockquote]:border-l-4 [&_blockquote]:border-purple-500 [&_blockquote]:pl-4 [&_blockquote]:py-2 [&_blockquote]:my-6 [&_blockquote]:italic
+
             /* Code */
-            [&>code]:bg-gray-800 [&>code]:text-pink-300 [&>code]:px-2 [&>code]:py-1 [&>code]:rounded [&>code]:text-sm
+            [&_code]:bg-gray-800 [&_code]:text-pink-300 [&_code]:px-2 [&_code]:py-1 [&_code]:rounded [&_code]:text-sm [&_code]:break-words
+            [&_pre]:bg-gray-900 [&_pre]:border [&_pre]:border-purple-800/40 [&_pre]:rounded-lg
+            [&_pre]:p-4 [&_pre]:my-6 [&_pre]:overflow-x-auto [&_pre]:text-sm [&_pre]:text-left
+            [&_pre]:whitespace-pre [&_pre]:not-italic
+            [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-gray-300 [&_pre_code]:whitespace-pre
           "
           dangerouslySetInnerHTML={{
-            __html: (caseStudy.content || "")
-              .replace(/&nbsp;/g, " ")
-              .replace(/ {2,}/g, " ")
+            __html: (caseStudy.content || "").replace(/&nbsp;/g, " "),
           }}
         />
       </div>
