@@ -203,7 +203,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               alt={img.alternativeText || caseStudy.title}
               width={900}
               height={500}
-              className="object-cover w-full h-[400px] hover:scale-[1.02] transition-transform duration-500"
+              className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500"
             />
           </div>
         )}
